@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/repeat_bg"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <!-- 上部title -->
+
+    <include layout="@layout/top_head" />
+    <!-- 中部 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/usercenter_iv_thumb"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/usercenter_headbg"
+            android:contentDescription="@string/contentDescription"
+            android:scaleType="centerCrop" />
+
+        <TextView
+             android:id="@+id/usercenter_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="王博"
+            android:textColor="@color/white"
+            android:textSize="@dimen/biaotitextsize" />
+
+        <TextView
+             android:id="@+id/usercenter_tv_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="数学教授、研究室主任"
+            android:textColor="@color/white"
+            android:textSize="@dimen/contenttextsize" />
+    </LinearLayout>
+    <!-- 下部 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <!-- 设置 -->
+
+        <RelativeLayout
+            android:id="@+id/usercenter_relay_set"
+            style="@style/usercenter_relay_style" >
+
+            <ImageView
+                android:id="@+id/usercenter_iv_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/usercenter_set_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="matrix" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@id/usercenter_iv_set"
+                android:text="@string/user_set"
+                android:textColor="@color/blacktext"
+                android:textSize="@dimen/biaotitextsize" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/usercenter_arrow_img"
+                android:contentDescription="@string/contentDescription" />
+        </RelativeLayout>
+
+        <include layout="@layout/line"/>
+        <!-- 关于 -->
+
+        <RelativeLayout
+            android:id="@+id/usercenter_relay_about"
+            style="@style/usercenter_relay_style" >
+
+            <ImageView
+                android:id="@+id/usercenter_iv_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/usercenter_about_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="matrix" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@id/usercenter_iv_about"
+                android:text="@string/user_about"
+                android:textColor="@color/blacktext"
+                android:textSize="@dimen/biaotitextsize" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/usercenter_arrow_img"
+                android:contentDescription="@string/contentDescription" />
+        </RelativeLayout>
+
+           <include layout="@layout/line"/>
+        <!-- 退出 -->
+
+        <RelativeLayout
+            android:id="@+id/uesrcenter_relay_cancel"
+            style="@style/usercenter_relay_style" >
+
+            <ImageView
+                android:id="@+id/uesrcenter_iv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/usercenter_cancel_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="matrix" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:layout_toRightOf="@id/uesrcenter_iv_cancel"
+                android:text="@string/user_exit"
+                android:textColor="@color/blacktext"
+                android:textSize="@dimen/biaotitextsize" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/usercenter_arrow_img"
+                android:contentDescription="@string/contentDescription" />
+        </RelativeLayout>
+
+          <include layout="@layout/line"/>
+    </LinearLayout>
+
+</LinearLayout>

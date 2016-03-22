@@ -1,0 +1,197 @@
+package com.zh.education.control.activity;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+
+import org.ksoap2.serialization.SoapObject;
+
+import com.zh.education.R;
+import com.zh.education.business.UserLoginBusiness;
+import com.zh.education.business.UserLoginBusiness.GetLoginCallback;
+import com.zh.education.utils.CommonUtils;
+import com.zh.education.utils.MyEditText;
+import com.zh.education.utils.ProgressDialogUtils;
+import com.zh.education.utils.WebServiceUtils;
+import com.zh.education.utils.WebServiceUtils.WebServiceCallBack;
+
+import Decoder.BASE64Encoder;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+/**
+ * @author 作者：jun
+ * @date 创建时间：2015-12-28 下午4:31:30
+ * @Description 类描述：登錄
+ */
+public class UserLoginActivity extends BaseActivity {
+
+	private Button userlogin_btn_login;
+	private MyEditText userlogin_et_username, userlogin_et_password;
+	@Override
+	public void onClick(View v) {
+
+		switch (v.getId()) {
+		case R.id.userlogin_btn_login:
+			String name = userlogin_et_username.getText().toString();
+			String pw = userlogin_et_password.getText().toString();
+//			if (checkStatus(name, pw)) {
+//				String account = setAccount(name, pw);
+				String account =getBase64("");
+				login("eWlueGluQHRqZWR1LmNuO1RlZGEuY2FibGU=");
+//			}
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	protected void loadViewLayout() {
+		setContentView(R.layout.userlogin);
+		CommonUtils.getInstance().addActivity(this);
+	}
+
+	@Override
+	protected void findViewById() {
+		userlogin_btn_login = (Button) findViewById(R.id.userlogin_btn_login);
+		userlogin_et_username = (MyEditText) findViewById(R.id.userlogin_et_username);
+		userlogin_et_password = (MyEditText) findViewById(R.id.userlogin_et_password);
+	}
+
+	@Override
+	protected void setListener() {
+		userlogin_btn_login.setOnClickListener(this);
+	}
+
+	/**
+	 * 得到输入框的实际宽度，并设置，防止输入时宽度拉伸
+	 */
+	@Override
+	protected void processLogic() {
+		int w = View.MeasureSpec.makeMeasureSpec(0,
+				View.MeasureSpec.UNSPECIFIED);
+		int h = View.MeasureSpec.makeMeasureSpec(0,
+				View.MeasureSpec.UNSPECIFIED);
+		userlogin_btn_login.measure(w, h);
+		userlogin_et_username
+				.setWidth(userlogin_et_username.getMeasuredWidth());
+		userlogin_et_password
+				.setWidth(userlogin_et_username.getMeasuredWidth());
+		Log.i("imageview2",
+				"width: " + userlogin_et_username.getMeasuredWidth());
+	}
+
+	//administrator@contoso.com;P@ssw0rd
+	//eWlueGluQHRqZWR1LmNuO1RlZGEuY2FibGU=
+	private String setAccount(String name, String pw) {
+		BASE64Encoder be = new BASE64Encoder();
+		byte[] aBuffer = null;
+		try {
+			aBuffer = URLEncoder.encode("administrator@contoso.com;P@ssw0rd" , "utf-8").getBytes();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		String str = be.encode(aBuffer);
+<<<<<<< .mine
+		
+		
+		// 在这里使用的是encode方式，返回的是byte类型加密数据，可使用new String转为String类型  
+		String strBase64 = new String(Base64.encode("administrator@contoso.com;P@ssw0rd".getBytes(), Base64.DEFAULT));  
+		Log.i("Test", "encode >>>" + strBase64);  
+		          
+		// 这里 encodeToString 则直接将返回String类型的加密数据  
+		String enToStr = Base64.encodeToString("administrator@contoso.com;P@ssw0rd".getBytes(), Base64.DEFAULT);  
+		Log.i("Test", "encodeToString >>> " + enToStr); 
+		return strBase64;
+=======
+		
+		
+		return str;
+>>>>>>> .r345
+	}
+	 public  String getBase64(String str) {  
+	        byte[] b = null;  
+	        String s = null;  
+	        str="administrator@contoso.com;P@ssw0rd";
+	        try {  
+	            b = str.getBytes("utf-8");  
+	        } catch (UnsupportedEncodingException e) {  
+	            e.printStackTrace();  
+	        }  
+	        if (b != null) {  
+	            s = new BASE64Encoder().encode(b);  
+	        }  
+	        Log.e("sss", s);
+	        return s;  
+	    }  
+	private void login(String account) {
+		// 显示进度条
+		ProgressDialogUtils.showProgressDialog(this, "数据加载中...");
+		// 通过工具类调用WebService接口
+		HashMap<String, String> mhashmap = new HashMap<String, String>();
+		mhashmap.put("loginStr", account);
+
+		new UserLoginBusiness(this, mhashmap, new GetLoginCallback() {
+			public void afterDataGet(HashMap<String, Object> dataMap) {
+				// 关闭进度条
+				ProgressDialogUtils.dismissProgressDialog();
+				if (dataMap != null) {
+					String status=(String) dataMap.get("status");
+					if(status.equals("200")){
+						
+						String SchoolUrl=(String) dataMap.get("SchoolUrl");
+						String UserToken=(String) dataMap.get("UserToken");
+						SharedPreferences zhedu_spf=
+								CommonUtils.getInstance().getBestDoInfoSharedPrefs(UserLoginActivity.this);
+						Editor editor=zhedu_spf.edit();
+						editor.putString("schoolUrl", SchoolUrl);
+						editor.putString("tokenStr", UserToken);
+						editor.commit();
+						
+						Intent intent = new Intent(getApplicationContext(),
+								MainActivity.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+						startActivity(intent);
+						finish();
+						overridePendingTransition(R.anim.slide_in_right,
+								R.anim.slide_out_left);
+					}else{
+						Toast.makeText(context, (String)dataMap.get("msg"), Toast.LENGTH_SHORT)
+						.show();
+					}
+				} else {
+					Toast.makeText(context, "网络不稳，请稍后重试！", Toast.LENGTH_SHORT)
+							.show();
+				}
+				
+			}
+		});
+
+	}
+
+	private boolean checkStatus(String name, String pw) {
+		if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(pw)) {
+			return true;
+		}else{
+			Toast.makeText(context, "请输入账户或密码", 0).show();
+		}
+		return false;
+	}
+
+	/**
+	 * 监听返回键
+	 */
+	public void onBackPressed() {
+		CommonUtils.getInstance().defineBackPressed(this,
+				CommonUtils.getInstance().exit);
+	}
+}

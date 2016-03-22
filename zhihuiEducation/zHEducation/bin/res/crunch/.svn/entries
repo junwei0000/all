@@ -1,0 +1,56 @@
+10
+
+dir
+695
+svn://192.168.17.15/app/AndroidFolder/trunk/bestdo/zHEducation/bin/res/crunch
+svn://192.168.17.15/app
+delete
+
+
+2015-12-30T06:53:38.265625Z
+241
+duanjw
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c9a582c5-e0a9-433c-a177-cc4c662148b3
+
+drawable-hdpi
+dir
+
+
+
+delete
+
+drawable-xxhdpi
+dir
+
+
+
+delete
+
+drawable-mdpi
+dir
+
+
+
+delete
+
+drawable-xhdpi
+dir
+
+
+
+delete
+

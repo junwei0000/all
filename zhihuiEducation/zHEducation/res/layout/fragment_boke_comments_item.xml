@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <!-- 上部 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
+         >
+
+        <!-- 头像 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/pinlun_list_item_img_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+        <!-- 名字和时间 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/pinlun_list_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:text="王博"
+                android:textColor="@color/blacktext"
+                android:textSize="@dimen/biaotitextsize" />
+
+            <TextView
+                android:id="@+id/pinlun_list_item_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:text="40分钟前"
+                android:textColor="@color/contents_color"
+                android:textSize="@dimen/mintextsize" />
+
+            <TextView
+                android:id="@+id/pinlun_list_item_text_context"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:lines="1"
+                 android:textColor="@color/contents_color"
+                android:textSize="@dimen/contenttextsize"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+</LinearLayout>

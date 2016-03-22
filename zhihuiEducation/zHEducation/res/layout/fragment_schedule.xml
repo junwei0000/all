@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg_color"
+    android:orientation="vertical" >
+
+    <!-- 切换周 -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/schedule_week_bg"
+        android:gravity="center_vertical"
+         >
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="上一周"
+            android:padding="14dp" 
+            android:textColor="@color/blue"
+            android:textSize="@dimen/contenttextsize" />
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:padding="14dp" 
+            android:text="下一周"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/contenttextsize" />
+
+        <TextView
+            android:id="@+id/tv_week"
+            style="@style/myschedule_current_month_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="@color/blue"
+            android:textSize="@dimen/toptextsize" />
+    </RelativeLayout>
+	<include layout="@layout/line"/>
+    <!-- 选择时间段 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <!-- 时间-5天 -->
+
+        <com.zh.education.utils.MyHorizontalScrollView
+            android:id="@+id/weekScrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="none"
+            android:fadingEdgeLength="0.0dip"
+            android:overScrollMode="never"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:id="@+id/schedule_layout_week"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" />
+        </com.zh.education.utils.MyHorizontalScrollView>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" >
+
+            <!-- 小时-24小时 -->
+
+            <com.zh.education.utils.MyScrollView
+                android:id="@+id/timeScrollView"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:fadingEdge="none"
+                android:fadingEdgeLength="0.0dip"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:id="@+id/schedule_layout_time"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" />
+            </com.zh.education.utils.MyScrollView>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:id="@+id/TextView_jianju"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal" />
+
+                <com.zh.education.utils.MyScrollView
+                    android:id="@+id/middleRowScrollView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:fadingEdge="none"
+                    android:fadingEdgeLength="0.0dip"
+                    android:focusable="false"
+                    android:background="@color/white"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" >
+
+                    <com.zh.education.utils.MyHorizontalScrollView
+                        android:id="@+id/middleColumnScrollView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:fadingEdge="none"
+                        android:fadingEdgeLength="0.0dip"
+                        android:overScrollMode="never"
+                        android:scrollbars="none" >
+
+                        <LinearLayout
+                            android:id="@+id/schedule_layout_middle"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="horizontal" />
+                    </com.zh.education.utils.MyHorizontalScrollView>
+                </com.zh.education.utils.MyScrollView>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <!-- 底部 -->
+
+</LinearLayout>

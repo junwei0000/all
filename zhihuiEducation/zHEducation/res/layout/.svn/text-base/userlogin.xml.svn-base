@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/top_head_bg"
+    android:gravity="center_vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.1"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/userlogin_text_img" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <com.zh.education.utils.MyEditText
+            android:id="@+id/userlogin_et_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:background="@drawable/userlogin_edittext_bg"
+            android:drawableLeft="@drawable/userlogin_name_img"
+            android:hint="@string/user_login_name"
+            android:singleLine="true"
+            android:textColor="@color/blacktext"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="@dimen/contenttextsize" />
+
+        <com.zh.education.utils.MyEditText
+            android:id="@+id/userlogin_et_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:background="@drawable/userlogin_edittext_bg"
+            android:drawableLeft="@drawable/userlogin_password_img"
+            android:hint="@string/user_login_pw"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/blacktext"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="@dimen/contenttextsize" />
+
+        <Button
+            android:id="@+id/userlogin_btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/userlogin_login_img" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/userlogin_text_img"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>

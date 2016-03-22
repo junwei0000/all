@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+      >
+<RelativeLayout  
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+      >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@+id/notices_tv_time" >
+
+           <TextView
+            android:id="@+id/notices_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2015-09-12 12:21" 
+            android:singleLine="true"
+            android:textColor="@color/blacktext"
+            android:textSize="@dimen/biaotitextsize"/>
+
+            <ImageView
+                android:id="@+id/notices_iv_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/notices_new_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notices_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="2015-09-12 12:21" 
+            android:textColor="@color/contents_color"
+            android:textSize="@dimen/contenttextsize"/>
+        </RelativeLayout>
+        <include layout="@layout/line"
+            />
+    </LinearLayout>

@@ -1,0 +1,67 @@
+10
+
+dir
+695
+svn://192.168.17.15/app/AndroidFolder/trunk/bestdo/zHEducation/res
+svn://192.168.17.15/app
+
+
+
+2016-03-15T12:40:55.850390Z
+613
+qiaoyy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c9a582c5-e0a9-433c-a177-cc4c662148b3
+
+values
+dir
+
+drawable
+dir
+
+drawable-hdpi
+dir
+
+drawable-xxhdpi
+dir
+
+anim
+dir
+
+drawable-ldpi
+dir
+
+values-1280x800
+dir
+
+drawable-mdpi
+dir
+
+values-800x480
+dir
+
+values-1920x1080
+dir
+
+drawable-xhdpi
+dir
+
+layout
+dir
+
+color
+dir
+

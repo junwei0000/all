@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/top_head" />
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+	    >
+	   
+	    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/comments_pinglun_layout"
+            android:orientation="vertical"
+             >
+	        <include layout="@layout/line"
+	         />
+	        
+	        <LinearLayout 
+	            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+	            >
+            <ImageView
+                android:id="@+id/boke_detai_img_xiepinglun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription"
+                android:background="@drawable/pinlun_list_item_img_pinglun_img"
+                android:scaleType="centerInside" />
+            
+            <TextView
+                    android:id="@+id/boke_detai_text_xiepinglun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:lineSpacingMultiplier="1"
+                    android:layout_marginLeft="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/gray"
+                    android:text="写评论"
+                    android:textSize="@dimen/contenttextsize" />
+            </LinearLayout>
+        </LinearLayout>
+	        
+	        
+     <com.zh.education.utils.PullDownListView
+        android:id="@+id/boke_comments_refreshable_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/comments_pinglun_layout"
+          > 
+        <ListView
+            android:id="@+id/comments_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            android:fadeScrollbars="true"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="true"
+            android:listSelector="@drawable/list_notselector"
+            android:overScrollMode="never"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="none" />
+     </com.zh.education.utils.PullDownListView> 
+     
+    </RelativeLayout>
+    
+    
+    
+</LinearLayout>
