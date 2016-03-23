@@ -27,8 +27,8 @@ import android.view.Window;
  */
 public class ConfigUtils {
 	private static ConfigUtils mUtils;
-	public static final String[] colorArray = new String[] { "#bf5853",
-			"#2555e3", "#6abf19", "#db700a", "#00C78C", "#fccd8a", "#87CEEB",
+	public static final String[] colorArray = new String[] { "#097fe1",
+			"#6abf19", "#ff9201", "#23a783", "#8e3edd", "#f77d8a", "#87CEEB",
 			"#385E0F", "#BDFCC9", "#FFDEAD", "#9C661F", "#3D59AB", "#DA70D6",
 			"#B03060", "#00C78C", "#FF00FF", "#A0522D", "#2E8B57", "#802A2A",
 			"#3D9140", };

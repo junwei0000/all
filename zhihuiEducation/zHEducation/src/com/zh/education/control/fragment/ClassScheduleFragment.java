@@ -364,9 +364,9 @@ public class ClassScheduleFragment extends Fragment implements OnClickListener {
 		if (nowtimeIndex > beforetimeIndex+1) {
 			schedule_timeitem_tv_time.setText(content);
 		}else{
-			if(!beforeCalendarName.equals(nowCalendarName)){
+//			if(!beforeCalendarName.equals(nowCalendarName)){
 				schedule_timeitem_tv_time.setText(content);
-			}
+//			}
 		}
 		if (!TextUtils.isEmpty(content)) {
 			schedule__timeitem_tv_line.setBackgroundColor(colorid);
@@ -397,7 +397,8 @@ public class ClassScheduleFragment extends Fragment implements OnClickListener {
 	}
 
 	private void showWeekView() {
-		tv_week.setText("第" + mWeekIndex + "周");
+		String MM=DatesUtils.getInstance().getDateGeShi(mWeeksList[0], "yyyy-MM-dd", "MM");
+		tv_week.setText(MM+"月 第" + mWeekIndex + "周");
 		if (mWeeksList != null && mWeeksList.length != 0) {
 			schedule_layout_week.removeAllViews();
 			for (int i = -1; i < showDay; i++) {
