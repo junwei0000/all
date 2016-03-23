@@ -45,10 +45,10 @@ public class UserLoginActivity extends BaseActivity {
 
 		switch (v.getId()) {
 		case R.id.userlogin_btn_login:
-			 String name = userlogin_et_username.getText().toString();
-			 String pw = userlogin_et_password.getText().toString();
-//			String name = "yinxin@tedaedu.cn";
-//			String pw = "Teda.cable";
+//			 String name = userlogin_et_username.getText().toString();
+//			 String pw = userlogin_et_password.getText().toString();
+			String name = "yinxin@tedaedu.cn";
+			String pw = "Teda.cable";
 //			String name ="mapp@tedaedu.cn";
 //			String pw ="Pass@word@2015";
 			

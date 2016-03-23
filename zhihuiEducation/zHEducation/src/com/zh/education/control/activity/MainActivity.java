@@ -304,7 +304,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
+		switch (resultCode) {
 		case CHANNELREQUEST:
 			mViewHandler.sendEmptyMessage(UPDATEVIEW);
 			break;

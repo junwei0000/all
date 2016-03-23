@@ -220,9 +220,11 @@ public class ClassScheduleFragment extends Fragment implements OnClickListener {
 
 	int showDay = 5;
 	int showtimes = 24;
+	private boolean isLoading=false;
 
 	private void getData() {
-		if (isAttached) {
+		
+		if (isAttached&&!isLoading) {
 			boolean sd = CommonUtils.getInstance().isNetWorkAvaiable(activity);
 			if (!sd) {
 				Toast.makeText(activity,
@@ -237,6 +239,7 @@ public class ClassScheduleFragment extends Fragment implements OnClickListener {
 			mhashmap.put("loginStr", zhedu_spf.getString("loginStr", ""));
 			mhashmap.put("dateBegin", "" + dateBegin);
 			mhashmap.put("dateEnd", "" + dateEnd);
+			isLoading=true;
 			new ClassScheduleBusiness(activity, mhashmap,
 					new GetClassScheduleCallback() {
 						public void afterDataGet(HashMap<String, Object> dataMap) {
@@ -262,6 +265,7 @@ public class ClassScheduleFragment extends Fragment implements OnClickListener {
 										activity.getResources().getString(
 												R.string.net_tishi), 0).show();
 							}
+							isLoading=false;
 							CommonUtils.getInstance().setClearCacheBackDate(
 									mhashmap, dataMap);
 
