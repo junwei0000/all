@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_right.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\slide_out_right.xml"
+    },
+    {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_right.xml",
         "source": "E:\\zhihui\\app\\src\\main\\res\\anim\\slide_in_right.xml"
     },
@@ -8,16 +12,40 @@
         "source": "E:\\zhihui\\app\\src\\main\\res\\anim\\slide_out_right.xml"
     },
     {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_left_in.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\slide_left_in.xml"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\rotate_up.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\rotate_up.xml"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_left.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\slide_in_left.xml"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\dialog_style_xml_icon.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\dialog_style_xml_icon.xml"
+    },
+    {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\rotate_up.xml",
         "source": "E:\\zhihui\\app\\src\\main\\res\\anim\\rotate_up.xml"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_right_out.xml",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\anim\\slide_right_out.xml"
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_right_out.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\slide_right_out.xml"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_right.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\slide_in_right.xml"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_left.xml",
         "source": "E:\\zhihui\\app\\src\\main\\res\\anim\\slide_in_left.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_right_out.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\anim\\slide_right_out.xml"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\dialog_style_xml_icon.xml",
@@ -34,6 +62,18 @@
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\rotate_down.xml",
         "source": "E:\\zhihui\\app\\src\\main\\res\\anim\\rotate_down.xml"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_left_out.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\slide_left_out.xml"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_left.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\slide_out_left.xml"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\rotate_down.xml",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\anim\\rotate_down.xml"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_left.xml",

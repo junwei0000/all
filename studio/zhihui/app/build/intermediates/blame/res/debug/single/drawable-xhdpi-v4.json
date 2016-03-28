@@ -1,71 +1,127 @@
 [
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_cancel_img.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_cancel_img.png"
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\boke_list_item_img_dianzan_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\boke_list_item_img_dianzan_img.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userset_slider_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userset_slider_img.png"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\main_usercenter_img.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\main_usercenter_img.png"
-    },
-    {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\back.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\back.png"
-    },
-    {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_class_img.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_class_img.png"
-    },
-    {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_bg.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_bg.png"
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_cancel_img.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_cancel_img.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_menu_report_image.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\ic_menu_report_image.png"
     },
     {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_name_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_name_img.png"
+    },
+    {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\pinlun_list_item_img_pinglun_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\pinlun_list_item_img_pinglun_img.png"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\main_usercenter_img.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\main_usercenter_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\main_addchannel_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\main_addchannel_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_edittext_bg.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_edittext_bg.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\boke_list_item_img_pinglun_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\boke_list_item_img_pinglun_img.png"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_class_img.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_class_img.png"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\back.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\back.png"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_bg.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_bg.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_arrow_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_arrow_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_bg.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_bg.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\back.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\back.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_edittext_bg.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_edittext_bg.png"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\event_item_sel_img.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\event_item_sel_img.png"
-    },
-    {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_headbg.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_headbg.png"
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_new_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_new_img.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_set_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_set_img.png"
     },
     {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_headbg.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_headbg.png"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\event_item_sel_img.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\event_item_sel_img.png"
+    },
+    {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_password_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_password_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\welcome_start_bg.jpg",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\welcome_start_bg.jpg"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userset_slider_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userset_slider_img.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_text_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_text_img.png"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_new_img.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_new_img.png"
-    },
-    {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_arrow_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_arrow_img.png"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\listitem_none.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\listitem_none.png"
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_new_img.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_new_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_set_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_set_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_headbg.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_headbg.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\listitem_none.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\listitem_none.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_about_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_about_img.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_name_img.png",
@@ -76,12 +132,16 @@
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_login_img.png"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_school_img.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_school_img.png"
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\listitem_none.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\listitem_none.png"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\welcome_start_bg.jpg",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\welcome_start_bg.jpg"
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_school_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_school_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_text_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_text_img.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\boke_list_item_img_pinglun_img.png",
@@ -92,15 +152,59 @@
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\event_item_onsel_img.png"
     },
     {
-        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\boke_list_item_img_dianzan_img.png",
-        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\boke_list_item_img_dianzan_img.png"
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_cancel_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_cancel_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_class_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_class_img.png"
     },
     {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\main_addchannel_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\main_addchannel_img.png"
     },
     {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\boke_list_item_img_dianzan_img.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\boke_list_item_img_dianzan_img.png"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notices_school_img.png",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\notices_school_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\event_item_sel_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\event_item_sel_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_login_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_login_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\event_item_onsel_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\event_item_onsel_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\userlogin_password_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\userlogin_password_img.png"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\welcome_start_bg.jpg",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\welcome_start_bg.jpg"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_menu_report_image.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\ic_menu_report_image.png"
+    },
+    {
         "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\usercenter_about_img.png",
         "source": "E:\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\usercenter_about_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\pinlun_list_item_img_pinglun_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\pinlun_list_item_img_pinglun_img.png"
+    },
+    {
+        "merged": "E:\\studio_zhihui\\studio\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\main_usercenter_img.png",
+        "source": "E:\\studio_zhihui\\studio\\zhihui\\app\\src\\main\\res\\drawable-xhdpi\\main_usercenter_img.png"
     }
 ]

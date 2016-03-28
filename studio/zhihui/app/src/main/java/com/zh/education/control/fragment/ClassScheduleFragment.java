@@ -194,6 +194,8 @@ public class ClassScheduleFragment extends Fragment implements OnClickListener {
 						timeScrollView.scrollTo(0, paramAnonymousInt2);
 					}
 				});
+
+
 		return view;
 	}
 
@@ -266,6 +268,14 @@ public class ClassScheduleFragment extends Fragment implements OnClickListener {
 							CommonUtils.getInstance().setClearCacheBackDate(
 									mhashmap, dataMap);
 							isLoading=false;
+							timeScrollView.post(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									int height = ConfigUtils.getInstance().dip2px(activity, 45 );
+									timeScrollView.scrollTo(0, height*6);
+								}
+							});
 						}
 					});
 
