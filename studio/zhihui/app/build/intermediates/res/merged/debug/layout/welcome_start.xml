@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:id="@+id/welcome_start_img"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/welcome_start_bg" 
+    android:orientation="vertical" >
+
+
+</LinearLayout>

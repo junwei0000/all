@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg_color"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/top_head" />
+	<RelativeLayout 
+	    android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+	    >
+	   <EditText 
+	       android:layout_width="fill_parent"
+           android:layout_height="match_parent"
+           android:textColor="@color/contents_color"
+           android:textColorHint="@color/text_hint_color"
+           android:background="@color/white"
+           android:gravity="top"
+           android:hint="写评论···"
+           android:id="@+id/sendcommdents_edit"
+           android:lines="10"
+           android:padding="8dip"
+           android:textSize="@dimen/contenttextsize"
+	       />
+	        
+     
+    </RelativeLayout>
+    
+    
+    
+</LinearLayout>

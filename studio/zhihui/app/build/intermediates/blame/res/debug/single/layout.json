@@ -1,0 +1,178 @@
+[
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_folder_list.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_folder_list.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\userset.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\userset.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_boke_comments.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_boke_comments.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_schedule_timeitem.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_schedule_timeitem.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_boke_comments_send.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_boke_comments_send.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_authentication.xml",
+        "source": "E:\\zhihui\\app\\build\\intermediates\\exploded-aar\\com.microsoft.aad\\adal\\1.1.7\\res\\layout\\activity_authentication.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\line.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\line.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\http_auth_dialog.xml",
+        "source": "E:\\zhihui\\app\\build\\intermediates\\exploded-aar\\com.microsoft.aad\\adal\\1.1.7\\res\\layout\\http_auth_dialog.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\welcome_start.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\welcome_start.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_schedule_dayitem.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_schedule_dayitem.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_notices_item.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_notices_item.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\refresh_top.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\refresh_top.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\userset_size.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\userset_size.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\display_item_resource.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\display_item_resource.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\channel_item.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\channel_item.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_api_explorer.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_api_explorer.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\refresh_head.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\refresh_head.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_notices.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_notices.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_notices_detail.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_notices_detail.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\refresh_foot.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\refresh_foot.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_boke_listiew_item.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_boke_listiew_item.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_boke_comments_item.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_boke_comments_item.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\refresh_lay.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\refresh_lay.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\channel.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\channel.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_api_explorer.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\activity_api_explorer.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_boke.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_boke.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_boke_detail.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_boke_detail.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\yunpan_detail_activity.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\yunpan_detail_activity.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_json_view.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_json_view.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_schedule.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_schedule.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_events_item_linears_text.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_events_item_linears_text.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_yunpan.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_yunpan.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_events_listview_item.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_events_listview_item.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\usercenter.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\usercenter.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\top_head.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\top_head.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_authentication.xml",
+        "source": "E:\\zhihui\\app\\build\\intermediates\\exploded-aar\\com.microsoft.aad\\adal\\1.1.7\\res\\layout\\dialog_authentication.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_events.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_events.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\user_about.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\user_about.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_myexit.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\dialog_myexit.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\userlogin.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\userlogin.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_schedule_weekitem.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_schedule_weekitem.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_schedule_dayocurseitem.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_schedule_dayocurseitem.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_folder_grid.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\layout\\fragment_folder_grid.xml"
+    }
+]

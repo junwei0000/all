@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\values-large-v4\\values-large-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 82,
+                    "endOffset": 133
+                },
+                "from": {
+                    "file": "E:\\zhihui\\app\\src\\main\\res\\values-large\\refs.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 275,
+                        "endColumn": 82,
+                        "endOffset": 353
+                    }
+                }
+            }
+        ]
+    }
+]

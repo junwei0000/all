@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blacktext">#333333</color>
+	<color name="schedule_week_bg">#e8eaeb</color>
+	<color name="contents_color">#87888c</color>
+    <color name="blue">#097fe1</color>
+    <color name="line">#e2e2e2</color>
+    <color name="white">#FFFFFF</color>
+    <color name="page_bg">#eeeeee</color>
+    <color name="transparent">#00000000</color>
+	<color name="red">#F56545</color>
+	<color name="text_hint_color">#cccccc</color>
+	<color name="top_head_bg">#097FE1</color>
+	<color name="activity_bg_color">#097fe1</color>
+	<color name="notices_top_bg">#53a6ea</color>
+	<color name="subscribe_item_drag_bg">#fff5f5f5</color>
+	<color name="subscribe_item_disabled_stroke">#ffd9d9d9</color>
+	<color name="subscribe_item_disabled_bg">#ffefefef</color>
+</resources>

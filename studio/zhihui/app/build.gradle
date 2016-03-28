@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.zh.education"
+        minSdkVersion 19
+        targetSdkVersion 22
+    }
+    lintOptions {
+        disable 'InvalidPackage', 'Overdraw', 'PluralsCandidate', 'OldTargetApi', 'AllowBackup'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+apply plugin: 'checkstyle'
+
+check.dependsOn 'checkstyle'
+
+task checkstyle(type: Checkstyle) {
+    configFile file("../checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    classpath = files()
+}
+dependencies {
+    compile 'com.android.support:support-v4:19.1.0'
+    compile files('libs/BASE64Decoder.jar')
+    compile files('libs/ksoap2-android-assembly-3.2.0-jar-with-dependencies.jar')
+    compile files('libs/nineoldandroids-2.4.0.jar')
+    compile files('libs/Volley.jar')
+    // Include the sdk as a dependency
+    compile('com.onedrive.sdk:onedrive-sdk-android:+')
+
+    // Include the gson dependency
+    compile 'com.google.code.gson:gson:2.3.1'
+
+    // Include supported authentication methods for your application
+    compile 'com.microsoft.services.msa:msa-auth:0.8.4'
+}

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="integer" name="textwidth"/>
+    <attr name="typeface">  
+        <enum name="normal" value="0"/>  
+        <enum name="sans" value="1"/>  
+        <enum name="serif" value="2"/>  
+        <enum name="monospace" value="3"/>  
+    </attr>
+    <color name="OneDriveBlue">#094AB2</color>
+    <color name="activity_bg_color">#097fe1</color>
+    <color name="blacktext">#333333</color>
+    <color name="blue">#097fe1</color>
+    <color name="contents_color">#87888c</color>
+    <color name="line">#e2e2e2</color>
+    <color name="notices_top_bg">#53a6ea</color>
+    <color name="page_bg">#eeeeee</color>
+    <color name="red">#F56545</color>
+    <color name="schedule_week_bg">#e8eaeb</color>
+    <color name="subscribe_item_disabled_bg">#ffefefef</color>
+    <color name="subscribe_item_disabled_stroke">#ffd9d9d9</color>
+    <color name="subscribe_item_drag_bg">#fff5f5f5</color>
+    <color name="text_hint_color">#cccccc</color>
+    <color name="top_head_bg">#097FE1</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <declare-styleable name="CYTextView"><attr name="textwidth"/><attr format="dimension" name="textSize"/><attr format="reference|color" name="textColor"/><attr format="dimension" name="lineSpacingExtra"/><attr name="typeface"/></declare-styleable>
+    <declare-styleable name="RangeBar"><attr format="integer" name="tickCount"/><attr format="dimension" name="tickHeight"/><attr format="dimension" name="barWeight"/><attr format="reference|color" name="barColor"/><attr format="dimension" name="connectingLineWeight"/><attr format="reference|color" name="connectingLineColor"/><attr format="dimension" name="thumbRadius"/><attr format="reference" name="thumbImageNormal"/><attr format="reference" name="thumbImagePressed"/><attr format="reference|color" name="thumbColorNormal"/><attr format="reference|color" name="thumbColorPressed"/></declare-styleable>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="biaotitextsize">15sp</dimen>
+    <dimen name="contenttextsize">13sp</dimen>
+    <dimen name="mintextsize">10sp</dimen>
+    <dimen name="title_bar_height">22.0dip</dimen>
+    <dimen name="top_head_height">50.0dip</dimen>
+    <dimen name="toptextsize">18sp</dimen>
+    <dimen name="updatebar_content_height">60.0dip</dimen>
+    <dimen name="updatebar_height">62.0dip</dimen>
+    <dimen name="updatebar_padding">10.0dip</dimen>
+    <integer name="abc_max_action_buttons">2</integer>
+    <integer name="config_slideAnimTime">300</integer>
+    <item name="fragment_folder" type="layout">@layout/fragment_folder_list</item>
+    <string name="app_loading">Loading...</string>
+    <string name="app_name">智慧教育</string>
+    <string name="broker_processing">Broker is processing</string>
+    <string name="cancel">取消</string>
+    <string name="channel_more_category">点击添加更多栏目</string>
+    <string name="channel_more_paixu">排序编辑</string>
+    <string name="channel_my_category">我的频道</string>
+    <string name="cleared_saved_delta_token">Cleared the delta tokens for %1$s</string>
+    <string name="cleared_saved_delta_tokens">Cleared all saved delta tokens</string>
+    <string name="close">Close</string>
+    <string name="confirm_delete_action">Are you sure you want to delete %1$s?</string>
+    <string name="contentDescription">view</string>
+    <string name="copy_item">Copy to Destination</string>
+    <string name="copy_success_message">Created a copy of %1$s in the path %2$s</string>
+    <string name="create_folder">Create Folder</string>
+    <string name="create_link">Create a Link</string>
+    <string name="created_folder">Created folder file %1$s under %2$s</string>
+    <string name="created_link">Link created, and copied into the Android clipboard</string>
+    <string name="delete">Delete</string>
+    <string name="deleted_this_item">"Deleted %1$s"</string>
+    <string name="delta_title">Viewing Delta of %1$s</string>
+    <string name="display_item_default_name">Foo.bar.jpg</string>
+    <string name="display_item_default_types">Audio, Photo, Video</string>
+    <string name="download">Download</string>
+    <string name="drop_dowm">下拉刷新</string>
+    <string name="empty_delta">No changes since last request</string>
+    <string name="empty_file">You can use the action bar to modify this file or press the back button to return to the parent folder.</string>
+    <string name="empty_list">This folder is empty. Use the action bar to upload files or create sub-folders.</string>
+    <string name="error_title">Error!</string>
+    <string name="file_from_onedrive">Downloading from OneDrive</string>
+    <string name="http_auth_dialog_cancel">Cancel</string>
+    <string name="http_auth_dialog_login">Login</string>
+    <string name="http_auth_dialog_password">Password</string>
+    <string name="http_auth_dialog_title">Enter your credentials</string>
+    <string name="http_auth_dialog_username">Username</string>
+    <string name="item_fragment_item_lookup_error">Error looking up this item %1$s</string>
+    <string name="item_path_separator">/</string>
+    <string name="loading">加载中...</string>
+    <string name="loading_progress_text">Downloading item information…</string>
+    <string name="max_pages_downloaded">Maximum number of pages downloads</string>
+    <string name="navigate">Navigate</string>
+    <string name="navigate_by_path">Navigate by Path</string>
+    <string name="net_tishi">网络不稳，请稍后重试！</string>
+    <string name="new_folder_error">Error creating new folder under %1$s</string>
+    <string name="new_folder_hint">New Folder</string>
+    <string name="refresh">Refresh</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="release_update">松开刷新</string>
+    <string name="rename">Rename</string>
+    <string name="rename_error">Error renaming file %1$s</string>
+    <string name="renamed_item">Renamed file %1$s to %2$s</string>
+    <string name="reset_all_tokens">Reset All Delta Tokens</string>
+    <string name="reset_token">Reset this Delta Token</string>
+    <string name="seen_more">上拉加载更多</string>
+    <string name="set_copy_destination">Set Copy Destination</string>
+    <string name="sign_out">Sign out</string>
+    <string name="start_exploring">Start Browsing Your OneDrive</string>
+    <string name="starting_download_message">开始下装</string>
+    <string name="thumbnail_description">Thumbnail for %1$s</string>
+    <string name="upload_complete">"Upload %1$s complete"</string>
+    <string name="upload_failed">"Upload %1$s failed"</string>
+    <string name="upload_failed_name_conflict">The filename conflicted with another file</string>
+    <string name="upload_file">Upload File</string>
+    <string name="upload_in_progress_message">Uploading…</string>
+    <string name="upload_in_progress_number_format">%1$d/%2$d bytes</string>
+    <string name="upload_in_progress_title">Upload in progress</string>
+    <string name="user_about">关于</string>
+    <string name="user_exit">退出</string>
+    <string name="user_login_name">用户名</string>
+    <string name="user_login_pw">密码</string>
+    <string name="user_me">我</string>
+    <string name="user_set">设置</string>
+    <string name="user_set_common">中</string>
+    <string name="user_set_max">大</string>
+    <string name="user_set_min">小</string>
+    <string name="user_set_size">文字大小</string>
+    <string name="view_delta">View Delta</string>
+    <string name="view_format_json">Json Response</string>
+    <string name="view_format_visualize">Visualization</string>
+    <string name="welcome">Welcome to the OneDrive API Explorer!</string>
+    <string name="wifi_unavailable_error_message">Unable to access the internet, please visit connection settings</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+    </style>
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/OneDriveBlue</item>
+    </style>
+    <style name="MyActionBarTabText" parent="@android:style/Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">@color/OneDriveBlue</item>
+    </style>
+    <style name="MyActionBarTitleText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/OneDriveBlue</item>
+    </style>
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+    <style name="myschedule_current_month_tv">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="usercenter_relay_style">
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        
+    </style>
+</resources>

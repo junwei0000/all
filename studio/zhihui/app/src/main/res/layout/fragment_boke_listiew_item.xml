@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+<LinearLayout  
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    >
+    <!-- 上部 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp" 
+        android:orientation="horizontal" >
+
+        <!-- 头像 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/boke_list_item_img_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/usercenter_headbg"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+        <!-- 名字和时间 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/bokelist_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:text="王博"
+                android:textColor="@color/blacktext"
+                android:textSize="@dimen/biaotitextsize" />
+
+            <TextView
+                android:id="@+id/bokelist_item_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:text="40分钟前"
+                android:textColor="@color/contents_color"
+                android:textSize="@dimen/mintextsize" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 中间 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <ImageView
+            android:id="@+id/bokelist_item_img_cover"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/bokelist_item_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="1"
+            android:lines="1"
+            android:paddingBottom="5dp"
+            android:textColor="@color/blacktext"
+            android:textSize="@dimen/biaotitextsize"
+             />
+
+        <TextView
+            android:id="@+id/bokelist_item_text_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="1"
+            android:lines="4"
+            android:paddingBottom="8dp"
+            android:textSize="@dimen/contenttextsize"
+            android:textColor="@color/contents_color" />
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+    <!-- 下部 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <!-- 点赞 -->
+
+        <LinearLayout
+            android:id="@+id/boke_list_item_zan_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/boke_list_item_img_dianzan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boke_list_item_img_dianzan_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/bokelist_item_zan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:textColor="@color/contents_color"
+                android:textSize="@dimen/contenttextsize" />
+            
+        </LinearLayout>
+        <!-- 评论 -->
+<ImageView
+               android:layout_width="0.8dp"
+                            android:layout_height="18dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/stadiummaplist_bottom_line"
+                android:contentDescription="@string/contentDescription" />
+        <LinearLayout
+            android:id="@+id/boke_list_item_pinglun_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/boke_list_item_img_pinglun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boke_list_item_img_pinglun_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/bokelist_item_pinglun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:textColor="@color/contents_color"
+               android:textSize="@dimen/contenttextsize"/>
+        </LinearLayout>
+    </LinearLayout>
+ </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\sendcommonts_bg.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\sendcommonts_bg.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\main_channel_bg.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\main_channel_bg.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\channel_item_paixubg.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\channel_item_paixubg.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\channel_item_bg.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\channel_item_bg.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\sendcommonts_bg2.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\sendcommonts_bg2.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\myexit_sureclick_bg.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\myexit_sureclick_bg.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\list_notselector.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\list_notselector.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\corners_bg.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\corners_bg.xml"
+    },
+    {
+        "merged": "E:\\zhihui\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\repeat_bg.xml",
+        "source": "E:\\zhihui\\app\\src\\main\\res\\drawable\\repeat_bg.xml"
+    }
+]
