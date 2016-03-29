@@ -68,28 +68,28 @@ public class EventsDetailActivity extends BaseActivity {
 		String title = eventsInfo.getCalendarName();
 		
 		long BeginTime=eventsInfo.getBeginTime();
-		String time=DatesUtils.getInstance().getTimeStampToDate(BeginTime,"yyyy年MM月dd日 ");
-		String date_ee=DatesUtils.getInstance().getTimeStampToDate(BeginTime,"EE");
-		if(date_ee.equals("周一")){
-			date_ee="星期一";
-		}else if(date_ee.equals("周二")){
-			date_ee="星期二";
-		}else if(date_ee.equals("周三")){
-			date_ee="星期三";
-		}else if(date_ee.equals("周四")){
-			date_ee="星期四";
-		}else if(date_ee.equals("周五")){
-			date_ee="星期五";
-		}else if(date_ee.equals("周六")){
-			date_ee="星期六";
-		}else if(date_ee.equals("周日")){
-			date_ee="星期天";
-		}
+		String time=DatesUtils.getInstance().getTimeStampToDate(BeginTime,"yyyy年MM月dd日");
+//		String date_ee=DatesUtils.getInstance().getTimeStampToDate(BeginTime,"EE");
+//		if(date_ee.equals("周一")){
+//			date_ee="星期一";
+//		}else if(date_ee.equals("周二")){
+//			date_ee="星期二";
+//		}else if(date_ee.equals("周三")){
+//			date_ee="星期三";
+//		}else if(date_ee.equals("周四")){
+//			date_ee="星期四";
+//		}else if(date_ee.equals("周五")){
+//			date_ee="星期五";
+//		}else if(date_ee.equals("周六")){
+//			date_ee="星期六";
+//		}else if(date_ee.equals("周日")){
+//			date_ee="星期天";
+//		}
 		
 		add=eventsInfo.getAddress();
 		text_content = eventsInfo.getDescription();
 		noticesdetail_tv_title.setText(title);
-		noticesdetail_tv_time.setText(time+date_ee);
+		noticesdetail_tv_time.setText(time);
 		if(TextUtils.isEmpty(text_content)){
 			text_content="";
 		}

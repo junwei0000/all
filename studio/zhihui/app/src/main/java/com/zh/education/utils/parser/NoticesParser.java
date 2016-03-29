@@ -44,7 +44,7 @@ public class NoticesParser extends BaseParser<Object> {
 					String id = noticesobj.optString("ID");
 					long createTime = noticesobj.optLong("CreateTime");
 					String showtime = DatesUtils.getInstance()
-							.getTimeStampToDate(createTime, "yyyy-MM-dd HH:mm");
+							.getTimeStampToDate(createTime, "yyyy-MM-dd");
 
 					NoticesInfo mNoticesInfo = new NoticesInfo(id,noticeType,
 							content, title, showtime);

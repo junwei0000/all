@@ -468,13 +468,15 @@ public class ItemFragment extends Fragment implements AbsListView.OnItemClickLis
                             } else {
                                 imageView.setImageResource(R.drawable.ic_menu_report_image);
                                 imageView.setVisibility(View.GONE);
+
                             }
-                            download(mItem);
+//                            download(mItem);
                         }
 //                        setFocus(ItemFocus.Empty, getView());
 
                     } else {
                         for (final Item childItem : item.children.getCurrentPage()) {
+
 
                             adapter.add(new DisplayItem(adapter,
                                                         childItem,
