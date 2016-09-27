@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<!-- 首页菜单字体颜色 -->
+	<color name="main_business_tab_bgcolor">#0E63A7</color>
+	<color name="main_business_tab_bgevencolor">#053F8D</color>
+	<color name="main_business_tab_edgecolor">#073068</color>
+	<color name="main_business_tab_presscolor">#093C81</color>
+	
+	<color name="red">#ff0000</color>
+	<color name="gray_bg">#EFEFEF</color>
+	<!-- 页面背景颜色 -->
+	<color name="page_bg">#F2F2F2</color>
+	<!-- 头部背景颜色 -->
+	<color name="page_top_bg">#FAFAFA</color>
+	<!-- 首页底部菜单背景颜色 -->
+	<color name="main_tab_page_bg">#F7F7F7</color>
+	<!-- 首页菜单字体颜色 -->
+	<color name="main_tab_text_color">#999999</color>
+	<!-- 白色 -->
+	<color name="white">#FFFFFF</color>
+	<!-- 透明颜色 -->
+	<color name="transparent">#00000000</color>
+	<!-- 蓝色 -->
+	<color name="blue">#3EA1Df</color>
+	<!-- 青色 -->
+	<color name="ching">#3BC4CE</color>
+	<!-- 浅蓝色 -->
+	<color name="blue_light">#B6E2FA</color>
+	<!-- 灰色竖杠 -->
+	<color name="gray_stadiumlist_line">#E6E6E6</color>
+	<!-- 标题颜色 -->
+	<color name="text_contents_color">#333333</color>
+	<!-- 可点击的小标题颜色 -->
+	<color name="text_click_color">#666666</color>
+	<!-- hint颜色 -->
+	<color name="text_hint_color">#cccccc</color>
+	<!-- 按钮背景颜色 -->
+	<color name="btn_bg">#FC821B</color>
+	<!-- 按钮不可点击的字体颜色 -->
+	<color name="btn_noclick_color">#FDB476</color>
+	<!-- 验证码不可点击的颜色 -->
+	<color name="text_noclick_color">#9B9B9B</color>
+</resources>
