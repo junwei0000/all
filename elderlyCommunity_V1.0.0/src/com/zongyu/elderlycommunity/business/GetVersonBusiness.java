@@ -30,7 +30,8 @@ public class GetVersonBusiness {
 	private GetVersonCallback mGetDataCallback;
 	HashMap<String, String> mhashmap;
 	Context mContext;
-
+//Context mContext;
+//Context mContext;
 	public GetVersonBusiness(Context mContext,
 			HashMap<String, String> mhashmap, GetVersonCallback mGetDataCallback) {
 		this.mhashmap = mhashmap;
