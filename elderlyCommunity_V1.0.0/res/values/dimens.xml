@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="updatebar_height">62.0dip</dimen>
+    <dimen name="updatebar_content_height">60.0dip</dimen>
+    <dimen name="updatebar_padding">10.0dip</dimen>
+   <dimen name="head_morentv_size">87dp</dimen>
+    <dimen name="head_tv_size">80dp</dimen>
+    <dimen name="text_pagetop_size">18sp</dimen>
+    <dimen name="text_biaoti_size">16sp</dimen>
+    <dimen name="text_contents_size">15sp</dimen>
+    <dimen name="text_zhu_size">13sp</dimen>
+    <!-- 登录注册上下间距 -->
+    <dimen name="jianju_login">25dp</dimen>
+    <!-- 上下间距 -->
+    <dimen name="jianju">15dp</dimen>
+     <!-- 左右之间padd -->
+    <dimen name="padd_leftright">12dp</dimen>
+     <!-- 上下之间padd -->
+    <dimen name="padd_topbottom">14dp</dimen>
+    <!-- 图标之间的间距 -->
+    <dimen name="padd_imgtextleftright">5dp</dimen>
+</resources>

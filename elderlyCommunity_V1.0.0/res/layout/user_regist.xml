@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <!-- 头像 -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianju_login"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="@dimen/head_morentv_size"
+                android:layout_height="@dimen/head_morentv_size"
+                android:layout_centerInParent="true"
+                android:background="@drawable/userlogin_thumb_morenbg"
+                android:contentDescription="@string/contentDescription" />
+
+            <com.zongyu.elderlycommunity.utils.CircleImageView
+                android:id="@+id/usereg_iv_head"
+                android:layout_width="@dimen/head_tv_size"
+                android:layout_height="@dimen/head_tv_size"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/contentDescription" />
+        </RelativeLayout>
+
+        <!-- 账号密码 -->
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianju_login"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_img_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <com.zongyu.elderlycommunity.utils.HaveThIconClearEditText
+                    android:id="@+id/userreg_et_phone"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4.5"
+                    android:background="@drawable/corners_bg_editview_wihte"
+                    android:drawableLeft="@drawable/userreg_phone_icon"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/tv_reg_phonehint"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/text_contents_color"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_img_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <com.zongyu.elderlycommunity.utils.HaveThIconClearEditText
+                    android:id="@+id/userreg_et_pw"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4.5"
+                    android:background="@drawable/corners_bg_editview_wihte"
+                    android:drawableLeft="@drawable/userreg_pw_icon"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/tv_reg_pwhint"
+                     android:inputType="textPassword"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/text_contents_color"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 登陆按钮 -->
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/jianju_login" >
+
+            <include layout="@layout/click_btn" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
