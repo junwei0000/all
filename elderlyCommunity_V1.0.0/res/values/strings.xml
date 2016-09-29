@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">爱相伴</string>
+    <string name="myexit_text_sure">确认</string>
+    <string name="myexit_text_off">取消</string>
+    <string name="myexit_text_title">确定退出吗？</string>
+    <string name="contentDescription">page</string>
+ <string name="net_tishi">网络连接不可用，请稍后重试</string>
+    <string name="tv_codeunit">s</string>
+     <string name="tv_login">登录</string>
+    <string name="tv_reg">注册</string>
+    <string name="tv_phone">手机</string>
+    <string name="tv_pw">密码</string>
+    <string name="tv_newpw">新密码</string>
+    <string name="tv_surepw">确认密码</string>
+    <string name="tv_phonehint">输入手机号</string>
+    <string name="tv_pwhint">6~16位数字或字母</string>
+    <string name="userlogin_tv_forgetpw">忘记密码</string>
+    <string name="tishi_login_phone">请输入正确格式的手机号！</string>
+    <string name="tishi_login_pw">请输入正确格式的密码！</string>
+    
+    <string name="tv_reg_phonehint">输入注册的手机号</string>
+    <string name="tv_reg_pwhint">设置新密码</string>
+    <string name="tv_next">下一步</string>
+    <string name="tv_code">验证码</string>
+    <string name="tv_getcode">获取验证码</string>
+    <string name="tv_repeatgetcode">重新发送</string>
+    <string name="tishi_code_null">请输入验证码</string>
+    <string name="tishi_code_style">请输入6位验证码</string>
+    
+    <!-- action -->
+    <!-- 下线通知广播 -->
+    <string name="action_home">actionhome_Receiver</string>
+    <string name="action_home_type_login403">actionhome_login403</string>
+    <string name="action_home_type_loginregok">actionhome_loginregok</string>
+    <string name="action_home_type_gotohome">actionhome_gotohome</string>
+
+</resources>

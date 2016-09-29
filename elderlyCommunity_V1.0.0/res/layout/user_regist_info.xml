@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/jianju" />
+
+        <ImageView
+            android:id="@+id/userreginfo_iv_thumb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="设置头像"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+        <!-- 账号密码 -->
+
+        <com.zongyu.elderlycommunity.utils.SupplierEditText
+            android:id="@+id/userreginfo_et_nickname"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="4.5"
+            android:background="@color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/tv_reg_pwhint"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.zongyu.elderlycommunity.utils.SupplierEditText
+            android:id="@+id/userreginfo_et_sex"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="4.5"
+            android:background="@color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/tv_reg_pwhint"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.zongyu.elderlycommunity.utils.SupplierEditText
+            android:id="@+id/userreginfo_et_area"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="4.5"
+            android:background="@color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/tv_reg_pwhint"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <!-- 登陆按钮 -->
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/jianju" >
+
+            <include layout="@layout/click_btn" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
