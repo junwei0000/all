@@ -31,6 +31,9 @@ public class BoKeBusiness {
 		public void afterDataGet(HashMap<String, Object> dataMap);
 	}
 
+	
+	
+	
 	private BoKeCallback mBoKeCallback;
 	private ArrayList<BoKeInfo> mList;
 	HashMap<String, String> mhashmap;
