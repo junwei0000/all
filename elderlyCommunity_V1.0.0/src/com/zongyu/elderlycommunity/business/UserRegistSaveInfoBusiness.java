@@ -35,7 +35,8 @@ public class UserRegistSaveInfoBusiness {
 	Context mContext;
 
 	public UserRegistSaveInfoBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetRegistSaveInfoCallback mGetDataCallback) {
+			HashMap<String, String> mhashmap,
+			GetRegistSaveInfoCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;

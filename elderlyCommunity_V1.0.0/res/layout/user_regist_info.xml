@@ -7,84 +7,196 @@
 
     <include layout="@layout/page_top" />
 
-    <include layout="@layout/line" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:gravity="center_horizontal"
         android:orientation="vertical" >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/jianju" />
+        <!-- 头像 -->
 
-        <ImageView
-            android:id="@+id/userreginfo_iv_thumb"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher" />
+            android:layout_marginTop="@dimen/jianju_login"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="@dimen/head_morentv_size"
+                android:layout_height="@dimen/head_morentv_size"
+                android:layout_centerInParent="true"
+                android:background="@drawable/userlogin_thumb_morenbg"
+                android:contentDescription="@string/contentDescription" />
+
+            <com.zongyu.elderlycommunity.utils.CircleImageView
+                android:id="@+id/usreginfo_iv_head"
+                android:layout_width="@dimen/head_tv_size"
+                android:layout_height="@dimen/head_tv_size"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/contentDescription" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:paddingTop="5dp"
             android:text="设置头像"
-            android:textColor="@color/text_contents_color"
-            android:textSize="@dimen/text_zhu_size" />
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
         <!-- 账号密码 -->
-
-        <com.zongyu.elderlycommunity.utils.SupplierEditText
-            android:id="@+id/userreginfo_et_nickname"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="4.5"
-            android:background="@color/transparent"
-            android:ellipsize="end"
-            android:hint="@string/tv_reg_pwhint"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textColor="@color/text_contents_color"
-            android:textColorHint="@color/text_hint_color"
-            android:textSize="@dimen/text_contents_size" />
-
-        <com.zongyu.elderlycommunity.utils.SupplierEditText
-            android:id="@+id/userreginfo_et_sex"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="4.5"
-            android:background="@color/transparent"
-            android:ellipsize="end"
-            android:hint="@string/tv_reg_pwhint"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textColor="@color/text_contents_color"
-            android:textColorHint="@color/text_hint_color"
-            android:textSize="@dimen/text_contents_size" />
-
-        <com.zongyu.elderlycommunity.utils.SupplierEditText
-            android:id="@+id/userreginfo_et_area"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="4.5"
-            android:background="@color/transparent"
-            android:ellipsize="end"
-            android:hint="@string/tv_reg_pwhint"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textColor="@color/text_contents_color"
-            android:textColorHint="@color/text_hint_color"
-            android:textSize="@dimen/text_contents_size" />
-
-        <!-- 登陆按钮 -->
 
         <LinearLayout
             style="@style/user_item_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianju_login"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_img_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <com.zongyu.elderlycommunity.utils.HaveThIconClearEditText
+                    android:id="@+id/userreginfo_et_nickname"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4.5"
+                    android:background="@drawable/corners_bg_editview_wihte"
+                    android:drawableLeft="@drawable/userreg_phone_icon"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/tv_reginfo_nacknamehint"
+                    android:maxLength="20"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/text_contents_color"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+            <!--  -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_img_height"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/userreginfo_layout_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/corners_bg_editview_wihte"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/userreg_sex_icon"
+                        android:contentDescription="@string/contentDescription" />
+
+                    <TextView
+                        android:id="@+id/userreginfo_tv_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_img_height"
+                        android:gravity="center_vertical"
+                        android:hint="@string/tv_reginfo_sexhint"
+                        android:singleLine="true"
+                        android:textColor="@color/text_contents_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/arrow_right"
+                            android:contentDescription="@string/contentDescription" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!--  -->
+
+            <LinearLayout
+                android:id="@+id/userreginfo_layout_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_img_height"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/corners_bg_editview_wihte"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/userreg_area_icon"
+                        android:contentDescription="@string/contentDescription" />
+
+                    <TextView
+                        android:id="@+id/userreginfo_tv_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_img_height"
+                        android:gravity="center_vertical"
+                        android:hint="@string/tv_reginfo_areahint"
+                        android:singleLine="true"
+                        android:textColor="@color/text_contents_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/arrow_right"
+                            android:contentDescription="@string/contentDescription" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!--  -->
+        </LinearLayout>
+        <!-- 登陆按钮 -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingTop="@dimen/jianju" >
+            android:padding="@dimen/padd_leftright"
+            android:text="说明：填写小区才能收到小区相关活动"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
 
             <include layout="@layout/click_btn" />
         </LinearLayout>

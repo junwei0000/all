@@ -35,7 +35,8 @@ public class UserRegistGetCodeBusiness {
 	Context mContext;
 
 	public UserRegistGetCodeBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetRegistGetCodeCallback mGetDataCallback) {
+			HashMap<String, String> mhashmap,
+			GetRegistGetCodeCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;

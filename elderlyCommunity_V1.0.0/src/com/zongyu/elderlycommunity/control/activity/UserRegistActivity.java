@@ -8,9 +8,12 @@ import com.zongyu.elderlycommunity.business.UserLoginBusiness.GetLoginCallback;
 import com.zongyu.elderlycommunity.business.UserRegistCheckPhoneBusiness;
 import com.zongyu.elderlycommunity.business.UserRegistCheckPhoneBusiness.GetRegistCheckPhoneCallback;
 import com.zongyu.elderlycommunity.model.UserLoginInfo;
+import com.zongyu.elderlycommunity.utils.CircleImageView;
 import com.zongyu.elderlycommunity.utils.CommonUtils;
 import com.zongyu.elderlycommunity.utils.ConfigUtils;
 import com.zongyu.elderlycommunity.utils.Constans;
+import com.zongyu.elderlycommunity.utils.HaveThIconClearEditText;
+import com.zongyu.elderlycommunity.utils.ImageLoader;
 import com.zongyu.elderlycommunity.utils.SupplierEditText;
 import com.zongyu.elderlycommunity.utils.volley.RequestUtils;
 
@@ -18,6 +21,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -33,13 +37,14 @@ import android.widget.TextView;
  */
 public class UserRegistActivity extends BaseActivity {
 
-	private SupplierEditText userreg_et_phone, userreg_et_pw;
+	private HaveThIconClearEditText userreg_et_phone, userreg_et_pw;
 	private Button click_btn;
 	private ProgressDialog mDialog;
 	private HashMap<String, String> mhashmap;
 	private LinearLayout pagetop_layout_back;
 	private TextView pagetop_tv_name;
-	private TextView pagetop_tv_you;
+	private ImageLoader asyncImageLoader;
+	private CircleImageView usereg_iv_head;
 
 	@Override
 	public void onClick(View v) {
@@ -70,9 +75,10 @@ public class UserRegistActivity extends BaseActivity {
 	protected void findViewById() {
 		pagetop_layout_back = (LinearLayout) findViewById(R.id.pagetop_layout_back);
 		pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
-		pagetop_tv_you = (TextView) findViewById(R.id.pagetop_tv_you);
-		userreg_et_phone = (SupplierEditText) findViewById(R.id.userreg_et_phone);
-		userreg_et_pw = (SupplierEditText) findViewById(R.id.userreg_et_pw);
+
+		usereg_iv_head = (CircleImageView) findViewById(R.id.usereg_iv_head);
+		userreg_et_phone = (HaveThIconClearEditText) findViewById(R.id.userreg_et_phone);
+		userreg_et_pw = (HaveThIconClearEditText) findViewById(R.id.userreg_et_pw);
 		click_btn = (Button) findViewById(R.id.click_btn);
 	}
 
@@ -80,7 +86,6 @@ public class UserRegistActivity extends BaseActivity {
 	protected void setListener() {
 
 		pagetop_tv_name.setText(getString(R.string.tv_reg));
-		pagetop_tv_you.setVisibility(View.GONE);
 		click_btn.setText(getString(R.string.tv_next));
 		pagetop_layout_back.setOnClickListener(this);
 		click_btn.setOnClickListener(this);
@@ -88,7 +93,10 @@ public class UserRegistActivity extends BaseActivity {
 
 	@Override
 	protected void processLogic() {
-
+		asyncImageLoader = new ImageLoader(context, "headImg");
+		Bitmap mBitmap = asyncImageLoader.readBitMap(this,
+				R.drawable.userlogin_thumb_bg);
+		usereg_iv_head.setImageBitmap(mBitmap);
 	}
 
 	private void showDilag() {
@@ -114,40 +122,44 @@ public class UserRegistActivity extends BaseActivity {
 		mhashmap = new HashMap<String, String>();
 		mhashmap.put("account", user_name);
 
-		new UserRegistCheckPhoneBusiness(this, mhashmap, new GetRegistCheckPhoneCallback() {
-			public void afterDataGet(HashMap<String, Object> dataMap) {
-				CommonUtils.getInstance().setOnDismissDialog(mDialog);
-				if (dataMap != null) {
-					String code = (String) dataMap.get("code");
-					if (code.equals("200")) {
-						String data = (String) dataMap
-								.get("data");
-						////"data":"1" ：1可用 0：不可用
-						 if(!TextUtils.isEmpty(data)&&data.equals("1")){
-							 Intent in = new Intent(context, UserRegistCodeActivity.class);
-								in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-								in.putExtra("account", user_name);
-								in.putExtra("password", password);
-								context.startActivity(in);
-								CommonUtils.getInstance().setPageIntentAnim(in, context);
-						 }else{
-							 CommonUtils.getInstance().initToast(
-										UserRegistActivity.this, "用户已存在");
-						 }
-					} else {
-						String msg = (String) dataMap.get("msg");
-						CommonUtils.getInstance().initToast(
-								UserRegistActivity.this, msg);
+		new UserRegistCheckPhoneBusiness(this, mhashmap,
+				new GetRegistCheckPhoneCallback() {
+					public void afterDataGet(HashMap<String, Object> dataMap) {
+						CommonUtils.getInstance().setOnDismissDialog(mDialog);
+						if (dataMap != null) {
+							String code = (String) dataMap.get("code");
+							if (code.equals("200")) {
+								String data = (String) dataMap.get("data");
+								// //"data":"1" ：1可用 0：不可用
+								if (!TextUtils.isEmpty(data)
+										&& data.equals("1")) {
+									Intent in = new Intent(context,
+											UserRegistCodeActivity.class);
+									in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+									in.putExtra("account", user_name);
+									in.putExtra("password", password);
+									context.startActivity(in);
+									CommonUtils.getInstance()
+											.setPageIntentAnim(in, context);
+								} else {
+									CommonUtils.getInstance().initToast(
+											UserRegistActivity.this, "用户已存在");
+								}
+							} else {
+								String msg = (String) dataMap.get("msg");
+								CommonUtils.getInstance().initToast(
+										UserRegistActivity.this, msg);
+							}
+						} else {
+							CommonUtils.getInstance().initToast(
+									UserRegistActivity.this,
+									getString(R.string.net_tishi));
+						}
+						// 清除缓存
+						CommonUtils.getInstance().setClearCacheBackDate(
+								mhashmap, dataMap);
 					}
-				} else {
-					CommonUtils.getInstance().initToast(UserRegistActivity.this,
-							getString(R.string.net_tishi));
-				}
-				// 清除缓存
-				CommonUtils.getInstance().setClearCacheBackDate(mhashmap,
-						dataMap);
-			}
-		});
+				});
 	}
 
 	/**
@@ -183,6 +195,7 @@ public class UserRegistActivity extends BaseActivity {
 		RequestUtils.cancelAll(this);
 		super.onDestroy();
 	}
+
 	private void nowFinish() {
 		finish();
 		CommonUtils.getInstance().setPageBackAnim(this);
@@ -193,7 +206,7 @@ public class UserRegistActivity extends BaseActivity {
 	 */
 	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-				nowFinish();
+			nowFinish();
 		}
 		return false;
 	}

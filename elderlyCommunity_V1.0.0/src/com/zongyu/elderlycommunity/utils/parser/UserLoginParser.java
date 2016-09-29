@@ -23,21 +23,18 @@ public class UserLoginParser extends BaseParser<Object> {
 			mHashMap = new HashMap<String, Object>();
 			mHashMap.put("code", code);
 			if (code.equals("200")) {
-				JSONArray jsonArray = jsonObject.optJSONArray("data");
-				for (int i = 0; i < 1; i++) {
-					JSONObject userObject = jsonArray.optJSONObject(i);
-					String uid = userObject.optString("uid", "");
-					String real_name = userObject.optString("real_name", "");
-					String nick_name = userObject.optString("nick_name", "");
-					String email = userObject.optString("email", "");
-					String telephone = userObject.optString("telephone", "");
-					String ablum_url = userObject.optString("ablum_url", "");
-					String sex = userObject.optString("sex", "");
-					UserLoginInfo loginInfo = new UserLoginInfo(uid, real_name,
-							nick_name, email, telephone, ablum_url, sex);
-					mHashMap.put("loginInfo", loginInfo);
-					loginInfo = null;
-				}
+				JSONObject userObject = jsonObject.optJSONObject("data");
+				String uid = userObject.optString("uid", "");
+				String real_name = userObject.optString("real_name", "");
+				String nick_name = userObject.optString("nick_name", "");
+				String email = userObject.optString("email", "");
+				String telephone = userObject.optString("telephone", "");
+				String ablum_url = userObject.optString("ablum_url", "");
+				String sex = userObject.optString("sex", "");
+				UserLoginInfo loginInfo = new UserLoginInfo(uid, real_name,
+						nick_name, email, telephone, ablum_url, sex);
+				mHashMap.put("loginInfo", loginInfo);
+				loginInfo = null;
 			} else {
 				String msg = jsonObject.optString("msg");
 				mHashMap.put("msg", msg);

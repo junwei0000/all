@@ -17,6 +17,7 @@ import com.zongyu.elderlycommunity.model.UserLoginInfo;
 import com.zongyu.elderlycommunity.utils.CommonUtils;
 import com.zongyu.elderlycommunity.utils.ConfigUtils;
 import com.zongyu.elderlycommunity.utils.Constans;
+import com.zongyu.elderlycommunity.utils.HaveThIconClearEditText;
 import com.zongyu.elderlycommunity.utils.SupplierEditText;
 import com.zongyu.elderlycommunity.utils.volley.RequestUtils;
 
@@ -42,7 +43,7 @@ import android.widget.TextView;
  */
 public class UserRegistCodeActivity extends BaseActivity {
 
-	private SupplierEditText userregcode_et_code;
+	private HaveThIconClearEditText userregcode_et_code;
 	private Button click_btn;
 	private ProgressDialog mDialog;
 	private HashMap<String, String> mhashmap;
@@ -52,7 +53,8 @@ public class UserRegistCodeActivity extends BaseActivity {
 	private TextView userregcode_tv_getcode;
 	private String account;
 	private String password;
-	 UserLoginSkipUtils mUserLoginSkipUtils;
+	UserLoginSkipUtils mUserLoginSkipUtils;
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -80,7 +82,7 @@ public class UserRegistCodeActivity extends BaseActivity {
 		setContentView(R.layout.user_regist_code);
 		CommonUtils.getInstance().addActivity(this);
 		CommonUtils.getInstance().addPayPageActivity(this);
-		mUserLoginSkipUtils=new UserLoginSkipUtils(this);
+		mUserLoginSkipUtils = new UserLoginSkipUtils(this);
 	}
 
 	@Override
@@ -89,7 +91,7 @@ public class UserRegistCodeActivity extends BaseActivity {
 		pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
 
 		userregcode_tv_phone = (TextView) findViewById(R.id.userregcode_tv_phone);
-		userregcode_et_code = (SupplierEditText) findViewById(R.id.userregcode_et_code);
+		userregcode_et_code = (HaveThIconClearEditText) findViewById(R.id.userregcode_et_code);
 		userregcode_tv_getcode = (TextView) findViewById(R.id.userregcode_tv_getcode);
 
 		click_btn = (Button) findViewById(R.id.click_btn);
@@ -177,6 +179,7 @@ public class UserRegistCodeActivity extends BaseActivity {
 	private final int Daojishistart = 0;
 	private final int Daojishiover = 1;
 	private final int REGIST = 2;
+
 	private void daojishi() {
 		final long nowTime = System.currentTimeMillis();
 		timerTask = new TimerTask() {
@@ -205,8 +208,6 @@ public class UserRegistCodeActivity extends BaseActivity {
 			switch (msg.what) {
 			case Daojishistart:
 				userregcode_tv_getcode.setEnabled(false);
-				userregcode_tv_getcode.setTextColor(getResources().getColor(
-						R.color.text_noclick_color));
 				count = 60;
 				daojishi();
 				break;
@@ -219,8 +220,6 @@ public class UserRegistCodeActivity extends BaseActivity {
 							+ getString(R.string.tv_codeunit));
 				}
 				if (msg.arg1 <= 0) {
-					userregcode_tv_getcode.setTextColor(getResources()
-							.getColor(R.color.blue));
 					userregcode_tv_getcode.setEnabled(true);
 					userregcode_tv_getcode
 							.setText(getString(R.string.tv_repeatgetcode));
@@ -270,18 +269,19 @@ public class UserRegistCodeActivity extends BaseActivity {
 					}
 				});
 	}
-	
-	private void regist(){
+
+	private void regist() {
 		showDilag();
 		mhashmap = new HashMap<String, String>();
 		CommonUtils.getInstance().addHashMapToken(mhashmap);
 		mhashmap.put("telephone", account);
-		password=ConfigUtils.getInstance().MD5(password);
+		password = ConfigUtils.getInstance().MD5(password);
 		mhashmap.put("password", password);
-		mhashmap.put("regOrigin", "telephone");//注册来源 0：未知 1：login_name；2：telephone；3：email 4：QQ；5：sinaweibo； 6：weixin'
-		mhashmap.put("regType", "2");//注册类型 0:未知 1 ：Web端；2： 移动端； 3： Wap端'
+		mhashmap.put("regOrigin", "telephone");// 注册来源 0：未知
+												// 1：login_name；2：telephone；3：email
+												// 4：QQ；5：sinaweibo； 6：weixin'
+		mhashmap.put("regType", "2");// 注册类型 0:未知 1 ：Web端；2： 移动端； 3： Wap端'
 		new UserRegistBusiness(this, mhashmap, new GetRegistCallback() {
-			
 
 			@Override
 			public void afterDataGet(HashMap<String, Object> dataMap) {
@@ -292,14 +292,14 @@ public class UserRegistCodeActivity extends BaseActivity {
 						UserLoginInfo loginInfo = (UserLoginInfo) dataMap
 								.get("loginInfo");
 						if (loginInfo != null) {
-						mUserLoginSkipUtils.saveLoginInfo(loginInfo);
-						Intent in = new Intent(context,
-								UserRegistCommitActivity.class);
-						in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-						in.putExtra("uid", loginInfo.getUid());
-						context.startActivity(in);
-						CommonUtils.getInstance().setPageIntentAnim(in,
-								context);
+							mUserLoginSkipUtils.saveLoginInfo(loginInfo);
+							Intent in = new Intent(context,
+									UserRegistCommitActivity.class);
+							in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+							in.putExtra("uid", loginInfo.getUid());
+							context.startActivity(in);
+							CommonUtils.getInstance().setPageIntentAnim(in,
+									context);
 						}
 					} else {
 						String msg = (String) dataMap.get("msg");
@@ -312,12 +312,13 @@ public class UserRegistCodeActivity extends BaseActivity {
 							getString(R.string.net_tishi));
 				}
 				// 清除缓存
-				CommonUtils.getInstance().setClearCacheBackDate(
-						mhashmap, dataMap);
-			
+				CommonUtils.getInstance().setClearCacheBackDate(mhashmap,
+						dataMap);
+
 			}
 		});
 	}
+
 	/**
 	 * 
 	 * @param phone

@@ -23,7 +23,7 @@ public class UserRegistCheckPhoneParser extends BaseParser<Object> {
 			mHashMap = new HashMap<String, Object>();
 			mHashMap.put("code", code);
 			if (code.equals("200")) {
-				//"data":"1" ：1可用 0：不可用
+				// "data":"1" ：1可用 0：不可用
 				String data = jsonObject.optString("data");
 				mHashMap.put("data", data);
 			} else {

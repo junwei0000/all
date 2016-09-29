@@ -34,7 +34,8 @@ public class UserRegistCheckPhoneBusiness {
 	Context mContext;
 
 	public UserRegistCheckPhoneBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetRegistCheckPhoneCallback mGetDataCallback) {
+			HashMap<String, String> mhashmap,
+			GetRegistCheckPhoneCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;

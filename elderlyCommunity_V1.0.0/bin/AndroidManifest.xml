@@ -99,6 +99,7 @@
         <activity android:name=".control.activity.UserRegistActivity" />
         <activity android:name=".control.activity.UserRegistCodeActivity" />
         <activity android:name=".control.activity.UserRegistCommitActivity" />
+         <activity android:name=".control.activity.UserRegistSelectSexActivity" />
     </application>
 
 </manifest>

@@ -118,10 +118,17 @@ public class CommonUtils {
 			public void onClick(View v) {
 				selectDialog.dismiss();
 				if (btnClickEvent.equals(exit)) {
-					getInstance().exit();
-				} else if (btnClickEvent.equals(cancel)) {
+					// getInstance().exit();
+					// } else if (btnClickEvent.equals(cancel)) {
 					clearAllBestDoInfoSharedPrefs(content);
-					// skipMainActivity(content);
+					Intent intents = new Intent();
+					intents.setAction(content.getResources().getString(
+							R.string.action_home));
+					intents.putExtra(
+							"type",
+							content.getResources().getString(
+									R.string.action_home_type_gotohome));
+					SkipMain(content);
 				}
 			}
 		});
@@ -129,15 +136,17 @@ public class CommonUtils {
 
 	/**
 	 * 判断登录状态
+	 * 
 	 * @param context
 	 */
-	public void SkipMain(Activity context){
-			Intent in = new Intent(context, MainActivity.class);
-			in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			context.startActivity(in);
-			CommonUtils.getInstance().setPageIntentAnim(in, context);
-			context.finish();
+	public void SkipMain(Activity context) {
+		Intent in = new Intent(context, MainActivity.class);
+		in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		context.startActivity(in);
+		CommonUtils.getInstance().setPageIntentAnim(in, context);
+		context.finish();
 	}
+
 	/**
 	 * 请求返回403时，提示并跳转登录
 	 * 
@@ -161,12 +170,12 @@ public class CommonUtils {
 	 * @param mhashmap
 	 */
 	public void addHashMapToken(HashMap<String, String> mhashmap) {
-		 String token = UserLoginInfo.getInstance().getTokenUse();
-		 if(TextUtils.isEmpty(token)){
-			 token="";
-		 }
-		 mhashmap.put("token", token);
-		 Log.e(token, "token");
+		String token = UserLoginInfo.getInstance().getTokenUse();
+		if (TextUtils.isEmpty(token)) {
+			token = "";
+		}
+		mhashmap.put("token", token);
+		Log.e(token, "token");
 	}
 
 	/**
@@ -362,8 +371,8 @@ public class CommonUtils {
 	}
 
 	/**
-	 * 用于 登录注册期间;
-	 * 为了自动注册后登录，在UserRegistSetPwActivity页面关闭
+	 * 用于 登录注册期间; 为了自动注册后登录，在UserRegistSetPwActivity页面关闭
+	 * 
 	 * @param activity
 	 */
 	public void addPayPageActivity(Activity activity) {

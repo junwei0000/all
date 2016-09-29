@@ -24,20 +24,16 @@ public class Constans {
 	public static final String LOGIN = WEB_ROOT + "/user/login";// 登录
 	public static final String REGISTCHECKPHONE = WEB_ROOT
 			+ "/user/checkAccount";// 注册验证手机号
-	public static final String REGISTCHECKCODE = WEB_ROOT
-			+ "/user/checkCode";// 注册时检查验证码
-	public static final String REGISTGETCODE = WEB_ROOT
-			+ "/user/sendCode";// 注册获取验证码
-	public static final String REGISTSET= WEB_ROOT + "/user/register";// 注册 
-	public static final String REGISTSETEDIT= WEB_ROOT + "/user/edit";// 编辑用户信息
-	
-	
+	public static final String REGISTCHECKCODE = WEB_ROOT + "/user/checkCode";// 注册时检查验证码
+	public static final String REGISTGETCODE = WEB_ROOT + "/user/sendCode";// 注册获取验证码
+	public static final String REGISTSET = WEB_ROOT + "/user/register";// 注册
+	public static final String REGISTSETEDIT = WEB_ROOT + "/user/edit";// 编辑用户信息
+
 	public static final String FINDPASSWORDGETCODE = WEB_ROOT
 			+ "/user/mobileFindPasswordSendCode";// 找回密码获取验证码
 	public static final String FINDPWBYPHONE = WEB_ROOT
 			+ "/user/findPasswordByMobile";// 找回密码
-	
-	
+
 	public static final String FINDPASSWORDGETCODECHECKCODE = WEB_ROOT
 			+ "/user/mobileFindPasswordCheckCode";// 找回密码检查验证码
 	public static final String UPDATEPW = WEB_ROOT + "/user/editPassword";// 修改密码
@@ -73,10 +69,10 @@ public class Constans {
 	 * 登录后跳转方向
 	 */
 	public String loginskiptoTiXing = "tixing";
-//	public String loginskiptoaddfavorite = "addfavorite";//
-//	public String loginskiptocreateorder = "createorder";
-//	public String loginskiptoPYLWyuding = "PYLWyuding";
-//	public String loginskiptologin403 = "login403";
+	// public String loginskiptoaddfavorite = "addfavorite";//
+	// public String loginskiptocreateorder = "createorder";
+	// public String loginskiptoPYLWyuding = "PYLWyuding";
+	// public String loginskiptologin403 = "login403";
 
 	/**
 	 * 登录状态
@@ -93,4 +89,10 @@ public class Constans {
 	public Activity mCurrentActivity;
 	public String exit = "exit";
 	public String cancel = "cancel";
+	/**
+	 * 性别
+	 */
+	public String SEX_UNKNOW = "0";
+	public String SEX_MALE = "1";
+	public String SEX_FAMALE = "2";
 }

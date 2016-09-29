@@ -7,7 +7,6 @@ import com.zongyu.elderlycommunity.control.adapter.WelcomeGuideAdapter;
 import com.zongyu.elderlycommunity.utils.CommonUtils;
 import com.zongyu.elderlycommunity.utils.Constans;
 
-
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;

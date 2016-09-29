@@ -14,8 +14,8 @@ import com.zongyu.elderlycommunity.utils.CommonUtils;
 import com.zongyu.elderlycommunity.utils.Constans;
 
 /**
- * @author      作者：zoc
- * @date        创建时间：2016-9-28 下午6:39:46
+ * @author 作者：zoc
+ * @date 创建时间：2016-9-28 下午6:39:46
  * @Description 类描述：
  */
 public class UserLoginSkipUtils {
@@ -24,10 +24,7 @@ public class UserLoginSkipUtils {
 	private SharedPreferences bestDoInfoSharedPrefs;
 	private Editor bestDoInfoEditor;
 	private String loginskiptostatus;
-	
-	
-	
-	
+
 	public UserLoginSkipUtils() {
 		super();
 	}
@@ -38,7 +35,8 @@ public class UserLoginSkipUtils {
 		bestDoInfoSharedPrefs = CommonUtils.getInstance()
 				.getBestDoInfoSharedPrefs(context);
 		bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
-		loginskiptostatus=bestDoInfoSharedPrefs.getString("loginskiptostatus", "");
+		loginskiptostatus = bestDoInfoSharedPrefs.getString(
+				"loginskiptostatus", "");
 	}
 
 	public void cacheLoginInfo(UserLoginInfo loginInfo) {
@@ -50,7 +48,7 @@ public class UserLoginSkipUtils {
 		}
 	}
 
-	public void saveLoginInfo(UserLoginInfo loginInfo){
+	public void saveLoginInfo(UserLoginInfo loginInfo) {
 		String uid = loginInfo.getUid();
 		String username = loginInfo.getAblum_url();
 		String mobile = loginInfo.getEmail();
@@ -70,21 +68,24 @@ public class UserLoginSkipUtils {
 				Constans.getInstance().loginStatus);
 		bestDoInfoEditor.commit();
 	}
+
 	private void showLoginFailureInfo() {
 		CommonUtils.getInstance().initToast(context, "登录失败，请重新登录");
 	}
+
 	/**
 	 * 登录后多方向跳转判断
 	 */
 	Intent intents;
+
 	public void skipToPage() {
-		if (loginskiptostatus
-				.equals(Constans.getInstance().loginskiptoTiXing)) {
+		if (loginskiptostatus.equals(Constans.getInstance().loginskiptoTiXing)) {
 			intents = new Intent();
 			intents.setAction(context.getResources().getString(
 					R.string.action_home));
 			intents.putExtra(
-					"type",context.getResources().getString(
+					"type",
+					context.getResources().getString(
 							R.string.action_home_type_loginregok));
 			context.sendBroadcast(intents);
 			context.finish();
@@ -97,15 +98,14 @@ public class UserLoginSkipUtils {
 	 * 返回前返回是否是收藏列表跳转
 	 */
 	public void doBackCheck() {
-		if (loginskiptostatus
-				.equals(Constans.getInstance().loginskiptoTiXing)) {
+		if (loginskiptostatus.equals(Constans.getInstance().loginskiptoTiXing)) {
 			intents = new Intent();
 			intents.setAction(context.getResources().getString(
 					R.string.action_home));
 			intents.putExtra(
 					"type",
 					context.getResources().getString(
-							R.string.action_home_type_loginregok));
+							R.string.action_home_type_loginback));
 			context.sendBroadcast(intents);
 		}
 	}

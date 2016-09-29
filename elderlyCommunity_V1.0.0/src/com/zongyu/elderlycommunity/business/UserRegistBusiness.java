@@ -20,7 +20,7 @@ import android.util.Log;
  * 
  * @author 作者：jun
  * @date 创建时间：2016-1-15 下午6:06:33
- * @Description 类描述：用户注册 
+ * @Description 类描述：用户注册
  */
 public class UserRegistBusiness {
 

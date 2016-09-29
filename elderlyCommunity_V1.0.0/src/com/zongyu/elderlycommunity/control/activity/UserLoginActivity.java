@@ -6,9 +6,12 @@ import com.zongyu.elderlycommunity.R;
 import com.zongyu.elderlycommunity.business.UserLoginBusiness;
 import com.zongyu.elderlycommunity.business.UserLoginBusiness.GetLoginCallback;
 import com.zongyu.elderlycommunity.model.UserLoginInfo;
+import com.zongyu.elderlycommunity.utils.CircleImageView;
 import com.zongyu.elderlycommunity.utils.CommonUtils;
 import com.zongyu.elderlycommunity.utils.ConfigUtils;
 import com.zongyu.elderlycommunity.utils.Constans;
+import com.zongyu.elderlycommunity.utils.HaveThIconClearEditText;
+import com.zongyu.elderlycommunity.utils.ImageLoader;
 import com.zongyu.elderlycommunity.utils.SupplierEditText;
 import com.zongyu.elderlycommunity.utils.volley.RequestUtils;
 
@@ -16,6 +19,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,23 +35,20 @@ import android.widget.TextView;
  */
 public class UserLoginActivity extends BaseActivity {
 
-	private SupplierEditText userlogin_et_phone, userlogin_et_pw;
+	private HaveThIconClearEditText userlogin_et_phone, userlogin_et_pw;
 	private Button click_btn;
 	private ProgressDialog mDialog;
 	private HashMap<String, String> mhashmap;
-	private LinearLayout pagetop_layout_back;
-	private TextView pagetop_tv_name;
-	private TextView pagetop_tv_you;
+	private TextView userlogin_tv_regist;
 	private TextView userlogin_tv_findpw;
+	private ImageLoader asyncImageLoader;
+	private UserLoginSkipUtils mUserLoginSkipUtils;
+	private CircleImageView usereg_iv_head;
 
-	 UserLoginSkipUtils mUserLoginSkipUtils;
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.pagetop_layout_back:
-			nowFinish();
-			break;
-		case R.id.pagetop_tv_you:
+		case R.id.userlogin_tv_regist:
 			Intent in = new Intent(context, UserRegistActivity.class);
 			in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			context.startActivity(in);
@@ -74,37 +75,36 @@ public class UserLoginActivity extends BaseActivity {
 		setContentView(R.layout.user_login);
 		CommonUtils.getInstance().addActivity(this);
 		CommonUtils.getInstance().addPayPageActivity(this);
-		
+
 	}
 
 	@Override
 	protected void findViewById() {
-		pagetop_layout_back = (LinearLayout) findViewById(R.id.pagetop_layout_back);
-		pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
-		pagetop_tv_you = (TextView) findViewById(R.id.pagetop_tv_you);
-		userlogin_et_phone = (SupplierEditText) findViewById(R.id.userlogin_et_phone);
-		userlogin_et_pw = (SupplierEditText) findViewById(R.id.userlogin_et_pw);
+
+		usereg_iv_head = (CircleImageView) findViewById(R.id.usereg_iv_head);
+
+		userlogin_tv_regist = (TextView) findViewById(R.id.userlogin_tv_regist);
+		userlogin_et_phone = (HaveThIconClearEditText) findViewById(R.id.userlogin_et_phone);
+		userlogin_et_pw = (HaveThIconClearEditText) findViewById(R.id.userlogin_et_pw);
 		click_btn = (Button) findViewById(R.id.click_btn);
 		userlogin_tv_findpw = (TextView) findViewById(R.id.userlogin_tv_findpw);
 	}
 
 	@Override
 	protected void setListener() {
-
-		pagetop_tv_name.setText(getString(R.string.tv_login));
-		pagetop_tv_you.setText(getString(R.string.tv_reg));
 		click_btn.setText(getString(R.string.tv_login));
-		pagetop_tv_you.setVisibility(View.VISIBLE);
-		pagetop_tv_you.setOnClickListener(this);
-		pagetop_layout_back.setOnClickListener(this);
+		userlogin_tv_regist.setOnClickListener(this);
 		click_btn.setOnClickListener(this);
 		userlogin_tv_findpw.setOnClickListener(this);
-		mUserLoginSkipUtils=new UserLoginSkipUtils(this);
+		mUserLoginSkipUtils = new UserLoginSkipUtils(this);
 	}
 
 	@Override
 	protected void processLogic() {
-
+		asyncImageLoader = new ImageLoader(context, "headImg");
+		Bitmap mBitmap = asyncImageLoader.readBitMap(this,
+				R.drawable.userlogin_thumb_bg);
+		usereg_iv_head.setImageBitmap(mBitmap);
 	}
 
 	private void showDilag() {
@@ -130,7 +130,7 @@ public class UserLoginActivity extends BaseActivity {
 		mhashmap = new HashMap<String, String>();
 		CommonUtils.getInstance().addHashMapToken(mhashmap);
 		mhashmap.put("account", user_name);
-		String password_=ConfigUtils.getInstance().MD5(password);
+		String password_ = ConfigUtils.getInstance().MD5(password);
 		mhashmap.put("password", password_);
 
 		new UserLoginBusiness(this, mhashmap, new GetLoginCallback() {
@@ -158,8 +158,6 @@ public class UserLoginActivity extends BaseActivity {
 		});
 	}
 
-	
-	
 	/**
 	 * 登录前验证
 	 * 
@@ -205,7 +203,7 @@ public class UserLoginActivity extends BaseActivity {
 	 */
 	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-				nowFinish();
+			nowFinish();
 		}
 		return false;
 	}

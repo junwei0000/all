@@ -52,6 +52,7 @@ public class MainActivity extends TabActivity {
 	 * 点击之后正常要跳转的
 	 */
 	private String after_tab;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,6 +75,7 @@ public class MainActivity extends TabActivity {
 				.getBestDoInfoSharedPrefs(this);
 		bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
 	}
+
 	private void initView() {
 		mTabHost = getTabHost();
 		Intent i_calendar = new Intent(this, MainCalenderActivity.class);
@@ -121,6 +123,7 @@ public class MainActivity extends TabActivity {
 					}
 				});
 	}
+
 	/**
 	 * 跳转用户中心判断
 	 */
@@ -129,7 +132,7 @@ public class MainActivity extends TabActivity {
 			String loginStatus = bestDoInfoSharedPrefs.getString("loginStatus",
 					"");
 			if (loginStatus.equals(Constans.getInstance().loginStatus)) {
-				mTabHost.setCurrentTabByTag(TAB_TIXING);
+				mTabHost.setCurrentTabByTag(after_tab);
 			} else {
 				bestDoInfoEditor.putString("loginskiptostatus",
 						Constans.getInstance().loginskiptoTiXing);
@@ -143,6 +146,7 @@ public class MainActivity extends TabActivity {
 		}
 
 	}
+
 	/**
 	 * 设置选择的tab
 	 * 
@@ -195,8 +199,12 @@ public class MainActivity extends TabActivity {
 					.equals(getString(R.string.action_home_type_gotohome))) {
 				mTabHost.setCurrentTabByTag(TAB_CALENDER);
 				setTab(TAB_CALENDER);
-			}else if (type
+			} else if (type
 					.equals(getString(R.string.action_home_type_loginregok))) {
+				mTabHost.setCurrentTabByTag(after_tab);
+				setTab(after_tab);
+			} else if (type
+					.equals(getString(R.string.action_home_type_loginback))) {
 				mTabHost.setCurrentTabByTag(before_tab);
 				setTab(before_tab);
 			}

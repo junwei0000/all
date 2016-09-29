@@ -16,7 +16,6 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
-
 /**
  * 
  * @author 作者：zoc
@@ -46,6 +45,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 	protected void setListener() {
 		getToken();
 	}
+
 	/**
 	 * 得到设备唯一值
 	 * 
@@ -59,6 +59,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 		}
 		return token;
 	}
+
 	/**
 	 * 设置启动页淡出动画
 	 */

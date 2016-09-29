@@ -11,8 +11,8 @@ import android.view.WindowManager;
 
 /**
  * 
- * @author      作者：zoc
- * @date        创建时间：2016-9-27 上午10:15:50
+ * @author 作者：zoc
+ * @date 创建时间：2016-9-27 上午10:15:50
  * @Description 类描述：base
  */
 public abstract class BaseActivity extends Activity implements

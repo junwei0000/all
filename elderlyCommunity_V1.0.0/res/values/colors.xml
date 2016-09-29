@@ -9,9 +9,11 @@
 	
 	<color name="gray_bg">#EFEFEF</color>
 	<!-- 页面背景颜色 -->
-	<color name="page_bg">#F2F2F2</color>
+	<color name="page_bg">#F5F5F5</color>
 	<!-- 头部背景颜色 -->
 	<color name="page_top_bg">#FF6666</color>
+	<!-- 输入框背景颜色 -->
+	<color name="editview_bg">#DEDDE3</color>
 	<!-- 首页底部菜单背景颜色 -->
 	<color name="main_tab_page_bg">#F8F8F8</color>
 	<!-- 首页菜单字体颜色 -->
@@ -34,8 +36,6 @@
 	<color name="text_click_color">#666666</color>
 	<!-- hint颜色 -->
 	<color name="text_hint_color">#cccccc</color>
-	<!-- 按钮背景颜色 -->
-	<color name="btn_bg">#FC821B</color>
 	<!-- 按钮不可点击的字体颜色 -->
 	<color name="btn_noclick_color">#FDB476</color>
 	<!-- 验证码不可点击的颜色 -->

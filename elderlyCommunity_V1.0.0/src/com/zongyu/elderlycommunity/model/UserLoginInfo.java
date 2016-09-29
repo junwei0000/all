@@ -3,7 +3,6 @@
  */
 package com.zongyu.elderlycommunity.model;
 
-
 /**
  * @author 作者：zoc
  * @date 创建时间：2016-9-26 下午2:56:03
@@ -21,18 +20,18 @@ public class UserLoginInfo {
 	public static final UserLoginInfo getInstance() {
 		return SingletonHolder.INSTANCE;
 	}
+
 	private String tokenUse;
-	String uid  ;
-	String real_name  ;
-	String nick_name ;
-	String email  ;
-	String telephone ;
-	String ablum_url ;
-	String sex ;
-	
-	public UserLoginInfo( String uid, String real_name,
-			String nick_name, String email, String telephone, String ablum_url,
-			String sex) {
+	String uid;
+	String real_name;
+	String nick_name;
+	String email;
+	String telephone;
+	String ablum_url;
+	String sex;
+
+	public UserLoginInfo(String uid, String real_name, String nick_name,
+			String email, String telephone, String ablum_url, String sex) {
 		super();
 		this.uid = uid;
 		this.real_name = real_name;
@@ -106,5 +105,5 @@ public class UserLoginInfo {
 	public void setTokenUse(String tokenUse) {
 		this.tokenUse = tokenUse;
 	}
-	
+
 }

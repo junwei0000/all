@@ -7,7 +7,6 @@
 
     <include layout="@layout/page_top" />
 
-    <include layout="@layout/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,42 +14,57 @@
         android:layout_weight="10"
         android:orientation="vertical" >
 
-        <View
+        <!-- 头像 -->
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/jianju" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianju_login"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="@dimen/head_morentv_size"
+                android:layout_height="@dimen/head_morentv_size"
+                android:layout_centerInParent="true"
+                android:background="@drawable/userlogin_thumb_morenbg"
+                android:contentDescription="@string/contentDescription" />
+
+            <com.zongyu.elderlycommunity.utils.CircleImageView
+                android:id="@+id/usereg_iv_head"
+                android:layout_width="@dimen/head_tv_size"
+                android:layout_height="@dimen/head_tv_size"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/contentDescription" />
+        </RelativeLayout>
+
         <!-- 账号密码 -->
 
         <LinearLayout
+            style="@style/user_item_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_marginTop="@dimen/jianju_login"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btn_img_height"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/padd_leftright" >
+                android:orientation="horizontal" >
 
-                <TextView
-                    style="@style/user_item_paddtopbottom"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tv_phone"
-                    android:textColor="@color/text_contents_color"
-                    android:textSize="@dimen/text_contents_size" />
-
-                <com.zongyu.elderlycommunity.utils.SupplierEditText
+                <com.zongyu.elderlycommunity.utils.HaveThIconClearEditText
                     android:id="@+id/userreg_et_phone"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="4.5"
-                    android:background="@color/transparent"
+                    android:background="@drawable/corners_bg_editview_wihte"
+                    android:drawableLeft="@drawable/userreg_phone_icon"
+                    android:drawablePadding="10dp"
                     android:hint="@string/tv_reg_phonehint"
                     android:inputType="number"
                     android:maxLength="11"
+                    android:paddingLeft="10dp"
                     android:singleLine="true"
                     android:textColor="@color/text_contents_color"
                     android:textColorHint="@color/text_hint_color"
@@ -60,37 +74,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/padd_leftright" >
-
-                <include layout="@layout/line" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_img_height"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/padd_leftright" >
+                android:orientation="horizontal" >
 
-                <TextView
-                    style="@style/user_item_paddtopbottom"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tv_pw"
-                    android:textColor="@color/text_contents_color"
-                    android:textSize="@dimen/text_contents_size" />
-
-                <com.zongyu.elderlycommunity.utils.SupplierEditText
+                <com.zongyu.elderlycommunity.utils.HaveThIconClearEditText
                     android:id="@+id/userreg_et_pw"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="4.5"
-                    android:background="@color/transparent"
-                    android:ellipsize="end"
+                    android:background="@drawable/corners_bg_editview_wihte"
+                    android:drawableLeft="@drawable/userreg_pw_icon"
+                    android:drawablePadding="10dp"
                     android:hint="@string/tv_reg_pwhint"
-                    android:inputType="textPassword"
+                     android:inputType="textPassword"
+                    android:paddingLeft="10dp"
                     android:singleLine="true"
                     android:textColor="@color/text_contents_color"
                     android:textColorHint="@color/text_hint_color"
@@ -99,15 +98,15 @@
         </LinearLayout>
         <!-- 登陆按钮 -->
 
-            <LinearLayout
-                style="@style/user_item_paddlefgtright"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/jianju" >
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/jianju_login" >
 
-                <include layout="@layout/click_btn" />
-            </LinearLayout>
+            <include layout="@layout/click_btn" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

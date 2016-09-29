@@ -35,7 +35,8 @@ public class UserRegistCheckCodeBusiness {
 	Context mContext;
 
 	public UserRegistCheckCodeBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetRegistCheckCodeCallback mGetDataCallback) {
+			HashMap<String, String> mhashmap,
+			GetRegistCheckCodeCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;
