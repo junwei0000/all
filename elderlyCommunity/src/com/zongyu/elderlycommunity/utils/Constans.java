@@ -15,22 +15,29 @@ public class Constans {
 	 * 接口定义*************************************************************
 	 * ******************************************************************
 	 */
-	public static final String WEB_ROOT = "http://new.bd.app.bestdo.com/2.3.2";
+	public static final String WEB_ROOT = "http://ixb.api.zongyutech.com";
 	// public static final String WEB_ROOT =
 	// "http://test.bd.app.bestdo.com/2.3.0";
 
 	// **********登录、注册***********
 	public static final String GETVERSON = WEB_ROOT + "/version/androidVersion";// 版本更新
 	public static final String LOGIN = WEB_ROOT + "/user/login";// 登录
+	public static final String REGISTCHECKPHONE = WEB_ROOT
+			+ "/user/checkAccount";// 注册验证手机号
+	public static final String REGISTCHECKCODE = WEB_ROOT
+			+ "/user/checkCode";// 注册时检查验证码
+	public static final String REGISTGETCODE = WEB_ROOT
+			+ "/user/sendCode";// 注册获取验证码
+	public static final String REGISTSET= WEB_ROOT + "/user/register";// 注册 
+	public static final String REGISTSETEDIT= WEB_ROOT + "/user/edit";// 编辑用户信息
+	
+	
 	public static final String FINDPASSWORDGETCODE = WEB_ROOT
 			+ "/user/mobileFindPasswordSendCode";// 找回密码获取验证码
 	public static final String FINDPWBYPHONE = WEB_ROOT
 			+ "/user/findPasswordByMobile";// 找回密码
-	public static final String REGISTGETCODE = WEB_ROOT
-			+ "/user/mobileRegisterSendCode";// 注册获取验证码
-	public static final String REGISTCHECKCODE = WEB_ROOT
-			+ "/user/mobileRegisterCheckCode";// 注册时检查验证码
-	public static final String REGISTSETPASSWORD = WEB_ROOT + "/user/register";// 注册设置密码
+	
+	
 	public static final String FINDPASSWORDGETCODECHECKCODE = WEB_ROOT
 			+ "/user/mobileFindPasswordCheckCode";// 找回密码检查验证码
 	public static final String UPDATEPW = WEB_ROOT + "/user/editPassword";// 修改密码
@@ -65,11 +72,11 @@ public class Constans {
 	/**
 	 * 登录后跳转方向
 	 */
-	public String loginskiptofavoritelist = "favoritelist";
-	public String loginskiptoaddfavorite = "addfavorite";//
-	public String loginskiptocreateorder = "createorder";
-	public String loginskiptoPYLWyuding = "PYLWyuding";
-	public String loginskiptologin403 = "login403";
+	public String loginskiptoTiXing = "tixing";
+//	public String loginskiptoaddfavorite = "addfavorite";//
+//	public String loginskiptocreateorder = "createorder";
+//	public String loginskiptoPYLWyuding = "PYLWyuding";
+//	public String loginskiptologin403 = "login403";
 
 	/**
 	 * 登录状态

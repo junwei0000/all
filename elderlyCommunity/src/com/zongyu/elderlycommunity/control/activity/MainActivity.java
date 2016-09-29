@@ -2,7 +2,9 @@ package com.zongyu.elderlycommunity.control.activity;
 
 import com.zongyu.elderlycommunity.R;
 import com.zongyu.elderlycommunity.R.layout;
+import com.zongyu.elderlycommunity.model.UserLoginInfo;
 import com.zongyu.elderlycommunity.utils.CommonUtils;
+import com.zongyu.elderlycommunity.utils.ConfigUtils;
 import com.zongyu.elderlycommunity.utils.Constans;
 
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
@@ -41,12 +44,19 @@ public class MainActivity extends TabActivity {
 	public static final String TAB_CAMPAIGN = "CAMPAIGN_ACTIVITY";
 	public static final String TAB_TIXING = "TIXING_ACTIVITY";
 	public static final String TAB_CENTER = "CENTER_ACTIVITY";
-
+	/**
+	 * 点击收藏登录记录之前的tab
+	 */
+	private String before_tab;
+	/**
+	 * 点击之后正常要跳转的
+	 */
+	private String after_tab;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Constans.getInstance().mHomeActivity = this;
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.main);
 		findViewById();
 		initView();
 	}
@@ -64,39 +74,44 @@ public class MainActivity extends TabActivity {
 				.getBestDoInfoSharedPrefs(this);
 		bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
 	}
-
 	private void initView() {
 		mTabHost = getTabHost();
 		Intent i_calendar = new Intent(this, MainCalenderActivity.class);
-		Intent i_campaign = new Intent(this, MainCampaignActivity.class);
 		Intent i_tixing = new Intent(this, MainTiXingActivity.class);
+		Intent i_campaign = new Intent(this, MainCampaignActivity.class);
 		Intent i_usercenter = new Intent(this, UserCenterActivity.class);
 
 		mTabHost.addTab(mTabHost.newTabSpec(TAB_CALENDER)
 				.setIndicator(TAB_CALENDER).setContent(i_calendar));
-		mTabHost.addTab(mTabHost.newTabSpec(TAB_CAMPAIGN)
-				.setIndicator(TAB_CAMPAIGN).setContent(i_campaign));
 		mTabHost.addTab(mTabHost.newTabSpec(TAB_TIXING)
 				.setIndicator(TAB_TIXING).setContent(i_tixing));
+		mTabHost.addTab(mTabHost.newTabSpec(TAB_CAMPAIGN)
+				.setIndicator(TAB_CAMPAIGN).setContent(i_campaign));
 		mTabHost.addTab(mTabHost.newTabSpec(TAB_CENTER)
 				.setIndicator(TAB_CENTER).setContent(i_usercenter));
-
+		before_tab = TAB_CALENDER;
 		mTabHost.setCurrentTabByTag(TAB_CALENDER);
 		mTabButtonGroup
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 					public void onCheckedChanged(RadioGroup group, int checkedId) {
 						switch (checkedId) {
 						case R.id.home_tab_calendar:
+							before_tab = TAB_CALENDER;
 							mTabHost.setCurrentTabByTag(TAB_CALENDER);
 							break;
 
+						case R.id.home_tab_tixing:
+							after_tab = TAB_TIXING;
+							chackSkipByLoginStatus();
+							break;
 						case R.id.home_tab_campaign:
+							before_tab = TAB_CAMPAIGN;
+							after_tab = TAB_CAMPAIGN;
 							mTabHost.setCurrentTabByTag(TAB_CAMPAIGN);
 							break;
-						case R.id.home_tab_tixing:
-							mTabHost.setCurrentTabByTag(TAB_TIXING);
-							break;
 						case R.id.home_tab_usercenter:
+							before_tab = TAB_CENTER;
+							after_tab = TAB_CENTER;
 							mTabHost.setCurrentTabByTag(TAB_CENTER);
 							break;
 
@@ -106,7 +121,28 @@ public class MainActivity extends TabActivity {
 					}
 				});
 	}
+	/**
+	 * 跳转用户中心判断
+	 */
+	private void chackSkipByLoginStatus() {
+		try {
+			String loginStatus = bestDoInfoSharedPrefs.getString("loginStatus",
+					"");
+			if (loginStatus.equals(Constans.getInstance().loginStatus)) {
+				mTabHost.setCurrentTabByTag(TAB_TIXING);
+			} else {
+				bestDoInfoEditor.putString("loginskiptostatus",
+						Constans.getInstance().loginskiptoTiXing);
+				bestDoInfoEditor.commit();
+				Intent intent = new Intent(this, UserLoginActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+				startActivity(intent);
+				CommonUtils.getInstance().setPageIntentAnim(intent, this);
+			}
+		} catch (Exception e) {
+		}
 
+	}
 	/**
 	 * 设置选择的tab
 	 * 
@@ -159,6 +195,10 @@ public class MainActivity extends TabActivity {
 					.equals(getString(R.string.action_home_type_gotohome))) {
 				mTabHost.setCurrentTabByTag(TAB_CALENDER);
 				setTab(TAB_CALENDER);
+			}else if (type
+					.equals(getString(R.string.action_home_type_loginregok))) {
+				mTabHost.setCurrentTabByTag(before_tab);
+				setTab(before_tab);
 			}
 		}
 	};

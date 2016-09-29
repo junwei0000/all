@@ -46,18 +46,18 @@
                 android:text="日历" />
 
             <RadioButton
-                android:id="@+id/home_tab_campaign"
-                style="@style/home_tab_bottom"
-                android:background="@color/transparent"
-                android:drawableTop="@drawable/home_tab_campaign_selector"
-                android:text="活动" />
-
-            <RadioButton
                 android:id="@+id/home_tab_tixing"
                 style="@style/home_tab_bottom"
                 android:background="@color/transparent"
                 android:drawableTop="@drawable/home_tab_tixing_selector"
                 android:text="提醒" />
+
+            <RadioButton
+                android:id="@+id/home_tab_campaign"
+                style="@style/home_tab_bottom"
+                android:background="@color/transparent"
+                android:drawableTop="@drawable/home_tab_campaign_selector"
+                android:text="活动" />
 
             <RadioButton
                 android:id="@+id/home_tab_usercenter"

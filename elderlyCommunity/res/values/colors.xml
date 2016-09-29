@@ -7,16 +7,15 @@
 	<color name="main_business_tab_edgecolor">#073068</color>
 	<color name="main_business_tab_presscolor">#093C81</color>
 	
-	<color name="red">#ff0000</color>
 	<color name="gray_bg">#EFEFEF</color>
 	<!-- 页面背景颜色 -->
 	<color name="page_bg">#F2F2F2</color>
 	<!-- 头部背景颜色 -->
-	<color name="page_top_bg">#FAFAFA</color>
+	<color name="page_top_bg">#FF6666</color>
 	<!-- 首页底部菜单背景颜色 -->
-	<color name="main_tab_page_bg">#F7F7F7</color>
+	<color name="main_tab_page_bg">#F8F8F8</color>
 	<!-- 首页菜单字体颜色 -->
-	<color name="main_tab_text_color">#999999</color>
+	<color name="main_tab_text_color">#7B7B7B</color>
 	<!-- 白色 -->
 	<color name="white">#FFFFFF</color>
 	<!-- 透明颜色 -->

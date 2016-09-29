@@ -17,7 +17,9 @@ import org.apache.http.util.EncodingUtils;
 import org.json.JSONObject;
 
 import com.zongyu.elderlycommunity.R;
+import com.zongyu.elderlycommunity.control.activity.MainActivity;
 import com.zongyu.elderlycommunity.control.activity.UserLoginActivity;
+import com.zongyu.elderlycommunity.model.UserLoginInfo;
 import com.zongyu.elderlycommunity.utils.volley.RequestUtils;
 
 import android.app.Activity;
@@ -43,6 +45,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
@@ -125,6 +128,17 @@ public class CommonUtils {
 	}
 
 	/**
+	 * 判断登录状态
+	 * @param context
+	 */
+	public void SkipMain(Activity context){
+			Intent in = new Intent(context, MainActivity.class);
+			in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			context.startActivity(in);
+			CommonUtils.getInstance().setPageIntentAnim(in, context);
+			context.finish();
+	}
+	/**
 	 * 请求返回403时，提示并跳转登录
 	 * 
 	 * @param context
@@ -147,9 +161,12 @@ public class CommonUtils {
 	 * @param mhashmap
 	 */
 	public void addHashMapToken(HashMap<String, String> mhashmap) {
-		// String token = UserLoginInfo.getInstance().getTokenUse();
-		// mhashmap.put("flag", token);
-		// Log.e(token, "token");
+		 String token = UserLoginInfo.getInstance().getTokenUse();
+		 if(TextUtils.isEmpty(token)){
+			 token="";
+		 }
+		 mhashmap.put("token", token);
+		 Log.e(token, "token");
 	}
 
 	/**
@@ -346,7 +363,7 @@ public class CommonUtils {
 
 	/**
 	 * 用于 登录注册期间;
-	 * 
+	 * 为了自动注册后登录，在UserRegistSetPwActivity页面关闭
 	 * @param activity
 	 */
 	public void addPayPageActivity(Activity activity) {
@@ -354,7 +371,7 @@ public class CommonUtils {
 	}
 
 	/**
-	 * 关闭 页
+	 * 关闭 登录注册中间页面
 	 */
 	public void exitPayPage() {
 		for (Activity activity : payPage) {

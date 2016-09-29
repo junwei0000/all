@@ -30,7 +30,6 @@
     <uses-permission android:name="android.webkit.permission.PLUGIN" />
     <uses-permission android:name="android.permission.RUN_INSTRUMENTATION" />
     <uses-permission android:name="android.permission.READ_SMS" />
-
     <uses-permission android:name="com.bestdo.bestdoStadiums.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -60,42 +59,46 @@
         android:smallScreens="true" />
 
     <application
+        android:name="com.zongyu.elderlycommunity.control.view.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-         <!-- 版本更新服务 -->
-        <service android:name="com.bestdo.bestdoStadiums.utils.UpdateService" />
+
+        <!-- 版本更新服务 -->
+        <service android:name=".utils.UpdateService" />
+
         <activity
-            android:name=".control.activity.MainActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/app_name" >
+            android:name=".control.activity.WelcomeStartActiyity"
+            android:launchMode="standard"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".control.activity.WelcomeGuideActivity" />
+        <activity
+            android:name=".control.activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
         <activity
             android:name=".control.activity.BaseActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:launchMode="standard" />
-        <activity
-            android:name=".control.activity.MainCalenderActivity"
-           />
-        <activity
-            android:name=".control.activity.MainCampaignActivity"
-       />
-        <activity
-            android:name=".control.activity.MainTiXingActivity"
-            />
-          <activity
-            android:name=".control.activity.UserCenterActivity"
-            />
+        <activity android:name=".control.activity.MainCalenderActivity" />
+        <activity android:name=".control.activity.MainCampaignActivity" />
+        <activity android:name=".control.activity.MainTiXingActivity" />
+        <activity android:name=".control.activity.UserCenterActivity" />
         <activity
             android:name=".control.activity.UserLoginActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".control.activity.UserRegistActivity" />
+        <activity android:name=".control.activity.UserRegistCodeActivity" />
+        <activity android:name=".control.activity.UserRegistCommitActivity" />
     </application>
 
 </manifest>

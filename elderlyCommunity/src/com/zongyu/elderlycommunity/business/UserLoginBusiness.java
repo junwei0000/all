@@ -46,7 +46,6 @@ public class UserLoginBusiness {
 				new Listener<String>() {
 					public void onResponse(String response) {
 						Log.e("JsonObjectRequest----", response);
-						Log.e("decrypt----", response);
 						HashMap<String, Object> dataMap = new HashMap<String, Object>();
 						UserLoginParser mParser = new UserLoginParser();
 						JSONObject jsonObject = RequestUtils
