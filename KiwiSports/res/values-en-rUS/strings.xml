@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">KiwiSports</string>
+     
+      <string name="myexit_text_sure">sure</string>
+    <string name="myexit_text_off">cancel</string>
+<string name="myexit_text_title">确定退出吗？</string>
+
+
+
+
+    <!-- action -->
+    <!-- 下线通知广播 -->
+    <string name="action_home">actionhome_Receiver</string>
+    <string name="action_home_type_login403">actionhome_login403</string>
+    <string name="action_home_type_loginregok">actionhome_loginregok</string>
+    <string name="action_home_type_gotohome">actionhome_gotohome</string>
+</resources>
