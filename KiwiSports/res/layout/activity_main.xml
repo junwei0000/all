@@ -31,40 +31,40 @@
         <RadioGroup
             android:id="@+id/home_radio_button_group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/menu_height"
             android:layout_gravity="bottom"
             android:background="@color/main_tab_page_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/home_tab_calendar"
+                android:id="@+id/home_tab_main"
                 style="@style/home_tab_bottom"
                 android:background="@color/transparent"
                 android:checked="true"
-                android:drawableTop="@drawable/home_tab_calendar_selector"
-                android:text="日历" />
+                android:drawableTop="@drawable/menutab_main_selector"
+                />
 
             <RadioButton
-                android:id="@+id/home_tab_campaign"
+                android:id="@+id/home_tab_location"
                 style="@style/home_tab_bottom"
                 android:background="@color/transparent"
-                android:drawableTop="@drawable/home_tab_campaign_selector"
-                android:text="活动" />
+                android:drawableTop="@drawable/menutab_location_selector"
+                />
 
             <RadioButton
-                android:id="@+id/home_tab_tixing"
+                android:id="@+id/home_tab_record"
                 style="@style/home_tab_bottom"
                 android:background="@color/transparent"
-                android:drawableTop="@drawable/home_tab_tixing_selector"
-                android:text="提醒" />
+                android:drawableTop="@drawable/menutab_record_selector"
+                 />
 
             <RadioButton
                 android:id="@+id/home_tab_usercenter"
                 style="@style/home_tab_bottom"
                 android:background="@color/transparent"
-                android:drawableTop="@drawable/home_tab_center_selector"
-                android:text="我的" />
+                android:drawableTop="@drawable/menutab_usercenter_selector"
+                 />
         </RadioGroup>
     </LinearLayout>
 

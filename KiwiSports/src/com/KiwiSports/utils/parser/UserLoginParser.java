@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import org.json.JSONObject;
 
+import com.KiwiSports.model.UserLoginInfo;
+
 /**
  * 
  * @author 作者：zoc
@@ -16,19 +18,23 @@ public class UserLoginParser extends BaseParser<Object> {
 	public HashMap<String, Object> parseJSON(JSONObject jsonObject) {
 		HashMap<String, Object> mHashMap = null;
 		try {
-			String status = jsonObject.getString("code");
+			String status = jsonObject.getString("status");
 			mHashMap = new HashMap<String, Object>();
 			mHashMap.put("status", status);
 			if (status.equals("200")) {
 				JSONObject jsonOb = jsonObject.getJSONObject("data");
 				String uid = jsonOb.optString("uid", "");
-				String sid = jsonOb.optString("sid", "");
-				String mobile = jsonOb.optString("telephone", "");
-
-				// mHashMap.put("loginInfo", loginInfo);
-				// loginInfo = null;
+				String nick_name = jsonOb.optString("nick_name", "");
+				String album_url = jsonOb.optString("album_url", "");
+				String hobby = jsonOb.optString("hobby", "");
+				int sex = jsonOb.optInt("sex", 1);
+				String token = jsonOb.optString("token", "");
+				String access_token = jsonOb.optString("access_token", "");
+				UserLoginInfo loginInfo = new UserLoginInfo(uid, nick_name, album_url, hobby, sex, token, access_token);
+				mHashMap.put("loginInfo", loginInfo);
+				loginInfo = null;
 			} else {
-				String msg = jsonObject.optString("msg");
+				String msg = jsonObject.optString("data");
 				mHashMap.put("msg", msg);
 			}
 		} catch (Exception e) {

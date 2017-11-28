@@ -58,18 +58,18 @@
         android:smallScreens="true" />
 
     <application
-        android:name="com.KiwiSports.control.view.BestDoApplication"
+        android:name="com.KiwiSports.control.view.MyApplication"
         android:allowBackup="true"
-        android:persistent="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:persistent="true"
         android:theme="@style/AppTheme" >
 
         <!-- 版本更新服务 -->
         <service android:name="com.KiwiSports.utils.UpdateService" />
 
         <activity
-            android:name=".control.activity.MainActivity"
+            android:name=".control.activity.WelcomeStartActiyity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
@@ -83,13 +83,36 @@
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:launchMode="standard" />
-        <activity android:name=".control.activity.MainCalenderActivity" />
-        <activity android:name=".control.activity.MainCampaignActivity" />
-        <activity android:name=".control.activity.MainTiXingActivity" />
+        <activity android:name=".control.activity.MainStartActivity" />
+        <activity android:name=".control.activity.MainLocationActivity" />
+        <activity android:name=".control.activity.MainRecordActivity" />
         <activity android:name=".control.activity.UserCenterActivity" />
+        <activity
+            android:name=".control.activity.MainActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".control.activity.UserLoginActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".control.activity.UserAccountActivity" />
+        <activity android:name=".control.activity.UserAccountUpdateActivity" />
+        <activity android:name=".control.activity.UserAccountUpdateSexActivity" />
+        <!-- 微信回调activity -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenLayout"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 友盟流量监控 配置：应用Appkey、渠道名称 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5a1bc146f43e481fc300002f" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="WangZhan" />
     </application>
 
 </manifest>

@@ -45,8 +45,7 @@ public class UserLoginBusiness {
 		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path,
 				new Listener<String>() {
 					public void onResponse(String response) {
-						Log.e("JsonObjectRequest----", response);
-						Log.e("decrypt----", response);
+						Log.e("TESTLOG", "------------response------------" +response);
 						HashMap<String, Object> dataMap = new HashMap<String, Object>();
 						UserLoginParser mParser = new UserLoginParser();
 						JSONObject jsonObject = RequestUtils
@@ -59,6 +58,7 @@ public class UserLoginBusiness {
 					}
 				}, new Response.ErrorListener() {
 					public void onErrorResponse(VolleyError error) {
+						Log.e("TESTLOG", "------------error------------" +error);
 						mGetDataCallback.afterDataGet(null);
 					}
 				}) {

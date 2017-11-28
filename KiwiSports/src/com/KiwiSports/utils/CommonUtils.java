@@ -91,7 +91,7 @@ public class CommonUtils {
 	 *            exit退出,cancel注销
 	 */
 	public void defineBackPressed(final Activity content,
-			final Handler mHandler, final String btnClickEvent) {
+			final Handler mHandler,final int mHandlerID, final String btnClickEvent) {
 		final MyDialog selectDialog = new MyDialog(content, R.style.dialog,
 				R.layout.dialog_myexit);// 创建Dialog并设置样式主题
 		selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
@@ -117,8 +117,7 @@ public class CommonUtils {
 				if (btnClickEvent.equals(exit)) {
 					getInstance().exit();
 				} else if (btnClickEvent.equals(cancel)) {
-					clearAllBestDoInfoSharedPrefs(content);
-					// skipMainActivity(content);
+					mHandler.sendEmptyMessage(mHandlerID);
 				}
 			}
 		});
@@ -130,10 +129,6 @@ public class CommonUtils {
 	 * @param context
 	 */
 	public void setLoginBack403(Activity context) {
-		SharedPreferences bestDoInfoSharedPrefs = getBestDoInfoSharedPrefs(context);
-		Editor bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
-		bestDoInfoEditor.putString("logintostatus", "login403");
-		bestDoInfoEditor.commit();
 		Intent in = new Intent(context, UserLoginActivity.class);
 		in.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		context.startActivity(in);
@@ -141,16 +136,6 @@ public class CommonUtils {
 		context.finish();
 	}
 
-	/**
-	 * 登录过后的接口请求时添加token判断
-	 * 
-	 * @param mhashmap
-	 */
-	public void addHashMapToken(HashMap<String, String> mhashmap) {
-		// String token = UserLoginInfo.getInstance().getTokenUse();
-		// mhashmap.put("flag", token);
-		// Log.e(token, "token");
-	}
 
 	/**
 	 * 清除返回的数据缓存
@@ -211,17 +196,7 @@ public class CommonUtils {
 				LinearLayout.LayoutParams.FILL_PARENT, (int) hiegh));
 	}
 
-	/**
-	 * 关闭键盘
-	 * 
-	 * @param context
-	 */
-	public void closeSoftInput(Activity context) {
-		((InputMethodManager) context
-				.getSystemService(Context.INPUT_METHOD_SERVICE))
-				.hideSoftInputFromWindow(context.getCurrentFocus()
-						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-	}
+
 
 	public TranslateAnimation showAnimBottom2Top() {
 		// 菜单进入动画
@@ -243,23 +218,6 @@ public class CommonUtils {
 		return hideAnim;
 	}
 
-	/**
-	 * 判断登录状态
-	 * 
-	 * @param loginStatus
-	 * @param mActivity
-	 * @return
-	 */
-	public boolean chackLoginStatus(String loginStatus, Activity mActivity) {
-		if (!loginStatus.equals(Constans.getInstance().loginStatus)) {
-			Intent intent = new Intent(mActivity, UserLoginActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			mActivity.startActivity(intent);
-			CommonUtils.getInstance().setPageIntentAnim(intent, mActivity);
-			return false;
-		}
-		return true;
-	}
 
 	/**
 	 * 初始化 软引用

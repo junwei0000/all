@@ -2,11 +2,14 @@ package com.KiwiSports.utils;
 
 import java.security.MessageDigest;
 import java.util.Random;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
@@ -14,9 +17,11 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 
 /**
  * 
@@ -57,8 +62,7 @@ public class ConfigUtils {
 		Rect frame = new Rect();
 		context.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
 		int statusBarHeight = frame.top;
-		int contentTop = context.getWindow()
-				.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+		int contentTop = context.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
 		// statusBarHeight是上面所求的状态栏的高度
 		int titleBarHeight = contentTop - statusBarHeight;
 		return titleBarHeight;
@@ -73,8 +77,7 @@ public class ConfigUtils {
 	@SuppressWarnings("static-access")
 	public boolean isNetWorkAvaiable(Context context) {
 		try {
-			ConnectivityManager cm = (ConnectivityManager) context
-					.getSystemService(context.CONNECTIVITY_SERVICE);
+			ConnectivityManager cm = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
 			NetworkInfo info = cm.getActiveNetworkInfo();
 			if (info != null) {
 				return info.isAvailable();
@@ -87,18 +90,81 @@ public class ConfigUtils {
 	}
 
 	/**
-	 * 获取设备号-移动终端的软件版本
+	 * deviceID的组成为：渠道标志+识别符来源标志+hash后的终端识别符
+	 * 
+	 * 渠道标志为： 1，andriod（a）
+	 * 
+	 * 识别符来源标志： 1， wifi mac地址（wifi）； 2， IMEI（imei）； 3， 序列号（sn）； 4，
+	 * id：随机码。若前面的都取不到时，则随机生成一个随机码，需要缓存。
 	 * 
 	 * @param context
 	 * @return
 	 */
 	public String getDeviceId(Context context) {
-		TelephonyManager tm = (TelephonyManager) context
-				.getSystemService(Context.TELEPHONY_SERVICE);
-		String id = tm.getDeviceId() + "-" + tm.getDeviceSoftwareVersion();
-		id = "android_" + MD5(id);
-		Log.e("getDeviceId", id);
-		return id;
+		StringBuilder deviceId = new StringBuilder();
+		// 渠道标志
+		deviceId.append("a");
+		try {
+			// IMEI（imei）
+			TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+			String imei = tm.getDeviceId();
+			if (!TextUtils.isEmpty(imei)) {
+				deviceId.append("imei");
+				deviceId.append(imei);
+				Log.e("getDeviceId : ", deviceId.toString());
+				return deviceId.toString();
+			}
+			// 序列号（sn）
+			String sn = tm.getSimSerialNumber();
+			if (!TextUtils.isEmpty(sn)) {
+				deviceId.append("sn");
+				deviceId.append(sn);
+				Log.e("getDeviceId : ", deviceId.toString());
+				return deviceId.toString();
+			}
+			// 如果上面都没有， 则生成一个id：随机码
+			String uuid = getUUID(context);
+			if (!TextUtils.isEmpty(uuid)) {
+				deviceId.append("id");
+				deviceId.append(uuid);
+				Log.e("getDeviceId : ", deviceId.toString());
+				return deviceId.toString();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			deviceId.append("id").append(getUUID(context));
+		}
+		Log.e("getDeviceId : ", deviceId.toString());
+		return deviceId.toString();
+	}
+
+	/**
+	 * 得到全局唯一UUID
+	 */
+	public static String getUUID(Context context) {
+		String welcomeSPFKey = Constans.getInstance().welcomeSharedPrefsKey;
+		SharedPreferences mShare = context.getSharedPreferences(welcomeSPFKey, 0);
+		String uuid = "";
+		if (mShare != null) {
+			uuid = mShare.getString("uuid", "");
+		}
+		if (TextUtils.isEmpty(uuid)) {
+			uuid = UUID.randomUUID().toString();
+			Editor welcomeEditor = mShare.edit();
+			welcomeEditor.putString("uuid", uuid);
+			welcomeEditor.commit();
+		}
+		return uuid;
+	}
+
+	/**
+	 * 关闭键盘
+	 * 
+	 * @param context
+	 */
+	public void closeSoftInput(Activity context) {
+		((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
+				context.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
 	/**
@@ -116,8 +182,7 @@ public class ConfigUtils {
 	 * 
 	 */
 	public boolean isExsitSdcard() {
-		if (android.os.Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED)) {
+		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
 			return true;
 		}
 		return false;
@@ -139,8 +204,7 @@ public class ConfigUtils {
 	 * @return
 	 */
 	public boolean isMobileNO(String mobiles) {
-		Pattern p = Pattern
-				.compile("^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\\d{8}$");
+		Pattern p = Pattern.compile("^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\\d{8}$");
 		// Pattern p = Pattern.compile("1[0-9]{10}");
 		Matcher m = p.matcher(mobiles);
 		return m.matches();
@@ -153,8 +217,8 @@ public class ConfigUtils {
 	 * @return
 	 */
 	public boolean isEmail(String email) {
-		Pattern p = Pattern
-				.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
+		Pattern p = Pattern.compile(
+				"^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
 		Matcher m = p.matcher(email);
 		return m.matches();
 	}
@@ -218,8 +282,7 @@ public class ConfigUtils {
 	 * @return
 	 */
 	public String MD5(String s) {
-		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-				'a', 'b', 'c', 'd', 'e', 'f' };
+		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 		try {
 			byte[] strTemp = s.getBytes();
 			MessageDigest mdTemp = MessageDigest.getInstance("MD5");
@@ -249,8 +312,7 @@ public class ConfigUtils {
 	public String getMAC(Context context) {
 		// 在wifi未开启状态下，仍然可以获取MAC地址，但是IP地址必须在已连接状态下否则为0
 		String macAddress = null;
-		WifiManager wifiMgr = (WifiManager) context
-				.getSystemService(Context.WIFI_SERVICE);
+		WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		WifiInfo info = (null == wifiMgr ? null : wifiMgr.getConnectionInfo());
 		if (null != info) {
 			macAddress = info.getMacAddress();
@@ -279,12 +341,11 @@ public class ConfigUtils {
 
 	/**
 	 * 功能说明：获取版本号
-	 * */
+	 */
 	public String getVerCode(Context context) {
 		String verName = null;
 		try {
-			verName = context.getPackageManager().getPackageInfo(
-					"com.KiwiSports", 0).versionName;
+			verName = context.getPackageManager().getPackageInfo("com.KiwiSports", 0).versionName;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -293,12 +354,11 @@ public class ConfigUtils {
 
 	/**
 	 * 功能说明：获取版本名称
-	 * */
+	 */
 	public String getVerName(Context context) {
 		String verName = "";
 		try {
-			verName = context.getPackageManager().getPackageInfo(
-					"com.KiwiSports", 0).versionName;
+			verName = context.getPackageManager().getPackageInfo("com.KiwiSports", 0).versionName;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}

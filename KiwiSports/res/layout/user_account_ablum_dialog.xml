@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom|center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/page_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/useraccount_ablum_tv_photos"
+            style="@style/padd_topbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/user_account_avatar_phones"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/useraccount_ablum_tv_selects"
+            style="@style/padd_topbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/user_account_avatar_selects"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/useraccount_ablum_tv_cancel"
+            style="@style/padd_topbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="@string/myexit_text_off"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+    </LinearLayout>
+
+</LinearLayout>

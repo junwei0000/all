@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            style="@style/user_item_paddlefgtright"
+            style="@style/padd_lefgtright"
             android:text="@string/myexit_text_title"
             android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_pagetop_size" />

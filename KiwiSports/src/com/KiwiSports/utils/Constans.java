@@ -15,26 +15,16 @@ public class Constans {
 	 * 接口定义*************************************************************
 	 * ******************************************************************
 	 */
-	public static final String WEB_ROOT = "http://new.bd.app.bestdo.com/2.3.2";
-	// public static final String WEB_ROOT =
-	// "http://test.bd.app.bestdo.com/2.3.0";
+	public static final String WEB_ROOT = "http://track.zongyutech.com/api";
 
 	// **********登录、注册***********
 	public static final String GETVERSON = WEB_ROOT + "/version/androidVersion";// 版本更新
 	public static final String LOGIN = WEB_ROOT + "/user/login";// 登录
-	public static final String FINDPASSWORDGETCODE = WEB_ROOT
-			+ "/user/mobileFindPasswordSendCode";// 找回密码获取验证码
-	public static final String FINDPWBYPHONE = WEB_ROOT
-			+ "/user/findPasswordByMobile";// 找回密码
-	public static final String REGISTGETCODE = WEB_ROOT
-			+ "/user/mobileRegisterSendCode";// 注册获取验证码
-	public static final String REGISTCHECKCODE = WEB_ROOT
-			+ "/user/mobileRegisterCheckCode";// 注册时检查验证码
-	public static final String REGISTSETPASSWORD = WEB_ROOT + "/user/register";// 注册设置密码
-	public static final String FINDPASSWORDGETCODECHECKCODE = WEB_ROOT
-			+ "/user/mobileFindPasswordCheckCode";// 找回密码检查验证码
-	public static final String UPDATEPW = WEB_ROOT + "/user/editPassword";// 修改密码
+	public static final String LOGOUT = WEB_ROOT + "/user/logout";// 注销登录
 
+	public static final String USERUPDATEINFO = WEB_ROOT + "/user/edit ";//修改个人资料
+	public static final String USERUPDATEABLUM = WEB_ROOT + "/user/uploadThumb";//上传头像
+	public static final String USERUPDATEABLUMSAVE = WEB_ROOT + "/user/saveThumb ";//保存头像
 	/**
 	 * ******************************************************************
 	 * 常量属性定义**********************************************************
@@ -50,40 +40,31 @@ public class Constans {
 	public static final Constans getInstance() {
 		return SingletonHolder.INSTANCE;
 	}
+	public static String WEIXIN_APP_ID= "wxc4ab96e64155fafe";
+	public static String WEIXIN_APP_SECRET= "1779b88f3e612c46d0f212fc6a718410";
 
 	/**
 	 * welcomeSharedPreferences
 	 */
 	public String welcomeSharedPrefsKey = "firstLaunch";
 	public String welcomeSharedPrefs_LaunchStatusKey = "launchStatus";
-	public String bestDoInfoSharedPrefsKey = "bestdo_info";
-	// invokingType
-	public String invokingTypeByFastLogin = "FastLogin";
-	public String invokingTypeByRegist = "regist";
-	public String invokingTypeByFindphone = "findpmbyphone";
-	public String invokingTypeByBindMobile = "bindMobile";
-	/**
-	 * 登录后跳转方向
-	 */
-	public String loginskiptofavoritelist = "favoritelist";
-	public String loginskiptoaddfavorite = "addfavorite";//
-	public String loginskiptocreateorder = "createorder";
-	public String loginskiptoPYLWyuding = "PYLWyuding";
-	public String loginskiptologin403 = "login403";
+	public String bestDoInfoSharedPrefsKey = "mikisports_info";
 
-	/**
-	 * 登录状态
-	 */
-	public String loginStatus = "loging";
-
-	/**
-	 * 调用版本更新方向
-	 */
-	public Activity mHomeActivity;
 	/**
 	 * 当前activity
 	 */
 	public Activity mCurrentActivity;
+	public Activity mHomeActivity;
 	public String exit = "exit";
 	public String cancel = "cancel";
+
+	public String loginStatus="loging";
+	/**
+	 * 男
+	 */
+	public   int SEX_MALE = 1;
+	/**
+	 * 女
+	 */
+	public int SEX_FAMALE= 2;
 }
