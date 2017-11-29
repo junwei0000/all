@@ -37,7 +37,6 @@ public class UserCenterActivity extends BaseActivity {
 	private String uid;
 	private String token;
 	private String access_token;
-	private int sex;
 
 	@Override
 	public void onClick(View v) {
@@ -86,7 +85,6 @@ public class UserCenterActivity extends BaseActivity {
 		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
 		String nick_name = bestDoInfoSharedPrefs.getString("nick_name", "");
 		String album_url = bestDoInfoSharedPrefs.getString("album_url", "");
-		sex = bestDoInfoSharedPrefs.getInt("sex", 1);
 		usrecenter_tv_name.setText(nick_name);
 		if (!TextUtils.isEmpty(album_url)) {
 			asyncImageLoader.DisplayImage(album_url, usrecenter_iv_head);

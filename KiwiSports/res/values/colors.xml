@@ -8,11 +8,7 @@
 	<color name="main_business_tab_presscolor">#093C81</color>
 	
 	<color name="red">#ff0000</color>
-	<color name="gray_bg">#EFEFEF</color>
-	<!-- 页面背景颜色 -->
-	<color name="page_bg">#F2F2F2</color>
-	<!-- 头部背景颜色 -->
-	<color name="page_top_bg">#FAFAFA</color>
+	<color name="gray_bg">#F2F2F2</color>
 	<!-- 首页底部菜单背景颜色 -->
 	<color name="main_tab_page_bg">#28282E</color>
 	<!-- 首页菜单字体颜色 -->

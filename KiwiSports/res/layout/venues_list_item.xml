@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/padd_leftright" >
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/padd_lefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp" >
+
+        <RelativeLayout
+            android:id="@+id/listitem_relat_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" >
+
+            <TextView
+                android:id="@+id/listitem_tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/listitem_iv_arrow"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:id="@+id/listitem_iv_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/usercenter_arrow_img" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/listitem_tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listitem_relat_name"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="0.9"
+            android:lines="1"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+    </RelativeLayout>
+
+</LinearLayout>

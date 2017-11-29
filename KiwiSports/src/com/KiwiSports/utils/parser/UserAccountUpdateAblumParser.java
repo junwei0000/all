@@ -22,18 +22,14 @@ public class UserAccountUpdateAblumParser extends BaseParser<Object> {
 			mHashMap = new HashMap<String, Object>();
 			mHashMap.put("jsonObject", jsonObject.toString());
 			String status = jsonObject.optString("status");
-			if (!TextUtils.isEmpty(status)) {
 				mHashMap.put("status", status);
 				if (status.equals("200")) {
-					JSONObject jsonOb = jsonObject.getJSONObject("data");
-					String fileUrl = jsonOb.optString("fileUrl");
+					String fileUrl = jsonObject.optString("data");
 					mHashMap.put("ablum", fileUrl);
 				} else {
 					String msg = jsonObject.optString("data");
 					mHashMap.put("msg", msg);
 				}
-			}
-
 		} catch (Exception e) {
 		}
 

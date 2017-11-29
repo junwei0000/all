@@ -17,14 +17,17 @@ public class Constans {
 	 */
 	public static final String WEB_ROOT = "http://track.zongyutech.com/api";
 
-	// **********登录、注册***********
+	// ********** ***********
 	public static final String GETVERSON = WEB_ROOT + "/version/androidVersion";// 版本更新
 	public static final String LOGIN = WEB_ROOT + "/user/login";// 登录
 	public static final String LOGOUT = WEB_ROOT + "/user/logout";// 注销登录
 
-	public static final String USERUPDATEINFO = WEB_ROOT + "/user/edit ";//修改个人资料
+	public static final String USERUPDATEINFO = WEB_ROOT + "/user/edit";//修改个人资料
 	public static final String USERUPDATEABLUM = WEB_ROOT + "/user/uploadThumb";//上传头像
-	public static final String USERUPDATEABLUMSAVE = WEB_ROOT + "/user/saveThumb ";//保存头像
+	public static final String USERUPDATEABLUMSAVE = WEB_ROOT + "/user/saveThumb";//保存头像
+	
+	public static final String VENUESLIST = WEB_ROOT + "/position/list";//获取场地列表
+	public static final String VENUESHOBBY = WEB_ROOT + "/user/getHobby";//运动偏好
 	/**
 	 * ******************************************************************
 	 * 常量属性定义**********************************************************
@@ -67,4 +70,6 @@ public class Constans {
 	 * 女
 	 */
 	public int SEX_FAMALE= 2;
+
+	public boolean refreshOrLoadMoreLoading=false;
 }

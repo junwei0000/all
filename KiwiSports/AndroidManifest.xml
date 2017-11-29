@@ -96,6 +96,7 @@
         <activity android:name=".control.activity.UserAccountActivity" />
         <activity android:name=".control.activity.UserAccountUpdateActivity" />
         <activity android:name=".control.activity.UserAccountUpdateSexActivity" />
+        <activity android:name=".control.activity.UserAccountHobbyActivity" />
         <!-- 微信回调activity -->
         <activity
             android:name=".wxapi.WXEntryActivity"

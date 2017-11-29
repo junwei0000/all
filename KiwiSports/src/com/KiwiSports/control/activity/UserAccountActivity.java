@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.http.entity.mime.content.FileBody;
@@ -11,8 +12,12 @@ import org.apache.http.entity.mime.content.FileBody;
 import com.KiwiSports.R;
 import com.KiwiSports.business.UserAccountUpdateAblumBusiness;
 import com.KiwiSports.business.UserAccountUpdateBusiness;
+import com.KiwiSports.business.VenuesHobbyBusiness;
 import com.KiwiSports.business.UserAccountUpdateAblumBusiness.GetAccountUpdateAblumCallback;
 import com.KiwiSports.business.UserAccountUpdateBusiness.GetAccountUpdateCallback;
+import com.KiwiSports.business.VenuesHobbyBusiness.GetVenuesHobbyCallback;
+import com.KiwiSports.control.adapter.VenuesHobbyAdapter;
+import com.KiwiSports.model.HobbyInfo;
 import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
@@ -32,6 +37,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -68,6 +74,10 @@ public class UserAccountActivity extends BaseActivity {
 	private int sex;
 	private String token;
 	private String access_token;
+	private RelativeLayout useraccount_relay_sporttype;
+	private TextView useraccount_tv_sporttype;
+	private String hobby;
+	protected HashMap<String, String> mHobbyMap;
 
 	@Override
 	public void onClick(View v) {
@@ -83,6 +93,9 @@ public class UserAccountActivity extends BaseActivity {
 			break;
 		case R.id.useraccount_relay_sex:
 			toUpdateSex();
+			break;
+		case R.id.useraccount_relay_sporttype:
+			toUpdateHobby();
 			break;
 		default:
 			break;
@@ -106,6 +119,8 @@ public class UserAccountActivity extends BaseActivity {
 		useraccount_tv_nickname = (TextView) findViewById(R.id.useraccount_tv_nickname);
 		useraccount_relay_sex = (RelativeLayout) findViewById(R.id.useraccount_relay_sex);
 		useraccount_tv_sex = (TextView) findViewById(R.id.useraccount_tv_sex);
+		useraccount_relay_sporttype = (RelativeLayout) findViewById(R.id.useraccount_relay_sporttype);
+		useraccount_tv_sporttype = (TextView) findViewById(R.id.useraccount_tv_sporttype);
 	}
 
 	@Override
@@ -115,6 +130,7 @@ public class UserAccountActivity extends BaseActivity {
 		useraccount_relay_avatar.setOnClickListener(this);
 		useraccount_relay_nickname.setOnClickListener(this);
 		useraccount_relay_sex.setOnClickListener(this);
+		useraccount_relay_sporttype.setOnClickListener(this);
 	}
 
 	@Override
@@ -145,6 +161,13 @@ public class UserAccountActivity extends BaseActivity {
 		CommonUtils.getInstance().setPageIntentAnim(intent, this);
 	}
 
+	private void toUpdateHobby() {
+		Intent intent = new Intent(this, UserAccountHobbyActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		startActivity(intent);
+		CommonUtils.getInstance().setPageIntentAnim(intent, this);
+	}
+
 	private void getInfo() {
 		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
 		uid = bestDoInfoSharedPrefs.getString("uid", "");
@@ -153,6 +176,7 @@ public class UserAccountActivity extends BaseActivity {
 		sex = bestDoInfoSharedPrefs.getInt("sex", 1);
 		token = bestDoInfoSharedPrefs.getString("token", "");
 		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
+		hobby = bestDoInfoSharedPrefs.getString("hobby", "");
 		useraccount_tv_nickname.setText(nick_name);
 		if (sex == Constans.getInstance().SEX_MALE) {
 			useraccount_tv_sex.setText("男");
@@ -165,6 +189,36 @@ public class UserAccountActivity extends BaseActivity {
 		} else {
 			useraccount_iv_avatar.setBackgroundResource(R.drawable.user_default_icon);
 		}
+		getHobby();
+	}
+
+	protected void getHobby() {
+		mhashmap = new HashMap<String, String>();
+		Log.e("TESTLOG", "------------hobby------------" + hobby);
+		new VenuesHobbyBusiness(this, mhashmap, new GetVenuesHobbyCallback() {
+			@Override
+			public void afterDataGet(HashMap<String, Object> dataMap) {
+				if (dataMap != null) {
+					String status = (String) dataMap.get("status");
+					if (status.equals("200")) {
+						mHobbyMap = (HashMap<String, String>) dataMap.get("mHobbyMap");
+					}
+				}
+				StringBuffer showhobby = new StringBuffer();
+				if (mHobbyMap != null && mHobbyMap.size() > 0 && !TextUtils.isEmpty(hobby)) {
+					String[] ss = hobby.split(",");
+					for (int i = 0; i < ss.length; i++) {
+						String z = mHobbyMap.get(ss[i]);
+						showhobby.append(z + ",");
+					}
+					String showhobby_ = showhobby.substring(0, showhobby.length() - 1);
+					useraccount_tv_sporttype.setText(showhobby_);
+				}
+				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
+
+			}
+		});
+
 	}
 
 	private HashMap<String, String> mhashmap;
@@ -193,6 +247,9 @@ public class UserAccountActivity extends BaseActivity {
 		mhashmap.put("file_name", tempFile.getName());
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
+		mhashmap.put("type", "image/jpeg");
+		mhashmap.put("size", tempFile.length() + "");
+		Log.e("mhashmap----", mhashmap.toString());
 		new UserAccountUpdateAblumBusiness(this, mhashmap, tempFile, new GetAccountUpdateAblumCallback() {
 
 			@Override
@@ -201,7 +258,7 @@ public class UserAccountActivity extends BaseActivity {
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
-						album_url = (String) dataMap.get("album_url");
+						album_url = (String) dataMap.get("ablum");
 						if (!TextUtils.isEmpty(album_url)) {
 							mHandler.sendEmptyMessage(SAVEABLUM);
 						}

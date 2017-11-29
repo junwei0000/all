@@ -267,8 +267,10 @@ public class UserLoginActivity extends BaseActivity {
 		int sex=loginInfo.getSex();
 		String access_token=loginInfo.getAccess_token();
 		String	token=loginInfo.getToken();
+		String hobby=loginInfo.getHobby();
 		bestDoInfoEditor.putString("loginStatus", Constans.getInstance().loginStatus);
 		bestDoInfoEditor.putString("uid", uid + "");
+		bestDoInfoEditor.putString("hobby", hobby + "");
 		bestDoInfoEditor.putString("nick_name", nick_name);
 		bestDoInfoEditor.putInt("sex", sex);
 		bestDoInfoEditor.putString("album_url", "" + album_url);

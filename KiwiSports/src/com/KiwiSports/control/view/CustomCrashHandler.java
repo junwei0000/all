@@ -60,6 +60,7 @@ public class CustomCrashHandler implements UncaughtExceptionHandler {
 		// 将一些信息保存到SDcard中
 		try {
 			savaInfoToSD(mContext, ex);
+			Log.e("-----crashhandle-----", ex.toString());
 //			MobclickAgent.reportError(mContext, ex);
 			// 提示用户程序即将退出
 			showToast(mContext, "很抱歉，遭遇异常，即将退出！");

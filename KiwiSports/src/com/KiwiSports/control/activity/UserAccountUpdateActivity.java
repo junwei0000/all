@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -114,7 +115,7 @@ public class UserAccountUpdateActivity extends BaseActivity {
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
 		mhashmap.put("nick_name", et_text);
-		System.err.println(mhashmap);
+		Log.e("decrypt----", mhashmap.toString());
 		new UserAccountUpdateBusiness(this, "info",mhashmap, new GetAccountUpdateCallback() {
 
 			@Override

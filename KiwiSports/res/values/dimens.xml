@@ -11,7 +11,7 @@
     <dimen name="text_contents_size">15sp</dimen>
     <dimen name="text_zhu_size">13sp</dimen>
     <!-- 上下间距 -->
-    <dimen name="jianju">15dp</dimen>
+    <dimen name="jianju">12dp</dimen>
      <!-- 左右之间padd -->
     <dimen name="padd_leftright">12dp</dimen>
      <!-- 上下之间padd -->
