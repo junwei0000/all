@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right|center_vertical"
-            android:textColor="@color/blue"
+            android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_contents_size"
             android:visibility="gone" />
 

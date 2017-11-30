@@ -25,7 +25,7 @@ public class VenuesListParser extends BaseParser<Object> {
 			mHashMap.put("status", status);
 			if (status.equals("200")) {
 				JSONObject jsonOb = jsonObject.getJSONObject("data");
-				int count = jsonOb.optInt("count",0);
+				int count = jsonOb.optInt("count", 0);
 				mHashMap.put("count", count);
 				JSONArray listarray = jsonOb.optJSONArray("data");
 				ArrayList<VenuesListInfo> mlist = new ArrayList<VenuesListInfo>();
@@ -38,8 +38,13 @@ public class VenuesListParser extends BaseParser<Object> {
 					String thumb = listOb.optString("thumb", "");
 					String venuestatus = listOb.optString("status", "");
 					String audit_status = listOb.optString("audit_status", "");
+
+					double top_left_x = listOb.optDouble("top_left_x", 0);
+					double top_left_y = listOb.optDouble("top_left_y", 0);
+					double bottom_right_x = listOb.optDouble("bottom_right_x",0);
+					double bottom_right_y = listOb.optDouble("bottom_right_y", 0);
 					VenuesListInfo venuesInfo = new VenuesListInfo(posid, uid, field_name, sportsType, thumb,
-							venuestatus, audit_status);
+							venuestatus, audit_status, top_left_x, top_left_y, bottom_right_x, bottom_right_y);
 					mlist.add(venuesInfo);
 					venuesInfo = null;
 				}

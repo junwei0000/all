@@ -89,17 +89,23 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				CommonUtils.getInstance().initToast(context, arg2 + "");
 				if (mList != null & mList.size() > 0 && arg2 <= mList.size()) {
-					// Intent intent = new Intent(mHomeActivity,
-					// StadiumDetailActivity.class);
-					// intent.putString("mer_item_id", mList.get(arg2 -
-					// 1).getMer_item_id());
-					// intent.putString("vip_price_id", banlance_price_id);
-					// intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-					// startActivity(intent);
-					// CommonUtils.getInstance().setPageIntentAnim(intent,
-					// mHomeActivity);
+
+					String name = mList.get(arg2 - 1).getField_name();
+					String posid = mList.get(arg2 - 1).getPosid();
+					double top_left_x = mList.get(arg2 - 1).getTop_left_x();
+					double top_left_y = mList.get(arg2 - 1).getTop_left_y();
+					Intent intent = new Intent(mHomeActivity, VenuesMapActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+					intent.putExtra("posid", posid);
+					intent.putExtra("name", name);
+					intent.putExtra("top_left_x", top_left_x);
+					intent.putExtra("top_left_y", top_left_y);
+					intent.putExtra("uid", uid);
+					intent.putExtra("token", token);
+					intent.putExtra("access_token", access_token);
+					startActivity(intent);
+					CommonUtils.getInstance().setPageIntentAnim(intent, mHomeActivity);
 				}
 			}
 		});
