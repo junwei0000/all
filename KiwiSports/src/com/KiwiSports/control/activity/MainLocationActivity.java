@@ -112,7 +112,10 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				CommonUtils.getInstance().initToast(context, "添加");
+				Intent intent = new Intent(mHomeActivity, VenuesAddActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+				startActivity(intent);
+				CommonUtils.getInstance().setPageIntentAnim(intent, mHomeActivity);
 			}
 		});
 
@@ -216,6 +219,12 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 
 	@Override
 	public void onLoadMore() {
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mPullDownViewHandler.sendEmptyMessage(REFLESH);
 	}
 
 	/**

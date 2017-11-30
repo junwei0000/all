@@ -28,6 +28,8 @@ public class Constans {
 	
 	public static final String VENUESLIST = WEB_ROOT + "/position/list";//获取场地列表
 	public static final String VENUESHOBBY = WEB_ROOT + "/user/getHobby";//运动偏好
+	public static final String VENUESTYPE= WEB_ROOT + "/position/sportsTypes";//获取场地类型。
+	public static final String VENUESADD= WEB_ROOT + "/position/add";//添加场地
 	/**
 	 * ******************************************************************
 	 * 常量属性定义**********************************************************

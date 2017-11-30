@@ -2,6 +2,7 @@ package com.KiwiSports.control.view;
 
 import com.KiwiSports.utils.LanguageUtil;
 import com.KiwiSports.utils.volley.RequestUtils;
+import com.baidu.mapapi.SDKInitializer;
 
 import android.app.Application;
 
@@ -16,7 +17,7 @@ public class MyApplication extends Application {
 		setLanguage();
 		setVolley();
 		setCrash();
-		// initMap();
+		initMap();
 	}
 
 	public static MyApplication getInstance() {
@@ -48,8 +49,8 @@ public class MyApplication extends Application {
 		}
 	}
 
-	// private void initMap() {
-	// SDKInitializer.initialize(this);
-	// }
+	private void initMap() {
+		SDKInitializer.initialize(this);
+	}
 
 }

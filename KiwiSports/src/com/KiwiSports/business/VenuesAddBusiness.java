@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.KiwiSports.utils.Constans;
 import com.KiwiSports.utils.parser.UserLoginParser;
+import com.KiwiSports.utils.parser.VenuesAddParser;
 import com.KiwiSports.utils.parser.VenuesHobbyParser;
 import com.KiwiSports.utils.parser.VenuesListParser;
 import com.KiwiSports.utils.volley.RequestUtils;
@@ -22,20 +23,20 @@ import android.util.Log;
  * 
  * @author 作者：jun
  * @date 创建时间：2016-1-15 下午6:06:33
- * @Description 类描述：运动偏好
+ * @Description 类描述： 
  */
-public class VenuesHobbyBusiness {
+public class VenuesAddBusiness {
 
-	public interface GetVenuesHobbyCallback {
+	public interface GetVenuesAddCallback {
 		public void afterDataGet(HashMap<String, Object> dataMap);
 	}
 
-	private GetVenuesHobbyCallback mGetDataCallback;
+	private GetVenuesAddCallback mGetDataCallback;
 	HashMap<String, String> mhashmap;
 	Context mContext;
 
-	public VenuesHobbyBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetVenuesHobbyCallback mGetDataCallback) {
+	public VenuesAddBusiness(Context mContext,
+			HashMap<String, String> mhashmap, GetVenuesAddCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;
@@ -43,13 +44,13 @@ public class VenuesHobbyBusiness {
 	}
 
 	private void getDate() {
-		String path = Constans.VENUESHOBBY;
+		String path = Constans.VENUESADD;
 		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path,
 				new Listener<String>() {
 					public void onResponse(String response) {
 						Log.e("TESTLOG", "------------response------------" +response);
 						HashMap<String, Object> dataMap = new HashMap<String, Object>();
-						VenuesHobbyParser mParser = new VenuesHobbyParser();
+						VenuesAddParser mParser = new VenuesAddParser();
 						JSONObject jsonObject = RequestUtils
 								.String2JSON(response);
 						dataMap = mParser.parseJSON(jsonObject);

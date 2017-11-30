@@ -10,6 +10,7 @@ import com.KiwiSports.utils.Constans;
 import com.KiwiSports.utils.parser.UserLoginParser;
 import com.KiwiSports.utils.parser.VenuesHobbyParser;
 import com.KiwiSports.utils.parser.VenuesListParser;
+import com.KiwiSports.utils.parser.VenuesTypeParser;
 import com.KiwiSports.utils.volley.RequestUtils;
 import com.android.volley.Request.Method;
 import com.android.volley.Response.Listener;
@@ -22,20 +23,20 @@ import android.util.Log;
  * 
  * @author 作者：jun
  * @date 创建时间：2016-1-15 下午6:06:33
- * @Description 类描述：运动偏好
+ * @Description 类描述：场地运动类型
  */
-public class VenuesHobbyBusiness {
+public class VenuesTypeBusiness {
 
-	public interface GetVenuesHobbyCallback {
+	public interface GetVenuesTypeCallback {
 		public void afterDataGet(HashMap<String, Object> dataMap);
 	}
 
-	private GetVenuesHobbyCallback mGetDataCallback;
+	private GetVenuesTypeCallback mGetDataCallback;
 	HashMap<String, String> mhashmap;
 	Context mContext;
 
-	public VenuesHobbyBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetVenuesHobbyCallback mGetDataCallback) {
+	public VenuesTypeBusiness(Context mContext,
+			HashMap<String, String> mhashmap, GetVenuesTypeCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;
@@ -43,13 +44,13 @@ public class VenuesHobbyBusiness {
 	}
 
 	private void getDate() {
-		String path = Constans.VENUESHOBBY;
+		String path = Constans.VENUESTYPE;
 		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path,
 				new Listener<String>() {
 					public void onResponse(String response) {
 						Log.e("TESTLOG", "------------response------------" +response);
 						HashMap<String, Object> dataMap = new HashMap<String, Object>();
-						VenuesHobbyParser mParser = new VenuesHobbyParser();
+						VenuesTypeParser mParser = new VenuesTypeParser();
 						JSONObject jsonObject = RequestUtils
 								.String2JSON(response);
 						dataMap = mParser.parseJSON(jsonObject);

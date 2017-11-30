@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/useraccount_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="250dp" >
+
+            <ImageView
+                android:id="@+id/map_iv_cutreslut"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/contentDescription" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/relay_name"
+            style="@style/padd_lefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" >
+
+            <TextView
+                android:id="@+id/tv_nametitle"
+                style="@style/padd_topbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="场地名称"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <com.KiwiSports.utils.SupplierEditText
+                android:id="@+id/tv_name"
+                style="@style/padd_topbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_nametitle"
+                android:background="@color/white"
+                android:gravity="right|center_vertical"
+                android:maxLength="22"
+                android:paddingLeft="@dimen/padd_leftright"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/padd_leftright" >
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relay_left"
+            style="@style/padd_lefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" >
+
+            <TextView
+                style="@style/padd_topbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="左上角"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_left"
+                style="@style/padd_topbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="right|center_vertical"
+                android:textColor="@color/text_click_color"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/padd_leftright" >
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/relay_right"
+            style="@style/padd_lefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" >
+
+            <TextView
+                style="@style/padd_topbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="右下角"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_right"
+                style="@style/padd_topbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/padd_leftright" >
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom" >
+
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_height"
+                android:layout_gravity="bottom"
+                android:background="@color/main_tab_page_bg"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

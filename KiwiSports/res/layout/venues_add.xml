@@ -16,55 +16,34 @@
         android:layout_weight="10"
         android:orientation="vertical" >
 
-        <RelativeLayout
-            android:id="@+id/useraccount_relay_avatar"
-            style="@style/padd_lefgtright"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp" >
+        <FrameLayout
+            android:id="@+id/mFrameLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp" >
 
-            <TextView
-                style="@style/padd_topbottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="头像"
-                android:textColor="@color/text_contents_color"
-                android:textSize="@dimen/text_contents_size" />
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/mMapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true" />
 
-            <com.KiwiSports.utils.CircleImageView
-                android:id="@+id/useraccount_iv_avatar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/padd_imgtextleftright"
-                android:layout_toLeftOf="@+id/iv_avatararrow"
+            <ImageView
+                android:id="@+id/map_iv_cutreslut"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/contentDescription" />
 
             <ImageView
-                android:id="@+id/iv_avatararrow"
+                android:id="@+id/map_iv_covering"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/usercenter_arrow_img"
+                android:layout_gravity="center"
+                android:background="@drawable/map_covering_img"
                 android:contentDescription="@string/contentDescription" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/padd_leftright" >
-
-            <include layout="@layout/line" />
-        </LinearLayout>
+        </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/useraccount_relay_nickname"
+            android:id="@+id/relay_left"
             style="@style/padd_lefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,30 +54,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="昵称"
+                android:text="左上角"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
             <TextView
-                android:id="@+id/useraccount_tv_nickname"
+                android:id="@+id/tv_left"
                 style="@style/padd_topbottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/padd_imgtextleftright"
-                android:layout_toLeftOf="@+id/iv_nicknamearrow"
+                android:layout_alignParentRight="true"
                 android:gravity="right|center_vertical"
                 android:textColor="@color/text_click_color"
                 android:textColorHint="@color/text_hint_color"
                 android:textSize="@dimen/text_contents_size" />
-
-            <ImageView
-                android:id="@+id/iv_nicknamearrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/usercenter_arrow_img"
-                android:contentDescription="@string/contentDescription" />
         </RelativeLayout>
 
         <LinearLayout
@@ -112,7 +81,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/useraccount_relay_sex"
+            android:id="@+id/relay_right"
             style="@style/padd_lefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,64 +92,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="性别"
+                android:text="右下角"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
             <TextView
-                android:id="@+id/useraccount_tv_sex"
+                android:id="@+id/tv_right"
                 style="@style/padd_topbottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/padd_imgtextleftright"
-                android:layout_toLeftOf="@+id/iv_sexarrow"
-                android:textColor="@color/text_click_color"
-                android:textSize="@dimen/text_contents_size" />
-
-            <ImageView
-                android:id="@+id/iv_sexarrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/usercenter_arrow_img"
-                android:contentDescription="@string/contentDescription" />
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
         </RelativeLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/jianju"
-            android:background="@color/gray_bg" />
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/padd_leftright" >
+
+            <include layout="@layout/line" />
+        </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/useraccount_relay_sporttype"
+            android:id="@+id/relay_sporttype"
             style="@style/padd_lefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white" >
 
             <TextView
-                android:id="@+id/tv_sporttypetilte"
                 style="@style/padd_topbottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:text="运动偏好"
+                android:layout_centerVertical="true"
+                android:text="场地类型"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
             <TextView
-                android:id="@+id/useraccount_tv_sporttype"
+                android:id="@+id/tv_sporttype"
                 style="@style/padd_topbottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_sporttypetilte"
                 android:layout_marginRight="@dimen/padd_imgtextleftright"
                 android:layout_toLeftOf="@+id/iv_sporttypearrow"
                 android:gravity="right|center_vertical"
-                android:minLines="2"
                 android:textColor="@color/text_click_color"
                 android:textColorHint="@color/text_hint_color"
                 android:textSize="@dimen/text_contents_size" />
@@ -196,6 +157,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/sportline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -203,6 +165,23 @@
             android:paddingLeft="@dimen/padd_leftright" >
 
             <include layout="@layout/line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom" >
+
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_height"
+                android:layout_gravity="bottom"
+                android:background="@color/main_tab_page_bg"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
         </LinearLayout>
     </LinearLayout>
 

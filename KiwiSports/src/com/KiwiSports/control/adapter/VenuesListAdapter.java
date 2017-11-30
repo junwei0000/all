@@ -48,6 +48,7 @@ public class VenuesListAdapter extends BaseAdapter {
 			viewHolder = new ViewHolder();
 			viewHolder.line= (LinearLayout) convertView.findViewById(R.id.line);
 			viewHolder.listitem_tv_name = (TextView) convertView.findViewById(R.id.listitem_tv_name);
+			viewHolder.listitem_tv_dian = (TextView) convertView.findViewById(R.id.listitem_tv_dian);
 			viewHolder.listitem_tv_status = (TextView) convertView.findViewById(R.id.listitem_tv_status);
 			convertView.setTag(viewHolder);
 		} else {
@@ -64,14 +65,22 @@ public class VenuesListAdapter extends BaseAdapter {
 			viewHolder.line.setVisibility(View.VISIBLE);
 		}
 		String tiltle = "";
+		viewHolder.listitem_tv_dian.setVisibility(View.GONE);
+		viewHolder.listitem_tv_status.setVisibility(View.GONE);
 		if (Venuestatus.equals("0")) {
 			tiltle = "场地已停用...";
+			viewHolder.listitem_tv_dian.setVisibility(View.VISIBLE);
+			viewHolder.listitem_tv_status.setVisibility(View.VISIBLE);
 		}
 		if (Audit_status.equals("0")) {
 			tiltle = "正在审核中...";
+			viewHolder.listitem_tv_dian.setVisibility(View.VISIBLE);
+			viewHolder.listitem_tv_status.setVisibility(View.VISIBLE);
 		}
 		if (Audit_status.equals("-1")) {
 			tiltle = "审核失败";
+			viewHolder.listitem_tv_dian.setVisibility(View.VISIBLE);
+			viewHolder.listitem_tv_status.setVisibility(View.VISIBLE);
 		}
 		viewHolder.listitem_tv_status.setText(tiltle);
 		return convertView;
@@ -80,6 +89,7 @@ public class VenuesListAdapter extends BaseAdapter {
 	class ViewHolder {
 		public LinearLayout  line;
 		public TextView listitem_tv_name;
+		public TextView listitem_tv_dian;
 		public TextView listitem_tv_status;
 	}
 }

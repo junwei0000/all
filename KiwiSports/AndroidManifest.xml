@@ -97,6 +97,9 @@
         <activity android:name=".control.activity.UserAccountUpdateActivity" />
         <activity android:name=".control.activity.UserAccountUpdateSexActivity" />
         <activity android:name=".control.activity.UserAccountHobbyActivity" />
+        <activity android:name=".control.activity.VenuesAddActivity" />
+        <activity android:name=".control.activity.VenuesTypeActivity" />
+        <activity android:name=".control.activity.VenuesAddNextActivity" />
         <!-- 微信回调activity -->
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -114,6 +117,18 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="WangZhan" />
+        <!-- 百度地图 -->
+         <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="nPt2q3GqGF0kZOB2zEluovWQ1ku4mM5G" />
+         <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+         <service
+            android:name="com.baidu.trace.LBSTraceService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
