@@ -2,16 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_tab_page_bg"
+    android:background="@color/main_page_bg"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingTop="20dp" >
 
-    <TextView
-        style="@style/padd"
-        android:id="@+id/wxlogin"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/corners_bg_gray"
-        android:text="微信登录" />
+        android:background="@drawable/login_icon" />
+
+    <TextView
+        android:id="@+id/wxlogin"
+        style="@style/padd_topbottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/corners_bg_qing"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="微信登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_contents_size" />
 
 </LinearLayout>

@@ -208,19 +208,19 @@ public class VenuesAddActivity extends BaseActivity
 			switch (msg.what) {
 			case SET:
 				BitmapDrawable bd = new BitmapDrawable(temBitmap_BG);
-				map_iv_cutreslut.setBackgroundDrawable(bd);
-				Bitmap bmp = ScreenShareUtil.takeScreenShot(mFrameLayout, false);
+//				map_iv_cutreslut.setBackgroundDrawable(bd);
+//				Bitmap bmp = ScreenShareUtil.takeScreenShot(mFrameLayout, false);
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
+				temBitmap_BG.compress(Bitmap.CompressFormat.PNG, 100, baos);
 				byte[] bitmapByte = baos.toByteArray();
 				Intent intent = new Intent(context, VenuesAddNextActivity.class);
 				intent.putExtra("sportsType", sportsType);
 				intent.putExtra("bitmap", bitmapByte);
 				intent.putExtra("address", address);
-				intent.putExtra("top_left_x", lefttopLatLng.latitude + "");
-				intent.putExtra("top_left_y", lefttopLatLng.longitude + "");
-				intent.putExtra("bottom_right_x", rightbottomLatLng.latitude + "");
-				intent.putExtra("bottom_right_y", rightbottomLatLng.longitude + "");
+				intent.putExtra("top_left_x", lefttopLatLng.longitude + "");
+				intent.putExtra("top_left_y", lefttopLatLng.latitude + "");
+				intent.putExtra("bottom_right_x", rightbottomLatLng.longitude + "");
+				intent.putExtra("bottom_right_y", rightbottomLatLng.latitude + "");
 				intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 				startActivity(intent);
 				CommonUtils.getInstance().setPageIntentAnim(intent, context);
@@ -327,10 +327,10 @@ public class VenuesAddActivity extends BaseActivity
 
 	private void getSiteLocation() {
 		lefttopLatLng = getSite(1);
-		Log.e("TESTLOG", "左上角经度 x:" + lefttopLatLng.latitude + " 左上角纬度 y:" + lefttopLatLng.longitude);
+		Log.e("TESTLOG", "左上角经度 x:" + lefttopLatLng.longitude + " 左上角纬度 y:" + lefttopLatLng.latitude);
 		tv_left.setText(lefttopLatLng.longitude + "," + lefttopLatLng.latitude);
 		rightbottomLatLng = getSite(4);
-		Log.e("TESTLOG", "右下角经度 x:" + rightbottomLatLng.latitude + "右下角纬度 y:" + rightbottomLatLng.longitude);
+		Log.e("TESTLOG", "右下角经度 x:" + rightbottomLatLng.longitude + "右下角纬度 y:" + rightbottomLatLng.latitude);
 		tv_right.setText(rightbottomLatLng.longitude + "," + rightbottomLatLng.latitude);
 	}
 

@@ -1,6 +1,7 @@
 package com.KiwiSports.control.activity;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import com.KiwiSports.R;
 import com.KiwiSports.business.UserLogoutBusiness;
@@ -14,11 +15,15 @@ import com.KiwiSports.utils.ImageLoader;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 /**
@@ -37,6 +42,12 @@ public class UserCenterActivity extends BaseActivity {
 	private String uid;
 	private String token;
 	private String access_token;
+	private CheckBox cb_mylocation;
+	private CheckBox cb_myanonlocation;
+	private CheckBox cb_lowpower;
+	private CheckBox cb_voice;
+	private SharedPreferences welcomeSharedPreferences;
+	private Editor welcomeEditor;
 
 	@Override
 	public void onClick(View v) {
@@ -68,12 +79,84 @@ public class UserCenterActivity extends BaseActivity {
 		usrecenter_tv_cancel = (TextView) findViewById(R.id.usrecenter_tv_cancel);
 		usrecenter_iv_head = (CircleImageView) findViewById(R.id.usrecenter_iv_head);
 		usrecenter_tv_name = (TextView) findViewById(R.id.usrecenter_tv_name);
+		cb_mylocation = (CheckBox) findViewById(R.id.cb_mylocation);
+		cb_myanonlocation = (CheckBox) findViewById(R.id.cb_myanonlocation);
+		cb_lowpower = (CheckBox) findViewById(R.id.cb_lowpower);
+		cb_voice = (CheckBox) findViewById(R.id.cb_voice);
 	}
 
 	@Override
 	protected void setListener() {
+		String welcomeSPFKey = Constans.getInstance().welcomeSharedPrefsKey;
+		welcomeSharedPreferences = context.getSharedPreferences(welcomeSPFKey, 0);
+		welcomeEditor = welcomeSharedPreferences.edit();
 		usrecenter_tv_cancel.setOnClickListener(this);
 		usrecenter_iv_head.setOnClickListener(this);
+		initSelectBox();
+		cb_mylocation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked && cb_myanonlocation.isChecked()) {
+					cb_myanonlocation.setChecked(false);
+				}
+				saveSelectBox("cb_mylocationstatus", isChecked);
+			}
+		});
+		cb_myanonlocation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked && cb_mylocation.isChecked()) {
+					cb_mylocation.setChecked(false);
+				}
+				saveSelectBox("cb_myanonlocationstatus", isChecked);
+			}
+		});
+
+		cb_lowpower.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				saveSelectBox("cb_lowpowerstatus", isChecked);
+			}
+		});
+		cb_voice.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				saveSelectBox("cb_voicestatus", isChecked);
+			}
+		});
+	}
+
+	private void initSelectBox() {
+		boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", false);
+		boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", true);
+		boolean cb_lowpowerstatus = welcomeSharedPreferences.getBoolean("cb_lowpowerstatus", false);
+		boolean cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
+
+		if (cb_mylocationstatus) {
+			cb_mylocation.setChecked(true);
+		} else {
+			cb_mylocation.setChecked(false);
+		}
+		if (cb_myanonlocationstatus) {
+			cb_myanonlocation.setChecked(true);
+		} else {
+			cb_myanonlocation.setChecked(false);
+		}
+		if (cb_lowpowerstatus) {
+			cb_lowpower.setChecked(true);
+		} else {
+			cb_lowpower.setChecked(false);
+		}
+		if (cb_voicestatus) {
+			cb_voice.setChecked(true);
+		} else {
+			cb_voice.setChecked(false);
+		}
+	}
+
+	private void saveSelectBox(String key, boolean value) {
+		welcomeEditor.putBoolean(key, value);
+		welcomeEditor.commit();
 	}
 
 	@Override

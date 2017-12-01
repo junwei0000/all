@@ -1,68 +1,48 @@
 package com.KiwiSports.control.activity;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.KiwiSports.R;
-import com.KiwiSports.business.VenuesBusiness;
 import com.KiwiSports.business.VenuesUsersBusiness.GetVenuesUsersCallback;
 import com.KiwiSports.business.VenuesUsersBusiness;
-import com.KiwiSports.control.adapter.VenuesListAdapter;
-import com.KiwiSports.model.VenuesListInfo;
 import com.KiwiSports.model.VenuesUsersInfo;
+import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
-import com.KiwiSports.utils.Constans;
-import com.KiwiSports.utils.ImageLoader;
-import com.KiwiSports.utils.ScreenShareUtil;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.MyLocationConfiguration;
-import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.UiSettings;
-import com.baidu.mapapi.map.BaiduMap.SnapshotReadyCallback;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.search.core.PoiInfo;
-import com.baidu.mapapi.search.geocode.GeoCodeResult;
-import com.baidu.mapapi.search.geocode.GeoCoder;
-import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
-import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
-import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ZoomControls;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class VenuesMapActivity extends BaseActivity implements BDLocationListener {
 
@@ -78,7 +58,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 	private String access_token;
 	private HashMap<String, String> mhashmap;
 	protected ArrayList<VenuesUsersInfo> mMapList;
-	private ImageLoader asyncImageLoader;
+	private String name;
 
 	@Override
 	public void onClick(View v) {
@@ -90,7 +70,12 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 			moveToCenter(latitude_me, longitude_me);
 			break;
 		case R.id.pagetop_tv_you:
-
+			Intent intent = new Intent(this, VenuesRankActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			intent.putExtra("posid", posid);
+			intent.putExtra("name", name);
+			startActivity(intent);
+			CommonUtils.getInstance().setPageIntentAnim(intent, this);
 			break;
 		default:
 			break;
@@ -123,9 +108,8 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 	@SuppressLint("NewApi")
 	@Override
 	protected void processLogic() {
-		asyncImageLoader = new ImageLoader(context, "headImg");
 		Intent intent = getIntent();
-		String name = intent.getExtras().getString("name", "");
+		  name = intent.getExtras().getString("name", "");
 		posid = intent.getExtras().getString("posid", "");
 		top_left_x = intent.getExtras().getDouble("top_left_x", 0);
 		top_left_y = intent.getExtras().getDouble("top_left_y", 0);
@@ -150,7 +134,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
 						mMapList = (ArrayList<VenuesUsersInfo>) dataMap.get("mlist");
-						initMyOverlay() ;
+						initMyOverlay();
 					}
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
@@ -159,6 +143,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 		});
 
 	}
+
 	/**
 	 * 场馆定位
 	 */
@@ -168,23 +153,69 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 				for (int i = 0; i < mMapList.size(); i++) {
 					double latitude = mMapList.get(i).getLatitude();
 					double longitude = mMapList.get(i).getLongitude();
-					String Album_url=mMapList.get(i).getAlbum_url();
+					String Album_url = mMapList.get(i).getAlbum_url();
 					System.err.println(longitude + "      " + longitude);
-					if (latitude>0 && longitude>0) {
+					if (latitude > 0 && longitude > 0) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
-//						if (!TextUtils.isEmpty(Album_url)) {
-//							asyncImageLoader.DisplayImage(Album_url, usrecenter_iv_head);
-//						} 
-						OverlayOptions ooA = new MarkerOptions().position(stadiumpoint).icon(mmorenMarker).zIndex(5)
-								.draggable(false);
-						Marker mMarker = (Marker) mBaiduMap.addOverlay(ooA);
-						stadiumpoint = null;
+						if (!TextUtils.isEmpty(Album_url)) {
+							loadToBitmap(Album_url, stadiumpoint);
+						}
 					}
 				}
 			}
 		} catch (Exception e) {
-		} 
+		}
 	}
+
+	@SuppressLint("NewApi")
+	private void addMarker(LatLng point, Bitmap bitmap) {
+
+		View convertView = LayoutInflater.from(context).inflate(R.layout.venues_map_marker, null);
+		CircleImageView iv_head = (CircleImageView) convertView.findViewById(R.id.iv_head);
+		iv_head.setImageBitmap(bitmap);
+		iv_head.setImageAlpha(0);
+		mmorenMarker = BitmapDescriptorFactory.fromView(convertView);
+		OverlayOptions ooA = new MarkerOptions().position(point).icon(mmorenMarker).zIndex(5).draggable(false);
+		Marker mMarker = (Marker) mBaiduMap.addOverlay(ooA);
+	}
+
+	Bitmap bitmap = null;
+
+	public Bitmap loadToBitmap(String Album_url, final LatLng stadiumpoint) {
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				.showImageForEmptyUri(R.drawable.menutab_location_normal)// 设置图片Uri为空或是错误的时候显示的图片
+				.showImageOnFail(R.drawable.menutab_location_normal)// 设置图片加载或解码过程中发生错误显示的图片
+				.bitmapConfig(Bitmap.Config.RGB_565).build();
+		ImageLoader.getInstance().loadImage(Album_url, options, new ImageLoadingListener() {
+
+			@Override
+			public void onLoadingStarted(String arg0, View arg1) {
+
+			}
+
+			@Override
+			public void onLoadingFailed(String arg0, View arg1, FailReason arg2) {
+
+			}
+
+			@Override
+			public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
+				bitmap = arg2;
+				Log.e("map---bitmap", bitmap.toString());
+				Log.e("map---arg0", arg0.toString());
+				if (bitmap != null) {
+					addMarker(stadiumpoint, bitmap);
+				}
+			}
+
+			@Override
+			public void onLoadingCancelled(String arg0, View arg1) {
+
+			}
+		});
+		return bitmap;
+	}
+
 	/**
 	 * =================定位======================
 	 */
@@ -243,7 +274,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 		mLocClient.setLocOption(option);// 设置给定位客户端
 		mLocClient.start();// 启动定位客户端
 		// 修改为自定义marker
-		 mmorenMarker =  BitmapDescriptorFactory.fromResource(R.drawable.menutab_location_normal);
+		mmorenMarker = BitmapDescriptorFactory.fromResource(R.drawable.menutab_location_normal);
 		// mBaiduMap.setMyLocationConfigeration(new
 		// MyLocationConfiguration(LocationMode.NORMAL, false, mCurrentMarker));
 	}
@@ -268,7 +299,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 							.direction(0).latitude(latitude_me).longitude(longitude_me).build();
 					mBaiduMap.setMyLocationData(locData);
 					locData = null;
-					moveToCenter(top_left_x, top_left_y);
+					moveToCenter(top_left_y, top_left_x);
 					getVenuesUsers();
 				} catch (Exception e) {
 				}

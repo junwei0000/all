@@ -101,6 +101,7 @@
         <activity android:name=".control.activity.VenuesTypeActivity" />
         <activity android:name=".control.activity.VenuesAddNextActivity" />
         <activity android:name=".control.activity.VenuesMapActivity" />
+        <activity android:name=".control.activity.VenuesRankActivity" />
         <!-- 微信回调activity -->
         <activity
             android:name=".wxapi.WXEntryActivity"

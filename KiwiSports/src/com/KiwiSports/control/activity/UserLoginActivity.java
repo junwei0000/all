@@ -189,6 +189,12 @@ public class UserLoginActivity extends BaseActivity {
 						city= (String) info.get("city");
 						sex= (Integer) info.get("sex");
 						openid= (String) info.get("openid");
+						if(TextUtils.isEmpty(province)){
+							province="北京";
+						}
+						if(TextUtils.isEmpty(city)){
+							city="北京";
+						}
 					}
 					loginUMeng();
 				} else {
@@ -218,15 +224,15 @@ public class UserLoginActivity extends BaseActivity {
 
 	private void loginUMeng() {
 		mhashmap = new HashMap<String, String>();
-		mhashmap.put("openid", openid);
-		mhashmap.put("nickname", nick_name);
-		mhashmap.put("headimgurl", profile_image_url);
+		mhashmap.put("openid", openid+ "");
+		mhashmap.put("nickname", nick_name+ "");
+		mhashmap.put("headimgurl", profile_image_url+ "");
 
-		mhashmap.put("province", province);
-		mhashmap.put("city", city);
+		mhashmap.put("province", province+ "");
+		mhashmap.put("city", city+ "");
 		mhashmap.put("sex", sex + "");
 
-		mhashmap.put("accesstoken", access_token);
+		mhashmap.put("accesstoken", access_token+ "");
 		mhashmap.put("type", "android");
 		mhashmap.put("token", ConfigUtils.getInstance().getDeviceId(this));
 		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap.toString());
