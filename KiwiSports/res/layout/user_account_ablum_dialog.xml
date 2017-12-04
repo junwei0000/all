@@ -9,8 +9,7 @@
         android:id="@+id/pop_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@color/gray_bg"
         android:gravity="center_horizontal"
         android:orientation="vertical" >
 

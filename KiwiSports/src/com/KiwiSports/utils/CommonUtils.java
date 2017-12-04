@@ -100,6 +100,11 @@ public class CommonUtils {
 		final TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);// 确定
 		final String exit = Constans.getInstance().exit;
 		final String cancel = Constans.getInstance().cancel;
+
+		if (btnClickEvent.equals(cancel)) {
+			myexit_text_title.setText("确认注销当前用户吗？");
+		}
+
 		text_off.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -4,7 +4,7 @@
     <string name="app_name">KiwiSports</string>
     <string name="myexit_text_sure">确认</string>
     <string name="myexit_text_off">取消</string>
-    <string name="myexit_text_title">确定退出吗？</string>
+    <string name="myexit_text_title">确认退出吗？</string>
     <string name="net_tishi">网络连接不可用，请稍后重试</string>
     <string name="contentDescription">contentDescription</string>
     <string name="user_account_avatar_phones">拍照</string>
