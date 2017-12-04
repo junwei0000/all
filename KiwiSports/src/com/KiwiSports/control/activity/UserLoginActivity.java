@@ -185,15 +185,15 @@ public class UserLoginActivity extends BaseActivity {
 					if (platform.equals(SHARE_MEDIA.WEIXIN)) {
 						nick_name = (String) info.get("nickname");
 						profile_image_url = (String) info.get("headimgurl");
-						province= (String) info.get("province");
-						city= (String) info.get("city");
-						sex= (Integer) info.get("sex");
-						openid= (String) info.get("openid");
-						if(TextUtils.isEmpty(province)){
-							province="北京";
+						province = (String) info.get("province");
+						city = (String) info.get("city");
+						sex = (Integer) info.get("sex");
+						openid = (String) info.get("openid");
+						if (TextUtils.isEmpty(province)) {
+							province = "北京";
 						}
-						if(TextUtils.isEmpty(city)){
-							city="北京";
+						if (TextUtils.isEmpty(city)) {
+							city = "北京";
 						}
 					}
 					loginUMeng();
@@ -224,15 +224,15 @@ public class UserLoginActivity extends BaseActivity {
 
 	private void loginUMeng() {
 		mhashmap = new HashMap<String, String>();
-		mhashmap.put("openid", openid+ "");
-		mhashmap.put("nickname", nick_name+ "");
-		mhashmap.put("headimgurl", profile_image_url+ "");
+		mhashmap.put("openid", openid + "");
+		mhashmap.put("nickname", nick_name + "");
+		mhashmap.put("headimgurl", profile_image_url + "");
 
-		mhashmap.put("province", province+ "");
-		mhashmap.put("city", city+ "");
+		mhashmap.put("province", province + "");
+		mhashmap.put("city", city + "");
 		mhashmap.put("sex", sex + "");
 
-		mhashmap.put("accesstoken", access_token+ "");
+		mhashmap.put("accesstoken", access_token + "");
 		mhashmap.put("type", "android");
 		mhashmap.put("token", ConfigUtils.getInstance().getDeviceId(this));
 		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap.toString());
@@ -266,24 +266,25 @@ public class UserLoginActivity extends BaseActivity {
 		});
 	}
 
-	private void saveUserInfo(UserLoginInfo loginInfo ){
-		String uid=loginInfo.getUid();
-		String nick_name=loginInfo.getNick_name();
-		String album_url=loginInfo.getAlbum_url();
-		int sex=loginInfo.getSex();
-		String access_token=loginInfo.getAccess_token();
-		String	token=loginInfo.getToken();
-		String hobby=loginInfo.getHobby();
+	private void saveUserInfo(UserLoginInfo loginInfo) {
+		String uid = loginInfo.getUid();
+		String nick_name = loginInfo.getNick_name();
+		String album_url = loginInfo.getAlbum_url();
+		int sex = loginInfo.getSex();
+		String access_token = loginInfo.getAccess_token();
+		String token = loginInfo.getToken();
+		String hobby = loginInfo.getHobby();
 		bestDoInfoEditor.putString("loginStatus", Constans.getInstance().loginStatus);
 		bestDoInfoEditor.putString("uid", uid + "");
 		bestDoInfoEditor.putString("hobby", hobby + "");
 		bestDoInfoEditor.putString("nick_name", nick_name);
 		bestDoInfoEditor.putInt("sex", sex);
 		bestDoInfoEditor.putString("album_url", "" + album_url);
-		bestDoInfoEditor.putString("token",token);
+		bestDoInfoEditor.putString("token", token);
 		bestDoInfoEditor.putString("access_token", access_token);
 		bestDoInfoEditor.commit();
 	}
+
 	@Override
 	protected void onDestroy() {
 		CommonUtils.getInstance().setClearCacheDialog(mDialog);
@@ -295,7 +296,7 @@ public class UserLoginActivity extends BaseActivity {
 	 * 退出监听
 	 */
 	public void onBackPressed() {
-		CommonUtils.getInstance().defineBackPressed(this, null,0, Constans.getInstance().exit);
+		CommonUtils.getInstance().defineBackPressed(this, null, 0, Constans.getInstance().exit);
 	}
 
 }

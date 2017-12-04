@@ -23,7 +23,7 @@ import android.util.Log;
  * 
  * @author 作者：jun
  * @date 创建时间：2016-1-15 下午6:06:33
- * @Description 类描述： 
+ * @Description 类描述：
  */
 public class UpdateLocationBusiness {
 
@@ -35,8 +35,8 @@ public class UpdateLocationBusiness {
 	HashMap<String, String> mhashmap;
 	Context mContext;
 
-	public UpdateLocationBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetUpdateLocationCallback mGetDataCallback) {
+	public UpdateLocationBusiness(Context mContext, HashMap<String, String> mhashmap,
+			GetUpdateLocationCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;
@@ -45,26 +45,24 @@ public class UpdateLocationBusiness {
 
 	private void getDate() {
 		String path = Constans.UPDATELOCATION;
-		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path,
-				new Listener<String>() {
-					public void onResponse(String response) {
-						Log.e("TESTLOG", "------------response------------" +response);
-						HashMap<String, Object> dataMap = new HashMap<String, Object>();
-						UpdateLocationParser mParser = new UpdateLocationParser();
-						JSONObject jsonObject = RequestUtils
-								.String2JSON(response);
-						dataMap = mParser.parseJSON(jsonObject);
+		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path, new Listener<String>() {
+			public void onResponse(String response) {
+				Log.e("TESTLOG", "------------response------------" + response);
+				HashMap<String, Object> dataMap = new HashMap<String, Object>();
+				UpdateLocationParser mParser = new UpdateLocationParser();
+				JSONObject jsonObject = RequestUtils.String2JSON(response);
+				dataMap = mParser.parseJSON(jsonObject);
 
-						mGetDataCallback.afterDataGet(dataMap);
-						mParser = null;
-						jsonObject = null;
-					}
-				}, new Response.ErrorListener() {
-					public void onErrorResponse(VolleyError error) {
-						Log.e("TESTLOG", "------------error------------" +error);
-						mGetDataCallback.afterDataGet(null);
-					}
-				}) {
+				mGetDataCallback.afterDataGet(dataMap);
+				mParser = null;
+				jsonObject = null;
+			}
+		}, new Response.ErrorListener() {
+			public void onErrorResponse(VolleyError error) {
+				Log.e("TESTLOG", "------------error------------" + error);
+				mGetDataCallback.afterDataGet(null);
+			}
+		}) {
 			@Override
 			protected HashMap<String, String> getParams() {
 				return mhashmap;

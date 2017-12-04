@@ -32,7 +32,8 @@ public class UserAccountUpdateBusiness {
 	HashMap<String, String> mhashmap;
 	Context mContext;
 	String updatetype;
-	public UserAccountUpdateBusiness(Context mContext,String updatetype,  HashMap<String, String> mhashmap,
+
+	public UserAccountUpdateBusiness(Context mContext, String updatetype, HashMap<String, String> mhashmap,
 			GetAccountUpdateCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
@@ -43,12 +44,12 @@ public class UserAccountUpdateBusiness {
 
 	private void getDate() {
 		String path;
-		if(updatetype.equals("info")){
-			path=Constans.USERUPDATEINFO;
-		}else{
-			path=Constans.USERUPDATEABLUMSAVE;
+		if (updatetype.equals("info")) {
+			path = Constans.USERUPDATEINFO;
+		} else {
+			path = Constans.USERUPDATEABLUMSAVE;
 		}
-		StringRequest mJsonObjectRequest = new StringRequest(Method.POST,path , new Listener<String>() {
+		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path, new Listener<String>() {
 			public void onResponse(String response) {
 				Log.e("decrypt----", response);
 				HashMap<String, Object> dataMap = new HashMap<String, Object>();

@@ -30,6 +30,9 @@ public class VenuesRankTodayParser extends BaseParser<Object> {
 				JSONObject Ob = jsonObject.getJSONObject("data");
 				JSONObject jsonObs = Ob.getJSONObject("data");
 
+				ArrayList<VenuesRankTodayInfo> mtopList = new ArrayList<VenuesRankTodayInfo>();
+				ArrayList<VenuesRankTodayInfo> mList = new ArrayList<VenuesRankTodayInfo>();
+
 				JSONObject myRankObs = jsonObs.optJSONObject("myRank");
 				String distanceTraveled = myRankObs.optString("distanceTraveled", "");
 				String uid = myRankObs.optString("uid", "");
@@ -37,10 +40,12 @@ public class VenuesRankTodayParser extends BaseParser<Object> {
 				String date_time = myRankObs.optString("date_time", "");
 				String num = myRankObs.optString("num", "");
 				String nick_name = myRankObs.optString("nick_name", "");
+				String album_url = myRankObs.optString("album_url", "");
 				VenuesRankTodayInfo myRankInfo = new VenuesRankTodayInfo(distanceTraveled, uid, posid, date_time, num,
-						nick_name);
-				mHashMap.put("myRankInfo", myRankInfo);
-				ArrayList<VenuesRankTodayInfo> mList = new ArrayList<VenuesRankTodayInfo>();
+						nick_name, album_url);
+				mList.add(myRankInfo);
+				myRankInfo = null;
+
 				JSONArray dayRanka = jsonObs.optJSONArray("dayRank");
 				for (int i = 0; i < dayRanka.length(); i++) {
 					JSONObject dayRankObs = dayRanka.optJSONObject(i);
@@ -50,12 +55,17 @@ public class VenuesRankTodayParser extends BaseParser<Object> {
 					date_time = dayRankObs.optString("date_time", "");
 					num = dayRankObs.optString("num", "");
 					nick_name = dayRankObs.optString("nick_name", "");
+					album_url = myRankObs.optString("album_url", "");
 					VenuesRankTodayInfo dayRankInfo = new VenuesRankTodayInfo(distanceTraveled, uid, posid, date_time,
-							num, nick_name);
-					mList.add(dayRankInfo);
+							num, nick_name, album_url);
+					if (i < 3) {
+						mtopList.add(dayRankInfo);
+					} else {
+						mList.add(dayRankInfo);
+					}
 					dayRankInfo = null;
 				}
-
+				mHashMap.put("mtopList", mtopList);
 				mHashMap.put("mList", mList);
 			} else {
 				String msg = jsonObject.optString("data");

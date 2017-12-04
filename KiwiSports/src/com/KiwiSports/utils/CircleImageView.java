@@ -19,7 +19,6 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-
 /**
  * @author 作者：zoc
  * @date 创建时间：2016-4-13 下午7:23:08

@@ -33,9 +33,8 @@ public class MultiPartStack extends HurlStack {
 	private static final String TAG = MultiPartStack.class.getSimpleName();
 
 	@Override
-	public HttpResponse performRequest(Request<?> request,
-			Map<String, String> additionalHeaders) throws IOException,
-			AuthFailureError {
+	public HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders)
+			throws IOException, AuthFailureError {
 
 		if (!(request instanceof MultiPartRequest)) {
 			return super.performRequest(request, additionalHeaders);
@@ -47,13 +46,11 @@ public class MultiPartStack extends HurlStack {
 		}
 	}
 
-	public HttpResponse performMultiPartRequest(Request<?> request)
-			throws IOException, AuthFailureError {
+	public HttpResponse performMultiPartRequest(Request<?> request) throws IOException, AuthFailureError {
 		return postDataFromService(request);
 	}
 
-	public static HttpResponse postDataFromService(Request<?> request)
-			throws IOException {
+	public static HttpResponse postDataFromService(Request<?> request) throws IOException {
 		// 设置请求超时,读取超时，防止出现设置超时时间无效的情况
 		HttpResponse response = null;
 		HttpParams params = new BasicHttpParams();
@@ -64,22 +61,18 @@ public class MultiPartStack extends HurlStack {
 		// httpclient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
 		// 5000);
 		HttpClient httpclient = new DefaultHttpClient(params);
-		httpclient.getParams().setParameter(
-				CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+		httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 		HttpPost httppost = new HttpPost(request.getUrl());
 		MultipartEntity mpEntity = new MultipartEntity();
-		Map<String, File> fileUpload = ((MultiPartRequest) request)
-				.getFileUploads();
+		Map<String, File> fileUpload = ((MultiPartRequest) request).getFileUploads();
 		for (Map.Entry<String, File> entry : fileUpload.entrySet()) {
 			ContentBody cb = new FileBody((File) entry.getValue(), "image/jpg");
 			mpEntity.addPart((String) entry.getKey(), cb);
 		}
-		Map<String, String> stringUpload = ((MultiPartRequest) request)
-				.getStringUploads();
+		Map<String, String> stringUpload = ((MultiPartRequest) request).getStringUploads();
 		for (Map.Entry<String, String> entry : stringUpload.entrySet()) {
 			try {
-				ContentBody cb = new StringBody((String) entry.getValue(),
-						Charset.forName("UTF-8"));
+				ContentBody cb = new StringBody((String) entry.getValue(), Charset.forName("UTF-8"));
 				mpEntity.addPart(((String) entry.getKey()), cb);
 			} catch (Exception e) {
 				e.printStackTrace();

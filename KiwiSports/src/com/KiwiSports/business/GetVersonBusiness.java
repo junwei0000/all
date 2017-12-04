@@ -31,8 +31,7 @@ public class GetVersonBusiness {
 	HashMap<String, String> mhashmap;
 	Context mContext;
 
-	public GetVersonBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetVersonCallback mGetDataCallback) {
+	public GetVersonBusiness(Context mContext, HashMap<String, String> mhashmap, GetVersonCallback mGetDataCallback) {
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;
 		this.mGetDataCallback = mGetDataCallback;
@@ -42,24 +41,22 @@ public class GetVersonBusiness {
 
 	private void getDate() {
 		System.err.println(mhashmap);
-		StringRequest mJsonObjectRequest = new StringRequest(Method.POST,
-				Constans.GETVERSON, new Listener<String>() {
-					public void onResponse(String response) {
-						System.err.println(response);
-						JSONObject jsonObject = RequestUtils
-								.String2JSON(response);
-						HashMap<String, Object> dataMap = new HashMap<String, Object>();// 深拷贝（只赋值，重新在堆内存开辟新地址）
-						GetVersonParser mParser = new GetVersonParser();
-						dataMap = mParser.parseJSON(jsonObject);
-						mGetDataCallback.afterDataGet(dataMap);
-						mParser = null;
-						response = null;
-					}
-				}, new Response.ErrorListener() {
-					public void onErrorResponse(VolleyError error) {
-						mGetDataCallback.afterDataGet(null);
-					}
-				}) {
+		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, Constans.GETVERSON, new Listener<String>() {
+			public void onResponse(String response) {
+				System.err.println(response);
+				JSONObject jsonObject = RequestUtils.String2JSON(response);
+				HashMap<String, Object> dataMap = new HashMap<String, Object>();// 深拷贝（只赋值，重新在堆内存开辟新地址）
+				GetVersonParser mParser = new GetVersonParser();
+				dataMap = mParser.parseJSON(jsonObject);
+				mGetDataCallback.afterDataGet(dataMap);
+				mParser = null;
+				response = null;
+			}
+		}, new Response.ErrorListener() {
+			public void onErrorResponse(VolleyError error) {
+				mGetDataCallback.afterDataGet(null);
+			}
+		}) {
 			@Override
 			protected HashMap<String, String> getParams() {
 				return mhashmap;

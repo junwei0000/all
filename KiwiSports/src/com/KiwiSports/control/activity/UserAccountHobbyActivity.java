@@ -169,7 +169,7 @@ public class UserAccountHobbyActivity extends BaseActivity {
 						} else {
 							mList = new ArrayList<HobbyInfo>();
 						}
-						  adapter = new VenuesHobbyAdapter(context, hobby, mList);
+						adapter = new VenuesHobbyAdapter(context, hobby, mList);
 						mListView.setAdapter(adapter);
 					}
 				} else {

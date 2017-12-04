@@ -208,8 +208,9 @@ public class VenuesAddActivity extends BaseActivity
 			switch (msg.what) {
 			case SET:
 				BitmapDrawable bd = new BitmapDrawable(temBitmap_BG);
-//				map_iv_cutreslut.setBackgroundDrawable(bd);
-//				Bitmap bmp = ScreenShareUtil.takeScreenShot(mFrameLayout, false);
+				// map_iv_cutreslut.setBackgroundDrawable(bd);
+				// Bitmap bmp = ScreenShareUtil.takeScreenShot(mFrameLayout,
+				// false);
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				temBitmap_BG.compress(Bitmap.CompressFormat.PNG, 100, baos);
 				byte[] bitmapByte = baos.toByteArray();
@@ -342,25 +343,27 @@ public class VenuesAddActivity extends BaseActivity
 	 */
 	private LatLng getSite(int type) {
 		Point pt = new Point();
+		int imgwidth = (map_iv_covering.getMeasuredWidth() - map_iv_covering.getMeasuredWidth() / 4);
+		int imgheight = (map_iv_covering.getMeasuredHeight() - map_iv_covering.getMeasuredHeight() / 4);
 		if (type == 1) {
 			// 左上角
-			pt.x = mMapView.getMeasuredWidth() / 2 - map_iv_covering.getMeasuredWidth() / 2;
-			pt.y = mMapView.getMeasuredHeight() / 2 - map_iv_covering.getMeasuredHeight() / 2;
+			pt.x = mMapView.getMeasuredWidth() / 2 - imgwidth / 2;
+			pt.y = mMapView.getMeasuredHeight() / 2 - imgheight / 2;
 		}
 		if (type == 2) {
 			// 左下角
-			pt.x = mMapView.getMeasuredWidth() / 2 - map_iv_covering.getMeasuredWidth() / 2;
-			pt.y = mMapView.getMeasuredHeight() / 2 + map_iv_covering.getMeasuredHeight() / 2;
+			pt.x = mMapView.getMeasuredWidth() / 2 - imgwidth / 2;
+			pt.y = mMapView.getMeasuredHeight() / 2 + imgheight / 2;
 		}
 		if (type == 3) {
 			// 右上角
-			pt.x = mMapView.getMeasuredWidth() / 2 + map_iv_covering.getMeasuredWidth() / 2;
-			pt.y = mMapView.getMeasuredHeight() / 2 - map_iv_covering.getMeasuredHeight() / 2;
+			pt.x = mMapView.getMeasuredWidth() / 2 + imgwidth / 2;
+			pt.y = mMapView.getMeasuredHeight() / 2 - imgheight / 2;
 		}
 		if (type == 4) {
 			// 右下角
-			pt.x = mMapView.getMeasuredWidth() / 2 + map_iv_covering.getMeasuredWidth() / 2;
-			pt.y = mMapView.getMeasuredHeight() / 2 + map_iv_covering.getMeasuredHeight() / 2;
+			pt.x = mMapView.getMeasuredWidth() / 2 + imgwidth / 2;
+			pt.y = mMapView.getMeasuredHeight() / 2 + imgheight / 2;
 		}
 
 		LatLng ll = mBaiduMap.getProjection().fromScreenLocation(pt);

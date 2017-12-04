@@ -24,7 +24,8 @@ public class UpdateLocationParser extends BaseParser<Object> {
 			String status = jsonObject.getString("status");
 			mHashMap = new HashMap<String, Object>();
 			mHashMap.put("status", status);
-			if (status.equals("200")) { } else {
+			if (status.equals("200")) {
+			} else {
 				String msg = jsonObject.optString("data");
 				mHashMap.put("msg", msg);
 			}

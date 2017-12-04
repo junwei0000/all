@@ -116,7 +116,7 @@ public class UserAccountUpdateActivity extends BaseActivity {
 		mhashmap.put("access_token", access_token);
 		mhashmap.put("nick_name", et_text);
 		Log.e("decrypt----", mhashmap.toString());
-		new UserAccountUpdateBusiness(this, "info",mhashmap, new GetAccountUpdateCallback() {
+		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
 
 			@Override
 			public void afterDataGet(HashMap<String, Object> dataMap) {

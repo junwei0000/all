@@ -1,6 +1,5 @@
 package com.KiwiSports.control.activity;
 
-
 import com.KiwiSports.utils.Constans;
 
 import android.app.Activity;
@@ -12,12 +11,11 @@ import android.view.WindowManager;
 
 /**
  * 
- * @author      作者：zoc
- * @date        创建时间：2016-9-27 上午10:15:50
+ * @author 作者：zoc
+ * @date 创建时间：2016-9-27 上午10:15:50
  * @Description 类描述：base
  */
-public abstract class BaseActivity extends Activity implements
-		View.OnClickListener {
+public abstract class BaseActivity extends Activity implements View.OnClickListener {
 	protected Activity context;
 
 	protected void onSaveInstanceState(Bundle outState) {

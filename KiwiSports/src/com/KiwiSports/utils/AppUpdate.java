@@ -54,8 +54,7 @@ public class AppUpdate {
 	 * @param EntranceTag
 	 * @return
 	 */
-	private String getServerVerCode(final String appVersion,
-			final String updateDirection) {
+	private String getServerVerCode(final String appVersion, final String updateDirection) {
 		if (!ConfigUtils.getInstance().isNetWorkAvaiable(context)) {
 			return null;
 		}
@@ -68,8 +67,7 @@ public class AppUpdate {
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
 						String url = (String) dataMap.get("url");
-						String description = (String) dataMap
-								.get("description");
+						String description = (String) dataMap.get("description");
 						String version = (String) dataMap.get("version");
 						String level = (String) dataMap.get("level");
 						if (level.equals("0")) {
@@ -84,8 +82,7 @@ public class AppUpdate {
 						}
 					}
 				}
-				CommonUtils.getInstance().setClearCacheBackDate(mhashmap,
-						dataMap);
+				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 			}
 		});
 
@@ -100,10 +97,8 @@ public class AppUpdate {
 	 * @param level
 	 * @param description
 	 */
-	public void defineUpdated(final String androidVersion, final String url,
-			final String level, String description) {
-		selectDialog = new MyDialog(context, R.style.dialog,
-				R.layout.dialog_myupdate);// 创建Dialog并设置样式主题
+	public void defineUpdated(final String androidVersion, final String url, final String level, String description) {
+		selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_myupdate);// 创建Dialog并设置样式主题
 		selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
 		selectDialog.show();
 		selectDialog.setOnDismissListener(new OnDismissListener() {
@@ -113,8 +108,7 @@ public class AppUpdate {
 			}
 		});
 		selectDialog.setOnKeyListener(new OnKeyListener() {
-			public boolean onKey(DialogInterface dialog, int keyCode,
-					KeyEvent event) {
+			public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
 				// if (level.equals("2") && selectDialog.isShowing()) {
 				// // 必须更新
 				// return true;
@@ -123,10 +117,8 @@ public class AppUpdate {
 				// }
 			}
 		});
-		TextView myupdate_tv_updatenow = (TextView) selectDialog
-				.findViewById(R.id.myupdate_tv_updatenow);
-		TextView myupdate_tv_updateafter = (TextView) selectDialog
-				.findViewById(R.id.myupdate_tv_updateafter);
+		TextView myupdate_tv_updatenow = (TextView) selectDialog.findViewById(R.id.myupdate_tv_updatenow);
+		TextView myupdate_tv_updateafter = (TextView) selectDialog.findViewById(R.id.myupdate_tv_updateafter);
 		// if (level.equals("2")) {
 		// 必须更新
 		// myupdate_tv_updateafter.setVisibility(View.GONE);

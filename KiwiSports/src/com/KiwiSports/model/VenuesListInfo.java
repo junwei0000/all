@@ -14,16 +14,14 @@ public class VenuesListInfo {
 	 * 审核状态 0：未审核； 1：审核成功； -1：审核失败。
 	 */
 	String audit_status;
-	double top_left_x  ;
-	double top_left_y  ;
-	double bottom_right_x ;
-	double bottom_right_y ;
-	
+	double top_left_x;
+	double top_left_y;
+	double bottom_right_x;
+	double bottom_right_y;
+
 	public VenuesListInfo() {
 		super();
 	}
-
-	 
 
 	public VenuesListInfo(String posid, String uid, String field_name, String sportsType, String thumb,
 			String venuestatus, String audit_status, double top_left_x, double top_left_y, double bottom_right_x,
@@ -41,8 +39,6 @@ public class VenuesListInfo {
 		this.bottom_right_x = bottom_right_x;
 		this.bottom_right_y = bottom_right_y;
 	}
-
-
 
 	public double getTop_left_x() {
 		return top_left_x;

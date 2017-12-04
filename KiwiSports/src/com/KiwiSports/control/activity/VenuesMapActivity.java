@@ -109,7 +109,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 	@Override
 	protected void processLogic() {
 		Intent intent = getIntent();
-		  name = intent.getExtras().getString("name", "");
+		name = intent.getExtras().getString("name", "");
 		posid = intent.getExtras().getString("posid", "");
 		top_left_x = intent.getExtras().getDouble("top_left_x", 0);
 		top_left_y = intent.getExtras().getDouble("top_left_y", 0);

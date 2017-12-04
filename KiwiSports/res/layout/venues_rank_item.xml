@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp"
+        android:paddingRight="@dimen/padd_leftright"
+        android:paddingTop="20dp" >
+
+        <TextView
+            android:id="@+id/rankitem_tv_num"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:text="111"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_biaoti_size" />
+
+        <com.KiwiSports.utils.CircleImageView
+            android:id="@+id/rankitem_iv_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/contentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/rankitem_tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:text="1111"
+                    android:textColor="@color/text_contents_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/rankitem_tv_distance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="1111"
+                    android:textColor="@color/text_contents_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:max="10000"
+                android:progressDrawable="@drawable/progressbar_horizontal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+
+</LinearLayout>

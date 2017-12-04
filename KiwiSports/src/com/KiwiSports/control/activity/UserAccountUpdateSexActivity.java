@@ -97,7 +97,7 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 	}
 
 	private void changeCheck() {
-		if (sex==Constans.getInstance().SEX_MALE) {
+		if (sex == Constans.getInstance().SEX_MALE) {
 			useraccount_sex_iv_male.setVisibility(View.VISIBLE);
 			useraccount_sex_iv_famale.setVisibility(View.GONE);
 		} else {
@@ -131,9 +131,9 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
-		mhashmap.put("sex", sex+"");
+		mhashmap.put("sex", sex + "");
 		System.err.println(mhashmap);
-		new UserAccountUpdateBusiness(this, "info",mhashmap, new GetAccountUpdateCallback() {
+		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
 
 			@Override
 			public void afterDataGet(HashMap<String, Object> dataMap) {

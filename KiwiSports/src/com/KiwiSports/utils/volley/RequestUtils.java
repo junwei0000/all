@@ -47,8 +47,7 @@ public class RequestUtils {
 		/**
 		 * 防止因为网络超时进行两次请求。 其实是volley在第一次访问的时候，由于超时时间到了，进行了第二次访问。
 		 */
-		request.setRetryPolicy(new DefaultRetryPolicy(30000, 0,
-				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+		request.setRetryPolicy(new DefaultRetryPolicy(30000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 		if (tag != null) {
 			request.setTag(tag);
 		}
@@ -88,8 +87,7 @@ public class RequestUtils {
 	 * @param params
 	 * @return
 	 */
-	public static String reponseGetUrl(String path,
-			HashMap<String, String> params) {
+	public static String reponseGetUrl(String path, HashMap<String, String> params) {
 		StringBuilder sb = new StringBuilder(path);
 		try {
 			sb.append('?');
@@ -97,10 +95,8 @@ public class RequestUtils {
 			// 把Map中的数据迭代附加到StringBuilder中
 			for (Map.Entry<String, String> entry : params.entrySet()) {
 				// URLEncoder.encode对字符串中文进行编码，防止乱码
-				sb.append(entry.getKey())
-						.append('=')
-						.append(URLEncoder.encode("" + entry.getValue(),
-								"UTF-8")).append('&');
+				sb.append(entry.getKey()).append('=').append(URLEncoder.encode("" + entry.getValue(), "UTF-8"))
+						.append('&');
 			}
 			// 去掉最后一个字符&
 			sb.deleteCharAt(sb.length() - 1);

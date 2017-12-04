@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import android.text.TextUtils;
 
-
 /**
  * 
  * @author 作者：zoc
@@ -22,14 +21,14 @@ public class UserAccountUpdateAblumParser extends BaseParser<Object> {
 			mHashMap = new HashMap<String, Object>();
 			mHashMap.put("jsonObject", jsonObject.toString());
 			String status = jsonObject.optString("status");
-				mHashMap.put("status", status);
-				if (status.equals("200")) {
-					String fileUrl = jsonObject.optString("data");
-					mHashMap.put("ablum", fileUrl);
-				} else {
-					String msg = jsonObject.optString("data");
-					mHashMap.put("msg", msg);
-				}
+			mHashMap.put("status", status);
+			if (status.equals("200")) {
+				String fileUrl = jsonObject.optString("data");
+				mHashMap.put("ablum", fileUrl);
+			} else {
+				String msg = jsonObject.optString("data");
+				mHashMap.put("msg", msg);
+			}
 		} catch (Exception e) {
 		}
 

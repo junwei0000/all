@@ -165,13 +165,13 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 					if (status.equals("200")) {
 						total = (Integer) dataMap.get("count");
 						mList = (ArrayList<VenuesListInfo>) dataMap.get("mlist");
-						if (mList != null && mList.size() > 0) {
-						} else {
-							mList = new ArrayList<VenuesListInfo>();
-						}
-						VenuesListAdapter adapter = new VenuesListAdapter(mHomeActivity, mList);
-						mListView.setAdapter(adapter);
 					}
+					if (mList != null && mList.size() > 0) {
+					} else {
+						mList = new ArrayList<VenuesListInfo>();
+					}
+					VenuesListAdapter adapter = new VenuesListAdapter(mHomeActivity, mList);
+					mListView.setAdapter(adapter);
 				} else {
 					CommonUtils.getInstance().initToast(mHomeActivity, getString(R.string.net_tishi));
 				}

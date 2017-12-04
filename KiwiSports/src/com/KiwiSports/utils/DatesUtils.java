@@ -37,13 +37,11 @@ public class DatesUtils {
 	 * @param endhour
 	 * @param teetimejiange
 	 */
-	public void setplayTimes(Boolean doequeday,
-			ArrayList<String> itemtimeBuffer, int starthour, int endhour,
+	public void setplayTimes(Boolean doequeday, ArrayList<String> itemtimeBuffer, int starthour, int endhour,
 			int teetimejiange) {
 		String timenext = getDateGeShi(starthour + "", "H", "HH:mm");
 		String nowHour = DatesUtils.getInstance().getNowTime("HH:mm");
-		boolean timestaus = DatesUtils.getInstance().doCheck2Date(
-				"" + timenext, nowHour, "HH:mm");
+		boolean timestaus = DatesUtils.getInstance().doCheck2Date("" + timenext, nowHour, "HH:mm");
 		if (doequeday) {
 			if (!timestaus)
 				itemtimeBuffer.add(timenext);
@@ -54,12 +52,10 @@ public class DatesUtils {
 		for (int i = starthour; i < endhour; i++) {
 			timenext = addTime(timenext, teetimejiange, "HH:mm");
 			if (!itemtimeBuffer.contains(timenext)) {
-				timestaus = DatesUtils.getInstance().doCheck2Date(
-						"" + timenext, nowHour, "HH:mm");
+				timestaus = DatesUtils.getInstance().doCheck2Date("" + timenext, nowHour, "HH:mm");
 
 				String endtimenext = getDateGeShi(endhour + "", "H", "HH:mm");
-				boolean timestausend = DatesUtils.getInstance().doCheck2Date(
-						"" + timenext, endtimenext, "HH:mm");
+				boolean timestausend = DatesUtils.getInstance().doCheck2Date("" + timenext, endtimenext, "HH:mm");
 				if (timestausend) {
 					if (doequeday) {
 						if (!timestaus)
@@ -91,10 +87,8 @@ public class DatesUtils {
 			if (!TextUtils.isEmpty(starttime) && !TextUtils.isEmpty(endtime)) {
 				starttime = getMaoHao(starttime);
 				endtime = getMaoHao(endtime);
-				int starthour = Integer.parseInt(getDateGeShi(starttime,
-						"HH:mm", "HH"));
-				int endhour = Integer.parseInt(getDateGeShi(endtime, "HH:mm",
-						"HH"));
+				int starthour = Integer.parseInt(getDateGeShi(starttime, "HH:mm", "HH"));
+				int endhour = Integer.parseInt(getDateGeShi(endtime, "HH:mm", "HH"));
 				int hournum = endhour - starthour + 1;
 				hours = new String[hournum];
 				for (int i = 0; i < hournum; i++) {
@@ -116,23 +110,19 @@ public class DatesUtils {
 		}
 	}
 
-	public String[][] getIntervalminsTeeTime_(String starttime, String endtime,
-			String priceRuleType) {
+	public String[][] getIntervalminsTeeTime_(String starttime, String endtime, String priceRuleType) {
 		String[][] mins = null;
 		try {
 			if (!TextUtils.isEmpty(starttime) && !TextUtils.isEmpty(endtime)) {
 				starttime = getMaoHao(starttime);
 				endtime = getMaoHao(endtime);
-				int starthour = Integer.parseInt(getDateGeShi(starttime,
-						"HH:mm", "HH"));
-				int endhour = Integer.parseInt(getDateGeShi(endtime, "HH:mm",
-						"HH"));
+				int starthour = Integer.parseInt(getDateGeShi(starttime, "HH:mm", "HH"));
+				int endhour = Integer.parseInt(getDateGeShi(endtime, "HH:mm", "HH"));
 				int hournum = endhour - starthour + 1;
 				mins = new String[hournum][];
 				for (int i = 0; i < hournum; i++) {
 					int minsnum = 2;
-					if (priceRuleType.equals("noBanTimeRule")
-							|| (i == hournum - 1)) {
+					if (priceRuleType.equals("noBanTimeRule") || (i == hournum - 1)) {
 						minsnum = 1;
 					}
 					mins[i] = new String[minsnum];
@@ -142,8 +132,7 @@ public class DatesUtils {
 						} else {
 							mins[i][j] = "30";
 						}
-						System.out.println("mins[" + i + "][" + j + "]="
-								+ mins[i][j]);
+						System.out.println("mins[" + i + "][" + j + "]=" + mins[i][j]);
 					}
 				}
 			} else {
@@ -168,16 +157,12 @@ public class DatesUtils {
 			if (!TextUtils.isEmpty(starttime) && !TextUtils.isEmpty(endtime)) {
 				starttime = getMaoHao(starttime);
 				endtime = getMaoHao(endtime);
-				int starthour = Integer.parseInt(getDateGeShi(starttime,
-						"HH:mm", "HH"));
-				int endhour = Integer.parseInt(getDateGeShi(endtime, "HH:mm",
-						"HH"));
+				int starthour = Integer.parseInt(getDateGeShi(starttime, "HH:mm", "HH"));
+				int endhour = Integer.parseInt(getDateGeShi(endtime, "HH:mm", "HH"));
 				int hournum = endhour - starthour + 1;
 				mins = new String[hournum][];
-				int startmins = Integer.parseInt(getDateGeShi(starttime,
-						"HH:mm", "HH"));
-				int endmins = Integer.parseInt(getDateGeShi(endtime, "HH:mm",
-						"HH"));
+				int startmins = Integer.parseInt(getDateGeShi(starttime, "HH:mm", "HH"));
+				int endmins = Integer.parseInt(getDateGeShi(endtime, "HH:mm", "HH"));
 				for (int i = 0; i < hournum; i++) {
 					if (hournum == 1) {
 						// 则starthour=endhour, mins.length=1;
@@ -189,8 +174,7 @@ public class DatesUtils {
 							} else {
 								mins[i][j] = startmins + j + "";
 							}
-							System.out.println("mins[" + i + "][" + j + "]="
-									+ mins[i][j]);
+							System.out.println("mins[" + i + "][" + j + "]=" + mins[i][j]);
 						}
 					} else if (hournum == 2) {
 						// 则starthour-endhour=1, mins.length=2;
@@ -203,8 +187,7 @@ public class DatesUtils {
 								} else {
 									mins[i][j] = startmins + j + "";
 								}
-								System.out.println("mins[" + i + "][" + j
-										+ "]=" + mins[i][j]);
+								System.out.println("mins[" + i + "][" + j + "]=" + mins[i][j]);
 							}
 						} else {
 							int minsnum = endmins - 0 + 1;
@@ -215,8 +198,7 @@ public class DatesUtils {
 								} else {
 									mins[i][j] = j + "";
 								}
-								System.out.println("mins[" + i + "][" + j
-										+ "]=" + mins[i][j]);
+								System.out.println("mins[" + i + "][" + j + "]=" + mins[i][j]);
 							}
 						}
 					} else {
@@ -230,8 +212,7 @@ public class DatesUtils {
 								} else {
 									mins[i][j] = startmins + j + "";
 								}
-								System.out.println("mins[" + i + "][" + j
-										+ "]=" + mins[i][j]);
+								System.out.println("mins[" + i + "][" + j + "]=" + mins[i][j]);
 							}
 						} else if (hournum == 1 + i) {
 							int minsnum = endmins - 0 + 1;
@@ -242,8 +223,7 @@ public class DatesUtils {
 								} else {
 									mins[i][j] = j + "";
 								}
-								System.out.println("mins[" + i + "][" + j
-										+ "]=" + mins[i][j]);
+								System.out.println("mins[" + i + "][" + j + "]=" + mins[i][j]);
 							}
 						} else {
 							int minsnum = 60;
@@ -255,8 +235,7 @@ public class DatesUtils {
 								} else {
 									mins[i][j] = j + "";
 								}
-								System.out.println("mins[" + i + "][" + j
-										+ "]=" + mins[i][j]);
+								System.out.println("mins[" + i + "][" + j + "]=" + mins[i][j]);
 							}
 						}
 					}
@@ -294,8 +273,7 @@ public class DatesUtils {
 			long hours = (time % (24 * 60 * 60)) / (60 * 60);
 			long minutes = ((time % (24 * 60 * 60)) % (60 * 60)) / 60;
 			long second = ((time % (24 * 60 * 60)) % (60 * 60)) % 60;
-			secondStr = (int) (day * 24 * 60 * 60 + hours * 60 * 60 + minutes
-					* 60 + second);
+			secondStr = (int) (day * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + second);
 			System.out.println("starttime 与  endtime 相差" + secondStr + "秒");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -362,8 +340,7 @@ public class DatesUtils {
 	 * @return
 	 */
 	public String getZhuanHuan(String str, String oldStr, String newStr) {
-		if (!TextUtils.isEmpty(str)
-				&& (str.contains(oldStr) || str.contains(newStr))) {
+		if (!TextUtils.isEmpty(str) && (str.contains(oldStr) || str.contains(newStr))) {
 			str = str.replace(oldStr, newStr);
 		}
 		return str;
@@ -548,8 +525,8 @@ public class DatesUtils {
 			} else {
 				// 不同一天并且开始时间在结束时间之前
 				if (dstarttime.before(dendtime)) {
-					if ((dday.before(dendtime) && dday.after(dstarttime))
-							|| dendtime.equals(dday) || dstarttime.equals(dday)) {
+					if ((dday.before(dendtime) && dday.after(dstarttime)) || dendtime.equals(dday)
+							|| dstarttime.equals(dday)) {
 						sta = true;
 					}
 				}

@@ -1,6 +1,5 @@
 package com.KiwiSports.utils;
 
-
 import com.KiwiSports.R;
 
 import android.content.Context;
@@ -19,8 +18,7 @@ import android.widget.EditText;
  * @date 创建时间：2016-9-26 下午3:12:45
  * @Description 类描述：编辑框清除文本监听
  */
-public class SupplierEditText extends EditText implements
-		OnFocusChangeListener, TextWatcher {
+public class SupplierEditText extends EditText implements OnFocusChangeListener, TextWatcher {
 	/**
 	 * 删除按钮的引用
 	 */
@@ -44,11 +42,9 @@ public class SupplierEditText extends EditText implements
 		// 获取EditText的DrawableRight,假如没有设置我们就使用默认的图片
 		mClearDrawable = getCompoundDrawables()[2];
 		if (mClearDrawable == null) {
-			mClearDrawable = getResources().getDrawable(
-					R.drawable.edittext_cancel_img);
+			mClearDrawable = getResources().getDrawable(R.drawable.edittext_cancel_img);
 		}
-		mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(),
-				mClearDrawable.getIntrinsicHeight());
+		mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
 		setClearIconVisible(false);
 		setOnFocusChangeListener(this);
 		addTextChangedListener(this);
@@ -62,9 +58,7 @@ public class SupplierEditText extends EditText implements
 	public boolean onTouchEvent(MotionEvent event) {
 		if (getCompoundDrawables()[2] != null) {
 			if (event.getAction() == MotionEvent.ACTION_UP) {
-				boolean touchable = event.getX() > (getWidth()
-						- getPaddingRight() - mClearDrawable
-							.getIntrinsicWidth())
+				boolean touchable = event.getX() > (getWidth() - getPaddingRight() - mClearDrawable.getIntrinsicWidth())
 						&& (event.getX() < ((getWidth() - getPaddingRight())));
 				if (touchable) {
 					this.setText("");
@@ -94,8 +88,7 @@ public class SupplierEditText extends EditText implements
 	 */
 	public void setClearIconVisible(boolean visible) {
 		Drawable right = visible ? mClearDrawable : null;
-		setCompoundDrawables(getCompoundDrawables()[0],
-				getCompoundDrawables()[1], right, getCompoundDrawables()[3]);
+		setCompoundDrawables(getCompoundDrawables()[0], getCompoundDrawables()[1], right, getCompoundDrawables()[3]);
 	}
 
 	/**
@@ -107,8 +100,7 @@ public class SupplierEditText extends EditText implements
 	}
 
 	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count,
-			int after) {
+	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
 	}
 

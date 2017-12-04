@@ -48,8 +48,7 @@ import android.widget.LinearLayout;
  */
 public class ImageLoader {
 	FileCache fileCache;
-	private Map<ImageView, String> imageViews = Collections
-			.synchronizedMap(new WeakHashMap<ImageView, String>());
+	private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
 	// 线程池
 	ExecutorService executorService;
 	String imgStatus = "";
@@ -105,14 +104,14 @@ public class ImageLoader {
 		if (bitmap != null) {
 			if (imgStatus.equals("listdetail")) {
 				imageView.setScaleType(ScaleType.FIT_XY);
-				imageView.setLayoutParams(new LinearLayout.LayoutParams(
-						LayoutParams.FILL_PARENT, LayoutParams.MATCH_PARENT));
+				imageView.setLayoutParams(
+						new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.MATCH_PARENT));
 			}
 			setRoundCorner(imageView, bitmap);
 		} else {
 			if (imgStatus.equals("listdetail")) {
-				imageView.setLayoutParams(new LinearLayout.LayoutParams(
-						LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+				imageView.setLayoutParams(
+						new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 			}
 			setRoundCorner(imageView, bitmap_loading);
 			// 若没有的话则开启新线程加载图片
@@ -123,8 +122,7 @@ public class ImageLoader {
 
 	private void setRoundCorner(ImageView imageView, Bitmap bitmap) {
 		if (imgStatus.equals("headImg")) {
-			Bitmap Roundbitmap = CommonUtils.getInstance().toRoundCorner(
-					context, bitmap);
+			Bitmap Roundbitmap = CommonUtils.getInstance().toRoundCorner(context, bitmap);
 			imageView.setImageBitmap(Roundbitmap);
 		} else {
 			imageView.setImageBitmap(bitmap);
@@ -162,8 +160,7 @@ public class ImageLoader {
 			File f = fileCache.getFile(url);
 			Bitmap bitmap = null;
 			URL imageUrl = new URL(url);
-			HttpURLConnection conn = (HttpURLConnection) imageUrl
-					.openConnection();
+			HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
 			conn.setConnectTimeout(30000);
 			conn.setReadTimeout(30000);
 			conn.setInstanceFollowRedirects(true);
@@ -242,17 +239,13 @@ public class ImageLoader {
 				setRoundCorner(photoToLoad.imageView, bitmap);
 				if (imgStatus.equals("listdetail")) {
 					photoToLoad.imageView.setScaleType(ScaleType.CENTER_CROP);
-					photoToLoad.imageView
-							.setLayoutParams(new LinearLayout.LayoutParams(
-									LayoutParams.FILL_PARENT,
-									LayoutParams.FILL_PARENT));
+					photoToLoad.imageView.setLayoutParams(
+							new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 				}
 			} else {
 				if (imgStatus.equals("listdetail")) {
-					photoToLoad.imageView
-							.setLayoutParams(new LinearLayout.LayoutParams(
-									LayoutParams.FILL_PARENT,
-									LayoutParams.WRAP_CONTENT));
+					photoToLoad.imageView.setLayoutParams(
+							new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 				}
 				setRoundCorner(photoToLoad.imageView, bitmap_orve);
 			}

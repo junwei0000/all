@@ -69,8 +69,7 @@ public class MainStartActivity extends BaseActivity {
 	 * 退出监听
 	 */
 	public void onBackPressed() {
-		CommonUtils.getInstance().defineBackPressed(this, null,0,
-				Constans.getInstance().exit);
+		CommonUtils.getInstance().defineBackPressed(this, null, 0, Constans.getInstance().exit);
 	}
 
 }

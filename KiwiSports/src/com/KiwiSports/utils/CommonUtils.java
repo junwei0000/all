@@ -90,18 +90,14 @@ public class CommonUtils {
 	 * @param activitypath
 	 *            exit退出,cancel注销
 	 */
-	public void defineBackPressed(final Activity content,
-			final Handler mHandler,final int mHandlerID, final String btnClickEvent) {
-		final MyDialog selectDialog = new MyDialog(content, R.style.dialog,
-				R.layout.dialog_myexit);// 创建Dialog并设置样式主题
+	public void defineBackPressed(final Activity content, final Handler mHandler, final int mHandlerID,
+			final String btnClickEvent) {
+		final MyDialog selectDialog = new MyDialog(content, R.style.dialog, R.layout.dialog_myexit);// 创建Dialog并设置样式主题
 		selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
 		selectDialog.show();
-		TextView myexit_text_title = (TextView) selectDialog
-				.findViewById(R.id.myexit_text_title);
-		TextView text_off = (TextView) selectDialog
-				.findViewById(R.id.myexit_text_off);// 取消
-		final TextView text_sure = (TextView) selectDialog
-				.findViewById(R.id.myexit_text_sure);// 确定
+		TextView myexit_text_title = (TextView) selectDialog.findViewById(R.id.myexit_text_title);
+		TextView text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);// 取消
+		final TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);// 确定
 		final String exit = Constans.getInstance().exit;
 		final String cancel = Constans.getInstance().cancel;
 		text_off.setOnClickListener(new View.OnClickListener() {
@@ -136,15 +132,13 @@ public class CommonUtils {
 		context.finish();
 	}
 
-
 	/**
 	 * 清除返回的数据缓存
 	 * 
 	 * @param mhashmap
 	 * @param dataMap
 	 */
-	public void setClearCacheBackDate(HashMap<String, String> mhashmap,
-			HashMap<String, Object> dataMap) {
+	public void setClearCacheBackDate(HashMap<String, String> mhashmap, HashMap<String, Object> dataMap) {
 		if (mhashmap != null) {
 			mhashmap.clear();
 			mhashmap = null;
@@ -167,8 +161,7 @@ public class CommonUtils {
 	 * @param mAdapter
 	 * @param listview
 	 */
-	public void doLoadDateNot(Adapter mAdapter, LinearLayout layout,
-			TextView cont, String loadstatus) {
+	public void doLoadDateNot(Adapter mAdapter, LinearLayout layout, TextView cont, String loadstatus) {
 		// 当列表中没有数据时
 		if (mAdapter == null || (mAdapter != null && mAdapter.getCount() == 0)) {
 			layout.setVisibility(View.VISIBLE);
@@ -192,32 +185,25 @@ public class CommonUtils {
 	 */
 	public void setViewTopHeigth(Context context, View page_top_layout) {
 		double hiegh = ConfigUtils.getInstance().getPhoneWidHeigth(context).heightPixels / (10.5);
-		page_top_layout.setLayoutParams(new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.FILL_PARENT, (int) hiegh));
+		page_top_layout
+				.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, (int) hiegh));
 	}
-
-
 
 	public TranslateAnimation showAnimBottom2Top() {
 		// 菜单进入动画
-		TranslateAnimation showAnim = new TranslateAnimation(
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				0.0f, Animation.RELATIVE_TO_SELF, 1.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f);
+		TranslateAnimation showAnim = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
 		showAnim.setDuration(300);
 		return showAnim;
 	}
 
 	public TranslateAnimation showAnimTop2Bottom() {
 		// 菜单退出动画
-		TranslateAnimation hideAnim = new TranslateAnimation(
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 1.0f);
+		TranslateAnimation hideAnim = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
 		hideAnim.setDuration(200);
 		return hideAnim;
 	}
-
 
 	/**
 	 * 初始化 软引用
@@ -227,8 +213,7 @@ public class CommonUtils {
 	 */
 	public SharedPreferences getBestDoInfoSharedPrefs(Context context) {
 		String key = Constans.getInstance().bestDoInfoSharedPrefsKey;
-		SharedPreferences bestDoInfoSharedPrefs = context.getSharedPreferences(
-				key, 0);
+		SharedPreferences bestDoInfoSharedPrefs = context.getSharedPreferences(key, 0);
 		return bestDoInfoSharedPrefs;
 	}
 
@@ -251,8 +236,7 @@ public class CommonUtils {
 	 */
 	public void setPageIntentAnim(Intent startIntent, Activity mActivity) {
 		// 设置切换动画，从右边进入，左边退出
-		mActivity.overridePendingTransition(R.anim.page_intent_from_right,
-				R.anim.page_now);
+		mActivity.overridePendingTransition(R.anim.page_intent_from_right, R.anim.page_now);
 		startIntent = null;
 	}
 
@@ -264,8 +248,7 @@ public class CommonUtils {
 	public void setPageBackAnim(Activity mActivity) {
 		CommonUtils.getInstance().removeActivity(mActivity);
 		// 设置切换动画，从右边进入，左边退出
-		mActivity.overridePendingTransition(R.anim.page_now,
-				R.anim.page_back_to_left);
+		mActivity.overridePendingTransition(R.anim.page_now, R.anim.page_back_to_left);
 	}
 
 	/**
@@ -372,14 +355,12 @@ public class CommonUtils {
 	 * @param jsonContent
 	 * @param fileName
 	 */
-	public void updateCacheFile(Context context, String jsonContent,
-			String fileName) {
+	public void updateCacheFile(Context context, String jsonContent, String fileName) {
 		try {
 
 			JSONObject jsonObject = RequestUtils.String2JSON(jsonContent);
 			if (jsonObject != null && jsonObject.length() > 0) {
-				FileOutputStream outStream = context.openFileOutput(fileName,
-						Context.MODE_PRIVATE);
+				FileOutputStream outStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
 				outStream.write(jsonContent.getBytes());
 				outStream.close();
 			}
@@ -443,36 +424,30 @@ public class CommonUtils {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
 		ImageView mImageView = (ImageView) v.findViewById(R.id.dialog_img);
-		AnimationDrawable frameAnimation = (AnimationDrawable) context
-				.getResources().getDrawable(R.anim.loading);
+		AnimationDrawable frameAnimation = (AnimationDrawable) context.getResources().getDrawable(R.anim.loading);
 		mImageView.setBackgroundDrawable(frameAnimation);
 		frameAnimation.start();
 		ProgressDialog mpDialog = null;
 		try {
 			mpDialog = new ProgressDialog(context, R.style.dialog);// 创建自定义样式dialog
 			mpDialog.show();// 这个方法应该在mpDialog.setContentView()方法前，否则出现android.util.AndroidRuntimeException
-			mpDialog.setContentView(v, new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.FILL_PARENT,
+			mpDialog.setContentView(v, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,
 					LinearLayout.LayoutParams.FILL_PARENT));// 设置布局
 			// mpDialog.setCancelable(false);// 不可以用“返回键”取消
 			mpDialog.setCanceledOnTouchOutside(false);
 			mpDialog.getWindow().clearFlags(
-					WindowManager.LayoutParams.FLAG_BLUR_BEHIND
-							| WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+					WindowManager.LayoutParams.FLAG_BLUR_BEHIND | WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 		} catch (Exception e) {
 		}
 		return mpDialog;
 
 	}
 
-	public void setOnkeyBackDialog(final ProgressDialog mDialog,
-			final Activity mContext) {
+	public void setOnkeyBackDialog(final ProgressDialog mDialog, final Activity mContext) {
 		mDialog.setOnKeyListener(new OnKeyListener() {
 			@Override
 			public boolean onKey(DialogInterface arg0, int arg1, KeyEvent arg2) {
-				System.err
-						.println("nHomeActivityShowStatus==============================="
-								+ nHomeActivityShowStatus);
+				System.err.println("nHomeActivityShowStatus===============================" + nHomeActivityShowStatus);
 				mDialog.dismiss();
 				if (!nHomeActivityShowStatus) {
 					RequestUtils.cancelAll(mContext);
@@ -493,8 +468,7 @@ public class CommonUtils {
 		new DismissTask().execute(mDialog);
 	}
 
-	private class DismissTask extends
-			AsyncTask<ProgressDialog, Void, ProgressDialog> {
+	private class DismissTask extends AsyncTask<ProgressDialog, Void, ProgressDialog> {
 		@SuppressWarnings("null")
 		protected void onPostExecute(ProgressDialog result) {
 			try {
@@ -521,8 +495,7 @@ public class CommonUtils {
 	 * @param context
 	 */
 	public void getPhoneToKey(Context context, String tel) {
-		Intent intent = new Intent("android.intent.action.DIAL",
-				Uri.parse("tel:" + tel));
+		Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:" + tel));
 		context.startActivity(intent);
 	}
 
@@ -538,12 +511,9 @@ public class CommonUtils {
 		if (mToast == null) {
 			mToast = new Toast(context.getApplicationContext());
 		}
-		View view = LayoutInflater.from(context).inflate(R.layout.define_toast,
-				null);
-		ImageView define_toast_img = (ImageView) view
-				.findViewById(R.id.define_toast_img);
-		TextView define_toast_text = (TextView) view
-				.findViewById(R.id.define_toast_text);
+		View view = LayoutInflater.from(context).inflate(R.layout.define_toast, null);
+		ImageView define_toast_img = (ImageView) view.findViewById(R.id.define_toast_img);
+		TextView define_toast_text = (TextView) view.findViewById(R.id.define_toast_text);
 		int tblr = ConfigUtils.getInstance().dip2px(context, 8);
 		view.setPadding(tblr, tblr, tblr, tblr);
 		define_toast_text.setText(text);
@@ -563,8 +533,7 @@ public class CommonUtils {
 	 */
 	public Bitmap toRoundCorner(Context mContext, Bitmap bitmap) {
 
-		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-				bitmap.getHeight(), Config.ARGB_8888);
+		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
 
 		Canvas canvas = new Canvas(output);
 

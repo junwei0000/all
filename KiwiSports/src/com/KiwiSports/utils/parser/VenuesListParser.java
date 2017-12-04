@@ -41,7 +41,7 @@ public class VenuesListParser extends BaseParser<Object> {
 
 					double top_left_x = listOb.optDouble("top_left_x", 0);
 					double top_left_y = listOb.optDouble("top_left_y", 0);
-					double bottom_right_x = listOb.optDouble("bottom_right_x",0);
+					double bottom_right_x = listOb.optDouble("bottom_right_x", 0);
 					double bottom_right_y = listOb.optDouble("bottom_right_y", 0);
 					VenuesListInfo venuesInfo = new VenuesListInfo(posid, uid, field_name, sportsType, thumb,
 							venuestatus, audit_status, top_left_x, top_left_y, bottom_right_x, bottom_right_y);

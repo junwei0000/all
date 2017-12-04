@@ -108,15 +108,11 @@ public class UpdateService extends Service {
 					InputStream is = entity.getContent();
 					if (is != null) {
 						states = true;
-						File rootFile = new File(
-								Environment.getExternalStorageDirectory(),
-								"/pinke");
+						File rootFile = new File(Environment.getExternalStorageDirectory(), "/pinke");
 						if (!rootFile.exists() && !rootFile.isDirectory())
 							rootFile.mkdir();
-						tempFile = new File(
-								Environment.getExternalStorageDirectory(),
-								"/pinke/"
-										+ url.substring(url.lastIndexOf("/") + 1));
+						tempFile = new File(Environment.getExternalStorageDirectory(),
+								"/pinke/" + url.substring(url.lastIndexOf("/") + 1));
 						if (tempFile.exists())
 							tempFile.delete();
 						tempFile.createNewFile();
@@ -141,8 +137,7 @@ public class UpdateService extends Service {
 							// 每下载完成5%就通知任务栏进行修改下载进度
 							if (precent - download_precent >= 5) {
 								download_precent = precent;
-								Message message = myHandler.obtainMessage(3,
-										precent);
+								Message message = myHandler.obtainMessage(3, precent);
 								myHandler.sendMessage(message);
 							}
 						}
@@ -181,8 +176,7 @@ public class UpdateService extends Service {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.setAction(android.content.Intent.ACTION_VIEW);
-		intent.setDataAndType(Uri.fromFile(file),
-				"application/vnd.android.package-archive");
+		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
 		context.startActivity(intent);
 	}
 
@@ -201,8 +195,7 @@ public class UpdateService extends Service {
 			if (msg != null) {
 				switch (msg.what) {
 				case 0:
-					Toast.makeText(context, msg.obj.toString(),
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT).show();
 					break;
 				case 1:
 					break;
@@ -218,10 +211,8 @@ public class UpdateService extends Service {
 				case 3:
 
 					// 更新状态栏上的下载进度信息
-					views.setTextViewText(R.id.tvProcess, "已下载"
-							+ download_precent + "%");
-					views.setProgressBar(R.id.pbDownload, 100,
-							download_precent, false);
+					views.setTextViewText(R.id.tvProcess, "已下载" + download_precent + "%");
+					views.setProgressBar(R.id.pbDownload, 100, download_precent, false);
 					notification.contentView = views;
 					nm.notify(notificationId, notification);
 					break;

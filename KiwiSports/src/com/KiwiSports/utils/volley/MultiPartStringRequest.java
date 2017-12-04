@@ -20,8 +20,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
  * @author jun
  * 
  */
-public class MultiPartStringRequest extends Request<String> implements
-		MultiPartRequest {
+public class MultiPartStringRequest extends Request<String> implements MultiPartRequest {
 
 	private final Listener<String> mListener;
 	/* To hold the parameter name and the File to upload */
@@ -42,8 +41,7 @@ public class MultiPartStringRequest extends Request<String> implements
 	 * @param errorListener
 	 *            Error listener, or null to ignore errors
 	 */
-	public MultiPartStringRequest(int method, String url,
-			Listener<String> listener, ErrorListener errorListener) {
+	public MultiPartStringRequest(int method, String url, Listener<String> listener, ErrorListener errorListener) {
 		super(method, url, errorListener);
 		mListener = listener;
 	}
@@ -74,13 +72,11 @@ public class MultiPartStringRequest extends Request<String> implements
 	protected Response<String> parseNetworkResponse(NetworkResponse response) {
 		String parsed;
 		try {
-			parsed = new String(response.data,
-					HttpHeaderParser.parseCharset(response.headers));
+			parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
 		} catch (UnsupportedEncodingException e) {
 			parsed = new String(response.data);
 		}
-		return Response.success(parsed,
-				HttpHeaderParser.parseCacheHeaders(response));
+		return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
 	}
 
 	@Override

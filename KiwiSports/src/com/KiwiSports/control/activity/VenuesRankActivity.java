@@ -11,15 +11,23 @@ import com.KiwiSports.business.VenuesRankTodayBusiness.GetVenuesRankTodayCallbac
 import com.KiwiSports.business.VenuesTypeBusiness;
 import com.KiwiSports.business.VenuesTypeBusiness.GetVenuesTypeCallback;
 import com.KiwiSports.control.adapter.VenuesHobbyAdapter;
+import com.KiwiSports.control.adapter.VenuesRankAdapter;
 import com.KiwiSports.model.HobbyInfo;
 import com.KiwiSports.model.VenuesRankTodayInfo;
+import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.Constans;
+import com.KiwiSports.utils.ImageLoader;
+import com.KiwiSports.utils.PriceUtils;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,6 +56,7 @@ public class VenuesRankActivity extends BaseActivity {
 	private TextView tv_todayline;
 	private TextView tv_all;
 	private TextView tv_allline;
+	private View convertView;
 
 	@Override
 	public void onClick(View v) {
@@ -104,6 +113,41 @@ public class VenuesRankActivity extends BaseActivity {
 		String name = intent.getExtras().getString("name", "");
 		posid = intent.getExtras().getString("posid", "");
 		pagetop_tv_name.setText(name);
+
+		initHeadView();
+	}
+
+	LinearLayout rankitemtop_layout2;
+	private CircleImageView rankitemtop_iv_head2;
+	private TextView rankitemtop_tv_name2;
+	private TextView rankitemtop_tv_num2;
+	private LinearLayout rankitemtop_layout1;
+	private CircleImageView rankitemtop_iv_head1;
+	private TextView rankitemtop_tv_name1;
+	private TextView rankitemtop_tv_num1;
+	private LinearLayout rankitemtop_layout3;
+	private CircleImageView rankitemtop_iv_head3;
+	private TextView rankitemtop_tv_name3;
+	private TextView rankitemtop_tv_num3;
+	private ImageLoader asyncImageLoader;
+
+	private void initHeadView() {
+		asyncImageLoader = new ImageLoader(context, "headImg");
+		convertView = LayoutInflater.from(context).inflate(R.layout.venues_rank_item_top, null);
+		rankitemtop_layout2 = (LinearLayout) convertView.findViewById(R.id.rankitemtop_layout2);
+		rankitemtop_iv_head2 = (CircleImageView) convertView.findViewById(R.id.rankitemtop_iv_head2);
+		rankitemtop_tv_name2 = (TextView) convertView.findViewById(R.id.rankitemtop_tv_name2);
+		rankitemtop_tv_num2 = (TextView) convertView.findViewById(R.id.rankitemtop_tv_num2);
+
+		rankitemtop_layout1 = (LinearLayout) convertView.findViewById(R.id.rankitemtop_layout1);
+		rankitemtop_iv_head1 = (CircleImageView) convertView.findViewById(R.id.rankitemtop_iv_head1);
+		rankitemtop_tv_name1 = (TextView) convertView.findViewById(R.id.rankitemtop_tv_name1);
+		rankitemtop_tv_num1 = (TextView) convertView.findViewById(R.id.rankitemtop_tv_num1);
+
+		rankitemtop_layout3 = (LinearLayout) convertView.findViewById(R.id.rankitemtop_layout3);
+		rankitemtop_iv_head3 = (CircleImageView) convertView.findViewById(R.id.rankitemtop_iv_head3);
+		rankitemtop_tv_name3 = (TextView) convertView.findViewById(R.id.rankitemtop_tv_name3);
+		rankitemtop_tv_num3 = (TextView) convertView.findViewById(R.id.rankitemtop_tv_num3);
 	}
 
 	boolean todayStatus = true;
@@ -138,6 +182,7 @@ public class VenuesRankActivity extends BaseActivity {
 	}
 
 	protected VenuesHobbyAdapter adapter;
+	protected ArrayList<VenuesRankTodayInfo> mtopList;
 
 	@Override
 	protected void processLogic() {
@@ -153,11 +198,9 @@ public class VenuesRankActivity extends BaseActivity {
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
+						mtopList = (ArrayList<VenuesRankTodayInfo>) dataMap.get("mtopList");
 						mList = (ArrayList<VenuesRankTodayInfo>) dataMap.get("mList");
-						if (mList != null && mList.size() > 0) {
-						} else {
-							mList = new ArrayList<VenuesRankTodayInfo>();
-						}
+						showAdapter();
 					}
 				} else {
 					CommonUtils.getInstance().initToast(context, getString(R.string.net_tishi));
@@ -168,6 +211,70 @@ public class VenuesRankActivity extends BaseActivity {
 			}
 		});
 
+	}
+
+	private void showAdapter() {
+		mListView.removeHeaderView(convertView);
+		if (mtopList != null && mtopList.size() > 0) {
+			mListView.addHeaderView(convertView);
+			if (mtopList.size() >= 1) {
+				VenuesRankTodayInfo mInfo = mtopList.get(0);
+				String album_url = mInfo.getAlbum_url();
+				String name = mInfo.getNick_name();
+				String diatance = mInfo.getDistanceTraveled();
+				diatance = PriceUtils.getInstance().gteDividePrice(diatance, "1000");
+				diatance = PriceUtils.getInstance().seePrice(diatance);
+				if (!TextUtils.isEmpty(album_url)) {
+					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head1);
+				} else {
+					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
+					rankitemtop_iv_head1.setImageBitmap(mBitmap);
+				}
+				rankitemtop_layout1.setBackgroundResource(R.drawable.corners_circular_yellow);
+				rankitemtop_tv_name1.setText(name);
+				rankitemtop_tv_num1.setText(diatance + "km");
+			}
+			if (mtopList.size() >= 2) {
+				VenuesRankTodayInfo mInfo = mtopList.get(1);
+				String album_url = mInfo.getAlbum_url();
+				String name = mInfo.getNick_name();
+				String diatance = mInfo.getDistanceTraveled();
+				diatance = PriceUtils.getInstance().gteDividePrice(diatance, "1000");
+				diatance = PriceUtils.getInstance().seePrice(diatance);
+				if (!TextUtils.isEmpty(album_url)) {
+					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head2);
+				} else {
+					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
+					rankitemtop_iv_head2.setImageBitmap(mBitmap);
+				}
+				rankitemtop_layout2.setBackgroundResource(R.drawable.corners_circular_gray);
+				rankitemtop_tv_name2.setText(name);
+				rankitemtop_tv_num2.setText(diatance + "km");
+			}
+			if (mtopList.size() >= 3) {
+				VenuesRankTodayInfo mInfo = mtopList.get(2);
+				String album_url = mInfo.getAlbum_url();
+				String name = mInfo.getNick_name();
+				String diatance = mInfo.getDistanceTraveled();
+				diatance = PriceUtils.getInstance().gteDividePrice(diatance, "1000");
+				diatance = PriceUtils.getInstance().seePrice(diatance);
+				if (!TextUtils.isEmpty(album_url)) {
+					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head3);
+				} else {
+					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
+					rankitemtop_iv_head3.setImageBitmap(mBitmap);
+				}
+				rankitemtop_layout3.setBackgroundResource(R.drawable.corners_circular_dian);
+				rankitemtop_tv_name3.setText(name);
+				rankitemtop_tv_num3.setText(diatance + "km");
+			}
+		}
+		if (mList != null && mList.size() > 0) {
+		} else {
+			mList = new ArrayList<VenuesRankTodayInfo>();
+		}
+		VenuesRankAdapter mVenuesRankAdapter = new VenuesRankAdapter(context, mList);
+		mListView.setAdapter(mVenuesRankAdapter);
 	}
 
 	protected void getRankAll() {
@@ -183,12 +290,9 @@ public class VenuesRankActivity extends BaseActivity {
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
-						dataMap.get("mList");
+						mtopList = (ArrayList<VenuesRankTodayInfo>) dataMap.get("mtopList");
 						mList = (ArrayList<VenuesRankTodayInfo>) dataMap.get("mList");
-						if (mList != null && mList.size() > 0) {
-						} else {
-							mList = new ArrayList<VenuesRankTodayInfo>();
-						}
+						showAdapter();
 					}
 				} else {
 					CommonUtils.getInstance().initToast(context, getString(R.string.net_tishi));

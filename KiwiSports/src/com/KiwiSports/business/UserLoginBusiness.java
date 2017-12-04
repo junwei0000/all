@@ -32,8 +32,7 @@ public class UserLoginBusiness {
 	HashMap<String, String> mhashmap;
 	Context mContext;
 
-	public UserLoginBusiness(Context mContext,
-			HashMap<String, String> mhashmap, GetLoginCallback mGetDataCallback) {
+	public UserLoginBusiness(Context mContext, HashMap<String, String> mhashmap, GetLoginCallback mGetDataCallback) {
 		this.mGetDataCallback = mGetDataCallback;
 		this.mhashmap = mhashmap;
 		this.mContext = mContext;
@@ -42,26 +41,24 @@ public class UserLoginBusiness {
 
 	private void getDate() {
 		String path = Constans.LOGIN;
-		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path,
-				new Listener<String>() {
-					public void onResponse(String response) {
-						Log.e("TESTLOG", "------------response------------" +response);
-						HashMap<String, Object> dataMap = new HashMap<String, Object>();
-						UserLoginParser mParser = new UserLoginParser();
-						JSONObject jsonObject = RequestUtils
-								.String2JSON(response);
-						dataMap = mParser.parseJSON(jsonObject);
+		StringRequest mJsonObjectRequest = new StringRequest(Method.POST, path, new Listener<String>() {
+			public void onResponse(String response) {
+				Log.e("TESTLOG", "------------response------------" + response);
+				HashMap<String, Object> dataMap = new HashMap<String, Object>();
+				UserLoginParser mParser = new UserLoginParser();
+				JSONObject jsonObject = RequestUtils.String2JSON(response);
+				dataMap = mParser.parseJSON(jsonObject);
 
-						mGetDataCallback.afterDataGet(dataMap);
-						mParser = null;
-						jsonObject = null;
-					}
-				}, new Response.ErrorListener() {
-					public void onErrorResponse(VolleyError error) {
-						Log.e("TESTLOG", "------------error------------" +error);
-						mGetDataCallback.afterDataGet(null);
-					}
-				}) {
+				mGetDataCallback.afterDataGet(dataMap);
+				mParser = null;
+				jsonObject = null;
+			}
+		}, new Response.ErrorListener() {
+			public void onErrorResponse(VolleyError error) {
+				Log.e("TESTLOG", "------------error------------" + error);
+				mGetDataCallback.afterDataGet(null);
+			}
+		}) {
 			@Override
 			protected HashMap<String, String> getParams() {
 				return mhashmap;

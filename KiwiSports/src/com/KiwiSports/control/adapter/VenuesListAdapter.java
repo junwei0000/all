@@ -46,7 +46,7 @@ public class VenuesListAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = LayoutInflater.from(context).inflate(R.layout.venues_list_item, null);
 			viewHolder = new ViewHolder();
-			viewHolder.line= (LinearLayout) convertView.findViewById(R.id.line);
+			viewHolder.line = (LinearLayout) convertView.findViewById(R.id.line);
 			viewHolder.listitem_tv_name = (TextView) convertView.findViewById(R.id.listitem_tv_name);
 			viewHolder.listitem_tv_dian = (TextView) convertView.findViewById(R.id.listitem_tv_dian);
 			viewHolder.listitem_tv_status = (TextView) convertView.findViewById(R.id.listitem_tv_status);
@@ -59,9 +59,9 @@ public class VenuesListAdapter extends BaseAdapter {
 		String Audit_status = stadiumObj.getAudit_status();
 		// 默认价格
 		viewHolder.listitem_tv_name.setText(name);
-		if(position==0){
+		if (position == 0) {
 			viewHolder.line.setVisibility(View.INVISIBLE);
-		}else{
+		} else {
 			viewHolder.line.setVisibility(View.VISIBLE);
 		}
 		String tiltle = "";
@@ -87,7 +87,7 @@ public class VenuesListAdapter extends BaseAdapter {
 	}
 
 	class ViewHolder {
-		public LinearLayout  line;
+		public LinearLayout line;
 		public TextView listitem_tv_name;
 		public TextView listitem_tv_dian;
 		public TextView listitem_tv_status;

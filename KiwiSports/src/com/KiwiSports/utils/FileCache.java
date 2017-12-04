@@ -28,11 +28,8 @@ public class FileCache {
 	public FileCache(Context context) {
 		// 如果有SD卡则在SD卡中建一个LazyList的目录存放缓存的图片
 		// 没有SD卡就放在系统的缓存目录中
-		if (android.os.Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED)) {
-			cacheDir = new File(
-					android.os.Environment.getExternalStorageDirectory(),
-					"bestdo");
+		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+			cacheDir = new File(android.os.Environment.getExternalStorageDirectory(), "bestdo");
 		} else {
 			cacheDir = context.getCacheDir();
 		}
@@ -76,8 +73,7 @@ public class FileCache {
 				int REQUIRED_SIZE = 210;
 				int width_tmp = o.outWidth, height_tmp = o.outHeight;
 				while (true) {
-					if (width_tmp / 2 < REQUIRED_SIZE
-							|| height_tmp / 2 < REQUIRED_SIZE)
+					if (width_tmp / 2 < REQUIRED_SIZE || height_tmp / 2 < REQUIRED_SIZE)
 						break;
 					width_tmp /= 2;
 					height_tmp /= 2;
@@ -89,8 +85,7 @@ public class FileCache {
 			o2.inSampleSize = scale;
 			o2.inPurgeable = true;
 			o2.inInputShareable = true;
-			Bitmap mBitmap = BitmapFactory.decodeStream(new FileInputStream(f),
-					null, o2);
+			Bitmap mBitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
 			if (mBitmap != null && showHeight != 0 && showWidth != 0) {
 				mBitmap = zoomImg(mBitmap, showWidth, showHeight);
 			}
@@ -120,8 +115,7 @@ public class FileCache {
 		Matrix matrix = new Matrix();
 		matrix.postScale(scaleWidth, scaleHeight);
 		// 得到新的图片
-		Bitmap newbm = Bitmap.createBitmap(bm, 0, 0, width, height, matrix,
-				true);
+		Bitmap newbm = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);
 		return newbm;
 	}
 

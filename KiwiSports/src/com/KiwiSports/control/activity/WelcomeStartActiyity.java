@@ -79,7 +79,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 
 	private boolean checkLoginStatus() {
 		boolean loginstatus = true;
-//		monisaveUserInfo();
+		// monisaveUserInfo();
 		String loginStatus = bestDoInfoSharedPrefs.getString("loginStatus", "");
 		if (!loginStatus.equals(Constans.getInstance().loginStatus)) {
 			Intent intent2 = new Intent(this, UserLoginActivity.class);
@@ -101,14 +101,14 @@ public class WelcomeStartActiyity extends BaseActivity {
 		String nick_name = "段军伟";
 		String album_url = "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJJialkDlK6EenxibchE80J4e1PMUfGYVg9uO9QUU4ALJVvga83QEDXxt0I5FrFdPKA6MrJTMu34Okw/0";
 		int sex = 1;
-		String token=ConfigUtils.getInstance().getDeviceId(this);
-		String access_token="4_uHrFElJkeKeN-bTs8DoaupRfw9bNY2H4fc7f2QVtvGkwcdhl23_ALjL2OrorqLnw5G4oN4umwqt-X4y-Gt7nX5lKzSIpfkckQ9AaraYeoe8";
+		String token = ConfigUtils.getInstance().getDeviceId(this);
+		String access_token = "4_uHrFElJkeKeN-bTs8DoaupRfw9bNY2H4fc7f2QVtvGkwcdhl23_ALjL2OrorqLnw5G4oN4umwqt-X4y-Gt7nX5lKzSIpfkckQ9AaraYeoe8";
 		bestDoInfoEditor.putString("loginStatus", Constans.getInstance().loginStatus);
 		bestDoInfoEditor.putString("uid", uid + "");
 		bestDoInfoEditor.putString("nick_name", nick_name);
 		bestDoInfoEditor.putInt("sex", sex);
 		bestDoInfoEditor.putString("album_url", "" + album_url);
-		bestDoInfoEditor.putString("token",token);
+		bestDoInfoEditor.putString("token", token);
 		bestDoInfoEditor.putString("access_token", access_token);
 		bestDoInfoEditor.commit();
 	}

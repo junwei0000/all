@@ -8,6 +8,9 @@
 	<color name="main_business_tab_presscolor">#093C81</color>
 	
 	<color name="red">#ff0000</color>
+	<color name="ranktop_gray">#dedee3</color>
+	<color name="ranktop_yellow">#ffd429</color>
+	<color name="ranktop_dian">#c99b69</color>
 	<color name="gray_bg">#F2F2F2</color>
 	<!-- 首页底部菜单背景颜色 -->
 	<color name="main_tab_page_bg">#28282e</color>

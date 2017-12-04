@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/updatebar_height" >
+        android:layout_height="60dp" >
 
         <LinearLayout
             android:layout_width="0dip"
@@ -37,6 +37,14 @@
             android:textColor="@color/text_noclick_color"
             android:textSize="@dimen/text_zhu_size"
             android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/padd_leftright" >
+
+        <include layout="@layout/line" />
     </LinearLayout>
 
 </LinearLayout>

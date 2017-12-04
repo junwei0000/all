@@ -63,6 +63,7 @@ public class MyApplication extends Application {
 	private void initMap() {
 		SDKInitializer.initialize(this);
 	}
+
 	private void initImageLoad() {
 		// 配置ImageLoad
 		File cacheDir = new File(Environment.getExternalStorageDirectory() + "/kiwisports/" + "image/");

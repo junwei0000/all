@@ -49,7 +49,7 @@ public class LocationUtils {
 		option.setOpenGps(true);
 		option.setAddrType("all");// 返回的定位结果包含地址信息
 		option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度,默认值gcj02
-		option.setScanSpan(20 * 1000);
+		option.setScanSpan(10 * 60 * 1000);
 		// setScanSpan < 1000 则为 app主动请求定位；
 		// setScanSpan>=1000,则为定时定位模式（setScanSpan的值就是定时定位的时间间隔））
 		// option.disableCache(true);// 禁止启用缓存定位

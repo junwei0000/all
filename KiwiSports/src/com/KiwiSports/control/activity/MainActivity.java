@@ -58,7 +58,7 @@ public class MainActivity extends TabActivity {
 		uid = bestDoInfoSharedPrefs.getString("uid", "");
 		token = bestDoInfoSharedPrefs.getString("token", "");
 		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
-	mLocationUtils=	new LocationUtils(this, mHandler, UPDATELOCATION);
+		mLocationUtils = new LocationUtils(this, mHandler, UPDATELOCATION);
 	}
 
 	/**
@@ -72,17 +72,12 @@ public class MainActivity extends TabActivity {
 				LatLng mypoint = (LatLng) msg.obj;
 				double longitude_me = mypoint.longitude;
 				double latitude_me = mypoint.latitude;
-				  latitude_me = 39.958416;
-				  longitude_me = 116.348349;
-				  
-//				  latitude_me = 39.957559;
-//				  longitude_me = 116.352985;
-//				左上角经度 x:39.958416 左上角纬度 y:116.348349
 				updateLocation(longitude_me, latitude_me);
 				break;
 			}
 		}
 	};
+
 	private HashMap<String, String> mhashmap;
 
 	protected void updateLocation(double longitude_me, double latitude_me) {
