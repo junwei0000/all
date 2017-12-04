@@ -9,7 +9,7 @@ import android.view.View;
  * 
  * @author 作者：jun
  * @date 创建时间：2016-1-15 下午6:53:43
- * @Description 类描述：日历页面
+ * @Description 类描述：  首页轨迹
  */
 public class MainStartActivity extends BaseActivity {
 

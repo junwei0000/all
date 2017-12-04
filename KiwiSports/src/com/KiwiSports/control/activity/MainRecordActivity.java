@@ -1,25 +1,52 @@
 package com.KiwiSports.control.activity;
 
-import com.KiwiSports.R;
-import com.KiwiSports.utils.CommonUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.KiwiSports.R;
+import com.KiwiSports.business.RecordListBusiness;
+import com.KiwiSports.business.RecordListBusiness.GetRecordListCallback;
+import com.KiwiSports.control.adapter.RecordListAdapter;
+import com.KiwiSports.control.adapter.VenuesListAdapter;
+import com.KiwiSports.model.RecordInfo;
+import com.KiwiSports.model.VenuesListInfo;
+import com.KiwiSports.utils.CommonUtils;
+import com.KiwiSports.utils.Constans;
+import com.KiwiSports.utils.PullDownListView;
+import com.KiwiSports.utils.PullDownListView.OnRefreshListioner;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * 
- * @author 作者：jun
- * @date 创建时间：2016-1-15 下午6:53:43
- * @Description 类描述：提醒下页面
+ * @author Administrator 运动记录
  */
-public class MainRecordActivity extends BaseActivity {
+public class MainRecordActivity extends BaseActivity implements OnRefreshListioner {
+
+	private Activity mHomeActivity;
+	private PullDownListView mPullDownView;
+	private ListView mListView;
+	private SharedPreferences bestDoInfoSharedPrefs;
+	private String uid;
+	private String token;
+	private String access_token;
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		// case R.id.pagetop_layout_back:
-		// nowFinish();
-		// break;
 
 		default:
 			break;
@@ -28,42 +55,255 @@ public class MainRecordActivity extends BaseActivity {
 
 	@Override
 	protected void loadViewLayout() {
-		// setContentView(R.layout.user_login);
-		CommonUtils.getInstance().addActivity(this);
-		// CommonUtils.getInstance().addPayPageActivity(this);//
-		// 为了自动注册后登录，在UserRegistSetPwActivity页面关闭
-		// mUserLoginSkipUtils = new UserLoginSkipUtils(this);
-
+		setContentView(R.layout.main_record);
+		mHomeActivity = Constans.getInstance().mHomeActivity;
 	}
 
 	@Override
 	protected void findViewById() {
-		// pagetop_layout_back = (LinearLayout)
-		// findViewById(R.id.pagetop_layout_back);
-		// pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
-		// pagetop_tv_you = (TextView) findViewById(R.id.pagetop_tv_you);
-		// pagetop_layout_you = (LinearLayout)
-		// findViewById(R.id.pagetop_layout_you);
-		//
-		// userlogin_tv_fastlogin = (TextView)
-		// findViewById(R.id.userlogin_tv_fastlogin);
-		// userlogin_fastlogin_bottomline = (TextView)
-		// findViewById(R.id.userlogin_fastlogin_bottomline);
-		// userlogin_tv_commonlogin = (TextView)
-		// findViewById(R.id.userlogin_tv_commonlogin);
-		// userlogin_commonlogin_bottomline = (TextView)
-		// findViewById(R.id.userlogin_commonlogin_bottomline);
-
+		LinearLayout pagetop_layout_back = (LinearLayout) findViewById(R.id.pagetop_layout_back);
+		pagetop_layout_back.setVisibility(View.INVISIBLE);
+		TextView pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
+		LinearLayout page_top_layout = (LinearLayout) findViewById(R.id.page_top_layout);
+		pagetop_tv_name.setText("运动记录");
+		CommonUtils.getInstance().setViewTopHeigth(context, page_top_layout);
+		mPullDownView = (PullDownListView) findViewById(R.id.refreshable_view);
+		mListView = (ListView) findViewById(R.id.list_date);
 	}
 
 	@Override
 	protected void setListener() {
+		mPullDownView.setRefreshListioner(this);
+		mPullDownView.setOrderBottomMoreLine("list");
+		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
+		uid = bestDoInfoSharedPrefs.getString("uid", "");
+		token = bestDoInfoSharedPrefs.getString("token", "");
+		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				// if (mList != null & mList.size() > 0 && arg2 <= mList.size())
+				// {
+				//
+				// String name = mList.get(arg2 - 1).getField_name();
+				// String posid = mList.get(arg2 - 1).getPosid();
+				// double top_left_x = mList.get(arg2 - 1).getTop_left_x();
+				// double top_left_y = mList.get(arg2 - 1).getTop_left_y();
+				// Intent intent = new Intent(mHomeActivity,
+				// VenuesMapActivity.class);
+				// intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+				// intent.putExtra("posid", posid);
+				// intent.putExtra("name", name);
+				// intent.putExtra("top_left_x", top_left_x);
+				// intent.putExtra("top_left_y", top_left_y);
+				// intent.putExtra("uid", uid);
+				// intent.putExtra("token", token);
+				// intent.putExtra("access_token", access_token);
+				// startActivity(intent);
+				// CommonUtils.getInstance().setPageIntentAnim(intent,
+				// mHomeActivity);
+				// }
+			}
+		});
+
+	}
+
+	private ProgressDialog mDialog;
+	private HashMap<String, String> mhashmap;
+	protected ArrayList<RecordInfo> mList;
+	protected Integer total;
+	private int page;
+	private int page_size;
+	private RecordListAdapter adapter;
+
+	private void showDilag() {
+		try {
+			if (mDialog == null) {
+				mDialog = CommonUtils.getInstance().createLoadingDialog(this);
+			} else {
+				mDialog.show();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void init() {
+		adapter = null;
+		mList = new ArrayList<RecordInfo>();
+		page = 1;
+		page_size = 20;
 	}
 
 	@Override
 	protected void processLogic() {
-		// TODO Auto-generated method stub
 
+		if (page < 1) {
+			mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
+			return;
+		}
+		if (!Constans.getInstance().refreshOrLoadMoreLoading) {
+			showDilag();
+		}
+		mhashmap = new HashMap<String, String>();
+		mhashmap.put("uid", uid);
+		mhashmap.put("token", token);
+		mhashmap.put("access_token", access_token);
+		mhashmap.put("page", page + "");
+		mhashmap.put("page_size", page_size + "");
+		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap);
+		new RecordListBusiness(mHomeActivity, mList, mhashmap, new GetRecordListCallback() {
+			@Override
+			public void afterDataGet(HashMap<String, Object> dataMap) {
+				page--;
+				if (dataMap != null) {
+					String status = (String) dataMap.get("status");
+					if (status.equals("200")) {
+						total = (Integer) dataMap.get("count");
+						mList = (ArrayList<RecordInfo>) dataMap.get("mlist");
+						if (page * page_size < total) {
+							page++;
+						}
+						updateList();
+					} else {
+						if (page == 0) {
+							updateList();
+						}
+					}
+
+				} else {
+					CommonUtils.getInstance().initToast(mHomeActivity, getString(R.string.net_tishi));
+				}
+				mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
+				CommonUtils.getInstance().setOnDismissDialog(mDialog);
+				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
+
+			}
+		});
+
+	}
+
+	private void updateList() {
+		if (mList != null && mList.size() != 0) {
+		} else {
+			mList = new ArrayList<RecordInfo>();
+		}
+
+		if (adapter == null) {
+			adapter = new RecordListAdapter(this, mList);
+			mListView.setAdapter(adapter);
+		} else {
+			adapter.setList(mList);
+			adapter.notifyDataSetChanged();
+		}
+		addNotDateImg();
+	}
+
+	/**
+	 * 没有数据时加载默认图
+	 */
+	private void addNotDateImg() {
+		LinearLayout not_date = (LinearLayout) findViewById(R.id.not_date);
+		if (adapter == null || (adapter != null && adapter.getCount() == 0)) {
+			not_date.setVisibility(View.VISIBLE);
+		} else {
+			not_date.setVisibility(View.GONE);
+		}
+	}
+
+	/**
+	 * 当返回数据小于总数时，不让显示“加载更多”
+	 */
+	private void nideBottom() {
+		if (!checkDataLoadStatus()) {
+			mPullDownView.onLoadMoreComplete(getResources().getString(R.string.seen_more), "");// 这里表示加载更多处理完成后把下面的加载更多界面（隐藏或者设置字样更多）
+			mPullDownView.setMore(true);// 这里设置true表示还有更多加载，设置为false底部将不显示更多
+		} else {
+			mPullDownView.onLoadMoreComplete("已无更多信息了！", "over");
+			mPullDownView.setMore(true);
+		}
+	}
+
+	/**
+	 * 判断数据是否加载完
+	 * 
+	 * @return true为加载完
+	 */
+	private boolean checkDataLoadStatus() {
+		boolean loadStatus = true;
+		if (adapter != null && total > adapter.getCount() && (page * page_size < total)) {
+			loadStatus = false;
+		}
+		return loadStatus;
+	}
+
+	/**
+	 * 数据加载完后，判断底部“加载更多”显示状态
+	 */
+	private final int DATAUPDATEOVER = 0;
+
+	/**
+	 * 下拉刷新
+	 */
+	private final int REFLESH = 1;
+	/**
+	 * 加载更多
+	 */
+	private final int LOADMORE = 2;
+	Handler mPullDownViewHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case DATAUPDATEOVER:
+				mPullDownView.onRefreshComplete();
+				Constans.getInstance().refreshOrLoadMoreLoading = false;
+				nideBottom();
+				break;
+			case REFLESH:
+				if (!Constans.getInstance().refreshOrLoadMoreLoading) {
+					Constans.getInstance().refreshOrLoadMoreLoading = true;
+					init();
+					processLogic();
+				}
+				break;
+			case LOADMORE:
+				System.err.println("LOADMORELOADMORELOADMORELOADMORELOADMORE");
+				if (!Constans.getInstance().refreshOrLoadMoreLoading) {
+					Constans.getInstance().refreshOrLoadMoreLoading = true;
+					page++;
+					System.err.println("processLogicprocessLogic");
+					processLogic();
+				}
+				break;
+
+			}
+		}
+	};
+	private Handler mHandler = new Handler();
+
+	@Override
+	public void onRefresh() {
+		mHandler.postDelayed(new Runnable() {
+			public void run() {
+				mPullDownViewHandler.sendEmptyMessage(REFLESH);
+			}
+		}, 1500);
+	}
+
+	@Override
+	public void onLoadMore() {
+		System.err.println("onLoadMoreonLoadMoreonLoadMoreonLoadMore");
+		mHandler.postDelayed(new Runnable() {
+			public void run() {
+				mPullDownViewHandler.sendEmptyMessage(LOADMORE);
+			}
+		}, 1500);
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mPullDownViewHandler.sendEmptyMessage(REFLESH);
 	}
 
 	/**

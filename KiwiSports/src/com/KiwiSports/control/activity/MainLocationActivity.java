@@ -59,8 +59,7 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 
 	@Override
 	protected void loadViewLayout() {
-		setContentView(R.layout.user_location);
-		CommonUtils.getInstance().addActivity(this);
+		setContentView(R.layout.main_location);
 		mHomeActivity = Constans.getInstance().mHomeActivity;
 	}
 
