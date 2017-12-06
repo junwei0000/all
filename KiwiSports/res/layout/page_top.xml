@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/pagetop_tv_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:singleLine="true"

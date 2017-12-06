@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/corners_bg_orange"
+                android:background="@drawable/corners_bg_qing"
                 android:clickable="true"
                 android:gravity="center"
                 android:text="@string/myexit_text_sure"

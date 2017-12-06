@@ -49,7 +49,7 @@
                 android:layout_margin="15dp"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:background="@drawable/corners_bg_orange"
+                android:background="@drawable/corners_bg_qing"
                 android:gravity="center"
                 android:text="@string/myexit_text_sure"
                 android:textColor="@color/white"

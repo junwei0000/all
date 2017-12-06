@@ -24,9 +24,6 @@
             android:layout_weight="0.0"
             android:visibility="gone" />
 
-        <include
-            android:id="@+id/home_layout_line"
-            layout="@layout/line" />
 
         <RadioGroup
             android:id="@+id/home_radio_button_group"

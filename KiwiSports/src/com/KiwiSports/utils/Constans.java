@@ -32,6 +32,7 @@ public class Constans {
 	public static final String VENUESTYPE = WEB_ROOT + "/position/sportsTypes";// 获取场地类型。
 	public static final String VENUESADD = WEB_ROOT + "/position/add";// 添加场地
 	public static final String VENUESUSERS = WEB_ROOT + "/gps/rangePositionUsers";// 返回一场地围内用户数据。
+	public static final String VENUESMYAREAUSERS = WEB_ROOT + "/gps/rangeUsers";// 返回一定范围内用户数据。
 	public static final String VENUESRANKTODAY = WEB_ROOT + "/position/distance/day";// 获取场地日排行。
 	public static final String VENUESRANKALL = WEB_ROOT + "/position/distance/total";// 获取场地总排行。
 
@@ -81,4 +82,5 @@ public class Constans {
 	public int SEX_FAMALE = 2;
 
 	public boolean refreshOrLoadMoreLoading = false;
+	public boolean mSensorState;
 }

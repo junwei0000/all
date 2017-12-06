@@ -320,19 +320,24 @@ public class VenuesAddActivity extends BaseActivity
 	@Override
 	public void onMapStatusChangeFinish(MapStatus mapStatus) {
 		// 地图操作的中心点
-		getSiteLocation();
 		LatLng cenpt = mapStatus.target;
-		if (geoCoder != null && cenpt != null)
+		if (geoCoder != null && cenpt != null){
 			geoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(cenpt));
+			getSiteLocation();
+		}
 	}
 
 	private void getSiteLocation() {
 		lefttopLatLng = getSite(1);
-		Log.e("TESTLOG", "左上角经度 x:" + lefttopLatLng.longitude + " 左上角纬度 y:" + lefttopLatLng.latitude);
-		tv_left.setText(lefttopLatLng.longitude + "," + lefttopLatLng.latitude);
+		if (lefttopLatLng != null) {
+			Log.e("TESTLOG", "左上角经度 x:" + lefttopLatLng.longitude + " 左上角纬度 y:" + lefttopLatLng.latitude);
+			tv_left.setText(lefttopLatLng.longitude + "," + lefttopLatLng.latitude);
+		}
 		rightbottomLatLng = getSite(4);
-		Log.e("TESTLOG", "右下角经度 x:" + rightbottomLatLng.longitude + "右下角纬度 y:" + rightbottomLatLng.latitude);
-		tv_right.setText(rightbottomLatLng.longitude + "," + rightbottomLatLng.latitude);
+		if (rightbottomLatLng != null) {
+			Log.e("TESTLOG", "右下角经度 x:" + rightbottomLatLng.longitude + "右下角纬度 y:" + rightbottomLatLng.latitude);
+			tv_right.setText(rightbottomLatLng.longitude + "," + rightbottomLatLng.latitude);
+		}
 	}
 
 	/**
@@ -365,8 +370,9 @@ public class VenuesAddActivity extends BaseActivity
 			pt.x = mMapView.getMeasuredWidth() / 2 + imgwidth / 2;
 			pt.y = mMapView.getMeasuredHeight() / 2 + imgheight / 2;
 		}
-
-		LatLng ll = mBaiduMap.getProjection().fromScreenLocation(pt);
+		LatLng ll = null;
+		if (mBaiduMap != null&&mBaiduMap.getProjection()!=null)
+			ll = mBaiduMap.getProjection().fromScreenLocation(pt);
 
 		return ll;
 
@@ -379,8 +385,7 @@ public class VenuesAddActivity extends BaseActivity
 		LatLng mypoint = new LatLng(latitude_me, longitude_me);
 		MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(mypoint);
 		if (u != null && mBaiduMap != null) {
-			// mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms
-			mBaiduMap.setMapStatus(u);// 改变地图状态
+			 mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms
 		}
 	}
 

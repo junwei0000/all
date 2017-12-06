@@ -37,6 +37,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.AnimationDrawable;
@@ -565,5 +566,18 @@ public class CommonUtils {
 		canvas.drawBitmap(bitmap, rect, rect, paint);
 		return output;
 
+	}
+	/**
+	 * 设置字体样式
+	 * 
+	 * @param mTextView
+	 */
+	public void setTextViewTypeface(Context mContext, TextView mTextView) {
+		Typeface face = getAssetTypeFace(mContext);
+		mTextView.setTypeface(face);
+	}
+
+	public static Typeface getAssetTypeFace(Context mContext) {
+		return Typeface.createFromAsset(mContext.getAssets(), "DINCondensedC.otf");
 	}
 }

@@ -111,7 +111,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 	private ProgressDialog mDialog;
 	private HashMap<String, String> mhashmap;
 	protected ArrayList<RecordInfo> mList;
-	protected Integer total;
+	protected int total;
 	private int page;
 	private int page_size;
 	private RecordListAdapter adapter;

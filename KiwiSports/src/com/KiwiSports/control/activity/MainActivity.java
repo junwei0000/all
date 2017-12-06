@@ -1,27 +1,17 @@
 package com.KiwiSports.control.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.KiwiSports.R;
-import com.KiwiSports.business.UpdateLocationBusiness;
-import com.KiwiSports.business.UpdateLocationBusiness.GetUpdateLocationCallback;
-import com.KiwiSports.control.view.LocationUtils;
-import com.KiwiSports.model.VenuesUsersInfo;
+import com.KiwiSports.utils.App;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.Constans;
-import com.baidu.mapapi.model.LatLng;
 
 import android.app.TabActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -37,10 +27,6 @@ public class MainActivity extends TabActivity {
 	private RadioButton home_tab_record;
 	private RadioButton home_tab_usercenter;
 	private TabHost mTabHost;
-	private String uid;
-	private String token;
-	private String access_token;
-	private LocationUtils mLocationUtils;
 
 	public static final String TAB_CALENDER = "CALENDER_ACTIVITY";
 	public static final String TAB_CAMPAIGN = "CAMPAIGN_ACTIVITY";
@@ -54,47 +40,6 @@ public class MainActivity extends TabActivity {
 		Constans.getInstance().mHomeActivity = this;
 		findViewById();
 		initView();
-		SharedPreferences bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
-		uid = bestDoInfoSharedPrefs.getString("uid", "");
-		token = bestDoInfoSharedPrefs.getString("token", "");
-		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
-		mLocationUtils = new LocationUtils(this, mHandler, UPDATELOCATION);
-	}
-
-	/**
-	 * 下拉刷新
-	 */
-	private final int UPDATELOCATION = 1;
-	Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case UPDATELOCATION:
-				LatLng mypoint = (LatLng) msg.obj;
-				double longitude_me = mypoint.longitude;
-				double latitude_me = mypoint.latitude;
-				updateLocation(longitude_me, latitude_me);
-				break;
-			}
-		}
-	};
-
-	private HashMap<String, String> mhashmap;
-
-	protected void updateLocation(double longitude_me, double latitude_me) {
-		mhashmap = new HashMap<String, String>();
-		mhashmap.put("uid", uid);
-		mhashmap.put("token", token);
-		mhashmap.put("access_token", access_token);
-		mhashmap.put("longitude", longitude_me + "");
-		mhashmap.put("latitude", latitude_me + "");
-		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap);
-		new UpdateLocationBusiness(this, mhashmap, new GetUpdateLocationCallback() {
-			@Override
-			public void afterDataGet(HashMap<String, Object> dataMap) {
-				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
-			}
-		});
-
 	}
 
 	private void findViewById() {
@@ -166,7 +111,6 @@ public class MainActivity extends TabActivity {
 		unregisterReceiver(dynamicReceiver);
 		dynamicReceiver = null;
 		filter = null;
-		mLocationUtils.onDestory();
 	}
 
 	@Override
@@ -175,6 +119,8 @@ public class MainActivity extends TabActivity {
 		// 动态注册广播
 		filter = new IntentFilter();
 		filter.addAction(getString(R.string.action_home));
+		filter.addAction(Intent.ACTION_SCREEN_ON);
+		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		filter.setPriority(Integer.MAX_VALUE);
 		registerReceiver(dynamicReceiver, filter);
 	}
@@ -186,6 +132,11 @@ public class MainActivity extends TabActivity {
 	private BroadcastReceiver dynamicReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context contexts, Intent intent) {
+			if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) { // 开屏
+				onScreenOn();
+			} else if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) { // 锁屏
+				onScreenOff();
+			}
 			Log.e("all of page", "接收---下线通知---广播消息");
 			String type = intent.getExtras().getString("type");
 			if (type.equals(getString(R.string.action_home_type_login403))) {
@@ -196,4 +147,18 @@ public class MainActivity extends TabActivity {
 			}
 		}
 	};
+	private void onScreenOn() {
+
+	}
+
+	private void onScreenOff() {
+		App.runInMainThread(new Runnable() {
+
+			@Override
+			public void run() {
+				Constans.getInstance().mSensorState=false;
+			}
+		}, 1000);
+
+	}
 }

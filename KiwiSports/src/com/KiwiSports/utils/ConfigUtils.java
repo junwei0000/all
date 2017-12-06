@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -39,6 +40,24 @@ public class ConfigUtils {
 
 	public static final ConfigUtils getInstance() {
 		return SingletonHolder.INSTANCE;
+	}
+	/**
+	 * 获取网络状态 TRUE 有网
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public boolean getNetWorkStatus(Context context) {
+		boolean status = false;
+		ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		boolean isWifiConn = networkInfo.isConnected();
+		networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		boolean isMobileConn = networkInfo.isConnected();
+		if (isMobileConn || isWifiConn) {
+			status = true;
+		}
+		return status;
 	}
 
 	/**
@@ -401,5 +420,30 @@ public class ConfigUtils {
 	public int px2dip(Context context, float pxValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
 		return (int) (pxValue / scale + 0.5f);
+	}
+	private static final double EARTH_RADIUS = 6378.137;
+
+	private static double rad(double d) {
+		return d * Math.PI / 180.0;
+	}
+	/**
+	 * 根据两点间经纬度坐标（double值），计算两点间距离，
+	 * 
+	 * @param lat1
+	 * @param lng1
+	 * @param lat2
+	 * @param lng2
+	 * @return 距离：单位为公里
+	 */
+	public static double DistanceOfTwoPoints(double lat1, double lng1, double lat2, double lng2) {
+		double radLat1 = rad(lat1);
+		double radLat2 = rad(lat2);
+		double a = radLat1 - radLat2;
+		double b = rad(lng1) - rad(lng2);
+		double s = 2 * Math.asin(Math.sqrt(
+				Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+		s = s * EARTH_RADIUS;
+		s = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(s, 3));
+		return s;
 	}
 }

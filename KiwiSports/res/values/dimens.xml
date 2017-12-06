@@ -18,4 +18,5 @@
     <dimen name="padd_topbottom">14dp</dimen>
     <!-- 图标之间的间距 -->
     <dimen name="padd_imgtextleftright">5dp</dimen>
+    <dimen name="sp30">30sp</dimen>
 </resources>

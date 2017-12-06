@@ -79,7 +79,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 
 	private boolean checkLoginStatus() {
 		boolean loginstatus = true;
-		// monisaveUserInfo();
+		 monisaveUserInfo();
 		String loginStatus = bestDoInfoSharedPrefs.getString("loginStatus", "");
 		if (!loginStatus.equals(Constans.getInstance().loginStatus)) {
 			Intent intent2 = new Intent(this, UserLoginActivity.class);
@@ -97,7 +97,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 	 * @param loginInfo
 	 */
 	private void monisaveUserInfo() {
-		String uid = "10001";
+		String uid = "10008";
 		String nick_name = "段军伟";
 		String album_url = "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJJialkDlK6EenxibchE80J4e1PMUfGYVg9uO9QUU4ALJVvga83QEDXxt0I5FrFdPKA6MrJTMu34Okw/0";
 		int sex = 1;

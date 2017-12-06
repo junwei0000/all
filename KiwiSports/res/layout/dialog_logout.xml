@@ -70,7 +70,7 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:text="重新登录"
-                android:textColor="@color/blue"
+                android:textColor="@color/ching"
                 android:textSize="@dimen/text_contents_size" />
         </LinearLayout>
     </LinearLayout>

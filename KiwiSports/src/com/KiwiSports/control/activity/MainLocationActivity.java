@@ -224,6 +224,7 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 
 	@Override
 	public void onLoadMore() {
+		mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
 	}
 
 	@Override

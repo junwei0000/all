@@ -14,7 +14,7 @@
 	<color name="gray_bg">#F2F2F2</color>
 	<!-- 首页底部菜单背景颜色 -->
 	<color name="main_tab_page_bg">#28282e</color>
-	<color name="main_page_bg">#28282e</color>
+	<color name="main_page_bg">#33333e</color>
 	<!-- 白色 -->
 	<color name="white">#FFFFFF</color>
 	<color name="white_light">#5A5A66</color>
@@ -34,10 +34,6 @@
 	<color name="text_click_color">#666666</color>
 	<!-- hint颜色 -->
 	<color name="text_hint_color">#cccccc</color>
-	<!-- 按钮背景颜色 -->
-	<color name="btn_bg">#FC821B</color>
-	<!-- 按钮不可点击的字体颜色 -->
-	<color name="btn_noclick_color">#FDB476</color>
 	<!-- 验证码不可点击的颜色 -->
 	<color name="text_noclick_color">#9B9B9B</color>
 </resources>
