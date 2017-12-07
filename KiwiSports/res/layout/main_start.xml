@@ -61,7 +61,7 @@
         <RelativeLayout
             android:id="@+id/relat_map"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="140dp"
             android:orientation="vertical" >
 
             <com.baidu.mapapi.map.MapView
@@ -82,8 +82,8 @@
             style="@style/padd_topbottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padd_topbottom"
-            android:layout_marginTop="@dimen/padd_topbottom"
+            android:layout_marginBottom="@dimen/jianju"
+            android:layout_marginTop="@dimen/jianju"
             android:background="@drawable/corners_bg_shen"
             android:orientation="horizontal" >
 
@@ -130,6 +130,7 @@
                         android:background="@drawable/main_zuo_img" />
 
                     <TextView
+                        android:id="@+id/tv_distancetitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="2dp"
@@ -167,6 +168,7 @@
                         android:textSize="@dimen/sp30" />
 
                     <TextView
+                         android:id="@+id/tv_quannumunit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="2dp"
@@ -187,6 +189,7 @@
                         android:background="@drawable/main_zuo_img" />
 
                     <TextView
+                        android:id="@+id/tv_quannumtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="2dp"
@@ -203,7 +206,33 @@
             </LinearLayout>
             <!--  -->
         </LinearLayout>
+        <!-- 属性 -->
 
+        <LinearLayout
+            android:id="@+id/layout_property"
+            style="@style/padd_topbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_shen"
+            android:orientation="horizontal" >
+
+            <com.KiwiSports.utils.MyGridView
+                android:id="@+id/mygridview_property"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="@color/transparent"
+                android:divider="@null"
+                android:fadeScrollbars="true"
+                android:fadingEdge="none"
+                android:gravity="left"
+                android:horizontalSpacing="10dp"
+                android:listSelector="@drawable/list_notselector"
+                android:numColumns="3"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:verticalSpacing="10dp" >
+            </com.KiwiSports.utils.MyGridView>
+        </LinearLayout>
         <!-- 按钮 -->
 
         <LinearLayout
@@ -215,22 +244,22 @@
 
             <ImageView
                 android:id="@+id/iv_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:background="@drawable/start" />
 
             <ImageView
                 android:id="@+id/iv_pause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/pause"
                 android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/iv_stop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/stop"
                 android:visibility="gone" />

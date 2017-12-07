@@ -347,7 +347,7 @@ public class CommonUtils {
 			byte[] buffer = new byte[lenght];
 			// 将文件中的数据读到byte数组中
 			in.read(buffer);
-			result = EncodingUtils.getString(buffer, "UTF-8");
+			result = EncodingUtils.getString(buffer, "utf-8");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

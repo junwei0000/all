@@ -15,7 +15,7 @@
      <!-- 左右之间padd -->
     <dimen name="padd_leftright">12dp</dimen>
      <!-- 上下之间padd -->
-    <dimen name="padd_topbottom">14dp</dimen>
+    <dimen name="padd_topbottom">12dp</dimen>
     <!-- 图标之间的间距 -->
     <dimen name="padd_imgtextleftright">5dp</dimen>
     <dimen name="sp30">30sp</dimen>

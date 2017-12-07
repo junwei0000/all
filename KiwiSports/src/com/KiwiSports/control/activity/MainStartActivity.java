@@ -8,15 +8,19 @@ import com.KiwiSports.business.UpdateLocationBusiness;
 import com.KiwiSports.business.VenuesMyAreaUsersBusiness;
 import com.KiwiSports.business.UpdateLocationBusiness.GetUpdateLocationCallback;
 import com.KiwiSports.business.VenuesMyAreaUsersBusiness.GetVenuesMyAreaUsersCallback;
+import com.KiwiSports.control.adapter.MainPropertyAdapter;
 import com.KiwiSports.control.view.LocationUtils;
 import com.KiwiSports.control.view.StepCounterService;
 import com.KiwiSports.control.view.StepDetector;
 import com.KiwiSports.control.view.TrackUploadFragment;
+import com.KiwiSports.model.MainSportInfo;
 import com.KiwiSports.model.VenuesUsersInfo;
 import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.Constans;
+import com.KiwiSports.utils.MyGridView;
+import com.KiwiSports.utils.parser.MainsportParser;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -32,6 +36,7 @@ import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
@@ -101,14 +106,35 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private ImageView iv_pause;
 	private ImageView iv_stop;
 	private Intent service;
+	private MyGridView mygridview_property;
 	public static Context mHomeActivity;
+
+	// -----------参数------------
+	private ArrayList<MainSportInfo> mMpropertyList;
+	private double longitude_me;
+	private double latitude_me;
+	private double distance;
+	private String sporttype;
+	private TextView tv_distancetitle;
+	private TextView tv_quannumtitle;
+	private TextView tv_quannumunit;
+	private ArrayList<MainSportInfo> mpropertytwnList;
+	private int sportindex;
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.pagetop_iv_you:
+			
+			Intent intent = new Intent(this, MainSportActivity.class);
+			intent.putExtra("sportindex", sportindex);
+			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			startActivityForResult(intent, 1);
+			CommonUtils.getInstance().setPageIntentAnim(intent, this); 
+			
 			break;
 		case R.id.iv_start:
+			startservice();
 			btnStartStatus = true;
 			btnContinueStatus = true;
 			iv_start.setVisibility(View.GONE);
@@ -118,9 +144,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		case R.id.iv_pause:
 			btnStartStatus = true;
 			if (btnContinueStatus) {
+				setstopService();
 				btnContinueStatus = false;
 				iv_pause.setBackgroundResource(R.drawable.start);
 			} else {
+				startservice();
 				btnContinueStatus = true;
 				iv_pause.setBackgroundResource(R.drawable.pause);
 			}
@@ -129,8 +157,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			iv_stop.setVisibility(View.VISIBLE);
 			break;
 		case R.id.iv_stop:
+			setstopService();
 			btnStartStatus = false;
 			btnContinueStatus = false;
+			StepDetector.CURRENT_SETP = 0;
+			BEFORECURRENT_SETP = -1;
 			iv_start.setVisibility(View.VISIBLE);
 			iv_pause.setVisibility(View.GONE);
 			iv_stop.setVisibility(View.GONE);
@@ -173,12 +204,16 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		layout_disquan = (LinearLayout) findViewById(R.id.layout_disquan);
 		tv_distance = (TextView) findViewById(R.id.tv_distance);
 		tv_quannum = (TextView) findViewById(R.id.tv_quannum);
+		tv_distancetitle= (TextView) findViewById(R.id.tv_distancetitle);
+		tv_quannumtitle= (TextView) findViewById(R.id.tv_quannumtitle);
+		tv_quannumunit= (TextView) findViewById(R.id.tv_quannumunit);
+		
 
 		layout_bottom = (LinearLayout) findViewById(R.id.layout_bottom);
 		iv_start = (ImageView) findViewById(R.id.iv_start);
 		iv_pause = (ImageView) findViewById(R.id.iv_pause);
 		iv_stop = (ImageView) findViewById(R.id.iv_stop);
-
+		mygridview_property = (MyGridView) findViewById(R.id.mygridview_property);
 		CommonUtils.getInstance().setTextViewTypeface(this, tv_distance);
 		CommonUtils.getInstance().setTextViewTypeface(this, tv_quannum);
 	}
@@ -195,10 +230,36 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	protected void processLogic() {
-		startservice();
+		sportindex=0;
+		setSportPropertyList(sportindex);
 		initGps();
 		initOnEntityListener();
 		initLbsClient();
+	}
+
+	/**
+	 * 切换运动类型属性
+	 * @param sportindex
+	 */
+	private void setSportPropertyList(int sportindex) {
+		MainsportParser mMainsportParser = new MainsportParser();
+		ArrayList<MainSportInfo> mallsportList = mMainsportParser.parseJSON(this);
+		MainSportInfo mMainSportInfo = mallsportList.get(sportindex);
+		mMpropertyList = mMainSportInfo.getMpropertyList();
+		mpropertytwnList= mMainSportInfo.getMpropertytwnList();
+		sporttype=mMainSportInfo.getEname();
+		MainPropertyAdapter mMainSportAdapter = new MainPropertyAdapter(this, mMpropertyList);
+		mygridview_property.setAdapter(mMainSportAdapter);
+		
+		if(mpropertytwnList!=null&&mpropertytwnList.size()==2){
+			tv_distancetitle.setText(mpropertytwnList.get(0).getCname());
+			tv_distance.setText(mpropertytwnList.get(0).getValue());
+			
+			tv_quannum.setText(mpropertytwnList.get(1).getValue());
+			tv_quannumtitle.setText(mpropertytwnList.get(1).getCname());
+			tv_quannumunit.setText(mpropertytwnList.get(1).getUnit());
+		}
+		
 	}
 
 	private void startservice() {
@@ -265,11 +326,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private Thread thread;
 	Handler handler = new Handler();
 	int BEFORECURRENT_SETP = -1;
-
-	// -----------参数------------
-	private double longitude_me;
-	private double latitude_me;
-	private double distance;
+	private BitmapDescriptor realtimeBitmap;
 
 	/**
 	 * 初始化定位的SDK
@@ -362,6 +419,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		option.setScanSpan(4000);
 		mLocClient.setLocOption(option);
 		mLocClient.start();
+		if (null == realtimeBitmap) {
+			realtimeBitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_myposition_map);
+		}
 	}
 
 	/**
@@ -436,6 +496,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			}
 		};
 	};
+	private Overlay overlay;
 
 	/**
 	 * 显示gps精度定位
@@ -541,10 +602,22 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	private void showLocation(LatLng latLng) {
 		try {
-			MyLocationData locData = new MyLocationData.Builder()
-					// 此处设置开发者获取到的方向信息，顺时针0-360
-					.direction(0).latitude(latitude_me).longitude(longitude_me).build();
-			mBaiduMap.setMyLocationData(locData);
+			//显示系统logo
+//			MyLocationData locData = new MyLocationData.Builder()
+//					// 此处设置开发者获取到的方向信息，顺时针0-360
+//					.direction(0).latitude(latitude_me).longitude(longitude_me).build();
+//			mBaiduMap.setMyLocationData(locData);
+			
+			/**
+			 * 替换定位logo
+			 */
+			if (null != overlay) {
+				overlay.remove();
+			}
+			MarkerOptions overlayOptions = new MarkerOptions().position(latLng).icon(realtimeBitmap).zIndex(8).draggable(true);
+			if (null != overlayOptions) {
+				overlay = MainStartActivity.mBaiduMap.addOverlay(overlayOptions);
+			}
 			moveToCenter();
 			initMyLocationUsers(latLng);
 		} catch (Exception e) {
@@ -573,7 +646,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						/**
 						 * 每十分钟上传一次数据
 						 */
-						if (firstUploadLocationstatus || (runingTimestamp % (10 * 60 * 1000) == 0)) {
+						if (firstUploadLocationstatus || (runingTimestamp % (5 * 60 * 1000) == 0)) {
 							firstUploadLocationstatus = false;
 							startTimestamp = runingTimestamp;
 							getVenuesUsers();
@@ -848,7 +921,17 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		super.onDestroy();
 	}
-
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		try {
+			if (resultCode == 1) {
+				sportindex = data.getIntExtra("sportindex", 0);
+				setSportPropertyList(sportindex);
+			}
+		} catch (Exception e) {
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	/**
 	 * 退出监听
 	 */

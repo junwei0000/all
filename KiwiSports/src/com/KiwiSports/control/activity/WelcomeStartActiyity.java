@@ -79,7 +79,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 
 	private boolean checkLoginStatus() {
 		boolean loginstatus = true;
-		 monisaveUserInfo();
+//		 monisaveUserInfo();
 		String loginStatus = bestDoInfoSharedPrefs.getString("loginStatus", "");
 		if (!loginStatus.equals(Constans.getInstance().loginStatus)) {
 			Intent intent2 = new Intent(this, UserLoginActivity.class);
