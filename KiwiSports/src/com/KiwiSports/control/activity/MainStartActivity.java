@@ -157,21 +157,40 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			iv_stop.setVisibility(View.VISIBLE);
 			break;
 		case R.id.iv_stop:
-			setstopService();
-			btnStartStatus = false;
-			btnContinueStatus = false;
-			StepDetector.CURRENT_SETP = 0;
-			BEFORECURRENT_SETP = -1;
-			iv_start.setVisibility(View.VISIBLE);
-			iv_pause.setVisibility(View.GONE);
-			iv_stop.setVisibility(View.GONE);
-			iv_pause.setBackgroundResource(R.drawable.pause);
+			
+			
+			
+			initStartView();
 			break;
 		default:
 			break;
 		}
 	}
 
+	/**
+	 * 结束后初始化所有状态
+	 */
+	private void initStartView() {
+		setstopService();
+		btnStartStatus = false;
+		btnContinueStatus = false;
+		iv_start.setVisibility(View.VISIBLE);
+		iv_pause.setVisibility(View.GONE);
+		iv_stop.setVisibility(View.GONE);
+		iv_pause.setBackgroundResource(R.drawable.pause);
+		StepDetector.CURRENT_SETP = 0;
+		BEFORECURRENT_SETP = -1;
+		setSportPropertyList(sportindex);
+		
+		//清除轨迹
+		if (null != mTrackUploadFragment.polylineoverlay) {
+			 mTrackUploadFragment.polylineoverlay.remove();
+		}
+		TrackUploadFragment.showpointList.clear();
+		TrackUploadFragment.uploadpointList.clear();
+		TrackUploadFragment.allpointList.clear();
+		mBaiduMap.clear();
+	}
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -238,7 +257,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	/**
-	 * 切换运动类型属性
+	 * 切换运动类型初始化显示属性
 	 * @param sportindex
 	 */
 	private void setSportPropertyList(int sportindex) {
@@ -259,6 +278,12 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			tv_quannumtitle.setText(mpropertytwnList.get(1).getCname());
 			tv_quannumunit.setText(mpropertytwnList.get(1).getUnit());
 		}
+		
+	}
+	/**
+	 * 计算当前的属性值并更新
+	 */
+	private void showCurrentPropertyValue(){
 		
 	}
 
@@ -496,7 +521,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			}
 		};
 	};
-	private Overlay overlay;
 
 	/**
 	 * 显示gps精度定位
@@ -611,12 +635,12 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			/**
 			 * 替换定位logo
 			 */
-			if (null != overlay) {
-				overlay.remove();
+			if (null != mTrackUploadFragment.overlay) {
+				 mTrackUploadFragment.overlay.remove();
 			}
 			MarkerOptions overlayOptions = new MarkerOptions().position(latLng).icon(realtimeBitmap).zIndex(8).draggable(true);
 			if (null != overlayOptions) {
-				overlay = MainStartActivity.mBaiduMap.addOverlay(overlayOptions);
+				 mTrackUploadFragment.overlay = mBaiduMap.addOverlay(overlayOptions);
 			}
 			moveToCenter();
 			initMyLocationUsers(latLng);
@@ -905,6 +929,21 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	@Override
 	protected void onDestroy() {
 		try {
+			handler.removeCallbacks(thread);
+			if (mTrackUploadFragment != null) {
+				mTrackUploadFragment.stopTrace();
+				mTrackUploadFragment.uploadpointList.clear();
+				mTrackUploadFragment.allpointList.clear();
+			}
+			if (lm != null && gpslocationListener != null) {
+				lm.removeUpdates(gpslocationListener);
+				gpslocationListener = null;
+			}
+			if (lm != null && listener != null) {
+				lm.removeGpsStatusListener(listener);
+				listener = null;
+			}
+			lm = null;
 			// 退出时销毁定位
 			if (mLocClient != null)
 				mLocClient.stop();

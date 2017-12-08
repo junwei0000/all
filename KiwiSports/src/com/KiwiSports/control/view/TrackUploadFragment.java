@@ -81,16 +81,16 @@ public class TrackUploadFragment extends Fragment {
 	 */
 	private static BitmapDescriptor realtimeBitmap;
 
-	private static Overlay overlay = null;
-
+	public static Overlay overlay = null;
+	public static   Overlay polylineoverlay;
 	// 覆盖物
 	public static OverlayOptions overlayOptions;
 	// 路线覆盖物
 	public static PolylineOptions polyline = null;
 
-	public List<LatLng> showpointList = new ArrayList<LatLng>();
-	public List<LatLng> uploadpointList = new ArrayList<LatLng>();
-	public List<LatLng> allpointList = new ArrayList<LatLng>();
+	public static List<LatLng> showpointList = new ArrayList<LatLng>();
+	public static List<LatLng> uploadpointList = new ArrayList<LatLng>();
+	public static List<LatLng> allpointList = new ArrayList<LatLng>();
 
 	protected boolean isTraceStart = false;
 
@@ -454,6 +454,8 @@ public class TrackUploadFragment extends Fragment {
 	LatLng beforelatLng;
 	LatLng nowlatLng;
 
+	
+
 	/**
 	 * 显示实时轨迹
 	 * 
@@ -630,14 +632,14 @@ public class TrackUploadFragment extends Fragment {
 
 		// 路线覆盖物
 		if (null != polyline && showpointList.size() >= 2) {
-			MainStartActivity.mBaiduMap.addOverlay(polyline);
+			polylineoverlay=MainStartActivity.mBaiduMap.addOverlay(polyline);
 			mEndpoint = showpointList.get(showpointList.size() - 1);
 			showpointList.clear();
 			showpointList.add(mEndpoint);
 		} else if (showpointList.size() == 1) {
 			mEndpoint = showpointList.get(0);
 		}
-		setMapupdateStatus(19, mEndpoint);
+		setMapupdateStatus(17, mEndpoint);
 		// 实时点覆盖物
 		if (null != overlayOptions) {
 			overlay = MainStartActivity.mBaiduMap.addOverlay(overlayOptions);
