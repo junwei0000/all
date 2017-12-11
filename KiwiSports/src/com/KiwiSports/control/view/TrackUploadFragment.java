@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.KiwiSports.R;
 import com.KiwiSports.control.activity.MainStartActivity;
+import com.KiwiSports.model.MainLocationItemInfo;
 import com.KiwiSports.utils.ConfigUtils;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -52,7 +53,6 @@ public class TrackUploadFragment extends Fragment {
 	private Button btnStartTrace = null;
 
 	private Button btnStopTrace = null;
-
 
 	protected TextView tvEntityName = null;
 
@@ -82,15 +82,13 @@ public class TrackUploadFragment extends Fragment {
 	private static BitmapDescriptor realtimeBitmap;
 
 	public static Overlay overlay = null;
-	public static   Overlay polylineoverlay;
+	public static Overlay polylineoverlay;
 	// 覆盖物
 	public static OverlayOptions overlayOptions;
 	// 路线覆盖物
 	public static PolylineOptions polyline = null;
 
 	public static List<LatLng> showpointList = new ArrayList<LatLng>();
-	public static List<LatLng> uploadpointList = new ArrayList<LatLng>();
-	public static List<LatLng> allpointList = new ArrayList<LatLng>();
 
 	protected boolean isTraceStart = false;
 
@@ -100,7 +98,6 @@ public class TrackUploadFragment extends Fragment {
 	public RefreshThread refreshThread = null;
 
 	private View view = null;
-
 
 	public static boolean isInUploadFragment = true;
 
@@ -130,21 +127,6 @@ public class TrackUploadFragment extends Fragment {
 		setRequestType();
 
 		return view;
-	}
-
-	/**
-	 * @return the allpointList
-	 */
-	public List<LatLng> getuploadPointList() {
-		return uploadpointList;
-	}
-
-	/**
-	 * @param allpointList
-	 *            the allpointList to set
-	 */
-	public void setuploadpointList(List<LatLng> uploadpointList) {
-		this.uploadpointList = uploadpointList;
 	}
 
 	public static OverlayOptions getOverlayOptions() {
@@ -446,15 +428,22 @@ public class TrackUploadFragment extends Fragment {
 
 	// -------------------------计算距离--------------------------
 
+	public void initDates() {
+		sum_distance = 0.0;
+		isFirstLoc = true;
+		nowlatLng = null;
+		showpointList.clear();
+		polylineoverlay.remove();
+		isInUploadFragment=false;
+	}
+
 	/**
 	 * 公里
 	 */
-	public double sum_distance = 0.00;
-	public boolean isFirstLoc = true;
-	LatLng beforelatLng;
+	public static double sum_distance = 0.0;
+	public static boolean isFirstLoc = true;
+	public LatLng beforelatLng;
 	LatLng nowlatLng;
-
-	
 
 	/**
 	 * 显示实时轨迹
@@ -496,8 +485,6 @@ public class TrackUploadFragment extends Fragment {
 
 			if (rebookstatus(userslatLng)) {
 				showpointList.add(userslatLng);
-				uploadpointList.add(userslatLng);
-				allpointList.add(userslatLng);
 				// 绘制实时点
 				drawRealtimePoint(userslatLng);
 				savaInfoToSD(MainStartActivity.mHomeActivity, stringBuffer);
@@ -519,7 +506,7 @@ public class TrackUploadFragment extends Fragment {
 	private boolean rebookstatus(LatLng userslatLng) {
 		boolean status = false;
 		if (isInUploadFragment) {
-			if (beforelatLng != nowlatLng) {
+			if (beforelatLng != userslatLng) {
 				status = true;
 			}
 		}
@@ -632,7 +619,7 @@ public class TrackUploadFragment extends Fragment {
 
 		// 路线覆盖物
 		if (null != polyline && showpointList.size() >= 2) {
-			polylineoverlay=MainStartActivity.mBaiduMap.addOverlay(polyline);
+			polylineoverlay = MainStartActivity.mBaiduMap.addOverlay(polyline);
 			mEndpoint = showpointList.get(showpointList.size() - 1);
 			showpointList.clear();
 			showpointList.add(mEndpoint);

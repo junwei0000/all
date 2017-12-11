@@ -2,23 +2,31 @@ package com.KiwiSports.control.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.KiwiSports.R;
+import com.KiwiSports.business.RecordDatesloadBusiness;
+import com.KiwiSports.business.RecordDatesloadBusiness.GetRecordDatesloadCallback;
 import com.KiwiSports.business.UpdateLocationBusiness;
 import com.KiwiSports.business.VenuesMyAreaUsersBusiness;
 import com.KiwiSports.business.UpdateLocationBusiness.GetUpdateLocationCallback;
 import com.KiwiSports.business.VenuesMyAreaUsersBusiness.GetVenuesMyAreaUsersCallback;
 import com.KiwiSports.control.adapter.MainPropertyAdapter;
-import com.KiwiSports.control.view.LocationUtils;
 import com.KiwiSports.control.view.StepCounterService;
 import com.KiwiSports.control.view.StepDetector;
 import com.KiwiSports.control.view.TrackUploadFragment;
+import com.KiwiSports.model.MainLocationItemInfo;
 import com.KiwiSports.model.MainSportInfo;
 import com.KiwiSports.model.VenuesUsersInfo;
 import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.Constans;
+import com.KiwiSports.utils.DatesUtils;
 import com.KiwiSports.utils.MyGridView;
 import com.KiwiSports.utils.parser.MainsportParser;
 import com.baidu.location.BDLocation;
@@ -34,14 +42,9 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.MyLocationConfiguration;
-import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.search.geocode.GeoCoder;
-import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.utils.CoordinateConverter;
 import com.baidu.mapapi.utils.CoordinateConverter.CoordType;
 import com.baidu.trace.LBSTraceClient;
@@ -54,13 +57,12 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.location.Criteria;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -69,6 +71,7 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -79,7 +82,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -95,9 +97,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	private ImageView pagetop_iv_you;
 	private SharedPreferences bestDoInfoSharedPrefs;
-	private String uid;
-	private String token;
-	private String access_token;
+
 	private LinearLayout layout_disquan;
 	private TextView tv_distance;
 	private TextView tv_quannum;
@@ -108,59 +108,113 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private Intent service;
 	private MyGridView mygridview_property;
 	public static Context mHomeActivity;
-
-	// -----------参数------------
-	private ArrayList<MainSportInfo> mMpropertyList;
-	private double longitude_me;
-	private double latitude_me;
-	private double distance;
-	private String sporttype;
 	private TextView tv_distancetitle;
 	private TextView tv_quannumtitle;
 	private TextView tv_quannumunit;
+
+	// -----------参数------------
+	private String uid;
+	private String token;
+	private String access_token;
+	private ArrayList<MainSportInfo> mMpropertyList;
 	private ArrayList<MainSportInfo> mpropertytwnList;
+	private double longitude_me;
+	private double latitude_me;
+	/**
+	 * 第一次定位，之后每5分钟一次
+	 */
+	boolean firstUploadLocationstatus = true;
+	private long runingTimestamp;// 运动时间
+	private long startTimestamp;// 开始时间
+	private long pauseTimestamp;// 休息暂停时间
+	private long initTimestamp;// 初始化时间
+	private String sportsType;
 	private int sportindex;
+	// --------------
+	private double distanceTraveled;// 总距离
+	private int nSteps;// 步数
+	private String duration;// 运动时间
+	private String freezeDuration;// 休息时间
+	protected String address;
+
+	private String matchSpeed = "0";// 配速
+	private String minmatchSpeed = "0";// 最小配速
+	private String maxMatchSpeed = "0";// 最快配速 / 最大速度
+	private String averageMatchSpeed = "0";// 平均配速
+	private long matchSpeedTimestamp;// 配速时间戳
+	private long minmatchSpeedTimestamp;// 最小配速时间戳
+	private long maxMatchSpeedTimestamp;// 最快配速 / 最大速度时间戳
+	private double minAltidue;// 最低海拔
+	private double maxAltitude;// 最高海拔
+	private double currentAltitude;// 当前海拔
+	private double currentAccuracy;// 精度
+	private double Speed;// 速度
+	private double averageSpeed;// 平均速度
+	private double topSpeed;// 最高速度
+	private double minSpeed;// 最小速度
+	private double calorie;// 热量
+	private String posid = "25";// 场地id
+
+	private String latitudeOffset = "";
+	private String longitudeOffset = "";
+	private String cableCarQueuingDuration = "";// 缆车排队时间
+	private String wrestlingCount = "";// 摔跤次数
+	private String totalHoverDuration = "";// 总滞空时间
+	private String maxHoverDuration = "";// 最大滞空时间
+	private String dropTraveled = "";
+
+	private String hopCount = "0";// 跳跃次数
+	private String lopCount = "0";// 趟数
+	private String upHillDistance = "0";// 上坡距离
+	private String downHillDistance = "0";// 滑行下坡距离
+	private String verticalDistance = "0";// 滑行落差/垂直距离
+	private String maxSlope = "0";// 最大坡度
+	private MainPropertyAdapter mMainSportAdapter;
+	private ImageView iv_continue;
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.pagetop_iv_you:
-			
+
 			Intent intent = new Intent(this, MainSportActivity.class);
 			intent.putExtra("sportindex", sportindex);
 			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			startActivityForResult(intent, 1);
-			CommonUtils.getInstance().setPageIntentAnim(intent, this); 
-			
+			CommonUtils.getInstance().setPageIntentAnim(intent, this);
+
 			break;
 		case R.id.iv_start:
 			startservice();
+			startTimestamp = System.currentTimeMillis();
+			initTimer();
 			btnStartStatus = true;
 			btnContinueStatus = true;
 			iv_start.setVisibility(View.GONE);
 			iv_pause.setVisibility(View.VISIBLE);
-			iv_stop.setVisibility(View.VISIBLE);
+			iv_continue.setVisibility(View.GONE);
+			iv_stop.setVisibility(View.GONE);
 			break;
-		case R.id.iv_pause:
-			btnStartStatus = true;
-			if (btnContinueStatus) {
-				setstopService();
-				btnContinueStatus = false;
-				iv_pause.setBackgroundResource(R.drawable.start);
-			} else {
-				startservice();
-				btnContinueStatus = true;
-				iv_pause.setBackgroundResource(R.drawable.pause);
-			}
+		case R.id.iv_continue:
+			// 继续
+			pauseTimestamp = System.currentTimeMillis() - runingTimestamp - startTimestamp;
+			startservice();
+			btnContinueStatus = true;
 			iv_start.setVisibility(View.GONE);
 			iv_pause.setVisibility(View.VISIBLE);
+			iv_continue.setVisibility(View.GONE);
+			iv_stop.setVisibility(View.GONE);
+			break;
+		case R.id.iv_pause:
+			setstopService();
+			btnContinueStatus = false;
+			iv_start.setVisibility(View.GONE);
+			iv_pause.setVisibility(View.GONE);
+			iv_continue.setVisibility(View.VISIBLE);
 			iv_stop.setVisibility(View.VISIBLE);
 			break;
 		case R.id.iv_stop:
-			
-			
-			
-			initStartView();
+			loadRecordDates();
 			break;
 		default:
 			break;
@@ -174,23 +228,25 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		setstopService();
 		btnStartStatus = false;
 		btnContinueStatus = false;
-		iv_start.setVisibility(View.VISIBLE);
-		iv_pause.setVisibility(View.GONE);
-		iv_stop.setVisibility(View.GONE);
-		iv_pause.setBackgroundResource(R.drawable.pause);
+		firstUploadLocationstatus = true;
 		StepDetector.CURRENT_SETP = 0;
 		BEFORECURRENT_SETP = -1;
+		runingTimestamp = 0;// 运动时间
+		startTimestamp = 0;// 开始时间
+		pauseTimestamp = 0;// 休息暂停时间
+		iv_start.setVisibility(View.VISIBLE);
+		iv_continue.setVisibility(View.GONE);
+		iv_pause.setVisibility(View.GONE);
+		iv_stop.setVisibility(View.GONE);
 		setSportPropertyList(sportindex);
-		
-		//清除轨迹
-		if (null != mTrackUploadFragment.polylineoverlay) {
-			 mTrackUploadFragment.polylineoverlay.remove();
+		// 清除轨迹
+		if (null != mTrackUploadFragment) {
+			mTrackUploadFragment.initDates();
 		}
-		TrackUploadFragment.showpointList.clear();
-		TrackUploadFragment.uploadpointList.clear();
-		TrackUploadFragment.allpointList.clear();
+		allpointList.clear();
 		mBaiduMap.clear();
 	}
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -223,13 +279,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		layout_disquan = (LinearLayout) findViewById(R.id.layout_disquan);
 		tv_distance = (TextView) findViewById(R.id.tv_distance);
 		tv_quannum = (TextView) findViewById(R.id.tv_quannum);
-		tv_distancetitle= (TextView) findViewById(R.id.tv_distancetitle);
-		tv_quannumtitle= (TextView) findViewById(R.id.tv_quannumtitle);
-		tv_quannumunit= (TextView) findViewById(R.id.tv_quannumunit);
-		
+		tv_distancetitle = (TextView) findViewById(R.id.tv_distancetitle);
+		tv_quannumtitle = (TextView) findViewById(R.id.tv_quannumtitle);
+		tv_quannumunit = (TextView) findViewById(R.id.tv_quannumunit);
 
 		layout_bottom = (LinearLayout) findViewById(R.id.layout_bottom);
 		iv_start = (ImageView) findViewById(R.id.iv_start);
+		iv_continue = (ImageView) findViewById(R.id.iv_continue);
 		iv_pause = (ImageView) findViewById(R.id.iv_pause);
 		iv_stop = (ImageView) findViewById(R.id.iv_stop);
 		mygridview_property = (MyGridView) findViewById(R.id.mygridview_property);
@@ -240,6 +296,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	protected void setListener() {
 		pagetop_iv_you.setOnClickListener(this);
 		iv_start.setOnClickListener(this);
+		iv_continue.setOnClickListener(this);
 		iv_pause.setOnClickListener(this);
 		iv_stop.setOnClickListener(this);
 		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
@@ -249,7 +306,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	protected void processLogic() {
-		sportindex=0;
+		initTimestamp = System.currentTimeMillis();
+		sportindex = 0;
 		setSportPropertyList(sportindex);
 		initGps();
 		initOnEntityListener();
@@ -258,6 +316,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	/**
 	 * 切换运动类型初始化显示属性
+	 * 
 	 * @param sportindex
 	 */
 	private void setSportPropertyList(int sportindex) {
@@ -265,30 +324,200 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		ArrayList<MainSportInfo> mallsportList = mMainsportParser.parseJSON(this);
 		MainSportInfo mMainSportInfo = mallsportList.get(sportindex);
 		mMpropertyList = mMainSportInfo.getMpropertyList();
-		mpropertytwnList= mMainSportInfo.getMpropertytwnList();
-		sporttype=mMainSportInfo.getEname();
-		MainPropertyAdapter mMainSportAdapter = new MainPropertyAdapter(this, mMpropertyList);
+		mpropertytwnList = mMainSportInfo.getMpropertytwnList();
+		sportsType = mMainSportInfo.getEname();
+		mMainSportAdapter = new MainPropertyAdapter(this, mMpropertyList);
 		mygridview_property.setAdapter(mMainSportAdapter);
-		
-		if(mpropertytwnList!=null&&mpropertytwnList.size()==2){
+
+		if (mpropertytwnList != null && mpropertytwnList.size() == 2) {
 			tv_distancetitle.setText(mpropertytwnList.get(0).getCname());
 			tv_distance.setText(mpropertytwnList.get(0).getValue());
-			
+
 			tv_quannum.setText(mpropertytwnList.get(1).getValue());
 			tv_quannumtitle.setText(mpropertytwnList.get(1).getCname());
 			tv_quannumunit.setText(mpropertytwnList.get(1).getUnit());
 		}
-		
 	}
+
 	/**
-	 * 计算当前的属性值并更新
+	 * 计算当前的属性值
 	 */
-	private void showCurrentPropertyValue(){
-		
+	private void getCurrentPropertyValue() {
+		distanceTraveled = mTrackUploadFragment.sum_distance;
+		calorie = (int) (70 * distanceTraveled * 1.036);
+		nSteps = StepDetector.CURRENT_SETP;
+		duration = DatesUtils.getInstance().formatTimes(runingTimestamp);
+		freezeDuration = DatesUtils.getInstance().formatTimes(pauseTimestamp);
+		currentAltitude = StepDetector.currentAltitude; // 获取海拔高度信息，单位米
+		if (currentAltitude >= maxAltitude) {
+			maxAltitude = currentAltitude;
+		}
+		if (currentAltitude <= minAltidue) {
+			minAltidue = currentAltitude;
+		}
+		long time = runingTimestamp / 1000;
+		if (time > 0) {
+			Speed = (distanceTraveled * 1000 / time) * 0.36;// 单位：公里每小时
+			if (Speed <= minSpeed) {
+				minSpeed = Speed;
+			}
+			if (Speed >= topSpeed) {
+				topSpeed = Speed;
+			}
+			averageSpeed = (minSpeed + topSpeed) / 2;
+		}
+
+		if (distanceTraveled >= 0.01) {
+			matchSpeedTimestamp = DatesUtils.getInstance().computeMatchspeed(runingTimestamp, distanceTraveled);
+
+			matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
+
+			if (matchSpeedTimestamp <= maxMatchSpeedTimestamp) {
+				maxMatchSpeedTimestamp = matchSpeedTimestamp;
+				maxMatchSpeed = DatesUtils.getInstance().formatMatchspeed(maxMatchSpeedTimestamp);
+			}
+			if (matchSpeedTimestamp >= minmatchSpeedTimestamp) {
+				minmatchSpeedTimestamp = matchSpeedTimestamp;
+				minmatchSpeed = DatesUtils.getInstance().formatMatchspeed(minmatchSpeedTimestamp);
+			}
+			averageMatchSpeed = DatesUtils.getInstance()
+					.formatMatchspeed((minmatchSpeedTimestamp + maxMatchSpeedTimestamp) / 2);
+		}
+		showCurrentPropertyValue();
+	}
+
+	/**
+	 * 显示属性值
+	 */
+	private void showCurrentPropertyValue() {
+		mpropertytwnList.get(0).setValue(distanceTraveled + "");
+		mpropertytwnList.get(1).setValue(duration);
+		if (sportsType.equals("run")) {
+			for (int i = 0; i < mMpropertyList.size(); i++) {
+				switch (i) {
+				case 0:
+					mMpropertyList.get(i).setValue(matchSpeed);
+					break;
+				case 1:
+					mMpropertyList.get(i).setValue(freezeDuration);
+					break;
+				case 2:
+					mMpropertyList.get(i).setValue(nSteps + "");
+					break;
+				case 3:
+					mMpropertyList.get(i).setValue(maxMatchSpeed);
+					break;
+				case 4:
+					mMpropertyList.get(i).setValue(averageMatchSpeed);
+					break;
+				case 5:
+					mMpropertyList.get(i).setValue(currentAltitude + "");
+					break;
+				default:
+					break;
+				}
+			}
+
+		} else if (sportsType.equals("riding")) {
+			for (int i = 0; i < mMpropertyList.size(); i++) {
+				switch (i) {
+				case 0:
+					mMpropertyList.get(i).setValue(matchSpeed);
+					break;
+				case 1:
+					mMpropertyList.get(i).setValue(freezeDuration);
+					break;
+				case 2:
+					mMpropertyList.get(i).setValue(maxMatchSpeed + "");
+					break;
+				case 3:
+					mMpropertyList.get(i).setValue(averageMatchSpeed);
+					break;
+				case 4:
+					mMpropertyList.get(i).setValue(currentAltitude + "");
+					break;
+				default:
+					break;
+				}
+			}
+		} else if (sportsType.equals("walk")) {
+			for (int i = 0; i < mMpropertyList.size(); i++) {
+				switch (i) {
+				case 0:
+					mMpropertyList.get(i).setValue(averageSpeed + "");
+					break;
+				case 1:
+					mMpropertyList.get(i).setValue(freezeDuration);
+					break;
+				case 2:
+					mMpropertyList.get(i).setValue(nSteps + "");
+					break;
+				case 3:
+					mMpropertyList.get(i).setValue(currentAltitude + "");
+					break;
+				default:
+					break;
+				}
+			}
+		} else if (sportsType.equals("sky")) {
+			mpropertytwnList.get(1).setValue(lopCount);
+			for (int i = 0; i < mMpropertyList.size(); i++) {
+				switch (i) {
+				case 0:
+					mMpropertyList.get(i).setValue(duration);
+					break;
+				case 1:
+					mMpropertyList.get(i).setValue(downHillDistance);
+					break;
+				case 2:
+					mMpropertyList.get(i).setValue(verticalDistance + "");
+					break;
+				case 3:
+					mMpropertyList.get(i).setValue(topSpeed + "");
+					break;
+				case 4:
+					mMpropertyList.get(i).setValue(maxSlope);
+					break;
+				case 5:
+					mMpropertyList.get(i).setValue(currentAltitude + "");
+					break;
+				default:
+					break;
+				}
+			}
+		} else {
+			for (int i = 0; i < mMpropertyList.size(); i++) {
+				switch (i) {
+				case 0:
+					mMpropertyList.get(i).setValue(Speed + "");
+					break;
+				case 1:
+					mMpropertyList.get(i).setValue(freezeDuration);
+					break;
+				case 2:
+					mMpropertyList.get(i).setValue(topSpeed + "");
+					break;
+				case 3:
+					mMpropertyList.get(i).setValue(averageSpeed + "");
+					break;
+				case 4:
+					mMpropertyList.get(i).setValue(currentAltitude + "");
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		mMainSportAdapter.setList(mMpropertyList);
+		mMainSportAdapter.notifyDataSetChanged();
+		if (mpropertytwnList != null && mpropertytwnList.size() == 2) {
+			tv_distance.setText(mpropertytwnList.get(0).getValue());
+			tv_quannum.setText(mpropertytwnList.get(1).getValue());
+		}
 	}
 
 	private void startservice() {
-		startTimestamp = System.currentTimeMillis();
 		service = new Intent(this, StepCounterService.class);
 		if (service != null) {
 			startService(service);
@@ -345,11 +574,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 * 是否开始;true为执行状态
 	 */
 	protected boolean btnStartStatus = false;
-	protected long runingTimestamp;
-	private long startTimestamp;
-	boolean firstUploadLocationstatus = true;
+
 	private Thread thread;
-	Handler handler = new Handler();
+	// Handler handler = new Handler();
 	int BEFORECURRENT_SETP = -1;
 	private BitmapDescriptor realtimeBitmap;
 
@@ -447,6 +674,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		if (null == realtimeBitmap) {
 			realtimeBitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_myposition_map);
 		}
+		getCriteria();
 	}
 
 	/**
@@ -482,6 +710,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private void initGps() {
 
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+			startActivity(intent);
+		}
 		// 绑定监听状态
 		lm.addGpsStatusListener(listener);
 		/**
@@ -593,6 +825,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							longitude_me = location.getLongitude();
 							latitude_me = location.getLatitude();
 						}
+
+						address = location.getAddrStr();
+						currentAccuracy = location.getRadius();
 						LatLng latLng = new LatLng(latitude_me, longitude_me);
 						if (btnStartStatus && btnContinueStatus) {
 							mTrackUploadFragment.isInUploadFragment = true;
@@ -612,11 +847,36 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	};
 
+	/**
+	 * 返回查询条件
+	 * 
+	 * @return
+	 */
+	private Criteria getCriteria() {
+		Criteria criteria = new Criteria();
+		// 设置定位精确度 Criteria.ACCURACY_COARSE比较粗略，Criteria.ACCURACY_FINE则比较精细
+		criteria.setAccuracy(Criteria.ACCURACY_FINE);
+		// 设置是否要求速度
+		criteria.setSpeedRequired(true);
+		// 设置是否允许运营商收费
+		criteria.setCostAllowed(false);
+		// 设置是否需要方位信息
+		criteria.setBearingRequired(true);
+		// 设置是否需要海拔信息
+		criteria.setAltitudeRequired(true);
+		// 设置对电源的需求
+		criteria.setPowerRequirement(Criteria.POWER_LOW);
+		return criteria;
+	}
+
 	private void setline(LatLng latLng) {
 		boolean sensorAva = (BEFORECURRENT_SETP != StepDetector.CURRENT_SETP) && Constans.getInstance().mSensorState;
 		if (sensorAva || !Constans.getInstance().mSensorState) {
+			if (mTrackUploadFragment.beforelatLng != latLng) {
+				recordInfo(latLng);
+			}
 			mTrackUploadFragment.showRealtimeTrack(latLng);
-			distance = mTrackUploadFragment.sum_distance;
+			getCurrentPropertyValue();
 			// if (firstUploadDate) {
 			// walking_status = STARTWALKSTAUS;
 			// uploadrunedDate();
@@ -624,23 +884,48 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	}
 
+	public List<MainLocationItemInfo> allpointList = new ArrayList<MainLocationItemInfo>();
+
+	/**
+	 * 保存坐标明细
+	 */
+	private void recordInfo(LatLng latLng) {
+		LatLng mLatLng = latLng;// 经纬度
+		double speed = Speed;// 速度
+		double altitude = currentAltitude;// 海拔
+		double accuracy = currentAccuracy;// 精度
+		long duration = runingTimestamp / 1000;// 用时
+		double distance = distanceTraveled;// 距离
+		String nStatus = "";// 运动状态
+		String nLapPoint = "";// 没圈线路中间点
+		String nLapTime = "";// 单圈用时
+		String latitudeOffset = "";// 精度偏移
+		String longitudeOffset = "";// 维度偏移
+
+		MainLocationItemInfo mMainLocationItemInfo = new MainLocationItemInfo(mLatLng, speed, altitude, accuracy,
+				nStatus, nLapPoint, nLapTime, duration, distance, latitudeOffset, longitudeOffset);
+		allpointList.add(mMainLocationItemInfo);
+		mMainLocationItemInfo = null;
+	}
+
 	private void showLocation(LatLng latLng) {
 		try {
-			//显示系统logo
-//			MyLocationData locData = new MyLocationData.Builder()
-//					// 此处设置开发者获取到的方向信息，顺时针0-360
-//					.direction(0).latitude(latitude_me).longitude(longitude_me).build();
-//			mBaiduMap.setMyLocationData(locData);
-			
+			// 显示系统logo
+			// MyLocationData locData = new MyLocationData.Builder()
+			// // 此处设置开发者获取到的方向信息，顺时针0-360
+			// .direction(0).latitude(latitude_me).longitude(longitude_me).build();
+			// mBaiduMap.setMyLocationData(locData);
+
 			/**
 			 * 替换定位logo
 			 */
 			if (null != mTrackUploadFragment.overlay) {
-				 mTrackUploadFragment.overlay.remove();
+				mTrackUploadFragment.overlay.remove();
 			}
-			MarkerOptions overlayOptions = new MarkerOptions().position(latLng).icon(realtimeBitmap).zIndex(8).draggable(true);
+			MarkerOptions overlayOptions = new MarkerOptions().position(latLng).icon(realtimeBitmap).zIndex(8)
+					.draggable(true);
 			if (null != overlayOptions) {
-				 mTrackUploadFragment.overlay = mBaiduMap.addOverlay(overlayOptions);
+				mTrackUploadFragment.overlay = mBaiduMap.addOverlay(overlayOptions);
 			}
 			moveToCenter();
 			initMyLocationUsers(latLng);
@@ -654,6 +939,24 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 * @param latLng
 	 */
 	protected void initMyLocationUsers(final LatLng latLng) {
+		/**
+		 * 每十分钟上传一次数据
+		 */
+		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (5 * 60 * 1000) == 0)) {
+			firstUploadLocationstatus = false;
+			getVenuesUsers();
+			Message message = new Message();
+			message.what = UPDATELOCATION;
+			message.obj = latLng;
+			mHandler.sendMessage(message);
+			message = null;
+		}
+	}
+
+	/**
+	 * 开始计时
+	 */
+	private void initTimer() {
 		if (thread == null) {
 			thread = new Thread() {
 				@Override
@@ -665,22 +968,12 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
-						Message msg = new Message();
-						runingTimestamp = System.currentTimeMillis() - startTimestamp;
-						/**
-						 * 每十分钟上传一次数据
-						 */
-						if (firstUploadLocationstatus || (runingTimestamp % (5 * 60 * 1000) == 0)) {
-							firstUploadLocationstatus = false;
-							startTimestamp = runingTimestamp;
-							getVenuesUsers();
-							Message message = new Message();
-							message.what = UPDATELOCATION;
-							message.obj = latLng;
-							mHandler.sendMessage(message);
-							message = null;
+						if (btnStartStatus && btnContinueStatus) {
+							runingTimestamp = System.currentTimeMillis() - startTimestamp - pauseTimestamp;
+							Message msg = new Message();
+							msg.what = UPDATETIME;
+							mHandler.sendMessage(msg);// 通知主线程
 						}
-						handler.sendMessage(msg);// 通知主线程
 					}
 				}
 			};
@@ -707,7 +1000,15 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				LatLng sourceLatLng = converter.convert();
 				longitude_me = sourceLatLng.longitude;
 				latitude_me = sourceLatLng.latitude;
-
+				currentAltitude = location.getAltitude(); // 获取海拔高度信息，单位米
+				currentAccuracy = location.getAccuracy();
+				if (currentAltitude >= maxAltitude) {
+					maxAltitude = currentAltitude;
+				}
+				if (currentAltitude <= minAltidue) {
+					minAltidue = currentAltitude;
+				}
+				address = location.getProvider();
 				if (btnStartStatus && btnContinueStatus) {
 					setline(sourceLatLng);
 				} else {
@@ -753,7 +1054,115 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 
 	};
+
+	private String setRecordInfoArrayToJson() {
+		JSONArray recordInfoArray = new JSONArray();
+		JSONObject recordDatas = new JSONObject();
+		String recordInfo = "";
+		try {
+			recordDatas.put("user_id", uid);
+			recordDatas.put("posid", "" + posid);
+			recordDatas.put("distanceTraveled", "" + distanceTraveled);
+			recordDatas.put("duration", "" + (runingTimestamp / 1000));
+			recordDatas.put("verticalDistance", "" + verticalDistance);
+			recordDatas.put("topSpeed", "" + topSpeed);
+
+			recordDatas.put("dropTraveled", "" + dropTraveled);
+			recordDatas.put("nSteps", "" + nSteps);
+			recordDatas.put("matchSpeed", "" + matchSpeed);
+			recordDatas.put("maxMatchSpeed", "" + maxMatchSpeed);
+			recordDatas.put("maxSlope", "" + maxSlope);
+			recordDatas.put("maxAltitude", "" + maxAltitude);
+			recordDatas.put("currentAltitude", "" + currentAltitude);
+			recordDatas.put("averageMatchSpeed", "" + averageMatchSpeed);
+			recordDatas.put("averageSpeed", "" + averageSpeed);
+			recordDatas.put("freezeDuration", "" + pauseTimestamp / 1000);
+			recordDatas.put("maxHoverDuration", "" + maxHoverDuration);
+			recordDatas.put("totalHoverDuration", "" + totalHoverDuration);
+			recordDatas.put("hopCount", "" + hopCount);
+			recordDatas.put("lopCount", "" + lopCount);
+			recordDatas.put("wrestlingCount", "" + wrestlingCount);
+			recordDatas.put("cableCarQueuingDuration", "" + cableCarQueuingDuration);
+			recordDatas.put("address", "" + address);
+			recordDatas.put("minAltidue", "" + minAltidue);
+			recordDatas.put("calorie", "" + calorie);
+			recordDatas.put("sportsType", "" + sportsType);
+			recordDatas.put("latitudeOffset", "" + latitudeOffset);
+			recordDatas.put("longitudeOffset", "" + longitudeOffset);
+			recordDatas.put("upHillDistance", "" + upHillDistance);
+			recordDatas.put("downHillDistance", "" + downHillDistance);
+
+			recordDatas.put("recordInfo", recordInfo);
+			try {
+				if (allpointList != null && allpointList.size() > 0) {
+					int length = allpointList.size();
+					double lat;
+					double lon;
+					for (int i = 0; i < length; i++) {
+						LatLng latLng = allpointList.get(i).getmLatLng();
+						lat = latLng.latitude;
+						lon = latLng.longitude;
+						if (latLng != null) {
+							JSONObject latObject = new JSONObject();
+							latObject.put("latitude", lat);
+							latObject.put("longitude", lon);
+
+							latObject.put("speed", "" + allpointList.get(i).getSpeed());
+							latObject.put("altitude", "" + allpointList.get(i).getAltitude());
+							latObject.put("accuracy", "" + allpointList.get(i).getAccuracy());
+							latObject.put("nStatus", "" + allpointList.get(i).getnStatus());
+							latObject.put("nLapPoint", "" + allpointList.get(i).getnLapPoint());
+							latObject.put("nLapTime", "" + allpointList.get(i).getnLapTime());
+							latObject.put("duration", "" + allpointList.get(i).getDuration());
+							latObject.put("distance", "" + allpointList.get(i).getDistance());
+							latObject.put("latitudeOffset", "" + allpointList.get(i).getLatitudeOffset());
+							latObject.put("longitudeOffset", "" + allpointList.get(i).getLongitudeOffset());
+							recordInfoArray.put(latObject);
+						}
+					}
+				}
+				recordInfo = recordInfoArray.toString();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+			recordDatas.put("recordInfo", recordInfo);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return recordDatas.toString();
+
+	}
+
+	/**
+	 * 上传轨迹
+	 */
+	private void loadRecordDates() {
+		mhashmap = new HashMap<String, String>();
+		mhashmap.put("uid", uid);
+		mhashmap.put("token", token);
+		mhashmap.put("access_token", access_token);
+		mhashmap.put("recordDatas", "" + setRecordInfoArrayToJson());
+		Log.e("map", "------------loadRecordDates------------" + mhashmap);
+		new RecordDatesloadBusiness(this, mhashmap, new GetRecordDatesloadCallback() {
+			@Override
+			public void afterDataGet(HashMap<String, Object> dataMap) {
+
+				if (dataMap != null) {
+					String status = (String) dataMap.get("status");
+					String msg = (String) dataMap.get("msg");
+					CommonUtils.getInstance().initToast(mHomeActivity, msg);
+				}
+				initStartView();
+				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
+
+			}
+		});
+
+	}
+
 	private final int UPDATELOCATION = 1;
+	private final int UPDATETIME = 2;
 	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -762,6 +1171,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				double longitude_me = mypoint.longitude;
 				double latitude_me = mypoint.latitude;
 				updateLocation(longitude_me, latitude_me);
+				break;
+			case UPDATETIME:
+				getCurrentPropertyValue();
 				break;
 			}
 		}
@@ -929,11 +1341,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	@Override
 	protected void onDestroy() {
 		try {
-			handler.removeCallbacks(thread);
+			mHandler.removeCallbacks(thread);
 			if (mTrackUploadFragment != null) {
 				mTrackUploadFragment.stopTrace();
-				mTrackUploadFragment.uploadpointList.clear();
-				mTrackUploadFragment.allpointList.clear();
+				mTrackUploadFragment.showpointList.clear();
+				allpointList.clear();
 			}
 			if (lm != null && gpslocationListener != null) {
 				lm.removeUpdates(gpslocationListener);
@@ -960,17 +1372,20 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		super.onDestroy();
 	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		try {
 			if (resultCode == 1) {
 				sportindex = data.getIntExtra("sportindex", 0);
 				setSportPropertyList(sportindex);
+				getCurrentPropertyValue();
 			}
 		} catch (Exception e) {
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
+
 	/**
 	 * 退出监听
 	 */

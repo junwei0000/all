@@ -25,6 +25,14 @@ public class MainPropertyAdapter extends BaseAdapter {
 		this.list = list;
 	}
 
+	public ArrayList<MainSportInfo> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<MainSportInfo> list) {
+		this.list = list;
+	}
+
 	@Override
 	public int getCount() {
 		return list.size();

@@ -37,6 +37,7 @@ public class Constans {
 	public static final String VENUESRANKALL = WEB_ROOT + "/position/distance/total";// 获取场地总排行。
 
 	public static final String RECORDLIST = WEB_ROOT + "/record/user";// 用户的轨迹列表。
+	public static final String RECORDLOAD = WEB_ROOT + "/record/upStream";// 用户的轨迹上传。
 	/**
 	 * ******************************************************************
 	 * 常量属性定义**********************************************************

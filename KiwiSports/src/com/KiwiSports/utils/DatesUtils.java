@@ -417,7 +417,71 @@ public class DatesUtils {
 		}
 		return day;
 	}
+	/**
+	 * 获取配速
+	 * @param time
+	 * @param distance
+	 */
+	public String formatMatchspeed(long totalSec) {
+		long second = totalSec % 60;
+		long minute = (totalSec % 3600) / 60;
+		long hour = totalSec / 3600;
+		// 秒显示两位
+		String strSecond = ("00" + second).substring(("00" + second).length() - 2);
+		// 分显示两位
+		String strMinute = ("00" + minute).substring(("00" + minute).length() - 2);
+		// 时显示两位
+		String strHour = ("00" + hour).substring(("00" + hour).length() - 2);
+		String speed;
+		if (strHour.equals("00")) {
+			speed = strMinute + "'" + strSecond + "\"";
+		} else {
+			speed = "--";
+		}
+		return speed;
 
+	}
+	/**
+	 * 计算 最大   平均 配速值
+	 * @param time
+	 * @param distance
+	 * @return
+	 */
+	public long computeMatchspeed(long time,double distance) {
+		time = time / 1000;
+		long second_ = time % 60;
+		long minute_ = (time % 3600) / 60;
+		long hour_ = time / 3600;
+		long totalsecond = hour_ * 3600 + minute_ * 60 + second_;
+		long totalSec = (long) (totalsecond / distance);
+		return totalSec;
+
+	}
+	/**
+	 * 得到一个格式化的时间
+	 * 
+	 * @param time
+	 *            时间 毫秒
+	 * @return 时：分：秒：毫秒
+	 */
+	public String formatTimes(long time) {
+		time = time / 1000;
+		long second = time % 60;
+		long minute = (time % 3600) / 60;
+		long hour = time / 3600;
+
+		// 毫秒秒显示两位
+		// String strMillisecond = "" + (millisecond / 10);
+		// 秒显示两位
+		String strSecond = ("00" + second).substring(("00" + second).length() - 2);
+		// 分显示两位
+		String strMinute = ("00" + minute).substring(("00" + minute).length() - 2);
+		// 时显示两位
+		String strHour = ("00" + hour).substring(("00" + hour).length() - 2);
+
+		return strHour + ":" + strMinute + ":" + strSecond;
+		// + strMillisecond;
+	}
 	/**
 	 * 将日期转为--时间戳
 	 * 

@@ -1,5 +1,6 @@
 package com.KiwiSports.control.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -7,11 +8,11 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.KiwiSports.utils.Constans;
-
 
 /**
  * 
@@ -57,7 +58,7 @@ public class StepDetector implements SensorEventListener {
 
 	Context context;
 	public static int CURRENT_SETP = 0;
-
+	public static double currentAltitude= 0;
 	public StepDetector(Context context) {
 		super();
 		this.context = context;
@@ -66,9 +67,18 @@ public class StepDetector implements SensorEventListener {
 	/*
 	 * 注册了G-Sensor后一只会调用这个函数 对三轴数据进行平方和开根号的处理 调用DetectorNewStep检测步子
 	 */
+	@SuppressLint("NewApi")
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		Constans.getInstance().mSensorState=true;
+		Constans.getInstance().mSensorState = true;
+		float sPV = event.values[0];
+		DecimalFormat df = new DecimalFormat("0.00");
+		df.getRoundingMode();
+		/**
+		 *  计算海拔
+		 */
+		currentAltitude = 44330000
+				* (1 - (Math.pow((Double.parseDouble(df.format(sPV)) / 1013.25), (float) 1.0 / 5255.0)));
 		for (int i = 0; i < 3; i++) {
 			oriValues[i] = event.values[i];
 		}
