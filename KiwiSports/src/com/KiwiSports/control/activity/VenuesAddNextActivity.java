@@ -56,7 +56,7 @@ public class VenuesAddNextActivity extends BaseActivity {
 			if (!TextUtils.isEmpty(field_name)) {
 				processUpdateInfo();
 			} else {
-				CommonUtils.getInstance().initToast(context, "请输入场地名称");
+				CommonUtils.getInstance().initToast(context, getString(R.string.venues_add_nametishi));
 			}
 			break;
 		default:
@@ -85,8 +85,7 @@ public class VenuesAddNextActivity extends BaseActivity {
 	protected void setListener() {
 		pagetop_layout_back.setOnClickListener(this);
 		tv_next.setOnClickListener(this);
-		pagetop_tv_name.setText("场地");
-		tv_next.setText("提交");
+		pagetop_tv_name.setText(getString(R.string.venues_title));
 	}
 
 	@SuppressLint("NewApi")

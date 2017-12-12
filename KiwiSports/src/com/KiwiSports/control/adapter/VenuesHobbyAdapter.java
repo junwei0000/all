@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.KiwiSports.R;
 import com.KiwiSports.model.HobbyInfo;
 import com.KiwiSports.model.VenuesListInfo;
+import com.KiwiSports.utils.LanguageUtil;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -66,7 +67,9 @@ public class VenuesHobbyAdapter extends BaseAdapter {
 		}
 		String Ehobby = stadiumObj.getEhobby();
 		String zhobby = stadiumObj.getZhobby();
-		// 默认价格
+		if(!LanguageUtil.idChLanguage(context)){
+			zhobby = Ehobby;
+		} 
 		viewHolder.useraccount_sex_tv_famale.setText(zhobby);
 		if (selecthobby.contains(Ehobby)) {
 			viewHolder.useraccount_sex_iv_famale.setVisibility(View.VISIBLE);

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:paddingLeft="26dp"
-            android:text="分享到"
+            android:text="@string/umeng_socialize_text_to_share"
             android:textColor="#84898f"
             android:textSize="16sp" />
 

@@ -23,6 +23,7 @@ import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.Constans;
 import com.KiwiSports.utils.ImageLoader;
+import com.KiwiSports.utils.LanguageUtil;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -135,7 +136,7 @@ public class UserAccountActivity extends BaseActivity {
 
 	@Override
 	protected void processLogic() {
-		pagetop_tv_name.setText("个人资料");
+		pagetop_tv_name.setText(getString(R.string.user_account_title));
 		getInfo();
 	}
 
@@ -179,9 +180,8 @@ public class UserAccountActivity extends BaseActivity {
 		hobby = bestDoInfoSharedPrefs.getString("hobby", "");
 		useraccount_tv_nickname.setText(nick_name);
 		if (sex == Constans.getInstance().SEX_MALE) {
-			useraccount_tv_sex.setText("男");
+			useraccount_tv_sex.setText(getString(R.string.useraccount_sex_tv_male));
 		} else {
-			useraccount_tv_sex.setText("女");
 		}
 		if (!TextUtils.isEmpty(album_url)) {
 			ImageLoader asyncImageLoader = new ImageLoader(context, "headImg");
@@ -189,7 +189,12 @@ public class UserAccountActivity extends BaseActivity {
 		} else {
 			useraccount_iv_avatar.setBackgroundResource(R.drawable.user_default_icon);
 		}
-		getHobby();
+		if (!LanguageUtil.idChLanguage(context)) {
+			useraccount_tv_sporttype.setText(hobby);
+		} else {
+			getHobby();
+
+		}
 	}
 
 	protected void getHobby() {
@@ -478,7 +483,7 @@ public class UserAccountActivity extends BaseActivity {
 				tempFile = new File(Environment.getExternalStorageDirectory(), file_name);
 				crop(Uri.fromFile(tempFile));
 			} else {
-				Toast.makeText(this, "未找到存储卡，无法存储照片！", 0).show();
+				// Toast.makeText(this, "未找到存储卡，无法存储照片！", 0).show();
 			}
 
 		} else if (requestCode == RESULTCROP && resultCode == Activity.RESULT_OK) {

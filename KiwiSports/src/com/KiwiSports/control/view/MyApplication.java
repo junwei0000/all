@@ -1,6 +1,7 @@
 package com.KiwiSports.control.view;
 
 import java.io.File;
+import java.util.Locale;
 
 import com.KiwiSports.utils.LanguageUtil;
 import com.KiwiSports.utils.volley.RequestUtils;
@@ -14,7 +15,10 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import android.app.Application;
+import android.content.res.Configuration;
 import android.os.Environment;
+import android.util.DisplayMetrics;
+import android.util.Log;
 
 public class MyApplication extends Application {
 	private static MyApplication mInstance = null;
@@ -39,7 +43,7 @@ public class MyApplication extends Application {
 	}
 
 	private void setLanguage() {
-		LanguageUtil.set(false, mInstance);
+		LanguageUtil.set( mInstance);
 	}
 
 	/**
@@ -66,7 +70,7 @@ public class MyApplication extends Application {
 
 	private void initImageLoad() {
 		// 配置ImageLoad
-		File cacheDir = new File(Environment.getExternalStorageDirectory() + "/kiwisports/" + "image/");
+		File cacheDir = new File(Environment.getExternalStorageDirectory() + "/kiwi/" + "image/");
 		if (!cacheDir.exists()) {
 			cacheDir.mkdirs();
 		}

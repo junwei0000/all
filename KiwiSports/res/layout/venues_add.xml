@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="左上角"
+                android:text="@string/venues_add_left"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="右下角"
+                android:text="@string/venues_add_right"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="场地类型"
+                android:text="@string/venues_add_type"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -180,7 +180,7 @@
                 android:layout_gravity="bottom"
                 android:background="@color/main_tab_page_bg"
                 android:gravity="center"
-                android:text="下一步"
+                android:text="@string/next"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_contents_size" />
         </LinearLayout>

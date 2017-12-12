@@ -43,7 +43,7 @@ public class UserAccountUpdateActivity extends BaseActivity {
 			if (!TextUtils.isEmpty(et_text)) {
 				processUpdateInfo(et_text);
 			} else {
-				CommonUtils.getInstance().initToast(context, "请输入昵称");
+				CommonUtils.getInstance().initToast(context, getString(R.string.user_account_etnick));
 			}
 			break;
 		default:
@@ -83,9 +83,9 @@ public class UserAccountUpdateActivity extends BaseActivity {
 		token = getIntent().getStringExtra("token");
 		access_token = getIntent().getStringExtra("access_token");
 		pagetop_tv_you.setVisibility(View.VISIBLE);
-		pagetop_tv_you.setText("保存");
+		pagetop_tv_you.setText(getString(R.string.save));
 		pagetop_tv_you.setTextColor(getResources().getColor(R.color.text_click_color));
-		pagetop_tv_name.setText("昵称");
+		pagetop_tv_name.setText(getString(R.string.useraccount_nickname));
 		useraccountupdate_et_phone.setText(nick_name);
 	}
 

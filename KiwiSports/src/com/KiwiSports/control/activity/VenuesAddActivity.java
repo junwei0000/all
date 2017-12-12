@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.KiwiSports.R;
 import com.KiwiSports.utils.CommonUtils;
+import com.KiwiSports.utils.LanguageUtil;
 import com.KiwiSports.utils.ScreenShareUtil;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -75,10 +76,12 @@ public class VenuesAddActivity extends BaseActivity
 			CommonUtils.getInstance().setPageIntentAnim(intent, this);
 			break;
 		case R.id.tv_next:
-			if (!TextUtils.isEmpty(sportsType)) {
+			if (lefttopLatLng!=null&&!TextUtils.isEmpty(sportsType)) {
 				mBaiduMap.snapshot(callback);
+			}else if (lefttopLatLng==null) {
+				CommonUtils.getInstance().initToast(context,getString(R.string.venues_add_locattishi));
 			} else {
-				CommonUtils.getInstance().initToast(context, "请选择场地类型");
+				CommonUtils.getInstance().initToast(context,getString(R.string.venues_add_typetishi));
 			}
 			break;
 		default:
@@ -111,7 +114,7 @@ public class VenuesAddActivity extends BaseActivity
 		pagetop_layout_back.setOnClickListener(this);
 		relay_sporttype.setOnClickListener(this);
 		tv_next.setOnClickListener(this);
-		pagetop_tv_name.setText("场地");
+		pagetop_tv_name.setText(getString(R.string.venues_title));
 	}
 
 	@Override
@@ -448,6 +451,9 @@ public class VenuesAddActivity extends BaseActivity
 				sportsTypeName = data.getStringExtra("sportsTypeName");
 				sportsType = data.getStringExtra("sportsType");
 				tv_sporttype.setText(sportsTypeName);
+				if(!LanguageUtil.idChLanguage(context)){
+					tv_sporttype.setText(sportsType);
+				} 
 			}
 		} catch (Exception e) {
 		}

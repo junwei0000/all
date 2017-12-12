@@ -112,7 +112,7 @@ public class UpdateService extends Service {
 						if (!rootFile.exists() && !rootFile.isDirectory())
 							rootFile.mkdir();
 						tempFile = new File(Environment.getExternalStorageDirectory(),
-								"/pinke/" + url.substring(url.lastIndexOf("/") + 1));
+								"/kiwi/" + url.substring(url.lastIndexOf("/") + 1));
 						if (tempFile.exists())
 							tempFile.delete();
 						tempFile.createNewFile();
@@ -211,7 +211,7 @@ public class UpdateService extends Service {
 				case 3:
 
 					// 更新状态栏上的下载进度信息
-					views.setTextViewText(R.id.tvProcess, "已下载" + download_precent + "%");
+					views.setTextViewText(R.id.tvProcess, "" + download_precent + "%");
 					views.setProgressBar(R.id.pbDownload, 100, download_precent, false);
 					notification.contentView = views;
 					nm.notify(notificationId, notification);

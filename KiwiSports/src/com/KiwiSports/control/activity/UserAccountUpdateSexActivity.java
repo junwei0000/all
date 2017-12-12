@@ -92,7 +92,7 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 		token = getIntent().getStringExtra("token");
 		access_token = getIntent().getStringExtra("access_token");
 		sex = getIntent().getIntExtra("sex", 1);
-		pagetop_tv_name.setText("性别");
+		pagetop_tv_name.setText(getString(R.string.useraccount_sex));
 		changeCheck();
 	}
 

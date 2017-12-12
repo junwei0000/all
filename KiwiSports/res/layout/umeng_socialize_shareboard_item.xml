@@ -21,7 +21,7 @@
 	    android:layout_centerHorizontal="true"
 	    android:layout_marginLeft="2dp"
 	    android:layout_marginRight="2dp"
-	    android:text="QQ空间"
+	    android:text="@string/umeng_socialize_text_qq_zone_key"
 	    android:singleLine="true"
 	    android:textSize="11sp"
 	    android:gravity="center"/>

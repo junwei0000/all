@@ -6,6 +6,7 @@ import com.KiwiSports.R;
 import com.KiwiSports.model.HobbyInfo;
 import com.KiwiSports.model.MainSportInfo;
 import com.KiwiSports.model.VenuesListInfo;
+import com.KiwiSports.utils.LanguageUtil;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -66,6 +67,9 @@ public class MainSportAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		String Ehobby = stadiumObj.getCname();
+		if(!LanguageUtil.idChLanguage(context)){
+			Ehobby = stadiumObj.getEname();
+		} 
 		viewHolder.useraccount_sex_tv_famale.setText(Ehobby);
 		if (sportindex == position) {
 			viewHolder.useraccount_sex_iv_famale.setVisibility(View.VISIBLE);

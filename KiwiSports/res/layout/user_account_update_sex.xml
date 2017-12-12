@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="男"
+                    android:text="@string/useraccount_sex_tv_male"
                     android:textColor="@color/text_contents_color"
                     android:textSize="@dimen/text_contents_size" />
 
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="女"
+                    android:text="@string/useraccount_sex_tv_famale"
                     android:textColor="@color/text_contents_color"
                     android:textSize="@dimen/text_contents_size" />
 

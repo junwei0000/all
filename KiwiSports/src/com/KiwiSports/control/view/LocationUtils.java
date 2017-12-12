@@ -81,9 +81,6 @@ public class LocationUtils {
 			} catch (Exception e) {
 			}
 			LatLng mypoint = new LatLng(latitude_me, longitude_me);
-			if (TextUtils.isEmpty(cityString)) {
-				cityString = "北京";
-			}
 			Message message = new Message();
 			message.what = mHandlerId;
 			message.obj = mypoint;

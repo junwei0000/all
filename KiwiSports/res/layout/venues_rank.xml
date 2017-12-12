@@ -48,7 +48,7 @@
                     android:layout_height="fill_parent"
                     android:gravity="center"
                     android:paddingLeft="40dp"
-                    android:text="今天"
+                    android:text="@string/venues_rank_today"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_contents_size" />
 
@@ -73,7 +73,7 @@
                     android:layout_height="fill_parent"
                     android:gravity="center"
                     android:paddingRight="40dp"
-                    android:text="总榜"
+                    android:text="@string/venues_rank_all"
                     android:textColor="@color/white_light"
                     android:textSize="@dimen/text_contents_size" />
 

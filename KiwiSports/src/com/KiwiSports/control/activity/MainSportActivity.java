@@ -59,7 +59,7 @@ public class MainSportActivity extends BaseActivity {
 	protected void findViewById() {
 		pagetop_layout_back = (LinearLayout) findViewById(R.id.pagetop_layout_back);
 		TextView pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
-		pagetop_tv_name.setText("运动类型");
+		pagetop_tv_name.setText(getString(R.string.sporttype));
 		mListView = (ListView) findViewById(R.id.list_date);
 
 	}

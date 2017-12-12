@@ -5,15 +5,6 @@
     android:background="@drawable/list_selector"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/line"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/padd_leftright" >
-
-        <include layout="@layout/line" />
-    </LinearLayout>
-
     <RelativeLayout
         style="@style/padd_lefgtright"
         android:layout_width="match_parent"
@@ -34,7 +25,6 @@
                 android:layout_toLeftOf="@+id/listitem_iv_arrow"
                 android:gravity="center_vertical"
                 android:singleLine="true"
-                android:text="复健科大恒科技当升科技"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -56,9 +46,9 @@
                 <TextView
                     android:id="@+id/listitem_tv_dian"
                     android:layout_width="4dp"
-                    android:layout_height="4dp" 
+                    android:layout_height="4dp"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/corners_circular_red"/>
+                    android:background="@drawable/corners_circular_red" />
 
                 <TextView
                     android:id="@+id/listitem_tv_status"
@@ -71,5 +61,14 @@
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/padd_leftright" >
+
+        <include layout="@layout/line" />
+    </LinearLayout>
 
 </LinearLayout>

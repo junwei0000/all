@@ -84,6 +84,17 @@ public class CommonUtils {
 	}
 
 	/**
+	 * 获取Stirng值
+	 * @param content
+	 * @param stringId
+	 * @return
+	 */
+	public String getString(Activity content, int stringId) {
+		return content.getString(stringId);
+
+	}
+
+	/**
 	 * 自定义退出应用提示
 	 * 
 	 * @param content
@@ -103,7 +114,7 @@ public class CommonUtils {
 		final String cancel = Constans.getInstance().cancel;
 
 		if (btnClickEvent.equals(cancel)) {
-			myexit_text_title.setText("确认注销当前用户吗？");
+			myexit_text_title.setText(getString(content, R.string.myexit_cancel_title));
 		}
 
 		text_off.setOnClickListener(new View.OnClickListener() {
@@ -567,6 +578,7 @@ public class CommonUtils {
 		return output;
 
 	}
+
 	/**
 	 * 设置字体样式
 	 * 

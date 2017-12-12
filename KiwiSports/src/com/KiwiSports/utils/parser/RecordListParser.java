@@ -35,7 +35,6 @@ public class RecordListParser extends BaseParser<Object> {
 				int count = jsonOb.optInt("count", 0);
 				mHashMap.put("count", count);
 				JSONArray listarray = jsonOb.optJSONArray("records");
-				ArrayList<RecordInfo> mlist = new ArrayList<RecordInfo>();
 				for (int i = 0; i < listarray.length(); i++) {
 					JSONObject listOb = listarray.optJSONObject(i);
 					String record_id = listOb.optString("record_id", "");

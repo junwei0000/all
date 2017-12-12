@@ -135,7 +135,6 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="2dp"
                         android:paddingRight="2dp"
-                        android:text="滑行距离"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_zhu_size" />
 
@@ -172,7 +171,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="2dp"
-                        android:text="圈"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_contents_size" />
                 </LinearLayout>
@@ -194,7 +192,6 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="2dp"
                         android:paddingRight="2dp"
-                        android:text="趟数"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_zhu_size" />
 

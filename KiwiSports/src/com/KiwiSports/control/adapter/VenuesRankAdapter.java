@@ -6,6 +6,7 @@ import com.KiwiSports.R;
 import com.KiwiSports.model.VenuesListInfo;
 import com.KiwiSports.model.VenuesRankTodayInfo;
 import com.KiwiSports.utils.CircleImageView;
+import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ImageLoader;
 import com.KiwiSports.utils.PriceUtils;
 
@@ -75,7 +76,7 @@ public class VenuesRankAdapter extends BaseAdapter {
 		viewHolder.rankitem_tv_num.setText(num);
 		viewHolder.rankitem_tv_distance.setText(diatance + "km");
 		if (position == 0) {
-			viewHolder.rankitem_tv_name.setText("我");
+			viewHolder.rankitem_tv_name.setText(CommonUtils.getInstance().getString(context, R.string.venues_rank_mi));
 			viewHolder.line.setVisibility(View.VISIBLE);
 		} else {
 			viewHolder.rankitem_tv_name.setText(name);

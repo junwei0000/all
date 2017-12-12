@@ -29,7 +29,7 @@ public class FileCache {
 		// 如果有SD卡则在SD卡中建一个LazyList的目录存放缓存的图片
 		// 没有SD卡就放在系统的缓存目录中
 		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-			cacheDir = new File(android.os.Environment.getExternalStorageDirectory(), "bestdo");
+			cacheDir = new File(android.os.Environment.getExternalStorageDirectory(), "kiwi");
 		} else {
 			cacheDir = context.getCacheDir();
 		}

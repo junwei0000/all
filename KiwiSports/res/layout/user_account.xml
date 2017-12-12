@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="头像"
+                android:text="@string/useraccount_ablum_tilte"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="昵称"
+                android:text="@string/useraccount_nickname"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -123,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="性别"
+                android:text="@string/useraccount_sex"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:text="运动偏好"
+                android:text="@string/useraccount_sporttype"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 

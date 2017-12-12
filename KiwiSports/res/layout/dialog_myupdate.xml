@@ -14,11 +14,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:layout_marginRight="@dimen/padd_leftright"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginLeft="@dimen/padd_leftright"
-           android:layout_marginRight="@dimen/padd_leftright"
-            android:text="APP不为最新版本，是否进行更新？"
+            android:text="@string/dialog_update_title"
             android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_pagetop_size" />
 

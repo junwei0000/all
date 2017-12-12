@@ -13,23 +13,24 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:orientation="vertical" >
-          <com.KiwiSports.utils.PullDownListView
-                android:id="@+id/refreshable_view"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
 
-                <ListView
-                    android:id="@+id/list_date"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:cacheColorHint="@color/white"
-                    android:divider="@null"
-                    android:fadeScrollbars="true"
-                    android:fadingEdge="none"
-                    android:listSelector="@drawable/list_notselector"
-                    android:overScrollMode="never"
-                    android:scrollbars="none" />
-            </com.KiwiSports.utils.PullDownListView>
+        <com.KiwiSports.utils.PullDownListView
+            android:id="@+id/refreshable_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ListView
+                android:id="@+id/list_date"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="@color/white"
+                android:divider="@null"
+                android:fadeScrollbars="true"
+                android:fadingEdge="none"
+                android:listSelector="@drawable/list_notselector"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+        </com.KiwiSports.utils.PullDownListView>
     </LinearLayout>
 
 </LinearLayout>

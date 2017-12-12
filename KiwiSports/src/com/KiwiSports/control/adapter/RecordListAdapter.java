@@ -63,7 +63,8 @@ public class RecordListAdapter extends BaseAdapter {
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		 
+		
+		
 		return convertView;
 	}
 

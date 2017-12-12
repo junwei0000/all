@@ -34,7 +34,7 @@
                 android:layout_marginLeft="20dp"
                 android:button="@drawable/umeng_socialize_follow_check"
                 android:paddingLeft="25dp"
-                android:text="关注官方微博"
+                android:text="@string/umeng_socialize_care"
                 android:textColor="@color/umeng_socialize_text_share_content"
                 android:textSize="13sp"
                 android:checked="true" />

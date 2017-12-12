@@ -51,7 +51,6 @@
                     android:gravity="center_vertical"
                     android:paddingRight="5dp"
                     android:singleLine="true"
-                    android:text="1111"
                     android:textColor="@color/text_contents_color"
                     android:textSize="@dimen/text_contents_size" />
 
@@ -62,7 +61,6 @@
                     android:layout_weight="2"
                     android:gravity="right|center_vertical"
                     android:singleLine="true"
-                    android:text="1111"
                     android:textColor="@color/text_contents_color"
                     android:textSize="@dimen/text_contents_size" />
             </LinearLayout>

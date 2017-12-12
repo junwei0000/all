@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="女"
             android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_contents_size" />
 

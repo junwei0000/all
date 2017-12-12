@@ -22,7 +22,7 @@
                 android:id="@+id/myexit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="下线通知"
+                android:text="@string/dialog_logout_title"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="您的账号已在其他设备登录"
+                android:text="@string/dialog_logout_cirt"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_contents_size" />
         </LinearLayout>
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="退出"
+                android:text="@string/myexit_text_off"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -69,7 +69,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center"
-                android:text="重新登录"
+                android:text="@string/myexit_text_sure"
                 android:textColor="@color/ching"
                 android:textSize="@dimen/text_contents_size" />
         </LinearLayout>

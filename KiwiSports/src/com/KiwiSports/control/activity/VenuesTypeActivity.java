@@ -60,7 +60,7 @@ public class VenuesTypeActivity extends BaseActivity {
 	protected void findViewById() {
 		pagetop_layout_back = (LinearLayout) findViewById(R.id.pagetop_layout_back);
 		TextView pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
-		pagetop_tv_name.setText("场地类型");
+		pagetop_tv_name.setText(getString(R.string.venues_add_type));
 		mListView = (ListView) findViewById(R.id.list_date);
 
 	}

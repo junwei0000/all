@@ -51,7 +51,7 @@ public class UserLoginActivity extends BaseActivity {
 
 		case R.id.wxlogin:
 			if (!wxHandler.isClientInstalled()) {
-				CommonUtils.getInstance().initToast(context, "您还没有安装微信客户端");
+				CommonUtils.getInstance().initToast(context, getString(R.string.wxlogin_tishi));
 			} else {
 				login(SHARE_MEDIA.WEIXIN);
 			}
@@ -190,10 +190,10 @@ public class UserLoginActivity extends BaseActivity {
 						sex = (Integer) info.get("sex");
 						openid = (String) info.get("openid");
 						if (TextUtils.isEmpty(province)) {
-							province = "北京";
+							province = getString(R.string.beijing);
 						}
 						if (TextUtils.isEmpty(city)) {
-							city = "北京";
+							city = getString(R.string.beijing);
 						}
 					}
 					loginUMeng();
@@ -206,7 +206,7 @@ public class UserLoginActivity extends BaseActivity {
 	}
 
 	private void showLoginFailureInfo() {
-		CommonUtils.getInstance().initToast(context, "登录失败，请重新登录");
+		CommonUtils.getInstance().initToast(context,getString(R.string.wxlogin_tishifali));
 		CommonUtils.getInstance().setOnDismissDialog(mDialog);
 	}
 

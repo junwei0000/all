@@ -50,12 +50,6 @@ import com.baidu.trace.OnStopTraceListener;
 @SuppressLint("NewApi")
 public class TrackUploadFragment extends Fragment {
 
-	private Button btnStartTrace = null;
-
-	private Button btnStopTrace = null;
-
-	protected TextView tvEntityName = null;
-
 	/**
 	 * 开启轨迹服务监听器
 	 */
@@ -114,9 +108,6 @@ public class TrackUploadFragment extends Fragment {
 
 		view = inflater.inflate(R.layout.fragment_trackupload, container, false);
 
-		// 初始化
-		init();
-
 		// 初始化监听器
 		initListener();
 
@@ -143,72 +134,6 @@ public class TrackUploadFragment extends Fragment {
 
 	public static void setPolyline(PolylineOptions polyline) {
 		TrackUploadFragment.polyline = polyline;
-	}
-
-	/**
-	 * 初始化
-	 * 
-	 * @param context
-	 */
-	private void init() {
-
-		btnStartTrace = (Button) view.findViewById(R.id.btn_starttrace);
-
-		btnStopTrace = (Button) view.findViewById(R.id.btn_stoptrace);
-
-		// btnOperator = (Button) view.findViewById(R.id.btn_operator);
-
-		tvEntityName = (TextView) view.findViewById(R.id.tv_entityName);
-
-		btnStartTrace.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				// Toast.makeText(getActivity(), "正在开启轨迹服务，请稍候",
-				// Toast.LENGTH_LONG).show();
-				startTrace();
-
-				// if (!isRegister) {
-				// if (null == pm) {
-				// pm = (PowerManager) MainStartActivity.mContext
-				// .getSystemService(Context.POWER_SERVICE);
-				// }
-				// if (null == wakeLock) {
-				// wakeLock = pm.newWakeLock(
-				// PowerManager.PARTIAL_WAKE_LOCK, "track upload");
-				// }
-				// IntentFilter filter = new IntentFilter();
-				// filter.addAction(Intent.ACTION_SCREEN_OFF);
-				// filter.addAction(Intent.ACTION_SCREEN_ON);
-				// MainStartActivity.mContext
-				// .registerReceiver(powerReceiver, filter);
-				// isRegister = true;
-				// }
-
-			}
-		});
-
-		btnStopTrace.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				// Toast.makeText(getActivity(), "正在停止轨迹服务，请稍候",
-				// Toast.LENGTH_SHORT).show();
-				stopTrace();
-				// if (isRegister) {
-				// try {
-				// MainStartActivity.mContext.unregisterReceiver(powerReceiver);
-				// isRegister = false;
-				// } catch (Exception e) {
-				// // TODO: handle
-				// }
-				//
-				// }
-			}
-		});
-
 	}
 
 	/**
@@ -433,8 +358,9 @@ public class TrackUploadFragment extends Fragment {
 		isFirstLoc = true;
 		nowlatLng = null;
 		showpointList.clear();
-		polylineoverlay.remove();
-		isInUploadFragment=false;
+		isInUploadFragment = false;
+		if (polylineoverlay != null)
+			polylineoverlay.remove();
 	}
 
 	/**
@@ -650,24 +576,4 @@ public class TrackUploadFragment extends Fragment {
 		}
 	}
 
-	private void showMessage(final String message, final Integer errorNo) {
-
-		new Handler(MainStartActivity.mHomeActivity.getMainLooper()).post(new Runnable() {
-			public void run() {
-				Toast.makeText(MainStartActivity.mHomeActivity, message, Toast.LENGTH_LONG).show();
-
-				if (null != errorNo) {
-					if (0 == errorNo.intValue() || 10006 == errorNo.intValue() || 10008 == errorNo.intValue()
-							|| 10009 == errorNo.intValue()) {
-						btnStartTrace.setBackgroundColor(Color.rgb(0x99, 0xcc, 0xff));
-						btnStartTrace.setTextColor(Color.rgb(0x00, 0x00, 0xd8));
-					} else if (1 == errorNo.intValue() || 10004 == errorNo.intValue()) {
-						btnStartTrace.setBackgroundColor(Color.rgb(0xff, 0xff, 0xff));
-						btnStartTrace.setTextColor(Color.rgb(0x00, 0x00, 0x00));
-					}
-				}
-			}
-		});
-
-	}
 }

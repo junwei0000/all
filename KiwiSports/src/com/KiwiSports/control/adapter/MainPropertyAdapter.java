@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.KiwiSports.R;
 import com.KiwiSports.model.MainSportInfo;
 import com.KiwiSports.model.VenuesListInfo;
+import com.KiwiSports.utils.LanguageUtil;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -63,6 +64,9 @@ public class MainPropertyAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		String name = stadiumObj.getCname();
+		if(!LanguageUtil.idChLanguage(context)){
+			name = stadiumObj.getEname();
+		}
 		String value = stadiumObj.getValue();
 		String unit = stadiumObj.getUnit();
 		// 默认价格

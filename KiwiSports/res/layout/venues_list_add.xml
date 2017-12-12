@@ -32,7 +32,6 @@
                 android:background="@drawable/venues_tianjia_img" />
 
             <TextView
-                android:id="@+id/listitem_tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -41,6 +40,7 @@
                 android:gravity="center_vertical"
                 android:lineSpacingMultiplier="1"
                 android:paddingLeft="5dp"
+                android:text="@string/add"
                 android:singleLine="true"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />

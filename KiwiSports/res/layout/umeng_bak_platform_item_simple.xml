@@ -22,7 +22,7 @@
         android:layout_marginLeft="12dp"
         android:layout_toRightOf="@id/umeng_socialize_full_alert_dialog_item_icon"
         android:gravity="center_vertical"
-        android:text="腾讯微博"
+        android:text="@string/umeng_socialize_text_tencent_key"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 

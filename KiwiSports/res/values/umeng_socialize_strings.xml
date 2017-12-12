@@ -56,6 +56,7 @@
     <string name="umeng_socialize_text_sina_key">微博</string>
     <string name="umeng_socialize_text_qq_key">QQ</string>
     <string name="umeng_socialize_text_qq_zone_key">QQ空间</string>
+    <string name="umeng_socialize_text_xinlang_key">新浪微博</string>
     <string name="umeng_socialize_text_renren_key">人人网</string>
     <string name="umeng_socialize_text_douban_key">豆瓣网</string>
     <string name="umeng_socialize_text_weixin_key">微信</string>
@@ -63,10 +64,15 @@
     <string name="umeng_socialize_text_add_custom_platform">请配置用户平台</string>
     <string name="umeng_example_home_btn_plus">社交分享</string>
     <string name="umeng_socialize_text_waitting_share">分享中&#8230;</string>
+    <string name="umeng_socialize_text_to_share">分享到</string>
+    <string name="umeng_socialize_text_search">搜索</string>
     <string name="umeng_socialize_content_hint">说点啥&#8230;</string>
     <string name="umeng_socialize_cancel_btn_str">取消</string>
     <string name="umeng_socialize_send_btn_str">发送</string>
     <string name="umeng_socialize_img_des"></string>
     <string name="umeng_socialize_share">分享</string>
+    <string name="umeng_socialize_tipinfo">使用已有账号发表评论</string>
+    <string name="umeng_socialize_bind_no_tip">匿名评论&#8230;</string>
+    <string name="umeng_socialize_care">关注官方微博</string>
 
 </resources>

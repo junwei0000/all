@@ -102,7 +102,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 		map_iv_mylocation.setOnClickListener(this);
 		pagetop_tv_you.setOnClickListener(this);
 		pagetop_tv_you.setVisibility(View.VISIBLE);
-		pagetop_tv_you.setText("排行榜");
+		pagetop_tv_you.setText(getString(R.string.venues_rank_title));
 	}
 
 	@SuppressLint("NewApi")
@@ -154,8 +154,9 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 					double latitude = mMapList.get(i).getLatitude();
 					double longitude = mMapList.get(i).getLongitude();
 					String Album_url = mMapList.get(i).getAlbum_url();
+					String userid= mMapList.get(i).getUid();
 					System.err.println(longitude + "      " + longitude);
-					if (latitude > 0 && longitude > 0) {
+					if (latitude > 0 && longitude > 0&&!userid.equals(uid)) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
 						if (!TextUtils.isEmpty(Album_url)) {
 							loadToBitmap(Album_url, stadiumpoint);

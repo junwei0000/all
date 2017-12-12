@@ -21,7 +21,7 @@
         android:background="@drawable/corners_bg_qing"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:text="微信登录"
+        android:text="@string/wxlogin"
         android:textColor="@color/white"
         android:textSize="@dimen/text_contents_size" />
 

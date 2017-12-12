@@ -69,7 +69,7 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 		pagetop_layout_back.setVisibility(View.INVISIBLE);
 		TextView pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
 		LinearLayout page_top_layout = (LinearLayout) findViewById(R.id.page_top_layout);
-		pagetop_tv_name.setText("场地");
+		pagetop_tv_name.setText(getString(R.string.venues_title));
 		CommonUtils.getInstance().setViewTopHeigth(context, page_top_layout);
 		mPullDownView = (PullDownListView) findViewById(R.id.refreshable_view);
 		mListView = (ListView) findViewById(R.id.list_date);
@@ -112,8 +112,6 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 
 	private void initFootView() {
 		convertView = LayoutInflater.from(context).inflate(R.layout.venues_list_add, null);
-		TextView listitem_tv_name = (TextView) convertView.findViewById(R.id.listitem_tv_name);
-		listitem_tv_name.setText("添加");
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -198,7 +196,7 @@ public class MainLocationActivity extends BaseActivity implements OnRefreshListi
 			case DATAUPDATEOVER:
 				mPullDownView.onRefreshComplete();
 				Constans.getInstance().refreshOrLoadMoreLoading = false;
-				mPullDownView.onLoadMoreComplete("已无更多信息了", "over");
+				mPullDownView.onLoadMoreComplete(getString(R.string.notmore_info), "over");
 				mPullDownView.setMore(false);
 				break;
 			case REFLESH:

@@ -6,7 +6,7 @@ import com.KiwiSports.R;
 import com.KiwiSports.utils.App;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.Constans;
-
+import android.annotation.SuppressLint;
 import android.app.TabActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -130,6 +130,7 @@ public class MainActivity extends TabActivity {
 	 */
 	IntentFilter filter;
 	private BroadcastReceiver dynamicReceiver = new BroadcastReceiver() {
+		@SuppressLint("NewApi")
 		@Override
 		public void onReceive(Context contexts, Intent intent) {
 			if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) { // 开屏
@@ -138,27 +139,34 @@ public class MainActivity extends TabActivity {
 				onScreenOff();
 			}
 			Log.e("all of page", "接收---下线通知---广播消息");
-			String type = intent.getExtras().getString("type");
-			if (type.equals(getString(R.string.action_home_type_login403))) {
-				UserLoginBack403Utils.getInstance().showDialogPromptReLogin(CommonUtils.getInstance().mCurrentActivity);
-			} else if (type.equals(getString(R.string.action_home_type_gotohome))) {
-				mTabHost.setCurrentTabByTag(TAB_CALENDER);
-				setTab(TAB_CALENDER);
+			Bundle bundle = intent.getExtras();
+			if (bundle != null) {
+				String type = bundle.getString("type", "");
+				if (type.equals(getString(R.string.action_home_type_login403))) {
+					UserLoginBack403Utils.getInstance()
+							.showDialogPromptReLogin(CommonUtils.getInstance().mCurrentActivity);
+				} else if (type.equals(getString(R.string.action_home_type_gotohome))) {
+					mTabHost.setCurrentTabByTag(TAB_CALENDER);
+					setTab(TAB_CALENDER);
+				}
 			}
 		}
 	};
+
 	private void onScreenOn() {
 
 	}
 
 	private void onScreenOff() {
-		App.runInMainThread(new Runnable() {
-
-			@Override
-			public void run() {
-				Constans.getInstance().mSensorState=false;
-			}
-		}, 1000);
+		Constans.getInstance().mSensorState = false;
+		Log.d("onScreenOff", ""+Constans.getInstance().mSensorState);
+//		App.runInMainThread(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				Constans.getInstance().mSensorState = false;
+//			}
+//		}, 1000);
 
 	}
 }

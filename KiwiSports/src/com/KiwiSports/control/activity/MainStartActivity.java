@@ -14,6 +14,8 @@ import com.KiwiSports.business.RecordDatesloadBusiness.GetRecordDatesloadCallbac
 import com.KiwiSports.business.UpdateLocationBusiness;
 import com.KiwiSports.business.VenuesMyAreaUsersBusiness;
 import com.KiwiSports.business.UpdateLocationBusiness.GetUpdateLocationCallback;
+import com.KiwiSports.business.VenuesInfoBylicationBusiness;
+import com.KiwiSports.business.VenuesInfoBylicationBusiness.GetInfoBylicationCallback;
 import com.KiwiSports.business.VenuesMyAreaUsersBusiness.GetVenuesMyAreaUsersCallback;
 import com.KiwiSports.control.adapter.MainPropertyAdapter;
 import com.KiwiSports.control.view.StepCounterService;
@@ -27,6 +29,8 @@ import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.Constans;
 import com.KiwiSports.utils.DatesUtils;
+import com.KiwiSports.utils.LanguageUtil;
+import com.KiwiSports.utils.MyDialog;
 import com.KiwiSports.utils.MyGridView;
 import com.KiwiSports.utils.parser.MainsportParser;
 import com.baidu.location.BDLocation;
@@ -57,6 +61,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -77,6 +82,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -153,7 +159,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private double topSpeed;// 最高速度
 	private double minSpeed;// 最小速度
 	private double calorie;// 热量
-	private String posid = "25";// 场地id
+	private String posid = "";// 场地id
 
 	private String latitudeOffset = "";
 	private String longitudeOffset = "";
@@ -214,7 +220,14 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			iv_stop.setVisibility(View.VISIBLE);
 			break;
 		case R.id.iv_stop:
-			loadRecordDates();
+			
+			String dialogType;
+			if (distanceTraveled < 0.05) {
+				dialogType = "shortDistance";
+			} else {
+				dialogType = "uploadDistance";
+			}
+			endDialog(dialogType);
 			break;
 		default:
 			break;
@@ -330,11 +343,16 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mygridview_property.setAdapter(mMainSportAdapter);
 
 		if (mpropertytwnList != null && mpropertytwnList.size() == 2) {
-			tv_distancetitle.setText(mpropertytwnList.get(0).getCname());
+			if(!LanguageUtil.idChLanguage(this)){
+				tv_distancetitle.setText(mpropertytwnList.get(0).getEname());
+				tv_quannumtitle.setText(mpropertytwnList.get(1).getEname());
+			}else{
+				tv_distancetitle.setText(mpropertytwnList.get(0).getCname());
+				tv_quannumtitle.setText(mpropertytwnList.get(1).getCname());
+			}
 			tv_distance.setText(mpropertytwnList.get(0).getValue());
 
 			tv_quannum.setText(mpropertytwnList.get(1).getValue());
-			tv_quannumtitle.setText(mpropertytwnList.get(1).getCname());
 			tv_quannumunit.setText(mpropertytwnList.get(1).getUnit());
 		}
 	}
@@ -945,6 +963,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (5 * 60 * 1000) == 0)) {
 			firstUploadLocationstatus = false;
 			getVenuesUsers();
+			getPosid();
 			Message message = new Message();
 			message.what = UPDATELOCATION;
 			message.obj = latLng;
@@ -1135,9 +1154,87 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	/**
+	 * 获取场地id
+	 */
+	private void getPosid() {
+		mhashmap = new HashMap<String, String>();
+		mhashmap.put("uid", uid);
+		mhashmap.put("token", token);
+		mhashmap.put("access_token", access_token);
+		mhashmap.put("longitude", longitude_me + "");
+		mhashmap.put("latitude", latitude_me + "");
+		Log.e("map", "------------loadRecordDates------------" + mhashmap);
+		new VenuesInfoBylicationBusiness(this, mhashmap, new GetInfoBylicationCallback() {
+			@Override
+			public void afterDataGet(HashMap<String, Object> dataMap) {
+
+				if (dataMap != null) {
+					String status = (String) dataMap.get("status");
+					posid = (String) dataMap.get("posid");
+				}
+				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
+
+			}
+		});
+
+	}
+
+	private ProgressDialog mDialog;
+
+	private void showDilag() {
+		try {
+			if (mDialog == null) {
+				mDialog = CommonUtils.getInstance().createLoadingDialog(this);
+			} else {
+				mDialog.show();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 点击结束
+	 * 
+	 * @param dialogType
+	 */
+	public void endDialog(final String dialogType) {
+		final MyDialog selectDialog = new MyDialog(this, R.style.dialog, R.layout.dialog_myexit);// 创建Dialog并设置样式主题
+		selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+		selectDialog.show();
+		TextView text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);// 取消
+		final TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);// 确定
+		TextView myexit_text_title = (TextView) selectDialog.findViewById(R.id.myexit_text_title);
+		if (dialogType.equals("shortDistance")) {
+			myexit_text_title.setText(getString(R.string.endlocationcancel));
+		} else {
+			myexit_text_title.setText(getString(R.string.endlocationcommit));
+		}
+		text_off.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				selectDialog.dismiss();
+			}
+		});
+		text_sure.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				selectDialog.dismiss();
+				if (dialogType.equals("shortDistance")) {
+					initStartView();
+				} else {
+					loadRecordDates();
+				}
+
+			}
+		});
+	}
+
+	/**
 	 * 上传轨迹
 	 */
 	private void loadRecordDates() {
+		showDilag();
 		mhashmap = new HashMap<String, String>();
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
@@ -1154,6 +1251,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					CommonUtils.getInstance().initToast(mHomeActivity, msg);
 				}
 				initStartView();
+				CommonUtils.getInstance().setOnDismissDialog(mDialog);
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 
 			}
@@ -1231,8 +1329,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					double latitude = mMapList.get(i).getLatitude();
 					double longitude = mMapList.get(i).getLongitude();
 					String Album_url = mMapList.get(i).getAlbum_url();
+					String userid = mMapList.get(i).getUid();
 					System.err.println(longitude + "      " + longitude);
-					if (latitude > 0 && longitude > 0) {
+					if (latitude > 0 && longitude > 0 && !userid.equals(uid)) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
 						if (!TextUtils.isEmpty(Album_url)) {
 							loadToBitmap(Album_url, stadiumpoint);

@@ -65,7 +65,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 		pagetop_layout_back.setVisibility(View.INVISIBLE);
 		TextView pagetop_tv_name = (TextView) findViewById(R.id.pagetop_tv_name);
 		LinearLayout page_top_layout = (LinearLayout) findViewById(R.id.page_top_layout);
-		pagetop_tv_name.setText("运动记录");
+		pagetop_tv_name.setText(getString(R.string.record_title));
 		CommonUtils.getInstance().setViewTopHeigth(context, page_top_layout);
 		mPullDownView = (PullDownListView) findViewById(R.id.refreshable_view);
 		mListView = (ListView) findViewById(R.id.list_date);
@@ -219,7 +219,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 			mPullDownView.onLoadMoreComplete(getResources().getString(R.string.seen_more), "");// 这里表示加载更多处理完成后把下面的加载更多界面（隐藏或者设置字样更多）
 			mPullDownView.setMore(true);// 这里设置true表示还有更多加载，设置为false底部将不显示更多
 		} else {
-			mPullDownView.onLoadMoreComplete("已无更多信息了！", "over");
+			mPullDownView.onLoadMoreComplete(getString(R.string.notmore_info), "over");
 			mPullDownView.setMore(true);
 		}
 	}
