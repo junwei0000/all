@@ -15,14 +15,7 @@ import com.KiwiSports.model.VenuesListInfo;
  * @date 创建时间：2016-1-20 下午12:06:00
  * @Description 类描述：
  */
-public class RecordListParser extends BaseParser<Object> {
-	ArrayList<RecordInfo> mlist;
-
-	public RecordListParser(ArrayList<RecordInfo> mlist) {
-		super();
-		this.mlist = mlist;
-	}
-
+public class RecordDetailYouParser extends BaseParser<Object> {
 	@Override
 	public HashMap<String, Object> parseJSON(JSONObject jsonObject) {
 		HashMap<String, Object> mHashMap = null;
@@ -31,10 +24,8 @@ public class RecordListParser extends BaseParser<Object> {
 			mHashMap = new HashMap<String, Object>();
 			mHashMap.put("status", status);
 			if (status.equals("200")) {
-				JSONObject jsonOb = jsonObject.getJSONObject("data");
-				int count = jsonOb.optInt("count", 0);
-				mHashMap.put("count", count);
-				JSONArray listarray = jsonOb.optJSONArray("records");
+				ArrayList<RecordInfo> mlist=new ArrayList<RecordInfo>();
+				JSONArray listarray = jsonObject.optJSONArray("data");
 				for (int i = 0; i < listarray.length(); i++) {
 					JSONObject listOb = listarray.optJSONObject(i);
 					String record_id = listOb.optString("record_id", "");

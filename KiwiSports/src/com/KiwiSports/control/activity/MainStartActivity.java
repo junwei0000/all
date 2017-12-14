@@ -32,6 +32,7 @@ import com.KiwiSports.utils.DatesUtils;
 import com.KiwiSports.utils.LanguageUtil;
 import com.KiwiSports.utils.MyDialog;
 import com.KiwiSports.utils.MyGridView;
+import com.KiwiSports.utils.PriceUtils;
 import com.KiwiSports.utils.parser.MainsportParser;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -80,6 +81,7 @@ import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout.LayoutParams;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -88,6 +90,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -170,13 +173,21 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private String dropTraveled = "";
 
 	private String hopCount = "0";// 跳跃次数
-	private String lopCount = "0";// 趟数
+	private String lapCount = "1";// 趟数
 	private String upHillDistance = "0";// 上坡距离
 	private String downHillDistance = "0";// 滑行下坡距离
 	private String verticalDistance = "0";// 滑行落差/垂直距离
 	private String maxSlope = "0";// 最大坡度
 	private MainPropertyAdapter mMainSportAdapter;
 	private ImageView iv_continue;
+	private ImageView map_iv_zoom;
+	private ImageView map_iv_shrink;
+	private ImageView map_iv_mylocation;
+	private LinearLayout layout_property;
+	private LinearLayout page_top_layout;
+	private ImageView pagetop_iv_center;
+	private LinearLayout layoutall;
+	private FrameLayout relat_map;
 
 	@Override
 	public void onClick(View v) {
@@ -219,8 +230,40 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			iv_continue.setVisibility(View.VISIBLE);
 			iv_stop.setVisibility(View.VISIBLE);
 			break;
+		case R.id.map_iv_zoom:
+			map_iv_zoom.setVisibility(View.GONE);
+			map_iv_shrink.setVisibility(View.VISIBLE);
+			map_iv_mylocation.setVisibility(View.VISIBLE);
+			layout_disquan.setVisibility(View.GONE);
+			layout_property.setVisibility(View.GONE);
+			layout_bottom.setVisibility(View.GONE);
+			pagetop_iv_center.setBackgroundResource(R.drawable.mainstart_kiwi_imgblo);
+			pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_imgblo);
+			page_top_layout.setBackgroundColor(getResources().getColor(R.color.white));
+			layoutall.setPadding(0, 0, 0, 0);
+			relat_map.setLayoutParams(
+					new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			break;
+		case R.id.map_iv_shrink:
+			map_iv_zoom.setVisibility(View.VISIBLE);
+			map_iv_shrink.setVisibility(View.GONE);
+			map_iv_mylocation.setVisibility(View.GONE);
+			layout_disquan.setVisibility(View.VISIBLE);
+			layout_property.setVisibility(View.VISIBLE);
+			layout_bottom.setVisibility(View.VISIBLE);
+			pagetop_iv_center.setBackgroundResource(R.drawable.mainstart_kiwi_img);
+			pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_img);
+			page_top_layout.setBackgroundColor(getResources().getColor(R.color.main_page_bg));
+			layoutall.setPadding(getResources().getDimensionPixelSize(R.dimen.padd_leftright), 0,
+					getResources().getDimensionPixelSize(R.dimen.padd_leftright), 0);
+			relat_map.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+					ConfigUtils.getInstance().dip2px(this, 140)));
+			break;
+		case R.id.map_iv_mylocation:
+			moveToCenter();
+			break;
 		case R.id.iv_stop:
-			
+
 			String dialogType;
 			if (distanceTraveled < 0.05) {
 				dialogType = "shortDistance";
@@ -258,6 +301,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		allpointList.clear();
 		mBaiduMap.clear();
+		beforelatLng=null;
 	}
 
 	@Override
@@ -283,12 +327,18 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		// 地图初始化
 		mMapView = (MapView) findViewById(R.id.mMapView);
 		mBaiduMap = mMapView.getMap();
-
+		layoutall = (LinearLayout) findViewById(R.id.layoutall);
 		pagetop_iv_you = (ImageView) findViewById(R.id.pagetop_iv_you);
-		LinearLayout page_top_layout = (LinearLayout) findViewById(R.id.page_top_layout);
+		page_top_layout = (LinearLayout) findViewById(R.id.page_top_layout);
 		pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_img);
 		CommonUtils.getInstance().setViewTopHeigth(mHomeActivity, page_top_layout);
+		pagetop_iv_center = (ImageView) findViewById(R.id.pagetop_iv_center);
+		map_iv_zoom = (ImageView) findViewById(R.id.map_iv_zoom);
+		map_iv_shrink = (ImageView) findViewById(R.id.map_iv_shrink);
+		map_iv_mylocation = (ImageView) findViewById(R.id.map_iv_mylocation);
 
+		relat_map = (FrameLayout) findViewById(R.id.relat_map);
+		layout_property = (LinearLayout) findViewById(R.id.layout_property);
 		layout_disquan = (LinearLayout) findViewById(R.id.layout_disquan);
 		tv_distance = (TextView) findViewById(R.id.tv_distance);
 		tv_quannum = (TextView) findViewById(R.id.tv_quannum);
@@ -307,6 +357,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	protected void setListener() {
+		map_iv_zoom.setOnClickListener(this);
+		map_iv_shrink.setOnClickListener(this);
+		map_iv_mylocation.setOnClickListener(this);
 		pagetop_iv_you.setOnClickListener(this);
 		iv_start.setOnClickListener(this);
 		iv_continue.setOnClickListener(this);
@@ -343,10 +396,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mygridview_property.setAdapter(mMainSportAdapter);
 
 		if (mpropertytwnList != null && mpropertytwnList.size() == 2) {
-			if(!LanguageUtil.idChLanguage(this)){
+			if (!LanguageUtil.idChLanguage(this)) {
 				tv_distancetitle.setText(mpropertytwnList.get(0).getEname());
 				tv_quannumtitle.setText(mpropertytwnList.get(1).getEname());
-			}else{
+			} else {
 				tv_distancetitle.setText(mpropertytwnList.get(0).getCname());
 				tv_quannumtitle.setText(mpropertytwnList.get(1).getCname());
 			}
@@ -375,14 +428,17 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		long time = runingTimestamp / 1000;
 		if (time > 0) {
-			Speed = (distanceTraveled * 1000 / time) * 0.36;// 单位：公里每小时
-			if (Speed <= minSpeed) {
+			averageSpeed = (distanceTraveled * 1000 / time) * 3.6;// 单位：公里每小时
+			averageSpeed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(Speed, 2));
+			if (Speed < minSpeed) {
 				minSpeed = Speed;
 			}
-			if (Speed >= topSpeed) {
+			if (Speed > topSpeed) {
 				topSpeed = Speed;
 			}
-			averageSpeed = (minSpeed + topSpeed) / 2;
+			if (averageSpeed > topSpeed) {
+				topSpeed = averageSpeed;
+			}
 		}
 
 		if (distanceTraveled >= 0.01) {
@@ -478,7 +534,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				}
 			}
 		} else if (sportsType.equals("sky")) {
-			mpropertytwnList.get(1).setValue(lopCount);
+			mpropertytwnList.get(1).setValue(lapCount);
 			for (int i = 0; i < mMpropertyList.size(); i++) {
 				switch (i) {
 				case 0:
@@ -728,10 +784,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private void initGps() {
 
 		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			startActivity(intent);
-		}
+		// if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+		// Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+		// startActivity(intent);
+		// }
 		// 绑定监听状态
 		lm.addGpsStatusListener(listener);
 		/**
@@ -843,7 +899,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							longitude_me = location.getLongitude();
 							latitude_me = location.getLatitude();
 						}
-
+						Speed= location.getSpeed();
 						address = location.getAddrStr();
 						currentAccuracy = location.getRadius();
 						LatLng latLng = new LatLng(latitude_me, longitude_me);
@@ -886,19 +942,18 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		criteria.setPowerRequirement(Criteria.POWER_LOW);
 		return criteria;
 	}
-
+	LatLng beforelatLng;
 	private void setline(LatLng latLng) {
 		boolean sensorAva = (BEFORECURRENT_SETP != StepDetector.CURRENT_SETP) && Constans.getInstance().mSensorState;
 		if (sensorAva || !Constans.getInstance().mSensorState) {
-			if (mTrackUploadFragment.beforelatLng != latLng) {
-				recordInfo(latLng);
-			}
 			mTrackUploadFragment.showRealtimeTrack(latLng);
+			Log.e("map", "beforelatLng=="+beforelatLng+";;;latLng=="+latLng);
+			if (beforelatLng==null|| beforelatLng.latitude!= latLng.latitude) {
+				Log.e("map", "addddd");
+				recordInfo(latLng);
+				beforelatLng=latLng;
+			}
 			getCurrentPropertyValue();
-			// if (firstUploadDate) {
-			// walking_status = STARTWALKSTAUS;
-			// uploadrunedDate();
-			// }
 		}
 	}
 
@@ -920,8 +975,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		String latitudeOffset = "";// 精度偏移
 		String longitudeOffset = "";// 维度偏移
 
-		MainLocationItemInfo mMainLocationItemInfo = new MainLocationItemInfo(mLatLng, speed, altitude, accuracy,
-				nStatus, nLapPoint, nLapTime, duration, distance, latitudeOffset, longitudeOffset);
+		MainLocationItemInfo mMainLocationItemInfo = new MainLocationItemInfo(mLatLng.latitude, mLatLng.longitude,
+				speed, altitude, accuracy, nStatus, nLapPoint, nLapTime, duration, distance, latitudeOffset,
+				longitudeOffset);
 		allpointList.add(mMainLocationItemInfo);
 		mMainLocationItemInfo = null;
 	}
@@ -1027,6 +1083,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				if (currentAltitude <= minAltidue) {
 					minAltidue = currentAltitude;
 				}
+				Speed= location.getSpeed();
 				address = location.getProvider();
 				if (btnStartStatus && btnContinueStatus) {
 					setline(sourceLatLng);
@@ -1077,7 +1134,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private String setRecordInfoArrayToJson() {
 		JSONArray recordInfoArray = new JSONArray();
 		JSONObject recordDatas = new JSONObject();
-		String recordInfo = "";
 		try {
 			recordDatas.put("user_id", uid);
 			recordDatas.put("posid", "" + posid);
@@ -1099,7 +1155,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			recordDatas.put("maxHoverDuration", "" + maxHoverDuration);
 			recordDatas.put("totalHoverDuration", "" + totalHoverDuration);
 			recordDatas.put("hopCount", "" + hopCount);
-			recordDatas.put("lopCount", "" + lopCount);
+			recordDatas.put("lapCount", "" + lapCount);
 			recordDatas.put("wrestlingCount", "" + wrestlingCount);
 			recordDatas.put("cableCarQueuingDuration", "" + cableCarQueuingDuration);
 			recordDatas.put("address", "" + address);
@@ -1111,17 +1167,15 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			recordDatas.put("upHillDistance", "" + upHillDistance);
 			recordDatas.put("downHillDistance", "" + downHillDistance);
 
-			recordDatas.put("recordInfo", recordInfo);
 			try {
 				if (allpointList != null && allpointList.size() > 0) {
 					int length = allpointList.size();
 					double lat;
 					double lon;
 					for (int i = 0; i < length; i++) {
-						LatLng latLng = allpointList.get(i).getmLatLng();
-						lat = latLng.latitude;
-						lon = latLng.longitude;
-						if (latLng != null) {
+						lat = allpointList.get(i).getLatitude();
+						lon = allpointList.get(i).getLongitude();
+						if (lat > 0) {
 							JSONObject latObject = new JSONObject();
 							latObject.put("latitude", lat);
 							latObject.put("longitude", lon);
@@ -1140,12 +1194,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						}
 					}
 				}
-				recordInfo = recordInfoArray.toString();
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-
-			recordDatas.put("recordInfo", recordInfo);
+			recordDatas.put("recordInfo", recordInfoArray);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

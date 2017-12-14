@@ -12,13 +12,17 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.map.BaiduMap.SnapshotReadyCallback;
+import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
@@ -235,6 +239,8 @@ public class VenuesAddActivity extends BaseActivity
 	};
 	public GeoCoder geoCoder;
 	private String address;
+	private Overlay overlay;
+	private BitmapDescriptor realtimeBitmap;
 
 	@Override
 	public void onReceiveLocation(BDLocation location) {
@@ -251,11 +257,6 @@ public class VenuesAddActivity extends BaseActivity
 						longitude_me = location.getLongitude();
 						latitude_me = location.getLatitude();
 					}
-					MyLocationData locData = new MyLocationData.Builder().accuracy(location.getRadius())
-							// 此处设置开发者获取到的方向信息，顺时针0-360
-							.direction(0).latitude(latitude_me).longitude(longitude_me).build();
-					mBaiduMap.setMyLocationData(locData);
-					locData = null;
 					// ---------1.首先判断当前城市是否有，没有则默认距离北京坐标，我的位置为当前定位-----------------------------
 				} catch (Exception e) {
 				}
@@ -386,6 +387,20 @@ public class VenuesAddActivity extends BaseActivity
 	 */
 	private void moveToCenter() {
 		LatLng mypoint = new LatLng(latitude_me, longitude_me);
+		
+		if (null != overlay) {
+			overlay.remove();
+		}
+
+		if (null == realtimeBitmap) {
+			realtimeBitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_myposition_map);
+		}
+		MarkerOptions overlayOptions = new MarkerOptions().position(mypoint).icon(realtimeBitmap).zIndex(8)
+				.draggable(true);
+		// 实时点覆盖物
+		overlay = mBaiduMap.addOverlay(overlayOptions);
+		
+		
 		MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(mypoint);
 		if (u != null && mBaiduMap != null) {
 			 mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms

@@ -35,7 +35,7 @@ import android.widget.TextView;
  * @date 创建时间：2016-1-15 下午6:53:43
  * @Description 类描述：场地列表
  */
-public class MainLocationActivity extends BaseActivity implements OnRefreshListioner {
+public class MainVenuesActivity extends BaseActivity implements OnRefreshListioner {
 
 	private PullDownListView mPullDownView;
 	private ListView mListView;

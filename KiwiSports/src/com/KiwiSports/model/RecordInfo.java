@@ -3,10 +3,11 @@ package com.KiwiSports.model;
 public class RecordInfo {
 	String record_id;
 	String uid;
+	String pos_name;
 	String posid;
 	String date_time;
 	String distanceTraveled;
-	String duration;
+	long duration;
 	String verticalDistance;
 
 	String topSpeed;
@@ -20,10 +21,10 @@ public class RecordInfo {
 
 	String averageMatchSpeed;
 	String averageSpeed;
-	String freezeDuration;
+	long freezeDuration;
 	String maxHoverDuration;
 	String totalHoverDuration;
-	String hopCount;
+	String lapCount;
 	String wrestlingCount;
 	String cableCarQueuingDuration;
 	String address;
@@ -41,13 +42,13 @@ public class RecordInfo {
 	String cstatus;
 
 	public RecordInfo(String record_id, String uid, String posid, String date_time, String distanceTraveled,
-			String duration, String verticalDistance, String topSpeed, String dropTraveled, String nSteps,
+			long duration, String verticalDistance, String topSpeed, String dropTraveled, String nSteps,
 			String matchSpeed, String maxMatchSpeed, String maxSlope, String maxAltitude, String currentAltitude,
-			String averageMatchSpeed, String averageSpeed, String freezeDuration, String maxHoverDuration,
+			String averageMatchSpeed, String averageSpeed, long freezeDuration, String maxHoverDuration,
 			String totalHoverDuration, String hopCount, String wrestlingCount, String cableCarQueuingDuration,
 			String address, String minAltidue, String calorie, String sportsType, String latitudeOffset,
 			String longitudeOffset, String upHillDistance, String downHillDistance, String extendedField1,
-			String extendedField2, String extendedField3, String create_time, String cstatus) {
+			String extendedField2, String extendedField3, String create_time, String cstatus,String pos_name) {
 		super();
 		this.record_id = record_id;
 		this.uid = uid;
@@ -69,7 +70,7 @@ public class RecordInfo {
 		this.freezeDuration = freezeDuration;
 		this.maxHoverDuration = maxHoverDuration;
 		this.totalHoverDuration = totalHoverDuration;
-		this.hopCount = hopCount;
+		this.lapCount = hopCount;
 		this.wrestlingCount = wrestlingCount;
 		this.cableCarQueuingDuration = cableCarQueuingDuration;
 		this.address = address;
@@ -85,7 +86,19 @@ public class RecordInfo {
 		this.extendedField3 = extendedField3;
 		this.create_time = create_time;
 		this.cstatus = cstatus;
+		this.pos_name= pos_name;
 	}
+
+	 
+	public String getPos_name() {
+		return pos_name;
+	}
+
+
+	public void setPos_name(String pos_name) {
+		this.pos_name = pos_name;
+	}
+
 
 	public String getRecord_id() {
 		return record_id;
@@ -127,11 +140,11 @@ public class RecordInfo {
 		this.distanceTraveled = distanceTraveled;
 	}
 
-	public String getDuration() {
+	public long getDuration() {
 		return duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(long duration) {
 		this.duration = duration;
 	}
 
@@ -223,11 +236,11 @@ public class RecordInfo {
 		this.averageSpeed = averageSpeed;
 	}
 
-	public String getFreezeDuration() {
+	public long getFreezeDuration() {
 		return freezeDuration;
 	}
 
-	public void setFreezeDuration(String freezeDuration) {
+	public void setFreezeDuration(long freezeDuration) {
 		this.freezeDuration = freezeDuration;
 	}
 
@@ -247,12 +260,12 @@ public class RecordInfo {
 		this.totalHoverDuration = totalHoverDuration;
 	}
 
-	public String getHopCount() {
-		return hopCount;
+	public String getLopCount() {
+		return lapCount;
 	}
 
-	public void setHopCount(String hopCount) {
-		this.hopCount = hopCount;
+	public void setLopCount(String lapCount) {
+		this.lapCount = lapCount;
 	}
 
 	public String getWrestlingCount() {

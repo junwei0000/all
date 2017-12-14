@@ -22,6 +22,7 @@
 	<color name="transparent">#00000000</color>
 	<!-- 蓝色 -->
 	<color name="blue">#3EA1Df</color>
+	<color name="black">#000000</color>
 	<!-- 青色 -->
 	<color name="ching">#43c08d</color>
 	<!-- 浅蓝色 -->

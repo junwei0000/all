@@ -5,7 +5,8 @@ import com.baidu.mapapi.model.LatLng;
 
 public class MainLocationItemInfo { 
 	
-	LatLng mLatLng;//经纬度
+	double latitude;
+	double longitude;
 	double speed;//速度
 	double altitude;//海拔
 	double accuracy;//精度
@@ -18,11 +19,12 @@ public class MainLocationItemInfo {
 	String longitudeOffset;//维度偏移
 	
 	
-	public MainLocationItemInfo(LatLng mLatLng, double speed, double altitude, double accuracy, String nStatus,
+	public MainLocationItemInfo(double latitude,double longitude, double speed, double altitude, double accuracy, String nStatus,
 			String nLapPoint, String nLapTime, long duration, double distance, String latitudeOffset,
 			String longitudeOffset) {
 		super();
-		this.mLatLng = mLatLng;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.speed = speed;
 		this.altitude = altitude;
 		this.accuracy = accuracy;
@@ -34,12 +36,23 @@ public class MainLocationItemInfo {
 		this.latitudeOffset = latitudeOffset;
 		this.longitudeOffset = longitudeOffset;
 	}
-	public LatLng getmLatLng() {
-		return mLatLng;
+ 
+	public double getLatitude() {
+		return latitude;
 	}
-	public void setmLatLng(LatLng mLatLng) {
-		this.mLatLng = mLatLng;
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 	public double getSpeed() {
 		return speed;
 	}

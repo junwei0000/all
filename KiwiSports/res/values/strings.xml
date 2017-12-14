@@ -17,6 +17,8 @@
     <string name="dialog_logout_title">下线通知</string>
     <string name="dialog_logout_cirt">您的账号已在其他设备登录</string>
     <string name="dialog_update_title">APP不为最新版本，是否进行更新？</string>
+    <string name="di">第</string>
+    <string name="quan">圈</string>
     <!--  -->
     <string name="wxlogin">微信登录</string>
     <string name="wxlogin_tishi">您还没有安装微信客户端</string>
@@ -58,6 +60,10 @@
     <string name="venues_status_verify">正在审核中...</string>
     <string name="venues_status_fali">审核失败</string>
     <string name="record_title">运动记录</string>
+    <string name="record_notdate">暂无记录</string>
+    <string name="record_details">详情</string>
+    <string name="record_map">地图</string>
+    <string name="record_date">数据</string>
     <string name="sporttype">运动类型</string>
     <string name="sporttypelike">运动偏好</string>
     <string name="endlocationcancel">此次运动距离太短，结束将无法保存记录</string>

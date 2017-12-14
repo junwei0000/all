@@ -82,27 +82,20 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				// if (mList != null & mList.size() > 0 && arg2 <= mList.size())
-				// {
-				//
-				// String name = mList.get(arg2 - 1).getField_name();
-				// String posid = mList.get(arg2 - 1).getPosid();
-				// double top_left_x = mList.get(arg2 - 1).getTop_left_x();
-				// double top_left_y = mList.get(arg2 - 1).getTop_left_y();
-				// Intent intent = new Intent(mHomeActivity,
-				// VenuesMapActivity.class);
-				// intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-				// intent.putExtra("posid", posid);
-				// intent.putExtra("name", name);
-				// intent.putExtra("top_left_x", top_left_x);
-				// intent.putExtra("top_left_y", top_left_y);
-				// intent.putExtra("uid", uid);
-				// intent.putExtra("token", token);
-				// intent.putExtra("access_token", access_token);
-				// startActivity(intent);
-				// CommonUtils.getInstance().setPageIntentAnim(intent,
-				// mHomeActivity);
-				// }
+				if (mList != null & mList.size() > 0 && arg2 <= mList.size()) {
+					String posid = mList.get(arg2 - 1).getPosid();
+					String record_id = mList.get(arg2 - 1).getRecord_id();
+					String name = mList.get(arg2 - 1).getPos_name();
+					String sporttype = mList.get(arg2 - 1).getSportsType();
+					Intent intent = new Intent(mHomeActivity, RecordDetailActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+					intent.putExtra("sporttype", sporttype);
+					intent.putExtra("name", name);
+					intent.putExtra("posid", posid);
+					intent.putExtra("record_id", record_id);
+					startActivity(intent);
+					CommonUtils.getInstance().setPageIntentAnim(intent, mHomeActivity);
+				}
 			}
 		});
 
@@ -190,7 +183,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 		}
 
 		if (adapter == null) {
-			adapter = new RecordListAdapter(this, mList);
+			adapter = new RecordListAdapter(this, mList, false);
 			mListView.setAdapter(adapter);
 		} else {
 			adapter.setList(mList);

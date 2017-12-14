@@ -17,6 +17,8 @@
     <string name="dialog_logout_title">offline notification</string>
     <string name="dialog_logout_cirt">your account is already logged on to another device</string>
     <string name="dialog_update_title">app not the latest version, update?</string>
+    <string name="di">the</string>
+    <string name="quan">lap</string>
     <!--  -->
     <string name="wxlogin">WeChat Login</string>
     <string name="wxlogin_tishi">you have not installed the WeChat Client</string>
@@ -58,6 +60,10 @@
     <string name="venues_status_verify">in Review ...</string>
     <string name="venues_status_fali">audit failure</string>
     <string name="record_title">sports Record</string>
+    <string name="record_notdate">no record</string>
+    <string name="record_details">detail</string>
+    <string name="record_map">map</string>
+    <string name="record_date">date</string>
     <string name="sporttype">sport type</string>
     <string name="sporttypelike">sports Preference</string>
     <string name="endlocationcancel">the movement is too short for the end to save the record</string>

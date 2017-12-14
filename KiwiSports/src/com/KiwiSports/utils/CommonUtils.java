@@ -201,7 +201,7 @@ public class CommonUtils {
 	 * @param page_top_layout
 	 */
 	public void setViewTopHeigth(Context context, View page_top_layout) {
-		double hiegh = ConfigUtils.getInstance().getPhoneWidHeigth(context).heightPixels / (10.5);
+		double hiegh = ConfigUtils.getInstance().getPhoneWidHeigth(context).heightPixels / (12);
 		page_top_layout
 				.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, (int) hiegh));
 	}

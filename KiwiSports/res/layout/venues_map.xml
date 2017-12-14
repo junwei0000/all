@@ -22,6 +22,13 @@
             android:layout_height="fill_parent"
             android:clickable="true" />
 
+        <FrameLayout
+            android:id="@+id/layout_sha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.2"
+            android:background="@color/black" />
+
         <ImageView
             android:id="@+id/map_iv_mylocation"
             android:layout_width="wrap_content"

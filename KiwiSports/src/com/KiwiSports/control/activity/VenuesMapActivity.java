@@ -20,6 +20,7 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -39,6 +40,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -67,7 +69,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 			doBack();
 			break;
 		case R.id.map_iv_mylocation:
-			moveToCenter(latitude_me, longitude_me);
+			moveToCenter();
 			break;
 		case R.id.pagetop_tv_you:
 			Intent intent = new Intent(this, VenuesRankActivity.class);
@@ -154,9 +156,9 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 					double latitude = mMapList.get(i).getLatitude();
 					double longitude = mMapList.get(i).getLongitude();
 					String Album_url = mMapList.get(i).getAlbum_url();
-					String userid= mMapList.get(i).getUid();
+					String userid = mMapList.get(i).getUid();
 					System.err.println(longitude + "      " + longitude);
-					if (latitude > 0 && longitude > 0&&!userid.equals(uid)) {
+					if (latitude > 0 && longitude > 0 && !userid.equals(uid)) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
 						if (!TextUtils.isEmpty(Album_url)) {
 							loadToBitmap(Album_url, stadiumpoint);
@@ -295,12 +297,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 						longitude_me = location.getLongitude();
 						latitude_me = location.getLatitude();
 					}
-					MyLocationData locData = new MyLocationData.Builder().accuracy(location.getRadius())
-							// 此处设置开发者获取到的方向信息，顺时针0-360
-							.direction(0).latitude(latitude_me).longitude(longitude_me).build();
-					mBaiduMap.setMyLocationData(locData);
-					locData = null;
-					moveToCenter(top_left_y, top_left_x);
+					moveToCenter();
 					getVenuesUsers();
 				} catch (Exception e) {
 				}
@@ -312,12 +309,26 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 
 	}
 
+	private Overlay overlay;
+	private BitmapDescriptor realtimeBitmap;
+
 	/**
 	 * 设置中心点的焦点
 	 */
-	private void moveToCenter(double latitude_me, double longitude_me) {
+	private void moveToCenter() {
 		if (latitude_me > 0) {
 			LatLng mypoint = new LatLng(latitude_me, longitude_me);
+			if (null != overlay) {
+				overlay.remove();
+			}
+
+			if (null == realtimeBitmap) {
+				realtimeBitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_myposition_map);
+			}
+			MarkerOptions overlayOptions = new MarkerOptions().position(mypoint).icon(realtimeBitmap).zIndex(8)
+					.draggable(true);
+			// 实时点覆盖物
+			overlay = mBaiduMap.addOverlay(overlayOptions);
 			MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(mypoint);
 			if (u != null && mBaiduMap != null) {
 				// mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms

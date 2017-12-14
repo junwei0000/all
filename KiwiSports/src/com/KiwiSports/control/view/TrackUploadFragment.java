@@ -357,6 +357,7 @@ public class TrackUploadFragment extends Fragment {
 		sum_distance = 0.0;
 		isFirstLoc = true;
 		nowlatLng = null;
+		beforelatLng=null;
 		showpointList.clear();
 		isInUploadFragment = false;
 		if (polylineoverlay != null)

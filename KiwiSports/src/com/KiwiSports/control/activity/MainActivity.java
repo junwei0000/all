@@ -54,7 +54,7 @@ public class MainActivity extends TabActivity {
 	private void initView() {
 		mTabHost = getTabHost();
 		Intent i_calendar = new Intent(this, MainStartActivity.class);
-		Intent i_campaign = new Intent(this, MainLocationActivity.class);
+		Intent i_campaign = new Intent(this, MainVenuesActivity.class);
 		Intent i_tixing = new Intent(this, MainRecordActivity.class);
 		Intent i_usercenter = new Intent(this, UserCenterActivity.class);
 

@@ -52,13 +52,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layoutall"
         style="@style/padd_lefgtright"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
         android:orientation="vertical" >
 
-        <RelativeLayout
+        <FrameLayout
             android:id="@+id/relat_map"
             android:layout_width="match_parent"
             android:layout_height="140dp"
@@ -73,8 +74,42 @@
             <FrameLayout
                 android:id="@+id/fragment_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
+                android:layout_height="match_parent"
+                android:alpha="0.2"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/map_iv_mylocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="55dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/map_iv_mylocation"
+                android:contentDescription="@string/contentDescription"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/map_iv_shrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/map_shrink"
+                android:contentDescription="@string/contentDescription"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/map_iv_zoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/map_all"
+                android:contentDescription="@string/contentDescription" />
+        </FrameLayout>
         <!-- 距离 趟数 -->
 
         <LinearLayout

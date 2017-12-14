@@ -92,8 +92,10 @@
             android:label="@string/app_name"
             android:launchMode="standard" />
         <activity android:name=".control.activity.MainStartActivity" />
-        <activity android:name=".control.activity.MainLocationActivity" />
+        <activity android:name=".control.activity.MainVenuesActivity" />
         <activity android:name=".control.activity.MainRecordActivity" />
+        <activity android:name=".control.activity.RecordDetailActivity" />
+         <activity android:name=".control.activity.RecordDetailYouActivity" />
         <activity android:name=".control.activity.UserCenterActivity" />
         <activity
             android:name=".control.activity.MainActivity"
