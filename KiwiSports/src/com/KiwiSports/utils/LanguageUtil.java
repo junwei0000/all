@@ -17,6 +17,7 @@ public class LanguageUtil {
 	
 	public static boolean idChLanguage(Context mContext){
 		String able = mContext.getResources().getConfiguration().locale.getCountry();
+		  able = "CN";
 		if (able.equals("CN")) {
 			return true;
 		}

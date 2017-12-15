@@ -78,9 +78,6 @@ public class MainSportActivity extends BaseActivity {
 					sportindex = arg2;
 					adapter.setSportindex(sportindex);
 					adapter.notifyDataSetChanged();
-					Intent intent = new Intent();
-					intent.putExtra("sportindex", sportindex);
-					setResult(1, intent);
 					doBack();
 				}
 			}
@@ -101,6 +98,9 @@ public class MainSportActivity extends BaseActivity {
 	}
 
 	private void doBack() {
+		Intent intent = new Intent();
+		intent.putExtra("sportindex", sportindex);
+		setResult(1, intent);
 		finish();
 		CommonUtils.getInstance().setPageBackAnim(this);
 	}

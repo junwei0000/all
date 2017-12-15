@@ -414,7 +414,7 @@ public class TrackUploadFragment extends Fragment {
 				showpointList.add(userslatLng);
 				// 绘制实时点
 				drawRealtimePoint(userslatLng);
-				savaInfoToSD(MainStartActivity.mHomeActivity, stringBuffer);
+				savaInfoToSD(MainStartActivity.mActivity, stringBuffer);
 			}
 			if (!isFirstLoc) {
 				beforelatLng = nowlatLng;
@@ -524,7 +524,7 @@ public class TrackUploadFragment extends Fragment {
 		if (showpointList.size() >= 2 && showpointList.size() <= 100000) {
 			// 添加路线（轨迹）
 			polyline = new PolylineOptions().width(10)
-					.color(MainStartActivity.mHomeActivity.getResources().getColor(R.color.blue)).points(showpointList);
+					.color(MainStartActivity.mActivity.getResources().getColor(R.color.blue)).points(showpointList);
 		}
 		addMarker();
 	}

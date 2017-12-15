@@ -35,12 +35,11 @@ public class UserLoginBack403Utils {
 	 * 
 	 * @param mActivity
 	 */
-	public void showLoginBack403Dialog(Activity mActivity) {
+	public void sendBroadcastLoginBack403(Activity mActivity) {
 		Intent intents = new Intent();
 		intents.setAction(mActivity.getString(R.string.action_home));
 		intents.putExtra("type", mActivity.getString(R.string.action_home_type_login403));
 		mActivity.sendBroadcast(intents);
-		mActivity.finish();
 	}
 
 	/**

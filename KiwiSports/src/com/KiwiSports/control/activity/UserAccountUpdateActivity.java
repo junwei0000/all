@@ -69,6 +69,7 @@ public class UserAccountUpdateActivity extends BaseActivity {
 	private String nick_name;
 	private String token;
 	private String access_token;
+	private SharedPreferences bestDoInfoSharedPrefs;
 
 	@Override
 	protected void setListener() {
@@ -78,6 +79,7 @@ public class UserAccountUpdateActivity extends BaseActivity {
 
 	@Override
 	protected void processLogic() {
+		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
 		uid = getIntent().getStringExtra("uid");
 		nick_name = getIntent().getStringExtra("nick_name");
 		token = getIntent().getStringExtra("token");
@@ -115,6 +117,8 @@ public class UserAccountUpdateActivity extends BaseActivity {
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
 		mhashmap.put("nick_name", et_text);
+		mhashmap.put("hobby",  bestDoInfoSharedPrefs.getString("hobby", ""));
+		mhashmap.put("sex",  bestDoInfoSharedPrefs.getInt("sex",1)+"");
 		Log.e("decrypt----", mhashmap.toString());
 		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
 

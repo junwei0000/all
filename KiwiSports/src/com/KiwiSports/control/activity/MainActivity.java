@@ -37,7 +37,9 @@ public class MainActivity extends TabActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Constans.getInstance().mHomeActivity = this;
+		
+		CommonUtils.getInstance().mHomeActivity = this;
+		CommonUtils.getInstance().mCurrentActivity= this;
 		findViewById();
 		initView();
 	}

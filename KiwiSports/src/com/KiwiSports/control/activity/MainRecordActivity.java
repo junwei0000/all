@@ -52,11 +52,15 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 			break;
 		}
 	}
-
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		CommonUtils.getInstance().mCurrentActivity=CommonUtils.getInstance().mCurrentActivity;
+	}
 	@Override
 	protected void loadViewLayout() {
 		setContentView(R.layout.main_record);
-		mHomeActivity = Constans.getInstance().mHomeActivity;
+		mHomeActivity = CommonUtils.getInstance().mHomeActivity;
 	}
 
 	@Override
@@ -158,7 +162,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 							page++;
 						}
 						updateList();
-					} else {
+					}  else {
 						if (page == 0) {
 							updateList();
 						}

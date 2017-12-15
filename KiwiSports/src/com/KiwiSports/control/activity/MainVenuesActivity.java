@@ -56,11 +56,15 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 			break;
 		}
 	}
-
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		CommonUtils.getInstance().mCurrentActivity=CommonUtils.getInstance().mCurrentActivity;
+	}
 	@Override
 	protected void loadViewLayout() {
 		setContentView(R.layout.main_location);
-		mHomeActivity = Constans.getInstance().mHomeActivity;
+		mHomeActivity = CommonUtils.getInstance().mHomeActivity;
 	}
 
 	@Override

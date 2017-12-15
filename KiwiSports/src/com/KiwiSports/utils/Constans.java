@@ -67,11 +67,8 @@ public class Constans {
 	public String welcomeSharedPrefs_LaunchStatusKey = "launchStatus";
 	public String bestDoInfoSharedPrefsKey = "mikisports_info";
 
-	/**
-	 * 当前activity
-	 */
-	public Activity mCurrentActivity;
-	public Activity mHomeActivity;
+	 
+	
 	public String exit = "exit";
 	public String cancel = "cancel";
 

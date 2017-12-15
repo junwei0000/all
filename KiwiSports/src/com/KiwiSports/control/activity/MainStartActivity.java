@@ -62,6 +62,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -116,7 +117,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private ImageView iv_stop;
 	private Intent service;
 	private MyGridView mygridview_property;
-	public static Context mHomeActivity;
 	private TextView tv_distancetitle;
 	private TextView tv_quannumtitle;
 	private TextView tv_quannumunit;
@@ -188,7 +188,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private ImageView pagetop_iv_center;
 	private LinearLayout layoutall;
 	private FrameLayout relat_map;
-
+	private Activity mHomeActivity;
+	public static  Context mActivity;
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -276,7 +277,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			break;
 		}
 	}
-
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+	}
+	
 	/**
 	 * 结束后初始化所有状态
 	 */
@@ -325,8 +330,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	protected void loadViewLayout() {
 		setContentView(R.layout.main_start);
-		mHomeActivity = getApplicationContext();
-
+		mActivity = getApplicationContext();
+		mHomeActivity=CommonUtils.getInstance().mHomeActivity;
 	}
 
 	protected void findViewById() {
@@ -337,7 +342,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		pagetop_iv_you = (ImageView) findViewById(R.id.pagetop_iv_you);
 		page_top_layout = (LinearLayout) findViewById(R.id.page_top_layout);
 		pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_img);
-		CommonUtils.getInstance().setViewTopHeigth(mHomeActivity, page_top_layout);
+		CommonUtils.getInstance().setViewTopHeigth(mActivity, page_top_layout);
 		pagetop_iv_center = (ImageView) findViewById(R.id.pagetop_iv_center);
 		map_iv_zoom = (ImageView) findViewById(R.id.map_iv_zoom);
 		map_iv_shrink = (ImageView) findViewById(R.id.map_iv_shrink);
@@ -733,7 +738,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 
 		// 定位初始化
-		mLocClient = new LocationClient(mHomeActivity);
+		mLocClient = new LocationClient(mActivity);
 		mLocClient.registerLocationListener(new MyLocationListener());
 		new Thread(new Runnable() {
 
@@ -882,7 +887,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		public void onReceiveLocation(BDLocation location) {
 			System.err.println("MyLocationListener==" + location.getLatitude() + "     ");
 			if (!gpslocationListenerStatus) {
-				if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mHomeActivity)) {
+				if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mActivity)) {
 					mTrackUploadFragment.isInUploadFragment = false;
 					// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps0);
 					// userwalk_run_tv_gpsinfo.setText("无信号");
@@ -907,8 +912,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							latitude_me = location.getLatitude();
 						}
 						Speed = location.getSpeed();
-						if(Speed<0){
-							Speed=0;
+						if (Speed < 0) {
+							Speed = 0;
 						}
 						address = location.getAddrStr();
 						currentAccuracy = location.getRadius();
@@ -1028,15 +1033,19 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		/**
 		 * 每十分钟上传一次数据
 		 */
-		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (5 * 60 * 1000) == 0)) {
-			firstUploadLocationstatus = false;
-			getVenuesUsers();
-			getPosid();
+		if(beforelatLng==null||latLng.latitude!=beforelatLng.latitude){
 			Message message = new Message();
 			message.what = UPDATELOCATION;
 			message.obj = latLng;
 			mHandler.sendMessage(message);
 			message = null;
+		}
+		
+		
+		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (2 * 60 * 1000) == 0)) {
+			firstUploadLocationstatus = false;
+			getVenuesUsers();
+			getPosid();
 		}
 	}
 
@@ -1093,8 +1102,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				latitude_me = sourceLatLng.latitude;
 
 				Speed = location.getSpeed();
-				if(Speed<0){
-					Speed=0;
+				if (Speed < 0) {
+					Speed = 0;
 				}
 				address = location.getProvider();
 				if (btnStartStatus && btnContinueStatus) {
@@ -1312,7 +1321,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					String msg = (String) dataMap.get("msg");
-					CommonUtils.getInstance().initToast(mHomeActivity, msg);
+					CommonUtils.getInstance().initToast(mActivity, msg);
 				}
 				initStartView();
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
@@ -1352,6 +1361,12 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		new UpdateLocationBusiness(this, mhashmap, new GetUpdateLocationCallback() {
 			@Override
 			public void afterDataGet(HashMap<String, Object> dataMap) {
+				if (dataMap != null) {
+					String status = (String) dataMap.get("status");
+					if (status.equals("401") || status.equals("402")) {
+						UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403(CommonUtils.getInstance().mHomeActivity);
+					}
+				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 			}
 		});
@@ -1410,7 +1425,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	@SuppressLint("NewApi")
 	private void addMarker(LatLng point, Bitmap bitmap) {
 
-		View convertView = LayoutInflater.from(mHomeActivity).inflate(R.layout.venues_map_marker, null);
+		View convertView = LayoutInflater.from(mActivity).inflate(R.layout.venues_map_marker, null);
 		CircleImageView iv_head = (CircleImageView) convertView.findViewById(R.id.iv_head);
 		iv_head.setImageBitmap(bitmap);
 		iv_head.setImageAlpha(0);
@@ -1541,6 +1556,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		try {
 			if (resultCode == 1) {
 				sportindex = data.getIntExtra("sportindex", 0);
+				CommonUtils.getInstance().mCurrentActivity=mHomeActivity;
 				setSportPropertyList(sportindex);
 				getCurrentPropertyValue();
 			}

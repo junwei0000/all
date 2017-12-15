@@ -509,7 +509,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		if (allpointLngMapList != null && allpointLngMapList.size() >= 2) {
 			// 添加路线（轨迹）
 			PolylineOptions polyline = new PolylineOptions().width(10)
-					.color(MainStartActivity.mHomeActivity.getResources().getColor(R.color.blue))
+					.color( getResources().getColor(R.color.blue))
 					.points(allpointLngMapList);
 			mBaiduMap.addOverlay(polyline);
 		}

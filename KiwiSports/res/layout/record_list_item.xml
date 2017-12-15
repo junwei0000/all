@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:text="00:00:00"
                         android:textColor="@color/text_contents_color"
-                        android:textSize="@dimen/sp30" />
+                        android:textSize="@dimen/sp25" />
                 </LinearLayout>
 
                 <LinearLayout

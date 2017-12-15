@@ -194,6 +194,8 @@ public class UserAccountHobbyActivity extends BaseActivity {
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
 		mhashmap.put("hobby", hobby);
+		mhashmap.put("nick_name",  bestDoInfoSharedPrefs.getString("nick_name", "")+"");
+		mhashmap.put("sex",  bestDoInfoSharedPrefs.getInt("sex",1)+"");
 		Log.e("decrypt----", mhashmap.toString());
 		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
 

@@ -40,6 +40,7 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 	private int sex;
 	private String token;
 	private String access_token;
+	private SharedPreferences bestDoInfoSharedPrefs;
 
 	@Override
 	public void onClick(View v) {
@@ -88,6 +89,7 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 
 	@Override
 	protected void processLogic() {
+		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
 		uid = getIntent().getStringExtra("uid");
 		token = getIntent().getStringExtra("token");
 		access_token = getIntent().getStringExtra("access_token");
@@ -132,6 +134,8 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
 		mhashmap.put("sex", sex + "");
+		mhashmap.put("nick_name",  bestDoInfoSharedPrefs.getString("nick_name", ""));
+		mhashmap.put("hobby",  bestDoInfoSharedPrefs.getString("hobby", ""));
 		System.err.println(mhashmap);
 		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
 

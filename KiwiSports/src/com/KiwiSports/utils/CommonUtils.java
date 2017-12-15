@@ -272,6 +272,7 @@ public class CommonUtils {
 	 * 当前activity
 	 */
 	public Activity mCurrentActivity;
+	public Activity mHomeActivity;
 	/**
 	 * 正常退出
 	 */

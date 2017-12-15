@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.KiwiSports.control.activity.UserLoginBack403Utils;
 import com.KiwiSports.model.RecordInfo;
 import com.KiwiSports.utils.Constans;
 import com.KiwiSports.utils.parser.RecordListParser;
@@ -53,7 +54,6 @@ public class RecordListBusiness {
 				RecordListParser mParser = new RecordListParser(mlist);
 				JSONObject jsonObject = RequestUtils.String2JSON(response);
 				dataMap = mParser.parseJSON(jsonObject);
-
 				mGetDataCallback.afterDataGet(dataMap);
 				mParser = null;
 				jsonObject = null;

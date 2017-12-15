@@ -50,6 +50,12 @@ public class UserCenterActivity extends BaseActivity {
 	private Editor welcomeEditor;
 
 	@Override
+	protected void onRestart() {
+		super.onRestart();
+		CommonUtils.getInstance().mCurrentActivity=CommonUtils.getInstance().mCurrentActivity;
+	}
+
+	@Override
 	public void onClick(View v) {
 		Intent intent;
 		switch (v.getId()) {
@@ -71,7 +77,7 @@ public class UserCenterActivity extends BaseActivity {
 	@Override
 	protected void loadViewLayout() {
 		setContentView(R.layout.user_center);
-		mHomeActivity = Constans.getInstance().mHomeActivity;
+		mHomeActivity = CommonUtils.getInstance().mHomeActivity;
 	}
 
 	@Override
@@ -200,10 +206,10 @@ public class UserCenterActivity extends BaseActivity {
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
-						CommonUtils.getInstance().clearAllBestDoInfoSharedPrefs(mHomeActivity);
-						CommonUtils.getInstance().setLoginBack403(mHomeActivity);
 					}
 				}
+				CommonUtils.getInstance().clearAllBestDoInfoSharedPrefs(mHomeActivity);
+				CommonUtils.getInstance().setLoginBack403(mHomeActivity);
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 
 			}

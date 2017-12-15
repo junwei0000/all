@@ -1,5 +1,6 @@
 package com.KiwiSports.control.activity;
 
+import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.Constans;
 
 import android.app.Activity;
@@ -87,7 +88,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		Constans.getInstance().mCurrentActivity = context;// 返回时更新当前最新页面
+		CommonUtils.getInstance().mCurrentActivity = context;// 返回时更新当前最新页面
 	}
 
 	@Override

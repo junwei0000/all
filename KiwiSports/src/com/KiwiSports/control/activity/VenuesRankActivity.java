@@ -217,7 +217,17 @@ public class VenuesRankActivity extends BaseActivity {
 		mListView.removeHeaderView(convertView);
 		if (mtopList != null && mtopList.size() > 0) {
 			mListView.addHeaderView(convertView);
+			rankitemtop_layout1.setVisibility(View.INVISIBLE);
+			rankitemtop_layout2.setVisibility(View.INVISIBLE);
+			rankitemtop_layout3.setVisibility(View.INVISIBLE);
+			rankitemtop_tv_name1.setText("");
+			rankitemtop_tv_num1.setText("");
+			rankitemtop_tv_name2.setText("");
+			rankitemtop_tv_num2.setText("");
+			rankitemtop_tv_name3.setText("");
+			rankitemtop_tv_num3.setText("");
 			if (mtopList.size() >= 1) {
+				rankitemtop_layout1.setVisibility(View.VISIBLE);
 				VenuesRankTodayInfo mInfo = mtopList.get(0);
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
@@ -235,6 +245,7 @@ public class VenuesRankActivity extends BaseActivity {
 				rankitemtop_tv_num1.setText(diatance + "km");
 			}
 			if (mtopList.size() >= 2) {
+				rankitemtop_layout2.setVisibility(View.VISIBLE);
 				VenuesRankTodayInfo mInfo = mtopList.get(1);
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
@@ -252,6 +263,7 @@ public class VenuesRankActivity extends BaseActivity {
 				rankitemtop_tv_num2.setText(diatance + "km");
 			}
 			if (mtopList.size() >= 3) {
+				rankitemtop_layout3.setVisibility(View.VISIBLE);
 				VenuesRankTodayInfo mInfo = mtopList.get(2);
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
