@@ -31,7 +31,6 @@
     <uses-permission android:name="android.webkit.permission.PLUGIN" />
     <uses-permission android:name="android.permission.RUN_INSTRUMENTATION" />
     <uses-permission android:name="android.permission.READ_SMS" />
-
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -95,7 +94,7 @@
         <activity android:name=".control.activity.MainVenuesActivity" />
         <activity android:name=".control.activity.MainRecordActivity" />
         <activity android:name=".control.activity.RecordDetailActivity" />
-         <activity android:name=".control.activity.RecordDetailYouActivity" />
+        <activity android:name=".control.activity.RecordDetailYouActivity" />
         <activity android:name=".control.activity.UserCenterActivity" />
         <activity
             android:name=".control.activity.MainActivity"
@@ -123,6 +122,8 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <service android:name="com.KiwiSports.control.view.StepCounterService" >
+        </service>
         <!-- 友盟流量监控 配置：应用Appkey、渠道名称 -->
         <meta-data
             android:name="UMENG_APPKEY"

@@ -58,7 +58,7 @@ public class StepDetector implements SensorEventListener {
 
 	Context context;
 	public static int CURRENT_SETP = 0;
-	public static double currentAltitude= 0;
+	public static int currentAltitude= 0;
 	public StepDetector(Context context) {
 		super();
 		this.context = context;
@@ -77,8 +77,8 @@ public class StepDetector implements SensorEventListener {
 		/**
 		 *  计算海拔
 		 */
-		currentAltitude = 44330000
-				* (1 - (Math.pow((Double.parseDouble(df.format(sPV)) / 1013.25), (float) 1.0 / 5255.0)));
+		currentAltitude = (int) (44330000
+				* (1 - (Math.pow((Double.parseDouble(df.format(sPV)) / 1013.25), (float) 1.0 / 5255.0))));
 		for (int i = 0; i < 3; i++) {
 			oriValues[i] = event.values[i];
 		}
@@ -197,7 +197,7 @@ public class StepDetector implements SensorEventListener {
 		else if (ave >= 3 && ave < 4)
 			ave = (float) 2.0;
 		else {
-			ave = (float) 1.3;
+			ave = (float) 1.8;
 		}
 		return ave;
 	}

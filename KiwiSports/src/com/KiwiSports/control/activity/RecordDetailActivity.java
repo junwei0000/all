@@ -9,6 +9,9 @@ import com.KiwiSports.business.VenuesUsersBusiness;
 import com.KiwiSports.business.RecordDetailBusiness.GetRecordDetailCallback;
 import com.KiwiSports.business.VenuesUsersBusiness.GetVenuesUsersCallback;
 import com.KiwiSports.control.adapter.MainPropertyAdapter;
+import com.KiwiSports.control.mp.ChartDataAdapter;
+import com.KiwiSports.control.mp.ChartItem;
+import com.KiwiSports.control.mp.LineChartItem;
 import com.KiwiSports.model.MainLocationItemInfo;
 import com.KiwiSports.model.MainSportInfo;
 import com.KiwiSports.model.RecordInfo;
@@ -17,6 +20,8 @@ import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.DatesUtils;
 import com.KiwiSports.utils.MyGridView;
+import com.KiwiSports.utils.MyListView;
+import com.KiwiSports.utils.MyScrollView;
 import com.KiwiSports.utils.PriceUtils;
 import com.KiwiSports.utils.parser.MainsportParser;
 import com.baidu.location.BDLocation;
@@ -37,6 +42,9 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -47,6 +55,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -85,10 +94,11 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 	boolean mapStatus = true;
 	private String record_id;
 	private FrameLayout layout_map;
-	private LinearLayout layout_date;
+	private MyScrollView mMyScrollView;
 	private MyGridView map_property;
 	private LinearLayout layoutmap_property;
 	private MyGridView date_property;
+	private MyListView listView;
 
 	@Override
 	public void onClick(View v) {
@@ -131,8 +141,11 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		layout_map = (FrameLayout) findViewById(R.id.layout_map);
 		map_property = (MyGridView) findViewById(R.id.map_property);
 		layoutmap_property = (LinearLayout) findViewById(R.id.layoutmap_property);
-		layout_date = (LinearLayout) findViewById(R.id.layout_date);
+		mMyScrollView = (MyScrollView) findViewById(R.id.mMyScrollView);
 		date_property = (MyGridView) findViewById(R.id.date_property);
+		
+		listView= (MyListView) findViewById(R.id.listView);
+		
 		tv_map = (TextView) findViewById(R.id.tv_map);
 		tv_mapline = (TextView) findViewById(R.id.tv_mapline);
 		tv_date = (TextView) findViewById(R.id.tv_date);
@@ -172,12 +185,12 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		if (mapStatus) {
 			tv_map.setTextColor(getResources().getColor(R.color.white));
 			tv_mapline.setVisibility(View.VISIBLE);
-			layout_date.setVisibility(View.GONE);
+			mMyScrollView.setVisibility(View.GONE);
 			layout_map.setVisibility(View.VISIBLE);
 		} else {
 			tv_date.setTextColor(getResources().getColor(R.color.white));
 			tv_dateline.setVisibility(View.VISIBLE);
-			layout_date.setVisibility(View.VISIBLE);
+			mMyScrollView.setVisibility(View.VISIBLE);
 			layout_map.setVisibility(View.GONE);
 		}
 	}
@@ -249,7 +262,9 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 					setSportPropertyList();
 				}
 				addMarker();
-
+				if(allpointList!=null&&allpointList.size()>0){
+					initDateView();
+				}
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 
@@ -258,6 +273,73 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 
 	}
 
+	private void initDateView() {
+		ArrayList<ChartItem> list = new ArrayList<ChartItem>();
+		list.add(new LineChartItem(generateADataLine() , getApplicationContext()));
+		list.add(new LineChartItem(generateSDataLine(), getApplicationContext()));
+		ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
+		listView.setAdapter(cda);
+	}
+	/**
+	 * generates a random ChartData object with just one DataSet
+	 * 海拔
+	 * @return
+	 */
+	private LineData generateADataLine() {
+		ArrayList<Entry> e1 = new ArrayList<Entry>();
+		for (int i = 0; i < allpointList.size(); i++) {
+			e1.add(new Entry((float) allpointList.get(i).getAltitude(), i));
+		}
+
+		LineDataSet d1 = new LineDataSet(e1, "海拔（m）");
+		d1.setLineWidth(2.5f);
+		d1.setCircleSize(0);
+		d1.setHighLightColor(getResources().getColor(R.color.ching));
+		d1.setDrawValues(false);
+
+		ArrayList<LineDataSet> sets = new ArrayList<LineDataSet>();
+		sets.add(d1);
+
+		LineData cd = new LineData(getMonths(), sets);
+		return cd;
+	}
+	/**
+	 * 速度
+	 * @return
+	 */
+	private LineData generateSDataLine() {
+		ArrayList<Entry> e1 = new ArrayList<Entry>();
+		for (int i = 0; i < allpointList.size(); i++) {
+			e1.add(new Entry((float) allpointList.get(i).getSpeed(), i));
+		}
+
+		LineDataSet d1 = new LineDataSet(e1, "速度（km/h）");
+		d1.setLineWidth(2.5f);
+		d1.setCircleSize(0);
+		d1.setHighLightColor(getResources().getColor(R.color.ching));
+		d1.setDrawValues(false);
+
+		ArrayList<LineDataSet> sets = new ArrayList<LineDataSet>();
+		sets.add(d1);
+
+		LineData cd = new LineData(getMonths(), sets);
+		return cd;
+	}
+	private ArrayList<String> getMonths() {
+
+		ArrayList<String> m = new ArrayList<String>();
+		String time = null;
+		for (int i = 0; i < allpointList.size(); i++) {
+			int timestamp = (int) allpointList.get(i).getDuration();
+			  time=DatesUtils.getInstance().formatTimes(timestamp*1000);
+			m.add(" "+time+" ");
+		}
+		return m;
+	}
+	
+	
+	
+	
 	private void setSportPropertyList() {
 		MainsportParser mMainsportParser = new MainsportParser();
 		ArrayList<MainSportInfo> mallsportList = mMainsportParser.parseJSON(this);
@@ -278,6 +360,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 	 */
 	private void showCurrentPropertyValue() {
 		distanceTraveled = mRecordInfo.getDistanceTraveled();
+		distanceTraveled=PriceUtils.getInstance().getPriceTwoDecimal(Double.valueOf(distanceTraveled), 2);
 		long runingTimestamp = mRecordInfo.getDuration();
 		duration = DatesUtils.getInstance().formatTimes(runingTimestamp * 1000);
 		matchSpeed = mRecordInfo.getMatchSpeed();

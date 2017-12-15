@@ -70,31 +70,51 @@
             </FrameLayout>
             <!-- date -->
 
-            <LinearLayout
-                android:id="@+id/layout_date"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical" >
+            <com.KiwiSports.utils.MyScrollView
+                android:id="@+id/mMyScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:listSelector="@drawable/list_notselector"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
 
-                <com.KiwiSports.utils.MyGridView
-                    android:id="@+id/date_property"
-                    style="@style/padd_topbottom"
+                <LinearLayout
+                    android:id="@+id/layout_date"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:background="@color/main_tab_page_bg"
-                    android:cacheColorHint="@color/transparent"
-                    android:divider="@null"
-                    android:fadeScrollbars="true"
-                    android:fadingEdge="none"
-                    android:gravity="left"
-                    android:horizontalSpacing="10dp"
-                    android:listSelector="@drawable/list_notselector"
-                    android:numColumns="3"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    android:verticalSpacing="10dp" >
-                </com.KiwiSports.utils.MyGridView>
-            </LinearLayout>
+                    android:orientation="vertical" >
+
+                    <com.KiwiSports.utils.MyGridView
+                        android:id="@+id/date_property"
+                        style="@style/padd_topbottom"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@color/main_tab_page_bg"
+                        android:cacheColorHint="@color/transparent"
+                        android:divider="@null"
+                        android:fadeScrollbars="true"
+                        android:fadingEdge="none"
+                        android:gravity="left"
+                        android:horizontalSpacing="10dp"
+                        android:listSelector="@drawable/list_notselector"
+                        android:numColumns="3"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        android:verticalSpacing="10dp" >
+                    </com.KiwiSports.utils.MyGridView>
+
+                    <com.KiwiSports.utils.MyListView
+                        android:id="@+id/listView"
+                        style="@style/padd_topbottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@null"
+                        android:dividerHeight="@dimen/padd_leftright"
+                        android:listSelector="@drawable/list_notselector"
+                        android:overScrollMode="never"
+                        android:scrollbars="none" />
+                </LinearLayout>
+            </com.KiwiSports.utils.MyScrollView>
         </FrameLayout>
 
         <!-- bottom -->

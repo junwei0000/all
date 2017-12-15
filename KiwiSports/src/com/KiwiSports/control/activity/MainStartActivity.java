@@ -155,7 +155,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private long maxMatchSpeedTimestamp;// 最快配速 / 最大速度时间戳
 	private double minAltidue;// 最低海拔
 	private double maxAltitude;// 最高海拔
-	private double currentAltitude;// 当前海拔
+	private int currentAltitude;// 当前海拔
 	private double currentAccuracy;// 精度
 	private double Speed;// 速度
 	private double averageSpeed;// 平均速度
@@ -301,7 +301,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		allpointList.clear();
 		mBaiduMap.clear();
-		beforelatLng=null;
+		beforelatLng = null;
+		Speed = 0;
+		averageSpeed = 0;
+		topSpeed = 0;
+		matchSpeed = "0";
+		averageMatchSpeed = "0";
+
 	}
 
 	@Override
@@ -415,11 +421,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	private void getCurrentPropertyValue() {
 		distanceTraveled = mTrackUploadFragment.sum_distance;
+		distanceTraveled = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(distanceTraveled, 2));
 		calorie = (int) (70 * distanceTraveled * 1.036);
 		nSteps = StepDetector.CURRENT_SETP;
 		duration = DatesUtils.getInstance().formatTimes(runingTimestamp);
 		freezeDuration = DatesUtils.getInstance().formatTimes(pauseTimestamp);
-		currentAltitude = StepDetector.currentAltitude; // 获取海拔高度信息，单位米
 		if (currentAltitude >= maxAltitude) {
 			maxAltitude = currentAltitude;
 		}
@@ -430,6 +436,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		if (time > 0) {
 			averageSpeed = (distanceTraveled * 1000 / time) * 3.6;// 单位：公里每小时
 			averageSpeed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(Speed, 2));
+			Speed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(Speed, 2));
 			if (Speed < minSpeed) {
 				minSpeed = Speed;
 			}
@@ -899,7 +906,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							longitude_me = location.getLongitude();
 							latitude_me = location.getLatitude();
 						}
-						Speed= location.getSpeed();
+						Speed = location.getSpeed();
+						if(Speed<0){
+							Speed=0;
+						}
 						address = location.getAddrStr();
 						currentAccuracy = location.getRadius();
 						LatLng latLng = new LatLng(latitude_me, longitude_me);
@@ -942,16 +952,18 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		criteria.setPowerRequirement(Criteria.POWER_LOW);
 		return criteria;
 	}
+
 	LatLng beforelatLng;
+
 	private void setline(LatLng latLng) {
 		boolean sensorAva = (BEFORECURRENT_SETP != StepDetector.CURRENT_SETP) && Constans.getInstance().mSensorState;
 		if (sensorAva || !Constans.getInstance().mSensorState) {
 			mTrackUploadFragment.showRealtimeTrack(latLng);
-			Log.e("map", "beforelatLng=="+beforelatLng+";;;latLng=="+latLng);
-			if (beforelatLng==null|| beforelatLng.latitude!= latLng.latitude) {
+			Log.e("map", "beforelatLng==" + beforelatLng + ";;;latLng==" + latLng);
+			if (beforelatLng == null || beforelatLng.latitude != latLng.latitude) {
 				Log.e("map", "addddd");
 				recordInfo(latLng);
-				beforelatLng=latLng;
+				beforelatLng = latLng;
 			}
 			getCurrentPropertyValue();
 		}
@@ -1064,6 +1076,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		public void onLocationChanged(Location location) {
 			showGpsAccuracy(location);
 			System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
+			if (location != null) {
+				currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
+				currentAccuracy = location.getAccuracy();
+			}
 			if (gpslocationListenerStatus && location != null) {
 				// userwalk_run_tv_gpsinfo.setText(userwalk_run_tv_gpsinfo.getText()+"
 				// gps "+location.getAccuracy());
@@ -1075,15 +1091,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				LatLng sourceLatLng = converter.convert();
 				longitude_me = sourceLatLng.longitude;
 				latitude_me = sourceLatLng.latitude;
-				currentAltitude = location.getAltitude(); // 获取海拔高度信息，单位米
-				currentAccuracy = location.getAccuracy();
-				if (currentAltitude >= maxAltitude) {
-					maxAltitude = currentAltitude;
+
+				Speed = location.getSpeed();
+				if(Speed<0){
+					Speed=0;
 				}
-				if (currentAltitude <= minAltidue) {
-					minAltidue = currentAltitude;
-				}
-				Speed= location.getSpeed();
 				address = location.getProvider();
 				if (btnStartStatus && btnContinueStatus) {
 					setline(sourceLatLng);
