@@ -299,6 +299,12 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 					}
 					moveToCenter();
 					getVenuesUsers();
+					LatLng mypoint = new LatLng(top_left_y, top_left_x);
+					MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(mypoint);
+					if (u != null && mBaiduMap != null) {
+						// mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms
+						mBaiduMap.setMapStatus(u);// 改变地图状态
+					}
 				} catch (Exception e) {
 				}
 				option.setOpenGps(false);

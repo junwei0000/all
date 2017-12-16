@@ -203,6 +203,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 			break;
 		case R.id.iv_start:
+			LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+			
+			if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			
 			startservice();
 			startTimestamp = System.currentTimeMillis();
 			initTimer();
@@ -212,6 +216,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			iv_pause.setVisibility(View.VISIBLE);
 			iv_continue.setVisibility(View.GONE);
 			iv_stop.setVisibility(View.GONE);
+			}else{
+				endDialog("GPSNOTSTART");
+			}
 			break;
 		case R.id.iv_continue:
 			// 继续
@@ -439,8 +446,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		long time = runingTimestamp / 1000;
 		if (time > 0) {
-			averageSpeed = (distanceTraveled * 1000 / time) * 3.6;// 单位：公里每小时
-			averageSpeed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(Speed, 2));
+			averageSpeed = distanceTraveled * 1000* 3.6 / time ;// 单位：公里每小时
+			averageSpeed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(averageSpeed, 2));
 			Speed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(Speed, 2));
 			if (Speed < minSpeed) {
 				minSpeed = Speed;
@@ -455,9 +462,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 		if (distanceTraveled >= 0.01) {
 			matchSpeedTimestamp = DatesUtils.getInstance().computeMatchspeed(runingTimestamp, distanceTraveled);
-
+			averageMatchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
 			matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
 
+			if(Speed>0){
+				matchSpeedTimestamp=(long)(1*3600*1000/Speed);
+				matchSpeed=DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
+			}
 			if (matchSpeedTimestamp <= maxMatchSpeedTimestamp) {
 				maxMatchSpeedTimestamp = matchSpeedTimestamp;
 				maxMatchSpeed = DatesUtils.getInstance().formatMatchspeed(maxMatchSpeedTimestamp);
@@ -466,8 +477,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				minmatchSpeedTimestamp = matchSpeedTimestamp;
 				minmatchSpeed = DatesUtils.getInstance().formatMatchspeed(minmatchSpeedTimestamp);
 			}
-			averageMatchSpeed = DatesUtils.getInstance()
-					.formatMatchspeed((minmatchSpeedTimestamp + maxMatchSpeedTimestamp) / 2);
+			
 		}
 		showCurrentPropertyValue();
 	}
@@ -482,7 +492,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			for (int i = 0; i < mMpropertyList.size(); i++) {
 				switch (i) {
 				case 0:
-					mMpropertyList.get(i).setValue(matchSpeed);
+					mMpropertyList.get(i).setValue(matchSpeed+"");
 					break;
 				case 1:
 					mMpropertyList.get(i).setValue(freezeDuration);
@@ -921,7 +931,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						if (btnStartStatus && btnContinueStatus) {
 							mTrackUploadFragment.isInUploadFragment = true;
 							if (mTrackUploadFragment != null && mTrackUploadFragment.isInUploadFragment) {
-								setline(latLng);
+								Message msg=new Message();
+								msg.what=SETLINE;
+								msg.obj=latLng;
+								mHandler.sendMessage(msg);
+								msg=null;
 							}
 						} else {
 							showLocation(latLng);
@@ -1085,13 +1099,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		public void onLocationChanged(Location location) {
 			showGpsAccuracy(location);
 			System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
-			if (location != null) {
+			if (gpslocationListenerStatus && location != null) {
 				currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
 				currentAccuracy = location.getAccuracy();
-			}
-			if (gpslocationListenerStatus && location != null) {
-				// userwalk_run_tv_gpsinfo.setText(userwalk_run_tv_gpsinfo.getText()+"
-				// gps "+location.getAccuracy());
 
 				LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 				CoordinateConverter converter = new CoordinateConverter();
@@ -1107,7 +1117,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				}
 				address = location.getProvider();
 				if (btnStartStatus && btnContinueStatus) {
-					setline(sourceLatLng);
+					Message msg=new Message();
+					msg.what=SETLINE;
+					msg.obj=sourceLatLng;
+					mHandler.sendMessage(msg);
+					msg=null;
 				} else {
 					showLocation(sourceLatLng);
 				}
@@ -1265,7 +1279,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			e.printStackTrace();
 		}
 	}
-
 	/**
 	 * 点击结束
 	 * 
@@ -1280,7 +1293,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		TextView myexit_text_title = (TextView) selectDialog.findViewById(R.id.myexit_text_title);
 		if (dialogType.equals("shortDistance")) {
 			myexit_text_title.setText(getString(R.string.endlocationcancel));
-		} else {
+		}else if (dialogType.equals("GPSNOTSTART")) {
+			myexit_text_title.setText(getString(R.string.endlocationgpsstart));
+		}  else {
 			myexit_text_title.setText(getString(R.string.endlocationcommit));
 		}
 		text_off.setOnClickListener(new View.OnClickListener() {
@@ -1295,7 +1310,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				selectDialog.dismiss();
 				if (dialogType.equals("shortDistance")) {
 					initStartView();
-				} else {
+				}else if (dialogType.equals("GPSNOTSTART")) {
+					// 返回开启GPS导航设置界面
+					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+					startActivityForResult(intent, 0);
+				}else {
 					loadRecordDates();
 				}
 
@@ -1334,6 +1353,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	private final int UPDATELOCATION = 1;
 	private final int UPDATETIME = 2;
+	private final int SETLINE = 3;
 	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -1345,6 +1365,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				break;
 			case UPDATETIME:
 				getCurrentPropertyValue();
+				break;
+			case SETLINE:
+				LatLng latLng=(LatLng) msg.obj;
+				setline(latLng);
 				break;
 			}
 		}

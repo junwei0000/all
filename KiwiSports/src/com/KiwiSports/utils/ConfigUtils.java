@@ -1,10 +1,13 @@
 package com.KiwiSports.utils;
 
 import java.security.MessageDigest;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.baidu.mapapi.model.LatLng;
 
 
 import android.app.Activity;
@@ -446,4 +449,32 @@ public class ConfigUtils {
 		s = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(s, 2));
 		return s;
 	}
+	public LatLng getCenterpoint(List<LatLng> pointList) {
+		LatLng cenpoint = null;
+		if (pointList != null && pointList.size() > 0) {
+			Double maxLng = pointList.get(0).longitude;
+			Double minLng = pointList.get(0).longitude;
+			Double maxLat = pointList.get(0).latitude;
+			Double minLat = pointList.get(0).latitude;
+			LatLng res;
+			for (int i = 0; i <= pointList.size() - 1; i++) {
+				res = pointList.get(i);
+				if (res.longitude > maxLng)
+					maxLng = res.longitude;
+				if (res.longitude < minLng)
+					minLng = res.longitude;
+				if (res.latitude > maxLat)
+					maxLat = res.latitude;
+				if (res.latitude < minLat)
+					minLat = res.latitude;
+			}
+			Double cenLng = (maxLng + minLng) / 2;
+			Double cenLat = (((maxLat + minLat) / 2 + minLat) / 2 + minLat) / 2;
+
+			cenpoint = new LatLng(cenLat, cenLng);
+
+		}
+		return cenpoint;
+	}
+
 }

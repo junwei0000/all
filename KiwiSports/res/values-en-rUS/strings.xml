@@ -66,6 +66,7 @@
     <string name="record_date">date</string>
     <string name="sporttype">sport type</string>
     <string name="sporttypelike">sports Preference</string>
+    <string name="endlocationgpsstart">您的定位服务未开启，请到【设置】中开启定位服务</string>
     <string name="endlocationcancel">the movement is too short for the end to save the record</string>
     <string name="endlocationcommit">is this the end of the campaign?</string>
     <!-- action -->

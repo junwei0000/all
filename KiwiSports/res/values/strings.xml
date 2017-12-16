@@ -67,6 +67,7 @@
     <string name="sporttype">运动类型</string>
     <string name="sporttypelike">运动偏好</string>
     <string name="endlocationcancel">此次运动距离太短，结束将无法保存记录</string>
+    <string name="endlocationgpsstart">您的定位服务未开启，请到【设置】中开启定位服务</string>
     <string name="endlocationcommit">是否结束本次运动?</string>
     <!-- action -->
     <!-- 下线通知广播 -->

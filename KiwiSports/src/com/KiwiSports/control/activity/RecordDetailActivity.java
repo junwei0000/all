@@ -18,6 +18,7 @@ import com.KiwiSports.model.RecordInfo;
 import com.KiwiSports.model.VenuesUsersInfo;
 import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
+import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.DatesUtils;
 import com.KiwiSports.utils.MyGridView;
 import com.KiwiSports.utils.MyListView;
@@ -278,7 +279,10 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		list.add(new LineChartItem(generateADataLine() , getApplicationContext()));
 		list.add(new LineChartItem(generateSDataLine(), getApplicationContext()));
 		ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
+		TextView mTextView=new TextView(context);
+		mTextView.setHeight(50);
 		listView.setAdapter(cda);
+		listView.addFooterView(mTextView);
 	}
 	/**
 	 * generates a random ChartData object with just one DataSet
@@ -512,6 +516,12 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 					.color( getResources().getColor(R.color.blue))
 					.points(allpointLngMapList);
 			mBaiduMap.addOverlay(polyline);
+			LatLng nowpoint = ConfigUtils.getInstance().getCenterpoint(allpointLngMapList);
+			MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(nowpoint);
+			if (u != null && mBaiduMap != null) {
+				// mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms
+				mBaiduMap.setMapStatus(u);// 改变地图状态
+			}
 		}
 	}
 
