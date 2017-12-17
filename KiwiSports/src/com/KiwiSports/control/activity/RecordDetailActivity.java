@@ -364,6 +364,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 	 */
 	private void showCurrentPropertyValue() {
 		distanceTraveled = mRecordInfo.getDistanceTraveled();
+		distanceTraveled=PriceUtils.getInstance().gteDividePrice(distanceTraveled, "1000");
 		distanceTraveled=PriceUtils.getInstance().getPriceTwoDecimal(Double.valueOf(distanceTraveled), 2);
 		long runingTimestamp = mRecordInfo.getDuration();
 		duration = DatesUtils.getInstance().formatTimes(runingTimestamp * 1000);

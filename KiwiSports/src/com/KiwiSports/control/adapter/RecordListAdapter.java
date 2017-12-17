@@ -85,6 +85,7 @@ public class RecordListAdapter extends BaseAdapter {
 		String createtime = mInfo.getCreate_time();
 		long runtime = mInfo.getDuration();
 		String time = DatesUtils.getInstance().formatTimes(runtime*1000);
+		distance= PriceUtils.getInstance().gteDividePrice(distance, "1000");
 		distance=PriceUtils.getInstance().getPriceTwoDecimal(Double.valueOf(distance), 2);
 		viewHolder.tv_distance.setText(distance);
 		viewHolder.tv_speed.setText(PriceUtils.getInstance().getPriceTwoDecimal(Double.valueOf(speed), 2));

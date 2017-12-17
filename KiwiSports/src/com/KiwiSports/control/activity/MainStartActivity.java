@@ -999,7 +999,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		double altitude = currentAltitude;// 海拔
 		double accuracy = currentAccuracy;// 精度
 		long duration = runingTimestamp / 1000;// 用时
-		double distance = distanceTraveled;// 距离
+		double distance = distanceTraveled*1000;// 距离
 		String nStatus = "";// 运动状态
 		String nLapPoint = "";// 没圈线路中间点
 		String nLapTime = "";// 单圈用时
@@ -1172,7 +1172,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		try {
 			recordDatas.put("user_id", uid);
 			recordDatas.put("posid", "" + posid);
-			recordDatas.put("distanceTraveled", "" + distanceTraveled);
+			recordDatas.put("distanceTraveled", "" + distanceTraveled*1000);
 			recordDatas.put("duration", "" + (runingTimestamp / 1000));
 			recordDatas.put("verticalDistance", "" + verticalDistance);
 			recordDatas.put("topSpeed", "" + topSpeed);
