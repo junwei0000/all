@@ -179,6 +179,7 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 				mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
+				firststatus=false;
 
 			}
 		});
@@ -229,9 +230,11 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 		mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
 	}
 
+	Boolean firststatus=true;
 	@Override
 	protected void onResume() {
 		super.onResume();
+		if(!firststatus)
 		mPullDownViewHandler.sendEmptyMessage(REFLESH);
 	}
 

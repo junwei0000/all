@@ -174,6 +174,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 				mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
+				firststatus=false;
 
 			}
 		});
@@ -296,10 +297,11 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 		}, 1500);
 
 	}
-
+	Boolean firststatus=true;
 	@Override
 	protected void onResume() {
 		super.onResume();
+		if(!firststatus)
 		mPullDownViewHandler.sendEmptyMessage(REFLESH);
 	}
 
