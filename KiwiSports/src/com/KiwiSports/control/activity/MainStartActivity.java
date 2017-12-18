@@ -297,7 +297,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	private void initStartView() {
 		setstopService();
-		gpslocationListenerStatus= false;
+		gpslocationListenerStatus = false;
 		btnStartStatus = false;
 		btnContinueStatus = false;
 		firstUploadLocationstatus = true;
@@ -323,7 +323,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		topSpeed = 0;
 		matchSpeed = "0";
 		averageMatchSpeed = "0";
-		maxMatchSpeed= "0";
+		maxMatchSpeed = "0";
 
 	}
 
@@ -896,65 +896,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	}
 
-	public class MyLocationListener implements BDLocationListener {
-
-		@Override
-		public void onReceiveLocation(BDLocation location) {
-			System.err.println("MyLocationListener==" + location.getLatitude() + "     ");
-			if (!gpslocationListenerStatus) {
-				if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mActivity)) {
-					mTrackUploadFragment.isInUploadFragment = false;
-					// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps0);
-					// userwalk_run_tv_gpsinfo.setText("无信号");
-					return;
-				} else {
-					if (location.getLocType() == 167 || location.getLatitude() == 0 || location.getRadius() > 100) {
-						mTrackUploadFragment.isInUploadFragment = false;
-						// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps1);
-						// userwalk_run_tv_gpsinfo.setText("信号较差数据准确度较低");
-					} else {
-						if (firstnetLocationstatus) {
-							// 第一次不定位，防止漂浮坐标
-							firstnetLocationstatus = false;
-							return;
-
-						}
-						if (location.getLocType() == 62) {
-							longitude_me = 116.404269;
-							latitude_me = 39.91405;
-						} else {
-							longitude_me = location.getLongitude();
-							latitude_me = location.getLatitude();
-						}
-						Speed = location.getSpeed();
-						if (Speed < 0) {
-							Speed = 0;
-						}
-						address = location.getAddrStr();
-						currentAccuracy = location.getRadius();
-						LatLng latLng = new LatLng(latitude_me, longitude_me);
-						if (btnStartStatus && btnContinueStatus) {
-							mTrackUploadFragment.isInUploadFragment = true;
-							if (mTrackUploadFragment != null && mTrackUploadFragment.isInUploadFragment) {
-								Message msg = new Message();
-								msg.what = SETLINE;
-								msg.obj = latLng;
-								mHandler.sendMessage(msg);
-								msg = null;
-							}
-						} else {
-							showLocation(latLng);
-						}
-
-					}
-				}
-				System.err.println("location===" + location.getLatitude() + "    " + location.getLocType());
-				// userwalk_run_tv_gpsinfo.setText("信号良好net"+"
-				// "+location.getRadius()+" "+StepDetector.CURRENT_SETP);
-			}
-		}
-	};
-
 	/**
 	 * 返回查询条件
 	 * 
@@ -1050,11 +991,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	protected void initMyLocationUsers(final LatLng latLng) {
 		/**
-		 * 每2分钟上传一次数据
+		 * 每1分钟上传一次数据
 		 */
-
-		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (2 * 60 * 1000) == 0)) {
-			firstUploadLocationstatus = false;
+		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (1 * 60 * 1000) == 0)) {
 			if (beforelatLng == null || latLng.latitude != beforelatLng.latitude) {
 				Message message = new Message();
 				message.what = UPDATELOCATION;
@@ -1062,6 +1001,14 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				mHandler.sendMessage(message);
 				message = null;
 			}
+		}
+		
+		/**
+		 * 每5分钟更新一下场地用户列表信息
+		 */
+		
+		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (5 * 60 * 1000) == 0)) {
+			firstUploadLocationstatus = false;
 			getVenuesUsers();
 			getPosid();
 		}
@@ -1095,44 +1042,29 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	}
 
+	public class MyLocationListener implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			Message msg = new Message();
+			msg.what = NETLOCATION;
+			msg.obj = location;
+			mHandler.sendMessage(msg);
+			msg = null;
+		}
+	};
+
 	private LocationListener gpslocationListener = new LocationListener() {
 		/**
 		 * 位置信息变化时触发
 		 */
 		@Override
 		public void onLocationChanged(Location location) {
-			showGpsAccuracy(location);
-			if (location != null) {
-				currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
-				currentAccuracy = location.getAccuracy();
-				Speed = location.getSpeed();
-				if (Speed < 0) {
-					Speed = 0;
-				}
-			}
-			System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
-			if (gpslocationListenerStatus && location != null) {
-
-				LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-				// 将GPS设备采集的原始GPS坐标转换成百度坐标
-				CoordinateConverter converter = new CoordinateConverter();
-				converter.from(CoordType.GPS);
-				converter.coord(latLng);
-				LatLng sourceLatLng = converter.convert();
-				longitude_me = sourceLatLng.longitude;
-				latitude_me = sourceLatLng.latitude;
-				address = location.getProvider();
-				if (btnStartStatus && btnContinueStatus) {
-					Message msg = new Message();
-					msg.what = SETLINE;
-					msg.obj = sourceLatLng;
-					mHandler.sendMessage(msg);
-					msg = null;
-				} else {
-					showLocation(sourceLatLng);
-				}
-
-			}
+			Message msg = new Message();
+			msg.what = GPSLOCATION;
+			msg.obj = location;
+			mHandler.sendMessage(msg);
+			msg = null;
 		}
 
 		/**
@@ -1170,6 +1102,134 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		public void onProviderDisabled(String provider) {
 		}
 
+	};
+
+	private void netLocation(BDLocation location) {
+
+		System.err.println("MyLocationListener==" + location.getLatitude() + "     ");
+		if (!gpslocationListenerStatus) {
+			if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mActivity)) {
+				mTrackUploadFragment.isInUploadFragment = false;
+				// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps0);
+				// userwalk_run_tv_gpsinfo.setText("无信号");
+				return;
+			} else {
+				if (location.getLocType() == 167 || location.getLatitude() == 0 || location.getRadius() > 100) {
+					mTrackUploadFragment.isInUploadFragment = false;
+					// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps1);
+					// userwalk_run_tv_gpsinfo.setText("信号较差数据准确度较低");
+				} else {
+					if (firstnetLocationstatus) {
+						// 第一次不定位，防止漂浮坐标
+						firstnetLocationstatus = false;
+						return;
+
+					}
+					if (location.getLocType() == 62) {
+						longitude_me = 116.404269;
+						latitude_me = 39.91405;
+					} else {
+						longitude_me = location.getLongitude();
+						latitude_me = location.getLatitude();
+					}
+					Speed = location.getSpeed();
+					if (Speed < 0) {
+						Speed = 0;
+					}
+					address = location.getAddrStr();
+					currentAccuracy = location.getRadius();
+					LatLng latLng = new LatLng(latitude_me, longitude_me);
+					if (btnStartStatus && btnContinueStatus) {
+						mTrackUploadFragment.isInUploadFragment = true;
+						if (mTrackUploadFragment != null && mTrackUploadFragment.isInUploadFragment) {
+							Message msg = new Message();
+							msg.what = SETLINE;
+							msg.obj = latLng;
+							mHandler.sendMessage(msg);
+							msg = null;
+						}
+					} else {
+						showLocation(latLng);
+					}
+
+				}
+			}
+			System.err.println("location===" + location.getLatitude() + "    " + location.getLocType());
+			// userwalk_run_tv_gpsinfo.setText("信号良好net"+"
+			// "+location.getRadius()+" "+StepDetector.CURRENT_SETP);
+		}
+
+	}
+
+	private void gpsLocation(Location location) {
+
+		showGpsAccuracy(location);
+		if (location != null) {
+			currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
+			currentAccuracy = location.getAccuracy();
+			Speed = location.getSpeed();
+			if (Speed < 0) {
+				Speed = 0;
+			}
+		}
+		System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
+		if (gpslocationListenerStatus && location != null) {
+
+			LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+			// 将GPS设备采集的原始GPS坐标转换成百度坐标
+			CoordinateConverter converter = new CoordinateConverter();
+			converter.from(CoordType.GPS);
+			converter.coord(latLng);
+			LatLng sourceLatLng = converter.convert();
+			longitude_me = sourceLatLng.longitude;
+			latitude_me = sourceLatLng.latitude;
+			address = location.getProvider();
+			if (btnStartStatus && btnContinueStatus) {
+				Message msg = new Message();
+				msg.what = SETLINE;
+				msg.obj = sourceLatLng;
+				mHandler.sendMessage(msg);
+				msg = null;
+			} else {
+				showLocation(sourceLatLng);
+			}
+
+		}
+
+	}
+
+	private final int UPDATELOCATION = 1;
+	private final int UPDATETIME = 2;
+	private final int SETLINE = 3;
+	private final int NETLOCATION = 4;
+	private final int GPSLOCATION = 5;
+	Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case UPDATELOCATION:
+				LatLng mypoint = (LatLng) msg.obj;
+				double longitude_me = mypoint.longitude;
+				double latitude_me = mypoint.latitude;
+				updateLocation(longitude_me, latitude_me);
+				break;
+			case UPDATETIME:
+				getCurrentPropertyValue();
+				break;
+			case SETLINE:
+				LatLng latLng = (LatLng) msg.obj;
+				initMyLocationUsers(latLng);
+				setline(latLng);
+				break;
+			case NETLOCATION:
+				BDLocation mBDLocation = (BDLocation) msg.obj;
+				netLocation(mBDLocation);
+				break;
+			case GPSLOCATION:
+				Location location = (Location) msg.obj;
+				gpsLocation(location);
+				break;
+			}
+		}
 	};
 
 	private String setRecordInfoArrayToJson() {
@@ -1218,8 +1278,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						lon = allpointList.get(i).getLongitude();
 						if (lat > 0) {
 							JSONObject latObject = new JSONObject();
-							double[]   latlng=  GPSUtil.bd09_To_Gcj02(lat, lon);
-							
+							double[] latlng = GPSUtil.bd09_To_Gcj02(lat, lon);
+
 							latObject.put("longitude", latlng[1] + "");
 							latObject.put("latitude", latlng[0] + "");
 
@@ -1361,29 +1421,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		});
 
 	}
-
-	private final int UPDATELOCATION = 1;
-	private final int UPDATETIME = 2;
-	private final int SETLINE = 3;
-	Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case UPDATELOCATION:
-				LatLng mypoint = (LatLng) msg.obj;
-				double longitude_me = mypoint.longitude;
-				double latitude_me = mypoint.latitude;
-				updateLocation(longitude_me, latitude_me);
-				break;
-			case UPDATETIME:
-				getCurrentPropertyValue();
-				break;
-			case SETLINE:
-				LatLng latLng = (LatLng) msg.obj;
-				setline(latLng);
-				break;
-			}
-		}
-	};
 
 	protected void updateLocation(double longitude_me, double latitude_me) {
 		mhashmap = new HashMap<String, String>();
