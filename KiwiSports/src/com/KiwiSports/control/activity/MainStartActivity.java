@@ -29,6 +29,7 @@ import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.Constans;
 import com.KiwiSports.utils.DatesUtils;
+import com.KiwiSports.utils.GPSUtil;
 import com.KiwiSports.utils.LanguageUtil;
 import com.KiwiSports.utils.MyDialog;
 import com.KiwiSports.utils.MyGridView;
@@ -189,7 +190,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private LinearLayout layoutall;
 	private FrameLayout relat_map;
 	private Activity mHomeActivity;
-	public static  Context mActivity;
+	public static Context mActivity;
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -204,19 +206,19 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			break;
 		case R.id.iv_start:
 			LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-			
+
 			if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			
-			startservice();
-			startTimestamp = System.currentTimeMillis();
-			initTimer();
-			btnStartStatus = true;
-			btnContinueStatus = true;
-			iv_start.setVisibility(View.GONE);
-			iv_pause.setVisibility(View.VISIBLE);
-			iv_continue.setVisibility(View.GONE);
-			iv_stop.setVisibility(View.GONE);
-			}else{
+
+				startservice();
+				startTimestamp = System.currentTimeMillis();
+				initTimer();
+				btnStartStatus = true;
+				btnContinueStatus = true;
+				iv_start.setVisibility(View.GONE);
+				iv_pause.setVisibility(View.VISIBLE);
+				iv_continue.setVisibility(View.GONE);
+				iv_stop.setVisibility(View.GONE);
+			} else {
 				endDialog("GPSNOTSTART");
 			}
 			break;
@@ -284,16 +286,18 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			break;
 		}
 	}
+
 	@Override
 	protected void onRestart() {
 		super.onRestart();
 	}
-	
+
 	/**
 	 * 结束后初始化所有状态
 	 */
 	private void initStartView() {
 		setstopService();
+		gpslocationListenerStatus= false;
 		btnStartStatus = false;
 		btnContinueStatus = false;
 		firstUploadLocationstatus = true;
@@ -319,6 +323,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		topSpeed = 0;
 		matchSpeed = "0";
 		averageMatchSpeed = "0";
+		maxMatchSpeed= "0";
 
 	}
 
@@ -338,7 +343,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	protected void loadViewLayout() {
 		setContentView(R.layout.main_start);
 		mActivity = getApplicationContext();
-		mHomeActivity=CommonUtils.getInstance().mHomeActivity;
+		mHomeActivity = CommonUtils.getInstance().mHomeActivity;
 	}
 
 	protected void findViewById() {
@@ -446,7 +451,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		long time = runingTimestamp / 1000;
 		if (time > 0) {
-			averageSpeed = distanceTraveled * 1000* 3.6 / time ;// 单位：公里每小时
+			averageSpeed = distanceTraveled * 1000 * 3.6 / time;// 单位：公里每小时
 			averageSpeed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(averageSpeed, 2));
 			Speed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(Speed, 2));
 			if (Speed < minSpeed) {
@@ -459,17 +464,17 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				topSpeed = averageSpeed;
 			}
 		}
-
+		// distanceTraveled=0.06;
 		if (distanceTraveled >= 0.01) {
 			matchSpeedTimestamp = DatesUtils.getInstance().computeMatchspeed(runingTimestamp, distanceTraveled);
 			averageMatchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
 			matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
 
-			if(Speed>0){
-				matchSpeedTimestamp=(long)(1*3600*1000/Speed);
-				matchSpeed=DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
+			if (Speed > 0) {
+				matchSpeedTimestamp = (long) (1 * 3600 / Speed);
+				matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
 			}
-			if (matchSpeedTimestamp <= maxMatchSpeedTimestamp) {
+			if (matchSpeedTimestamp <= maxMatchSpeedTimestamp || maxMatchSpeedTimestamp == 0) {
 				maxMatchSpeedTimestamp = matchSpeedTimestamp;
 				maxMatchSpeed = DatesUtils.getInstance().formatMatchspeed(maxMatchSpeedTimestamp);
 			}
@@ -477,7 +482,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				minmatchSpeedTimestamp = matchSpeedTimestamp;
 				minmatchSpeed = DatesUtils.getInstance().formatMatchspeed(minmatchSpeedTimestamp);
 			}
-			
+
 		}
 		showCurrentPropertyValue();
 	}
@@ -492,7 +497,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			for (int i = 0; i < mMpropertyList.size(); i++) {
 				switch (i) {
 				case 0:
-					mMpropertyList.get(i).setValue(matchSpeed+"");
+					mMpropertyList.get(i).setValue(matchSpeed + "");
 					break;
 				case 1:
 					mMpropertyList.get(i).setValue(freezeDuration);
@@ -763,7 +768,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		option = new LocationClientOption();
 		option.setOpenGps(true);
 		option.setAddrType("all");// 返回的定位结果包含地址信息
-		option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度,默认值gcj02
+		option.setCoorType(GPSUtil.CoorType);// 返回的定位结果是百度经纬度,默认值gcj02
 		option.setScanSpan(4000);
 		mLocClient.setLocOption(option);
 		mLocClient.start();
@@ -931,11 +936,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						if (btnStartStatus && btnContinueStatus) {
 							mTrackUploadFragment.isInUploadFragment = true;
 							if (mTrackUploadFragment != null && mTrackUploadFragment.isInUploadFragment) {
-								Message msg=new Message();
-								msg.what=SETLINE;
-								msg.obj=latLng;
+								Message msg = new Message();
+								msg.what = SETLINE;
+								msg.obj = latLng;
 								mHandler.sendMessage(msg);
-								msg=null;
+								msg = null;
 							}
 						} else {
 							showLocation(latLng);
@@ -999,7 +1004,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		double altitude = currentAltitude;// 海拔
 		double accuracy = currentAccuracy;// 精度
 		long duration = runingTimestamp / 1000;// 用时
-		double distance = distanceTraveled*1000;// 距离
+		double distance = distanceTraveled * 1000;// 距离
 		String nStatus = "";// 运动状态
 		String nLapPoint = "";// 没圈线路中间点
 		String nLapTime = "";// 单圈用时
@@ -1045,19 +1050,18 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	protected void initMyLocationUsers(final LatLng latLng) {
 		/**
-		 * 每十分钟上传一次数据
+		 * 每2分钟上传一次数据
 		 */
-		if(beforelatLng==null||latLng.latitude!=beforelatLng.latitude){
-			Message message = new Message();
-			message.what = UPDATELOCATION;
-			message.obj = latLng;
-			mHandler.sendMessage(message);
-			message = null;
-		}
-		
-		
+
 		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (2 * 60 * 1000) == 0)) {
 			firstUploadLocationstatus = false;
+			if (beforelatLng == null || latLng.latitude != beforelatLng.latitude) {
+				Message message = new Message();
+				message.what = UPDATELOCATION;
+				message.obj = latLng;
+				mHandler.sendMessage(message);
+				message = null;
+			}
 			getVenuesUsers();
 			getPosid();
 		}
@@ -1098,30 +1102,32 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		@Override
 		public void onLocationChanged(Location location) {
 			showGpsAccuracy(location);
-			System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
-			if (gpslocationListenerStatus && location != null) {
+			if (location != null) {
 				currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
 				currentAccuracy = location.getAccuracy();
+				Speed = location.getSpeed();
+				if (Speed < 0) {
+					Speed = 0;
+				}
+			}
+			System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
+			if (gpslocationListenerStatus && location != null) {
 
 				LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+				// 将GPS设备采集的原始GPS坐标转换成百度坐标
 				CoordinateConverter converter = new CoordinateConverter();
 				converter.from(CoordType.GPS);
 				converter.coord(latLng);
 				LatLng sourceLatLng = converter.convert();
 				longitude_me = sourceLatLng.longitude;
 				latitude_me = sourceLatLng.latitude;
-
-				Speed = location.getSpeed();
-				if (Speed < 0) {
-					Speed = 0;
-				}
 				address = location.getProvider();
 				if (btnStartStatus && btnContinueStatus) {
-					Message msg=new Message();
-					msg.what=SETLINE;
-					msg.obj=sourceLatLng;
+					Message msg = new Message();
+					msg.what = SETLINE;
+					msg.obj = sourceLatLng;
 					mHandler.sendMessage(msg);
-					msg=null;
+					msg = null;
 				} else {
 					showLocation(sourceLatLng);
 				}
@@ -1172,7 +1178,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		try {
 			recordDatas.put("user_id", uid);
 			recordDatas.put("posid", "" + posid);
-			recordDatas.put("distanceTraveled", "" + distanceTraveled*1000);
+			recordDatas.put("distanceTraveled", "" + distanceTraveled * 1000);
 			recordDatas.put("duration", "" + (runingTimestamp / 1000));
 			recordDatas.put("verticalDistance", "" + verticalDistance);
 			recordDatas.put("topSpeed", "" + topSpeed);
@@ -1212,8 +1218,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						lon = allpointList.get(i).getLongitude();
 						if (lat > 0) {
 							JSONObject latObject = new JSONObject();
-							latObject.put("latitude", lat);
-							latObject.put("longitude", lon);
+							double[]   latlng=  GPSUtil.bd09_To_Gcj02(lat, lon);
+							
+							latObject.put("longitude", latlng[1] + "");
+							latObject.put("latitude", latlng[0] + "");
 
 							latObject.put("speed", "" + allpointList.get(i).getSpeed());
 							latObject.put("altitude", "" + allpointList.get(i).getAltitude());
@@ -1248,8 +1256,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
-		mhashmap.put("longitude", longitude_me + "");
-		mhashmap.put("latitude", latitude_me + "");
+		double[] latlng = GPSUtil.bd09_To_Gcj02(latitude_me, longitude_me);
+
+		mhashmap.put("longitude", latlng[1] + "");
+		mhashmap.put("latitude", latlng[0] + "");
 		Log.e("map", "------------loadRecordDates------------" + mhashmap);
 		new VenuesInfoBylicationBusiness(this, mhashmap, new GetInfoBylicationCallback() {
 			@Override
@@ -1279,6 +1289,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 点击结束
 	 * 
@@ -1293,9 +1304,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		TextView myexit_text_title = (TextView) selectDialog.findViewById(R.id.myexit_text_title);
 		if (dialogType.equals("shortDistance")) {
 			myexit_text_title.setText(getString(R.string.endlocationcancel));
-		}else if (dialogType.equals("GPSNOTSTART")) {
+		} else if (dialogType.equals("GPSNOTSTART")) {
 			myexit_text_title.setText(getString(R.string.endlocationgpsstart));
-		}  else {
+		} else {
 			myexit_text_title.setText(getString(R.string.endlocationcommit));
 		}
 		text_off.setOnClickListener(new View.OnClickListener() {
@@ -1310,11 +1321,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				selectDialog.dismiss();
 				if (dialogType.equals("shortDistance")) {
 					initStartView();
-				}else if (dialogType.equals("GPSNOTSTART")) {
+				} else if (dialogType.equals("GPSNOTSTART")) {
 					// 返回开启GPS导航设置界面
 					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 					startActivityForResult(intent, 0);
-				}else {
+				} else {
 					loadRecordDates();
 				}
 
@@ -1367,7 +1378,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				getCurrentPropertyValue();
 				break;
 			case SETLINE:
-				LatLng latLng=(LatLng) msg.obj;
+				LatLng latLng = (LatLng) msg.obj;
 				setline(latLng);
 				break;
 			}
@@ -1379,8 +1390,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
-		mhashmap.put("longitude", longitude_me + "");
-		mhashmap.put("latitude", latitude_me + "");
+
+		double[] latlng = GPSUtil.bd09_To_Gcj02(latitude_me, longitude_me);
+
+		mhashmap.put("longitude", latlng[1] + "");
+		mhashmap.put("latitude", latlng[0] + "");
 		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap);
 		new UpdateLocationBusiness(this, mhashmap, new GetUpdateLocationCallback() {
 			@Override
@@ -1388,7 +1402,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					if (status.equals("401") || status.equals("402")) {
-						UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403(CommonUtils.getInstance().mHomeActivity);
+						UserLoginBack403Utils.getInstance()
+								.sendBroadcastLoginBack403(CommonUtils.getInstance().mHomeActivity);
 					}
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
@@ -1402,8 +1417,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
-		mhashmap.put("longitude", longitude_me + "");
-		mhashmap.put("latitude", latitude_me + "");
+		double[] latlng = GPSUtil.bd09_To_Gcj02(latitude_me, longitude_me);
+		mhashmap.put("longitude", latlng[1] + "");
+		mhashmap.put("latitude", latlng[0] + "");
 		Log.e("map", "------------VenuesMyAreaUsersBusiness------------" + mhashmap);
 		new VenuesMyAreaUsersBusiness(this, mhashmap, new GetVenuesMyAreaUsersCallback() {
 			@Override
@@ -1580,7 +1596,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		try {
 			if (resultCode == 1) {
 				sportindex = data.getIntExtra("sportindex", 0);
-				CommonUtils.getInstance().mCurrentActivity=mHomeActivity;
+				CommonUtils.getInstance().mCurrentActivity = mHomeActivity;
 				setSportPropertyList(sportindex);
 				getCurrentPropertyValue();
 			}

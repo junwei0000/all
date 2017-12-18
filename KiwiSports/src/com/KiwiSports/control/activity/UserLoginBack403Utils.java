@@ -45,34 +45,42 @@ public class UserLoginBack403Utils {
 	/**
 	 * 提示设备重新登录
 	 */
+	MyDialog selectDialog;
+
 	public void showDialogPromptReLogin(final Activity context) {
-		final MyDialog selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_logout);
-		selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-		selectDialog.show();
-		selectDialog.setOnKeyListener(new OnKeyListener() {
-			public boolean onKey(DialogInterface arg0, int arg1, KeyEvent arg2) {
-				return true;
-			}
-		});
-		TextView myexit_text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);
-		TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);
-		myexit_text_off.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				selectDialog.dismiss();
-				CommonUtils.getInstance().clearAllBestDoInfoSharedPrefs(context);
-				CommonUtils.getInstance().setLoginBack403(context);
-			}
-		});
-		text_sure.setOnClickListener(new OnClickListener() {
+		if (selectDialog == null) {
+			selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_logout);
+			selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+			selectDialog.show();
+			selectDialog.setOnKeyListener(new OnKeyListener() {
+				public boolean onKey(DialogInterface arg0, int arg1, KeyEvent arg2) {
+					return true;
+				}
+			});
+			TextView myexit_text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);
+			TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);
+			myexit_text_off.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					selectDialog.dismiss();
+					selectDialog = null;
+					CommonUtils.getInstance().clearAllBestDoInfoSharedPrefs(context);
+					CommonUtils.getInstance().setLoginBack403(context);
+				}
+			});
+			text_sure.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				selectDialog.dismiss();
-				CommonUtils.getInstance().clearAllBestDoInfoSharedPrefs(context);
-				CommonUtils.getInstance().setLoginBack403(context);
-			}
-		});
+				@Override
+				public void onClick(View v) {
+					selectDialog.dismiss();
+					selectDialog = null;
+					CommonUtils.getInstance().clearAllBestDoInfoSharedPrefs(context);
+					CommonUtils.getInstance().setLoginBack403(context);
+				}
+			});
+		} else {
+			selectDialog.show();
+		}
+
 	}
-
 }

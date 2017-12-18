@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.KiwiSports.model.VenuesListInfo;
 import com.KiwiSports.model.VenuesUsersInfo;
+import com.KiwiSports.utils.GPSUtil;
 
 /**
  * 
@@ -36,6 +37,9 @@ public class VenuesUsersParser extends BaseParser<Object> {
 					String is_anonymous = listOb.optString("is_anonymous", "");
 					double longitude = listOb.optDouble("current_longitude", 0);
 					double latitude = listOb.optDouble("current_latitude", 0);
+					double[] latlng = GPSUtil.gcj02_To_Bd09(latitude, longitude);
+					latitude=latlng[0];
+					longitude=latlng[1];
 					VenuesUsersInfo venuesInfo = new VenuesUsersInfo(uid, real_name, nick_name, album_url, is_anonymous,
 							longitude, latitude);
 					mlist.add(venuesInfo);

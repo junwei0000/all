@@ -9,6 +9,7 @@ import com.KiwiSports.business.VenuesUsersBusiness;
 import com.KiwiSports.model.VenuesUsersInfo;
 import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
+import com.KiwiSports.utils.GPSUtil;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -273,7 +274,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 		option = new LocationClientOption();
 		option.setOpenGps(true);// 是否打开GPS
 		option.setAddrType("all");// 返回的定位结果包含地址信息
-		option.setCoorType("bd09ll"); // 返回的定位结果是百度经纬度,默认值gcj02
+		option.setCoorType(GPSUtil.CoorType); // 返回的定位结果是百度经纬度,默认值gcj02
 		mLocClient.setLocOption(option);// 设置给定位客户端
 		mLocClient.start();// 启动定位客户端
 		// 修改为自定义marker

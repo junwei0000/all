@@ -22,12 +22,18 @@ package com.KiwiSports.utils;
  * 火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的互转
  */
 public class GPSUtil {
-	public static double pi = 3.1415926535897932384626;
-	public static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-	public static double a = 6378245.0;
-	public static double ee = 0.00669342162296594323;
+	/**
+	 * 国测局坐标 火星坐标  GCJ-02,百度  BD-09二次加密坐标
+	 */
+	public static String CoorType="bd09ll"; 
+	
+	
+	private static double pi = 3.1415926535897932384626;
+	private static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+	private static double a = 6378245.0;
+	private static double ee = 0.00669342162296594323;
 
-	public static double transformLat(double x, double y) {
+	private static double transformLat(double x, double y) {
 		double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y
 				+ 0.2 * Math.sqrt(Math.abs(x));
 		ret += (20.0 * Math.sin(6.0 * x * pi) + 20.0 * Math.sin(2.0 * x * pi)) * 2.0 / 3.0;
@@ -36,7 +42,7 @@ public class GPSUtil {
 		return ret;
 	}
 
-	public static double transformLon(double x, double y) {
+	private static double transformLon(double x, double y) {
 		double ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1
 				* Math.sqrt(Math.abs(x));
 		ret += (20.0 * Math.sin(6.0 * x * pi) + 20.0 * Math.sin(2.0 * x * pi)) * 2.0 / 3.0;
@@ -63,7 +69,7 @@ public class GPSUtil {
 		return new double[] { mgLat, mgLon };
 	}
 
-	public static boolean outOfChina(double lat, double lon) {
+	private static boolean outOfChina(double lat, double lon) {
 		if (lon < 72.004 || lon > 137.8347)
 			return true;
 		if (lat < 0.8293 || lat > 55.8271)
@@ -117,6 +123,8 @@ public class GPSUtil {
 		double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
 		double tempLon = z * Math.cos(theta) + 0.0065;
 		double tempLat = z * Math.sin(theta) + 0.006;
+		tempLat=retain6(tempLat);
+		tempLon=retain6(tempLon);
 		double[] gps = { tempLat, tempLon };
 		return gps;
 	}
@@ -131,6 +139,8 @@ public class GPSUtil {
 		double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
 		double tempLon = z * Math.cos(theta);
 		double tempLat = z * Math.sin(theta);
+		tempLat=retain6(tempLat);
+		tempLon=retain6(tempLon);
 		double[] gps = { tempLat, tempLon };
 		return gps;
 	}

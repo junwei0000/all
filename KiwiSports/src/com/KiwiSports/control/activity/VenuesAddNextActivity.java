@@ -8,6 +8,7 @@ import com.KiwiSports.business.VenuesAddBusiness.GetVenuesAddCallback;
 import com.KiwiSports.business.VenuesAddBusiness;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
+import com.KiwiSports.utils.GPSUtil;
 import com.KiwiSports.utils.SupplierEditText;
 import com.baidu.mapapi.map.MapView;
 import android.annotation.SuppressLint;
@@ -142,10 +143,14 @@ public class VenuesAddNextActivity extends BaseActivity {
 		mhashmap.put("field_name", field_name);
 		mhashmap.put("sportsType", sportsType);
 		mhashmap.put("address", address);
-		mhashmap.put("top_left_x", top_left_x);
-		mhashmap.put("top_left_y", top_left_y);
-		mhashmap.put("bottom_right_x", bottom_right_x);
-		mhashmap.put("bottom_right_y", bottom_right_y);
+
+		double[] latlngx = GPSUtil.bd09_To_Gcj02(Double.valueOf(top_left_y), Double.valueOf(top_left_x));
+		double[] latlngy = GPSUtil.bd09_To_Gcj02(Double.valueOf(bottom_right_y), Double.valueOf(bottom_right_x));
+
+		mhashmap.put("top_left_x", latlngx[1] + "");
+		mhashmap.put("top_left_y", latlngx[0] + "");
+		mhashmap.put("bottom_right_x", latlngy[1] + "");
+		mhashmap.put("bottom_right_y", latlngy[0] + "");
 		Log.e("decrypt----", mhashmap.toString());
 		new VenuesAddBusiness(this, mhashmap, new GetVenuesAddCallback() {
 

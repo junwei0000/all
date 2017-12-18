@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.KiwiSports.model.MainLocationItemInfo;
 import com.KiwiSports.model.RecordInfo;
 import com.KiwiSports.model.VenuesListInfo;
+import com.KiwiSports.utils.GPSUtil;
 import com.baidu.mapapi.model.LatLng;
 
 /**
@@ -85,6 +86,9 @@ public class RecordDetailParser extends BaseParser<Object> {
 						JSONObject infoOb = infoArray.optJSONObject(i);
 						double latitude = infoOb.optDouble("latitude", 0);
 						double longitude = infoOb.optDouble("longitude", 0);
+						double[] latlng = GPSUtil.gcj02_To_Bd09(latitude, longitude);
+						latitude=latlng[0];
+						longitude=latlng[1];
 						double speed = infoOb.optDouble("speed", 0);
 						double altitude = infoOb.optDouble("altitude", 0);
 						double accuracy = infoOb.optDouble("accuracy", 0);

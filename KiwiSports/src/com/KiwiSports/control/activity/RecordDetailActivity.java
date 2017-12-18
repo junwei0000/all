@@ -20,6 +20,7 @@ import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.DatesUtils;
+import com.KiwiSports.utils.GPSUtil;
 import com.KiwiSports.utils.MyGridView;
 import com.KiwiSports.utils.MyListView;
 import com.KiwiSports.utils.MyScrollView;
@@ -503,7 +504,12 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 			}
 		}
 		mpropertytwnList.addAll(mMpropertyList);
-		MainPropertyAdapter mMainSportAdapter = new MainPropertyAdapter(this, mpropertytwnList);
+		
+		ArrayList<MainSportInfo> mpropertyMapList=new ArrayList<MainSportInfo>();
+		mpropertyMapList.add(mpropertytwnList.get(0));
+		mpropertyMapList.add(mpropertytwnList.get(1));
+		mpropertyMapList.add(mpropertytwnList.get(2));
+		MainPropertyAdapter mMainSportAdapter = new MainPropertyAdapter(this, mpropertyMapList);
 		map_property.setAdapter(mMainSportAdapter);
 
 		MainPropertyAdapter mdate_propertyAdapter = new MainPropertyAdapter(this, mpropertytwnList);
@@ -582,7 +588,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		option = new LocationClientOption();
 		option.setOpenGps(true);// 是否打开GPS
 		option.setAddrType("all");// 返回的定位结果包含地址信息
-		option.setCoorType("bd09ll"); // 返回的定位结果是百度经纬度,默认值gcj02
+		option.setCoorType(GPSUtil.CoorType); // 返回的定位结果是百度经纬度,默认值gcj02
 		mLocClient.setLocOption(option);// 设置给定位客户端
 		mLocClient.start();// 启动定位客户端
 		mmorenMarker = BitmapDescriptorFactory.fromResource(R.drawable.menutab_location_normal);

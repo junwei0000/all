@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.KiwiSports.model.VenuesListInfo;
+import com.KiwiSports.utils.GPSUtil;
 
 /**
  * 
@@ -43,6 +44,15 @@ public class VenuesListParser extends BaseParser<Object> {
 					double top_left_y = listOb.optDouble("top_left_y", 0);
 					double bottom_right_x = listOb.optDouble("bottom_right_x", 0);
 					double bottom_right_y = listOb.optDouble("bottom_right_y", 0);
+					double[] latlng = GPSUtil.gcj02_To_Bd09(top_left_y, top_left_x);
+					top_left_y=latlng[0];
+					top_left_x=latlng[1];
+					double[] latlngy = GPSUtil.gcj02_To_Bd09(bottom_right_y, bottom_right_x);
+					bottom_right_y=latlngy[0];
+					bottom_right_x=latlngy[1];
+					
+					
+					
 					VenuesListInfo venuesInfo = new VenuesListInfo(posid, uid, field_name, sportsType, thumb,
 							venuestatus, audit_status, top_left_x, top_left_y, bottom_right_x, bottom_right_y);
 					mlist.add(venuesInfo);
