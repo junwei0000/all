@@ -1007,7 +1007,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		 * 每5分钟更新一下场地用户列表信息
 		 */
 		
-		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (5 * 60 * 1000) == 0)) {
+		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (10 * 60 * 1000) == 0)) {
 			firstUploadLocationstatus = false;
 			getVenuesUsers();
 			getPosid();
@@ -1327,6 +1327,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
+					if(TextUtils.isEmpty(posid))
 					posid = (String) dataMap.get("posid");
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
@@ -1577,6 +1578,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			if (mMapView != null) {
 				mMapView.onPause();
 			}
+			Log.e("LocationMide", "onPauseonPauseonPause");
 			super.onPause();
 		} catch (Exception e) {
 		}

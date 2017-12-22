@@ -102,7 +102,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 				}
 			}
 		});
-
+		init();
 	}
 
 	private ProgressDialog mDialog;

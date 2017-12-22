@@ -28,7 +28,7 @@ public class Constans {
 	public static final String UPDATELOCATION = WEB_ROOT + "/gps/upStream";// 上传(更新)用户位置。
 
 	public static final String VENUESINFOBYLOCATION= WEB_ROOT + "/gps/locationPosition";// 根据当前经纬度获取所在场地。
-	public static final String VENUESLIST = WEB_ROOT + "/position/list";// 获取场地列表
+	public static final String VENUESLIST = WEB_ROOT + "/position/lists";// 获取场地列表
 	public static final String VENUESHOBBY = WEB_ROOT + "/user/getHobby";// 运动偏好
 	public static final String VENUESTYPE = WEB_ROOT + "/position/sportsTypes";// 获取场地类型。
 	public static final String VENUESADD = WEB_ROOT + "/position/add";// 添加场地

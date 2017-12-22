@@ -32,7 +32,7 @@ public class VenuesRankAllParser extends BaseParser<Object> {
 				ArrayList<VenuesRankTodayInfo> mtopList = new ArrayList<VenuesRankTodayInfo>();
 				ArrayList<VenuesRankTodayInfo> mList = new ArrayList<VenuesRankTodayInfo>();
 				JSONObject myRankObs = jsonObs.optJSONObject("myRank");
-				String distanceTraveled = myRankObs.optString("distanceTraveled", "");
+				double distanceTraveled = myRankObs.optDouble("distanceTraveled", 0);
 				String uid = myRankObs.optString("uid", "");
 				String posid = myRankObs.optString("posid", "");
 				String date_time = myRankObs.optString("date_time", "");
@@ -46,7 +46,7 @@ public class VenuesRankAllParser extends BaseParser<Object> {
 				JSONArray dayRanka = jsonObs.optJSONArray("yearRank");
 				for (int i = 0; i < dayRanka.length(); i++) {
 					JSONObject dayRankObs = dayRanka.optJSONObject(i);
-					distanceTraveled = dayRankObs.optString("distanceTraveled", "");
+					distanceTraveled = dayRankObs.optDouble("distanceTraveled", 0);
 					uid = dayRankObs.optString("uid", "");
 					posid = dayRankObs.optString("posid", "");
 					date_time = dayRankObs.optString("date_time", "");

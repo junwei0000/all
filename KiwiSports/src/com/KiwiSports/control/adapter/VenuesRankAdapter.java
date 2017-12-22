@@ -26,11 +26,16 @@ public class VenuesRankAdapter extends BaseAdapter {
 	private ArrayList<VenuesRankTodayInfo> list;
 	private Activity context;
 	private ImageLoader asyncImageLoader;
+	private int max;
 
-	public VenuesRankAdapter(Activity context, ArrayList<VenuesRankTodayInfo> list) {
+	public VenuesRankAdapter(Activity context, ArrayList<VenuesRankTodayInfo> list,int max) {
 		super();
 		this.context = context;
 		this.list = list;
+		this.max = max;
+		if(max==0){
+			max=10000;
+		} 
 		asyncImageLoader = new ImageLoader(context, "headImg");
 	}
 
@@ -67,14 +72,11 @@ public class VenuesRankAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		String name = mInfo.getNick_name();
-		String diatance = mInfo.getDistanceTraveled();
-		diatance = PriceUtils.getInstance().gteDividePrice(diatance, "1000");
-		diatance = PriceUtils.getInstance().seePrice(diatance);
+		
 		String num = mInfo.getNum();
 		String time = mInfo.getDate_time();
 		String album_url = mInfo.getAlbum_url();
 		viewHolder.rankitem_tv_num.setText(num);
-		viewHolder.rankitem_tv_distance.setText(diatance + "km");
 		if (position == 0) {
 			viewHolder.rankitem_tv_name.setText(CommonUtils.getInstance().getString(context, R.string.venues_rank_mi));
 			viewHolder.line.setVisibility(View.VISIBLE);
@@ -88,7 +90,12 @@ public class VenuesRankAdapter extends BaseAdapter {
 			Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
 			viewHolder.rankitem_iv_head.setImageBitmap(mBitmap);
 		}
-		viewHolder.progressBar.setProgress(Integer.parseInt(diatance));
+		double diatance = mInfo.getDistanceTraveled();
+		viewHolder.progressBar.setMax(max);
+		viewHolder.progressBar.setProgress((int)diatance);
+		diatance = diatance/1000;
+		diatance=PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
+		viewHolder.rankitem_tv_distance.setText(diatance + "km");
 		return convertView;
 	}
 

@@ -1,7 +1,7 @@
 package com.KiwiSports.model;
 
 public class VenuesRankTodayInfo {
-	String distanceTraveled;
+	double distanceTraveled;
 	String uid;
 	String posid;
 	String date_time;
@@ -9,7 +9,7 @@ public class VenuesRankTodayInfo {
 	String nick_name;
 	String album_url;
 
-	public VenuesRankTodayInfo(String distanceTraveled, String uid, String posid, String date_time, String num,
+	public VenuesRankTodayInfo(double distanceTraveled, String uid, String posid, String date_time, String num,
 			String nick_name, String album_url) {
 		super();
 		this.distanceTraveled = distanceTraveled;
@@ -29,11 +29,11 @@ public class VenuesRankTodayInfo {
 		this.album_url = album_url;
 	}
 
-	public String getDistanceTraveled() {
+	public double getDistanceTraveled() {
 		return distanceTraveled;
 	}
 
-	public void setDistanceTraveled(String distanceTraveled) {
+	public void setDistanceTraveled(double distanceTraveled) {
 		this.distanceTraveled = distanceTraveled;
 	}
 

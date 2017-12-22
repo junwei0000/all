@@ -137,7 +137,9 @@ public class PriceUtils {
 	public String getPriceTwoDecimal(double price, int weishu) {
 		return String.format("%." + weishu + "f", price);
 	}
-
+	public double getPriceTwoDecimalDouble(double price, int weishu) {
+		return Double.valueOf(String.format("%." + weishu + "f", price));
+	}
 	/**
 	 * BigDecimal.ROUND_DOWN-位数后舍去
 	 * 
@@ -223,7 +225,7 @@ public class PriceUtils {
 	 * @return
 	 */
 	public String gteDividePrice(String price, String startsum) {
-		String sum = "";
+		String sum = "0";
 		try {
 			BigDecimal mprice = new BigDecimal(price);
 			BigDecimal mstartsum = new BigDecimal(startsum);

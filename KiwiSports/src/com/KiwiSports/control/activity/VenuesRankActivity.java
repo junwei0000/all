@@ -183,6 +183,7 @@ public class VenuesRankActivity extends BaseActivity {
 
 	protected VenuesHobbyAdapter adapter;
 	protected ArrayList<VenuesRankTodayInfo> mtopList;
+	private int max;
 
 	@Override
 	protected void processLogic() {
@@ -231,9 +232,9 @@ public class VenuesRankActivity extends BaseActivity {
 				VenuesRankTodayInfo mInfo = mtopList.get(0);
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
-				String diatance = mInfo.getDistanceTraveled();
-				diatance = PriceUtils.getInstance().gteDividePrice(diatance, "1000");
-				diatance = PriceUtils.getInstance().seePrice(diatance);
+				double diatance = mInfo.getDistanceTraveled();
+				diatance = diatance/1000;
+				diatance=PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
 				if (!TextUtils.isEmpty(album_url)) {
 					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head1);
 				} else {
@@ -249,9 +250,10 @@ public class VenuesRankActivity extends BaseActivity {
 				VenuesRankTodayInfo mInfo = mtopList.get(1);
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
-				String diatance = mInfo.getDistanceTraveled();
-				diatance = PriceUtils.getInstance().gteDividePrice(diatance, "1000");
-				diatance = PriceUtils.getInstance().seePrice(diatance);
+				double diatance = mInfo.getDistanceTraveled();
+				diatance = diatance/1000;
+				diatance=PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
+				max= (int) (diatance*1000);
 				if (!TextUtils.isEmpty(album_url)) {
 					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head2);
 				} else {
@@ -267,9 +269,9 @@ public class VenuesRankActivity extends BaseActivity {
 				VenuesRankTodayInfo mInfo = mtopList.get(2);
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
-				String diatance = mInfo.getDistanceTraveled();
-				diatance = PriceUtils.getInstance().gteDividePrice(diatance, "1000");
-				diatance = PriceUtils.getInstance().seePrice(diatance);
+				double diatance = mInfo.getDistanceTraveled();
+				diatance = diatance/1000;
+				diatance=PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
 				if (!TextUtils.isEmpty(album_url)) {
 					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head3);
 				} else {
@@ -285,7 +287,7 @@ public class VenuesRankActivity extends BaseActivity {
 		} else {
 			mList = new ArrayList<VenuesRankTodayInfo>();
 		}
-		VenuesRankAdapter mVenuesRankAdapter = new VenuesRankAdapter(context, mList);
+		VenuesRankAdapter mVenuesRankAdapter = new VenuesRankAdapter(context, mList,max);
 		mListView.setAdapter(mVenuesRankAdapter);
 	}
 
