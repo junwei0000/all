@@ -1363,12 +1363,16 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		TextView text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);// 取消
 		final TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);// 确定
 		TextView myexit_text_title = (TextView) selectDialog.findViewById(R.id.myexit_text_title);
-		if (dialogType.equals("shortDistance")) {
+		  if (dialogType.equals("shortDistance")) {
 			myexit_text_title.setText(getString(R.string.endlocationcancel));
 		} else if (dialogType.equals("GPSNOTSTART")) {
 			myexit_text_title.setText(getString(R.string.endlocationgpsstart));
 		} else {
-			myexit_text_title.setText(getString(R.string.endlocationcommit));
+			if(ConfigUtils.getInstance().isNetWorkAvaiable(this)){
+				myexit_text_title.setText(getString(R.string.endlocationcommit));
+			}else{
+				myexit_text_title.setText(getString(R.string.endlocationcommitNotnet));
+			}
 		}
 		text_off.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -1387,7 +1391,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 					startActivityForResult(intent, 0);
 				} else {
-					loadRecordDates();
+					if(ConfigUtils.getInstance().isNetWorkAvaiable(mActivity)){
+						loadRecordDates();
+					}else{
+						 //保存轨迹到数据库
+						
+					}
+					
 				}
 
 			}

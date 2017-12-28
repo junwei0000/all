@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_page_bg"
+    android:background="@drawable/welcome_start_img"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingTop="20dp" >
@@ -10,6 +10,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         android:background="@drawable/login_icon" />
 
     <TextView

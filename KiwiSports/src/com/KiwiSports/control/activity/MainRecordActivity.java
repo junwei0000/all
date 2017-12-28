@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 	private String uid;
 	private String token;
 	private String access_token;
+	private Editor mEdit;
 
 	@Override
 	public void onClick(View v) {
@@ -52,11 +54,13 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 			break;
 		}
 	}
+
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		CommonUtils.getInstance().mCurrentActivity=CommonUtils.getInstance().mCurrentActivity;
+		CommonUtils.getInstance().mCurrentActivity = CommonUtils.getInstance().mCurrentActivity;
 	}
+
 	@Override
 	protected void loadViewLayout() {
 		setContentView(R.layout.main_record);
@@ -80,6 +84,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 		mPullDownView.setRefreshListioner(this);
 		mPullDownView.setOrderBottomMoreLine("list");
 		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
+		mEdit = bestDoInfoSharedPrefs.edit();
 		uid = bestDoInfoSharedPrefs.getString("uid", "");
 		token = bestDoInfoSharedPrefs.getString("token", "");
 		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
@@ -149,7 +154,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 		mhashmap.put("page", page + "");
 		mhashmap.put("page_size", page_size + "");
 		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap);
-		new RecordListBusiness(mHomeActivity, mList, mhashmap, new GetRecordListCallback() {
+		new RecordListBusiness(mHomeActivity, mEdit, mList, mhashmap, new GetRecordListCallback() {
 			@Override
 			public void afterDataGet(HashMap<String, Object> dataMap) {
 				page--;
@@ -162,7 +167,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 							page++;
 						}
 						updateList();
-					}  else {
+					} else {
 						if (page == 0) {
 							updateList();
 						}
@@ -174,7 +179,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 				mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
-				firststatus=false;
+				firststatus = false;
 
 			}
 		});
@@ -297,12 +302,14 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 		}, 1500);
 
 	}
-	Boolean firststatus=true;
+
+	Boolean firststatus = true;
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(!firststatus)
-		mPullDownViewHandler.sendEmptyMessage(REFLESH);
+		if (!firststatus)
+			mPullDownViewHandler.sendEmptyMessage(REFLESH);
 	}
 
 	/**

@@ -261,6 +261,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 				}
 				if (mRecordInfo != null) {
 					layoutmap_property.setVisibility(View.VISIBLE);
+					date_property.setVisibility(View.VISIBLE);
 					setSportPropertyList();
 				}
 				addMarker();

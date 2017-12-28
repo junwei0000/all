@@ -66,9 +66,10 @@
     <string name="record_date">date</string>
     <string name="sporttype">sport type</string>
     <string name="sporttypelike">sports Preference</string>
-    <string name="endlocationgpsstart">您的定位服务未开启，请到【设置】中开启定位服务</string>
+    <string name="endlocationgpsstart">Your location service is not turned on, please go to setup to open the location service</string>
     <string name="endlocationcancel">the movement is too short for the end to save the record</string>
     <string name="endlocationcommit">is this the end of the campaign?</string>
+    <string name="endlocationcommitNotnet">no network, whether to save the campaign to the network automatically submit?</string>
     <!-- action -->
     <!-- 下线通知广播 -->
     <string name="action_home">actionhome_Receiver</string>

@@ -102,18 +102,12 @@ public class UserCenterActivity extends BaseActivity {
 		cb_mylocation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked && cb_myanonlocation.isChecked()) {
-					cb_myanonlocation.setChecked(false);
-				}
 				saveSelectBox("cb_mylocationstatus", isChecked);
 			}
 		});
 		cb_myanonlocation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked && cb_mylocation.isChecked()) {
-					cb_mylocation.setChecked(false);
-				}
 				saveSelectBox("cb_myanonlocationstatus", isChecked);
 			}
 		});

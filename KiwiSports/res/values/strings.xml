@@ -69,6 +69,7 @@
     <string name="endlocationcancel">此次运动距离太短，结束将无法保存记录</string>
     <string name="endlocationgpsstart">您的定位服务未开启，请到【设置】中开启定位服务</string>
     <string name="endlocationcommit">是否结束本次运动?</string>
+    <string name="endlocationcommitNotnet">暂无网络，是否保存本次运动至有网时自动提交?</string>
     <!-- action -->
     <!-- 下线通知广播 -->
     <string name="action_home">actionhome_Receiver</string>

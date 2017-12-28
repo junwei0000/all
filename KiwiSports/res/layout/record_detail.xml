@@ -97,6 +97,7 @@
                         android:numColumns="3"
                         android:overScrollMode="never"
                         android:scrollbars="none"
+                        android:visibility="invisible"
                         android:verticalSpacing="10dp" >
                     </com.KiwiSports.utils.MyGridView>
 
