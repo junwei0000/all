@@ -23,7 +23,10 @@ import com.KiwiSports.control.view.StepDetector;
 import com.KiwiSports.control.view.TrackUploadFragment;
 import com.KiwiSports.model.MainLocationItemInfo;
 import com.KiwiSports.model.MainSportInfo;
+import com.KiwiSports.model.TrackSaveInfo;
 import com.KiwiSports.model.VenuesUsersInfo;
+import com.KiwiSports.model.db.TrackDBHelper;
+import com.KiwiSports.model.db.TrackDBOpenHelper;
 import com.KiwiSports.utils.CircleImageView;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
@@ -123,9 +126,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private TextView tv_quannumunit;
 
 	// -----------参数------------
+	protected TrackDBOpenHelper mDB;
 	private String uid;
 	private String token;
 	private String access_token;
+	private String recordDatas;
 	private ArrayList<MainSportInfo> mMpropertyList;
 	private ArrayList<MainSportInfo> mpropertytwnList;
 	private double longitude_me;
@@ -392,6 +397,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		uid = bestDoInfoSharedPrefs.getString("uid", "");
 		token = bestDoInfoSharedPrefs.getString("token", "");
 		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
+		if (mDB == null) {
+			mDB = new TrackDBOpenHelper(this);
+		}
 	}
 
 	protected void processLogic() {
@@ -1002,11 +1010,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				message = null;
 			}
 		}
-		
+
 		/**
 		 * 每5分钟更新一下场地用户列表信息
 		 */
-		
+
 		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (10 * 60 * 1000) == 0)) {
 			firstUploadLocationstatus = false;
 			getVenuesUsers();
@@ -1211,6 +1219,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				double longitude_me = mypoint.longitude;
 				double latitude_me = mypoint.latitude;
 				updateLocation(longitude_me, latitude_me);
+				updateTrackHistoryData();
 				break;
 			case UPDATETIME:
 				getCurrentPropertyValue();
@@ -1231,6 +1240,47 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			}
 		}
 	};
+
+	private void updateTrackHistoryData() {
+		if (ConfigUtils.getInstance().isNetWorkAvaiable(this)) {
+
+			ArrayList<TrackSaveInfo> mTrackList = mDB.getHistoryTrackList();
+			if (mTrackList != null && mTrackList.size() > 0) {
+				for (int i = 0; i < mTrackList.size(); i++) {
+					loadTrackHistoryDates(i, mTrackList);
+				}
+			}
+
+		}
+	}
+
+	/**
+	 * 上传所有缓存的轨迹数据，成功并清除数据表数据
+	 * @param index
+	 * @param mTrackList
+	 */
+	private void loadTrackHistoryDates(final int index, final ArrayList<TrackSaveInfo> mTrackList) {
+		TrackSaveInfo mTrackSaveInfo = mTrackList.get(index);
+		mhashmap = new HashMap<String, String>();
+		mhashmap.put("uid", mTrackSaveInfo.getUid());
+		mhashmap.put("token", mTrackSaveInfo.getToken());
+		mhashmap.put("access_token", mTrackSaveInfo.getAccess_token());
+		mhashmap.put("recordDatas", "" + mTrackSaveInfo.getRecordDatas());
+		Log.e("track", "------------loadTrackHistoryDates------------" + mhashmap);
+		new RecordDatesloadBusiness(this, mhashmap, new GetRecordDatesloadCallback() {
+			@Override
+			public void afterDataGet(HashMap<String, Object> dataMap) {
+
+				if (dataMap != null) {
+					String status = (String) dataMap.get("status");
+					if (status.equals("200") && index == mTrackList.size() - 1) {
+						mDB.deleteTableAllInfo(TrackDBHelper.TABLE_TRACK);
+					}
+				}
+			}
+		});
+
+	}
 
 	private String setRecordInfoArrayToJson() {
 		JSONArray recordInfoArray = new JSONArray();
@@ -1327,8 +1377,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
-					if(TextUtils.isEmpty(posid))
-					posid = (String) dataMap.get("posid");
+					if (TextUtils.isEmpty(posid))
+						posid = (String) dataMap.get("posid");
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 
@@ -1363,14 +1413,14 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		TextView text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);// 取消
 		final TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);// 确定
 		TextView myexit_text_title = (TextView) selectDialog.findViewById(R.id.myexit_text_title);
-		  if (dialogType.equals("shortDistance")) {
+		if (dialogType.equals("shortDistance")) {
 			myexit_text_title.setText(getString(R.string.endlocationcancel));
 		} else if (dialogType.equals("GPSNOTSTART")) {
 			myexit_text_title.setText(getString(R.string.endlocationgpsstart));
 		} else {
-			if(ConfigUtils.getInstance().isNetWorkAvaiable(this)){
+			if (ConfigUtils.getInstance().isNetWorkAvaiable(this)) {
 				myexit_text_title.setText(getString(R.string.endlocationcommit));
-			}else{
+			} else {
 				myexit_text_title.setText(getString(R.string.endlocationcommitNotnet));
 			}
 		}
@@ -1391,13 +1441,15 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 					startActivityForResult(intent, 0);
 				} else {
-					if(ConfigUtils.getInstance().isNetWorkAvaiable(mActivity)){
+					if (ConfigUtils.getInstance().isNetWorkAvaiable(mActivity)) {
 						loadRecordDates();
-					}else{
-						 //保存轨迹到数据库
-						
+					} else {
+						// 无网络时保存轨迹到数据库
+						mDB.addTableTrackInfo(uid, token, access_token, recordDatas);
+						initStartView();
+						Log.e("track", "mDB.add");
 					}
-					
+
 				}
 
 			}
@@ -1413,7 +1465,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
-		mhashmap.put("recordDatas", "" + setRecordInfoArrayToJson());
+		recordDatas = setRecordInfoArrayToJson();
+		mhashmap.put("recordDatas", "" + recordDatas);
 		Log.e("map", "------------loadRecordDates------------" + mhashmap);
 		new RecordDatesloadBusiness(this, mhashmap, new GetRecordDatesloadCallback() {
 			@Override
@@ -1634,6 +1687,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			mMapView.onDestroy();
 			mMapView = null;
 			option = null;
+			mDB.close();
 			setstopService();
 		} catch (Exception e) {
 		}
