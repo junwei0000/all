@@ -145,9 +145,9 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		layoutmap_property = (LinearLayout) findViewById(R.id.layoutmap_property);
 		mMyScrollView = (MyScrollView) findViewById(R.id.mMyScrollView);
 		date_property = (MyGridView) findViewById(R.id.date_property);
-		
-		listView= (MyListView) findViewById(R.id.listView);
-		
+
+		listView = (MyListView) findViewById(R.id.listView);
+
 		tv_map = (TextView) findViewById(R.id.tv_map);
 		tv_mapline = (TextView) findViewById(R.id.tv_mapline);
 		tv_date = (TextView) findViewById(R.id.tv_date);
@@ -199,7 +199,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 
 	private ProgressDialog mDialog;
 	protected RecordInfo mRecordInfo;
-	protected ArrayList<MainLocationItemInfo> allpointList;
+	protected ArrayList<MainLocationItemInfo> allpointChartList;
 	protected ArrayList<LatLng> allpointLngMapList;
 	private ArrayList<MainSportInfo> mMpropertyList;
 	private String sportsType;
@@ -250,7 +250,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
 						mRecordInfo = (RecordInfo) dataMap.get("mRecordInfo");
-						allpointList = (ArrayList<MainLocationItemInfo>) dataMap.get("allpointList");
+						allpointChartList = (ArrayList<MainLocationItemInfo>) dataMap.get("allpointList");
 						allpointLngMapList = (ArrayList<LatLng>) dataMap.get("allpointLngMapList");
 					} else {
 						String msg = (String) dataMap.get("msg");
@@ -265,7 +265,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 					setSportPropertyList();
 				}
 				addMarker();
-				if(allpointList!=null&&allpointList.size()>0){
+				if (allpointChartList != null && allpointChartList.size() > 0) {
 					initDateView();
 				}
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
@@ -278,23 +278,24 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 
 	private void initDateView() {
 		ArrayList<ChartItem> list = new ArrayList<ChartItem>();
-		list.add(new LineChartItem(generateADataLine() , getApplicationContext()));
+		list.add(new LineChartItem(generateADataLine(), getApplicationContext()));
 		list.add(new LineChartItem(generateSDataLine(), getApplicationContext()));
 		ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
-		TextView mTextView=new TextView(context);
+		TextView mTextView = new TextView(context);
 		mTextView.setHeight(50);
 		listView.setAdapter(cda);
 		listView.addFooterView(mTextView);
 	}
+
 	/**
-	 * generates a random ChartData object with just one DataSet
-	 * 海拔
+	 * generates a random ChartData object with just one DataSet 海拔
+	 * 
 	 * @return
 	 */
 	private LineData generateADataLine() {
 		ArrayList<Entry> e1 = new ArrayList<Entry>();
-		for (int i = 0; i < allpointList.size(); i++) {
-			e1.add(new Entry((float) allpointList.get(i).getAltitude(), i));
+		for (int i = 0; i < allpointChartList.size(); i++) {
+			e1.add(new Entry((float) allpointChartList.get(i).getAltitude(), i));
 		}
 
 		LineDataSet d1 = new LineDataSet(e1, "海拔（m）");
@@ -309,14 +310,16 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		LineData cd = new LineData(getMonths(), sets);
 		return cd;
 	}
+
 	/**
 	 * 速度
+	 * 
 	 * @return
 	 */
 	private LineData generateSDataLine() {
 		ArrayList<Entry> e1 = new ArrayList<Entry>();
-		for (int i = 0; i < allpointList.size(); i++) {
-			e1.add(new Entry((float) allpointList.get(i).getSpeed(), i));
+		for (int i = 0; i < allpointChartList.size(); i++) {
+			e1.add(new Entry((float) allpointChartList.get(i).getSpeed(), i));
 		}
 
 		LineDataSet d1 = new LineDataSet(e1, "速度（km/h）");
@@ -331,21 +334,19 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 		LineData cd = new LineData(getMonths(), sets);
 		return cd;
 	}
+
 	private ArrayList<String> getMonths() {
 
 		ArrayList<String> m = new ArrayList<String>();
 		String time = null;
-		for (int i = 0; i < allpointList.size(); i++) {
-			int timestamp = (int) allpointList.get(i).getDuration();
-			  time=DatesUtils.getInstance().formatTimes(timestamp*1000);
-			m.add(" "+time+" ");
+		for (int i = 0; i < allpointChartList.size(); i++) {
+			int timestamp = (int) allpointChartList.get(i).getDuration();
+			time = DatesUtils.getInstance().formatTimes(timestamp * 1000);
+			m.add(" " + time + " ");
 		}
 		return m;
 	}
-	
-	
-	
-	
+
 	private void setSportPropertyList() {
 		MainsportParser mMainsportParser = new MainsportParser();
 		ArrayList<MainSportInfo> mallsportList = mMainsportParser.parseJSON(this);
@@ -366,8 +367,8 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 	 */
 	private void showCurrentPropertyValue() {
 		distanceTraveled = mRecordInfo.getDistanceTraveled();
-		distanceTraveled=PriceUtils.getInstance().gteDividePrice(distanceTraveled, "1000");
-		distanceTraveled=PriceUtils.getInstance().getPriceTwoDecimal(Double.valueOf(distanceTraveled), 2);
+		distanceTraveled = PriceUtils.getInstance().gteDividePrice(distanceTraveled, "1000");
+		distanceTraveled = PriceUtils.getInstance().getPriceTwoDecimal(Double.valueOf(distanceTraveled), 2);
 		long runingTimestamp = mRecordInfo.getDuration();
 		duration = DatesUtils.getInstance().formatTimes(runingTimestamp * 1000);
 		matchSpeed = mRecordInfo.getMatchSpeed();
@@ -505,8 +506,8 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 			}
 		}
 		mpropertytwnList.addAll(mMpropertyList);
-		
-		ArrayList<MainSportInfo> mpropertyMapList=new ArrayList<MainSportInfo>();
+
+		ArrayList<MainSportInfo> mpropertyMapList = new ArrayList<MainSportInfo>();
 		mpropertyMapList.add(mpropertytwnList.get(0));
 		mpropertyMapList.add(mpropertytwnList.get(1));
 		mpropertyMapList.add(mpropertytwnList.get(2));
@@ -520,8 +521,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 	public void addMarker() {
 		if (allpointLngMapList != null && allpointLngMapList.size() >= 2) {
 			// 添加路线（轨迹）
-			PolylineOptions polyline = new PolylineOptions().width(10)
-					.color( getResources().getColor(R.color.blue))
+			PolylineOptions polyline = new PolylineOptions().width(10).color(getResources().getColor(R.color.blue))
 					.points(allpointLngMapList);
 			mBaiduMap.addOverlay(polyline);
 			LatLng nowpoint = ConfigUtils.getInstance().getCenterpoint(allpointLngMapList);
@@ -530,7 +530,68 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 				// mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms
 				mBaiduMap.setMapStatus(u);// 改变地图状态
 			}
+			showBubbleView();
 		}
+	}
+
+	public LatLng beforelatLng;
+
+	HashMap<Integer, Integer> mBubbleMap = new HashMap<Integer, Integer>();
+	private double sum_distance;
+
+	/**
+	 * 每隔一公里显示气泡
+	 */
+	private void showBubbleView() {
+		beforelatLng = allpointLngMapList.get(0);
+		for (int i = 0; i < allpointLngMapList.size(); i++) {
+			LatLng nowlatLng = allpointLngMapList.get(i);
+			if (nowlatLng == null || (nowlatLng != null && nowlatLng.latitude == 0)) {
+				break;
+			}
+			double juliString = ConfigUtils.DistanceOfTwoPoints(beforelatLng.latitude, beforelatLng.longitude,
+					nowlatLng.latitude, nowlatLng.longitude);
+			sum_distance = sum_distance + juliString;
+			beforelatLng = nowlatLng;
+			if (i == 0) {
+				addMarkerBubble(nowlatLng, i, "0");
+				mBubbleMap.put(0, 0);
+			} else if (i == allpointLngMapList.size() - 1) {
+				addMarkerBubble(nowlatLng, i, "0");
+			} else {
+				Log.e("track", "juliSt----" + sum_distance);
+				int juliSt = (int) sum_distance;
+				if (!mBubbleMap.containsKey(juliSt)) {
+					mBubbleMap.put(juliSt, juliSt);
+					addMarkerBubble(nowlatLng, i, "" + juliSt);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 显示气泡
+	 * 
+	 * @param point
+	 * @param index
+	 */
+	@SuppressLint("NewApi")
+	private void addMarkerBubble(LatLng point, int index, String juliSt) {
+
+		View convertView = LayoutInflater.from(context).inflate(R.layout.venues_map_bubble, null);
+		TextView tv_bubble = (TextView) convertView.findViewById(R.id.tv_bubble);
+		if (index == 0) {
+			tv_bubble.setText("");
+			tv_bubble.setBackgroundResource(R.drawable.track_start);
+		} else if (index == allpointLngMapList.size() - 1) {
+			tv_bubble.setText("");
+			tv_bubble.setBackgroundResource(R.drawable.track_end);
+		} else {
+			tv_bubble.setText("" + juliSt + "km");
+		}
+		mmorenMarker = BitmapDescriptorFactory.fromView(convertView);
+		OverlayOptions ooA = new MarkerOptions().position(point).icon(mmorenMarker).zIndex(5).draggable(false);
+		Marker mMarker = (Marker) mBaiduMap.addOverlay(ooA);
 	}
 
 	/**
@@ -540,7 +601,7 @@ public class RecordDetailActivity extends BaseActivity implements BDLocationList
 	private BaiduMap mBaiduMap;
 	private LocationClient mLocClient;
 	private LocationClientOption option;
-	private float STARTZOOM = 15.0f;
+	private float STARTZOOM = 17.0f;
 	private boolean isFirstLoc = true;
 
 	private double longitude_me;

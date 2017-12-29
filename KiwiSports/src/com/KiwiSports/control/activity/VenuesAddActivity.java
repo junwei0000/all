@@ -134,7 +134,7 @@ public class VenuesAddActivity extends BaseActivity
 	private BaiduMap mBaiduMap;
 	private LocationClient mLocClient;
 	private LocationClientOption option;
-	private float STARTZOOM = 15.0f;
+	private float STARTZOOM = 17.0f;
 	private boolean isFirstLoc = true;
 
 	private double longitude_me;

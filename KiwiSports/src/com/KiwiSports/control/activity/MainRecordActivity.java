@@ -114,6 +114,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 	private HashMap<String, String> mhashmap;
 	protected ArrayList<RecordInfo> mList;
 	protected int total;
+	protected int beforetotal = -1;
 	private int page;
 	private int page_size;
 	private RecordListAdapter adapter;
@@ -132,6 +133,13 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 
 	private void init() {
 		adapter = null;
+		beforetotal = -1;
+		mList = new ArrayList<RecordInfo>();
+		page = 1;
+		page_size = 20;
+	}
+
+	private void initResume() {
 		mList = new ArrayList<RecordInfo>();
 		page = 1;
 		page_size = 20;
@@ -163,10 +171,16 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 					if (status.equals("200")) {
 						total = (Integer) dataMap.get("count");
 						mList = (ArrayList<RecordInfo>) dataMap.get("mlist");
-						if (page * page_size < total) {
-							page++;
+						if (total != beforetotal) {
+							if (beforetotal == -1) {
+								adapter = null;
+							}
+							beforetotal = total;
+							if (page * page_size < total) {
+								page++;
+							}
+							updateList();
 						}
-						updateList();
 					} else {
 						if (page == 0) {
 							updateList();
@@ -253,6 +267,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 	 * 加载更多
 	 */
 	private final int LOADMORE = 2;
+	private final int REFLESHRESUME = 3;
 	Handler mPullDownViewHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -265,6 +280,13 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 				if (!Constans.getInstance().refreshOrLoadMoreLoading) {
 					Constans.getInstance().refreshOrLoadMoreLoading = true;
 					init();
+					processLogic();
+				}
+				break;
+			case REFLESHRESUME:
+				if (!Constans.getInstance().refreshOrLoadMoreLoading) {
+					Constans.getInstance().refreshOrLoadMoreLoading = true;
+					initResume();
 					processLogic();
 				}
 				break;
@@ -309,7 +331,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 	protected void onResume() {
 		super.onResume();
 		if (!firststatus)
-			mPullDownViewHandler.sendEmptyMessage(REFLESH);
+			mPullDownViewHandler.sendEmptyMessage(REFLESHRESUME);
 	}
 
 	/**

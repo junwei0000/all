@@ -1612,13 +1612,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		});
 		return bitmap;
 	}
-
+	
 	/**
 	 * 设置中心点的焦点
 	 */
 	private void moveToCenter() {
 		LatLng mypoint = new LatLng(latitude_me, longitude_me);
-		MapStatus mMapStatus = new MapStatus.Builder().target(mypoint).zoom(16).build();
+		MapStatus mMapStatus = new MapStatus.Builder().target(mypoint).zoom(TrackUploadFragment.STARTZOOM).build();
 		MapStatusUpdate msUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
 		if (msUpdate != null && mBaiduMap != null) {
 			mBaiduMap.animateMapStatus(msUpdate);// 以动画方式更新地图状态，动画耗时 300 ms

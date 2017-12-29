@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -31,11 +32,13 @@ import com.KiwiSports.R;
 import com.KiwiSports.control.activity.MainStartActivity;
 import com.KiwiSports.model.MainLocationItemInfo;
 import com.KiwiSports.utils.ConfigUtils;
+import com.KiwiSports.utils.PriceUtils;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
@@ -357,8 +360,9 @@ public class TrackUploadFragment extends Fragment {
 		sum_distance = 0.0;
 		isFirstLoc = true;
 		nowlatLng = null;
-		beforelatLng=null;
+		beforelatLng = null;
 		showpointList.clear();
+		mBubbleMap.clear();
 		isInUploadFragment = false;
 		if (polylineoverlay != null)
 			polylineoverlay.remove();
@@ -371,7 +375,9 @@ public class TrackUploadFragment extends Fragment {
 	public static boolean isFirstLoc = true;
 	public LatLng beforelatLng;
 	LatLng nowlatLng;
-
+	public static LatLng mEndpoint;
+	HashMap<Integer, Integer> mBubbleMap = new HashMap<Integer, Integer>();
+	public static float STARTZOOM = 17.0f;
 	/**
 	 * 显示实时轨迹
 	 * 
@@ -392,6 +398,7 @@ public class TrackUploadFragment extends Fragment {
 			if (isFirstLoc) {
 				beforelatLng = userslatLng;
 				stringBuffer.append("isFirstLoc-----userslatLng=" + beforelatLng + "\n");
+				showBubbleView(userslatLng, 0);
 			} else {
 				nowlatLng = userslatLng;
 				stringBuffer.append("nowlatLng-----nowlatLng=" + nowlatLng + "\n");
@@ -406,7 +413,7 @@ public class TrackUploadFragment extends Fragment {
 					sum_distance = sum_distance + juliString;
 				}
 				stringBuffer.append("sum_distance-----sum_distance=" + sum_distance + "\n");
-
+				showBubbleView(userslatLng, 1);
 			}
 			stringBuffer.append("//-------------------------------------------------------------------" + "\n");
 
@@ -529,11 +536,10 @@ public class TrackUploadFragment extends Fragment {
 		addMarker();
 	}
 
-	public void setMapupdateStatus(float zooms, LatLng nowpoint) {
-		System.err.println(nowpoint + "   dd   " + zooms);
+	public void setMapupdateStatus(LatLng nowpoint) {
 		// 设置中心点
 		if (nowpoint != null) {
-			MapStatus mMapStatus = new MapStatus.Builder().target(nowpoint).zoom(zooms).build();
+			MapStatus mMapStatus = new MapStatus.Builder().target(nowpoint).zoom(STARTZOOM).build();
 			MapStatusUpdate msUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
 			MainStartActivity.mBaiduMap.animateMapStatus(msUpdate);
 		}
@@ -553,15 +559,50 @@ public class TrackUploadFragment extends Fragment {
 		} else if (showpointList.size() == 1) {
 			mEndpoint = showpointList.get(0);
 		}
-		setMapupdateStatus(17, mEndpoint);
+		setMapupdateStatus(mEndpoint);
 		// 实时点覆盖物
 		if (null != overlayOptions) {
 			overlay = MainStartActivity.mBaiduMap.addOverlay(overlayOptions);
 		}
 
 	}
+	/**
+	 * 每隔一公里显示气泡
+	 */
+	private void showBubbleView(LatLng nowlatLng, int i) {
+		if (i == 0) {
+			addMarkerBubble(nowlatLng, i, "0");
+			mBubbleMap.put(0, 0);
+		} else {
+			int juliSt = (int) sum_distance;
+			if (!mBubbleMap.containsKey(juliSt)) {
+				mBubbleMap.put(juliSt, juliSt);
+				addMarkerBubble(nowlatLng, i, "" + juliSt);
+			}
+		}
+	}
 
-	public static LatLng mEndpoint;
+	/**
+	 * 显示气泡
+	 * 
+	 * @param point
+	 * @param index
+	 */
+	@SuppressLint("NewApi")
+	private void addMarkerBubble(LatLng point, int index, String juliSt) {
+
+		View convertView = LayoutInflater.from(MainStartActivity.mActivity).inflate(R.layout.venues_map_bubble, null);
+		TextView tv_bubble = (TextView) convertView.findViewById(R.id.tv_bubble);
+		if (index == 0) {
+			tv_bubble.setText("");
+			tv_bubble.setBackgroundResource(R.drawable.track_start);
+		} else {
+			tv_bubble.setText("" + juliSt);
+		}
+		BitmapDescriptor mmorenMarker = BitmapDescriptorFactory.fromView(convertView);
+		OverlayOptions ooA = new MarkerOptions().position(point).icon(mmorenMarker).zIndex(5).draggable(false);
+		Marker mMarker = (Marker) MainStartActivity.mBaiduMap.addOverlay(ooA);
+	}
 
 	public void startRefreshThread(boolean isStart) {
 		if (null == refreshThread) {

@@ -45,7 +45,8 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 	private String token;
 	private String access_token;
 	private Activity mHomeActivity;
-	protected Integer total;
+	protected int total;
+	protected int beforetotal = -1;
 	protected ArrayList<VenuesListInfo> mList;
 
 	@Override
@@ -56,11 +57,13 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 			break;
 		}
 	}
+
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		CommonUtils.getInstance().mCurrentActivity=CommonUtils.getInstance().mCurrentActivity;
+		CommonUtils.getInstance().mCurrentActivity = CommonUtils.getInstance().mCurrentActivity;
 	}
+
 	@Override
 	protected void loadViewLayout() {
 		setContentView(R.layout.main_location);
@@ -156,30 +159,33 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 		new VenuesBusiness(mHomeActivity, mhashmap, new GetVenuesCallback() {
 			@Override
 			public void afterDataGet(HashMap<String, Object> dataMap) {
-				/**
-				 * 动态添加的效果主要的做法是：在listview.setadapter之前添加所需要的控件，然后使用removeFooterView()方法移除控件。
-				 */
-				mListView.removeFooterView(convertView);
-				mListView.addFooterView(convertView);
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
 						total = (Integer) dataMap.get("count");
 						mList = (ArrayList<VenuesListInfo>) dataMap.get("mlist");
 					}
-					if (mList != null && mList.size() > 0) {
-					} else {
-						mList = new ArrayList<VenuesListInfo>();
+					if (total != beforetotal) {
+						beforetotal = total;
+						/**
+						 * 动态添加的效果主要的做法是：在listview.setadapter之前添加所需要的控件，然后使用removeFooterView()方法移除控件。
+						 */
+						mListView.removeFooterView(convertView);
+						mListView.addFooterView(convertView);
+						if (mList != null && mList.size() > 0) {
+						} else {
+							mList = new ArrayList<VenuesListInfo>();
+						}
+						VenuesListAdapter adapter = new VenuesListAdapter(mHomeActivity, mList);
+						mListView.setAdapter(adapter);
 					}
-					VenuesListAdapter adapter = new VenuesListAdapter(mHomeActivity, mList);
-					mListView.setAdapter(adapter);
 				} else {
 					CommonUtils.getInstance().initToast(mHomeActivity, getString(R.string.net_tishi));
 				}
 				mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
-				firststatus=false;
+				firststatus = false;
 
 			}
 		});
@@ -220,7 +226,10 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 	public void onRefresh() {
 		mHandler.postDelayed(new Runnable() {
 			public void run() {
+				if (!Constans.getInstance().refreshOrLoadMoreLoading) {
+				beforetotal = -1;
 				mPullDownViewHandler.sendEmptyMessage(REFLESH);
+				}
 			}
 		}, 1500);
 	}
@@ -230,12 +239,13 @@ public class MainVenuesActivity extends BaseActivity implements OnRefreshListion
 		mPullDownViewHandler.sendEmptyMessage(DATAUPDATEOVER);
 	}
 
-	Boolean firststatus=true;
+	Boolean firststatus = true;
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(!firststatus)
-		mPullDownViewHandler.sendEmptyMessage(REFLESH);
+		if (!firststatus)
+			mPullDownViewHandler.sendEmptyMessage(REFLESH);
 	}
 
 	/**
