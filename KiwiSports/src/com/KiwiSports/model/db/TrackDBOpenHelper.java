@@ -220,7 +220,7 @@ public class TrackDBOpenHelper {
 		contentValues.put(recordDatas, recordDatas_);
 		try {
 			long rawid = mSqLiteDatabase.insert(TrackDBHelper.TABLE_TRACK, null, contentValues);
-			Log.e("----------addTableInfo-------------", contentValues.toString());
+			Log.e("track", "addTableTrackInfo-----"+contentValues.toString());
 			if (rawid > 0) {
 				return true;
 			} else {

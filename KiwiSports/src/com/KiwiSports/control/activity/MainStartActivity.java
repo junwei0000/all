@@ -153,11 +153,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	protected String address;
 
 	private String matchSpeed = "0";// 配速
-	private String minmatchSpeed = "0";// 最小配速
 	private String maxMatchSpeed = "0";// 最快配速 / 最大速度
 	private String averageMatchSpeed = "0";// 平均配速
 	private long matchSpeedTimestamp;// 配速时间戳
-	private long minmatchSpeedTimestamp;// 最小配速时间戳
 	private long maxMatchSpeedTimestamp;// 最快配速 / 最大速度时间戳
 	private double minAltidue;// 最低海拔
 	private double maxAltitude;// 最高海拔
@@ -329,7 +327,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		matchSpeed = "0";
 		averageMatchSpeed = "0";
 		maxMatchSpeed = "0";
-
+		recordDatas="";
 	}
 
 	@Override
@@ -477,19 +475,19 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			matchSpeedTimestamp = DatesUtils.getInstance().computeMatchspeed(runingTimestamp, distanceTraveled);
 			averageMatchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
 			matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
-
-			if (Speed > 0) {
-				matchSpeedTimestamp = (long) (1 * 3600 / Speed);
-				matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
-			}
 			if (matchSpeedTimestamp <= maxMatchSpeedTimestamp || maxMatchSpeedTimestamp == 0) {
 				maxMatchSpeedTimestamp = matchSpeedTimestamp;
 				maxMatchSpeed = DatesUtils.getInstance().formatMatchspeed(maxMatchSpeedTimestamp);
 			}
-			if (matchSpeedTimestamp >= minmatchSpeedTimestamp) {
-				minmatchSpeedTimestamp = matchSpeedTimestamp;
-				minmatchSpeed = DatesUtils.getInstance().formatMatchspeed(minmatchSpeedTimestamp);
+			if (Speed > 0) {
+				matchSpeedTimestamp = (long) (1 * 3600 / Speed);
+				matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
+				if (matchSpeedTimestamp <= maxMatchSpeedTimestamp || maxMatchSpeedTimestamp == 0) {
+					maxMatchSpeedTimestamp = matchSpeedTimestamp;
+					maxMatchSpeed = DatesUtils.getInstance().formatMatchspeed(maxMatchSpeedTimestamp);
+				}
 			}
+			
 
 		}
 		showCurrentPropertyValue();
@@ -930,13 +928,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	private void setline(LatLng latLng) {
 		boolean sensorAva = (BEFORECURRENT_SETP != StepDetector.CURRENT_SETP) && Constans.getInstance().mSensorState;
-		if (sensorAva || !Constans.getInstance().mSensorState) {
+		if (allpointList.size()==0||sensorAva || !Constans.getInstance().mSensorState) {
 			mTrackUploadFragment.showRealtimeTrack(latLng);
 			Log.e("map", "beforelatLng==" + beforelatLng + ";;;latLng==" + latLng);
 			if (beforelatLng == null || beforelatLng.latitude != latLng.latitude) {
-				Log.e("map", "addddd");
 				recordInfo(latLng);
 				beforelatLng = latLng;
+				Log.e("track", "addddd-----"+allpointList.size());
 			}
 			getCurrentPropertyValue();
 		}
@@ -1116,6 +1114,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 		System.err.println("MyLocationListener==" + location.getLatitude() + "     ");
 		if (!gpslocationListenerStatus) {
+			updateTrackHistoryData();
 			if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mActivity)) {
 				mTrackUploadFragment.isInUploadFragment = false;
 				// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps0);
@@ -1182,7 +1181,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
 		if (gpslocationListenerStatus && location != null) {
-
+			updateTrackHistoryData();
 			LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 			// 将GPS设备采集的原始GPS坐标转换成百度坐标
 			CoordinateConverter converter = new CoordinateConverter();
@@ -1219,7 +1218,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				double longitude_me = mypoint.longitude;
 				double latitude_me = mypoint.latitude;
 				updateLocation(longitude_me, latitude_me);
-				updateTrackHistoryData();
 				break;
 			case UPDATETIME:
 				getCurrentPropertyValue();
@@ -1246,6 +1244,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 			ArrayList<TrackSaveInfo> mTrackList = mDB.getHistoryTrackList();
 			if (mTrackList != null && mTrackList.size() > 0) {
+				Log.e("track", "------------mTrackList.size()------------" + mTrackList.size());
 				for (int i = 0; i < mTrackList.size(); i++) {
 					loadTrackHistoryDates(i, mTrackList);
 				}
@@ -1441,11 +1440,14 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 					startActivityForResult(intent, 0);
 				} else {
+					recordDatas = setRecordInfoArrayToJson();
 					if (ConfigUtils.getInstance().isNetWorkAvaiable(mActivity)) {
 						loadRecordDates();
 					} else {
 						// 无网络时保存轨迹到数据库
-						mDB.addTableTrackInfo(uid, token, access_token, recordDatas);
+						if(!TextUtils.isEmpty(recordDatas)){
+							mDB.addTableTrackInfo(uid, token, access_token, recordDatas);
+						}
 						initStartView();
 						Log.e("track", "mDB.add");
 					}
@@ -1465,7 +1467,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
 		mhashmap.put("access_token", access_token);
-		recordDatas = setRecordInfoArrayToJson();
 		mhashmap.put("recordDatas", "" + recordDatas);
 		Log.e("map", "------------loadRecordDates------------" + mhashmap);
 		new RecordDatesloadBusiness(this, mhashmap, new GetRecordDatesloadCallback() {
