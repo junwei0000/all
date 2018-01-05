@@ -1,5 +1,8 @@
 package com.KiwiSports.control.activity;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -172,6 +175,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private double minAltidue;// 最低海拔
 	private double maxAltitude;// 最高海拔
 	private int currentAltitude;// 当前海拔
+	private int startAltitude;// 开始海拔
+	private int beforeAltitude;// 前一个海拔
 	private double currentAccuracy;// 精度
 	private double Speed;// 速度
 	private double averageSpeed;// 平均速度
@@ -186,15 +191,16 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private String wrestlingCount = "";// 摔跤次数
 	private String totalHoverDuration = "";// 总滞空时间
 	private String maxHoverDuration = "";// 最大滞空时间
-	private String dropTraveled = "";//滑行落差
+	private int dropTraveled = 0;// 滑行落差
+	private int hopCount = 0;// 跳跃次数
 
-	//滑雪
-	private String hopCount = "0";// 跳跃次数
-	private String lapCount = "1";// 趟数
-	private String upHillDistance = "0";// 上坡距离
-	private String downHillDistance = "0";// 下坡距离
-	private String verticalDistance = "0";// 滑行落差/垂直距离
-	private String maxSlope = "0";// 最大坡度
+	// 滑雪
+	private int lapCount = 1;// 趟数（上升和下降的次数）
+	private int upHillDistance = 0;// 上坡距离 （距离坐标点的累加） m
+	private int downHillDistance = 0;// 下坡距离/滑行距离 m
+	private int verticalDistance = 0;// 滑行落差/垂直距离 m
+	private int _nMaxSlopeAngle = 0;// 最大坡度
+	private String nskiStatus = "0";// 上升状态（1：上升状态； 2：下降状态）
 
 	@Override
 	public void onClick(View v) {
@@ -310,6 +316,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		runingTimestamp = 0;// 运动时间
 		startTimestamp = 0;// 开始时间
 		pauseTimestamp = 0;// 休息暂停时间
+		_nMaxSlopeAngle = 0;
 		iv_start.setVisibility(View.VISIBLE);
 		iv_continue.setVisibility(View.GONE);
 		iv_pause.setVisibility(View.GONE);
@@ -408,6 +415,50 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		initGps();
 		initOnEntityListener();
 		initLbsClient();
+	}
+
+	/**
+	 * 开始后 ：5分钟的时候判断运动类型
+	 */
+	private void initSportType() {
+		if (upHillDistance > 100 && downHillDistance > 100) {
+			sportsType = "sky"; // 滑雪
+		} else {
+			if ((topSpeed < 20 && averageSpeed < 8 && (float) nSteps / (float) distanceTraveled > 1.1)
+					|| (topSpeed < 15 && averageSpeed < 6 && (float) nSteps / (float) distanceTraveled > 0.7)
+					|| (topSpeed < 8 && averageSpeed < 5 && (float) nSteps / (float) distanceTraveled > 0.5)) {
+				// if (upHillDistance > 100 || downHillDistance > 100)
+				// sportsType = 4; // climbing
+				// else
+				sportsType = "walk";// 走路
+			} else if (topSpeed < 40 && averageSpeed < 15
+					&& ((float) nSteps / (float) distanceTraveled > 0.6 || nSteps == 0)) {
+				// if (upHillDistance > 100 || downHillDistance > 100)
+				// sportsType = 5; // cross country run
+				// else
+				sportsType = "run";// 跑步
+			} else if (topSpeed < 70 && averageSpeed < 40
+					&& ((float) nSteps / (float) distanceTraveled > 0.05 || nSteps == 0)) {
+				// if (upHillDistance > 100 || downHillDistance > 100)
+				// sportsType = 6; // cross country biking
+				// else
+				sportsType = "riding";// 骑行
+			} else if (topSpeed < 260 && averageSpeed < 150)
+				sportsType = "drive";// 开车
+			else
+				sportsType = "drive"; // 高铁
+		}
+		MainsportParser mMainsportParser = new MainsportParser();
+		ArrayList<MainSportInfo> mallsportList = mMainsportParser.parseJSON(this);
+		for (int i = 0; i < mallsportList.size(); i++) {
+			MainSportInfo mMainSportInfo = mallsportList.get(i);
+			if (sportsType.equals(mMainSportInfo.getEname())) {
+				sportindex = i;
+				break;
+			}
+		}
+		setSportPropertyList(sportindex);
+		getCurrentPropertyValue();
 	}
 
 	/**
@@ -567,14 +618,14 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				}
 			}
 		} else if (sportsType.equals("sky")) {
-			mpropertytwnList.get(1).setValue(lapCount);
+			mpropertytwnList.get(1).setValue(String.valueOf(lapCount));
 			for (int i = 0; i < mMpropertyList.size(); i++) {
 				switch (i) {
 				case 0:
 					mMpropertyList.get(i).setValue(duration);
 					break;
 				case 1:
-					mMpropertyList.get(i).setValue(downHillDistance);
+					mMpropertyList.get(i).setValue(String.valueOf(downHillDistance));
 					break;
 				case 2:
 					mMpropertyList.get(i).setValue(verticalDistance + "");
@@ -583,7 +634,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					mMpropertyList.get(i).setValue(topSpeed + "");
 					break;
 				case 4:
-					mMpropertyList.get(i).setValue(maxSlope);
+					mMpropertyList.get(i).setValue(String.valueOf(_nMaxSlopeAngle));
 					break;
 				case 5:
 					mMpropertyList.get(i).setValue(currentAltitude + "");
@@ -775,7 +826,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		option.setOpenGps(true);
 		option.setAddrType("all");// 返回的定位结果包含地址信息
 		option.setCoorType(GPSUtil.CoorType);// 返回的定位结果是百度经纬度,默认值gcj02
-		option.setScanSpan(4000);
+		option.setScanSpan(2000);
 		mLocClient.setLocOption(option);
 		mLocClient.start();
 		if (null == realtimeBitmap) {
@@ -830,7 +881,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		 * 1秒更新一次，或最小位移变化超过1米更新一次；
 		 * 注意：此处更新准确度非常低，推荐在service里面启动一个Thread，在run中sleep(10000);然后执行handler.sendMessage(),更新位置
 		 */
-		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 4000, 3, gpslocationListener);
+		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 3, gpslocationListener);
 		// lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 2,
 		// netlocationListener);
 	}
@@ -862,47 +913,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	};
 
 	/**
-	 * 显示gps精度定位
-	 * 
-	 * @param location
-	 */
-	private void showGpsAccuracy(Location location) {
-		mTrackUploadFragment.isInUploadFragment = false;
-		gpslocationListenerStatus = false;
-		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			float accuracy = location.getAccuracy();
-			System.err.println(accuracy);
-			if (accuracy >= 30) {
-				gpslocationListenerStatus = false;
-			} else if (accuracy > 12 && accuracy < 30) {
-				gpslocationListenerStatus = false;
-				// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps1);
-				// userwalk_run_tv_gpsinfo.setText("信号较差数据准确度较低");
-				// gpslocationListenerStatus = true;
-				// firstnetLocationstatus = true;
-			} else if (accuracy > 5 && accuracy <= 12) {
-				if (btnContinueStatus) {
-					mTrackUploadFragment.isInUploadFragment = true;
-				}
-				// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps2);
-				// userwalk_run_tv_gpsinfo.setText("信号一般");
-				gpslocationListenerStatus = true;
-				firstnetLocationstatus = true;
-			} else {
-				if (btnContinueStatus) {
-					mTrackUploadFragment.isInUploadFragment = true;
-				}
-				// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps3);
-				// userwalk_run_tv_gpsinfo.setText("信号良好");
-				gpslocationListenerStatus = true;
-				firstnetLocationstatus = true;
-			}
-			// userwalk_run_tv_gpsinfo.setText(userwalk_run_tv_gpsinfo.getText()
-			// + "gps" + accuracy);
-		}
-	}
-
-	/**
 	 * 返回查询条件
 	 * 
 	 * @return
@@ -924,7 +934,205 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		return criteria;
 	}
 
-	LatLng beforelatLng;
+	public class MyLocationListener implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			Message msg = new Message();
+			msg.what = NETLOCATION;
+			msg.obj = location;
+			mHandler.sendMessage(msg);
+			msg = null;
+		}
+	};
+
+	private LocationListener gpslocationListener = new LocationListener() {
+		/**
+		 * 位置信息变化时触发
+		 */
+		@Override
+		public void onLocationChanged(Location location) {
+			Message msg = new Message();
+			msg.what = GPSLOCATION;
+			msg.obj = location;
+			mHandler.sendMessage(msg);
+			msg = null;
+		}
+
+		/**
+		 * GPS状态变化时触发
+		 */
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			switch (status) {
+			// GPS状态为可见时
+			case LocationProvider.AVAILABLE:
+				Log.i("gps", "当前GPS状态为可见状态");
+				break;
+			// GPS状态为服务区外时
+			case LocationProvider.OUT_OF_SERVICE:
+				Log.i("gps", "当前GPS状态为服务区外状态");
+				break;
+			// GPS状态为暂停服务时
+			case LocationProvider.TEMPORARILY_UNAVAILABLE:
+				Log.i("gps", "当前GPS状态为暂停服务状态");
+				break;
+			}
+		}
+
+		/**
+		 * GPS开启时触发
+		 */
+		@Override
+		public void onProviderEnabled(String provider) {
+		}
+
+		/**
+		 * GPS禁用时触发
+		 */
+		@Override
+		public void onProviderDisabled(String provider) {
+		}
+
+	};
+
+	/**
+	 * 显示gps精度定位
+	 * 
+	 * @param location
+	 */
+	private void showGpsAccuracy(Location location) {
+		mTrackUploadFragment.isInUploadFragment = false;
+		gpslocationListenerStatus = false;
+		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			float accuracy = location.getAccuracy();
+			System.err.println(accuracy);
+			if (accuracy >= 30) {
+				gpslocationListenerStatus = false;
+			} else if (accuracy > 12 && accuracy < 30) {
+				gpslocationListenerStatus = false;
+				// 信号较差数据准确度较低
+			} else if (accuracy > 5 && accuracy <= 12) {
+				if (btnContinueStatus) {
+					mTrackUploadFragment.isInUploadFragment = true;
+				}
+				// 信号一般
+				gpslocationListenerStatus = true;
+				firstnetLocationstatus = true;
+			} else {
+				if (btnContinueStatus) {
+					mTrackUploadFragment.isInUploadFragment = true;
+				}
+				// 信号良好
+				gpslocationListenerStatus = true;
+				firstnetLocationstatus = true;
+			}
+		}
+	}
+
+	private void netLocation(BDLocation location) {
+
+		System.err.println("MyLocationListener==" + location.getLatitude() + "     ");
+		if (!gpslocationListenerStatus) {
+			updateTrackHistoryData();
+			if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mActivity)) {
+				mTrackUploadFragment.isInUploadFragment = false;
+				// 无信号
+				return;
+			} else {
+				if (location.getLocType() == 167 || location.getLatitude() == 0 || location.getRadius() > 100) {
+					mTrackUploadFragment.isInUploadFragment = false;
+					// 信号较差数据准确度较低
+				} else {
+					if (firstnetLocationstatus) {
+						// 第一次不定位，防止漂浮坐标
+						firstnetLocationstatus = false;
+						return;
+
+					}
+					if (location.getLocType() == 62) {
+						longitude_me = 116.404269;
+						latitude_me = 39.91405;
+					} else {
+						longitude_me = location.getLongitude();
+						latitude_me = location.getLatitude();
+					}
+					Speed = location.getSpeed();// Km/h
+					if (Speed < 0) {
+						Speed = 0;
+					}
+					address = location.getAddrStr();
+					currentAccuracy = location.getRadius();
+					LatLng latLng = new LatLng(latitude_me, longitude_me);
+					if (btnStartStatus && btnContinueStatus) {
+						mTrackUploadFragment.isInUploadFragment = true;
+						if (mTrackUploadFragment != null && mTrackUploadFragment.isInUploadFragment) {
+							Message msg = new Message();
+							msg.what = SETLINE;
+							msg.obj = latLng;
+							mHandler.sendMessage(msg);
+							msg = null;
+						}
+					} else {
+						showLocation(latLng);
+					}
+
+				}
+			}
+			System.err.println("location===" + location.getLatitude() + "    " + location.getLocType());
+		}
+
+	}
+
+	private void gpsLocation(Location location) {
+
+		showGpsAccuracy(location);
+		System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
+		if (gpslocationListenerStatus && location != null) {
+			updateTrackHistoryData();
+			LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+			// 将GPS设备采集的原始GPS坐标转换成百度坐标
+			CoordinateConverter converter = new CoordinateConverter();
+			converter.from(CoordType.GPS);
+			converter.coord(latLng);
+			LatLng sourceLatLng = converter.convert();
+			longitude_me = sourceLatLng.longitude;
+			latitude_me = sourceLatLng.latitude;
+			address = location.getProvider();
+			currentAccuracy = location.getAccuracy();
+			currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
+			if (startAltitude == 0 || mTrackUploadFragment.isFirstLoc) {
+				startAltitude = currentAltitude;
+			}
+			if (beforeAltitude == 0) {
+				beforeAltitude = currentAltitude;
+			}
+			Speed = location.getSpeed() * 3.6;// m/s --> Km/h
+			if (Speed < 0) {
+				Speed = 0;
+			}
+			if (btnStartStatus && btnContinueStatus) {
+				Message msg = new Message();
+				msg.what = SETLINE;
+				msg.obj = sourceLatLng;
+				mHandler.sendMessage(msg);
+				msg = null;
+			} else {
+				showLocation(sourceLatLng);
+			}
+
+		}
+
+	}
+
+	/**
+	 * 前一个坐标点
+	 */
+	private LatLng beforelatLng;
+	/**
+	 * 所有轨迹点
+	 */
+	private List<MainLocationItemInfo> allpointList = new ArrayList<MainLocationItemInfo>();
 
 	private void setline(LatLng latLng) {
 		boolean sensorAva = (BEFORECURRENT_SETP != StepDetector.CURRENT_SETP) && Constans.getInstance().mSensorState;
@@ -933,6 +1141,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			Log.e("map", "beforelatLng==" + beforelatLng + ";;;latLng==" + latLng);
 			if (beforelatLng == null || beforelatLng.latitude != latLng.latitude) {
 				recordInfo(latLng);
+				insmaxSlope(latLng);
+				inskyHillDis(latLng);
 				beforelatLng = latLng;
 				Log.e("track", "addddd-----" + allpointList.size());
 			}
@@ -940,7 +1150,68 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	}
 
-	public List<MainLocationItemInfo> allpointList = new ArrayList<MainLocationItemInfo>();
+	/**
+	 * 每次定位：计算最大坡度 private String lapCount = "1";// 趟数（上升和下降的次数） private int
+	 * upHillDistance = 0;// 上坡距离 （距离坐标点的累加） m private int downHillDistance =
+	 * 0;// 下坡距离 m private int verticalDistance = 0;// 滑行落差/垂直距离 m private int
+	 * _nMaxSlopeAngle = 0;// 最大坡度 private String nskiStatus = "0";//
+	 * 上升状态（1：上升状态； 2：下降状态）
+	 */
+	private void insmaxSlope(LatLng nowlatLng) {
+		LatLng startlatLng_ = mTrackUploadFragment.startlatLng;
+		double tempAllDistance_ = ConfigUtils.DistanceOfTwoPoints(startlatLng_.latitude, startlatLng_.longitude,
+				nowlatLng.latitude, nowlatLng.longitude);
+		int tempAllDistance = (int) (tempAllDistance_ * 1000);
+		if (startAltitude > currentAltitude) {
+			/**
+			 * 下滑 坡度
+			 */
+			int tempAllVerticalDistance = (startAltitude - currentAltitude);
+			if (tempAllDistance > 200) {
+				double tempAngle = Math.asin(tempAllVerticalDistance / tempAllDistance);
+				if (((tempAngle * 180) / Math.PI) > _nMaxSlopeAngle) {
+					_nMaxSlopeAngle = (int) ((tempAngle * 180) / Math.PI);
+					if (_nMaxSlopeAngle > 45) {
+						_nMaxSlopeAngle = 45;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 计算
+	 * 
+	 * @param nowlatLng
+	 */
+	private void inskyHillDis(LatLng nowlatLng) {
+		double tempDistance_ = ConfigUtils.DistanceOfTwoPoints(beforelatLng.latitude, beforelatLng.longitude,
+				nowlatLng.latitude, nowlatLng.longitude);
+		int tempDistance = (int) (tempDistance_ * 1000);
+		int tempVerticalDistance;
+		if (beforeAltitude > currentAltitude) {
+			/**
+			 * 下滑距离
+			 */
+			tempVerticalDistance = (beforeAltitude - currentAltitude);
+			verticalDistance += tempVerticalDistance;
+			dropTraveled += tempVerticalDistance;
+			downHillDistance += (int) sqrt(pow(tempVerticalDistance, 2) + pow(tempDistance, 2));
+			if (nskiStatus.equals("1")) {
+				lapCount++;
+			}
+			nskiStatus = "2";
+		} else {
+			/**
+			 * 上升
+			 */
+			tempVerticalDistance = (currentAltitude - beforeAltitude);
+			upHillDistance += (int) sqrt(pow(tempVerticalDistance, 2) + pow(tempDistance, 2));
+			nskiStatus = "1";
+		}
+		beforeAltitude = currentAltitude;
+
+	}
 
 	/**
 	 * 保存坐标明细
@@ -1040,169 +1311,15 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							Message msg = new Message();
 							msg.what = UPDATETIME;
 							mHandler.sendMessage(msg);// 通知主线程
+							if (runingTimestamp - 5 * 60 * 1000 == 0) {
+								initSportType();
+							}
 						}
 					}
 				}
 			};
 			thread.start();
 		}
-	}
-
-	public class MyLocationListener implements BDLocationListener {
-
-		@Override
-		public void onReceiveLocation(BDLocation location) {
-			Message msg = new Message();
-			msg.what = NETLOCATION;
-			msg.obj = location;
-			mHandler.sendMessage(msg);
-			msg = null;
-		}
-	};
-
-	private LocationListener gpslocationListener = new LocationListener() {
-		/**
-		 * 位置信息变化时触发
-		 */
-		@Override
-		public void onLocationChanged(Location location) {
-			Message msg = new Message();
-			msg.what = GPSLOCATION;
-			msg.obj = location;
-			mHandler.sendMessage(msg);
-			msg = null;
-		}
-
-		/**
-		 * GPS状态变化时触发
-		 */
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-			switch (status) {
-			// GPS状态为可见时
-			case LocationProvider.AVAILABLE:
-				Log.i("gps", "当前GPS状态为可见状态");
-				break;
-			// GPS状态为服务区外时
-			case LocationProvider.OUT_OF_SERVICE:
-				Log.i("gps", "当前GPS状态为服务区外状态");
-				break;
-			// GPS状态为暂停服务时
-			case LocationProvider.TEMPORARILY_UNAVAILABLE:
-				Log.i("gps", "当前GPS状态为暂停服务状态");
-				break;
-			}
-		}
-
-		/**
-		 * GPS开启时触发
-		 */
-		@Override
-		public void onProviderEnabled(String provider) {
-		}
-
-		/**
-		 * GPS禁用时触发
-		 */
-		@Override
-		public void onProviderDisabled(String provider) {
-		}
-
-	};
-
-	private void netLocation(BDLocation location) {
-
-		System.err.println("MyLocationListener==" + location.getLatitude() + "     ");
-		if (!gpslocationListenerStatus) {
-			updateTrackHistoryData();
-			if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mActivity)) {
-				mTrackUploadFragment.isInUploadFragment = false;
-				// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps0);
-				// userwalk_run_tv_gpsinfo.setText("无信号");
-				return;
-			} else {
-				if (location.getLocType() == 167 || location.getLatitude() == 0 || location.getRadius() > 100) {
-					mTrackUploadFragment.isInUploadFragment = false;
-					// userwalk_run_iv_gps.setBackgroundResource(R.drawable.userwalk_run_gps1);
-					// userwalk_run_tv_gpsinfo.setText("信号较差数据准确度较低");
-				} else {
-					if (firstnetLocationstatus) {
-						// 第一次不定位，防止漂浮坐标
-						firstnetLocationstatus = false;
-						return;
-
-					}
-					if (location.getLocType() == 62) {
-						longitude_me = 116.404269;
-						latitude_me = 39.91405;
-					} else {
-						longitude_me = location.getLongitude();
-						latitude_me = location.getLatitude();
-					}
-					Speed = location.getSpeed();
-					if (Speed < 0) {
-						Speed = 0;
-					}
-					address = location.getAddrStr();
-					currentAccuracy = location.getRadius();
-					LatLng latLng = new LatLng(latitude_me, longitude_me);
-					if (btnStartStatus && btnContinueStatus) {
-						mTrackUploadFragment.isInUploadFragment = true;
-						if (mTrackUploadFragment != null && mTrackUploadFragment.isInUploadFragment) {
-							Message msg = new Message();
-							msg.what = SETLINE;
-							msg.obj = latLng;
-							mHandler.sendMessage(msg);
-							msg = null;
-						}
-					} else {
-						showLocation(latLng);
-					}
-
-				}
-			}
-			System.err.println("location===" + location.getLatitude() + "    " + location.getLocType());
-			// userwalk_run_tv_gpsinfo.setText("信号良好net"+"
-			// "+location.getRadius()+" "+StepDetector.CURRENT_SETP);
-		}
-
-	}
-
-	private void gpsLocation(Location location) {
-
-		showGpsAccuracy(location);
-		if (location != null) {
-			currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
-			currentAccuracy = location.getAccuracy();
-			Speed = location.getSpeed();
-			if (Speed < 0) {
-				Speed = 0;
-			}
-		}
-		System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
-		if (gpslocationListenerStatus && location != null) {
-			updateTrackHistoryData();
-			LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-			// 将GPS设备采集的原始GPS坐标转换成百度坐标
-			CoordinateConverter converter = new CoordinateConverter();
-			converter.from(CoordType.GPS);
-			converter.coord(latLng);
-			LatLng sourceLatLng = converter.convert();
-			longitude_me = sourceLatLng.longitude;
-			latitude_me = sourceLatLng.latitude;
-			address = location.getProvider();
-			if (btnStartStatus && btnContinueStatus) {
-				Message msg = new Message();
-				msg.what = SETLINE;
-				msg.obj = sourceLatLng;
-				mHandler.sendMessage(msg);
-				msg = null;
-			} else {
-				showLocation(sourceLatLng);
-			}
-
-		}
-
 	}
 
 	private final int UPDATELOCATION = 1;
@@ -1297,7 +1414,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			recordDatas.put("nSteps", "" + nSteps);
 			recordDatas.put("matchSpeed", "" + matchSpeed);
 			recordDatas.put("maxMatchSpeed", "" + maxMatchSpeed);
-			recordDatas.put("maxSlope", "" + maxSlope);
+			recordDatas.put("maxSlope", "" + _nMaxSlopeAngle);
 			recordDatas.put("maxAltitude", "" + maxAltitude);
 			recordDatas.put("currentAltitude", "" + currentAltitude);
 			recordDatas.put("averageMatchSpeed", "" + averageMatchSpeed);
@@ -1377,8 +1494,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
-					if (TextUtils.isEmpty(posid))
+					if (TextUtils.isEmpty(posid)) {
 						posid = (String) dataMap.get("posid");
+					}
+					String sportsType_ = (String) dataMap.get("sportsType");
+					if (!TextUtils.isEmpty(sportsType_)) {
+						sportsType = sportsType_;
+					}
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 

@@ -378,6 +378,8 @@ public class TrackUploadFragment extends Fragment {
 	public static LatLng mEndpoint;
 	HashMap<Integer, Integer> mBubbleMap = new HashMap<Integer, Integer>();
 	public static float STARTZOOM = 17.0f;
+	
+	public LatLng startlatLng;
 	/**
 	 * 显示实时轨迹
 	 * 
@@ -397,6 +399,7 @@ public class TrackUploadFragment extends Fragment {
 
 			if (isFirstLoc) {
 				beforelatLng = userslatLng;
+				startlatLng= userslatLng;
 				stringBuffer.append("isFirstLoc-----userslatLng=" + beforelatLng + "\n");
 				showBubbleView(userslatLng, 0);
 			} else {

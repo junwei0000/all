@@ -28,6 +28,8 @@ public class VenuesInfoByLocationParser extends BaseParser<Object> {
 			if (status.equals("200")) {
 				JSONObject Ob = jsonObject.getJSONObject("data");
 				String posid = Ob.optString("posid", "");
+				String sportsType = Ob.optString("sportsType", "");
+				mHashMap.put("sportsType", sportsType);
 				mHashMap.put("posid", posid);
 			} else {
 				String msg = jsonObject.optString("data");

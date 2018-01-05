@@ -172,9 +172,7 @@ public class MainRecordActivity extends BaseActivity implements OnRefreshListion
 						total = (Integer) dataMap.get("count");
 						mList = (ArrayList<RecordInfo>) dataMap.get("mlist");
 						if (total != beforetotal) {
-							if (beforetotal == -1) {
-								adapter = null;
-							}
+							adapter = null;
 							beforetotal = total;
 							if (page * page_size < total) {
 								page++;

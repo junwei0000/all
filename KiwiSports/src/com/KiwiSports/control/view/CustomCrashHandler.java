@@ -160,7 +160,7 @@ public class CustomCrashHandler implements UncaughtExceptionHandler {
 		sb.append(obtainExceptionInfo(ex));
 		// 判断SD卡是否存在
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			File dir = new File(SDCARD_ROOT + File.separator + "bestdo_log" + File.separator);
+			File dir = new File(SDCARD_ROOT + File.separator + "kiwi_log" + File.separator);
 			if (!dir.exists()) {
 				dir.mkdir();
 			}
@@ -180,7 +180,7 @@ public class CustomCrashHandler implements UncaughtExceptionHandler {
 		else {
 			FileOutputStream phone_outStream;
 			try {
-				fileName = paserTime(System.currentTimeMillis()) + "bestdo_log.txt";
+				fileName = paserTime(System.currentTimeMillis()) + "kiwi_log.txt";
 				// openFileOutput()方法的第一参数用于指定文件名称，不能包含路径分隔符“/” ，
 				// 如果文件不存在，Android 会自动创建它。
 				// 创建的文件保存在/data/data/<package name>/files目录，
