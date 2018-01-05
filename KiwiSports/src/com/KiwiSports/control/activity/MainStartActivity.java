@@ -1311,8 +1311,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							Message msg = new Message();
 							msg.what = UPDATETIME;
 							mHandler.sendMessage(msg);// 通知主线程
-							if (runingTimestamp - 5 * 60 * 1000 == 0) {
+							if (firstComeIn && runingTimestamp - 5 * 60 * 1000 == 0) {
 								initSportType();
+								firstComeIn = false;
 							}
 						}
 					}
@@ -1322,6 +1323,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	}
 
+	boolean firstComeIn = true;
 	private final int UPDATELOCATION = 1;
 	private final int UPDATETIME = 2;
 	private final int SETLINE = 3;
