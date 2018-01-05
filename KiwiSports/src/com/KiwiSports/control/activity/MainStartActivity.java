@@ -110,8 +110,6 @@ import android.widget.ZoomControls;
 public class MainStartActivity extends FragmentActivity implements OnClickListener {
 
 	private ImageView pagetop_iv_you;
-	private SharedPreferences bestDoInfoSharedPrefs;
-
 	private LinearLayout layout_disquan;
 	private TextView tv_distance;
 	private TextView tv_quannum;
@@ -119,22 +117,36 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private ImageView iv_start;
 	private ImageView iv_pause;
 	private ImageView iv_stop;
-	private Intent service;
+
 	private MyGridView mygridview_property;
 	private TextView tv_distancetitle;
 	private TextView tv_quannumtitle;
 	private TextView tv_quannumunit;
+	private ImageView iv_continue;
+	private ImageView map_iv_zoom;
+	private ImageView map_iv_shrink;
+	private ImageView map_iv_mylocation;
+	private LinearLayout layout_property;
+	private LinearLayout page_top_layout;
+	private ImageView pagetop_iv_center;
+	private LinearLayout layoutall;
+	private FrameLayout relat_map;
+	private Activity mHomeActivity;
 
+	private Intent service;
+	private SharedPreferences bestDoInfoSharedPrefs;
+	private MainPropertyAdapter mMainSportAdapter;
+	public static Context mActivity;
 	// -----------参数------------
 	protected TrackDBOpenHelper mDB;
 	private String uid;
 	private String token;
 	private String access_token;
 	private String recordDatas;
-	private ArrayList<MainSportInfo> mMpropertyList;
-	private ArrayList<MainSportInfo> mpropertytwnList;
 	private double longitude_me;
 	private double latitude_me;
+	private ArrayList<MainSportInfo> mMpropertyList;
+	private ArrayList<MainSportInfo> mpropertytwnList;
 	/**
 	 * 第一次定位，之后每5分钟一次
 	 */
@@ -174,26 +186,15 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private String wrestlingCount = "";// 摔跤次数
 	private String totalHoverDuration = "";// 总滞空时间
 	private String maxHoverDuration = "";// 最大滞空时间
-	private String dropTraveled = "";
+	private String dropTraveled = "";//滑行落差
 
+	//滑雪
 	private String hopCount = "0";// 跳跃次数
 	private String lapCount = "1";// 趟数
 	private String upHillDistance = "0";// 上坡距离
-	private String downHillDistance = "0";// 滑行下坡距离
+	private String downHillDistance = "0";// 下坡距离
 	private String verticalDistance = "0";// 滑行落差/垂直距离
 	private String maxSlope = "0";// 最大坡度
-	private MainPropertyAdapter mMainSportAdapter;
-	private ImageView iv_continue;
-	private ImageView map_iv_zoom;
-	private ImageView map_iv_shrink;
-	private ImageView map_iv_mylocation;
-	private LinearLayout layout_property;
-	private LinearLayout page_top_layout;
-	private ImageView pagetop_iv_center;
-	private LinearLayout layoutall;
-	private FrameLayout relat_map;
-	private Activity mHomeActivity;
-	public static Context mActivity;
 
 	@Override
 	public void onClick(View v) {
@@ -327,7 +328,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		matchSpeed = "0";
 		averageMatchSpeed = "0";
 		maxMatchSpeed = "0";
-		recordDatas="";
+		recordDatas = "";
 	}
 
 	@Override
@@ -487,7 +488,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					maxMatchSpeed = DatesUtils.getInstance().formatMatchspeed(maxMatchSpeedTimestamp);
 				}
 			}
-			
 
 		}
 		showCurrentPropertyValue();
@@ -928,13 +928,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	private void setline(LatLng latLng) {
 		boolean sensorAva = (BEFORECURRENT_SETP != StepDetector.CURRENT_SETP) && Constans.getInstance().mSensorState;
-		if (allpointList.size()==0||sensorAva || !Constans.getInstance().mSensorState) {
+		if (allpointList.size() == 0 || sensorAva || !Constans.getInstance().mSensorState) {
 			mTrackUploadFragment.showRealtimeTrack(latLng);
 			Log.e("map", "beforelatLng==" + beforelatLng + ";;;latLng==" + latLng);
 			if (beforelatLng == null || beforelatLng.latitude != latLng.latitude) {
 				recordInfo(latLng);
 				beforelatLng = latLng;
-				Log.e("track", "addddd-----"+allpointList.size());
+				Log.e("track", "addddd-----" + allpointList.size());
 			}
 			getCurrentPropertyValue();
 		}
@@ -1255,6 +1255,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	/**
 	 * 上传所有缓存的轨迹数据，成功并清除数据表数据
+	 * 
 	 * @param index
 	 * @param mTrackList
 	 */
@@ -1445,7 +1446,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						loadRecordDates();
 					} else {
 						// 无网络时保存轨迹到数据库
-						if(!TextUtils.isEmpty(recordDatas)){
+						if (!TextUtils.isEmpty(recordDatas)) {
 							mDB.addTableTrackInfo(uid, token, access_token, recordDatas);
 						}
 						initStartView();
@@ -1612,7 +1613,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		});
 		return bitmap;
 	}
-	
+
 	/**
 	 * 设置中心点的焦点
 	 */
