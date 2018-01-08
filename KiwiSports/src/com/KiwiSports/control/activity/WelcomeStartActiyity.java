@@ -99,10 +99,10 @@ public class WelcomeStartActiyity extends BaseActivity {
 	private void monisaveUserInfo() {
 		String uid = "10008";
 		String nick_name = "段军伟";
-		String album_url = "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJJialkDlK6EenxibchE80J4e1PMUfGYVg9uO9QUU4ALJVvga83QEDXxt0I5FrFdPKA6MrJTMu34Okw/0";
+		String album_url = "5_z7KBsDJRzpjG1lrCvQH_-46hJWZB1Ajt07VuFNLW9HWMPs2VSRsUFKQTVp5haqKWDy9H3y116uV_TqHQkMWEAqKYM_EQhYb72U93vE1zmkI";
 		int sex = 1;
 		String token = ConfigUtils.getInstance().getDeviceId(this);
-		String access_token = "5_HvKmRj0SMIoffDHZLEZ8dl39qJ1N9L--NiFfoVbnTBNGaU0T-0GdHYS2YFz82pja4DEngtJxWWjuwZO5niWAZ_gWKfkIUyICiqxffODzCrc";
+		String access_token = "5_rcEwL5HQnxK16E42Q52Ym6gj_rYB3d0MNgLIYgxLQvTwgptVy8juzfmW1488etHrC1gFxgSsnK3g8iMM4m2OYXg6eEez273Ilx-1dMR4X4I";
 		bestDoInfoEditor.putString("loginStatus", Constans.getInstance().loginStatus);
 		bestDoInfoEditor.putString("uid", uid + "");
 		bestDoInfoEditor.putString("nick_name", nick_name);

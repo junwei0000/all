@@ -202,6 +202,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private int _nMaxSlopeAngle = 0;// 最大坡度
 	private String nskiStatus = "0";// 上升状态（1：上升状态； 2：下降状态）
 
+	/**
+	 * 是否全屏
+	 */
+	boolean MapFullscreenStatus = false;
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -251,33 +256,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			iv_stop.setVisibility(View.VISIBLE);
 			break;
 		case R.id.map_iv_zoom:
-			map_iv_zoom.setVisibility(View.GONE);
-			map_iv_shrink.setVisibility(View.VISIBLE);
-			map_iv_mylocation.setVisibility(View.VISIBLE);
-			layout_disquan.setVisibility(View.GONE);
-			layout_property.setVisibility(View.GONE);
-			layout_bottom.setVisibility(View.GONE);
-			pagetop_iv_center.setBackgroundResource(R.drawable.mainstart_kiwi_imgblo);
-			pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_imgblo);
-			page_top_layout.setBackgroundColor(getResources().getColor(R.color.white));
-			layoutall.setPadding(0, 0, 0, 0);
-			relat_map.setLayoutParams(
-					new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			MapFullscreenStatus = true;
+			setMapFullscreen();
 			break;
 		case R.id.map_iv_shrink:
-			map_iv_zoom.setVisibility(View.VISIBLE);
-			map_iv_shrink.setVisibility(View.GONE);
-			map_iv_mylocation.setVisibility(View.GONE);
-			layout_disquan.setVisibility(View.VISIBLE);
-			layout_property.setVisibility(View.VISIBLE);
-			layout_bottom.setVisibility(View.VISIBLE);
-			pagetop_iv_center.setBackgroundResource(R.drawable.mainstart_kiwi_img);
-			pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_img);
-			page_top_layout.setBackgroundColor(getResources().getColor(R.color.main_page_bg));
-			layoutall.setPadding(getResources().getDimensionPixelSize(R.dimen.padd_leftright), 0,
-					getResources().getDimensionPixelSize(R.dimen.padd_leftright), 0);
-			relat_map.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-					ConfigUtils.getInstance().dip2px(this, 140)));
+			MapFullscreenStatus = false;
+			setMapFullscreen();
+
 			break;
 		case R.id.map_iv_mylocation:
 			moveToCenter();
@@ -321,7 +306,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		iv_continue.setVisibility(View.GONE);
 		iv_pause.setVisibility(View.GONE);
 		iv_stop.setVisibility(View.GONE);
-		setSportPropertyList(sportindex);
+		
 		// 清除轨迹
 		if (null != mTrackUploadFragment) {
 			mTrackUploadFragment.initDates();
@@ -336,6 +321,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		averageMatchSpeed = "0";
 		maxMatchSpeed = "0";
 		recordDatas = "";
+		setSportPropertyList(sportindex);
 	}
 
 	@Override
@@ -364,7 +350,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		layoutall = (LinearLayout) findViewById(R.id.layoutall);
 		pagetop_iv_you = (ImageView) findViewById(R.id.pagetop_iv_you);
 		page_top_layout = (LinearLayout) findViewById(R.id.page_top_layout);
-		pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_img);
 		CommonUtils.getInstance().setViewTopHeigth(mActivity, page_top_layout);
 		pagetop_iv_center = (ImageView) findViewById(R.id.pagetop_iv_center);
 		map_iv_zoom = (ImageView) findViewById(R.id.map_iv_zoom);
@@ -417,6 +402,36 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		initLbsClient();
 	}
 
+	private void setMapFullscreen() {
+		if (MapFullscreenStatus) {
+			map_iv_zoom.setVisibility(View.GONE);
+			map_iv_shrink.setVisibility(View.VISIBLE);
+			map_iv_mylocation.setVisibility(View.VISIBLE);
+			layout_disquan.setVisibility(View.GONE);
+			layout_property.setVisibility(View.GONE);
+			layout_bottom.setVisibility(View.GONE);
+			pagetop_iv_center.setBackgroundResource(R.drawable.mainstart_kiwi_imgblo);
+			page_top_layout.setBackgroundColor(getResources().getColor(R.color.white));
+			layoutall.setPadding(0, 0, 0, 0);
+			relat_map.setLayoutParams(
+					new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		} else {
+			map_iv_zoom.setVisibility(View.VISIBLE);
+			map_iv_shrink.setVisibility(View.GONE);
+			map_iv_mylocation.setVisibility(View.GONE);
+			layout_disquan.setVisibility(View.VISIBLE);
+			layout_property.setVisibility(View.VISIBLE);
+			layout_bottom.setVisibility(View.VISIBLE);
+			pagetop_iv_center.setBackgroundResource(R.drawable.mainstart_kiwi_img);
+			page_top_layout.setBackgroundColor(getResources().getColor(R.color.main_page_bg));
+			layoutall.setPadding(getResources().getDimensionPixelSize(R.dimen.padd_leftright), 0,
+					getResources().getDimensionPixelSize(R.dimen.padd_leftright), 0);
+			relat_map.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+					ConfigUtils.getInstance().dip2px(this, 140)));
+		}
+		showSportPic();
+	}
+
 	/**
 	 * 开始后 ：5分钟的时候判断运动类型
 	 */
@@ -445,20 +460,35 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				sportsType = "riding";// 骑行
 			} else if (topSpeed < 260 && averageSpeed < 150)
 				sportsType = "drive";// 开车
-			else
+			else {
 				sportsType = "drive"; // 高铁
+			}
+
 		}
+		getsportindexByType();
+		setSportPropertyList(sportindex);
+		getCurrentPropertyValue();
+	}
+
+	/**
+	 * 根据运动类型获取索引
+	 */
+	private void getsportindexByType() {
+		int matchNum = 0;
 		MainsportParser mMainsportParser = new MainsportParser();
 		ArrayList<MainSportInfo> mallsportList = mMainsportParser.parseJSON(this);
 		for (int i = 0; i < mallsportList.size(); i++) {
 			MainSportInfo mMainSportInfo = mallsportList.get(i);
 			if (sportsType.equals(mMainSportInfo.getEname())) {
 				sportindex = i;
+				matchNum++;
 				break;
 			}
 		}
-		setSportPropertyList(sportindex);
-		getCurrentPropertyValue();
+		if (matchNum == 0) {
+			sportsType = "drive";
+			sportindex = mallsportList.size() - 1;
+		}
 	}
 
 	/**
@@ -475,7 +505,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		sportsType = mMainSportInfo.getEname();
 		mMainSportAdapter = new MainPropertyAdapter(this, mMpropertyList);
 		mygridview_property.setAdapter(mMainSportAdapter);
-
+		showSportPic();
 		if (mpropertytwnList != null && mpropertytwnList.size() == 2) {
 			if (!LanguageUtil.idChLanguage(this)) {
 				tv_distancetitle.setText(mpropertytwnList.get(0).getEname());
@@ -488,6 +518,37 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 			tv_quannum.setText(mpropertytwnList.get(1).getValue());
 			tv_quannumunit.setText(mpropertytwnList.get(1).getUnit());
+		}
+	}
+
+	/**
+	 * 根据运动类型更换相应的图标
+	 */
+	private void showSportPic() {
+		if (!MapFullscreenStatus) {
+			if (sportsType.equals("run")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_img);
+			} else if (sportsType.equals("riding")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_riding_img);
+			} else if (sportsType.equals("walk")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_walk_img);
+			} else if (sportsType.equals("sky")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_sky_img);
+			} else {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_drive_img);
+			}
+		} else {
+			if (sportsType.equals("run")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_run_imgblo);
+			} else if (sportsType.equals("riding")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_riding_imgblo);
+			} else if (sportsType.equals("walk")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_walk_imgblo);
+			} else if (sportsType.equals("sky")) {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_sky_imgblo);
+			} else {
+				pagetop_iv_you.setBackgroundResource(R.drawable.mainstart_drive_imgblo);
+			}
 		}
 	}
 
@@ -523,7 +584,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			}
 		}
 		// distanceTraveled=0.06;
-		if (distanceTraveled >= 0.01) {
+		if (distanceTraveled > 0) {
 			matchSpeedTimestamp = DatesUtils.getInstance().computeMatchspeed(runingTimestamp, distanceTraveled);
 			averageMatchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
 			matchSpeed = DatesUtils.getInstance().formatMatchspeed(matchSpeedTimestamp);
@@ -1141,8 +1202,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			Log.e("map", "beforelatLng==" + beforelatLng + ";;;latLng==" + latLng);
 			if (beforelatLng == null || beforelatLng.latitude != latLng.latitude) {
 				recordInfo(latLng);
-				insmaxSlope(latLng);
-				inskyHillDis(latLng);
+				if (beforelatLng != null) {
+					insmaxSlope(latLng);
+					inskyHillDis(latLng);
+				}
 				beforelatLng = latLng;
 				Log.e("track", "addddd-----" + allpointList.size());
 			}
@@ -1189,6 +1252,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				nowlatLng.latitude, nowlatLng.longitude);
 		int tempDistance = (int) (tempDistance_ * 1000);
 		int tempVerticalDistance;
+		if (tempDistance == 0) {
+			return;
+		}
 		if (beforeAltitude > currentAltitude) {
 			/**
 			 * 下滑距离
@@ -1311,7 +1377,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							Message msg = new Message();
 							msg.what = UPDATETIME;
 							mHandler.sendMessage(msg);// 通知主线程
-							if (firstComeIn && runingTimestamp - 5 * 60 * 1000 == 0) {
+							if (firstComeIn && runingTimestamp - 5 * 60 * 1000 == 0 && distanceTraveled > 0) {
 								initSportType();
 								firstComeIn = false;
 							}
@@ -1498,10 +1564,14 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					String status = (String) dataMap.get("status");
 					if (TextUtils.isEmpty(posid)) {
 						posid = (String) dataMap.get("posid");
-					}
-					String sportsType_ = (String) dataMap.get("sportsType");
-					if (!TextUtils.isEmpty(sportsType_)) {
-						sportsType = sportsType_;
+						String sportsType_ = (String) dataMap.get("sportsType");
+						if (!TextUtils.isEmpty(sportsType_)) {
+							sportsType = sportsType_;
+							getsportindexByType();
+							showSportPic();
+							setSportPropertyList(sportindex);
+							getCurrentPropertyValue();
+						}
 					}
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
