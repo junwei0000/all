@@ -303,7 +303,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	private void valueSpeak() {
 
-		if (btnStartStatus && verticalDistance - 0.5 == 0) {
+		if (btnStartStatus && verticalDistance*1000/500> 0&&verticalDistance*1000%500<50) {
 			String time = DatesUtils.getInstance().companyTimeNoSecond((int) runingTimestamp / 1000);
 
 			if (sportsType.equals("sky")) {
