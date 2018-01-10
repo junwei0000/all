@@ -1,14 +1,11 @@
 package com.KiwiSports.utils;
 
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.os.StrictMode;
 import android.text.TextUtils;
 
 /**
@@ -28,7 +25,30 @@ public class DatesUtils {
 	public static final DatesUtils getInstance() {
 		return SingletonHolder.INSTANCE;
 	}
+	public  String companyTimeNoSecond(int mSportTime) {
+        String timeCount = "0秒";
 
+        int mHour = (int) (mSportTime / 3600);
+        String hour = "0" + mHour;
+        hour = hour.substring(hour.length() - 2, hour.length());
+
+        int mMinue = (int) (mSportTime - mHour * 3600) / 60;
+        String minue = "0" + mMinue;
+        minue = minue.substring(minue.length() - 2, minue.length());
+
+        long secc = (mSportTime - mMinue * 60);
+        String sec = "0" + secc;
+        sec = sec.substring(sec.length() - 2, sec.length());
+
+        if (mHour > 0)
+            timeCount = hour + "小时" + minue + "分";
+        else if (mMinue > 0)
+            timeCount = minue + "分";
+        else
+            timeCount = sec + "秒";
+
+        return timeCount;
+    }
 	/**
 	 * 根据开始结束时间获取时间段
 	 * 

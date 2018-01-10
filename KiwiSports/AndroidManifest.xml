@@ -34,7 +34,6 @@
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.DEVICE_POWER"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
@@ -146,6 +145,34 @@
             android:name="com.baidu.trace.LBSTraceService"
             android:enabled="true"
             android:exported="true" />
+
+        <!-- 语音合成与需要声明 -->
+        <meta-data
+            android:name="com.baidu.speech.APP_ID"
+            android:value="10456864" />
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="nPt2q3GqGF0kZOB2zEluovWQ1ku4mM5G" />
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="P9tOMOGPNmxd6hGEWwjaP9e9N4SGSKxv" />
+
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false" />
+
+        <activity
+            android:name="com.baidu.voicerecognition.android.ui.BaiduASRDigitalDialog"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" >
+            <intent-filter>
+                <action android:name="com.baidu.action.RECOGNIZE_SPEECH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

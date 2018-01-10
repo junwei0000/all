@@ -24,6 +24,7 @@ import com.KiwiSports.control.adapter.MainPropertyAdapter;
 import com.KiwiSports.control.view.StepCounterService;
 import com.KiwiSports.control.view.StepDetector;
 import com.KiwiSports.control.view.TrackUploadFragment;
+import com.KiwiSports.control.view.mapsynth.MySpeechSynthesizer;
 import com.KiwiSports.model.MainLocationItemInfo;
 import com.KiwiSports.model.MainSportInfo;
 import com.KiwiSports.model.TrackSaveInfo;
@@ -206,6 +207,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 * 是否全屏
 	 */
 	boolean MapFullscreenStatus = false;
+	private MySpeechSynthesizer mSpeechSynthesizer;
 
 	@Override
 	public void onClick(View v) {
@@ -221,9 +223,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			break;
 		case R.id.iv_start:
 			LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
 			if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-
+				startSpeak();
 				startservice();
 				startTimestamp = System.currentTimeMillis();
 				initTimer();
@@ -240,6 +241,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		case R.id.iv_continue:
 			// 继续
 			pauseTimestamp = System.currentTimeMillis() - runingTimestamp - startTimestamp;
+			contiueSpeak();
 			startservice();
 			btnContinueStatus = true;
 			iv_start.setVisibility(View.GONE);
@@ -248,6 +250,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			iv_stop.setVisibility(View.GONE);
 			break;
 		case R.id.iv_pause:
+			pauseSpeak();
 			setstopService();
 			btnContinueStatus = false;
 			iv_start.setVisibility(View.GONE);
@@ -268,7 +271,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			moveToCenter();
 			break;
 		case R.id.iv_stop:
-
+			endSpeak();
 			String dialogType;
 			if (distanceTraveled < 0.05) {
 				dialogType = "shortDistance";
@@ -279,6 +282,38 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			break;
 		default:
 			break;
+		}
+	}
+
+	private void startSpeak() {
+		mSpeechSynthesizer.speak("开始记录您的运动数据");
+	}
+
+	private void pauseSpeak() {
+		mSpeechSynthesizer.speak("记录已暂停，请及时停止并保存数据");
+	}
+
+	private void contiueSpeak() {
+		mSpeechSynthesizer.speak("欢迎回来，继续您的运动");
+	}
+
+	private void endSpeak() {
+		mSpeechSynthesizer.speak("已经结束记录您的运动数据");
+	}
+
+	private void valueSpeak() {
+
+		if (btnStartStatus && verticalDistance - 0.5 == 0) {
+			String time = DatesUtils.getInstance().companyTimeNoSecond((int) runingTimestamp / 1000);
+
+			if (sportsType.equals("sky")) {
+				mSpeechSynthesizer.speak(
+						"您已经运动" + distanceTraveled + "公里，滑行落差" + verticalDistance + "米，滑行" + lapCount + "趟，用时" + time);
+
+			} else {
+				mSpeechSynthesizer.speak("您已经运动" + distanceTraveled + "公里，当前海拔" + currentAltitude + "米，用时" + time);
+
+			}
 		}
 	}
 
@@ -306,7 +341,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		iv_continue.setVisibility(View.GONE);
 		iv_pause.setVisibility(View.GONE);
 		iv_stop.setVisibility(View.GONE);
-		
+
 		// 清除轨迹
 		if (null != mTrackUploadFragment) {
 			mTrackUploadFragment.initDates();
@@ -394,6 +429,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	protected void processLogic() {
+		mSpeechSynthesizer = new MySpeechSynthesizer(mHomeActivity);
 		initTimestamp = System.currentTimeMillis();
 		sportindex = 0;
 		setSportPropertyList(sportindex);
@@ -602,6 +638,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			}
 
 		}
+		valueSpeak();
 		showCurrentPropertyValue();
 	}
 
