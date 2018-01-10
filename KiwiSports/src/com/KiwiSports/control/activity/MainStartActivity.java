@@ -208,6 +208,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	boolean MapFullscreenStatus = false;
 	private MySpeechSynthesizer mSpeechSynthesizer;
+	/**
+	 * 是否开启语音
+	 */
+	private boolean cb_voicestatus;
+	private SharedPreferences welcomeSharedPreferences;
 
 	@Override
 	public void onClick(View v) {
@@ -286,24 +291,33 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	private void startSpeak() {
-		mSpeechSynthesizer.speak("开始记录您的运动数据");
+		cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
+		if (cb_voicestatus)
+			mSpeechSynthesizer.speak("开始记录您的运动数据");
 	}
 
 	private void pauseSpeak() {
-		mSpeechSynthesizer.speak("记录已暂停，请及时停止并保存数据");
+		cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
+		if (cb_voicestatus)
+			mSpeechSynthesizer.speak("记录已暂停，请及时停止并保存数据");
 	}
 
 	private void contiueSpeak() {
-		mSpeechSynthesizer.speak("欢迎回来，继续您的运动");
+		cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
+		if (cb_voicestatus)
+			mSpeechSynthesizer.speak("欢迎回来，继续您的运动");
 	}
 
 	private void endSpeak() {
-		mSpeechSynthesizer.speak("已经结束记录您的运动数据");
+		cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
+		if (cb_voicestatus)
+			mSpeechSynthesizer.speak("已经结束记录您的运动数据");
 	}
 
 	private void valueSpeak() {
-
-		if (btnStartStatus && verticalDistance*1000/500> 0&&verticalDistance*1000%500<50) {
+		cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
+		if (cb_voicestatus && btnStartStatus && verticalDistance * 1000 / 500 > 0
+				&& verticalDistance * 1000 % 500 < 50) {
 			String time = DatesUtils.getInstance().companyTimeNoSecond((int) runingTimestamp / 1000);
 
 			if (sportsType.equals("sky")) {
@@ -419,6 +433,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		iv_continue.setOnClickListener(this);
 		iv_pause.setOnClickListener(this);
 		iv_stop.setOnClickListener(this);
+		String welcomeSPFKey = Constans.getInstance().welcomeSharedPrefsKey;
+		welcomeSharedPreferences = getSharedPreferences(welcomeSPFKey, 0);
+
 		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
 		uid = bestDoInfoSharedPrefs.getString("uid", "");
 		token = bestDoInfoSharedPrefs.getString("token", "");
