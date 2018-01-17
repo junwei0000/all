@@ -5,7 +5,9 @@ import static java.lang.Math.sqrt;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -362,6 +364,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 		allpointList.clear();
 		mBaiduMap.clear();
+		mLatLngMap.clear();
+		mMarkermap.clear();
 		beforelatLng = null;
 		Speed = 0;
 		averageSpeed = 0;
@@ -1155,7 +1159,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				// 无信号
 				return;
 			} else {
-				if (location.getLocType() == 167 || location.getLatitude() == 0 || location.getRadius() > 100) {
+				if (location.getLocType() == 167  || location.getRadius() > 100) {
 					mTrackUploadFragment.isInUploadFragment = false;
 					// 信号较差数据准确度较低
 				} else {
@@ -1388,9 +1392,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	protected void initMyLocationUsers(final LatLng latLng) {
 		/**
-		 * 每1分钟上传一次数据
+		 * 每5s上传一次数据
 		 */
-		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (1 * 60 * 1000) == 0)) {
+		if (firstUploadLocationstatus || ((runingTimestamp / 1000) % 5 == 0)) {
 			if (beforelatLng == null || latLng.latitude != beforelatLng.latitude) {
 				Message message = new Message();
 				message.what = UPDATELOCATION;
@@ -1401,10 +1405,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 
 		/**
-		 * 每5分钟更新一下场地用户列表信息
+		 * 每10s更新一下场地用户列表信息
 		 */
 
-		if (firstUploadLocationstatus || ((System.currentTimeMillis() - initTimestamp) % (10 * 60 * 1000) == 0)) {
+		if (firstUploadLocationstatus || ((runingTimestamp / 1000) % 10 == 0)) {
 			firstUploadLocationstatus = false;
 			getVenuesUsers();
 			getPosid();
@@ -1431,7 +1435,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							Message msg = new Message();
 							msg.what = UPDATETIME;
 							mHandler.sendMessage(msg);// 通知主线程
-							if (firstComeIn && runingTimestamp - 5 * 60 * 1000 == 0 && distanceTraveled > 0) {
+							if (firstComeIn && runingTimestamp / 1000 - 5 * 60 == 0 && distanceTraveled > 0) {
 								initSportType();
 								firstComeIn = false;
 							}
@@ -1443,6 +1447,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	}
 
+	boolean UPDATELOCATIONSTAUS = false;
 	boolean firstComeIn = true;
 	private final int UPDATELOCATION = 1;
 	private final int UPDATETIME = 2;
@@ -1456,7 +1461,12 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				LatLng mypoint = (LatLng) msg.obj;
 				double longitude_me = mypoint.longitude;
 				double latitude_me = mypoint.latitude;
-				updateLocation(longitude_me, latitude_me);
+				boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", false);
+				boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", false);
+				if (!UPDATELOCATIONSTAUS && (cb_mylocationstatus || cb_myanonlocationstatus)) {
+					UPDATELOCATIONSTAUS = true;
+					updateLocation(longitude_me, latitude_me);
+				}
 				break;
 			case UPDATETIME:
 				getCurrentPropertyValue();
@@ -1565,7 +1575,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					for (int i = 0; i < length; i++) {
 						lat = allpointList.get(i).getLatitude();
 						lon = allpointList.get(i).getLongitude();
-						if (lat > 0) {
 							JSONObject latObject = new JSONObject();
 							double[] latlng = GPSUtil.bd09_To_Gcj02(lat, lon);
 
@@ -1583,7 +1592,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							latObject.put("latitudeOffset", "" + allpointList.get(i).getLatitudeOffset());
 							latObject.put("longitudeOffset", "" + allpointList.get(i).getLongitudeOffset());
 							recordInfoArray.put(latObject);
-						}
 					}
 				}
 			} catch (JSONException e) {
@@ -1757,6 +1765,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 								.sendBroadcastLoginBack403(CommonUtils.getInstance().mHomeActivity);
 					}
 				}
+				UPDATELOCATIONSTAUS = false;
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 			}
 		});
@@ -1801,10 +1810,41 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					String Album_url = mMapList.get(i).getAlbum_url();
 					String userid = mMapList.get(i).getUid();
 					System.err.println(longitude + "      " + longitude);
-					if (latitude > 0 && longitude > 0 && !userid.equals(uid)) {
+					if (!userid.equals(uid)) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
-						if (!TextUtils.isEmpty(Album_url)) {
-							loadToBitmap(Album_url, stadiumpoint);
+
+						if (mLatLngMap.size() > 0 && !TextUtils.isEmpty(mLatLngMap.get(userid))) {
+							String valus = mLatLngMap.get(userid);
+							if (valus.equals(latitude + "_" + longitude)) {
+							} else {
+								// 用户的定位不相同时，清除
+								Marker mMarker = mMarkermap.get(userid);
+								if (mMarker != null) {
+									mMarker.remove();
+								}
+								mLatLngMap.put(userid, latitude + "_" + longitude);
+								if (!TextUtils.isEmpty(Album_url)) {
+									loadToBitmap(Album_url, userid, stadiumpoint);
+								}
+							}
+						} else {
+							mLatLngMap.put(userid, latitude + "_" + longitude);
+							if (!TextUtils.isEmpty(Album_url)) {
+								loadToBitmap(Album_url, userid, stadiumpoint);
+							}
+						}
+
+					}
+				}
+
+			} else {
+				if (mMarkermap.size() > 0) {
+					Iterator<Map.Entry<String, Marker>> it = mMarkermap.entrySet().iterator();
+					while (it.hasNext()) {
+						Map.Entry<String, Marker> entry = it.next();
+						Marker mMarker = entry.getValue();
+						if (mMarker != null) {
+							mMarker.remove();
 						}
 					}
 				}
@@ -1813,8 +1853,11 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		}
 	}
 
+	HashMap<String, String> mLatLngMap = new HashMap<String, String>();
+	HashMap<String, Marker> mMarkermap = new HashMap<String, Marker>();
+
 	@SuppressLint("NewApi")
-	private void addMarker(LatLng point, Bitmap bitmap) {
+	private void addMarker(String uid, LatLng point, Bitmap bitmap) {
 
 		View convertView = LayoutInflater.from(mActivity).inflate(R.layout.venues_map_marker, null);
 		CircleImageView iv_head = (CircleImageView) convertView.findViewById(R.id.iv_head);
@@ -1823,11 +1866,12 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		mmorenMarker = BitmapDescriptorFactory.fromView(convertView);
 		OverlayOptions ooA = new MarkerOptions().position(point).icon(mmorenMarker).zIndex(5).draggable(false);
 		Marker mMarker = (Marker) mBaiduMap.addOverlay(ooA);
+		mMarkermap.put(uid, mMarker);
 	}
 
 	Bitmap bitmap = null;
 
-	public Bitmap loadToBitmap(String Album_url, final LatLng stadiumpoint) {
+	public Bitmap loadToBitmap(String Album_url, final String uid, final LatLng stadiumpoint) {
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
 				.showImageForEmptyUri(R.drawable.menutab_location_normal)// 设置图片Uri为空或是错误的时候显示的图片
 				.showImageOnFail(R.drawable.menutab_location_normal)// 设置图片加载或解码过程中发生错误显示的图片
@@ -1850,7 +1894,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				Log.e("map---bitmap", bitmap.toString());
 				Log.e("map---arg0", arg0.toString());
 				if (bitmap != null) {
-					addMarker(stadiumpoint, bitmap);
+					addMarker(uid, stadiumpoint, bitmap);
 				}
 			}
 

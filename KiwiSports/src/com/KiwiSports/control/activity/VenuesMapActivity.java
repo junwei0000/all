@@ -159,7 +159,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 					String Album_url = mMapList.get(i).getAlbum_url();
 					String userid = mMapList.get(i).getUid();
 					System.err.println(longitude + "      " + longitude);
-					if (latitude > 0 && longitude > 0 && !userid.equals(uid)) {
+					if (!userid.equals(uid)) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
 						if (!TextUtils.isEmpty(Album_url)) {
 							loadToBitmap(Album_url, stadiumpoint);
@@ -323,7 +323,6 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 	 * 设置中心点的焦点
 	 */
 	private void moveToCenter() {
-		if (latitude_me > 0) {
 			LatLng mypoint = new LatLng(latitude_me, longitude_me);
 			if (null != overlay) {
 				overlay.remove();
@@ -341,7 +340,6 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 				// mBaiduMap.animateMapStatus(u);//以动画方式更新地图状态，动画耗时 300 ms
 				mBaiduMap.setMapStatus(u);// 改变地图状态
 			}
-		}
 	}
 
 	@Override
