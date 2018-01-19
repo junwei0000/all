@@ -56,10 +56,11 @@ public class Constans {
 	public static final Constans getInstance() {
 		return SingletonHolder.INSTANCE;
 	}
-
-	public static String WEIXIN_APP_ID = "wxc4ab96e64155fafe";
-	public static String WEIXIN_APP_SECRET = "1779b88f3e612c46d0f212fc6a718410";
-
+	
+//	public static String WEIXIN_APP_ID = "wxc4ab96e64155fafe";
+//	public static String WEIXIN_APP_SECRET = "1779b88f3e612c46d0f212fc6a718410";
+	public static String WEIXIN_APP_ID = "wxfaa988c3d3177266";
+	public static String WEIXIN_APP_SECRET = "6e938aefcbb0bb3d7e89fbbdb0e61e2a";
 	/**
 	 * welcomeSharedPreferences
 	 */
