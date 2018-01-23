@@ -52,7 +52,7 @@ public class VenuesRankAllParser extends BaseParser<Object> {
 					date_time = dayRankObs.optString("date_time", "");
 					num = dayRankObs.optString("num", "");
 					nick_name = dayRankObs.optString("nick_name", "");
-					album_url = myRankObs.optString("album_url", "");
+					album_url = dayRankObs.optString("album_url", "");
 					VenuesRankTodayInfo dayRankInfo = new VenuesRankTodayInfo(distanceTraveled, uid, posid, date_time,
 							num, nick_name, album_url);
 					if (i < 3) {

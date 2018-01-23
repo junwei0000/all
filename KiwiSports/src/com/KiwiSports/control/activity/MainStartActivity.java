@@ -1461,8 +1461,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				LatLng mypoint = (LatLng) msg.obj;
 				double longitude_me = mypoint.longitude;
 				double latitude_me = mypoint.latitude;
-				boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", false);
-				boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", false);
+				boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", true);
+				boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", true);
 				if (!UPDATELOCATIONSTAUS && (cb_mylocationstatus || cb_myanonlocationstatus)) {
 					UPDATELOCATIONSTAUS = true;
 					updateLocation(longitude_me, latitude_me);
