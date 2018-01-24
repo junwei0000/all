@@ -7,6 +7,7 @@ import com.KiwiSports.R;
 import com.KiwiSports.business.VenuesTypeBusiness;
 import com.KiwiSports.business.VenuesTypeBusiness.GetVenuesTypeCallback;
 import com.KiwiSports.control.adapter.VenuesHobbyAdapter;
+import com.KiwiSports.control.adapter.VenuesTypeAdapter;
 import com.KiwiSports.model.HobbyInfo;
 import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.Constans;
@@ -82,7 +83,7 @@ public class VenuesTypeActivity extends BaseActivity {
 				if (mList != null & mList.size() > 0 && arg2 < mList.size()) {
 					sportsType = mList.get(arg2).getEhobby();
 					String sportsTypeName = mList.get(arg2).getZhobby();
-					adapter.setSelecthobby(sportsType);
+					adapter.setSelect(sportsType);
 					adapter.notifyDataSetChanged();
 					Intent intent = new Intent();
 					intent.putExtra("sportsType", sportsType);
@@ -109,7 +110,7 @@ public class VenuesTypeActivity extends BaseActivity {
 		}
 	}
 
-	protected VenuesHobbyAdapter adapter;
+	protected VenuesTypeAdapter adapter;
 
 	@Override
 	protected void processLogic() {
@@ -131,7 +132,7 @@ public class VenuesTypeActivity extends BaseActivity {
 						} else {
 							mList = new ArrayList<HobbyInfo>();
 						}
-						adapter = new VenuesHobbyAdapter(context, sportsType, mList);
+						adapter = new VenuesTypeAdapter(context, sportsType, mList);
 						mListView.setAdapter(adapter);
 					}
 				} else {

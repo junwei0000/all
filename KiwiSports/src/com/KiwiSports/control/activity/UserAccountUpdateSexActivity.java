@@ -36,11 +36,8 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 	private TextView useraccount_sex_tv_famale;
 	private ImageView useraccount_sex_iv_famale;
 
-	private String uid;
 	private int sex;
-	private String token;
-	private String access_token;
-	private SharedPreferences bestDoInfoSharedPrefs;
+	private UpdateInfoUtils mUpdateInfoUtils;
 
 	@Override
 	public void onClick(View v) {
@@ -51,12 +48,12 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 		case R.id.useraccount_sex_tv_male:
 			sex = Constans.getInstance().SEX_MALE;
 			changeCheck();
-			processUpdateInfo();
+			mUpdateInfoUtils.UpdateInfo("sex", String.valueOf(sex));
 			break;
 		case R.id.useraccount_sex_tv_famale:
 			sex = Constans.getInstance().SEX_FAMALE;
 			changeCheck();
-			processUpdateInfo();
+			mUpdateInfoUtils.UpdateInfo("sex", String.valueOf(sex));
 			break;
 		default:
 			break;
@@ -89,10 +86,7 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 
 	@Override
 	protected void processLogic() {
-		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
-		uid = getIntent().getStringExtra("uid");
-		token = getIntent().getStringExtra("token");
-		access_token = getIntent().getStringExtra("access_token");
+		mUpdateInfoUtils = new UpdateInfoUtils(this);
 		sex = getIntent().getIntExtra("sex", 1);
 		pagetop_tv_name.setText(getString(R.string.useraccount_sex));
 		changeCheck();
@@ -108,62 +102,8 @@ public class UserAccountUpdateSexActivity extends BaseActivity {
 		}
 	}
 
-	private HashMap<String, String> mhashmap;
-	private ProgressDialog mDialog;
 
-	private void showDilag() {
-		try {
-			if (mDialog == null) {
-				mDialog = CommonUtils.getInstance().createLoadingDialog(this);
-			} else {
-				mDialog.show();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	private void processUpdateInfo() {
-		if (!ConfigUtils.getInstance().isNetWorkAvaiable(this)) {
-			CommonUtils.getInstance().initToast(this, getString(R.string.net_tishi));
-			return;
-		}
-		showDilag();
-		mhashmap = new HashMap<String, String>();
-		mhashmap.put("uid", uid);
-		mhashmap.put("token", token);
-		mhashmap.put("access_token", access_token);
-		mhashmap.put("sex", sex + "");
-		mhashmap.put("nick_name",  bestDoInfoSharedPrefs.getString("nick_name", ""));
-		mhashmap.put("hobby",  bestDoInfoSharedPrefs.getString("hobby", ""));
-		System.err.println(mhashmap);
-		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
-
-			@Override
-			public void afterDataGet(HashMap<String, Object> dataMap) {
-				CommonUtils.getInstance().setOnDismissDialog(mDialog);
-				if (dataMap != null) {
-					String status = (String) dataMap.get("status");
-					if (status.equals("200")) {
-						SharedPreferences bestDoInfoSharedPrefs = CommonUtils.getInstance()
-								.getBestDoInfoSharedPrefs(context);
-						Editor bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
-						bestDoInfoEditor.putInt("sex", sex);
-						bestDoInfoEditor.commit();
-						doBack();
-					} else {
-						String msg = (String) dataMap.get("msg");
-						CommonUtils.getInstance().initToast(context, msg);
-					}
-				} else {
-					CommonUtils.getInstance().initToast(context, getString(R.string.net_tishi));
-				}
-				// 清除缓存
-				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
-
-			}
-		});
-	}
 
 	private void doBack() {
 		finish();

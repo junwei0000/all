@@ -142,10 +142,7 @@ public class UserAccountActivity extends BaseActivity {
 
 	private void toUpdateInfo() {
 		Intent intent = new Intent(this, UserAccountUpdateActivity.class);
-		intent.putExtra("uid", uid);
 		intent.putExtra("nick_name", nick_name);
-		intent.putExtra("token", token);
-		intent.putExtra("access_token", access_token);
 		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(intent);
 		CommonUtils.getInstance().setPageIntentAnim(intent, this);
@@ -153,9 +150,6 @@ public class UserAccountActivity extends BaseActivity {
 
 	private void toUpdateSex() {
 		Intent intent = new Intent(this, UserAccountUpdateSexActivity.class);
-		intent.putExtra("uid", uid);
-		intent.putExtra("token", token);
-		intent.putExtra("access_token", access_token);
 		intent.putExtra("sex", sex);
 		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(intent);
@@ -164,6 +158,7 @@ public class UserAccountActivity extends BaseActivity {
 
 	private void toUpdateHobby() {
 		Intent intent = new Intent(this, UserAccountHobbyActivity.class);
+		intent.putExtra("hobby", hobby);
 		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(intent);
 		CommonUtils.getInstance().setPageIntentAnim(intent, this);
@@ -187,7 +182,7 @@ public class UserAccountActivity extends BaseActivity {
 			ImageLoader asyncImageLoader = new ImageLoader(context, "headImg");
 			asyncImageLoader.DisplayImage(album_url, useraccount_iv_avatar);
 		} else {
-			useraccount_iv_avatar.setBackgroundResource(R.drawable.user_default_icon);
+			useraccount_iv_avatar.setBackgroundResource(R.drawable.ic_launcher);
 		}
 		if (!LanguageUtil.idChLanguage(context)) {
 			useraccount_tv_sporttype.setText(hobby);
@@ -358,7 +353,7 @@ public class UserAccountActivity extends BaseActivity {
 			TextView useraccount_ablum_tv_cancel = (TextView) mMenuView.findViewById(R.id.useraccount_ablum_tv_cancel);
 			LinearLayout pop_layout = (LinearLayout) mMenuView.findViewById(R.id.pop_layout);
 			datePopWindow = new PopupWindow(mMenuView, WindowManager.LayoutParams.FILL_PARENT,
-					WindowManager.LayoutParams.WRAP_CONTENT);
+					WindowManager.LayoutParams.FILL_PARENT);
 			datePopWindow.setBackgroundDrawable(new BitmapDrawable());
 			datePopWindow.setAnimationStyle(R.style.MyDialogStyleBottom);
 			useraccount_ablum_tv_cancel.setOnClickListener(mABlumClickListener);

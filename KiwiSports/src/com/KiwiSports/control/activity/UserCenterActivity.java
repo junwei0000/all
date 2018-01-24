@@ -48,11 +48,16 @@ public class UserCenterActivity extends BaseActivity {
 	private CheckBox cb_voice;
 	private SharedPreferences welcomeSharedPreferences;
 	private Editor welcomeEditor;
+	private UpdateInfoUtils mUpdateInfoUtils;
+	/**
+	 * 1：匿名； 0：实名
+	 */
+	protected String is_anonymous;
 
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		CommonUtils.getInstance().mCurrentActivity=CommonUtils.getInstance().mCurrentActivity;
+		CommonUtils.getInstance().mCurrentActivity = CommonUtils.getInstance().mCurrentActivity;
 	}
 
 	@Override
@@ -93,6 +98,7 @@ public class UserCenterActivity extends BaseActivity {
 
 	@Override
 	protected void setListener() {
+		mUpdateInfoUtils = new UpdateInfoUtils(this);
 		String welcomeSPFKey = Constans.getInstance().welcomeSharedPrefsKey;
 		welcomeSharedPreferences = context.getSharedPreferences(welcomeSPFKey, 0);
 		welcomeEditor = welcomeSharedPreferences.edit();
@@ -102,12 +108,25 @@ public class UserCenterActivity extends BaseActivity {
 		cb_mylocation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					cb_myanonlocation.setChecked(true);
+				} else {
+					cb_myanonlocation.setChecked(false);
+				}
 				saveSelectBox("cb_mylocationstatus", isChecked);
 			}
 		});
 		cb_myanonlocation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					cb_mylocation.setChecked(true);
+					is_anonymous = "0";
+				} else {
+					is_anonymous = "1";
+				}
+				mUpdateInfoUtils.UpdateInfo("is_anonymous", is_anonymous);
+
 				saveSelectBox("cb_myanonlocationstatus", isChecked);
 			}
 		});
@@ -127,7 +146,7 @@ public class UserCenterActivity extends BaseActivity {
 	}
 
 	private void initSelectBox() {
-		boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", false);
+		boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", true);
 		boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", true);
 		boolean cb_lowpowerstatus = welcomeSharedPreferences.getBoolean("cb_lowpowerstatus", false);
 		boolean cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
@@ -172,7 +191,7 @@ public class UserCenterActivity extends BaseActivity {
 		if (!TextUtils.isEmpty(album_url)) {
 			asyncImageLoader.DisplayImage(album_url, usrecenter_iv_head);
 		} else {
-			Bitmap mBitmap = asyncImageLoader.readBitMap(this, R.drawable.user_default_icon);
+			Bitmap mBitmap = asyncImageLoader.readBitMap(this, R.drawable.ic_launcher);
 			usrecenter_iv_head.setImageBitmap(mBitmap);
 		}
 	}

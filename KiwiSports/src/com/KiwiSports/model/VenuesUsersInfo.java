@@ -8,7 +8,6 @@ public class VenuesUsersInfo {
 	String is_anonymous;
 	double longitude;
 	double latitude;
-
 	public VenuesUsersInfo() {
 		super();
 	}

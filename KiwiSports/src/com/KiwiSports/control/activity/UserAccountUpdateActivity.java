@@ -29,8 +29,8 @@ public class UserAccountUpdateActivity extends BaseActivity {
 	private TextView pagetop_tv_name, pagetop_tv_you;
 	private LinearLayout pagetop_layout_back;
 	private SupplierEditText useraccountupdate_et_phone;
-
-	private String uid;
+	private UpdateInfoUtils mUpdateInfoUtils;
+	private String nick_name;
 
 	@Override
 	public void onClick(View v) {
@@ -41,7 +41,8 @@ public class UserAccountUpdateActivity extends BaseActivity {
 		case R.id.pagetop_tv_you:
 			String et_text = useraccountupdate_et_phone.getText().toString();
 			if (!TextUtils.isEmpty(et_text)) {
-				processUpdateInfo(et_text);
+				mUpdateInfoUtils = new UpdateInfoUtils(this);
+				mUpdateInfoUtils.UpdateInfo("nick_name", et_text);
 			} else {
 				CommonUtils.getInstance().initToast(context, getString(R.string.user_account_etnick));
 			}
@@ -65,12 +66,6 @@ public class UserAccountUpdateActivity extends BaseActivity {
 		useraccountupdate_et_phone = (SupplierEditText) findViewById(R.id.useraccountupdate_et_phone);
 	}
 
-	String beforeedString;
-	private String nick_name;
-	private String token;
-	private String access_token;
-	private SharedPreferences bestDoInfoSharedPrefs;
-
 	@Override
 	protected void setListener() {
 		pagetop_layout_back.setOnClickListener(this);
@@ -79,73 +74,12 @@ public class UserAccountUpdateActivity extends BaseActivity {
 
 	@Override
 	protected void processLogic() {
-		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
-		uid = getIntent().getStringExtra("uid");
 		nick_name = getIntent().getStringExtra("nick_name");
-		token = getIntent().getStringExtra("token");
-		access_token = getIntent().getStringExtra("access_token");
 		pagetop_tv_you.setVisibility(View.VISIBLE);
 		pagetop_tv_you.setText(getString(R.string.save));
 		pagetop_tv_you.setTextColor(getResources().getColor(R.color.text_click_color));
 		pagetop_tv_name.setText(getString(R.string.useraccount_nickname));
 		useraccountupdate_et_phone.setText(nick_name);
-	}
-
-	private HashMap<String, String> mhashmap;
-	private ProgressDialog mDialog;
-
-	private void showDilag() {
-		try {
-			if (mDialog == null) {
-				mDialog = CommonUtils.getInstance().createLoadingDialog(this);
-			} else {
-				mDialog.show();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void processUpdateInfo(final String et_text) {
-		if (!ConfigUtils.getInstance().isNetWorkAvaiable(this)) {
-			CommonUtils.getInstance().initToast(this, getString(R.string.net_tishi));
-			return;
-		}
-		showDilag();
-		mhashmap = new HashMap<String, String>();
-		mhashmap.put("uid", uid);
-		mhashmap.put("token", token);
-		mhashmap.put("access_token", access_token);
-		mhashmap.put("nick_name", et_text);
-		mhashmap.put("hobby",  bestDoInfoSharedPrefs.getString("hobby", ""));
-		mhashmap.put("sex",  bestDoInfoSharedPrefs.getInt("sex",1)+"");
-		Log.e("decrypt----", mhashmap.toString());
-		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
-
-			@Override
-			public void afterDataGet(HashMap<String, Object> dataMap) {
-				CommonUtils.getInstance().setOnDismissDialog(mDialog);
-				if (dataMap != null) {
-					String status = (String) dataMap.get("status");
-					if (status.equals("200")) {
-						SharedPreferences bestDoInfoSharedPrefs = CommonUtils.getInstance()
-								.getBestDoInfoSharedPrefs(context);
-						Editor bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
-						bestDoInfoEditor.putString("nick_name", et_text);
-						bestDoInfoEditor.commit();
-						doBack();
-					} else {
-						String msg = (String) dataMap.get("msg");
-						CommonUtils.getInstance().initToast(context, msg);
-					}
-				} else {
-					CommonUtils.getInstance().initToast(context, getString(R.string.net_tishi));
-				}
-				// 清除缓存
-				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
-
-			}
-		});
 	}
 
 	private void doBack() {

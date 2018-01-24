@@ -49,13 +49,10 @@ public class UserAccountHobbyActivity extends BaseActivity {
 
 	private ListView mListView;
 	private HashMap<String, String> mhashmap;
-	private SharedPreferences bestDoInfoSharedPrefs;
-	private String uid;
-	private String token;
-	private String access_token;
 	private LinearLayout pagetop_layout_back;
 	private String hobby;
 	private HashMap<String, String> selecthobbyMap;
+	private UpdateInfoUtils mUpdateInfoUtils;
 
 	@Override
 	public void onClick(View v) {
@@ -86,11 +83,8 @@ public class UserAccountHobbyActivity extends BaseActivity {
 	@Override
 	protected void setListener() {
 		pagetop_layout_back.setOnClickListener(this);
-		bestDoInfoSharedPrefs = CommonUtils.getInstance().getBestDoInfoSharedPrefs(this);
-		uid = bestDoInfoSharedPrefs.getString("uid", "");
-		token = bestDoInfoSharedPrefs.getString("token", "");
-		access_token = bestDoInfoSharedPrefs.getString("access_token", "");
-		hobby = bestDoInfoSharedPrefs.getString("hobby", "");
+		mUpdateInfoUtils = new UpdateInfoUtils(this);
+		hobby = getIntent().getStringExtra("hobby");
 		selecthobbyMap = new HashMap<String, String>();
 		if (!TextUtils.isEmpty(hobby)) {
 			String[] ss = hobby.split(",");
@@ -115,7 +109,7 @@ public class UserAccountHobbyActivity extends BaseActivity {
 					}
 					hobby = showhobby.substring(0, showhobby.length() - 1);
 					Log.e("TESTLOG", "------------showhobby------------" + hobby);
-					adapter.setSelecthobby(hobby);
+					adapter.setSelecthobbyMap(selecthobbyMap);
 					adapter.notifyDataSetChanged();
 					mHandler.sendEmptyMessage(REFLESH);
 				}
@@ -143,7 +137,7 @@ public class UserAccountHobbyActivity extends BaseActivity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case REFLESH:
-				processUpdateInfo();
+				mUpdateInfoUtils.UpdateInfo("hobby", hobby);
 				break;
 
 			}
@@ -169,7 +163,7 @@ public class UserAccountHobbyActivity extends BaseActivity {
 						} else {
 							mList = new ArrayList<HobbyInfo>();
 						}
-						adapter = new VenuesHobbyAdapter(context, hobby, mList);
+						adapter = new VenuesHobbyAdapter(context, selecthobbyMap, mList);
 						mListView.setAdapter(adapter);
 					}
 				} else {
@@ -181,47 +175,6 @@ public class UserAccountHobbyActivity extends BaseActivity {
 			}
 		});
 
-	}
-
-	private void processUpdateInfo() {
-		if (!ConfigUtils.getInstance().isNetWorkAvaiable(this)) {
-			CommonUtils.getInstance().initToast(this, getString(R.string.net_tishi));
-			return;
-		}
-		showDilag();
-		mhashmap = new HashMap<String, String>();
-		mhashmap.put("uid", uid);
-		mhashmap.put("token", token);
-		mhashmap.put("access_token", access_token);
-		mhashmap.put("hobby", hobby);
-		mhashmap.put("nick_name",  bestDoInfoSharedPrefs.getString("nick_name", "")+"");
-		mhashmap.put("sex",  bestDoInfoSharedPrefs.getInt("sex",1)+"");
-		Log.e("decrypt----", mhashmap.toString());
-		new UserAccountUpdateBusiness(this, "info", mhashmap, new GetAccountUpdateCallback() {
-
-			@Override
-			public void afterDataGet(HashMap<String, Object> dataMap) {
-				CommonUtils.getInstance().setOnDismissDialog(mDialog);
-				if (dataMap != null) {
-					String status = (String) dataMap.get("status");
-					if (status.equals("200")) {
-						SharedPreferences bestDoInfoSharedPrefs = CommonUtils.getInstance()
-								.getBestDoInfoSharedPrefs(context);
-						Editor bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
-						bestDoInfoEditor.putString("hobby", hobby);
-						bestDoInfoEditor.commit();
-					} else {
-						String msg = (String) dataMap.get("msg");
-						CommonUtils.getInstance().initToast(context, msg);
-					}
-				} else {
-					CommonUtils.getInstance().initToast(context, getString(R.string.net_tishi));
-				}
-				// 清除缓存
-				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
-
-			}
-		});
 	}
 
 	private void doBack() {

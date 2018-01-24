@@ -1,6 +1,7 @@
 package com.KiwiSports.control.adapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.KiwiSports.R;
 import com.KiwiSports.model.HobbyInfo;
@@ -19,22 +20,28 @@ public class VenuesHobbyAdapter extends BaseAdapter {
 
 	private ArrayList<HobbyInfo> list;
 	private Activity context;
-	String selecthobby;
+	HashMap<String, String> selecthobbyMap;
 
-	public VenuesHobbyAdapter(Activity context, String selecthobby, ArrayList<HobbyInfo> list) {
+	public VenuesHobbyAdapter(Activity context,HashMap<String, String> selecthobbyMap, ArrayList<HobbyInfo> list) {
 		super();
 		this.context = context;
 		this.list = list;
-		this.selecthobby = selecthobby;
+		this.selecthobbyMap = selecthobbyMap;
 	}
 
-	public String getSelecthobby() {
-		return selecthobby;
+	 
+
+	public HashMap<String, String> getSelecthobbyMap() {
+		return selecthobbyMap;
 	}
 
-	public void setSelecthobby(String selecthobby) {
-		this.selecthobby = selecthobby;
+
+
+	public void setSelecthobbyMap(HashMap<String, String> selecthobbyMap) {
+		this.selecthobbyMap = selecthobbyMap;
 	}
+
+
 
 	@Override
 	public int getCount() {
@@ -71,7 +78,7 @@ public class VenuesHobbyAdapter extends BaseAdapter {
 			zhobby = Ehobby;
 		} 
 		viewHolder.useraccount_sex_tv_famale.setText(zhobby);
-		if (selecthobby.contains(Ehobby)) {
+		if (selecthobbyMap.containsKey(Ehobby)) {
 			viewHolder.useraccount_sex_iv_famale.setVisibility(View.VISIBLE);
 		} else {
 			viewHolder.useraccount_sex_iv_famale.setVisibility(View.INVISIBLE);

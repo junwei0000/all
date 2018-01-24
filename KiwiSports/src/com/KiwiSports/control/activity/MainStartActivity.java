@@ -1159,7 +1159,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				// 无信号
 				return;
 			} else {
-				if (location.getLocType() == 167  || location.getRadius() > 100) {
+				if (location.getLocType() == 167 || location.getRadius() > 100) {
 					mTrackUploadFragment.isInUploadFragment = false;
 					// 信号较差数据准确度较低
 				} else {
@@ -1462,10 +1462,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				double longitude_me = mypoint.longitude;
 				double latitude_me = mypoint.latitude;
 				boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", true);
-				boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", true);
-				if (!UPDATELOCATIONSTAUS && (cb_mylocationstatus || cb_myanonlocationstatus)) {
+				if (btnStartStatus && !UPDATELOCATIONSTAUS && cb_mylocationstatus) {
 					UPDATELOCATIONSTAUS = true;
-					updateLocation(longitude_me, latitude_me);
+					updateLocation(longitude_me, latitude_me, false);
 				}
 				break;
 			case UPDATETIME:
@@ -1575,23 +1574,23 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					for (int i = 0; i < length; i++) {
 						lat = allpointList.get(i).getLatitude();
 						lon = allpointList.get(i).getLongitude();
-							JSONObject latObject = new JSONObject();
-							double[] latlng = GPSUtil.bd09_To_Gcj02(lat, lon);
+						JSONObject latObject = new JSONObject();
+						double[] latlng = GPSUtil.bd09_To_Gcj02(lat, lon);
 
-							latObject.put("longitude", latlng[1] + "");
-							latObject.put("latitude", latlng[0] + "");
+						latObject.put("longitude", latlng[1] + "");
+						latObject.put("latitude", latlng[0] + "");
 
-							latObject.put("speed", "" + allpointList.get(i).getSpeed());
-							latObject.put("altitude", "" + allpointList.get(i).getAltitude());
-							latObject.put("accuracy", "" + allpointList.get(i).getAccuracy());
-							latObject.put("nStatus", "" + allpointList.get(i).getnStatus());
-							latObject.put("nLapPoint", "" + allpointList.get(i).getnLapPoint());
-							latObject.put("nLapTime", "" + allpointList.get(i).getnLapTime());
-							latObject.put("duration", "" + allpointList.get(i).getDuration());
-							latObject.put("distance", "" + allpointList.get(i).getDistance());
-							latObject.put("latitudeOffset", "" + allpointList.get(i).getLatitudeOffset());
-							latObject.put("longitudeOffset", "" + allpointList.get(i).getLongitudeOffset());
-							recordInfoArray.put(latObject);
+						latObject.put("speed", "" + allpointList.get(i).getSpeed());
+						latObject.put("altitude", "" + allpointList.get(i).getAltitude());
+						latObject.put("accuracy", "" + allpointList.get(i).getAccuracy());
+						latObject.put("nStatus", "" + allpointList.get(i).getnStatus());
+						latObject.put("nLapPoint", "" + allpointList.get(i).getnLapPoint());
+						latObject.put("nLapTime", "" + allpointList.get(i).getnLapTime());
+						latObject.put("duration", "" + allpointList.get(i).getDuration());
+						latObject.put("distance", "" + allpointList.get(i).getDistance());
+						latObject.put("latitudeOffset", "" + allpointList.get(i).getLatitudeOffset());
+						latObject.put("longitudeOffset", "" + allpointList.get(i).getLongitudeOffset());
+						recordInfoArray.put(latObject);
 					}
 				}
 			} catch (JSONException e) {
@@ -1700,6 +1699,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					recordDatas = setRecordInfoArrayToJson();
 					if (ConfigUtils.getInstance().isNetWorkAvaiable(mActivity)) {
 						loadRecordDates();
+						updateLocation(longitude_me, latitude_me, true);
 					} else {
 						// 无网络时保存轨迹到数据库
 						if (!TextUtils.isEmpty(recordDatas)) {
@@ -1744,7 +1744,14 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	}
 
-	protected void updateLocation(double longitude_me, double latitude_me) {
+	/**
+	 * 
+	 * @param longitude_me
+	 * @param latitude_me
+	 * @param clearLoc
+	 *            是否清除坐标
+	 */
+	protected void updateLocation(double longitude_me, double latitude_me, boolean clearLoc) {
 		mhashmap = new HashMap<String, String>();
 		mhashmap.put("uid", uid);
 		mhashmap.put("token", token);
@@ -1752,8 +1759,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 		double[] latlng = GPSUtil.bd09_To_Gcj02(latitude_me, longitude_me);
 
-		mhashmap.put("longitude", latlng[1] + "");
-		mhashmap.put("latitude", latlng[0] + "");
+		if (clearLoc) {
+			mhashmap.put("longitude", "");
+			mhashmap.put("latitude", "");
+		} else {
+			mhashmap.put("longitude", latlng[1] + "");
+			mhashmap.put("latitude", latlng[0] + "");
+		}
 		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap);
 		new UpdateLocationBusiness(this, mhashmap, new GetUpdateLocationCallback() {
 			@Override
@@ -1809,6 +1821,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					double longitude = mMapList.get(i).getLongitude();
 					String Album_url = mMapList.get(i).getAlbum_url();
 					String userid = mMapList.get(i).getUid();
+					String is_anonymous= mMapList.get(i).getIs_anonymous();
 					System.err.println(longitude + "      " + longitude);
 					if (!userid.equals(uid)) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
@@ -1823,14 +1836,31 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 									mMarker.remove();
 								}
 								mLatLngMap.put(userid, latitude + "_" + longitude);
+								if (!TextUtils.isEmpty(is_anonymous)&&is_anonymous.equals("1")) {
+									Album_url = "";// 匿名时不显示头像
+								}
 								if (!TextUtils.isEmpty(Album_url)) {
 									loadToBitmap(Album_url, userid, stadiumpoint);
+								} else {
+									Bitmap Roundbitmap = CommonUtils.getInstance().readBitMap(mActivity,
+											R.drawable.ic_launcher);
+									Roundbitmap = CommonUtils.getInstance().toRoundCorner(mActivity, Roundbitmap);
+
+									addMarker(uid, stadiumpoint, Roundbitmap);
 								}
 							}
 						} else {
+							if (!TextUtils.isEmpty(is_anonymous)&&is_anonymous.equals("1")) {
+								Album_url = "";// 匿名时不显示头像
+							}
 							mLatLngMap.put(userid, latitude + "_" + longitude);
 							if (!TextUtils.isEmpty(Album_url)) {
 								loadToBitmap(Album_url, userid, stadiumpoint);
+							} else {
+								Bitmap Roundbitmap = CommonUtils.getInstance().readBitMap(mActivity,
+										R.drawable.ic_launcher);
+								Roundbitmap = CommonUtils.getInstance().toRoundCorner(mActivity, Roundbitmap);
+								addMarker(uid, stadiumpoint, Roundbitmap);
 							}
 						}
 
