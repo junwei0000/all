@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Handler;
 import android.util.Log;
 
 public class UpdateInfoUtils {
@@ -28,7 +29,8 @@ public class UpdateInfoUtils {
 	private String nick_name;
 	private int sex;
 	private String is_anonymous;
-
+	Handler mHandler;
+	int mHandlerID;
 	private void showDilag() {
 		try {
 			if (mDialog == null) {
@@ -94,8 +96,9 @@ public class UpdateInfoUtils {
 						Editor bestDoInfoEditor = bestDoInfoSharedPrefs.edit();
 						bestDoInfoEditor.putString(typekey, typevalue);
 						bestDoInfoEditor.commit();
-						if (typekey.equals("nick_name")||typekey.equals("sex")) {
+						if (typekey.equals("nick_name")||typekey.equals("sex")||typekey.equals("hobby")) {
 							mContext.finish();
+							CommonUtils.getInstance().setPageBackAnim(mContext);
 						}  
 						if(!typekey.equals("is_anonymous")){
 							String msg = (String) dataMap.get("msg");

@@ -78,7 +78,7 @@ public class VenuesHobbyAdapter extends BaseAdapter {
 			zhobby = Ehobby;
 		} 
 		viewHolder.useraccount_sex_tv_famale.setText(zhobby);
-		if (selecthobbyMap.containsKey(Ehobby)) {
+		if (selecthobbyMap.size()>0&&selecthobbyMap.containsKey(Ehobby)) {
 			viewHolder.useraccount_sex_iv_famale.setVisibility(View.VISIBLE);
 		} else {
 			viewHolder.useraccount_sex_iv_famale.setVisibility(View.INVISIBLE);

@@ -103,15 +103,18 @@ public class UserAccountHobbyActivity extends BaseActivity {
 					} else {
 						selecthobbyMap.put(Ehobby, Ehobby);
 					}
-					StringBuffer showhobby = new StringBuffer();
-					for (String key : selecthobbyMap.keySet()) {
-						showhobby.append(key + ",");
+					if (selecthobbyMap.size() > 0) {
+						StringBuffer showhobby = new StringBuffer();
+						for (String key : selecthobbyMap.keySet()) {
+							showhobby.append(key + ",");
+						}
+						hobby = showhobby.substring(0, showhobby.length() - 1);
+					} else {
+						hobby = "";
 					}
-					hobby = showhobby.substring(0, showhobby.length() - 1);
 					Log.e("TESTLOG", "------------showhobby------------" + hobby);
 					adapter.setSelecthobbyMap(selecthobbyMap);
 					adapter.notifyDataSetChanged();
-					mHandler.sendEmptyMessage(REFLESH);
 				}
 			}
 		});
@@ -132,14 +135,13 @@ public class UserAccountHobbyActivity extends BaseActivity {
 		}
 	}
 
-	private final int REFLESH = 1;
+	private final int UPDATE = 1;
 	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-			case REFLESH:
+			case UPDATE:
 				mUpdateInfoUtils.UpdateInfo("hobby", hobby);
 				break;
-
 			}
 		}
 	};
@@ -178,8 +180,7 @@ public class UserAccountHobbyActivity extends BaseActivity {
 	}
 
 	private void doBack() {
-		finish();
-		CommonUtils.getInstance().setPageBackAnim(this);
+		mHandler.sendEmptyMessage(UPDATE);
 	}
 
 	/**

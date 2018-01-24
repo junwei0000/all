@@ -213,6 +213,8 @@ public class UserAccountActivity extends BaseActivity {
 					}
 					String showhobby_ = showhobby.substring(0, showhobby.length() - 1);
 					useraccount_tv_sporttype.setText(showhobby_);
+				}else{
+					useraccount_tv_sporttype.setText(hobby);
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 
@@ -361,18 +363,26 @@ public class UserAccountActivity extends BaseActivity {
 			useraccount_ablum_tv_selects.setOnClickListener(mABlumClickListener);
 			pop_layout.setOnClickListener(mABlumClickListener);
 		}
-		final Window window = getWindow();
-		final WindowManager.LayoutParams lp = window.getAttributes();
-		// 设置透明度为0.3
-		lp.alpha = 0.4f;
-		window.setAttributes(lp);
+		setWindowAlpha(0.4f);
 		datePopWindow.showAtLocation(parent, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 		datePopWindow.setOnDismissListener(new OnDismissListener() {
 			public void onDismiss() {
-				lp.alpha = 1.0f;
-				window.setAttributes(lp);
+				setWindowAlpha(1f);
 			}
 		});
+	}
+
+	private void setWindowAlpha(float alpha) {
+		if (alpha < 0 || alpha > 1)
+			return;
+		WindowManager.LayoutParams windowLP = getWindow().getAttributes();
+		windowLP.alpha = alpha;
+		if (alpha == 1) {
+			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);// 不移除该Flag的话,在有视频的页面上的视频会出现黑屏的bug
+		} else {
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);// 此行代码主要是解决在华为手机上半透明效果无效的bug
+		}
+		getWindow().setAttributes(windowLP);
 	}
 
 	OnClickListener mABlumClickListener = new OnClickListener() {
