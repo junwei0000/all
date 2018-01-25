@@ -378,8 +378,12 @@ public class TrackUploadFragment extends Fragment {
 	public static LatLng mEndpoint;
 	HashMap<Integer, Integer> mBubbleMap = new HashMap<Integer, Integer>();
 	public static float STARTZOOM = 17.0f;
-	
+	/**
+	 * 每隔一分钟初始化一下缩放比例
+	 */
+	public boolean zoomstaus = true;
 	public LatLng startlatLng;
+
 	/**
 	 * 显示实时轨迹
 	 * 
@@ -399,7 +403,7 @@ public class TrackUploadFragment extends Fragment {
 
 			if (isFirstLoc) {
 				beforelatLng = userslatLng;
-				startlatLng= userslatLng;
+				startlatLng = userslatLng;
 				stringBuffer.append("isFirstLoc-----userslatLng=" + beforelatLng + "\n");
 				showBubbleView(userslatLng, 0);
 			} else {
@@ -531,7 +535,7 @@ public class TrackUploadFragment extends Fragment {
 
 		overlayOptions = new MarkerOptions().position(point).icon(realtimeBitmap).zIndex(8).draggable(true);
 
-		if (showpointList.size() >= 2 && showpointList.size() <= 100000) {
+		if (showpointList.size() >= 2 && showpointList.size() <= 1000000) {
 			// 添加路线（轨迹）
 			polyline = new PolylineOptions().width(10)
 					.color(MainStartActivity.mActivity.getResources().getColor(R.color.blue)).points(showpointList);
@@ -542,7 +546,13 @@ public class TrackUploadFragment extends Fragment {
 	public void setMapupdateStatus(LatLng nowpoint) {
 		// 设置中心点
 		if (nowpoint != null) {
-			MapStatus mMapStatus = new MapStatus.Builder().target(nowpoint).zoom(STARTZOOM).build();
+			MapStatus mMapStatus;
+			if (zoomstaus) {
+				zoomstaus = false;
+				mMapStatus = new MapStatus.Builder().target(nowpoint).zoom(STARTZOOM).build();
+			} else {
+				mMapStatus = new MapStatus.Builder().target(nowpoint).build();
+			}
 			MapStatusUpdate msUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
 			MainStartActivity.mBaiduMap.animateMapStatus(msUpdate);
 		}
@@ -569,6 +579,7 @@ public class TrackUploadFragment extends Fragment {
 		}
 
 	}
+
 	/**
 	 * 每隔一公里显示气泡
 	 */

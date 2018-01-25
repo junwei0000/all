@@ -92,8 +92,8 @@ public class RecordDetailParser extends BaseParser<Object> {
 						double speed = infoOb.optDouble("speed", 0);
 						double altitude = infoOb.optDouble("altitude", 0);
 						double accuracy = infoOb.optDouble("accuracy", 0);
-						String nStatus = infoOb.optString("nStatus", "");
-						String nLapPoint = infoOb.optString("nLapPoint", "");
+						int nStatus = infoOb.optInt("nStatus", 0);
+						int nLapPoint = infoOb.optInt("nLapPoint", 1);
 						String nLapTime = infoOb.optString("nLapTime", "");
 						long durations = infoOb.optLong("duration", 0);
 						double distance = infoOb.optDouble("distance", 0);

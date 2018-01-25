@@ -10,8 +10,8 @@ public class MainLocationItemInfo {
 	double speed;//速度
 	double altitude;//海拔
 	double accuracy;//精度
-	String nStatus;//运动状态
-	String nLapPoint;//没圈线路中间点
+	int nStatus;//运动状态
+	int nLapPoint;//没圈线路中间点
 	String nLapTime;//单圈用时
 	long duration;//用时
 	double distance;//距离
@@ -19,8 +19,8 @@ public class MainLocationItemInfo {
 	String longitudeOffset;//维度偏移
 	
 	
-	public MainLocationItemInfo(double latitude,double longitude, double speed, double altitude, double accuracy, String nStatus,
-			String nLapPoint, String nLapTime, long duration, double distance, String latitudeOffset,
+	public MainLocationItemInfo(double latitude,double longitude, double speed, double altitude, double accuracy, int nStatus,
+			int nLapPoint, String nLapTime, long duration, double distance, String latitudeOffset,
 			String longitudeOffset) {
 		super();
 		this.latitude = latitude;
@@ -71,16 +71,16 @@ public class MainLocationItemInfo {
 	public void setAccuracy(double accuracy) {
 		this.accuracy = accuracy;
 	}
-	public String getnStatus() {
+	public int getnStatus() {
 		return nStatus;
 	}
-	public void setnStatus(String nStatus) {
+	public void setnStatus(int nStatus) {
 		this.nStatus = nStatus;
 	}
-	public String getnLapPoint() {
+	public int getnLapPoint() {
 		return nLapPoint;
 	}
-	public void setnLapPoint(String nLapPoint) {
+	public void setnLapPoint(int nLapPoint) {
 		this.nLapPoint = nLapPoint;
 	}
 	public String getnLapTime() {

@@ -198,12 +198,15 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private int hopCount = 0;// 跳跃次数
 
 	// 滑雪
-	private int lapCount = 1;// 趟数（上升和下降的次数）
+	private int lapCount = 0;// 趟数（上升和下降的次数）
 	private int upHillDistance = 0;// 上坡距离 （距离坐标点的累加） m
 	private int downHillDistance = 0;// 下坡距离/滑行距离 m
 	private int verticalDistance = 0;// 滑行落差/垂直距离 m
 	private int _nMaxSlopeAngle = 0;// 最大坡度
-	private String nskiStatus = "0";// 上升状态（1：上升状态； 2：下降状态）
+	/**
+	 * 上升状态（1：上升状态； 2：下降状态）
+	 */
+	private int nskiStatus = 0;
 
 	/**
 	 * 是否全屏
@@ -374,6 +377,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		averageMatchSpeed = "0";
 		maxMatchSpeed = "0";
 		recordDatas = "";
+		nskiStatus = 0;
 		setSportPropertyList(sportindex);
 	}
 
@@ -619,12 +623,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		nSteps = StepDetector.CURRENT_SETP;
 		duration = DatesUtils.getInstance().formatTimes(runingTimestamp);
 		freezeDuration = DatesUtils.getInstance().formatTimes(pauseTimestamp);
-		if (currentAltitude >= maxAltitude) {
-			maxAltitude = currentAltitude;
-		}
-		if (currentAltitude <= minAltidue) {
-			minAltidue = currentAltitude;
-		}
 		long time = runingTimestamp / 1000;
 		if (time > 0) {
 			averageSpeed = distanceTraveled * 1000 * 3.6 / time;// 单位：公里每小时
@@ -853,7 +851,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	protected boolean btnStartStatus = false;
 
 	private Thread thread;
-	// Handler handler = new Handler();
 	int BEFORECURRENT_SETP = -1;
 	private BitmapDescriptor realtimeBitmap;
 
@@ -1000,7 +997,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		 * 1秒更新一次，或最小位移变化超过1米更新一次；
 		 * 注意：此处更新准确度非常低，推荐在service里面启动一个Thread，在run中sleep(10000);然后执行handler.sendMessage(),更新位置
 		 */
-		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 3, gpslocationListener);
+		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 2, gpslocationListener);
 		// lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 2,
 		// netlocationListener);
 	}
@@ -1151,8 +1148,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	private void netLocation(BDLocation location) {
 
-		System.err.println("MyLocationListener==" + location.getLatitude() + "     ");
 		if (!gpslocationListenerStatus) {
+			Log.e("map", "MyLocationListener==" + location.getLatitude() + "     ");
 			updateTrackHistoryData();
 			if (location == null || !ConfigUtils.getInstance().getNetWorkStatus(mActivity)) {
 				mTrackUploadFragment.isInUploadFragment = false;
@@ -1198,7 +1195,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 				}
 			}
-			System.err.println("location===" + location.getLatitude() + "    " + location.getLocType());
 		}
 
 	}
@@ -1206,7 +1202,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private void gpsLocation(Location location) {
 
 		showGpsAccuracy(location);
-		System.err.println("gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
+		Log.e("map", "gpslocationListener==" + location.getLatitude() + "     " + location.getAccuracy());
 		if (gpslocationListenerStatus && location != null) {
 			updateTrackHistoryData();
 			LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -1260,10 +1256,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			Log.e("map", "beforelatLng==" + beforelatLng + ";;;latLng==" + latLng);
 			if (beforelatLng == null || beforelatLng.latitude != latLng.latitude) {
 				recordInfo(latLng);
-				if (beforelatLng != null) {
-					insmaxSlope(latLng);
-					inskyHillDis(latLng);
-				}
+				insmaxSlope();
+				inskyHillDis();
+				BEFORECURRENT_SETP = StepDetector.CURRENT_SETP;
 				beforelatLng = latLng;
 				Log.e("track", "addddd-----" + allpointList.size());
 			}
@@ -1272,73 +1267,185 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	/**
-	 * 每次定位：计算最大坡度 private String lapCount = "1";// 趟数（上升和下降的次数） private int
-	 * upHillDistance = 0;// 上坡距离 （距离坐标点的累加） m private int downHillDistance =
-	 * 0;// 下坡距离 m private int verticalDistance = 0;// 滑行落差/垂直距离 m private int
-	 * _nMaxSlopeAngle = 0;// 最大坡度 private String nskiStatus = "0";//
-	 * 上升状态（1：上升状态； 2：下降状态）
+	 * 每次定位：计算最大坡度
 	 */
-	private void insmaxSlope(LatLng nowlatLng) {
-		LatLng startlatLng_ = mTrackUploadFragment.startlatLng;
-		double tempAllDistance_ = ConfigUtils.DistanceOfTwoPoints(startlatLng_.latitude, startlatLng_.longitude,
-				nowlatLng.latitude, nowlatLng.longitude);
-		int tempAllDistance = (int) (tempAllDistance_ * 1000);
-		if (startAltitude > currentAltitude) {
-			/**
-			 * 下滑 坡度
-			 */
-			int tempAllVerticalDistance = (startAltitude - currentAltitude);
-			if (tempAllDistance > 200) {
-				double tempAngle = Math.asin(tempAllVerticalDistance / tempAllDistance);
-				if (((tempAngle * 180) / Math.PI) > _nMaxSlopeAngle) {
-					_nMaxSlopeAngle = (int) ((tempAngle * 180) / Math.PI);
-					if (_nMaxSlopeAngle > 45) {
-						_nMaxSlopeAngle = 45;
+	private void insmaxSlope() {
+		if (allpointList != null && allpointList.size() > 0) {
+			int tempDistance = 0;
+			for (int index = allpointList.size() - 1; index > -1; index--) {
+				tempDistance = (int) (allpointList.get(allpointList.size() - 1).getDistance()
+						- allpointList.get(index).getDistance());
+				if (tempDistance >= 200) {
+					MainLocationItemInfo lastPoint = allpointList.get(index);
+					MainLocationItemInfo currentPoint = allpointList.get(allpointList.size() - 1);
+					if (lastPoint.getAltitude() > currentPoint.getAltitude()) {
+						// 此种为下滑
+						int tempVerticalDistance = (int) (lastPoint.getAltitude() - currentPoint.getAltitude());
+						double tempAngle = Math.asin(tempVerticalDistance / (tempDistance * 1.0));
+						if (((tempAngle * 180) / Math.PI) > _nMaxSlopeAngle) {
+							_nMaxSlopeAngle = (int) ((tempAngle * 180) / Math.PI);
+							if (_nMaxSlopeAngle > 45) {
+								_nMaxSlopeAngle = 45;
+							}
+						}
 					}
+
+					break;
+
 				}
 			}
+
 		}
 	}
 
+	int ski_height = 30;// 起伏高度
+
 	/**
-	 * 计算
+	 * 计算趟数
 	 * 
 	 * @param nowlatLng
 	 */
-	private void inskyHillDis(LatLng nowlatLng) {
-		double tempDistance_ = ConfigUtils.DistanceOfTwoPoints(beforelatLng.latitude, beforelatLng.longitude,
-				nowlatLng.latitude, nowlatLng.longitude);
-		int tempDistance = (int) (tempDistance_ * 1000);
-		int tempVerticalDistance;
-		if (tempDistance == 0) {
-			return;
-		}
-		if (beforeAltitude > currentAltitude) {
-			/**
-			 * 下滑距离
-			 */
-			tempVerticalDistance = (beforeAltitude - currentAltitude);
+	private void inskyHillDis() {
+		// 计算落差
+		if (nskiStatus == 2 && beforeAltitude - currentAltitude > 0) {
+			int tempVerticalDistance = (beforeAltitude - currentAltitude);
 			verticalDistance += tempVerticalDistance;
-			dropTraveled += tempVerticalDistance;
-			downHillDistance += (int) sqrt(pow(tempVerticalDistance, 2) + pow(tempDistance, 2));
-			if (nskiStatus.equals("1")) {
-				lapCount++;
+		}
+		if (maxAltitude == 0 && minAltidue == 0) {
+			maxAltitude = minAltidue = currentAltitude;
+		}
+		if (nskiStatus == 0) {
+			if ((currentAltitude - maxAltitude) > 0) {
+				maxAltitude = currentAltitude;
 			}
-			nskiStatus = "2";
-		} else {
-			/**
-			 * 上升
-			 */
-			tempVerticalDistance = (currentAltitude - beforeAltitude);
-			upHillDistance += (int) sqrt(pow(tempVerticalDistance, 2) + pow(tempDistance, 2));
-			nskiStatus = "1";
+			if ((currentAltitude - minAltidue) < 0) {
+				minAltidue = currentAltitude;
+			}
+
+			if (currentAltitude - minAltidue > ski_height) {
+				nskiStatus = 2;
+				setStatusDownWithDistance();
+				maxAltitude = minAltidue = currentAltitude;
+			}
+			if (maxAltitude - currentAltitude > ski_height) {
+				nskiStatus = 1;
+				setStatusUpWithDistance();
+				maxAltitude = minAltidue = currentAltitude;
+			}
+		}
+
+		if (nskiStatus == 1) {
+			if ((currentAltitude - maxAltitude) > 0) {
+				minAltidue = maxAltitude = currentAltitude;
+			}
+			if ((currentAltitude - minAltidue) < 0) {
+				minAltidue = currentAltitude;
+			}
+
+			if (maxAltitude - minAltidue > ski_height) {
+				nskiStatus = 2;
+				setStatusDownWithDistance();
+				maxAltitude = minAltidue = currentAltitude;
+			}
+		}
+		if (nskiStatus == 2) {
+			if ((currentAltitude - maxAltitude) > 0) {
+				maxAltitude = currentAltitude;
+			}
+			if ((currentAltitude - minAltidue) < 0) {
+				minAltidue = maxAltitude = currentAltitude;
+			}
+
+			if (maxAltitude - minAltidue > ski_height) {
+				nskiStatus = 1;
+				setStatusUpWithDistance();
+				minAltidue = maxAltitude = currentAltitude;
+			}
 		}
 		beforeAltitude = currentAltitude;
+	}
 
+	private void setStatusDownWithDistance() {
+		int nHighestPointIndex = allpointList.size() - 1; // 全局轨迹点记录数组最后一个的索引值
+		double nHighestAltitude = allpointList.get(nHighestPointIndex).getAltitude(); // 声明最高点海拔局部变量
+		for (int i = nHighestPointIndex; i >= 0; i--) {
+			MainLocationItemInfo myLocation = allpointList.get(i);
+
+			if ((myLocation.getnLapPoint() == lapCount)
+					&& ((lapCount > 0 && myLocation.getnStatus() == 1) || lapCount == 0)) { // 当前点的滑行次数
+																							// 等于
+																							// 总的滑行次数
+				if (myLocation.getAltitude() >= nHighestAltitude) { // 当前点海拔高于最高点海拔，更新最高点海拔值
+					nHighestAltitude = myLocation.getAltitude();
+					// 保存最高点索引
+					nHighestPointIndex = i;
+				}
+			} else {
+				break;
+			}
+		}
+		int skiDis = (int) (allpointList.get(allpointList.size() - 1).getDistance()
+				- allpointList.get(nHighestPointIndex).getDistance());
+		verticalDistance += verticalDistance(nHighestPointIndex, 2);
+		dropTraveled = verticalDistance;
+		downHillDistance += (skiDis + verticalDistance);
+
+		++lapCount;
+	}
+
+	public void setStatusUpWithDistance() {
+		int nLowestPointIndex = allpointList.size() - 1; // 全局轨迹点记录数组最后一个的索引值
+		double nLowestAltitude = allpointList.get(nLowestPointIndex).getAltitude();// 声明最低点海拔局部变量
+		for (int i = nLowestPointIndex; i >= 0; i--) {
+			MainLocationItemInfo myModel = allpointList.get(i);
+			if ((myModel.getnLapPoint() == lapCount)
+					&& ((myModel.getnLapPoint() > 0 && myModel.getnStatus() == 2) || myModel.getnLapPoint() == 0)) { // 当前点的滑行次数
+																														// 等于
+																														// 总的滑行次数
+				if (myModel.getAltitude() <= nLowestAltitude) { // 当前点海拔低于最高点海拔，更新最高点海拔值
+					nLowestAltitude = myModel.getAltitude();
+					// 保存最低点索引
+					nLowestPointIndex = i;
+				}
+			} else {
+				break;
+			}
+		}
+		// 计算上升ski_height米后的扣除ski_height米的移动距离（前提：之前有滑行趟数）
+		int upDistance = (int) (allpointList.get(allpointList.size() - 1).getDistance()
+				- allpointList.get(nLowestPointIndex).getDistance());
+		if (downHillDistance > upDistance) {
+			downHillDistance -= upDistance;
+		}
+		upHillDistance = verticalDistance(nLowestPointIndex, nskiStatus);
+		if (verticalDistance > upHillDistance) {
+			verticalDistance -= upHillDistance; // 总滑降 - 上升过程中的滑降 （扣除上升40米的海拔差
+		}
+	}
+
+	// 计算上升/下降垂直距离
+	public int verticalDistance(int point, int status) {
+
+		int verDistance = 0;
+		int count = allpointList.size();
+		for (int i = point; i < count; i++) {
+			MainLocationItemInfo preMyLocation = allpointList.get(i);
+			preMyLocation.setnStatus(status);
+
+			for (int j = i; j < count; j++) {
+				MainLocationItemInfo nextMyLocation = allpointList.get(j);
+
+				if (nextMyLocation.getAltitude() < preMyLocation.getAltitude()) {
+					verDistance += preMyLocation.getAltitude() - nextMyLocation.getAltitude();
+				}
+				break;
+			}
+		}
+		return verDistance;
 	}
 
 	/**
-	 * 保存坐标明细
+	 * 保存坐标明细集合
 	 */
 	private void recordInfo(LatLng latLng) {
 		LatLng mLatLng = latLng;// 经纬度
@@ -1347,8 +1454,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		double accuracy = currentAccuracy;// 精度
 		long duration = runingTimestamp / 1000;// 用时
 		double distance = distanceTraveled * 1000;// 距离
-		String nStatus = "";// 运动状态
-		String nLapPoint = "";// 没圈线路中间点
+		int nStatus = nskiStatus;// 运动状态
+		int nLapPoint = lapCount;// 没圈线路中间点
 		String nLapTime = "";// 单圈用时
 		String latitudeOffset = "";// 精度偏移
 		String longitudeOffset = "";// 维度偏移
@@ -1394,24 +1501,20 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		/**
 		 * 每5s上传一次数据
 		 */
-		if (firstUploadLocationstatus || ((runingTimestamp / 1000) % 5 == 0)) {
-			if (beforelatLng == null || latLng.latitude != beforelatLng.latitude) {
-				Message message = new Message();
-				message.what = UPDATELOCATION;
-				message.obj = latLng;
-				mHandler.sendMessage(message);
-				message = null;
-			}
+		if (firstUploadLocationstatus || (runingTimestamp > 0 && (runingTimestamp / 1000) % 5 == 0)) {
+			Message message = new Message();
+			message.what = UPDATELOCATION;
+			message.obj = latLng;
+			mHandler.sendMessage(message);
+			message = null;
 		}
 
 		/**
 		 * 每10s更新一下场地用户列表信息
 		 */
 
-		if (firstUploadLocationstatus || ((runingTimestamp / 1000) % 10 == 0)) {
-			firstUploadLocationstatus = false;
-			getVenuesUsers();
-			getPosid();
+		if (firstUploadLocationstatus || (runingTimestamp > 0 && (runingTimestamp / 1000) % 10 == 0)) {
+			mHandler.sendEmptyMessage(UPDATEPOI);
 		}
 	}
 
@@ -1434,11 +1537,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 							runingTimestamp = System.currentTimeMillis() - startTimestamp - pauseTimestamp;
 							Message msg = new Message();
 							msg.what = UPDATETIME;
-							mHandler.sendMessage(msg);// 通知主线程
-							if (firstComeIn && runingTimestamp / 1000 - 5 * 60 == 0 && distanceTraveled > 0) {
-								initSportType();
-								firstComeIn = false;
-							}
+							mHandler.sendMessage(msg);// 通知主线程更新UI
 						}
 					}
 				}
@@ -1449,6 +1548,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 	boolean UPDATELOCATIONSTAUS = false;
 	boolean firstComeIn = true;
+	private final int UPDATEPOI = 0;
 	private final int UPDATELOCATION = 1;
 	private final int UPDATETIME = 2;
 	private final int SETLINE = 3;
@@ -1464,11 +1564,24 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", true);
 				if (btnStartStatus && !UPDATELOCATIONSTAUS && cb_mylocationstatus) {
 					UPDATELOCATIONSTAUS = true;
+					firstUploadLocationstatus = false;
 					updateLocation(longitude_me, latitude_me, false);
 				}
 				break;
+			case UPDATEPOI:
+				getVenuesUsers();
+				getPosid();
+
+				break;
 			case UPDATETIME:
 				getCurrentPropertyValue();
+				if((btnStartStatus && (runingTimestamp / 1000) % 60 == 0)){
+					mTrackUploadFragment.zoomstaus=true;
+				}
+				if (firstComeIn && runingTimestamp / 1000 - 5 * 60 == 0 && distanceTraveled > 0) {
+					initSportType();
+					firstComeIn = false;
+				}
 				break;
 			case SETLINE:
 				LatLng latLng = (LatLng) msg.obj;
@@ -1732,8 +1845,12 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
-					String msg = (String) dataMap.get("msg");
-					CommonUtils.getInstance().initToast(mActivity, msg);
+					if (status.equals("200")) {
+						CommonUtils.getInstance().initToast(mActivity, "上传成功");
+					} else {
+						String msg = (String) dataMap.get("msg");
+						CommonUtils.getInstance().initToast(mActivity, msg);
+					}
 				}
 				initStartView();
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
@@ -1821,7 +1938,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					double longitude = mMapList.get(i).getLongitude();
 					String Album_url = mMapList.get(i).getAlbum_url();
 					String userid = mMapList.get(i).getUid();
-					String is_anonymous= mMapList.get(i).getIs_anonymous();
+					String is_anonymous = mMapList.get(i).getIs_anonymous();
 					System.err.println(longitude + "      " + longitude);
 					if (!userid.equals(uid)) {
 						LatLng stadiumpoint = new LatLng(latitude, longitude);
@@ -1836,7 +1953,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 									mMarker.remove();
 								}
 								mLatLngMap.put(userid, latitude + "_" + longitude);
-								if (!TextUtils.isEmpty(is_anonymous)&&is_anonymous.equals("1")) {
+								if (!TextUtils.isEmpty(is_anonymous) && is_anonymous.equals("1")) {
 									Album_url = "";// 匿名时不显示头像
 								}
 								if (!TextUtils.isEmpty(Album_url)) {
@@ -1850,7 +1967,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 								}
 							}
 						} else {
-							if (!TextUtils.isEmpty(is_anonymous)&&is_anonymous.equals("1")) {
+							if (!TextUtils.isEmpty(is_anonymous) && is_anonymous.equals("1")) {
 								Album_url = "";// 匿名时不显示头像
 							}
 							mLatLngMap.put(userid, latitude + "_" + longitude);
@@ -1941,7 +2058,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	private void moveToCenter() {
 		LatLng mypoint = new LatLng(latitude_me, longitude_me);
-		MapStatus mMapStatus = new MapStatus.Builder().target(mypoint).zoom(TrackUploadFragment.STARTZOOM).build();
+		MapStatus mMapStatus;
+		if (mTrackUploadFragment.zoomstaus) {
+			mTrackUploadFragment.zoomstaus = false;
+			mMapStatus = new MapStatus.Builder().target(mypoint).zoom(TrackUploadFragment.STARTZOOM).build();
+		} else {
+			mMapStatus = new MapStatus.Builder().target(mypoint).build();
+		}
 		MapStatusUpdate msUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
 		if (msUpdate != null && mBaiduMap != null) {
 			mBaiduMap.animateMapStatus(msUpdate);// 以动画方式更新地图状态，动画耗时 300 ms
