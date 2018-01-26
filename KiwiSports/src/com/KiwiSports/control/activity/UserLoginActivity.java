@@ -6,6 +6,7 @@ import java.util.Map;
 import com.KiwiSports.R;
 import com.KiwiSports.business.UserLoginBusiness;
 import com.KiwiSports.business.UserLoginBusiness.GetLoginCallback;
+import com.KiwiSports.control.test.TestSkyActivity;
 import com.KiwiSports.control.view.MyApplication;
 import com.KiwiSports.model.UserLoginInfo;
 import com.KiwiSports.utils.CommonUtils;
@@ -55,6 +56,10 @@ public class UserLoginActivity extends BaseActivity {
 			} else {
 				login(SHARE_MEDIA.WEIXIN);
 			}
+//			Intent intent = new Intent(context, TestSkyActivity.class);
+//			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//			startActivity(intent);
+//			CommonUtils.getInstance().setPageIntentAnim(intent, context);
 			break;
 		default:
 			break;

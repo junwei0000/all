@@ -62,7 +62,7 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 	private HashMap<String, String> mhashmap;
 	protected ArrayList<VenuesUsersInfo> mMapList;
 	private String name;
-
+	private userThumbShoaUtils muserThumbShoaUtils;
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -131,13 +131,18 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 		mhashmap.put("posid", posid);
 		Log.e("TESTLOG", "------------mhashmap------------" + mhashmap);
 		new VenuesUsersBusiness(this, mhashmap, new GetVenuesUsersCallback() {
+			
+
 			@Override
 			public void afterDataGet(HashMap<String, Object> dataMap) {
 				if (dataMap != null) {
 					String status = (String) dataMap.get("status");
 					if (status.equals("200")) {
 						mMapList = (ArrayList<VenuesUsersInfo>) dataMap.get("mlist");
-						initMyOverlay();
+						if(muserThumbShoaUtils==null){
+							muserThumbShoaUtils=new userThumbShoaUtils(context, mBaiduMap);
+						}
+						muserThumbShoaUtils.initMyOverlay(mMapList);
 					}
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
@@ -145,79 +150,6 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 			}
 		});
 
-	}
-
-	/**
-	 * 场馆定位
-	 */
-	private void initMyOverlay() {
-		try {
-			if (mMapList != null && mMapList.size() != 0) {
-				for (int i = 0; i < mMapList.size(); i++) {
-					double latitude = mMapList.get(i).getLatitude();
-					double longitude = mMapList.get(i).getLongitude();
-					String Album_url = mMapList.get(i).getAlbum_url();
-					String userid = mMapList.get(i).getUid();
-					System.err.println(longitude + "      " + longitude);
-					if (!userid.equals(uid)) {
-						LatLng stadiumpoint = new LatLng(latitude, longitude);
-						if (!TextUtils.isEmpty(Album_url)) {
-							loadToBitmap(Album_url, stadiumpoint);
-						}
-					}
-				}
-			}
-		} catch (Exception e) {
-		}
-	}
-
-	@SuppressLint("NewApi")
-	private void addMarker(LatLng point, Bitmap bitmap) {
-
-		View convertView = LayoutInflater.from(context).inflate(R.layout.venues_map_marker, null);
-		CircleImageView iv_head = (CircleImageView) convertView.findViewById(R.id.iv_head);
-		iv_head.setImageBitmap(bitmap);
-		iv_head.setImageAlpha(0);
-		mmorenMarker = BitmapDescriptorFactory.fromView(convertView);
-		OverlayOptions ooA = new MarkerOptions().position(point).icon(mmorenMarker).zIndex(5).draggable(false);
-		Marker mMarker = (Marker) mBaiduMap.addOverlay(ooA);
-	}
-
-	Bitmap bitmap = null;
-
-	public Bitmap loadToBitmap(String Album_url, final LatLng stadiumpoint) {
-		DisplayImageOptions options = new DisplayImageOptions.Builder()
-				.showImageForEmptyUri(R.drawable.menutab_location_normal)// 设置图片Uri为空或是错误的时候显示的图片
-				.showImageOnFail(R.drawable.menutab_location_normal)// 设置图片加载或解码过程中发生错误显示的图片
-				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		ImageLoader.getInstance().loadImage(Album_url, options, new ImageLoadingListener() {
-
-			@Override
-			public void onLoadingStarted(String arg0, View arg1) {
-
-			}
-
-			@Override
-			public void onLoadingFailed(String arg0, View arg1, FailReason arg2) {
-
-			}
-
-			@Override
-			public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
-				bitmap = arg2;
-				Log.e("map---bitmap", bitmap.toString());
-				Log.e("map---arg0", arg0.toString());
-				if (bitmap != null) {
-					addMarker(stadiumpoint, bitmap);
-				}
-			}
-
-			@Override
-			public void onLoadingCancelled(String arg0, View arg1) {
-
-			}
-		});
-		return bitmap;
 	}
 
 	/**
@@ -232,7 +164,6 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 
 	private double longitude_me;
 	private double latitude_me;
-	private BitmapDescriptor mmorenMarker;
 
 	/**
 	 * 初始化定位的SDK
@@ -277,10 +208,6 @@ public class VenuesMapActivity extends BaseActivity implements BDLocationListene
 		option.setCoorType(GPSUtil.CoorType); // 返回的定位结果是百度经纬度,默认值gcj02
 		mLocClient.setLocOption(option);// 设置给定位客户端
 		mLocClient.start();// 启动定位客户端
-		// 修改为自定义marker
-		mmorenMarker = BitmapDescriptorFactory.fromResource(R.drawable.menutab_location_normal);
-		// mBaiduMap.setMyLocationConfigeration(new
-		// MyLocationConfiguration(LocationMode.NORMAL, false, mCurrentMarker));
 	}
 
 	@Override

@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import com.baidu.mapapi.model.LatLng;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -446,7 +445,7 @@ public class ConfigUtils {
 		double s = 2 * Math.asin(Math.sqrt(
 				Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
 		s = s * EARTH_RADIUS;
-		s = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(s, 2));
+		s = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(s, 3));
 		return s;
 	}
 	public LatLng getCenterpoint(List<LatLng> pointList) {

@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.KiwiSports.R;
 import com.KiwiSports.control.activity.MainStartActivity;
 import com.KiwiSports.model.MainLocationItemInfo;
+import com.KiwiSports.utils.CommonUtils;
 import com.KiwiSports.utils.ConfigUtils;
 import com.KiwiSports.utils.PriceUtils;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -76,16 +77,16 @@ public class TrackUploadFragment extends Fragment {
 	/**
 	 * 图标
 	 */
-	private static BitmapDescriptor realtimeBitmap;
+	private BitmapDescriptor realtimeBitmap;
 
-	public static Overlay overlay = null;
-	public static Overlay polylineoverlay;
+	public Overlay overlay = null;
+	public Overlay polylineoverlay;
 	// 覆盖物
-	public static OverlayOptions overlayOptions;
+	public OverlayOptions overlayOptions;
 	// 路线覆盖物
-	public static PolylineOptions polyline = null;
+	public PolylineOptions polyline = null;
 
-	public static List<LatLng> showpointList = new ArrayList<LatLng>();
+	public List<LatLng> showpointList = new ArrayList<LatLng>();
 
 	protected boolean isTraceStart = false;
 
@@ -96,7 +97,7 @@ public class TrackUploadFragment extends Fragment {
 
 	private View view = null;
 
-	public static boolean isInUploadFragment = true;
+	public boolean isInUploadFragment = true;
 
 	// public static boolean isRegister = false;
 
@@ -123,20 +124,20 @@ public class TrackUploadFragment extends Fragment {
 		return view;
 	}
 
-	public static OverlayOptions getOverlayOptions() {
+	public OverlayOptions getOverlayOptions() {
 		return overlayOptions;
 	}
 
-	public static void setOverlayOptions(OverlayOptions overlayOptions) {
-		TrackUploadFragment.overlayOptions = overlayOptions;
+	public void setOverlayOptions(OverlayOptions overlayOptions) {
+		this.overlayOptions = overlayOptions;
 	}
 
-	public static PolylineOptions getPolyline() {
+	public PolylineOptions getPolyline() {
 		return polyline;
 	}
 
-	public static void setPolyline(PolylineOptions polyline) {
-		TrackUploadFragment.polyline = polyline;
+	public void setPolyline(PolylineOptions polyline) {
+		this.polyline = polyline;
 	}
 
 	/**
@@ -358,30 +359,41 @@ public class TrackUploadFragment extends Fragment {
 
 	public void initDates() {
 		sum_distance = 0.0;
+		temdistance = 0;
 		isFirstLoc = true;
 		nowlatLng = null;
 		beforelatLng = null;
 		showpointList.clear();
 		mBubbleMap.clear();
 		isInUploadFragment = false;
-		if (polylineoverlay != null)
+		// 初始化路线
+		if (polylineoverlay != null) {
 			polylineoverlay.remove();
+			polylineoverlay = null;
+		}
+		// 每次清除后没初始化当前位置
+		if (overlay != null) {
+			overlay.remove();
+			overlay = null;
+		}
+
 	}
 
-	/**
-	 * 公里
-	 */
-	public static double sum_distance = 0.0;
-	public static boolean isFirstLoc = true;
+	public double temdistance;// 两点之间的距离
+	public double sum_distance = 0.0;// 总距离
+	public boolean isFirstLoc = true;//
 	public LatLng beforelatLng;
 	LatLng nowlatLng;
-	public static LatLng mEndpoint;
+	public LatLng mEndpoint;
 	HashMap<Integer, Integer> mBubbleMap = new HashMap<Integer, Integer>();
-	public static float STARTZOOM = 17.0f;
+	public float STARTZOOM = 19.0f;
 	/**
 	 * 每隔一分钟初始化一下缩放比例
 	 */
 	public boolean zoomstaus = true;
+	/**
+	 * 标记开始图标位置
+	 */
 	public LatLng startlatLng;
 
 	/**
@@ -396,46 +408,34 @@ public class TrackUploadFragment extends Fragment {
 		}
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("//-----------------------------------------------" + "\n");
-		if (userslatLng == null || userslatLng.latitude == 0) {
-			// showMessage("当前查询无轨迹点", null);
+		stringBuffer.append("CoordinateConverter beforelatLng-----beforelatLng=" + beforelatLng + "\n");
+
+		if (isFirstLoc) {
+			beforelatLng = userslatLng;
+			startlatLng = userslatLng;
+			showBubbleView(userslatLng, 0);
+			stringBuffer.append("isFirstLoc-----userslatLng=" + beforelatLng + "\n");
 		} else {
-			stringBuffer.append("CoordinateConverter beforelatLng-----beforelatLng=" + beforelatLng + "\n");
-
-			if (isFirstLoc) {
-				beforelatLng = userslatLng;
-				startlatLng = userslatLng;
-				stringBuffer.append("isFirstLoc-----userslatLng=" + beforelatLng + "\n");
-				showBubbleView(userslatLng, 0);
-			} else {
-				nowlatLng = userslatLng;
-				stringBuffer.append("nowlatLng-----nowlatLng=" + nowlatLng + "\n");
-				double juliString = ConfigUtils.DistanceOfTwoPoints(beforelatLng.latitude, beforelatLng.longitude,
-						nowlatLng.latitude, nowlatLng.longitude);
-				if (juliString > 5000) {
-					// 当两点坐标大于一万公里
-					juliString = 0;
-				}
-				stringBuffer.append("juliString-----juliString=" + juliString + "\n");
-				if (rebookstatus(userslatLng)) {
-					sum_distance = sum_distance + juliString;
-				}
-				stringBuffer.append("sum_distance-----sum_distance=" + sum_distance + "\n");
-				showBubbleView(userslatLng, 1);
-			}
-			stringBuffer.append("//-------------------------------------------------------------------" + "\n");
-
-			if (rebookstatus(userslatLng)) {
-				showpointList.add(userslatLng);
-				// 绘制实时点
-				drawRealtimePoint(userslatLng);
-				savaInfoToSD(MainStartActivity.mActivity, stringBuffer);
-			}
-			if (!isFirstLoc) {
-				beforelatLng = nowlatLng;
-			}
-			isFirstLoc = false;
+			nowlatLng = userslatLng;
+			showBubbleView(userslatLng, 1);
+			stringBuffer.append("nowlatLng=" + nowlatLng + "\n");
 		}
 
+		if (isFirstLoc || rebookstatus(userslatLng)) {
+			double juliString = ConfigUtils.DistanceOfTwoPoints(beforelatLng.latitude, beforelatLng.longitude,
+					userslatLng.latitude, userslatLng.longitude);
+			temdistance = juliString;
+			sum_distance = sum_distance + juliString;
+			stringBuffer.append("juliString="+juliString+";   sum_distance=" + sum_distance + "\n");
+			showpointList.add(userslatLng);
+			drawRealtimePoint(userslatLng);
+			savaInfoToSD(MainStartActivity.mActivity, stringBuffer);
+		}
+		if (!isFirstLoc) {
+			beforelatLng = nowlatLng;
+		}
+		isFirstLoc = false;
+		stringBuffer.append("//-------------------------------------------------------------------" + "\n");
 	}
 
 	/**
@@ -524,17 +524,6 @@ public class TrackUploadFragment extends Fragment {
 	 */
 
 	public void drawRealtimePoint(LatLng point) {
-
-		if (null != overlay) {
-			overlay.remove();
-		}
-
-		if (null == realtimeBitmap) {
-			realtimeBitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_myposition_map);
-		}
-
-		overlayOptions = new MarkerOptions().position(point).icon(realtimeBitmap).zIndex(8).draggable(true);
-
 		if (showpointList.size() >= 2 && showpointList.size() <= 1000000) {
 			// 添加路线（轨迹）
 			polyline = new PolylineOptions().width(10)
@@ -547,12 +536,14 @@ public class TrackUploadFragment extends Fragment {
 		// 设置中心点
 		if (nowpoint != null) {
 			MapStatus mMapStatus;
-			if (zoomstaus) {
-				zoomstaus = false;
-				mMapStatus = new MapStatus.Builder().target(nowpoint).zoom(STARTZOOM).build();
-			} else {
-				mMapStatus = new MapStatus.Builder().target(nowpoint).build();
-			}
+			// if (zoomstaus) {
+			// zoomstaus = false;
+			// mMapStatus = new
+			// MapStatus.Builder().target(nowpoint).zoom(STARTZOOM).build();
+			// } else {
+			// mMapStatus = new MapStatus.Builder().target(nowpoint).build();
+			// }
+			mMapStatus = new MapStatus.Builder().target(nowpoint).zoom(STARTZOOM).build();
 			MapStatusUpdate msUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
 			MainStartActivity.mBaiduMap.animateMapStatus(msUpdate);
 		}
@@ -573,7 +564,16 @@ public class TrackUploadFragment extends Fragment {
 			mEndpoint = showpointList.get(0);
 		}
 		setMapupdateStatus(mEndpoint);
-		// 实时点覆盖物
+
+		if (null != overlay) {
+			overlay.remove();
+		}
+
+		if (null == realtimeBitmap) {
+			realtimeBitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_myposition_map);
+		}
+		overlayOptions = new MarkerOptions().position(mEndpoint).icon(realtimeBitmap).zIndex(8).draggable(true);
+
 		if (null != overlayOptions) {
 			overlay = MainStartActivity.mBaiduMap.addOverlay(overlayOptions);
 		}

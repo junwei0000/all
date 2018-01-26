@@ -121,9 +121,9 @@ public class UserCenterActivity extends BaseActivity {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if (isChecked) {
 					cb_mylocation.setChecked(true);
-					is_anonymous = "0";
-				} else {
 					is_anonymous = "1";
+				} else {
+					is_anonymous = "0";
 				}
 				mUpdateInfoUtils.UpdateInfo("is_anonymous", is_anonymous);
 
@@ -147,9 +147,9 @@ public class UserCenterActivity extends BaseActivity {
 
 	private void initSelectBox() {
 		boolean cb_mylocationstatus = welcomeSharedPreferences.getBoolean("cb_mylocationstatus", true);
-		boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", true);
+		boolean cb_myanonlocationstatus = welcomeSharedPreferences.getBoolean("cb_myanonlocationstatus", false);
 		boolean cb_lowpowerstatus = welcomeSharedPreferences.getBoolean("cb_lowpowerstatus", false);
-		boolean cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", false);
+		boolean cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", true);
 
 		if (cb_mylocationstatus) {
 			cb_mylocation.setChecked(true);

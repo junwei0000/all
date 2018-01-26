@@ -90,8 +90,8 @@ public class RecordDetailParser extends BaseParser<Object> {
 						latitude=latlng[0];
 						longitude=latlng[1];
 						double speed = infoOb.optDouble("speed", 0);
-						double altitude = infoOb.optDouble("altitude", 0);
-						double accuracy = infoOb.optDouble("accuracy", 0);
+						int altitude = infoOb.optInt("altitude", 0);
+						int accuracy = infoOb.optInt("accuracy", 0);
 						int nStatus = infoOb.optInt("nStatus", 0);
 						int nLapPoint = infoOb.optInt("nLapPoint", 1);
 						String nLapTime = infoOb.optString("nLapTime", "");

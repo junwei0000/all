@@ -97,7 +97,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 	 * @param loginInfo
 	 */
 	private void monisaveUserInfo() {
-		String uid = "10008";
+		String uid = "20051";
 		String nick_name = "段军伟";
 		String album_url = "5_z7KBsDJRzpjG1lrCvQH_-46hJWZB1Ajt07VuFNLW9HWMPs2VSRsUFKQTVp5haqKWDy9H3y116uV_TqHQkMWEAqKYM_EQhYb72U93vE1zmkI";
 		int sex = 1;

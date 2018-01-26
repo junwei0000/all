@@ -1,5 +1,9 @@
 package com.KiwiSports.model;
 
+import com.baidu.mapapi.map.Marker;
+
+import android.graphics.Bitmap;
+
 public class VenuesUsersInfo {
 	String uid;
 	String real_name;
@@ -23,6 +27,7 @@ public class VenuesUsersInfo {
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
+
 
 	public String getUid() {
 		return uid;
