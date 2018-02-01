@@ -233,12 +233,20 @@ public class VenuesRankActivity extends BaseActivity {
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
 				double diatance = mInfo.getDistanceTraveled();
-				diatance = diatance/1000;
-				diatance=PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
+				diatance = diatance / 1000;
+				diatance = PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
+				/**
+				 * 1：匿名； 0：实名
+				 */
+				int is_anonymous = mInfo.getIs_anonymous();
+				if (is_anonymous == 1) {
+					album_url="";
+					name="匿名雪友";
+				}
 				if (!TextUtils.isEmpty(album_url)) {
 					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head1);
 				} else {
-					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
+					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.ic_launcher);
 					rankitemtop_iv_head1.setImageBitmap(mBitmap);
 				}
 				rankitemtop_layout1.setBackgroundResource(R.drawable.corners_circular_yellow);
@@ -251,13 +259,21 @@ public class VenuesRankActivity extends BaseActivity {
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
 				double diatance = mInfo.getDistanceTraveled();
-				diatance = diatance/1000;
-				diatance=PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
-				max= (int) (diatance*1000);
+				diatance = diatance / 1000;
+				diatance = PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
+				max = (int) (diatance * 1000);
+				/**
+				 * 1：匿名； 0：实名
+				 */
+				int is_anonymous = mInfo.getIs_anonymous();
+				if (is_anonymous == 1) {
+					album_url="";
+					name="匿名雪友";
+				}
 				if (!TextUtils.isEmpty(album_url)) {
 					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head2);
 				} else {
-					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
+					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.ic_launcher);
 					rankitemtop_iv_head2.setImageBitmap(mBitmap);
 				}
 				rankitemtop_layout2.setBackgroundResource(R.drawable.corners_circular_gray);
@@ -270,12 +286,20 @@ public class VenuesRankActivity extends BaseActivity {
 				String album_url = mInfo.getAlbum_url();
 				String name = mInfo.getNick_name();
 				double diatance = mInfo.getDistanceTraveled();
-				diatance = diatance/1000;
-				diatance=PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
+				diatance = diatance / 1000;
+				diatance = PriceUtils.getInstance().getPriceTwoDecimalDouble(diatance, 2);
+				/**
+				 * 1：匿名； 0：实名
+				 */
+				int is_anonymous = mInfo.getIs_anonymous();
+				if (is_anonymous == 1) {
+					album_url="";
+					name="匿名雪友";
+				}
 				if (!TextUtils.isEmpty(album_url)) {
 					asyncImageLoader.DisplayImage(album_url, rankitemtop_iv_head3);
 				} else {
-					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
+					Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.ic_launcher);
 					rankitemtop_iv_head3.setImageBitmap(mBitmap);
 				}
 				rankitemtop_layout3.setBackgroundResource(R.drawable.corners_circular_dian);
@@ -287,7 +311,7 @@ public class VenuesRankActivity extends BaseActivity {
 		} else {
 			mList = new ArrayList<VenuesRankTodayInfo>();
 		}
-		VenuesRankAdapter mVenuesRankAdapter = new VenuesRankAdapter(context, mList,max);
+		VenuesRankAdapter mVenuesRankAdapter = new VenuesRankAdapter(context, mList, max);
 		mListView.setAdapter(mVenuesRankAdapter);
 	}
 

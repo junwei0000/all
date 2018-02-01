@@ -41,7 +41,8 @@ public class VenuesRankTodayParser extends BaseParser<Object> {
 				String num = myRankObs.optString("num", "");
 				String nick_name = myRankObs.optString("nick_name", "");
 				String album_url = myRankObs.optString("album_url", "");
-				VenuesRankTodayInfo myRankInfo = new VenuesRankTodayInfo(distanceTraveled, uid, posid, date_time, num,
+				int is_anonymous = myRankObs.optInt("is_anonymous");
+				VenuesRankTodayInfo myRankInfo = new VenuesRankTodayInfo(is_anonymous,distanceTraveled, uid, posid, date_time, num,
 						nick_name, album_url);
 				mList.add(myRankInfo);
 				myRankInfo = null;
@@ -56,7 +57,8 @@ public class VenuesRankTodayParser extends BaseParser<Object> {
 					num = dayRankObs.optString("num", "");
 					nick_name = dayRankObs.optString("nick_name", "");
 					album_url = dayRankObs.optString("album_url", "");
-					VenuesRankTodayInfo dayRankInfo = new VenuesRankTodayInfo(distanceTraveled, uid, posid, date_time,
+					is_anonymous = dayRankObs.optInt("is_anonymous");
+					VenuesRankTodayInfo dayRankInfo = new VenuesRankTodayInfo(is_anonymous,distanceTraveled, uid, posid, date_time,
 							num, nick_name, album_url);
 					if (i < 3) {
 						mtopList.add(dayRankInfo);

@@ -77,6 +77,14 @@ public class VenuesRankAdapter extends BaseAdapter {
 		String time = mInfo.getDate_time();
 		String album_url = mInfo.getAlbum_url();
 		viewHolder.rankitem_tv_num.setText(num);
+		/**
+		 * 1：匿名； 0：实名
+		 */
+		int is_anonymous = mInfo.getIs_anonymous();
+		if (is_anonymous == 1) {
+			album_url="";
+			name="匿名雪友";
+		}
 		if (position == 0) {
 			viewHolder.rankitem_tv_name.setText(CommonUtils.getInstance().getString(context, R.string.venues_rank_mi));
 			viewHolder.line.setVisibility(View.VISIBLE);
@@ -87,7 +95,7 @@ public class VenuesRankAdapter extends BaseAdapter {
 		if (!TextUtils.isEmpty(album_url)) {
 			asyncImageLoader.DisplayImage(album_url, viewHolder.rankitem_iv_head);
 		} else {
-			Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.user_default_icon);
+			Bitmap mBitmap = asyncImageLoader.readBitMap(context, R.drawable.ic_launcher);
 			viewHolder.rankitem_iv_head.setImageBitmap(mBitmap);
 		}
 		double diatance = mInfo.getDistanceTraveled();

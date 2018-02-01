@@ -8,10 +8,11 @@ public class VenuesRankTodayInfo {
 	String num;
 	String nick_name;
 	String album_url;
-
-	public VenuesRankTodayInfo(double distanceTraveled, String uid, String posid, String date_time, String num,
+	int is_anonymous;
+	public VenuesRankTodayInfo(int is_anonymous,double distanceTraveled, String uid, String posid, String date_time, String num,
 			String nick_name, String album_url) {
 		super();
+		this.is_anonymous = is_anonymous;
 		this.distanceTraveled = distanceTraveled;
 		this.uid = uid;
 		this.posid = posid;
@@ -19,6 +20,14 @@ public class VenuesRankTodayInfo {
 		this.date_time = date_time;
 		this.num = num;
 		this.nick_name = nick_name;
+	}
+
+	public int getIs_anonymous() {
+		return is_anonymous;
+	}
+
+	public void setIs_anonymous(int is_anonymous) {
+		this.is_anonymous = is_anonymous;
 	}
 
 	public String getAlbum_url() {

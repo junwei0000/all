@@ -429,7 +429,7 @@ public class TrackUploadFragment extends Fragment {
 			stringBuffer.append("juliString="+juliString+";   sum_distance=" + sum_distance + "\n");
 			showpointList.add(userslatLng);
 			drawRealtimePoint(userslatLng);
-			savaInfoToSD(MainStartActivity.mActivity, stringBuffer);
+//			savaInfoToSD(MainStartActivity.mActivity, stringBuffer);
 		}
 		if (!isFirstLoc) {
 			beforelatLng = nowlatLng;

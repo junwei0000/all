@@ -12,6 +12,6 @@
      android:textColor="@color/white"
      android:textSize="8sp"
      android:gravity="center"
-     android:background="@drawable/track_bg"/>
+     android:background="@drawable/track_num_bg"/>
 
 </LinearLayout>

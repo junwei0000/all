@@ -51,6 +51,7 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
@@ -59,6 +60,7 @@ import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.UiSettings;
+import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.CoordinateConverter;
 import com.baidu.mapapi.utils.CoordinateConverter.CoordType;
@@ -154,7 +156,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private ArrayList<MainSportInfo> mMpropertyList;
 	private ArrayList<MainSportInfo> mpropertytwnList;
 	/**
-	 * 第一次定位，之后每5分钟一次
+	 * 是否第一次定位---进行上传定位和加载周边用户
 	 */
 	boolean firstUploadLocationstatus = true;
 	private long runingTimestamp;// 运动时间
@@ -179,6 +181,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private int minAltidueall;// 最低海拔
 	private int maxAltidueall;// 最高海拔
 	private int currentAltitude;// 当前海拔
+	private int initAltitude;// 初始海拔
 	private int beforeAltitude;// 前一个海拔
 	private int currentAccuracy;// 精度
 	private double Speed;// 速度
@@ -346,9 +349,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	private void initStartView() {
 		setstopService();
-		gpslocationListenerStatus = false;
 		btnStartStatus = false;
 		btnContinueStatus = false;
+		firstLocationstatus = false;
+		gpslocationListenerStatus = false;
 		firstUploadLocationstatus = true;
 		StepDetector.CURRENT_SETP = 0;
 		BEFORECURRENT_SETP = -1;
@@ -356,21 +360,23 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		startTimestamp = 0;// 开始时间
 		pauseTimestamp = 0;// 休息暂停时间
 		_nMaxSlopeAngle = 0;
-		iv_start.setVisibility(View.VISIBLE);
-		iv_continue.setVisibility(View.GONE);
-		iv_pause.setVisibility(View.GONE);
-		iv_stop.setVisibility(View.GONE);
-
+		if (iv_start != null) {
+			iv_start.setVisibility(View.VISIBLE);
+			iv_continue.setVisibility(View.GONE);
+			iv_pause.setVisibility(View.GONE);
+			iv_stop.setVisibility(View.GONE);
+		}
 		// 清除轨迹
 		if (null != mTrackUploadFragment) {
 			mTrackUploadFragment.initDates();
 		}
 		allpointList.clear();
-		mBaiduMap.clear();
-		if (muserThumbShoaUtils != null)
+		if (mBaiduMap != null) {
+			mBaiduMap.clear();
+		}
+		if (muserThumbShoaUtils != null) {
 			muserThumbShoaUtils.cleaiMap();
-		// mLatLngMap.clear();
-		// mMarkermap.clear();
+		}
 		beforelatLng = null;
 		Speed = 0;
 		averageSpeed = 0;
@@ -853,7 +859,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	public static OnEntityListener entityListener;
 	boolean gpslocationListenerStatus = false;
 
-	boolean firstnetLocationstatus = true;
+	/**
+	 * 第一次定位过滤
+	 */
+	boolean firstLocationstatus = true;
 
 	/**
 	 * 切换暂停 继续结束 两种状态;true为执行状态
@@ -938,7 +947,6 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			mMapView.showZoomControls(false);
 			mMapView.showScaleControl(false);
 		}
-
 		// 定位初始化
 		mLocClient = new LocationClient(mActivity);
 		mLocClient.registerLocationListener(new MyLocationListener());
@@ -1140,23 +1148,21 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			System.err.println(accuracy);
 			if (accuracy >= 30) {
 				gpslocationListenerStatus = false;
-			} else if (accuracy > 13 && accuracy < 30) {
+			} else if (accuracy > 12 && accuracy < 30) {
 				gpslocationListenerStatus = false;
 				// 信号较差数据准确度较低
-			} else if (accuracy > 5 && accuracy <= 13) {
+			} else if (accuracy > 5 && accuracy <= 12) {
 				if (btnContinueStatus) {
 					mTrackUploadFragment.isInUploadFragment = true;
 				}
 				// 信号一般
 				gpslocationListenerStatus = true;
-				firstnetLocationstatus = true;
 			} else {
 				if (btnContinueStatus) {
 					mTrackUploadFragment.isInUploadFragment = true;
 				}
 				// 信号良好
 				gpslocationListenerStatus = true;
-				firstnetLocationstatus = true;
 			}
 		}
 	}
@@ -1175,9 +1181,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 					mTrackUploadFragment.isInUploadFragment = false;
 					// 信号较差数据准确度较低
 				} else {
-					if (firstnetLocationstatus) {
+					if (firstLocationstatus) {
 						// 第一次不定位，防止漂浮坐标
-						firstnetLocationstatus = false;
+						firstLocationstatus = false;
 						return;
 
 					}
@@ -1218,6 +1224,19 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			address = location.getProvider();
 			currentAccuracy = (int) location.getAccuracy();
 			currentAltitude = (int) location.getAltitude(); // 获取海拔高度信息，单位米
+
+			if (firstLocationstatus) {
+				// 第一次不定位，防止漂浮坐标
+				firstLocationstatus = false;
+				initAltitude = currentAltitude;
+				return;
+			}
+			// 第一次定位海拔变化大于ski_height 时，重新定位
+			if (Math.abs(initAltitude - currentAltitude) > ski_height) {
+				initAltitude = currentAltitude;
+				return;
+			}
+
 			if (maxAltidueall == 0 && minAltidueall == 0) {
 				maxAltidueall = minAltidueall = currentAltitude;
 			}
@@ -1511,13 +1530,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		 */
 
 		if (firstUploadLocationstatus
-				|| (btnStartStatus && btnContinueStatus && runingTimestamp > 0 && (runingTimestamp / 1000) % 10 == 0)) {
+				|| (btnStartStatus && runingTimestamp > 0 && (runingTimestamp / 1000) % 10 == 0)) {
 			mHandler.sendEmptyMessage(UPDATEPOI);
 		}
 		/**
 		 * 每5s上传一次数据
 		 */
-		if ((btnStartStatus && btnContinueStatus && runingTimestamp > 0 && (runingTimestamp / 1000) % 5 == 0)) {
+		if ((btnStartStatus && runingTimestamp > 0 && (runingTimestamp / 1000) % 5 == 0)) {
 			mHandler.sendEmptyMessage(UPDATELOCATION);
 		}
 	}
@@ -1588,8 +1607,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 				}
 				break;
 			case SETLINE:
-				if(currentlatLng!=null)
-				setline(currentlatLng);
+				if (currentlatLng != null)
+					setline(currentlatLng);
 				break;
 			case NETLOCATION:
 				BDLocation mBDLocation = (BDLocation) msg.obj;
@@ -1858,6 +1877,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						String msg = (String) dataMap.get("msg");
 						CommonUtils.getInstance().initToast(mActivity, msg);
 					}
+				} else {
+					if (!TextUtils.isEmpty(recordDatas)) {
+						mDB.addTableTrackInfo(uid, token, access_token, recordDatas);
+					}
 				}
 				initStartView();
 				CommonUtils.getInstance().setOnDismissDialog(mDialog);
@@ -1934,6 +1957,13 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						}
 						muserThumbShoaUtils.initMyOverlay(mMapList);
 					}
+					if (status.equals("401") || status.equals("402")) {
+						//关闭定位
+						initStartView();  
+						firstUploadLocationstatus=false;
+						UserLoginBack403Utils.getInstance()
+								.sendBroadcastLoginBack403(CommonUtils.getInstance().mHomeActivity);
+					}
 				}
 				CommonUtils.getInstance().setClearCacheBackDate(mhashmap, dataMap);
 
@@ -1997,7 +2027,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	@Override
 	protected void onDestroy() {
 		try {
-			mHandler.removeCallbacks(thread);
+			if (thread != null) {
+				mHandler.removeCallbacks(thread);
+			}
 			if (mTrackUploadFragment != null) {
 				mTrackUploadFragment.stopTrace();
 				mTrackUploadFragment.showpointList.clear();
@@ -2016,14 +2048,20 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			if (mLocClient != null)
 				mLocClient.stop();
 			// 关闭定位图层
-			mBaiduMap.setMyLocationEnabled(false);
-			mBaiduMap.clear();
-			mBaiduMap = null;
-			mMapView.removeAllViews();
-			mMapView.onDestroy();
-			mMapView = null;
+			if (mBaiduMap != null) {
+				mBaiduMap.setMyLocationEnabled(false);
+				mBaiduMap.clear();
+				mBaiduMap = null;
+			}
+			if (mMapView != null) {
+				mMapView.removeAllViews();
+				mMapView.onDestroy();
+				mMapView = null;
+			}
 			option = null;
-			mDB.close();
+			if (mDB != null) {
+				mDB.close();
+			}
 			setstopService();
 		} catch (Exception e) {
 		}

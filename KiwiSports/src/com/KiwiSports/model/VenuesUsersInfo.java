@@ -1,7 +1,5 @@
 package com.KiwiSports.model;
 
-import com.baidu.mapapi.map.Marker;
-
 import android.graphics.Bitmap;
 
 public class VenuesUsersInfo {
@@ -12,6 +10,7 @@ public class VenuesUsersInfo {
 	String is_anonymous;
 	double longitude;
 	double latitude;
+	Bitmap Roundbitmap;
 	public VenuesUsersInfo() {
 		super();
 	}
@@ -28,6 +27,14 @@ public class VenuesUsersInfo {
 		this.latitude = latitude;
 	}
 
+
+	public Bitmap getRoundbitmap() {
+		return Roundbitmap;
+	}
+
+	public void setRoundbitmap(Bitmap roundbitmap) {
+		Roundbitmap = roundbitmap;
+	}
 
 	public String getUid() {
 		return uid;
