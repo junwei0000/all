@@ -102,7 +102,7 @@ public class WelcomeStartActiyity extends BaseActivity {
 		String album_url = "";
 		int sex = 1;
 		String token = ConfigUtils.getInstance().getDeviceId(this);
-		String access_token = "6_G-fuhfLPfpljlTwCYFWEhj9EWpAhXst2nAcz3ASOLpR-1at_VI08TmHGQPEaUW_4rPwzd3nY1FvKDMRb7Ka9219sOjeK75RvEyLoYtGEKdw";
+		String access_token = "6_rr1c3mcRQjmDPivY6SIXAv5wWXiJH0A1CVNUeu8HBtVLE3h79c_vbr6MFLRJyL33zwfdWzBAw5ZN-D3l0FvPiyJjSgLCG8qaa2JZyq8pV9I";
 		bestDoInfoEditor.putString("loginStatus", Constans.getInstance().loginStatus);
 		bestDoInfoEditor.putString("uid", uid + "");
 		bestDoInfoEditor.putString("nick_name", nick_name);

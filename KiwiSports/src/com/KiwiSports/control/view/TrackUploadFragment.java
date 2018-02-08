@@ -424,18 +424,39 @@ public class TrackUploadFragment extends Fragment {
 		if (isFirstLoc || rebookstatus(userslatLng)) {
 			double juliString = ConfigUtils.DistanceOfTwoPoints(beforelatLng.latitude, beforelatLng.longitude,
 					userslatLng.latitude, userslatLng.longitude);
-			temdistance = juliString;
-			sum_distance = sum_distance + juliString;
-			stringBuffer.append("juliString="+juliString+";   sum_distance=" + sum_distance + "\n");
-			showpointList.add(userslatLng);
-			drawRealtimePoint(userslatLng);
-//			savaInfoToSD(MainStartActivity.mActivity, stringBuffer);
+			if (haveUserLocStatus(juliString)) {
+
+				temdistance = juliString;
+				sum_distance = sum_distance + juliString;
+				stringBuffer.append("juliString=" + juliString + ";   sum_distance=" + sum_distance + "\n");
+				showpointList.add(userslatLng);
+				drawRealtimePoint(userslatLng);
+				// savaInfoToSD(MainStartActivity.mActivity, stringBuffer);
+			} else {
+				return;
+			}
 		}
 		if (!isFirstLoc) {
 			beforelatLng = nowlatLng;
 		}
 		isFirstLoc = false;
 		stringBuffer.append("//-------------------------------------------------------------------" + "\n");
+	}
+
+	/**
+	 * 是否有效坐标：根据两点坐标差判断,大于2km视为 无效跳动坐标
+	 * 
+	 * @param beforelatLng
+	 * @param userslatLng
+	 * @return
+	 */
+	public static boolean haveUserLocStatus(double juliString) {
+		boolean status = true;
+		if (juliString >= 2) {
+			status = false;
+		}
+		return status;
+
 	}
 
 	/**

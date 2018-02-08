@@ -651,7 +651,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	 */
 	private void getCurrentPropertyValue() {
 		distanceTraveled = mTrackUploadFragment.sum_distance;
-		distanceTraveled = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(distanceTraveled, 2));
+		distanceTraveled = Double.valueOf(PriceUtils.getInstance().formatFloatNumber(distanceTraveled));
 		calorie = (int) (70 * distanceTraveled * 1.036);
 		nSteps = StepDetector.CURRENT_SETP;
 		duration = DatesUtils.getInstance().formatTimes(runingTimestamp);
@@ -1156,9 +1156,10 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	private void showGpsAccuracy(Location location) {
 		mTrackUploadFragment.isInUploadFragment = false;
 		gpslocationListenerStatus = false;
+		float accuracy = location.getAccuracy();
+		Log.e("map", "accuracy==" + accuracy);
+		CommonUtils.getInstance().initToast(mActivity, "accuracy==" + accuracy);
 		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			float accuracy = location.getAccuracy();
-			System.err.println(accuracy);
 			if (accuracy >= 30) {
 				gpslocationListenerStatus = false;
 			} else if (accuracy > 12 && accuracy < 30) {
@@ -1200,13 +1201,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						return;
 
 					}
-					if (location.getLocType() == 62) {
-						longitude_me = 116.404269;
-						latitude_me = 39.91405;
-					} else {
-						longitude_me = location.getLongitude();
-						latitude_me = location.getLatitude();
-					}
+					longitude_me = location.getLongitude();
+					latitude_me = location.getLatitude();
 					Speed = location.getSpeed();// Km/h
 					if (Speed < 0) {
 						Speed = 0;
@@ -1272,7 +1268,8 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 	}
 
 	private void setLineStatus() {
-		if (btnStartStatus && btnContinueStatus) {
+		if (btnStartStatus && btnContinueStatus && mTrackUploadFragment != null
+				&& mTrackUploadFragment.isInUploadFragment) {
 			mHandler.sendEmptyMessage(SETLINE);
 		} else {
 			showLocation();
@@ -1294,11 +1291,19 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			mTrackUploadFragment.showRealtimeTrack(latLng);
 			Log.e("map", "beforelatLng==" + beforelatLng + ";;;latLng==" + latLng);
 			if (beforelatLng == null || beforelatLng.latitude != latLng.latitude) {
-				recordInfo(latLng);
-				insmaxSlope();
-				inskyHillDis();
-				beforelatLng = latLng;
-				Log.e("track", "addddd-----" + allpointList.size());
+				double juliString = 0;
+				if (beforelatLng != null && latLng != null) {
+
+					juliString = ConfigUtils.DistanceOfTwoPoints(beforelatLng.latitude, beforelatLng.longitude,
+							latLng.latitude, latLng.longitude);
+				}
+				if (TrackUploadFragment.haveUserLocStatus(juliString)) {
+					recordInfo(latLng);
+					insmaxSlope();
+					inskyHillDis();
+					beforelatLng = latLng;
+					Log.e("track", "addddd-----" + allpointList.size());
+				}
 			}
 			BEFORECURRENT_SETP = StepDetector.CURRENT_SETP;
 			getCurrentPropertyValue();
