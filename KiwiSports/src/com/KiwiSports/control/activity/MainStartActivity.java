@@ -322,21 +322,34 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			mSpeechSynthesizer.speak("已经结束记录您的运动数据");
 	}
 
-	private void valueSpeak() {
-		cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", true);
-		if (cb_voicestatus && btnStartStatus && verticalDistance * 1000 / 500 > 0 && verticalDistance * 1000 % 500 < 50
-				&& runingTimestamp > 0 && (runingTimestamp / 1000) % 60 == 0) {
+	/**
+	 * 其他运动每隔5分钟播报一次
+	 */
+	private void valueSpeakOther() {
+		if (!sportsType.equals("sky")) {
+			cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", true);
 			String time = DatesUtils.getInstance().companyTimeNoSecond((int) runingTimestamp / 1000);
-
-			if (sportsType.equals("sky")) {
-				mSpeechSynthesizer.speak(
-						"您已经运动" + distanceTraveled + "公里，滑行落差" + verticalDistance + "米，滑行" + lapCount + "趟，用时" + time);
-
-			} else {
+			if (cb_voicestatus && btnStartStatus && btnContinueStatus && distanceTraveled > 0 && runingTimestamp > 0
+					&& (runingTimestamp / 1000) % (60 * 5) == 0) {
 				mSpeechSynthesizer.speak("您已经运动" + distanceTraveled + "公里，当前海拔" + currentAltitude + "米，用时" + time);
-
 			}
 		}
+
+	}
+
+	/**
+	 * 滑雪每趟播报一次
+	 */
+	private void valueSpeakSky() {
+		if (sportsType.equals("sky")) {
+			cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus", true);
+			String time = DatesUtils.getInstance().companyTimeNoSecond((int) runingTimestamp / 1000);
+			if (cb_voicestatus && btnStartStatus && btnContinueStatus && distanceTraveled > 0) {
+				mSpeechSynthesizer.speak(
+						"您已经运动" + distanceTraveled + "公里，滑行落差" + verticalDistance + "米，滑行" + lapCount + "趟，用时" + time);
+			}
+		}
+
 	}
 
 	@Override
@@ -677,7 +690,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 			}
 
 		}
-		valueSpeak();
+		valueSpeakOther();
 		showCurrentPropertyValue();
 	}
 
@@ -1418,6 +1431,7 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 		downHillDistance += (skiDis + verticalDistance);
 
 		++lapCount;
+		valueSpeakSky();
 	}
 
 	public void setStatusUpWithDistance() {
@@ -1958,9 +1972,9 @@ public class MainStartActivity extends FragmentActivity implements OnClickListen
 						muserThumbShoaUtils.initMyOverlay(mMapList);
 					}
 					if (status.equals("401") || status.equals("402")) {
-						//关闭定位
-						initStartView();  
-						firstUploadLocationstatus=false;
+						// 关闭定位
+						initStartView();
+						firstUploadLocationstatus = false;
 						UserLoginBack403Utils.getInstance()
 								.sendBroadcastLoginBack403(CommonUtils.getInstance().mHomeActivity);
 					}
