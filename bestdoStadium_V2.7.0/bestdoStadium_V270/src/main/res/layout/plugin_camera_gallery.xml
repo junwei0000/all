@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_top_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <com.bestdo.bestdoStadiums.control.photo.zoom.ViewPagerFixed
+        android:id="@+id/gallery01"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@color/text_contents_color"
+        android:unselectedAlpha="1" />
+
+</LinearLayout>

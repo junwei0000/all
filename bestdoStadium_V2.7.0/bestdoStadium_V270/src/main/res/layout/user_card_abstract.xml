@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/contentDescription"
+        android:scaleType="centerCrop"
+        android:src="@null" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"
+            android:overScrollMode="never" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                     >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/user_item_paddlefgtright"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="1、什么是卡券？"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="卡券是百动发行和认可的购物卡或券，可以在百动消费付款时抵扣一定的金额。"
+                        android:background="@color/white"
+                        style="@style/user_item_padd"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="2、如何获取卡券？"
+                        style="@style/user_item_paddlefgtright"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="与百动合作的企业向其员工发放百动卡券或百动的用户通过百动平台对卡券进行购买。"
+                        android:background="@color/white"
+                        style="@style/user_item_padd"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="3、如何使用卡券？"
+                        style="@style/user_item_paddlefgtright"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="在百动平台上进行消费时，可以使用卡群抵扣相应的金额。"
+                        android:background="@color/white"
+                        style="@style/user_item_padd"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="4、卡券找零兑现吗？"
+                        style="@style/user_item_paddlefgtright"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="卡券不找零、不兑现。付款时卡券优先使用，不足支付时才会使用第三方进行支付。"
+                        android:background="@color/white"
+                        style="@style/user_item_padd"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

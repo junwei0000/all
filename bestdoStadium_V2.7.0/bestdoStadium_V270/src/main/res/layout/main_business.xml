@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <!-- 广告 -->
+
+    <RelativeLayout
+        android:id="@+id/business_relat_advert"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_img_height"
+        android:layout_alignParentTop="true" >
+
+        <com.bestdo.bestdoStadiums.control.view.AutoScrollViewPager
+            android:id="@+id/business_viewpager_advert"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.bestdo.bestdoStadiums.control.view.CirclePageIndicator
+            android:id="@+id/business_indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/business_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/business_relat_advert"
+        android:background="@color/page_bg"
+        android:orientation="vertical" >
+
+        <com.bestdo.bestdoStadiums.utils.MyGridView
+            android:id="@+id/main_mygridview_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/padd_leftright"
+            android:background="@color/white"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@color/main_business_tab_edgecolor"
+            android:fadeScrollbars="true"
+            android:fadingEdge="none"
+            android:gravity="center"
+            android:listSelector="@drawable/list_notselector"
+            android:numColumns="4"
+            android:overScrollMode="never"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:scrollbars="none"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/main_bottom_layout_left"
+                style="@style/main_bottom_padd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:onClick="onSkip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/business_navitem_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:id="@+id/business_navitem_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_min_size" />
+
+                <ImageView
+                    android:id="@+id/business_navitem_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/main_bottom_layout_rigth1"
+                    style="@style/main_bottom_padd"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:onClick="onSkip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/business_navitem_namerigth1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/business_navitem_name2rigth1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_min_size" />
+
+                    <ImageView
+                        android:id="@+id/business_navitem_imgrigth1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/main_bottom_layout_rigth2"
+                    style="@style/main_bottom_padd"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:onClick="onSkip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/business_navitem_namerigth2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/business_navitem_name2rigth2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_min_size" />
+
+                    <ImageView
+                        android:id="@+id/business_navitem_imgrigth2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"  />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

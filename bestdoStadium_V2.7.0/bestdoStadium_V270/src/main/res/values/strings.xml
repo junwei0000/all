@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    *****************V2.0**********************************
+    ***************************************************************
+    *********************************************************************
+    -->
+    <string name="review">预览</string>
+    <string name="app_name">百动运动管家</string>
+    <string name="seen_more">上拉加载更多</string>
+    <string name="load_all">已加载全部</string>
+    <string name="net_tishi">网络连接不可用，请稍后重试</string>
+    <string name="shaohou_tishi">请稍后...</string>
+    <string name="drop_dowm">下拉刷新页面</string>
+    <string name="release_update">松开刷新页面</string>
+    <string name="refreshing">页面正在刷新中</string>
+    <string name="loading">数据正在加载中</string>
+    <string name="tel">400-684-1808</string>
+    <string name="tel_tishi">如遇问题可拨打</string>
+    <string name="cancel">注  销</string>
+    <string name="contentDescription">page</string>
+    <string name="not_date">搜索无结果</string>
+    <string name="update_title">软件更新</string>
+    <string name="update_tishi">更新提示</string>
+    <string name="update_updatenow">立刻下载更新</string>
+    <string name="update_updateafter">稍后再更新</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+    <!-- 单位 -->
+    <string name="unit_fuhao_maohao">:  </string>
+    <string name="unit_fuhao_tanhao">！</string>
+    <string name="unit_fuhao_money">¥</string>
+    <string name="unit_fuhao_dalo">$ </string>
+    <string name="unit_fuhao_jinghao"># </string>
+    <string name="unit_fuhao_qi">起</string>
+    <string name="unit_total">共计:  </string>
+    <string name="unit_yuan">元 </string>
+    <string name="unit_ren">人 </string>
+    <string name="unit_area">区 </string>
+    <string name="unit_piece">片 </string>
+    <string name="unit_week">周</string>
+    <string name="unit_xingqi">星期</string>
+    <string name="unit_monday">周一</string>
+    <string name="unit_tuesday">周二</string>
+    <string name="unit_wednesday">周三</string>
+    <string name="unit_thursday">周四</string>
+    <string name="unit_friday">周五</string>
+    <string name="unit_saturday">周六</string>
+    <string name="unit_sunday">周日</string>
+    <string name="stadiummaplist_item_menshijia">门市价：</string>
+    <string name="unit_ymd">yyyy年MM月dd日</string>
+    <string name="unit_ymdq">yyyy-MM-dd</string>
+    <string name="unit_ymde">yyyy年MM月dd日 EE</string>
+    <string name="unit_ymdhmq">yyyy-MM-dd HH:mm</string>
+    <string name="unit_md">MM月dd日</string>
+    <string name="unit_mdq">MM-dd</string>
+    <string name="unit_mde">MM月dd日 EE</string>
+    <string name="unit_mdeq">MM-dd EE</string>
+    <!-- 我的订单 -->
+    <string name="creat_orders_title">创建订单</string>
+    <string name="type_golf">高尔夫</string>
+    <string name="type_golfrange">练习场</string>
+    <string name="type_shuttlecock">羽毛球</string>
+    <string name="type_tennis">网球</string>
+    <string name="type_swimming">游泳</string>
+    <string name="type_fitness">健身</string>
+    <string name="userOrdersDetails_date">日期:  </string>
+    <string name="userOrdersDetails_num">数量: </string>
+    <string name="userOrdersDetails_server">服务:  </string>
+    <string name="userOrdersDetails_area">地点:  </string>
+    <string name="userOrdersDetails_times">时段:  </string>
+    <string name="userOrdersDetails_orderinfo">订单详情</string>
+    <string name="userOrders_orderNo">订单号码:</string>
+    <string name="userOrdersDetails_phone">联系人手机:</string>
+    <string name="userOrdersDetails_palyers">联系人姓名:</string>
+    <string name="userOrdersDetails_payinfo">结算信息</string>
+    <string name="userOrdersDetails_orderallmoney">订单总额</string>
+    <string name="userOrdersDetails_deduction">抵扣</string>
+    <string name="userOrdersDetails_paymoney">支付金额</string>
+    <!-- 登录注册 -->
+    <string name="tv_login">登录</string>
+    <string name="tv_reg">注册</string>
+    <string name="tv_reg2">注册新账号</string>
+    <string name="tv_reg_login">已有账号直接登录</string>
+    <string name="tv_code">验证码</string>
+    <string name="tv_getcode">发送验证码</string>
+    <string name="tv_repeatgetcode">重新发送</string>
+    <string name="tv_pw">密码</string>
+    <string name="tv_newpw">新密码</string>
+    <string name="tv_surepw">确认密码</string>
+    <string name="tv_phone">手机</string>
+    <string name="tv_phonehint">请输入手机号</string>
+    <string name="tv_codehint">请输入短信验证码</string>
+    <string name="tv_pwhint">请输入密码</string>
+    <string name="tv_codeunit">s</string>
+    <string name="userlogin_fastlogin">验证码登录</string>
+    <string name="userlogin_commonlogin">密码登录</string>
+    <string name="userlogin_tv_forgetpw">忘记密码</string>
+    <string name="tishi_login_phone">请输入正确格式的手机号！</string>
+    <string name="tishi_login_pw">请输入正确格式的密码！</string>
+    <string name="tishi_login_code">请输入正确格式的验证码！</string>
+    <string name="tishi_regist_surepw">两次输入密码不一致！</string>
+    <string name="userfindPw_title">找回密码</string>
+    <string name="userfindPw_ok">完成</string>
+    <string name="next">下一步</string>
+    <!-- 我的收藏 -->
+    <string name="usercollect_title">我的收藏</string>
+    <string name="useraddress_title">地址管理</string>
+    <!-- 退出 -->
+    <string name="myexit_text_title">确定退出吗？</string>
+    <string name="dialog_userwalking_text_title">是否结束本次计步？</string>
+    <string name="myexit_text_sure">确认</string>
+    <string name="myexit_text_off">取消</string>
+    <string name="no_gps_text">当前环境信号较弱，建议绕开高楼大厦。</string>
+    <!-- 个人中心 -->
+    <string name="usercenter_allorder">全部订单</string>
+    <string name="usercenter_waitpay">待付款</string>
+    <string name="usercenter_waitplay">待下场</string>
+    <string name="usercenter_order">订场订单</string>
+    <string name="usercenter_member">会员中心</string>
+    <string name="usercenter_shangcheng_order">商城订单</string>
+    <string name="usercenter_kaquan">卡券中心</string>
+    <string name="usercenter_kami">卡密包</string>
+    <string name="usercenter_buykaquan">百动卡在线购买</string>
+    <string name="usercenter_set">设置</string>
+    <string name="usercenter_setpw">设置登录密码</string>
+    <string name="usercenter_bindmobile">绑定手机号</string>
+    <string name="usercenter_about">关于百动</string>
+    <string name="usercenter_sendmsg">意见反馈</string>
+    <string name="usercenter_tel">客服电话:  400-684-1808</string>
+    <string name="usercenter_namemoren">登录/注册</string>
+    <string name="userSendIdear_tv_contenthint">欢迎您给出使用的感受和意见！</string>
+    <string name="userSendIdear_tv_telhint">输入您的联系方式</string>
+    <string name="userSendIdear_tv_tel">联系方式</string>
+    <string name="tv_commit">提交</string>
+    <string name="user_set_tel">手机号</string>
+    <string name="user_set_pw">设置登录密码</string>
+    <string name="user_set_cancel">退出当前账号</string>
+    <string name="user_account_title">个人资料</string>
+    <string name="user_account_avatar">头像</string>
+    <string name="user_account_username">百动号</string>
+    <string name="user_account_nickname">昵称</string>
+    <string name="user_account_name">姓名</string>
+    <string name="user_account_sex">性别</string>
+    <string name="user_account_sex_male">男</string>
+    <string name="user_account_sex_famale">女</string>
+    <string name="user_account_username_hint">这里是百动号</string>
+    <string name="user_account_nickname_hint">这里是昵称</string>
+    <string name="user_account_name_hint">这里是姓名</string>
+    <string name="checkupdate">检查更新</string>
+    <string name="user_account_avatar_phones">拍照</string>
+    <string name="user_account_avatar_selects">从手机相册选择</string>
+    <string name="user_account_avatar_vedio">视频上传</string>
+    <string name="user_cards_overdue_text"><u>查看过期卡券</u></string>
+    <!-- 传入参数的订单状态 -->
+    <!-- 0  待付款 -->
+    <string name="order_putParameters_waitpay">0</string>
+    <!-- 1  确认中 -->
+    <string name="order_putParameters_confirming">1</string>
+    <!-- 3  待下场 -->
+    <string name="order_putParameters_stayoff">3</string>
+    <!-- -1 已结束 -->
+    <string name="order_putParameters_finished">-1</string>
+    <!-- 我的**订单状态 -->
+    <!-- 全部 -->
+    <string name="order_index_all">0</string>
+    <!-- 待付款 -->
+    <string name="order_index_waitpay">1</string>
+    <!-- 确认中 -->
+    <string name="order_index_confirming">2</string>
+    <!-- 待下场 -->
+    <string name="order_index_stayoff">3</string>
+    <!-- 已取消 -->
+    <string name="order_index_canceled">4</string>
+    <!-- 退订中 -->
+    <string name="order_all">all</string>
+    <!-- 退订中 -->
+    <string name="order_unsubscribing">4</string>
+    <!-- 已退订 -->
+    <string name="order_unsubscribed">-2</string>
+    <!-- 已取消 -->
+    <string name="order_canceled">-1</string>
+    <!-- 已完成 -->
+    <string name="order_completed">2</string>
+    <!-- 已退订 -->
+    <string name="order_unsubscribed_name">已退订</string>
+    <!-- 已取消 -->
+    <string name="order_canceled_name">已取消</string>
+    <!-- 待付款 -->
+    <string name="order_waitpay_name">待付款</string>
+    <!-- 已完成 -->
+    <string name="order_completed_name">已完成</string>
+    <!-- 待下场 -->
+    <string name="order_stayoff_name">待下场</string>
+    <!-- 退订中 -->
+    <string name="order_unsubscribing_name">退订中</string>
+    <!-- 确认中 -->
+    <string name="order_confirming_name">确认中</string>
+    <string name="order_overed">已取消</string>
+    <!-- 创建订单pylw -->
+    <string name="createorderpylw_booktip">亲，一次只能选择5片哦！</string>
+    <string name="createorder_countsti_golffrange">选择数量</string>
+    <string name="createorder_countsti_golfplay">打球人数</string>
+    <string name="createorder_phonetishi">请输入联系人手机</string>
+    <string name="createorder_nametishi">多个打球人姓名请用逗号分隔</string>
+    <string name="createorder_book">预订</string>
+    <string name="createorder_setcard_tv">使用百动卡，优惠立刻享</string>
+    <!-- 下单success -->
+    <string name="success_casepay_title">提交成功</string>
+    <string name="success_casepay_ti">订单提交成功！</string>
+    <string name="success_pay_title">支付成功</string>
+    <string name="success_card_pay_title">购买成功</string>
+    <string name="success_pay_tishitel">电话</string>
+    <string name="success_yuding_title">预订成功</string>
+    <string name="success_yuding_ti">恭喜您预订成功！</string>
+    <string name="faliure_pay_title">支付失败</string>
+    <string name="faliure_pay_content">您的订单已取消，如需付款请重新下单，订单已存至已取消订单列表。</string>
+    <string name="off_pay_ti">请拨打百动客服热线对该超时已被取消但支付成功的订单进行处理!</string>
+    <string name="off_pay_content">因您支付超时，订单已自动取消，支付宝支付无法准确判断，
+        	故您虽然支付成功，但订单仍为取消状态，请致电客服400-684-1808退订，
+        	申请退款，给您造成不便，见谅！</string>
+    <string name="off_paywx_content">因您支付超时，订单已自动取消，微信支付无法准确判断，
+        	故您虽然支付成功，但订单仍为取消状态，请致电客服400-684-1808退订，
+        	申请退款，给您造成不便，见谅！</string>
+    <string name="off_pay_title">订单取消</string>
+    <string name="faliure_pay_btn">重新支付</string>
+    <!-- 场馆详情、list -->
+    <string name="stadiummaplist_myarea">我的位置:  </string>
+    <string name="stadiummaplist_myareacentre">市中心</string>
+    <string name="stadiummaplist_myareafailure">定位失败</string>
+    <string name="stadiummaplist_notcity_tishi">请重新选择城市</string>
+    <string name="stadiummaplist_notpidata_tishi">暂无符合搜索条件的数据</string>
+    <string name="stadium_detail_notcity_tishi">请在设置中开启gps定位或确认允许定位权限。</string>
+    <string name="stadiummaplist_bottom_yuding">可预订</string>
+    <string name="stadiummaplist_bottom_price">价格</string>
+    <string name="stadiummaplist_bottom_distance">距离</string>
+    <string name="stadiummaplist_bottom_pdcancel">取消</string>
+    <string name="stadiummaplist_bottom_pdsure">确认</string>
+    <string name="stadiummaplist_bottom_sort_priceasc">价格由低到高</string>
+    <string name="stadiummaplist_bottom_sort_pricedesc">价格由高到低</string>
+    <string name="stadiummaplist_bottom_sort_distanceasc">距离由近到远</string>
+    <string name="stadium_detail_notweather">暂无天气</string>
+    <string name="stadium_detail_notprice">暂无报价</string>
+    <string name="stadium_detail_notbook">暂不支持预订</string>
+    <string name="stadium_detail_surplus">剩余</string>
+    <string name="stadium_detail_yuding">预订</string>
+    <string name="stadium_detail_logintip">请登录后预订</string>
+    <string name="stadium_detail_tradetime">营业时间:  </string>
+    <string name="stadium_detail_pylw_venueselect">场地选择</string>
+    <string name="stadium_detail_teetime">选择teetime</string>
+    <string name="stadium_detail_playdate">下场日期</string>
+    <string name="stadium_detail_spdate">运动日期</string>
+    <string name="stadium_detail_playteetime">打球时间</string>
+    <string name="stadium_detail_cancel">取消</string>
+    <string name="stadium_detail_sure">确认</string>
+    <string name="stadium_detail_more">更多详情</string>
+    <string name="stadium_detail_contactvenue">联系场馆</string>
+    <string name="stadium_detail_notonlinebook">该场馆暂不支持在线预订</string>
+    <string name="stadium_detail_telonstadiumphone">请直接拨打场馆电话预订</string>
+    <string name="stadium_detail_more_facilities">场馆设施</string>
+    <string name="stadium_detail_more_address">详细地址</string>
+    <string name="stadium_detail_more_navigation">导航</string>
+    <string name="stadium_detail_more_stadiumtel">场馆电话</string>
+    <string name="stadium_detail_more_dotel">拨打</string>
+    <string name="stadium_detail_more_roadmap">球道图</string>
+    <string name="stadium_detail_more_almostmap">差点图</string>
+    <string name="stadium_detail_more_ballpicturebrowsing">图片浏览</string>
+    <string name="stadium_keyword_search">搜索</string>
+    <string name="stadium_keyword_clear_search">清除搜索历史</string>
+    <string name="stadium_keyword_searchtip">请输入场馆名/关键字</string>
+    <string name="stadium_keyword_searchhint">场馆名/关键字</string>
+    <string name="stadium_detail_more_abstract">场馆介绍</string>
+    <!-- 支付 -->
+    <string name="pay_title">支付方式</string>
+    <string name="pay_repayname">支付宝支付</string>
+    <string name="pay_repaytishi">支付宝付款，一键付款更安全</string>
+    <string name="pay_weixinname">微信支付</string>
+    <string name="pay_weixintishi">推荐开通了微信支付的用户使用</string>
+    <string name="payZFB_pagetop_name">支付宝支付</string>
+    <string name="payWX_pagetop_name">微信支付</string>
+    <string name="payWX_loadtishi">跳转中</string>
+    <string name="payZFB_loadtishi">订单提交完成</string>
+    <!-- 搜索 -->
+    <string name="search_cityname">城市</string>
+    <string name="search_data">下场日期</string>
+    <string name="search_keyword">关键字</string>
+    <string name="search_qiehuan">【切换】</string>
+    <string name="search_title">找球场</string>
+    <string name="search_city_pagetop_name">城市选择</string>
+    <string name="search_city_remen">热门城市</string>
+    <string name="search_city_area">当前定位城市</string>
+    <string name="search_city_history">历史选择</string>
+    <!-- action -->
+    <!-- 下线通知广播 -->
+    <string name="action_home">actionhome_Receiver</string>
+    <string name="action_home_type_login403">actionhome_login403</string>
+    <string name="action_home_type_loginregok">actionhome_loginregok</string>
+    <string name="action_home_type_gotohome">actionhome_gotohome</string>
+    <string name="action_home_type_centerfrommain">actionhome_centerfrommain</string>
+    <string name="action_home_type_back">actionhome_backtohome</string>
+    <string name="actionhome_bussinesspersonal">actionhome_bussinesspersonal</string>
+    <!-- 登录注册后同步详情中收藏状态；注册广播 -->
+    <string name="action_StadiumCollectUtils">stadiumdetail_Receiver</string>
+    <!-- 从创建订单发广播更新 选择场次页和场馆详情场地库存 -->
+    <string name="action_updateDetailVenueOrPYLWVenuePieces">updateVenueOrPYLWVenuePieces_Receiver</string>
+    <!-- 支付成功的广播(从 订单完成列表、订单详情) -->
+    <string name="action_Success_Faliure">view.UserOrderDetail.broadcastreceiverregister.SENDBROADCAST</string>
+    <!-- 分享后的广播 -->
+    <string name="userwalking_share">userwalkingshare_Receiver</string>
+    <!-- 第三方登录 绑定手机号注册广播 -->
+    <string name="action_UmengLoginBindMobile">action_UmengLoginBindMobile</string>
+    <!-- 健步走2.0 -->
+    <string name="walk_count">计步</string>
+    <string name="run">跑步</string>
+    <string name="sweep_to_more_info">滑动查看活动信息</string>
+    <string name="see_rank">查看排名</string>
+    <string name="bestdo">北京新赛点体育投资股份有限公司</string>
+    <string name="total_km">总公里数</string>
+    <string name="company_rank">公司排名</string>
+    <string name="consume_cal">消耗大卡</string>
+    <string name="run_title">跑步总里程(公里)</string>
+    <string name="act_rank">活动榜单</string>
+    <string name="rank_my">个人榜单</string>
+    <string name="rank_company">部门榜单</string>
+    <string name="personal_rank">个人活动榜单</string>
+    <string name="company_rank_l">部门活动榜单</string>
+    <string name="please_wait">请稍候</string>
+    <string name="no_rank">目前还没有榜单</string>
+    <string name="no_more_data">没有更多数据</string>
+    <string name="walk_total_join_numbser">共%s人参加</string>
+</resources>

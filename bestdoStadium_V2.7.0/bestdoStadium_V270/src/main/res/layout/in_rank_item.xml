@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp6"
+    android:layout_marginTop="@dimen/dp1"
+    android:background="@color/c_ffffff"
+    android:orientation="vertical" >
+
+    <com.bestdo.bestdoStadiums.utils.CircleImageView
+        android:id="@+id/img_my"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp8"
+        android:src="@drawable/ic_launcher" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_toRightOf="@+id/img_my"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/tv_my"
+            style="@style/tv_walk_center.rank_name"
+            android:text="方世杰" />
+
+        <TextView
+            android:id="@+id/tv_ranNo"
+            style="@style/tv_walk_center.rank_min"
+            android:layout_alignLeft="@+id/tv_my"
+            android:layout_below="@+id/tv_my"
+            android:text="第999名"
+            android:textSize="@dimen/sp14" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_count"
+        style="@style/tv_walk_center.rank_count"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp15"
+        android:text="19287" />
+
+</RelativeLayout>

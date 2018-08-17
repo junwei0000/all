@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_walk"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".control.activity.WalkActivity" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        layout="@layout/in_walk_title" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@drawable/walk_bg" />
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp37"
+        android:background="@color/c_ffffff"
+        android:gravity="center"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/img_up"
+            android:layout_width="@dimen/dp10"
+            android:layout_height="@dimen/dp6"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:src="@drawable/walk_up" />
+
+        <TextView
+            android:id="@+id/tv_showpop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_up"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            android:text="@string/sweep_to_more_info"
+            android:textColor="@color/c_a8a8a8"
+            android:textSize="@dimen/sp12" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_cuser"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp20"
+        android:background="@color/c_ffffff"
+        android:visibility="gone" />
+
+</LinearLayout>

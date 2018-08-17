@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/create_orders_pylw_timeitem_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+</LinearLayout>

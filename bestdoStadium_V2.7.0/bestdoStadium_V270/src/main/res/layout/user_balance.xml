@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/user_item_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingTop="@dimen/padd_topbottom"
+                    android:text="当前余额"
+                    android:textColor="@color/text_contents_color"
+                    android:textSize="@dimen/text_biaoti_size" />
+
+                <LinearLayout
+                    style="@style/user_item_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padd_topbottom" >
+
+                    <TextView
+                        android:id="@+id/balance_tv_mymoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/sp36" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="元"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/jianju"
+                    android:background="@color/page_bg" />
+
+                <LinearLayout
+                    style="@style/user_item_padd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:text="选择充值金额"
+                        android:textColor="@color/text_contents_color"
+                        android:textSize="@dimen/text_biaoti_size" />
+
+                    <com.bestdo.bestdoStadiums.utils.MyListView
+                        android:id="@+id/balance_myListView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:choiceMode="singleChoice"
+                        android:divider="@null"
+                        android:fadeScrollbars="true"
+                        android:fadingEdge="none"
+                        android:listSelector="@drawable/list_notselector"
+                        android:overScrollMode="never"
+                        android:scrollbars="none" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_xieyi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:orientation="horizontal" >
+
+                        <CheckBox
+                            android:id="@+id/xieyi_cb"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:background="@drawable/xieyi_check"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="已阅读并同意"
+                            android:textColor="@color/text_click_color"
+                            android:textSize="@dimen/text_zhu_size" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="《充值服务协议》"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/text_zhu_size" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_bottom_height"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/balance_tv_book"
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/btn_blue_color"
+                android:gravity="center"
+                android:text="选择支付方式"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pagetop_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

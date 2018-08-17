@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.KiwiSports"
+    android:versionCode="6"
+    android:versionName="1.1.3" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.webkit.permission.PLUGIN" />
+    <uses-permission android:name="android.permission.RUN_INSTRUMENTATION" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.nfc.hce" />
+
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+    <!-- 3.2.0版本增加 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- 3.2.0版本增加 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <application
+        android:name="com.KiwiSports.control.view.MyApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+        <!-- 版本更新服务 -->
+        <service android:name="com.KiwiSports.utils.UpdateService" />
+
+        <activity
+            android:name="com.KiwiSports.control.activity.WelcomeStartActiyity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.KiwiSports.control.test.TestSkyActivity" />
+        <activity android:name="com.KiwiSports.control.activity.MainStartActivity" />
+        <activity android:name="com.KiwiSports.control.activity.MainVenuesActivity" />
+        <activity android:name="com.KiwiSports.control.activity.MainRecordActivity" />
+        <activity android:name="com.KiwiSports.control.activity.RecordDetailActivity" />
+        <activity android:name="com.KiwiSports.control.activity.RecordCalendarActivity" />
+        <activity android:name="com.KiwiSports.control.activity.RecordStatisticsActivity" />
+        <activity android:name="com.KiwiSports.control.activity.RecordDetailYouActivity" />
+        <activity android:name="com.KiwiSports.control.activity.UserCenterActivity" />
+        <activity
+            android:name="com.KiwiSports.control.activity.MainActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.KiwiSports.control.activity.UserLoginActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.KiwiSports.control.activity.UserAccountActivity" />
+        <activity android:name="com.KiwiSports.control.activity.UserAccountUpdateActivity" />
+        <activity android:name="com.KiwiSports.control.activity.UserAccountUpdateSexActivity" />
+        <activity android:name="com.KiwiSports.control.activity.UserAccountHobbyActivity" />
+        <activity android:name="com.KiwiSports.control.activity.VenuesAddActivity" />
+        <activity android:name="com.KiwiSports.control.activity.VenuesAddCommitActivity" />
+        <activity android:name="com.KiwiSports.control.activity.VenuesAddNextActivity" />
+        <activity android:name="com.KiwiSports.control.activity.VenuesMapActivity" />
+        <activity android:name="com.KiwiSports.control.activity.VenuesRankActivity" />
+        <activity android:name="com.KiwiSports.control.activity.MainSportActivity" />
+        <activity android:name="com.KiwiSports.control.activity.UserTreasureActivity" />
+
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true" >
+            <intent-filter android:priority="1000" >
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- Required  显示通知栏 -->
+                <category android:name="com.bestdo.bestdoStadiums" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <!-- 微信回调activity -->
+        <activity
+            android:name="com.KiwiSports.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenLayout"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 计步功能 -->
+        <service
+            android:name="com.KiwiSports.control.view.StepPhoneService"
+            android:enabled="true"
+            android:exported="true"
+            android:priority="1000"
+            android:process="com.KiwiSports.service" >
+            <intent-filter>
+
+                <!-- 系统启动完成后会调用 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_TIME_TICK" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </service>
+        <service android:name="com.KiwiSports.control.view.StepCounterService" >
+        </service>
+
+        <receiver android:name="com.KiwiSports.control.view.AlarmReceiver" />
+
+        <service android:name="com.KiwiSports.control.locationService.LocationForegoundService" >
+        </service>
+        <service
+            android:name="com.KiwiSports.control.locationService.LocationService"
+            android:process=":remote1" >
+            <intent-filter>
+                <action android:name="com.KiwiSports.control.locationService.LocationService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.KiwiSports.control.locationService.LocationHelperService"
+            android:process=":remote2" >
+            <intent-filter>
+                <action android:name="com.KiwiSports.control.locationService.LocationHelperService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.KiwiSports.control.step.StepService"
+            android:process=":remote3" >
+            <intent-filter>
+                <action android:name="com.KiwiSports.control.step.StepService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.KiwiSports.control.step.StepHelperService"
+            android:process=":remote4" >
+            <intent-filter>
+                <action android:name="com.KiwiSports.control.step.StepHelperService" />
+            </intent-filter>
+        </service>
+        <!-- APP适配全面屏 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
+        <!-- 友盟流量监控 配置：应用Appkey、渠道名称 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5a1bc146f43e481fc300002f" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="WangZhan" />
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="329a8d70ef0b06ec7901d50037eab004" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="26.1.0" />
+        <meta-data
+            android:name="android.arch.lifecycle.VERSION"
+            android:value="27.0.0-SNAPSHOT" />
+    </application>
+
+</manifest>

@@ -1,0 +1,4 @@
+#Mon Aug 13 16:03:54 CST 2018
+base.0=E\:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\transforms\\dexMerger\\debug\\70
+path.0=classes.dex
+renamed.0=classes.dex

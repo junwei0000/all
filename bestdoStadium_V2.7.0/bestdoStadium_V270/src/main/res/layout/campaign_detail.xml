@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg" >
+
+    <com.bestdo.bestdoStadiums.control.pullable.PullableScrollView
+        android:id="@+id/campagindetail_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="50dp" >
+
+            <RelativeLayout
+                android:id="@+id/campagindetail_ralat_topbanner"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/detail_img_height"
+                android:background="#000000" >
+
+                <ImageView
+                    android:id="@+id/campagindetail_iv_topbanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/campagindetail_layout_name"
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/campagindetail_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/campagindetail_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_biaoti_size" />
+            </LinearLayout>
+
+            <!--  -->
+
+            <LinearLayout
+                android:id="@+id/campagindetail_layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_leftright"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:layout_marginTop="@dimen/padd_leftright"
+                android:background="@drawable/campaigndetail_img_contentbg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/padd_imgtextleftright" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:background="@drawable/campaigndetail_img_location" />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/campaigndetail_img_time" />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_timeduan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/campaigndetail_img_num" />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/campaigndetail_img_num"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--  -->
+
+            <LinearLayout
+                android:id="@+id/campagindetail_layout_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_leftright"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:paddingLeft="@dimen/padd_leftright"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:background="@drawable/campaigndetail_img_contentbg"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <ImageView
+                        android:id="@+id/campagindetail_iv_clubicon"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                         />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_clubname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/campaigndetail_img_manage" />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_authorname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_authorrule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/campaigndetail_img_telephone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="电话："
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/campagindetail_tv_tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:textColor="@color/btn_bg"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--  -->
+
+            <LinearLayout
+                android:id="@+id/campagindetail_layout_foot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:background="@drawable/campaigndetail_img_contentbg"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padd_leftright"
+                    android:layout_marginRight="@dimen/padd_leftright"
+                    android:text="已经报名的会员"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <include layout="@layout/line" />
+
+                <RelativeLayout
+                    android:id="@+id/campagindetail_relat_foot"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padd_leftright"
+                    android:layout_marginRight="@dimen/padd_leftright" >
+
+                    <com.bestdo.bestdoStadiums.utils.MyGridView
+                        android:id="@+id/campaigndetail_lv_baoming"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/campaigndetail_tv_baomingnum"
+                        android:cacheColorHint="#00000000"
+                        android:divider="@null"
+                        android:focusable="false"
+                        android:dividerHeight="5dp"
+                        android:fadeScrollbars="true"
+                        android:fadingEdge="none"
+                        android:listSelector="@drawable/list_notselector"
+                        android:numColumns="9"
+                        android:overScrollMode="never"
+                        android:scrollingCache="false" />
+
+                    <TextView
+                        android:id="@+id/campaigndetail_tv_baomingnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/campaigndetail_iv_baoming"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/campaigndetail_iv_baoming"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/usercenter_arrow_img" />
+                </RelativeLayout>
+            </LinearLayout>
+            <!--  -->
+        </LinearLayout>
+    </com.bestdo.bestdoStadiums.control.pullable.PullableScrollView>
+    <!-- toubu -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include layout="@layout/page_top" />
+
+        <ImageView
+            android:id="@+id/pagetop_iv_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/contentDescription" />
+    </LinearLayout>
+    <!-- 底部 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_img_height"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/click_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/btn_bg"
+            android:padding="@dimen/padd_leftright"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_pagetop_size" />
+    </LinearLayout>
+
+</RelativeLayout>

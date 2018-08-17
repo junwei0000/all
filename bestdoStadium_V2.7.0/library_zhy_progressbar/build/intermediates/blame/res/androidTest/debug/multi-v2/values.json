@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\ws_studio\\bestdoStadium_V2.7.0\\library_zhy_progressbar\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\library_zhy_progressbar\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "7,8,9,10,11,12,19",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "802,860,916,969,1030,1083,1374",
+                        "endLines": "7,8,9,10,11,18,21",
+                        "endColumns": "57,55,52,60,52,12,12",
+                        "endOffsets": "855,911,964,1025,1078,1369,1529"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="160dp"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/myexit_text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="@string/dialog_userwalking_text_title"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/myexit_text_title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="2dp"
+                android:text="@string/dialog_userwalking_text_title"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/myexit_text_off"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/corners_userwalkover_lb"
+                android:gravity="center"
+                android:text="@string/myexit_text_off"
+                android:textColor="@color/btn_blue_color"
+                android:textSize="@dimen/text_biaoti_size" />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/myexit_text_sure"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/corners_userwalkover_rb"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/myexit_text_sure"
+                android:textColor="@color/btn_blue_color"
+                android:textSize="@dimen/text_biaoti_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

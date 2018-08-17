@@ -1,0 +1,1714 @@
+[
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_other_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_other_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_refresh_foot.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\refresh_foot.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_action_back_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_action_back_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_appupdate.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\appupdate.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_circular_blue.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_circular_blue.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_at_overlay.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_at_overlay.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_right_bt.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_right_bt.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_walk_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_walk_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_center.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_center.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_treasure_arrowred2_img.9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_treasure_arrowred2_img.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_record_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_record_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_action.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_track_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\track_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_follow_check.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_follow_check.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_qq_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_qq_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout-v16_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout-v16\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_back_bt.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_back_bt.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_track_num_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\track_num_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_7.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_7.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_location_focus.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_location_focus.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_buoy_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_buoy_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_tx_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_tx_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\color_mcv_text_date_light.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\material-calendarview-1.4.0.aar\\a8aaec1320705a71860852ddc2819aa1\\res\\color\\mcv_text_date_light.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_shrink.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_shrink.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_xiala_anim.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\xiala_anim.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_tx_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_tx_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_arrow_down.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\arrow_down.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_hanghai.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_hanghai.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_umeng_socialize_slide_in_from_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\umeng_socialize_slide_in_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_usercenter_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_usercenter_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_ski_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_ski_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_sidebar_selected.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_sidebar_selected.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_timebg_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_timebg_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_indicator_arrow.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_slide_in_from_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_in_from_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_circular_qing.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_circular_qing.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_main_location.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\main_location.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_venue_add_locrightbottom.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\venue_add_locrightbottom.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_sky_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_sky_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_5.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_5.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_douban_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_douban_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_shareboard_item_background.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_shareboard_item_background.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_other_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_other_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_back_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_back_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_base_alert_dialog.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_base_alert_dialog.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_facebook.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_facebook.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_menutab_record_selector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\menutab_record_selector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_gray.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_gray.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_cancel_action.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_autobike_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_autobike_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_addnext.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_addnext.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_follow_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_follow_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_autobike_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_autobike_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_share.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\share.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_horseride_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_horseride_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_sex_checked_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\sex_checked_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_usercenter_voice_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\usercenter_voice_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_map_marker.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_map_marker.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_red.9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_red.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_topcalendar_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_topcalendar_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_16.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_16.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_share_to_button.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_share_to_button.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_circular_white.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_circular_white.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_shen.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_shen.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_3.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_3.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_fetch_image.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_fetch_image.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_type.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_type.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_welcome_start.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\welcome_start.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_columnarlist_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_columnarlist_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_other_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_other_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_mcv_action_next.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\material-calendarview-1.4.0.aar\\a8aaec1320705a71860852ddc2819aa1\\res\\drawable-xxxhdpi-v4\\mcv_action_next.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_tab_button_left.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_tab_button_left.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_oauth_check.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_oauth_check.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_treasurered_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_treasurered_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_longboard.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_longboard.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_tab_left_pressed.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_tab_left_pressed.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_time_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_time_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_autobike.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_autobike.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_other_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_other_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_rank.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_rank.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_light_bar_bg.9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_light_bar_bg.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_list_item_linechart.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\list_item_linechart.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_img_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\img_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_menutab_location_selector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\menutab_location_selector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_custom.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_default_ptr_flip.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_list_add.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_list_add.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_map_markerbuoy.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_map_markerbuoy.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_line_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_line_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_page_loginintent_open.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\page_loginintent_open.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_drive_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_drive_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_lunhua_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_lunhua_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_date_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_date_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_usercenter_hongbao_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\usercenter_hongbao_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_mountainbike_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_mountainbike_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_list_selector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\list_selector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_usercenter_lowper_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\usercenter_lowper_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_page_loginintent_close.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\page_loginintent_close.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_sina_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_sina_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_share_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\share_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_calendar_item_layout.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\calendar_item_layout.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_bak_at_list.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_bak_at_list.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_calendar_weekdays_layout.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\calendar_weekdays_layout.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_13.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_13.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_at_button.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_at_button.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_right_bt_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_right_bt_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_run.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_run.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_wxcircle_gray.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_wxcircle_gray.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_statistics3.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_statistics3.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_failed_load_page.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_failed_load_page.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_1.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_1.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_usercenter_arrow_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\usercenter_arrow_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_wxcircle.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_wxcircle.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_fragment_trackupload.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\fragment_trackupload.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_drive.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_drive.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_not_date.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\not_date.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_venue_add_tishi.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\venue_add_tishi.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_post_share.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_post_share.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_longboard_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_longboard_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_all.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_all.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_run_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_run_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_12.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_12.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_slide_out_to_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_out_to_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_lunhua_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_lunhua_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_driveyueye.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_driveyueye.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_bind_select_dialog.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_bind_select_dialog.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_11.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_11.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_continues.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\continues.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_motorbike_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_motorbike_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_icon_group.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_action_back.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_action_back.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_window_shadow_pad.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_window_shadow_pad.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_back_bt_selected.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_back_bt_selected.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_lunhua.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_lunhua.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_horseride_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_horseride_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_longboard_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_longboard_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_14.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_14.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_back_bt_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_back_bt_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_kitesurfing_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_kitesurfing_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_part_chronometer.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_bike_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_bike_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_record_focus.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_record_focus.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_map_bubble.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_map_bubble.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_calendar.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\calendar.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_full_curtain.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_full_curtain.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_grey.9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_grey.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_login.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_login.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_snowboard_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_snowboard_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_statistics4.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_statistics4.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_default_ptr_flip.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_skate_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_skate_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_2.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_2.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_qq_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_qq_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_statistics_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_statistics_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_arrow_up.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\arrow_up.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_main_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_main_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_walk_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_walk_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_account_update_hobby.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_account_update_hobby.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_riding_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_riding_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_main_sportproperty_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\main_sportproperty_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\raw_bonus.mp3.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\raw\\bonus.mp3"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_mountainbike_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_mountainbike_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_indicator_arrow.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_slide_out_to_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_out_to_bottom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_run_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_run_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_dialog_style_xml_icon.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\dialog_style_xml_icon.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_login_thumb_kiwi.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\login_thumb_kiwi.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_main_start.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\main_start.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_bike_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_bike_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_at_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_at_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_right_bt_selected.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_right_bt_selected.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\color_mcv_text_date_dark.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\material-calendarview-1.4.0.aar\\a8aaec1320705a71860852ddc2819aa1\\res\\color\\mcv_text_date_dark.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_location_ic.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_location_ic.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_testsky.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\testsky.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_bak_platform_item_simple.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_bak_platform_item_simple.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_full_alert_dialog.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_full_alert_dialog.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_windsurfing.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_windsurfing.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_walk_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_walk_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_account_ablum_dialog.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_account_ablum_dialog.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_base_alert_dialog_button.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_base_alert_dialog_button.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_motorbike_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_motorbike_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_mcv_action_previous.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\material-calendarview-1.4.0.aar\\a8aaec1320705a71860852ddc2819aa1\\res\\drawable-xxxhdpi-v4\\mcv_action_previous.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_snowboard_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_snowboard_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_share_transparent_corner.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_share_transparent_corner.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_track_end.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\track_end.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_rank_item_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_rank_item_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_progressbar_horizontal.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\progressbar_horizontal.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_search_icon.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_search_icon.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_qinglogin.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_qinglogin.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mapthumb_jiao_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mapthumb_jiao_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_default_avatar.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_default_avatar.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_windsurfing_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_windsurfing_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_page_back_to_left.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\page_back_to_left.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_cross_country_run_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_cross_country_run_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_usercenter_focus.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_usercenter_focus.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_runyueye_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_runyueye_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_venues_tianjia_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\venues_tianjia_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_dialog_myexit.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\dialog_myexit.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_main_zuo_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\main_zuo_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_drive_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_drive_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_sailing_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_sailing_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_8.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_8.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_douban_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_douban_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_account_update_sex.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_account_update_sex.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_list_item_useritem.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_list_item_useritem.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_kiwi_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_kiwi_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_hobby_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_hobby_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_login_icon.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\login_icon.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_circular_red.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_circular_red.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_treasure_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_treasure_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_edittext_cancel_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\edittext_cancel_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_sky_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_sky_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_wechat.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_wechat.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg_low.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow_custom.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_oauth_check_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_oauth_check_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_runyueye_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_runyueye_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_page_intent_from_right.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\page_intent_from_right.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_publicloading.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\publicloading.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_statistics.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_statistics.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_walk.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_walk.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_back.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\back.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_skate_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_skate_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_location_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_location_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_rotate_down.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\rotate_down.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_windsurfing_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_windsurfing_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_qing.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_qing.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_windsurfing_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_windsurfing_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_pull_to_refresh_header_horizontal.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\layout\\pull_to_refresh_header_horizontal.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_refresh_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\refresh_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_umeng_socialize_shareboard_animation_out.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\umeng_socialize_shareboard_animation_out.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_windsurfing_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_windsurfing_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_full_alert_dialog_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_full_alert_dialog_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_4.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_4.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_17.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_17.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_push_bottom_out.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\push_bottom_out.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_white.9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_white.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_walk_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_walk_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_horseride_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_horseride_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_driveyueye_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_driveyueye_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_circular_gray.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_circular_gray.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_stadiummaplist_bottom_line.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\stadiummaplist_bottom_line.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_line_su.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\line_su.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_venue_add_loclefttop.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\venue_add_loclefttop.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_oauth_dialog.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_oauth_dialog.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_list_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_list_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_venueitemname.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_venueitemname.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_dialog_logout.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\dialog_logout.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_grey_blue.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_grey_blue.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_detail_run.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_detail_run.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_sidebar_selector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_sidebar_selector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_umeng_socialize_shareboard_animation_in.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\umeng_socialize_shareboard_animation_in.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_nav_bar_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_nav_bar_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_twitter.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_twitter.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_umeng_socialize_fade_in.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\umeng_socialize_fade_in.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_refersh.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_refersh.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_other.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_other.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_checkbox_selector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\checkbox_selector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_location_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_location_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_dialog_myupdate.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\dialog_myupdate.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_indicator_arrow.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_line.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\line.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_cross_country_run_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_cross_country_run_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_15.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_15.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_drive_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_drive_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_part_time.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_bind_bg.9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_bind_bg.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_sky.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_sky.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_track_start.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\track_start.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_iv_mylocation.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_iv_mylocation.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_horseride_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_horseride_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_riding.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_riding.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_shareboard_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_shareboard_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_account_update.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_account_update.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_notdate_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_notdate_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_bak_at_list_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_bak_at_list_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_action_back_selected.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_action_back_selected.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_statistics2.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_statistics2.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mapthumb_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mapthumb_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_page_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\page_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_main_you_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\main_you_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_tab_right_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_tab_right_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_at_view.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_at_view.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_circular_dian.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_circular_dian.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_indicator_bg_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable\\indicator_bg_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_treasure_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_treasure_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_alldiatance_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_alldiatance_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_notification_tile_bg.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_usercenter_loca_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\usercenter_loca_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_kitesurfing_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_kitesurfing_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_umeng_socialize_slide_out_from_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\umeng_socialize_slide_out_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_skytwo_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_skytwo_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_list_notselector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\list_notselector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_remain_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_remain_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_at_selected.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_at_selected.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_kiwi_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_kiwi_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_10.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_10.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_menutab_usercenter_selector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\menutab_usercenter_selector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_longboard_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_longboard_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_map.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_map.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_login_icon_wechat.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\login_icon_wechat.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_run_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_run_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_sina_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_sina_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_qzone_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_qzone_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_blackxingji.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_blackxingji.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_driveyueye_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_driveyueye_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_kitesurfing.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_kitesurfing.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_treasure_arrowred_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_treasure_arrowred_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_login_pressed.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_login_pressed.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_account.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_account.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_composer_header.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_composer_header.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_welcome_start_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\welcome_start_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_usercenter_anonloca_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\usercenter_anonloca_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_riding_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_riding_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_ski_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_ski_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_shape_solid_black.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_shape_solid_black.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_follow_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_follow_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_calender_longboard_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\calender_longboard_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_date_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\date_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_tab_left_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_tab_left_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_loading.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\loading.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_horseride.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_horseride.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_red_blue.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_red_blue.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_map_markertreasurenot.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_map_markertreasurenot.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_at_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_at_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_back_m.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\back_m.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_renren_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_renren_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_qzone_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_qzone_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_treasure.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_treasure.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_drive_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_drive_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_pull_to_refresh_header_vertical.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\layout\\pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_white_blue.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_white_blue.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_define_toast.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\define_toast.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_rank_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_rank_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_wechat_gray.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_wechat_gray.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_simple_spinner_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_simple_spinner_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_login_normal.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_login_normal.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_run_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_run_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_define_toast_bg.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\define_toast_bg.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_location_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_location_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_head_skytwo_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\head_skytwo_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_page_now.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\page_now.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_indicator_bg_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable\\indicator_bg_bottom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_push_bottom_in.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\push_bottom_in.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_refresh_lay.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\refresh_lay.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_detailyou.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_detailyou.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_dialog_loading.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\dialog_loading.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_calendar.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_calendar.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_bg.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_bg.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_bak_platform_selector_dialog.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_bak_platform_selector_dialog.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\aa762c49099c16098488227d8cf15d34\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_umeng_socialize_fade_out.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\umeng_socialize_fade_out.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_tab_button_right.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_tab_button_right.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_statistics1.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_statistics1.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_detail.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_detail.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_sidebar_normal.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_sidebar_normal.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_start.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\start.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_circular_yellow.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_circular_yellow.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_red.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_red.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_shape_solid_grey.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_shape_solid_grey.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_rotate_up.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\anim\\rotate_up.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_kitesurfing_imgblo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_kitesurfing_imgblo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_user_default_icon.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\user_default_icon.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_icon_myposition_map.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\icon_myposition_map.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_umeng_socialize_titile_bar.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\umeng_socialize_titile_bar.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_menutab_main_selector.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\menutab_main_selector.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_map_markertreasure.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_map_markertreasure.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_action.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_sailing_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_sailing_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_18.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_18.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_stop.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\stop.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menutab_main_focus.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\menutab_main_focus.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\anim_slide_in_from_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_in_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_runyueye.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_runyueye.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_default_ptr_flip.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_venues_add.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\venues_add.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_img_on.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\img_on.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_record_list_item.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\record_list_item.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_x_button.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_x_button.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_notification_icon_background.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg_venueitem.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg_venueitem.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_button_blue.9.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_button_blue.9.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_icon_group.xml.flat",
+        "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_main_record.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\main_record.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_oauth_check_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_oauth_check_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_6.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_6.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_loading_19.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xhdpi\\loading_19.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_user_login.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\layout\\user_login.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_treasure_arrow_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_treasure_arrow_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_google.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_google.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\layout_main.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\mPChartLib\\build\\intermediates\\packaged_res\\debug\\layout\\main.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_map_covering_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\map_covering_img.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_title_tab_right_pressed.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_title_tab_right_pressed.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_umeng_socialize_renren_off.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\umeng_socialize_renren_off.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_record_img_skytwo.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\record_img_skytwo.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_pause.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\pause.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable_corners_bg.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable\\corners_bg.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_venues_add.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\venues_add.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_mainstart_kitesurfing_img.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\src\\main\\res\\drawable-xxhdpi\\mainstart_kitesurfing_img.png"
+    }
+]

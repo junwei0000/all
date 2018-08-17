@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bestdo.bestdoStadiums"
+    android:versionCode="38"
+    android:versionName="2.7.1" >
+    <!--
+    android:versionCode="32"
+    android:versionName="2.6.2"
+    android:versionCode="31"
+    android:versionName="2.6.1" 
+     android:versionCode="30"
+    android:versionName="2.6.0"
+    
+     android:versionCode="28"
+    android:versionName="2.5.5"
+     android:versionCode="26"
+    android:versionName="2.5.4"
+    android:versionCode="27"
+    android:versionName="2.5.4.2" 
+    android:versionCode="25"
+    android:versionName="2.5.3"
+    android:versionCode="24"
+    android:versionName="2.5.2"
+    android:versionCode="23"
+    android:versionName="2.5.1"
+    android:versionCode="22"
+    android:versionName="2.5.0" >
+    android:versionCode="20"
+    android:versionName="2.4.2"
+    android:versionCode="19"
+    android:versionName="2.4.1"
+    android:versionCode="18"
+    android:versionName="2.4.0"
+    android:versionCode="17"
+    android:versionName="2.3.2"
+    
+    android:versionCode="15"
+    android:versionName="2.3.0" 
+    
+    android:versionName="2.0.2"
+    
+    android:versionCode="11"
+    android:versionName="2.0.1" 
+    
+     android:versionCode="10"
+    android:versionName="2.0.0"
+    
+    android:versionCode="9"
+    android:versionName="1.4.2"
+    
+    android:versionCode="8"
+    android:versionName="1.4.1"
+    
+    android:versionCode="7"
+    android:versionName="1.4.0"
+    
+    android:versionCode="6"
+    android:versionName="1.3.2"
+    
+    android:versionCode="5"
+    android:versionName="1.3.0"
+    android:versionName="1.2.2"
+    android:versionName="1.2.1"
+    android:versionName="1.2.0"
+    
+     android:versionCode="4"
+    android:versionName="1.1.1" 
+    
+    android:versionCode="3"
+    android:versionName="1.1.0" 
+    //
+    android:versionCode="2"
+    android:versionName="1.0.1" 
+    //
+    android:versionCode="1"
+    android:versionName="1.0.0"
+    -->
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.webkit.permission.PLUGIN" />
+    <uses-permission android:name="android.permission.RUN_INSTRUMENTATION" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <!-- Required  jpush -->
+    <permission
+        android:name="com.bestdo.bestdoStadiums.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.bestdo.bestdoStadiums.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.nfc.hce" />
+
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <application
+        android:name="com.bestdo.bestdoStadiums.control.map.BestDoApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:theme="@style/AppTheme" >
+
+        <!-- strKey -->
+        <!--
+             <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="F7PBQGlPZzMLXM9d76F76bwF" />
+        -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="M6wECQdgaeh8Fzgm6cqf5w0v" />
+
+        <!-- 在按电源键的时候，调用了子Activity的onDestroy()方法 -->
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.BaseActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:launchMode="standard" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.map.BNavigatorActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.WelcomeStartActiyity"
+            android:launchMode="standard"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.HomeActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.WelcomeGuideActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <!-- 登录注册 -->
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.UserLoginActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserFindPWActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserRegistActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserRegistSetPwActivity" />
+        <!-- 健步走2.0 -->
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.WalkActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.WalkRankActivity" />
+        <!-- 我的 -->
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.UserBalanceActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserBalanceDetailActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardsTabActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCollectActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCenterActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserAccountActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserWalking" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserWalkingTrack" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserWalkingTraceActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserWalkingHistoryActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserWalkingRankActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserAccountUpdateActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserAccountUpdateSexActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserSetActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserSetUpdatePwActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserSetUpdateSetPwActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserAboutActiyity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserSendIdearActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserQiYeCardsActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserOrderActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserOrderShengHuoActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserOrderDetailsActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserOrderUnsubscribActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardsActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardDetailActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardsActivateActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardAbstractActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardsBuyActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignGoodMomentsActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardMiDetailActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignGMPublicActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.photo.activity.ImageFile" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.photo.activity.ShowAllPhoto" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.photo.activity.GalleryActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.ClubSelectActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserMeberActiyity" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.UserMeberCashActiyity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserMeberResultActiyity" />
+        <!-- 场馆 -->
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.MainPersonActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.MainActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.MainBannerActivity"
+            android:hardwareAccelerated="true" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.MainNavImgActivity"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.StadiumMapActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.StadiumListActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.SearchCityActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.StadiumDetailActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.StadiumDetailMapActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserCardsMiActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserWalkingTiShiActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.UserWalkingActivity" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.SearchKeyWordActivity"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustPan" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.CreatOrdersActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.Success_Pay" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CardSuccess_Pay" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.Success_YuDing" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.Success_Faliure" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CreatOrdersGetVenuePYLWActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CreateOrderSelectCardsActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CreatOrdersBuyCardActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.Success_outtime" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.Success_Off" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.Success_Balanceresult" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.Success_OrderUnsubscrib" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignQuartMainActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignPublishActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignDetailActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignListActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignBaoMingUsersListActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignManagementActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignManagerDetailActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignCancelActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.ClubActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.ClubUsersListActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignQianDaoActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignRegularListActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.MessageActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.MessageListActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignPublishAddessActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CampaignBaoMingListActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CashBookActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.ImagePagerActivity" />
+        <activity android:name="com.bestdo.bestdoStadiums.control.activity.CashBookSelectDateActivity" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.PayUnionActivity"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.CashBookSetYearlybudgetActivity"
+            android:windowSoftInputMode="adjustPan|stateVisible" />
+        <activity
+            android:name="com.bestdo.bestdoStadiums.control.activity.CashBookUpdateActivity"
+            android:windowSoftInputMode="adjustPan|stateVisible" />
+
+        <uses-library
+            android:name="org.simalliance.openmobileapi"
+            android:required="false" />
+
+        <activity
+            android:name="com.unionpay.uppay.PayActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name="com.unionpay.UPPayWapActivity"
+            android:configChanges="orientation|keyboardHidden|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+
+        <!-- alipay sdk begin -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.bestdo.bestdoStadiums.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" >
+        </activity>
+        <!-- 微信回调activity -->
+        <activity
+            android:name="com.bestdo.bestdoStadiums.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenLayout"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 腾讯SSO授权的Activity注册 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1103199440" />
+            </intent-filter>
+        </activity>
+        <!-- 微博分享 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 版本更新服务 -->
+        <service android:name="com.bestdo.bestdoStadiums.utils.UpdateService" >
+        </service>
+        <!-- 计步器服务 -->
+        <service android:name="com.bestdo.bestdoStadiums.control.walking.StepCounterService" >
+        </service>
+        <!-- 计步器服务 -->
+        <service android:name="com.bestdo.bestdoStadiums.control.walking.StepAllCounterService" >
+        </service>
+
+        <!-- 地图库 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+        <service
+            android:name="com.bestdo.bestdoStadiums.control.walking.MonitorService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name="com.baidu.trace.LBSTraceService"
+            android:enabled="true"
+            android:exported="true" />
+        <service android:name="com.bestdo.bestdoStadiums.control.service.LocalService" >
+        </service>
+        <service
+            android:name="com.bestdo.bestdoStadiums.control.service.RemoteService"
+            android:process=":remoteprocess" >
+        </service>
+        <service
+            android:name="com.bestdo.bestdoStadiums.control.service.JobHandleService"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <!-- 极光推送 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.bestdo.bestdoStadiums" />
+            </intent-filter>
+        </activity>
+        <!-- Required SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+        <!-- Required SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true" >
+            <intent-filter android:priority="1000" >
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- Required  显示通知栏 -->
+                <category android:name="com.bestdo.bestdoStadiums" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <!-- Required SDK核心功能 -->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+        <!-- User defined.  For test only  用户自定义的广播接收器 -->
+        <receiver
+            android:name="com.bestdo.bestdoStadiums.utils.MyJpushReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" />
+                <!-- Optional 用户接受Rich Push Javascript 回调函数的intent -->
+                <category android:name="com.bestdo.bestdoStadiums" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.bestdo.bestdoStadiums.control.walking.AlarmReceiver" >
+        </receiver>
+        <!-- Hotfix -->
+        <service
+            android:name="com.taobao.sophix.aidl.DownloadService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.taobao.hotfix.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="113042-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="77d6b66a0da297a7892da5d959e97dd5" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC438lGgOwwGMAylNcHw4+Smg3YtsNnglxQJ+bJHsjL9b6czu4CXwteBw/NyaR1VBdZNEoeWnKDLEs0EaDpmaI9o+EbwS8er5aVKQKb9oUInT35v5zY+D4cYxLn0ANZL/L/RquhuzBPkGD1+IvMweonzoY2tdz0hgH8YTCFGBaie8zvq/hku5tPnLFmHHBOBWXOV37YtUQULZA7dInRfkWgLuSltkr8C754kO30371ZdP6nICjrgfY9V5fiJSGZLNDWtzaSiY9MM2xHhOFNbSC0k92rH68G7m5Kg7XWXUHoPjRq3L9RxQUKHyXNlZIXtjsiQuaJMKQdvgwm/lI9YMArAgMBAAECggEAJ1w13RXbs03BtcMsmNGRArRb2FTo+2OsxcAJCa7NL2dtorMHx2d24xj7y2Nv6S7zHaHdWeMF2FmY1UgfizyTZy454g/aOV1G4RDvJkdxAWmA5WhfO252wtJxFvuZiuaDhMgGCJPy8C2cByJYmUp70OfOeV104naZe6MxklSTlRoLyKAZXDP2Kfjbd238rfcNaoVNJor39MH0EhxcdzNHXclOhRUawqTP4dP1nFhlwQ7S7KFPZHyP7JyDAJFps30cT8lgOiTx0wi8Eu0M4sVarHKgz1xH/4fIBA3rezMEx2MnMKjPMBr9dRRp9U9vdaNB6IEq01IqgdgDCPLd8T9n6QKBgQDjdwFDC28Qzh6VKNex2ngAdgC2SMcKyxT1olW+SLbLrF6/QASDBXdyBt0zEUGpmHYFa6G05VtuYvLzpLthFd7sf050bQKxujZzePP4uHvfyUp5iPMiublaxYcSCfKURSeX6o2OPuQgwDhPrsZ9ZL1jVWHzdz3ncRs2VQaXM9+TxwKBgQDQEP0Dwnprwcf8o9cLG3jI7Hr4ajTQp+X37gFfrbLcqON/Mz8KOE6kf959VAy1qRjhWq4Zy7JiefhTfe7WpD27TOblWHSvFB2JUQgPNMedijlQbb6yNekI9FZ+wMsvfer9O04crFBSruM9WO0L1gVFveM379vqhiur881Ll+2ofQKBgQDagbtomFc9IYQnbXCmnWOhrbnJYegy6htcS3FqtZdD2HW76tdqtZmkpAthvzYAoUDevCI/EATg6ZTRkHGgNc5MCY9oMD/iUytzicF0MGRu+YLddT17IkZ4eD/kiEHLRRNf0CXje27SN1Tg1tg+JMP55E+P/gAtkG2/p7YJEf+4iQKBgHp4hXWhE8450i2zgvDWytH54Kg4W742FfdJ8SUQaSfZgY9t6r1pR2EsoxnCT3jef/amGbS1Ydr1UGZUyjEtm+iT65Uz6/riLECXodbRim4A3puo/YaIlRLgP8l8Uh0yUQ+dyOy3wM/qgXeq0F0XLSNQEl7qoNf7AdnFOCI2231BAoGALGVS+r4hIz9F86ynELOCFZew7Po9YDp8Md+TAewJXdsUAoT5rt9dsrzOXH2V0ZqyRVWkWCIB9wCYgkL47h+0tPps5uz2zAngt1mFsYnZhu3hGmNV+AQSSQEBoCSQDqcbxa2jFPYLG29YafrYrGnwjLFDfXPxrE4Xn2ibU37/Zx0=" />
+
+        <!-- Required. AppKey copied from Portal -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="e88fe1384c97e6b57d619860" />
+
+        <!-- 友盟流量监控 配置：应用Appkey、渠道名称 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="53fa8e36fd98c585e205fe6c" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="712608370e4b5d405a49fd81fdef5aa6" >
+        </meta-data>
+        <!--
+	<meta-data android:value="360Phone" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="WanDouJia" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="AnZhuo" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="BaiDuZhuShou" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="YueShangDian" android:name="UMENG_CHANNEL"/> 
+	<meta-data android:value="XiaoMiShangDian" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="91ZhuShou" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="UC" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="AnZhi" android:name="UMENG_CHANNEL"/>
+	<meta-data android:value="YingYongBao" android:name="UMENG_CHANNEL"/>
+        -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="WangZhan" />
+
+        <activity
+            android:name="com.example.androidbridge.MainActivity"
+            android:label="@string/app_name" >
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+    </application>
+
+</manifest>

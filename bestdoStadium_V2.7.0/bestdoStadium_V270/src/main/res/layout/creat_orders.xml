@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <!-- toubu -->
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@color/page_bg"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- 场馆信息 -->
+
+            <include layout="@layout/user_order_details_stadiuminfo" />
+
+            <!-- 打球人数 -->
+
+            <RelativeLayout
+                android:id="@+id/createorder_relay_pepolenum"
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/jianju"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/createorder_tv_pepolenumtitle"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/createorder_countsti_golfplay"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright" >
+
+                    <TextView
+                        android:id="@+id/createorder_tv_numdes"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="—"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/createorder_tv_pepolenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="1"
+                        android:textColor="@color/text_contents_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/createorder_tv_numadd"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_pagetop_size" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- 电话 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/jianju"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padd_leftright" >
+
+                    <TextView
+                        style="@style/user_item_paddtopbottom"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="联系人手机"
+                        android:textColor="@color/text_contents_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <com.bestdo.bestdoStadiums.utils.SupplierEditText
+                        android:id="@+id/createorder_edt_phone"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:background="@color/transparent"
+                        android:hint="@string/createorder_phonetishi"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:singleLine="true"
+                        android:textColor="@color/text_contents_color"
+                        android:textColorHint="@color/text_hint_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/createorder_layout_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright" >
+
+                        <include layout="@layout/line" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_img_height"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/padd_leftright" >
+
+                        <TextView
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="打球人姓名"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_contents_size" />
+
+                        <com.bestdo.bestdoStadiums.utils.SupplierEditText
+                            android:id="@+id/createorder_edt_name"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.5"
+                            android:background="@color/transparent"
+                            android:ellipsize="end"
+                            android:hint="@string/createorder_nametishi"
+                            android:maxLength="30"
+                            android:singleLine="true"
+                            android:textColor="@color/text_contents_color"
+                            android:textColorHint="@color/text_hint_color"
+                            android:textSize="@dimen/text_contents_size" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 卡券 -->
+
+            <RelativeLayout
+                android:id="@+id/createorder_relay_usekaquan"
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/jianju"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/createorder_tv_kaquanNumbiaoti"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="使用卡券"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/createorder_tv_kaquanNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:layout_toLeftOf="@+id/createorder_iv_kaquanNum"
+                    android:layout_toRightOf="@+id/createorder_tv_kaquanNumbiaoti"
+                    android:gravity="right|center_vertical"
+                    android:lineSpacingMultiplier="1.1"
+                    android:singleLine="true"
+                    android:text="@string/createorder_setcard_tv"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <ImageView
+                    android:id="@+id/createorder_iv_kaquanNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/usercenter_arrow_img"
+                    android:contentDescription="@string/contentDescription" />
+            </RelativeLayout>
+
+            <!-- 金额 -->
+
+            <include layout="@layout/create_order_payinfo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/page_bg"
+                android:lineSpacingMultiplier="1.1"
+                android:padding="@dimen/padd_leftright"
+                android:text="下单后请在2小时内进行支付，超过2小时未支付订单将被自动取消！"
+                android:textColor="@color/text_hint_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </ScrollView>
+    <!-- 预订按钮 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_bottom_height"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/payinfo_tv_paymoney"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/btn_bg"
+                    android:textSize="@dimen/text_biaoti_size" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/createorder_tv_bottom"
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/btn_blue_color"
+                android:gravity="center"
+                android:text="提交订单"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pagetop_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

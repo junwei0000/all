@@ -1,0 +1,623 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:1-225:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:1-225:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:1-225:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:1-225:12
+MERGED from [:mPChartLib] E:\kiwi_git\studio\KiwiSports_V1.0.2\mPChartLib\build\intermediates\manifests\full\release\AndroidManifest.xml:2:1-22:12
+MERGED from [com.prolificinteractive:material-calendarview:1.4.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\material-calendarview-1.4.0.aar\a8aaec1320705a71860852ddc2819aa1\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:17:1-31:12
+MERGED from [:pulltorefreshlibrary] E:\kiwi_git\studio\KiwiSports_V1.0.2\pulltorefreshlibrary\build\intermediates\manifests\full\release\AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\aa762c49099c16098488227d8cf15d34\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\25316644e99eb2d22598a4604220b810\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0aa9ac5d11f5b722a86be07399c0651a\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5aa3d3c40ad8ae3f7544699a861911f\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\8b726056c915236c495e2d965e911d1e\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:17:1-30:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:1-225:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:1-225:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:1-225:12
+	package
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:3:5-29
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:5:5-32
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [:mPChartLib] E:\kiwi_git\studio\KiwiSports_V1.0.2\mPChartLib\build\intermediates\manifests\full\release\AndroidManifest.xml:7:5-9:41
+MERGED from [:mPChartLib] E:\kiwi_git\studio\KiwiSports_V1.0.2\mPChartLib\build\intermediates\manifests\full\release\AndroidManifest.xml:7:5-9:41
+MERGED from [com.prolificinteractive:material-calendarview:1.4.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\material-calendarview-1.4.0.aar\a8aaec1320705a71860852ddc2819aa1\AndroidManifest.xml:8:5-10:41
+MERGED from [com.prolificinteractive:material-calendarview:1.4.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\material-calendarview-1.4.0.aar\a8aaec1320705a71860852ddc2819aa1\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:21:5-23:54
+MERGED from [:pulltorefreshlibrary] E:\kiwi_git\studio\KiwiSports_V1.0.2\pulltorefreshlibrary\build\intermediates\manifests\full\release\AndroidManifest.xml:7:5-9:41
+MERGED from [:pulltorefreshlibrary] E:\kiwi_git\studio\KiwiSports_V1.0.2\pulltorefreshlibrary\build\intermediates\manifests\full\release\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\aa762c49099c16098488227d8cf15d34\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\aa762c49099c16098488227d8cf15d34\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\25316644e99eb2d22598a4604220b810\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\25316644e99eb2d22598a4604220b810\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0aa9ac5d11f5b722a86be07399c0651a\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0aa9ac5d11f5b722a86be07399c0651a\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5aa3d3c40ad8ae3f7544699a861911f\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5aa3d3c40ad8ae3f7544699a861911f\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\8b726056c915236c495e2d965e911d1e\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\8b726056c915236c495e2d965e911d1e\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:20:5-22:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:7:5-9:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:9:9-38
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:8:9-35
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:10:22-78
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:11:5-71
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:11:22-68
+uses-permission#android.permission.READ_LOGS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:12:5-68
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:12:22-65
+uses-permission#android.permission.KILL_BACKGROUND_PROCESSES
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:13:5-84
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:13:22-81
+uses-permission#android.permission.BAIDU_LOCATION_SERVICE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:14:22-78
+uses-permission#android.permission.ACCES_MOCK_LOCATION
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:15:5-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:15:22-75
+uses-permission#android.permission.ACCESS_GPS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:16:5-69
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:16:22-66
+uses-permission#android.permission.GET_TASKS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:18:5-68
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:18:22-65
+uses-permission#android.permission.BROADCAST_STICKY
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:19:5-75
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:19:22-72
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:20:5-73
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:20:22-70
+uses-permission#android.permission.PROCESS_OUTGOING_CALLS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:21:5-81
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:21:22-78
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:22:5-80
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:22:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:23:5-71
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:23:22-68
+uses-feature#android.hardware.camera
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:25:5-60
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:25:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:26:5-70
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:26:19-67
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:28:5-76
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:28:22-73
+uses-permission#android.permission.CHANGE_CONFIGURATION
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:29:5-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:29:22-76
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:30:5-73
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:30:22-70
+uses-permission#android.permission.CALL_PHONE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:31:5-69
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:31:22-66
+uses-permission#android.webkit.permission.PLUGIN
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:32:5-72
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:32:22-69
+uses-permission#android.permission.RUN_INSTRUMENTATION
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:33:5-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:33:22-75
+uses-permission#android.permission.READ_SMS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:34:5-67
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:34:22-64
+uses-permission#android.permission.RECEIVE_USER_PRESENT
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:35:5-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:35:22-76
+uses-permission#android.permission.INTERNET
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:36:5-67
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:36:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:37:5-68
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:37:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:38:5-75
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:38:22-72
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:39:5-81
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:39:22-78
+uses-permission#android.permission.WRITE_INTERNAL_STORAGE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:40:5-81
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:40:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:41:5-80
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:41:22-77
+uses-permission#android.permission.READ_INTERNAL_STORAGE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:42:5-80
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:42:22-77
+uses-permission#android.permission.VIBRATE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:43:5-66
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:43:22-63
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:44:5-84
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:44:22-81
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:45:5-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:45:22-76
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:46:5-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:46:22-75
+uses-permission#android.permission.RESTART_PACKAGES
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:47:5-75
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:47:22-72
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:49:5-81
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:49:22-78
+uses-permission#android.permission.ACCESS_COARSE_UPDATES
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:50:5-80
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:50:22-77
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:51:5-76
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:51:22-73
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:52:5-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:52:22-76
+uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:53:5-89
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:53:22-86
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:54:5-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:54:22-76
+uses-permission#android.permission.NFC
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:55:5-62
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:55:22-59
+uses-feature#android.hardware.nfc.hce
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:57:5-61
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:57:19-58
+uses-permission#org.simalliance.openmobileapi.SMARTCARD
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:59:5-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:59:22-76
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:61:5-74
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:61:22-71
+uses-permission#android.permission.BLUETOOTH
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:63:5-68
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:63:22-65
+supports-screens
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:65:5-70:39
+	android:largeScreens
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:67:9-36
+	android:smallScreens
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:70:9-36
+	android:normalScreens
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:68:9-37
+	android:resizeable
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:69:9-34
+	android:anyDensity
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:66:9-34
+application
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:72:5-223:19
+MERGED from [com.prolificinteractive:material-calendarview:1.4.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\material-calendarview-1.4.0.aar\a8aaec1320705a71860852ddc2819aa1\AndroidManifest.xml:12:5-20
+MERGED from [com.prolificinteractive:material-calendarview:1.4.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\material-calendarview-1.4.0.aar\a8aaec1320705a71860852ddc2819aa1\AndroidManifest.xml:12:5-20
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:25:5-29:19
+MERGED from [:pulltorefreshlibrary] E:\kiwi_git\studio\KiwiSports_V1.0.2\pulltorefreshlibrary\build\intermediates\manifests\full\release\AndroidManifest.xml:11:5-20
+MERGED from [:pulltorefreshlibrary] E:\kiwi_git\studio\KiwiSports_V1.0.2\pulltorefreshlibrary\build\intermediates\manifests\full\release\AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\aa762c49099c16098488227d8cf15d34\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\aa762c49099c16098488227d8cf15d34\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\25316644e99eb2d22598a4604220b810\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\25316644e99eb2d22598a4604220b810\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0aa9ac5d11f5b722a86be07399c0651a\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0aa9ac5d11f5b722a86be07399c0651a\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5aa3d3c40ad8ae3f7544699a861911f\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5aa3d3c40ad8ae3f7544699a861911f\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\8b726056c915236c495e2d965e911d1e\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\8b726056c915236c495e2d965e911d1e\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:24:5-28:19
+	android:supportsRtl
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:75:9-35
+	android:label
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:77:9-41
+	android:hardwareAccelerated
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:79:9-44
+	android:persistent
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:78:9-34
+	android:icon
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:76:9-45
+	android:allowBackup
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:74:9-35
+	android:theme
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:80:9-40
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:73:9-65
+service#com.KiwiSports.utils.UpdateService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:83:9-70
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:83:18-67
+activity#com.KiwiSports.control.activity.WelcomeStartActiyity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:85:9-94:20
+	android:label
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:87:13-45
+	android:theme
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:88:13-60
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:86:13-66
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:89:13-93:29
+action#android.intent.action.MAIN
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:90:17-69
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:90:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:92:17-77
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:92:27-74
+activity#com.KiwiSports.control.test.TestSkyActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:95:9-66
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:95:19-63
+activity#com.KiwiSports.control.activity.MainStartActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:96:9-97:14
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:96:19-69
+activity#com.KiwiSports.control.activity.MainVenuesActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:98:9-73
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:98:19-70
+activity#com.KiwiSports.control.activity.MainRecordActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:99:9-73
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:99:19-70
+activity#com.KiwiSports.control.activity.RecordDetailActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:100:9-75
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:100:19-72
+activity#com.KiwiSports.control.activity.RecordCalendarActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:101:9-77
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:101:19-74
+activity#com.KiwiSports.control.activity.RecordStatisticsActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:102:9-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:102:19-76
+activity#com.KiwiSports.control.activity.RecordDetailYouActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:103:9-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:103:19-75
+activity#com.KiwiSports.control.activity.UserCenterActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:104:9-73
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:104:19-70
+activity#com.KiwiSports.control.activity.MainActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:105:9-108:63
+	android:launchMode
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:107:13-44
+	android:theme
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:108:13-60
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:106:13-58
+activity#com.KiwiSports.control.activity.UserLoginActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:109:9-111:47
+	android:launchMode
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:111:13-44
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:110:13-63
+activity#com.KiwiSports.control.activity.UserAccountActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:112:9-74
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:112:19-71
+activity#com.KiwiSports.control.activity.UserAccountUpdateActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:113:9-80
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:113:19-77
+activity#com.KiwiSports.control.activity.UserAccountUpdateSexActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:114:9-83
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:114:19-80
+activity#com.KiwiSports.control.activity.UserAccountHobbyActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:115:9-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:115:19-76
+activity#com.KiwiSports.control.activity.VenuesAddActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:116:9-72
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:116:19-69
+activity#com.KiwiSports.control.activity.VenuesAddCommitActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:117:9-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:117:19-75
+activity#com.KiwiSports.control.activity.VenuesAddNextActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:118:9-76
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:118:19-73
+activity#com.KiwiSports.control.activity.VenuesMapActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:119:9-72
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:119:19-69
+activity#com.KiwiSports.control.activity.VenuesRankActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:120:9-73
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:120:19-70
+activity#com.KiwiSports.control.activity.MainSportActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:121:9-72
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:121:19-69
+activity#com.KiwiSports.control.activity.UserTreasureActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:122:9-75
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:122:19-72
+receiver#cn.jpush.android.service.PushReceiver
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:124:9-143:20
+	android:enabled
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:126:13-35
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:125:13-65
+intent-filter#action:name:cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+category:name:com.bestdo.bestdoStadiums
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:127:13-131:29
+	android:priority
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:127:28-51
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:128:17-94
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:128:25-91
+category#com.bestdo.bestdoStadiums
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:130:17-70
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:130:27-67
+intent-filter#action:name:android.intent.action.USER_PRESENT+action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:132:13-135:29
+action#android.intent.action.USER_PRESENT
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:133:17-77
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:133:25-74
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:134:17-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:134:25-76
+intent-filter#action:name:android.intent.action.PACKAGE_ADDED+action:name:android.intent.action.PACKAGE_REMOVED+data:scheme:package
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:137:13-142:29
+action#android.intent.action.PACKAGE_ADDED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:138:17-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:138:25-75
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:139:17-80
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:139:25-77
+data
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:141:17-50
+	android:scheme
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:141:23-47
+activity#com.KiwiSports.wxapi.WXEntryActivity
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:145:9-152:75
+	android:screenOrientation
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:151:13-49
+	android:label
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:150:13-45
+	android:launchMode
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:149:13-48
+	android:exported
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:148:13-36
+	android:configChanges
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:147:13-76
+	android:theme
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:152:13-72
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:146:13-50
+service#com.KiwiSports.control.view.StepPhoneService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:155:9-171:19
+	android:process
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:160:13-53
+	android:enabled
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:158:13-35
+	android:exported
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:159:13-36
+	android:priority
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:157:13-36
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:156:13-72
+intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED+action:name:android.intent.action.ACTION_TIME_TICK+action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.DATE_CHANGED+action:name:android.intent.action.MEDIA_MOUNTED+action:name:android.intent.action.USER_PRESENT
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:161:13-170:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:163:17-79
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:163:25-76
+action#android.intent.action.DATE_CHANGED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:164:17-77
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:164:25-74
+action#android.intent.action.MEDIA_MOUNTED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:165:17-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:165:25-75
+action#android.intent.action.ACTION_TIME_TICK
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:167:17-81
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:167:25-78
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:168:17-87
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:168:25-84
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:169:17-90
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:169:25-87
+service#com.KiwiSports.control.view.StepCounterService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:172:9-173:19
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:172:18-79
+receiver#com.KiwiSports.control.view.AlarmReceiver
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:174:9-78
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:174:19-75
+service#com.KiwiSports.control.locationService.LocationForegoundService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:175:9-176:19
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:175:18-96
+service#com.KiwiSports.control.locationService.LocationService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:177:9-183:19
+	android:process
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:179:13-39
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:178:13-82
+intent-filter#action:name:com.KiwiSports.control.locationService.LocationService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:180:13-182:29
+action#com.KiwiSports.control.locationService.LocationService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:181:17-104
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:181:25-94
+service#com.KiwiSports.control.locationService.LocationHelperService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:184:9-190:19
+	android:process
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:186:13-39
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:185:13-88
+intent-filter#action:name:com.KiwiSports.control.locationService.LocationHelperService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:187:13-189:29
+action#com.KiwiSports.control.locationService.LocationHelperService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:188:17-110
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:188:25-100
+service#com.KiwiSports.control.step.StepService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:191:9-197:19
+	android:process
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:193:13-39
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:192:13-67
+intent-filter#action:name:com.KiwiSports.control.step.StepService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:194:13-196:29
+action#com.KiwiSports.control.step.StepService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:195:17-89
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:195:25-79
+service#com.KiwiSports.control.step.StepHelperService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:198:9-204:19
+	android:process
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:200:13-39
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:199:13-73
+intent-filter#action:name:com.KiwiSports.control.step.StepHelperService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:201:13-203:29
+action#com.KiwiSports.control.step.StepHelperService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:202:17-95
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:202:25-85
+meta-data#android.max_aspect
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:206:9-208:35
+	android:value
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:208:13-32
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:207:13-46
+meta-data#UMENG_APPKEY
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:210:9-213:21
+	android:value
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:212:13-53
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:211:13-40
+meta-data#UMENG_CHANNEL
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:214:9-216:40
+	android:value
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:216:13-37
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:215:13-41
+meta-data#com.amap.api.v2.apikey
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:218:9-220:64
+	android:value
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:220:13-61
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:219:13-50
+service#com.amap.api.location.APSService
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:222:9-68
+	android:name
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.0.2\kiwiSports\src\main\AndroidManifest.xml:222:18-65
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\aa762c49099c16098488227d8cf15d34\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\aa762c49099c16098488227d8cf15d34\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\25316644e99eb2d22598a4604220b810\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\25316644e99eb2d22598a4604220b810\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0aa9ac5d11f5b722a86be07399c0651a\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\0aa9ac5d11f5b722a86be07399c0651a\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5aa3d3c40ad8ae3f7544699a861911f\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\e5aa3d3c40ad8ae3f7544699a861911f\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\8b726056c915236c495e2d965e911d1e\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\8b726056c915236c495e2d965e911d1e\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\095b9256be5092f634a6e04f51681f70\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\0e7a35f9271a95ea8169f225176221ec\AndroidManifest.xml:26:13-58

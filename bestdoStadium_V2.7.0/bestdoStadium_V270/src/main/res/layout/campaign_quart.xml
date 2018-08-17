@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/campaign_quart_top_lin"
+        layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" >
+
+        <com.andview.refreshview.XRefreshView
+            android:id="@+id/main_campaign_xrefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/page_bg" >
+
+            <com.bestdo.bestdoStadiums.utils.MyScrollView
+                 android:id="@+id/main_campaign_top_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/page_bg"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/jianju"
+                        android:paddingBottom="@dimen/jianju" >
+
+                        <com.bestdo.bestdoStadiums.control.view.ScrollLayout
+                            android:id="@+id/campaign_sport_scroll_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white" >
+                        </com.bestdo.bestdoStadiums.control.view.ScrollLayout>
+
+                        <com.bestdo.bestdoStadiums.control.view.PageControlView
+                            android:id="@+id/campaign_pageControl"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    
+                    
+                    <!--数据统计 -->
+
+                    <LinearLayout
+                        android:id="@+id/campaingn_quartmain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/jianju"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:visibility="gone" >
+
+                    </LinearLayout>
+                    
+                    <!-- <include 
+                        layout="@layout/campaingn_quartmain_includ_lay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        /> -->
+                    
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical" >
+
+                        <!-- 我加入的俱乐部 -->
+
+                        <LinearLayout
+                            android:id="@+id/myjoin_lin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="12dp"
+                            android:visibility="gone" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/main_image_title" />
+
+                            <TextView
+                                android:id="@+id/myjoin_text"
+                                style="@style/user_item_paddtopbottom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+                        <!-- 我加入的俱乐部List -->
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+
+                            <com.bestdo.bestdoStadiums.utils.MyListView
+                                android:id="@+id/myjoin_ListView"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:cacheColorHint="@color/page_bg"
+                                android:divider="@null"
+                                android:fadeScrollbars="true"
+                                android:fadingEdge="none"
+                                android:focusable="false"
+                                android:listSelector="@drawable/list_notselector"
+                                android:overScrollMode="never"
+                                android:scrollbars="none" />
+
+                            <TextView
+                                android:id="@+id/myjoin_tv_tishi"
+                                style="@style/user_item_paddtopbottom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/padd_topbottom"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginTop="30dp"
+                                android:text="您还没有加入任何俱乐部"
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
+                    <!--  -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <!-- 更多俱乐部 -->
+
+                        <LinearLayout
+                            android:id="@+id/mynojoin_lin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/jianju"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="12dp"
+                            android:visibility="gone" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/main_image_title" />
+
+                            <TextView
+                                android:id="@+id/mynojoin_text"
+                                style="@style/user_item_paddtopbottom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+                        <!-- 更多俱乐部List -->
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+
+                            <com.bestdo.bestdoStadiums.utils.MyListView
+                                android:id="@+id/myjoin_ListView2"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:cacheColorHint="@color/page_bg"
+                                android:divider="@null"
+                                android:fadeScrollbars="true"
+                                android:focusable="false"
+                                android:fadingEdge="none"
+                                android:listSelector="@drawable/list_notselector"
+                                android:overScrollMode="never"
+                                android:scrollbars="none" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.bestdo.bestdoStadiums.utils.MyScrollView>
+        </com.andview.refreshview.XRefreshView>
+
+        <LinearLayout
+            android:id="@+id/not_date"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" >
+
+            <include layout="@layout/not_date" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

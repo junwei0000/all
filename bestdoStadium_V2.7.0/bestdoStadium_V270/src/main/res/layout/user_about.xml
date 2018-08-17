@@ -1,0 +1,242 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <!-- 上部 -->
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="25dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_launcher"
+                android:contentDescription="@string/contentDescription" />
+
+            <TextView
+                android:id="@+id/userabout_tv_versionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_aboutversion_img"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/userabout_tv_cont1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/userabout_tv_cont2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <RelativeLayout
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/white" >
+
+                <TextView
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="微信"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padd_imgtextleftright"
+                    android:gravity="right|center_vertical"
+                    android:text="baidongapp"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padd_leftright" >
+
+                <include layout="@layout/line" />
+            </LinearLayout>
+
+            <RelativeLayout
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+
+                <TextView
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="客服"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/userabout_tv_tel"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padd_imgtextleftright"
+                    android:gravity="right|center_vertical"
+                    android:text="@string/tel"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padd_leftright" >
+
+                <include layout="@layout/line" />
+            </LinearLayout>
+
+            <RelativeLayout
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+
+                <TextView
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="分享百动"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/userabout_tv_share"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padd_imgtextleftright"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/usercenter_arrow_img"
+                    android:contentDescription="@string/contentDescription" />
+            </RelativeLayout>
+
+ <LinearLayout
+     android:id="@+id/userabout_layout_score"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padd_leftright" >
+
+                <include layout="@layout/line" />
+            </LinearLayout>
+
+            <RelativeLayout
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+
+                <TextView
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="给百动评分"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/userabout_tv_score"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padd_imgtextleftright"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/usercenter_arrow_img"
+                    android:contentDescription="@string/contentDescription" />
+            </RelativeLayout>
+</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="6dp"
+                android:paddingTop="15dp"
+                android:text="©www.bestdo.com"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

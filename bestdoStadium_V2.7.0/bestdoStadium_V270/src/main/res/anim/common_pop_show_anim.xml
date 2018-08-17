@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <scale
+        android:duration="500"
+        android:fromXScale="1.0"
+        android:fromYScale="0"
+        android:pivotX="50%"
+        android:pivotY="0%"
+        android:toXScale="1.0"
+        android:toYScale="1.0" />
+
+</set><!--
+float fromX 动画起始时 X坐标上的伸缩尺寸
+float toX 动画结束时 X坐标上的伸缩尺寸
+float fromY 动画起始时Y坐标上的伸缩尺寸
+float toY 动画结束时Y坐标上的伸缩尺寸
+int pivotXType 动画在X轴相对于物件位置类型
+float pivotXValue 动画相对于物件的X坐标的开始位置
+int pivotYType 动画在Y轴相对于物件位置类型
+float pivotYValue 动画相对于物件的Y坐标的开始位置
+-->

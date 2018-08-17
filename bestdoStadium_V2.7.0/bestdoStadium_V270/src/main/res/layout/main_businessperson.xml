@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_business_tab_bgcolor">
+
+    <LinearLayout
+        android:id="@+id/business_tab_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:id="@+id/main_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_business_tab_bgcolor"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
+
+            <RadioButton
+                android:id="@+id/main_tab_business"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_business_tab_selector"
+                android:button="@null"
+                android:text="企业版"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <RadioButton
+                android:id="@+id/home_tab_personal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_personal_tab_selector"
+                android:button="@null"
+                android:text="个人版"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+        </RadioGroup>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</TabHost>

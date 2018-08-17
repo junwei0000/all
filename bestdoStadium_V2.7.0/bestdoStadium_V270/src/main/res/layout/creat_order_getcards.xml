@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <TextView
+        android:id="@+id/not_date_tv_cardinstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:drawableLeft="@drawable/no_cards_top_img"
+        android:padding="10dip"
+        android:text=" 使用规则"
+        android:visibility="gone"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_contents_size" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/user_card_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/tv_bottom"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:dividerHeight="10dp"
+                android:fadeScrollbars="true"
+                android:fadingEdge="none"
+                android:listSelector="@drawable/list_notselector"
+                android:overScrollMode="never"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/tv_bottom"
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_bottom_height"
+                android:layout_alignParentBottom="true"
+                android:background="@color/btn_blue_color"
+                android:visibility="invisible"
+                android:gravity="center"
+                android:text="不使用卡券"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pagetop_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/not_date"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" >
+
+            <include layout="@layout/not_date" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

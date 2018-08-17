@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/page_bg" >
+
+    <com.bestdo.bestdoStadiums.control.view.PullDownListView
+        android:id="@+id/refreshable_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ListView
+            android:id="@+id/lv_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            style="@style/user_item_paddlefgtright"
+            android:dividerHeight="@dimen/jianju"
+            android:fadeScrollbars="true"
+            android:fadingEdge="none"
+            android:scrollbars="none"
+            android:listSelector="@drawable/list_notselector"
+            android:overScrollMode="never"
+            android:scrollingCache="false" />
+    </com.bestdo.bestdoStadiums.control.view.PullDownListView>
+
+    <LinearLayout
+        android:id="@+id/not_date"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" >
+
+        <include layout="@layout/not_date" />
+    </LinearLayout>
+
+</FrameLayout>

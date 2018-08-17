@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/user_walking_map_relat_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:visibility="gone">
+	<ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/user_walking_map_result_iv_mapcut"
+        android:visibility="gone"
+        />
+    <!-- 最后结果 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+	<ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/user_walking_map_line_bottom_img2"
+        android:background="@drawable/user_walking_location" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+                
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/user_walking_share_img"
+                android:id="@+id/user_walking_map_line_share"
+                android:scaleType="fitEnd" />
+			
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                 style="@style/user_item_paddlefgtright"
+                android:paddingTop="40dp"
+                 >
+
+                <TextView
+                    android:id="@+id/user_walking_map_tv_date"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="09月23日 12:22"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="本次成绩"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </FrameLayout>
+        <!-- 总长 -->
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+             android:background="@color/white"
+            android:paddingBottom="@dimen/padd_topbottom" >
+
+            <LinearLayout
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总长："
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:id="@+id/user_walking_map_tv_sumwalkingnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="6.43km"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="40sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="公里"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
+
+            <include layout="@layout/user_walking_map_speedtimestep" />
+
+            <TextView
+                android:id="@+id/user_walking_map_tv_sureshare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/padd_topbottom"
+                android:background="@drawable/corners_userwalking_btnbluebg"
+                android:paddingBottom="6dp"
+                android:paddingLeft="40dp"
+                android:layout_marginBottom="10dp"
+                android:paddingRight="40dp"
+                android:paddingTop="6dp"
+                android:text="@string/myexit_text_sure"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pagetop_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

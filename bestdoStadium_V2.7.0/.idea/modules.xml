@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bestdoStadium_V2.7.0.iml" filepath="$PROJECT_DIR$/bestdoStadium_V2.7.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bestdoStadium_V270/bestdoStadium_V270.iml" filepath="$PROJECT_DIR$/bestdoStadium_V270/bestdoStadium_V270.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_zhy_progressbar/library_zhy_progressbar.iml" filepath="$PROJECT_DIR$/library_zhy_progressbar/library_zhy_progressbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mainActivity/mainActivity.iml" filepath="$PROJECT_DIR$/mainActivity/mainActivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xRefreshView/xRefreshView.iml" filepath="$PROJECT_DIR$/xRefreshView/xRefreshView.iml" />
+    </modules>
+  </component>
+</project>

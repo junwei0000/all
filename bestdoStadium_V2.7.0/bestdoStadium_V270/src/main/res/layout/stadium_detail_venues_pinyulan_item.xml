@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_btnbg"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/stadiumdetailitem_tv_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="10-16"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/text_noclick_color" />
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp" >
+
+        <LinearLayout
+            android:id="@+id/stadiumdetailitem_layout_vipmoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="left|center_vertical" >
+
+            <TextView
+                android:id="@+id/stadium_detail_item_tv_vipmoneyprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/btn_bg"
+                android:layout_marginRight="2dp"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@drawable/stadiummaplist_item_moneyimg" />
+        </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/stadiumdetailitem_tv_originprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="0.85"
+                android:text="111"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+    <TextView
+                android:id="@+id/stadiumdetailitem_tv_notbook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="0.85"
+                android:layout_centerInParent="true"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+</RelativeLayout>
+</LinearLayout>

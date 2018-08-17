@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+<LinearLayout 
+    android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/jianju"
+        android:layout_weight="10"
+        android:orientation="vertical"  >
+
+    <TextView
+        android:id="@+id/not_date_tv_cardinstructions_mi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:padding="10dip"
+        android:visibility="gone"
+        android:text="温馨提示：点击卡密长按可进行复制，转发赠送好友哦！"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" 
+            android:orientation="vertical">
+			<com.bestdo.bestdoStadiums.control.view.PullDownListView
+                android:id="@+id/user_cards_mi_refreshable_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <ListView
+                    android:id="@+id/user_card_mi_listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@null"
+                    android:dividerHeight="10dp"
+                    android:fadeScrollbars="true"
+                    android:fadingEdge="none"
+                    android:listSelector="@drawable/list_notselector"
+                    android:overScrollMode="never"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:scrollbars="none" />
+            </com.bestdo.bestdoStadiums.control.view.PullDownListView>
+            <TextView
+                android:id="@+id/user_cards_overdue_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/user_cards_overdue_text"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/user_card_mi_not_date"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" >
+
+            <include layout="@layout/not_date" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
+</LinearLayout>

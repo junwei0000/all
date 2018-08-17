@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top_walk" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
+
+        <com.bestdo.bestdoStadiums.control.view.UserWalkingBg
+            android:id="@+id/user_walking_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"  />
+
+        <FrameLayout
+            android:id="@+id/fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <include layout="@layout/user_walking_map_include" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <include layout="@layout/user_walking_map_result" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/user_walking_pup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/padd_topbottom"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
+
+            <!-- 底部 .开始结束按钮 -->
+
+            <LinearLayout
+                android:id="@+id/user_walking_layout_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/padd_topbottom" >
+
+                <!-- 左边按钮 -->
+
+                <LinearLayout
+                    android:id="@+id/user_walking_btn_lift"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/user_walking_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/user_walking_start_img"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/user_walking_start_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/user_walking_start_img"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/user_walking_start_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="开始"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_contents_size" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- 右边按钮 -->
+
+                <LinearLayout
+                    android:id="@+id/user_walking_btn_right"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:id="@+id/user_walking_stop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/user_walking_stop_img"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/user_walking_stop_img2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="结束"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_contents_size" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 上部弹层 -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/user_walking_layout_start"
+                android:background="@drawable/user_walking_center_bg"
+                android:orientation="vertical"
+                style="@style/user_item_paddtopbottom"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
+
+                <LinearLayout
+                    android:id="@+id/user_walking_top_lin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/user_walking_layout_load"
+                    android:layout_alignParentTop="true"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/user_walking_weather"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_click_color"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/user_walking_pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_click_color"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                    <!-- 公里 -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.9"
+                        android:gravity="center_horizontal|bottom"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/user_walking_tv_distance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.00"
+                            android:textColor="@color/text_click_color"
+                            android:textSize="40sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="公里"
+                            android:textColor="@color/text_click_color"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                    <!--  -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/user_walking_buxing" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+                            android:gravity="right"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="今日步数"
+                                android:singleLine="true"
+                                android:textColor="@color/text_click_color"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/user_walking_today_step_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_click_color"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 正在定位 -->
+
+                <LinearLayout
+                    android:id="@+id/user_walking_layout_load"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/user_walking_layout_result"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/user_walking_progress2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/user_walking_progress2"
+                            android:visibility="invisible" />
+
+                        <ImageView
+                            android:id="@+id/user_walking_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/user_walking_progress"
+                            android:visibility="invisible" />
+
+                        <ImageView
+                            android:id="@+id/user_walking_map"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/user_walking_map_img" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/user_walking_gps_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="寻找GPS信号..."
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_zhu_size"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/user_walking_layout_result"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/user_walking_history"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <include layout="@layout/user_walking_line" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/user_walking_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:text="历史记录 > "
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_zhu_size" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!-- 3 2 1 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/user_walking_gif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/user_walking_loading_1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/walking_layout_tishi"
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/walking_bottombg_tishi"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+             >
+
+            <ImageView
+                android:layout_marginTop="@dimen/jianju"
+                android:layout_marginBottom="@dimen/jianju"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/walking_bottom_set" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/jianju"
+                android:text="保证稳定计步需要做的设置"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/walking_bottom_settilte" />
+
+                <LinearLayout
+                    android:id="@+id/walking_layout_bottomdel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/jianju" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/walking_bottom_del" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

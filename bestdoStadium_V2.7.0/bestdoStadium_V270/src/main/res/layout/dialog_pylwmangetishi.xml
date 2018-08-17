@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="295dp"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+<LinearLayout  
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/corners_bg"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/myexit_text_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.2"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:text="该场馆仅提供预约服务，为了提高预订成功率，建议您先联系场馆确认可预订场地时段，再完成下单支付。"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_contents_size" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:contentDescription="@string/contentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+          >
+
+        <TextView
+            android:id="@+id/myexit_text_off"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="联系场馆"
+             android:padding="15dp"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/stadiummaplist_bottom_line"
+            android:contentDescription="@string/contentDescription" />
+
+        <TextView
+            android:id="@+id/myexit_text_sure"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="继续下单"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_contents_size" />
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

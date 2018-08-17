@@ -1,0 +1,298 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/select_pay_lin"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <!-- 上部 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/jianju"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/select_pry_dialog_off_lin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="5dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_pry_dialog_off_img"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/user_item_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/paytop_tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="选择支付方式"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_biaoti_size"
+                android:typeface="normal" />
+
+            <TextView
+                 android:id="@+id/paytop_tv_balanceinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="选择支付方式"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_min_size"
+                android:typeface="normal" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/select_pry_dialog_off_img"
+            android:gravity="center"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <LinearLayout
+            android:id="@+id/yue_pay_lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pay_yue"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingBottom="13dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="13dp"
+                    android:text="余额支付"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_biaoti_size"
+                    android:typeface="normal" />
+
+                <CheckBox
+                    android:id="@+id/yue_pay_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/pay_yue_select"
+                    android:button="@null"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/yinlian_pay_lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/yinlian_pay"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingBottom="13dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="13dp"
+                    android:text="银联支付"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_biaoti_size"
+                    android:typeface="normal" />
+
+                <CheckBox
+                    android:id="@+id/yinlian_pay_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/pay_zhifubao_select"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/zhifubao_pay_lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- 支付宝 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/zhifubao_pay"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingBottom="13dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="13dp"
+                    android:text="支付宝"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_biaoti_size"
+                    android:typeface="normal" />
+
+                <CheckBox
+                    android:id="@+id/zhifubao_pay_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/pay_zhifubao_select"
+                    android:button="@null"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+        <!-- 微信 -->
+
+        <LinearLayout
+            android:id="@+id/weixin_pay_lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/weixin_pay"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingBottom="13dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="13dp"
+                    android:text="微信支付"
+                    android:textColor="@color/text_click_color"
+                    android:textSize="@dimen/text_biaoti_size"
+                    android:typeface="normal" />
+
+                <CheckBox
+                    android:id="@+id/weixin_pay_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/pay_zhifubao_select"
+                    android:button="@null"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/jianju"
+        android:background="@color/white" >
+
+        <TextView
+            android:id="@+id/sure_pay_lin"
+            style="@style/user_item_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/user_login_btn_blue"
+            android:gravity="center"
+            android:text="立即支付"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_pagetop_size"
+            android:typeface="normal" />
+    </RelativeLayout>
+
+</LinearLayout>

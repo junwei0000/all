@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/user_item_paddlefgtright"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <com.bestdo.bestdoStadiums.utils.CircleImageView
+            android:id="@+id/messageitem_iv_img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/contentDescription"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/messageitem_tv_imgdian"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_gravity="top|right"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/corners_circular_red" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <!-- 俱乐部名 -->
+
+        <TextView
+            android:id="@+id/messageitem_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="1"
+            android:singleLine="true"
+            android:textColor="@color/text_click_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/messageitem_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="1"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+</LinearLayout>

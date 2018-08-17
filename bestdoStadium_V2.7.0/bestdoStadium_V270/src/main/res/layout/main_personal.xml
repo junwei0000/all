@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <!-- toubu -->
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <!--
+             <com.bestdo.bestdoStadiums.control.pullable.PullToRefreshLayout
+            android:id="@+id/refresh_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/refresh_head" />
+            支持所有实现Pullable接口的View
+
+            <com.bestdo.bestdoStadiums.control.pullable.PullableScrollView
+                android:id="@+id/listview_placemore"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+        -->
+
+        <com.andview.refreshview.XRefreshView
+            android:id="@+id/main_xrefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <com.bestdo.bestdoStadiums.utils.MyScrollView
+                android:id="@+id/listview_placemore"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <!-- 广告 -->
+
+                    <RelativeLayout
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/detail_img_height"
+                        android:paddingBottom="@dimen/jianju" >
+
+                        <com.bestdo.bestdoStadiums.control.view.AutoScrollViewPager
+                            android:id="@+id/view_pager_advert"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/detail_img_height" />
+
+                        <com.bestdo.bestdoStadiums.control.view.CirclePageIndicator
+                            android:id="@+id/indicator"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:padding="10dip" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/myView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:paddingBottom="@dimen/jianju" >
+
+                        <TextView
+                            android:id="@+id/main_personal_yuding_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:text="订场服务"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_contents_size"
+                            android:visibility="gone" />
+
+                        <com.bestdo.bestdoStadiums.control.view.ScrollLayout
+                            android:id="@+id/ScrollLayoutTest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/main_personal_yuding_text"
+                            android:background="@color/white" >
+                        </com.bestdo.bestdoStadiums.control.view.ScrollLayout>
+
+                        <com.bestdo.bestdoStadiums.control.view.PageControlView
+                            android:id="@+id/pageControl"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        style="@style/user_item_paddlefgtright"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/main_personal_tese_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:paddingTop="10dp"
+                            android:text="特色服务"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_contents_size"
+                            android:visibility="gone" />
+
+                        <com.bestdo.bestdoStadiums.utils.MyGridView
+                            android:id="@+id/main_personal_mygridview"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:cacheColorHint="@color/transparent"
+                            android:divider="@null"
+                            android:fadeScrollbars="true"
+                            android:fadingEdge="none"
+                            android:gravity="left"
+                            android:horizontalSpacing="10dp"
+                            android:listSelector="@drawable/list_notselector"
+                            android:numColumns="2"
+                            android:overScrollMode="never"
+                            android:scrollbars="none"
+                            android:verticalSpacing="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/main_layout_tuijian"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="12dp"
+                            android:visibility="invisible" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:background="@drawable/main_image_title" />
+
+                            <TextView
+                                style="@style/user_item_paddtopbottom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:text="推荐场地"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent" >
+
+                            <com.bestdo.bestdoStadiums.utils.MyListView
+                                android:id="@+id/main_myListView"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:cacheColorHint="@color/page_bg"
+                                android:divider="@null"
+                                android:fadeScrollbars="true"
+                                android:fadingEdge="none"
+                                android:listSelector="@drawable/list_notselector"
+                                android:overScrollMode="never"
+                                android:scrollbars="none" />
+
+                            <LinearLayout
+                                android:id="@+id/not_date"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:visibility="gone" >
+
+                                <include layout="@layout/not_date" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.bestdo.bestdoStadiums.utils.MyScrollView>
+        </com.andview.refreshview.XRefreshView>
+        <!--
+        </com.bestdo.bestdoStadiums.control.pullable.PullableScrollView>
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/load_more" />
+        </com.bestdo.bestdoStadiums.control.pullable.PullToRefreshLayout>
+        -->
+
+        <LinearLayout
+            android:id="@+id/toprela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:background="@color/page_top_bg"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/main_layout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/corners_bg"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/main_city_select_layout"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/main_city_text_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dip"
+                        android:padding="5dp"
+                        android:textColor="@color/text_contents_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_arrow_down_gray" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/main_layout_line"
+                    android:layout_width="0.5dip"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/gray_bg" />
+
+                <LinearLayout
+                    android:id="@+id/main_layout_top2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4.5"
+                    android:background="@drawable/corners_btnbg"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/main_search_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:text="输入场馆名称、场地名称"
+                        android:textColor="@color/text_hint_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/main_top_view"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dip"
+                android:background="@null"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

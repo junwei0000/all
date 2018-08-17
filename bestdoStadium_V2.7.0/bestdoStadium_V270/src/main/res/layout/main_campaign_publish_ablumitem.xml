@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/jianju"
+        android:layout_marginRight="@dimen/jianju" >
+
+
+        <ImageView
+            android:id="@+id/campaignablumadd_iv_ablum"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/contentDescription"
+            android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/campaignablumadd_iv_del"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top|right"
+            android:background="@drawable/campaignpublishedit_img_canceladd" />
+
+        <LinearLayout
+              android:id="@+id/campaignablumadd_layout_vedioinfo"
+            android:layout_width="95dp"
+            android:layout_height="20dp"
+            android:layout_gravity="bottom"
+            android:paddingLeft="2dp"
+            android:paddingBottom="2dp"
+            android:background="@color/black"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/campaignablumadd_iv_vediosize"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_min_size" />
+
+            <TextView
+                android:id="@+id/campaignablumadd_iv_vediodis"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

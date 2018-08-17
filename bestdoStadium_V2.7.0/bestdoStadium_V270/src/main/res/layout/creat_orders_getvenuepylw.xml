@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@color/page_bg"
+        android:orientation="vertical" >
+
+        <!-- 选择week -->
+
+        <com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView
+            android:id="@+id/venueWeekScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/jianju"
+            android:background="@color/white"
+            android:fadingEdge="none"
+            android:fadingEdgeLength="0.0dip"
+            android:overScrollMode="never"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:id="@+id/creat_orders_getvenuepylw_week"
+                style="@style/user_item_padd"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" />
+        </com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView>
+
+        <!-- 选择时间段 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="@dimen/padd_leftright" >
+
+            <LinearLayout
+                android:id="@+id/creatorders_getvenuepylw_layout_venuePieces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/venuepieces_bg"
+                android:orientation="horizontal"
+                android:visibility="invisible" >
+
+                <com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView
+                    android:id="@+id/venuePriceScrollView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fadingEdge="none"
+                    android:fadingEdgeLength="0.0dip"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" >
+
+                    <LinearLayout
+                        android:id="@+id/creat_orders_getvenuepylw_venuePieces"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" />
+                </com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent" >
+
+                    <com.bestdo.bestdoStadiums.utils.MyScrollView
+                        android:id="@+id/venueTimeScrollView"
+                        android:layout_width="50dp"
+                        android:layout_height="fill_parent"
+                        android:fadingEdge="none"
+                        android:fadingEdgeLength="0.0dip"
+                        android:overScrollMode="never"
+                        android:scrollbars="none" >
+
+                        <LinearLayout
+                            android:id="@+id/creat_orders_getvenuepylw_venueTime"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical" />
+                    </com.bestdo.bestdoStadiums.utils.MyScrollView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+
+                        <LinearLayout
+                            android:layout_width="50dp"
+                            android:layout_height="fill_parent" />
+
+                        <com.bestdo.bestdoStadiums.utils.MyScrollView
+                            android:id="@+id/middleRowScrollView"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fadingEdge="none"
+                            android:fadingEdgeLength="0.0dip"
+                            android:focusable="false"
+                            android:overScrollMode="never"
+                            android:scrollbars="none" >
+
+                            <com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView
+                                android:id="@+id/middleColumnScrollView"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:fadingEdge="none"
+                                android:fadingEdgeLength="0.0dip"
+                                android:overScrollMode="never"
+                                android:scrollbars="none" >
+
+                                <LinearLayout
+                                    android:id="@+id/creat_orders_getvenuepylw_venuemiddle"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:orientation="horizontal" />
+                            </com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView>
+                        </com.bestdo.bestdoStadiums.utils.MyScrollView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/creat_orders_getvenuepylw_xiehua"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 底部 -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:background="@color/white"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/createorder_getvenuepylw_layout_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <include layout="@layout/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/createorder_getvenuepylw_tv_allprice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="8dp"
+                            android:textColor="@color/btn_bg"
+                            android:textSize="@dimen/text_pagetop_size" />
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:background="@color/text_noclick_color" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="已选"
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_zhu_size" />
+
+                            <TextView
+                                android:id="@+id/createorder_getvenuepylw_tv_selectnum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/text_zhu_size" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="场次"
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_zhu_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/createorder_getvenuepylw_tv_book"
+                        style="@style/user_item_paddtopbottom"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/createorder_book"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_pagetop_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/createorder_getvenuepylw_layout_bottom"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <!-- 已选择 -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/creat_order_items_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="已选择"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+                <!-- 未选择 -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/creat_order_items_noselect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_rectangle_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="未选择 "
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+                <!-- 不可选择 -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/creat_order_items_cantselect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/text_noclick_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="不可选"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

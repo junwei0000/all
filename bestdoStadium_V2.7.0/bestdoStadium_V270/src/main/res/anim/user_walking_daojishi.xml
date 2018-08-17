@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<set xmlns:android="http://schemas.android.com/apk/res/android" >  
+    <!-- 位移动画 -->  
+    <!-- <translate  
+        android:duration="1000"  
+        android:fromXDelta="0"  
+        android:fromYDelta="0"  
+        android:toXDelta="200"  
+        android:toYDelta="300" />  --> 
+        
+    <!-- 渐变动画 -->  
+    <!-- <alpha  
+        android:duration="1000"  
+        android:fromAlpha="0.1"  
+        android:startOffset="2000"  
+        android:toAlpha="1.0" /> -->  
+      <!-- <alpha
+        android:duration="1000"
+        android:fromAlpha="0.2"
+        android:toAlpha="1"
+        android:fillAfter="true" /> -->
+      <!-- 缩放动画 --> 
+        <scale    
+    android:duration="1000"
+    android:fromXScale="1.0"
+    android:fromYScale="1.0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:toXScale="2.0"
+    android:toYScale="2.0" 
+    />
+        <!-- 旋转动画 -->
+    <!-- <rotate
+        android:duration="1000"
+        android:fromDegrees="-25"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="0"
+        android:fillAfter="true" >
+    </rotate> -->
+
+    
+
+</set>  

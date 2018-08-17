@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\sardar.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d4ec92c631de57ff2a3e9c5c6bdcf723e7020a4c">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\build\intermediates\intermediate-jars\release\classes.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="5e488b743b38bbcfc3b5ce9054553631bbaa4a14">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\SocialSDK_Sina.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f11202cb71112f923a80c75d42e029fc53257e9c">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\c3e459c3000d29dc5137f938bb337968\jars\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\BaiduLBS_Android.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c2405d81ec6b203d4e600f5c559ba19221d0199b">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\AndroidStudio3.0SDK\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\sophix-3.0.3.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="08d8209b683a3ce1b091fd43dc3029ba18421f16">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\qiniu-android-sdk-7.0.7.2.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b9825ff25c455bf3b5e68105f17c99b551209b85">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\httpcore-4.3.2.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="31fbbff1ddbf98f3aa7377c94d33b0447c646b6e">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\umeng_social_sdk.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="03e186fabdab66983e2b2aa42a2b2de7cb37dc4a">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\AndroidStudio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\httpmime-4.3.5.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="1dd0d38df9c6d21e893f2e52403f1cd99e91cd81">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\SocialSDK_QQZone_2.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="4a69b33758dcba3ef519cbd4b6c8af5f41603c4f">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\SocialSDK_QQZone_1.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c184c69f43b1fe46390f7123717c65bd844bccb6">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\umeng-analytics-v5.4.1.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="cdbe5b692334ae8452fa5aa9ba2982fef4a6fff2">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\alipaySdk-20151112.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="5ce758768906f045b279735e7cefc0b89160d9d6">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\galaxy_mini.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="58de9ecfba229dbb2c3eb3f45dbe284ba58100ea">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="a43cf9e271b5bc564e880a0a4be63ab9c69c97f8">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\alicloud-android-utils-1.0.3.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="000626735e82687be89e3ba1ac481540fcab031c">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\UPPayAssistEx.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="dbaf17d4f51f23c05865c4628ef486835464e0ac">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\httpclient-4.3.5.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="9783d89b8eea20a517a4afc5f979bd2882b54c44">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\library_zhy_progressbar\build\intermediates\intermediate-jars\release\classes.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="ada6a1a46685446bc733f6279078c6890458f62c">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\jpush-sdk-release1.7.4.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3c85f598c111fd4d7b3b9f9fa1f8f10bfc31a898">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\SocialSDK_QQZone_3.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8962f50f03ab83787c2c3035d0c79fe79cb0f67d">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\c3e459c3000d29dc5137f938bb337968\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\universal-image-loader-1.9.3-SNAPSHOT.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="29cf65d299e133ec68caba92b29f69289713975b">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\24.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\android_api_1.1_forsdk.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="610ab8a4952cfec5cc008a697790e21dec7b8d3a">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\happy-dns-0.2.3.2.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b3e3950802c1684731a4c11e59cdb2c06750841b">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\UPPayPluginExPro.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2fd09cddb1af02de8ba011d029004a2bdbde3e56">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\BaiduTraceSDK_v2_1_14.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="722ee4bd365a0e0939753fcc77ddb9c2f8ab4c80">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\android-async-http-1.4.8.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="77bbfe240e437ecb396d982afa0d3bd4f9090ba7">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\intermediate-jars\release\classes.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="9a8ffe4b72f7d67666db4aa2f0d037c4cfd55229">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\34.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\Volley.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="bcf22cc422752201bfe226cd69764d1133987a3b">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\27.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\SocialSDK_WeiXin_2.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="4aa8d4cde1e2201e5360daaae4bd9fdbf4194d2a">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\20.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\libs\libammsdk.jar"
+        jumboMode="false"
+        min-sdk-version="14"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d7c2f29c05b35e8c8713be2b81c41cf18f98b64a">
+        <dex dex="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\build\intermediates\transforms\preDex\release\13.jar" />
+    </item>
+
+</items>

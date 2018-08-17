@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/week_sunday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周日"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/week_monday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周一"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/week_tuesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周二"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/week_wednesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周三"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/week_thursday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周四"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/week_friday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周五"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/week_saturday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周六"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+</LinearLayout>

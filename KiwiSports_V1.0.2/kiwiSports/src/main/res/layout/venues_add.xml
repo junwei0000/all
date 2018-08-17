@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/useraccount_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/tv_next">
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/mMapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true" />
+
+            <ImageView
+                android:id="@+id/map_iv_covering"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/map_covering_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/venue_add_loclefttop"
+                android:contentDescription="@string/contentDescription"
+                android:gravity="center"
+                android:scaleType="centerCrop"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/venue_add_locrightbottom"
+                android:contentDescription="@string/contentDescription"
+                android:gravity="center"
+                android:scaleType="centerCrop"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/main_tab_page_bg"
+            android:gravity="center"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_tishi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.8"
+            android:paddingBottom="30dp"
+            android:orientation="vertical"
+            android:background="@color/black"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/venue_add_tishi"
+                android:contentDescription="@string/contentDescription"
+                android:gravity="center"
+                android:scaleType="centerCrop"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/jianju"
+                android:text="可用双指缩放选择场地范围"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

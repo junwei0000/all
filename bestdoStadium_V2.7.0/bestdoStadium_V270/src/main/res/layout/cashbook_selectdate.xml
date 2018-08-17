@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/jianju"
+            android:paddingTop="@dimen/jianju"
+            android:singleLine="true"
+            android:text="统计数据时间段筛选"
+            android:textColor="@color/text_click_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="统计开始日期"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/selectdate_tv_starttime"
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:background="@drawable/corners_rectangle_gray"
+                android:paddingBottom="@dimen/padd_imgtextleftright"
+                android:paddingTop="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="2012-22-21"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="55dp"
+            android:background="@color/text_noclick_color"
+            android:paddingBottom="-10dp"
+            android:paddingTop="-10dp" />
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="统计结束日期"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/selectdate_tv_endtime"
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:background="@drawable/corners_rectangle_gray"
+                android:paddingBottom="@dimen/padd_imgtextleftright"
+                android:paddingTop="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="2012-22-21"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/jianju" >
+
+            <TextView
+                android:id="@+id/selectdate_tv_onemonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corners_bg_gray"
+                android:padding="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="近1个月"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/selectdate_tv_threemonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/jianju"
+                android:background="@drawable/corners_bg_blue"
+                android:padding="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="近3个月"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/selectdate_tv_sixmonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/jianju"
+                android:background="@drawable/corners_bg_gray"
+                android:padding="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="近6个月"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/selectdate_tv_reset"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/updatebar_content_height"
+                android:layout_weight="1"
+                android:background="@color/text_hint_color"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="重置"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pagetop_size" />
+
+            <TextView
+                android:id="@+id/selectdate_tv_sure"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/updatebar_content_height"
+                android:layout_weight="1"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pagetop_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

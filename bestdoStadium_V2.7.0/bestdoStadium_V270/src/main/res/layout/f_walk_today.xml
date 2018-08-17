@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/walk_bg" >
+
+        <com.bestdo.bestdoStadiums.control.view.ColorArcProgressBar
+            android:id="@+id/bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:back_color="@android:color/darker_gray"
+            app:back_width="@dimen/dp10"
+            app:front_width="@dimen/dp10"
+            app:is_need_content="true"
+            app:is_need_title="true"
+            app:is_need_unit="true"
+            app:max_value="10000"
+            app:string_title1="今日步数"
+            app:string_title2="今日目标10000"
+            app:string_unit=""
+            app:total_engle="270" />
+
+        <TextView
+            android:id="@+id/tv_rank"
+            android:layout_width="@dimen/dp99"
+            android:layout_height="@dimen/dp27"
+            android:layout_below="@+id/bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
+            android:background="@drawable/slt_rank"
+            android:gravity="center"
+            android:text="@string/see_rank"
+            android:textColor="@color/c_038fff"
+            android:textSize="@dimen/sp16" />
+
+        <TextView
+            android:id="@+id/tv_company"
+            style="@style/tv_walk_center"
+            android:layout_below="@+id/tv_rank"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_company"
+            android:orientation="vertical" >
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                layout="@layout/in_walk_t_center" />
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9"
+                layout="@layout/in_walk_t_progress" />
+
+            <include
+                android:id="@+id/in_day"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                layout="@layout/in_walk_t_day" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

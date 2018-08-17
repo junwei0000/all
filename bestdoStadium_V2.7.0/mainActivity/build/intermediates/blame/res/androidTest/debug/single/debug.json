@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_launcher.png.flat",
+        "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_ic_launcher.png.flat",
+        "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_activity_main.xml.flat",
+        "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_ic_launcher.png.flat",
+        "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu_main.xml.flat",
+        "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_launcher.png.flat",
+        "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_launcher.png"
+    }
+]

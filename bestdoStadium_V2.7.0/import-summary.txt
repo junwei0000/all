@@ -1,0 +1,147 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From MainActivity:
+* .gitignore
+* README.md
+* ic_launcher-web.png
+* proguard-project.txt
+From XRefreshView:
+* .gitignore
+* proguard-project.txt
+From bestdoStadium_V2.7.0:
+* proguard-project.txt
+* proguard.cfg
+* proguard\
+* proguard\dump.txt
+* proguard\mapping.txt
+* proguard\seeds.txt
+* proguard\usage.txt
+From library_zhy_progressbar:
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:21.0.3
+gson-2.2.4.jar => com.google.code.gson:gson:2.2.4
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+gson-2.2.4.jar => version 2.2.4 in com.google.code.gson:gson:2.2.4
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In MainActivity:
+* AndroidManifest.xml => mainActivity\src\main\AndroidManifest.xml
+* assets\ => mainActivity\src\main\assets\
+* res\ => mainActivity\src\main\res\
+* src\ => mainActivity\src\main\java\
+In XRefreshView:
+* AndroidManifest.xml => xRefreshView\src\main\AndroidManifest.xml
+* libs\nineoldandroids-2.4.0.jar => xRefreshView\libs\nineoldandroids-2.4.0.jar
+* res\ => xRefreshView\src\main\res\
+* src\ => xRefreshView\src\main\java\
+In library_zhy_progressbar:
+* AndroidManifest.xml => library_zhy_progressbar\src\main\AndroidManifest.xml
+* res\ => library_zhy_progressbar\src\main\res\
+* src\ => library_zhy_progressbar\src\main\java\
+In bestdoStadium_V2.7.0:
+* AndroidManifest.xml => bestdoStadium_V270\src\main\AndroidManifest.xml
+* assets\ => bestdoStadium_V270\src\main\assets\
+* jni\ => bestdoStadium_V270\src\main\jni\
+* libs\alicloud-android-utils-1.0.3.jar => bestdoStadium_V270\libs\alicloud-android-utils-1.0.3.jar
+* libs\alipaySdk-20151112.jar => bestdoStadium_V270\libs\alipaySdk-20151112.jar
+* libs\android-async-http-1.4.8.jar => bestdoStadium_V270\libs\android-async-http-1.4.8.jar
+* libs\android_api_1.1_forsdk.jar => bestdoStadium_V270\libs\android_api_1.1_forsdk.jar
+* libs\armeabi\libapp_BaiduNaviApplib_v1_0_0.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libapp_BaiduNaviApplib_v1_0_0.so
+* libs\armeabi\libBaiduMapSDK_v3_3_0_15.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libBaiduMapSDK_v3_3_0_15.so
+* libs\armeabi\libBaiduTraceSDK_v2_1_14.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libBaiduTraceSDK_v2_1_14.so
+* libs\armeabi\libCNPackage.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libCNPackage.so
+* libs\armeabi\libejTTS.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libejTTS.so
+* libs\armeabi\libentryexpro.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libentryexpro.so
+* libs\armeabi\libjpush174.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libjpush174.so
+* libs\armeabi\liblocnaviSDK.so => bestdoStadium_V270\src\main\jniLibs\armeabi\liblocnaviSDK.so
+* libs\armeabi\liblocSDK5.so => bestdoStadium_V270\src\main\jniLibs\armeabi\liblocSDK5.so
+* libs\armeabi\libsophix.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libsophix.so
+* libs\armeabi\libuptsmaddon.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libuptsmaddon.so
+* libs\armeabi\libuptsmaddonmi.so => bestdoStadium_V270\src\main\jniLibs\armeabi\libuptsmaddonmi.so
+* libs\BaiduLBS_Android.jar => bestdoStadium_V270\libs\BaiduLBS_Android.jar
+* libs\BaiduTraceSDK_v2_1_14.jar => bestdoStadium_V270\libs\BaiduTraceSDK_v2_1_14.jar
+* libs\galaxy_mini.jar => bestdoStadium_V270\libs\galaxy_mini.jar
+* libs\happy-dns-0.2.3.2.jar => bestdoStadium_V270\libs\happy-dns-0.2.3.2.jar
+* libs\httpclient-4.3.5.jar => bestdoStadium_V270\libs\httpclient-4.3.5.jar
+* libs\httpcore-4.3.2.jar => bestdoStadium_V270\libs\httpcore-4.3.2.jar
+* libs\httpmime-4.3.5.jar => bestdoStadium_V270\libs\httpmime-4.3.5.jar
+* libs\jpush-sdk-release1.7.4.jar => bestdoStadium_V270\libs\jpush-sdk-release1.7.4.jar
+* libs\libammsdk.jar => bestdoStadium_V270\libs\libammsdk.jar
+* libs\qiniu-android-sdk-7.0.7.2.jar => bestdoStadium_V270\libs\qiniu-android-sdk-7.0.7.2.jar
+* libs\sardar.jar => bestdoStadium_V270\libs\sardar.jar
+* libs\SocialSDK_QQZone_1.jar => bestdoStadium_V270\libs\SocialSDK_QQZone_1.jar
+* libs\SocialSDK_QQZone_2.jar => bestdoStadium_V270\libs\SocialSDK_QQZone_2.jar
+* libs\SocialSDK_QQZone_3.jar => bestdoStadium_V270\libs\SocialSDK_QQZone_3.jar
+* libs\SocialSDK_Sina.jar => bestdoStadium_V270\libs\SocialSDK_Sina.jar
+* libs\SocialSDK_WeiXin_2.jar => bestdoStadium_V270\libs\SocialSDK_WeiXin_2.jar
+* libs\sophix-3.0.3.jar => bestdoStadium_V270\libs\sophix-3.0.3.jar
+* libs\umeng-analytics-v5.4.1.jar => bestdoStadium_V270\libs\umeng-analytics-v5.4.1.jar
+* libs\umeng_social_sdk.jar => bestdoStadium_V270\libs\umeng_social_sdk.jar
+* libs\universal-image-loader-1.9.3-SNAPSHOT.jar => bestdoStadium_V270\libs\universal-image-loader-1.9.3-SNAPSHOT.jar
+* libs\UPPayAssistEx.jar => bestdoStadium_V270\libs\UPPayAssistEx.jar
+* libs\UPPayPluginExPro.jar => bestdoStadium_V270\libs\UPPayPluginExPro.jar
+* libs\Volley.jar => bestdoStadium_V270\libs\Volley.jar
+* libs\x86\libapp_BaiduNaviApplib_v1_0_0.so => bestdoStadium_V270\src\main\jniLibs\x86\libapp_BaiduNaviApplib_v1_0_0.so
+* libs\x86\libBaiduMapSDK_v3_3_0_15.so => bestdoStadium_V270\src\main\jniLibs\x86\libBaiduMapSDK_v3_3_0_15.so
+* libs\x86\libBaiduTraceSDK_v2_1_14.so => bestdoStadium_V270\src\main\jniLibs\x86\libBaiduTraceSDK_v2_1_14.so
+* libs\x86\libCNPackage.so => bestdoStadium_V270\src\main\jniLibs\x86\libCNPackage.so
+* libs\x86\libejTTS.so => bestdoStadium_V270\src\main\jniLibs\x86\libejTTS.so
+* libs\x86\libentryexpro.so => bestdoStadium_V270\src\main\jniLibs\x86\libentryexpro.so
+* libs\x86\libjpush174.so => bestdoStadium_V270\src\main\jniLibs\x86\libjpush174.so
+* libs\x86\liblocnaviSDK.so => bestdoStadium_V270\src\main\jniLibs\x86\liblocnaviSDK.so
+* libs\x86\liblocSDK5.so => bestdoStadium_V270\src\main\jniLibs\x86\liblocSDK5.so
+* libs\x86\libsophix.so => bestdoStadium_V270\src\main\jniLibs\x86\libsophix.so
+* libs\x86\libuptsmaddon.so => bestdoStadium_V270\src\main\jniLibs\x86\libuptsmaddon.so
+* libs\x86\libuptsmaddonmi.so => bestdoStadium_V270\src\main\jniLibs\x86\libuptsmaddonmi.so
+* lint.xml => bestdoStadium_V270\lint.xml
+* res\ => bestdoStadium_V270\src\main\res\
+* src\ => bestdoStadium_V270\src\main\java\
+* src\com\bestdo\bestdoStadiums\control\service\RemoteConnection.aidl => bestdoStadium_V270\src\main\aidl\com\bestdo\bestdoStadiums\control\service\RemoteConnection.aidl
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

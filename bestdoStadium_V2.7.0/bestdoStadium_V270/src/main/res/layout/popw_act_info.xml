@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_popw"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp80"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp18"
+        android:text="当前没有活动哦"
+        android:textColor="@color/c_ffffff"
+        android:textSize="@dimen/sp30" />
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp18"
+        android:layout_marginRight="@dimen/dp18"
+        android:divider="@color/c_00000000"
+        android:dividerHeight="@dimen/dp11" />
+
+    <com.bestdo.bestdoStadiums.utils.CircleImageView
+        android:id="@+id/img_cancel"
+        android:layout_width="@dimen/dp46"
+        android:layout_height="@dimen/dp46"
+        android:layout_marginBottom="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:src="@drawable/act_pop_delete" />
+
+</LinearLayout>

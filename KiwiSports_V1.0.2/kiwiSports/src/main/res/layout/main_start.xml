@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_page_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/page_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/pagetop_iv_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mainstart_kiwi_img"
+                android:contentDescription="@string/contentDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pagetop_layoutv_you"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="10dp" >
+
+            <ImageView
+                android:id="@+id/pagetop_iv_you"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mainstart_run_img"
+                android:contentDescription="@string/contentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutall"
+        style="@style/padd_lefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@+id/relat_map"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:orientation="vertical" >
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/mMapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true" />
+
+            <FrameLayout
+                android:id="@+id/fragment_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.2"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/map_iv_mylocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="55dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/map_iv_mylocation"
+                android:contentDescription="@string/contentDescription"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/map_iv_shrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/map_shrink"
+                android:contentDescription="@string/contentDescription"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/map_iv_zoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/map_all"
+                android:contentDescription="@string/contentDescription" />
+        </FrameLayout>
+        <!-- 距离 趟数 -->
+
+        <LinearLayout
+            android:id="@+id/layout_disquan"
+            style="@style/padd_topbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/jianju"
+            android:layout_marginTop="@dimen/jianju"
+            android:background="@drawable/corners_bg_shen"
+            android:orientation="horizontal" >
+
+            <!-- zuo -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp30" />
+
+                    <TextView
+                        android:id="@+id/tv_distanceunit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:text="km"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_zuo_img" />
+
+                    <TextView
+                        android:id="@+id/tv_distancetitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_you_img" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- you -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_quannum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp30" />
+
+                    <TextView
+                        android:id="@+id/tv_quannumunit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_zuo_img" />
+
+                    <TextView
+                        android:id="@+id/tv_quannumtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_you_img" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--  -->
+        </LinearLayout>
+        <!-- 属性 -->
+
+        <LinearLayout
+            android:id="@+id/layout_property"
+            style="@style/padd_topbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_shen"
+            android:orientation="horizontal" >
+
+            <com.KiwiSports.utils.MyGridView
+                android:id="@+id/mygridview_property"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="@color/transparent"
+                android:divider="@null"
+                android:fadeScrollbars="true"
+                android:fadingEdge="none"
+                android:gravity="left"
+                android:horizontalSpacing="10dp"
+                android:listSelector="@drawable/list_notselector"
+                android:numColumns="3"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:verticalSpacing="10dp" >
+            </com.KiwiSports.utils.MyGridView>
+        </LinearLayout>
+        <!-- 按钮 -->
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/iv_share"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/share"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_start"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/start" />
+
+            <ImageView
+                android:id="@+id/iv_pause"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/pause"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_continue"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/continues"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_stop"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/stop"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!--  -->
+
+    </LinearLayout>
+
+</LinearLayout>

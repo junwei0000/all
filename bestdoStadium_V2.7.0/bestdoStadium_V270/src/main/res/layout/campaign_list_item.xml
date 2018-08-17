@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/corners_bg"
+    android:orientation="vertical" >
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+	    >
+    <TextView
+        android:id="@+id/campaginlistitem_tv_date"
+        style="@style/user_item_paddlefgtright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/campaginlistitem_tv_date2"
+        android:paddingBottom="@dimen/padd_leftright"
+        android:paddingTop="@dimen/padd_leftright"
+        android:singleLine="true"
+        android:text="sssssssssssssssssssssssssssssssssss"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_contents_size" />
+    <TextView
+        android:id="@+id/campaginlistitem_tv_date2"
+        style="@style/user_item_paddlefgtright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="@dimen/padd_leftright"
+        android:paddingTop="@dimen/padd_leftright"
+        android:singleLine="true"
+        android:text="222"
+        android:visibility="gone"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_contents_size" />
+</RelativeLayout>
+    <include layout="@layout/line" />
+
+    <TextView
+         android:id="@+id/campaginlistitem_tv_centent"
+        style="@style/user_item_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padd_leftright"
+        android:paddingTop="@dimen/padd_leftright"
+        android:singleLine="true"
+        android:text="sssssssssssssssssssssssssssssssssss"
+        android:textColor="@color/text_click_color"
+        android:textSize="@dimen/text_contents_size" />
+
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="270dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg"
+    android:orientation="vertical"
+     >
+
+     <TextView
+         android:id="@+id/stadiumshishi_tishi"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:gravity="center"
+         android:paddingTop="20dip"
+         style="@style/user_item_paddlefgtright"
+         android:text="选择的日期必须大于当天"
+         android:textColor="@color/text_click_color"
+         android:textSize="@dimen/text_contents_size" />
+
+     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:contentDescription="@string/contentDescription" />
+
+      <TextView
+          android:id="@+id/stadiumshishi_tv_sure"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:paddingBottom="15dip"
+          android:paddingTop="15dp"
+          android:text="知道了"
+          android:textColor="@color/blue"
+          android:textSize="@dimen/text_contents_size" />
+
+</LinearLayout>

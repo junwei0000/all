@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <ScrollView
+        android:id="@+id/campaignpublish_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@color/white"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!--  -->
+
+            <LinearLayout
+                style="@style/user_item_paddlefgtright"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <com.bestdo.bestdoStadiums.utils.SupplierEditText
+                    android:id="@+id/campaignpublish_et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="bottom"
+                    android:hint="活动主题"
+                    android:maxLength="20"
+                    android:paddingBottom="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/padd_topbottom"
+                    android:singleLine="true"
+                    android:textColor="@color/text_noclick_color"
+                    android:textColorHint="@color/text_noclick_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <include layout="@layout/line" />
+
+                <EditText
+                    android:id="@+id/campaignpublish_et_titlestated"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/transparent"
+                    android:gravity="top|left"
+                    android:hint="请说明活动的相关情况，最多可输入120个字符"
+                    android:maxLength="120"
+                    android:paddingTop="@dimen/padd_leftright"
+                    android:textColor="@color/text_noclick_color"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <RelativeLayout
+                    android:id="@+id/campaignpublish_relat_club"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_clubbiaoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="俱乐部"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_club"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/campaignpublish_iv_club"
+                        android:layout_toRightOf="@+id/campaignpublish_tv_clubbiaoti"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/padd_imgtextleftright"
+                        android:paddingRight="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/campaignpublish_iv_club"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/usercenter_arrow_img" />
+                </RelativeLayout>
+
+                <include layout="@layout/line" />
+
+                <RelativeLayout
+                    android:id="@+id/campaignpublish_relat_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_addressbiaoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="活动地点"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/campaignpublish_iv_address"
+                        android:layout_toRightOf="@+id/campaignpublish_tv_addressbiaoti"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/padd_imgtextleftright"
+                        android:paddingRight="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/campaignpublish_iv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/usercenter_arrow_img" />
+                </RelativeLayout>
+
+                <include layout="@layout/line" />
+
+                <RelativeLayout
+                    android:id="@+id/campaignpublish_relat_starttime"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_starttimebiaoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="开始时间"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_starttime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/campaignpublish_iv_starttime"
+                        android:layout_toRightOf="@+id/campaignpublish_tv_starttimebiaoti"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/padd_imgtextleftright"
+                        android:paddingRight="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/campaignpublish_iv_starttime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/usercenter_arrow_img" />
+                </RelativeLayout>
+
+                <include layout="@layout/line" />
+
+                <RelativeLayout
+                    android:id="@+id/campaignpublish_relat_endtime"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_endtimebiaoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="结束时间"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_endtime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/campaignpublish_iv_endtime"
+                        android:layout_toRightOf="@+id/campaignpublish_tv_endtimebiaoti"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/padd_imgtextleftright"
+                        android:paddingRight="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/campaignpublish_iv_endtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/usercenter_arrow_img" />
+                </RelativeLayout>
+
+                <include layout="@layout/line" />
+
+                <RelativeLayout
+                    android:id="@+id/campaignpublish_relat_quota"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/padd_leftright" >
+
+                    <TextView
+                        android:id="@+id/campaignpublish_tv_quotabiaoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="名额"
+                        android:textColor="@color/text_click_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <EditText
+                        android:id="@+id/campaignpublish_et_quota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/campaignpublish_tv_quotabiaoti"
+                        android:background="@color/transparent"
+                        android:gravity="right"
+                        android:hint="不限"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:paddingRight="2dp"
+                        android:paddingLeft="@dimen/padd_leftright"
+                        android:singleLine="true"
+                        android:textColorHint="@color/text_noclick_color"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--  -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/jianju"
+                android:background="@color/page_bg" />
+            <!--  -->
+
+            <LinearLayout
+                android:id="@+id/campaignpublish_layout_bottom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    style="@style/user_item_paddlefgtright"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/padd_leftright"
+                            android:paddingTop="@dimen/padd_leftright"
+                            android:text="每周固定活动"
+                            android:textColor="@color/text_click_color"
+                            android:textSize="@dimen/text_contents_size" />
+
+                        <Button
+                            android:id="@+id/campaignpublish_btn_activities"
+                            android:layout_width="45dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/img_off" />
+                    </RelativeLayout>
+
+                    <include layout="@layout/line" />
+
+                    <RelativeLayout
+                        android:id="@+id/campaignpublish_relat_setauto"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/padd_leftright" >
+
+                        <TextView
+                            android:id="@+id/campaignpublish_tv_setautobiaoti"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="自动发布设置"
+                            android:textColor="@color/text_click_color"
+                            android:textSize="@dimen/text_contents_size" />
+
+                        <TextView
+                            android:id="@+id/campaignpublish_tv_setauto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/campaignpublish_iv_setauto"
+                            android:layout_toRightOf="@+id/campaignpublish_tv_setautobiaoti"
+                            android:gravity="right"
+                            android:paddingLeft="@dimen/padd_imgtextleftright"
+                            android:paddingRight="@dimen/padd_imgtextleftright"
+                            android:singleLine="true"
+                            android:text="提前3天"
+                            android:textColor="@color/text_noclick_color"
+                            android:textSize="@dimen/text_contents_size" />
+
+                        <ImageView
+                            android:id="@+id/campaignpublish_iv_setauto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/usercenter_arrow_img" />
+                    </RelativeLayout>
+
+                    <include layout="@layout/line" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

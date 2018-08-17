@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp80"
+    android:layout_marginTop="@dimen/dp8"
+    android:background="@drawable/walk_white"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/walk_d_center_margin"
+    android:paddingRight="@dimen/walk_d_center_margin" >
+
+    <LinearLayout style="@style/VProgressBarContainer" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slt_title_dark"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progress1"
+                style="@style/VProgressBar.walk"
+                android:progress="30" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/VProgressBarContainer" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slt_title_dark"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progress2"
+                style="@style/VProgressBar.walk"
+                android:progress="30" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/VProgressBarContainer" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slt_title_dark"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progress3"
+                style="@style/VProgressBar.walk"
+                android:progress="30" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/VProgressBarContainer" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slt_title_dark"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progress4"
+                style="@style/VProgressBar.walk"
+                android:progress="30" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/VProgressBarContainer" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slt_title_dark"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progress5"
+                style="@style/VProgressBar.walk"
+                android:progress="30" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/VProgressBarContainer" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slt_title_dark"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progress6"
+                style="@style/VProgressBar.walk"
+                android:progress="30" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/VProgressBarContainer" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slt_title_dark"
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progress7"
+                style="@style/VProgressBar.walk"
+                android:progress="30" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

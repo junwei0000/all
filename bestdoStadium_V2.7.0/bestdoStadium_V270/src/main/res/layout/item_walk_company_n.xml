@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/c_ffffff"
+              android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_no"
+        style="@style/tv_walk_center.rank_no"
+        android:layout_marginLeft="0dp"
+        android:layout_width="@dimen/dp34"
+        android:gravity="center|right"
+        android:layout_alignParentLeft="true"
+        android:text="4"/>
+
+    <include
+        layout="@layout/in_rank_item_company"/>
+</LinearLayout>

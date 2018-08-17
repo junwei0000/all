@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:id="@+id/ll_lv_top"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:background="@drawable/rank_my_title"
+        android:gravity="center_horizontal">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp17">
+            <ImageView
+                android:id="@+id/img_one"
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/tv_name_one"
+                style="@style/tv_walk_center.rank_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp4"
+                android:layout_toRightOf="@+id/img_one"
+                android:text="XX占领了封面"
+                android:textSize="@dimen/sp14"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <include
+        android:id="@+id/in_my"
+        layout="@layout/in_rank_item"/>
+
+    <TextView
+        style="@style/tv_walk_center.rank_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginBottom="@dimen/dp1"
+        android:background="@color/c_ffffff"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/personal_rank"
+        android:textStyle="bold"/>
+</LinearLayout>

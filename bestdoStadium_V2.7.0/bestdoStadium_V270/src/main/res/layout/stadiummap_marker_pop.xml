@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/map_nearby_con_no"
+    android:gravity="top|center_horizontal"
+    android:orientation="horizontal"
+     >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="6dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/map_popview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/map_popview_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:layout_marginBottom="20dp"
+        android:gravity="right|center_vertical" >
+
+        <ImageView
+            android:id="@+id/map_popview_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/usercenter_arrow_img" />
+    </LinearLayout>
+
+</LinearLayout>

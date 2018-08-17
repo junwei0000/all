@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainnav_img_lin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!--
+         <WebView
+        android:id="@+id/webview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:background="@color/transparent"
+        android:scrollbars="none" />
+    -->
+
+
+    <!-- webview 演示web调用Java -->
+
+    <com.example.androidbridge.BridgeWebView
+        android:id="@+id/webView_bri"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" >
+    </com.example.androidbridge.BridgeWebView>
+
+</LinearLayout>

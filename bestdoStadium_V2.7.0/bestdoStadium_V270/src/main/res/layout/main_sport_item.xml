@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp" >
+
+    <LinearLayout
+        android:id="@+id/stadiummaplist_sport_item_lay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/stadiummaplist_sport_item_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:id="@+id/stadiummaplist_sport_item_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_toRightOf="@+id/stadiummaplist_sport_item_img"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="-8dp"
+                android:background="@drawable/main_sport_corners_red"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:text="NEW"
+                    android:textColor="@color/white"
+                    android:textSize="8sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/stadiummaplist_sport_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:textColor="@color/text_click_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/white"
+        >
+
+    <!-- android:background="@drawable/corners_bg" -->
+
+    <ImageView
+        android:id="@+id/stadium_detail_venues_img_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:contentDescription="@string/contentDescription"
+        android:scaleType="centerCrop" />
+    <!-- android:textColor="@color/lvse" -->
+
+    <LinearLayout
+        android:id="@+id/stadium_detail_venue_tv_venuces"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        />
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:interpolator="@android:anim/accelerate_interpolator"
+
+    android:shareInterpolator="true">
+
+    <!-- fromAlpha和toAlpha是起始透明度和结束时透明度 -->
+    <alpha
+        android:fromAlpha="0.1"
+        android:toAlpha="1.0"
+        android:duration="500"/>
+    <translate
+        android:fillAfter="false"
+        android:duration="500"
+        android:fromXDelta="0"
+    android:fromYDelta="0"
+    android:toXDelta="0"
+    android:toYDelta="-45%p"
+        />
+    <!-- android:fromXDelta="0%"
+        android:toXDelta="100%"
+        android:fromYDelta="0%"
+        android:toYDelta="100%"
+       -->  
+    
+
+</set>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top_cash" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:background="@color/blue"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/unit_fuhao_money"
+                android:textColor="@color/white_light"
+                android:textSize="@dimen/text_money_size" />
+
+            <EditText
+                android:id="@+id/update_et_money"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:inputType="numberDecimal"
+                android:maxLength="11"
+                android:paddingLeft="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:textColor="@color/white_light"
+                android:textSize="@dimen/text_money_size" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/update_et_description"
+            style="@style/user_item_paddlefgtright"
+            android:paddingTop="@dimen/padd_imgtextleftright"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/white"
+            android:gravity="top|left"
+            android:hint="添加备注"
+            android:textColor="@color/text_noclick_color"
+            android:textColorHint="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+             android:id="@+id/update_layout_date"
+            style="@style/user_item_paddlefgtright"
+             android:paddingTop="@dimen/padd_imgtextleftright"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/update_img_date" />
+
+            <TextView
+                android:id="@+id/update_tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="2016年2月22日"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"  >
+
+            <com.bestdo.bestdoStadiums.control.view.ScrollLayout
+                android:id="@+id/scroll_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:layout_alignParentTop="true"
+                android:background="@color/white" >
+            </com.bestdo.bestdoStadiums.control.view.ScrollLayout>
+
+            <com.bestdo.bestdoStadiums.control.view.PageControlView
+                android:id="@+id/mpageControl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:gravity="center"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

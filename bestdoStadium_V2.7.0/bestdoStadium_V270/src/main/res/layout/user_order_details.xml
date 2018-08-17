@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/userorderdetails_layout_bottom"
+            android:background="@color/page_bg"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <include layout="@layout/user_order_details_topstatus" />
+
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/jianju"
+                    />
+                <include layout="@layout/user_order_details_stadiuminfo" 
+                 />
+
+                <LinearLayout
+                    android:id="@+id/userorderdetails_codeitem_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/jianju"
+                    android:visibility="gone"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <include layout="@layout/user_order_details_orderinfo" />
+
+                <include layout="@layout/user_order_details_payinfo" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/userorderdetails_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_bottom_height"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <include layout="@layout/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <com.bestdo.bestdoStadiums.utils.TimeTextView
+                    android:id="@+id/userorderdetails_tv_timers"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_contents_size"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/userorderdetails_tv_bottom"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/btn_blue_color"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pagetop_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

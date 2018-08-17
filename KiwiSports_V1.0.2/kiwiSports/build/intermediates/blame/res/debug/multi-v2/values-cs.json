@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\kiwiSports\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-cs\\values-cs.xml",
+            "map": [
+                {
+                    "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.0.2\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\values-cs\\values-cs.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,133,204",
+                        "endColumns": "77,70,82",
+                        "endOffsets": "128,199,282"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Dell\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\8b726056c915236c495e2d965e911d1e\\res\\values-cs\\values-cs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "5",
+                        "startColumns": "4",
+                        "startOffsets": "287",
+                        "endColumns": "100",
+                        "endOffsets": "383"
+                    }
+                }
+            ]
+        }
+    ]
+}

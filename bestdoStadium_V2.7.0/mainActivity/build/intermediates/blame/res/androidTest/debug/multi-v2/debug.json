@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-w820dp-v13_values-w820dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\values-w820dp-v13\\values-w820dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "57",
+                        "endOffsets": "108"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\res\\merged\\androidTest\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\mainActivity\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,113,169,222,273,323",
+                        "endColumns": "57,55,52,50,49,52",
+                        "endOffsets": "108,164,217,268,318,371"
+                    }
+                }
+            ]
+        }
+    ]
+}

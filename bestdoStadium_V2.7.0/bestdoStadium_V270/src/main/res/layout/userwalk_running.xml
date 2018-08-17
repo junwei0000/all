@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/userwalk_layout_running"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- 头部 -->
+
+    <LinearLayout
+        style="@style/user_item_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical" >
+
+            <ImageView
+                android:id="@+id/userwalk_run_iv_gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/userwalk_run_gps0"
+                android:contentDescription="@string/contentDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:id="@+id/userwalk_run_layout_hostory"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/userwalk_run_hostory"
+                android:contentDescription="@string/contentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" >
+
+        <TextView
+            android:id="@+id/userwalk_run_tv_gpsinfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/userwalk_run_layout_distance"
+            android:gravity="center_horizontal|bottom"
+            android:minLines="1"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:text="无信号"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoti_size" />
+        <!-- 显示公里 -->
+
+        <LinearLayout
+            android:id="@+id/userwalk_run_layout_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/userwalk_run_iv_map"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minLines="1"
+                android:text="居中"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoti_size"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/userwalk_run_tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minLines="1"
+                android:text="0.00"
+                android:textColor="@color/white"
+                android:textSize="100sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minLines="1"
+                android:text="公里"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoti_size" />
+        </LinearLayout>
+        <!-- 地图按钮 -->
+
+        <ImageView
+            android:id="@+id/userwalk_run_iv_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/userwalk_run_layout_info"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/userwalk_run_map" />
+        <!-- 中间数据显示部分 -->
+
+        <LinearLayout
+            android:id="@+id/userwalk_run_layout_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/userwalk_run_layout_bottom"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/userwalk_run_speed" />
+
+                <TextView
+                    android:id="@+id/userwalk_run_tv_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:paddingBottom="@dimen/padd_topbottom"
+                    android:paddingTop="@dimen/padd_topbottom"
+                    android:text="00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_money_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:text="配速"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoti_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/userwalk_run_time" />
+
+                <TextView
+                    android:id="@+id/userwalk_run_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:paddingBottom="@dimen/padd_topbottom"
+                    android:paddingTop="@dimen/padd_topbottom"
+                    android:text="00:00:00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_money_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:text="时间"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoti_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/userwalk_run_calories" />
+
+                <TextView
+                    android:id="@+id/userwalk_run_tv_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:paddingBottom="@dimen/padd_topbottom"
+                    android:paddingTop="@dimen/padd_topbottom"
+                    android:text="00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_money_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:text="千卡"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoti_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 底部 .开始结束按钮 -->
+
+        <LinearLayout
+            android:id="@+id/userwalk_run_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/updatebar_height"
+            android:paddingTop="@dimen/updatebar_height" >
+
+            <ImageView
+                android:id="@+id/userwalk_run_iv_continue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/userwalk_run_continue" />
+
+            <ImageView
+                android:id="@+id/userwalk_run_iv_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/userwalk_run_pause"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/userwalk_run_iv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/userwalk_run_end" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

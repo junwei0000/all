@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="270dp"
+    android:layout_height="150dp"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/put_pengyouquan_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            style="@style/user_item_paddlefgtright"
+            android:text="精彩时刻发布中..."
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_pagetop_size" />
+
+        <com.zhy.view.HorizontalProgressBarWithNumber
+            android:id="@+id/id_progressbar01"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            zhy:progress_text_color="#ff2903FC"
+            zhy:progress_unreached_color="#ffBCB4E8"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip"
+            android:paddingLeft="5dp"
+             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/put_pengyouquan_text_off"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消发布"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_pagetop_size" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

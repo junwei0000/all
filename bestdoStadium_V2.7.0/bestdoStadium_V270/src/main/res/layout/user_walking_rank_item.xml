@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:id="@+id/rank_item_layout_ranking"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/rank_item_tv_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1"
+                android:singleLine="true"
+                android:text="2"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <com.bestdo.bestdoStadiums.utils.CircleImageView
+            android:id="@+id/rank_item_iv_headportrait"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/contentDescription"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/rank_item_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:paddingLeft="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="你叫啥"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/rank_item_tv_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1"
+                android:paddingLeft="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="分公司"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rank_item_tv_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:lineSpacingMultiplier="1"
+            android:paddingRight="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:text="12322"
+            android:textColor="@color/text_click_color"
+            android:textSize="@dimen/text_contents_size" />
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+    <TextView
+        android:id="@+id/rank_item_tv_kong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:gravity="center"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_min_size"
+         />
+
+    <include
+        android:id="@+id/rank_item_tv_kong_line"
+        layout="@layout/line" />
+
+</LinearLayout>

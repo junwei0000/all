@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 3.0.1">
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type drawable"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1=" // mpDialog = new ProgressDialog(context, R.style.dialog);// 创建自定义样式dialog"
+        errorLine2="                                                           ~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\utils\CommonUtils.java"
+            line="908"
+            column="60"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type drawable"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="     mpDialog.setContentView(v, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\utils\CommonUtils.java"
+            line="943"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type drawable"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="  frameAnimation = (AnimationDrawable) context.getResources().getDrawable(R.anim.xiala_anim);"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\view\MainViewHeader.java"
+            line="46"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type drawable"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="  re_img = (ImageView) getChildAt(0).findViewById(R.id.refresh_img);"
+        errorLine2="    ~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\view\PullDownListView.java"
+            line="227"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type drawable"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="    LayoutParams.FILL_PARENT);"
+        errorLine2="       ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\view\PullDownListView.java"
+            line="247"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type drawable"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="  refreshbottom_morebottom = (TextView) foot.findViewById(R.id.refreshbottom_morebottom);"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\view\PullDownListView.java"
+            line="270"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type drawable"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="    changeState(LOADING);"
+        errorLine2="             ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\pullable\PullToRefreshLayout.java"
+            line="516"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type animator"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="  Fragment fragment = curPageCount ? new TodayRunFragment() : TodayCountFragment.newInstance(true);"
+        errorLine2="                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\activity\WalkActivity.java"
+            line="236"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type animator"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="  Fragment fragment = curPageCount ? new TodayRunFragment() : TodayCountFragment.newInstance(true);"
+        errorLine2="                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\activity\WalkActivity.java"
+            line="236"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type animator"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="  FragmentTransaction tran = fragmentManager.beginTransaction();"
+        errorLine2="                                  ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\activity\WalkActivity.java"
+            line="237"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        severity="Fatal"
+        message="Expected resource of type animator"
+        category="Correctness"
+        priority="7"
+        summary="Wrong Resource Type"
+        explanation="Ensures that resource id&apos;s passed to APIs are of the right type; for example, calling `Resources.getColor(R.string.name)` is wrong."
+        errorLine1="  if (anim) {"
+        errorLine2="  ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\activity\WalkActivity.java"
+            line="238"
+            column="3"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" public CampaignManagerRegisteredFragment() {"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\CampaignManagerRegisteredFragment.java"
+            line="70"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" public CampaignManagerzuzhiFragment() {"
+        errorLine2="   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\CampaignManagerzuzhiFragment.java"
+            line="62"
+            column="4"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" private String clubname;"
+        errorLine2="               ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\ClubEventsFragment.java"
+            line="67"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" public ClubMainlFragment() {"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\ClubMainlFragment.java"
+            line="42"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" public ClubWonderfulFragment() {"
+        errorLine2="                     ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\ClubWonderfulFragment.java"
+            line="37"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" private String uid;"
+        errorLine2="              ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\UserAllFragment.java"
+            line="60"
+            column="15"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" private String uid;"
+        errorLine2="              ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\UserConfirmingFragment.java"
+            line="67"
+            column="15"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" private String uid;"
+        errorLine2="                ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\UserFinishFragment.java"
+            line="61"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" private String uid;"
+        errorLine2="          ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\UserWaitPayFragment.java"
+            line="68"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="ValidFragment"
+        severity="Fatal"
+        message="Avoid non-default constructors in fragments: use a default constructor plus `Fragment#setArguments(Bundle)` instead"
+        category="Correctness"
+        priority="6"
+        summary="Fragment not instantiatable"
+        explanation="From the Fragment documentation:&#xA;**Every** fragment must have an empty constructor, so it can be instantiated when restoring its activity&apos;s state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with `setArguments(Bundle)` and later retrieved by the Fragment with `getArguments()`."
+        url="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        urls="http://developer.android.com/reference/android/app/Fragment.html#Fragment()"
+        errorLine1=" private View view;"
+        errorLine2="          ^">
+        <location
+            file="E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\java\com\bestdo\bestdoStadiums\control\fragment\UsersStayoffFragment.java"
+            line="68"
+            column="11"/>
+    </issue>
+
+</issues>

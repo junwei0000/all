@@ -1,0 +1,12 @@
+package com.bestdo.bestdoStadiums.control.photo.vedio;
+
+/**
+ * Created by karan on 13/2/15.
+ */
+public interface CompressListener {
+	public void onExecSuccess(String message);
+
+	public void onExecFail(String reason);
+
+	public void onExecProgress(String message);
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+	
+	<!-- *****************V2.0********************************** -->
+	
+	
+	<!-- 首页菜单字体颜色 -->
+	<color name="main_business_tab_bgcolor">#0E63A7</color>
+	<color name="main_business_tab_bgevencolor">#053F8D</color>
+	<color name="main_business_tab_edgecolor">#073068</color>
+	<color name="main_business_tab_presscolor">#093C81</color>
+	<color name="black">#000000</color>
+	<color name="red">#ff0000</color>
+	<color name="red_level">#F40A0A</color>
+	<color name="gray_bg">#EFEFEF</color>
+	<!-- 页面背景颜色 -->
+	<color name="page_bg">#F2F2F2</color>
+	<!-- 头部背景颜色 -->
+	<color name="page_top_bg">#FAFAFA</color>
+	<!-- 首页底部菜单背景颜色 -->
+	<color name="main_tab_page_bg">#F7F7F7</color>
+	<!-- 首页菜单字体颜色 -->
+	<color name="main_tab_text_color">#999999</color>
+	<!-- 白色 -->
+	<color name="white">#FFFFFF</color>
+	<!-- 淡白色 -->
+	<color name="white_light">#cbe3ff</color>
+	<!-- 透明颜色 -->
+	<color name="transparent">#00000000</color>
+	<!-- 圆点 -->
+	<color name="start_liang">#e8e8e8</color>
+	<color name="start_an">#484848</color>
+	<!-- 蓝色 -->
+	<color name="blue">#3B87EF</color>
+	<color name="yellow">#FFFBEF</color>
+	<!-- 青色 -->
+	<color name="ching">#3BC4CE</color>
+	<!-- 浅蓝色 -->
+	<color name="blue_light">#B6E2FA</color>
+	<!-- 浅黄 色 -->
+	<color name="danhuang_light">#F0E0C4</color>
+	<!-- 黄 色 -->
+	<color name="huang_light">#AA7621</color>
+	
+	<!-- 浅蓝色 -->
+	<color name="blue_an">#5aa3f9</color>
+	<!-- 灰色竖杠 -->
+	<color name="gray_stadiumlist_line">#E6E6E6</color>
+	<!-- 标题颜色 -->
+	<color name="text_contents_color">#333333</color>
+	<!-- 可点击的小标题颜色 -->
+	<color name="text_click_color">#666666</color>
+	<!-- hint颜色 -->
+	<color name="text_hint_color">#cccccc</color>
+	<!-- 按钮背景颜色 -->
+	<color name="btn_bg">#FC821B</color>
+	<!-- 按钮不可点击的字体颜色 -->
+	<color name="btn_noclick_color">#a0d4ff</color>
+	<!-- 验证码不可点击的颜色 -->
+	<color name="text_noclick_color">#9f9f9f</color>
+	<color name="btn_hint_color">#E8E8E8</color>
+	<color name="btn_blue_color">#3B87EF</color>
+	
+	
+	
+	
+	<color name="c_00000000">#00000000</color>
+    <color name="c_a8a8a8">#a8a8a8</color>
+    <color name="c_ffffff">#ffffff</color>
+    <color name="c_038fff">#038fff</color>
+    <color name="c_e3e3e3">#e3e3e3</color>
+    <color name="c_6e6e6e">#6e6e6e</color>
+    <color name="c_585858">#585858</color>
+    <color name="c_afafaf">#afafaf</color>
+    <color name="c_656565">#656565</color>
+    <color name="c_fc821b">#fc821b</color>
+    <color name="c_F4F4F4">#F4F4F4</color>
+    <color name="c_737373">#737373</color>
+    <color name="c_3453DE">#3453DE</color>
+	
+	
+</resources>

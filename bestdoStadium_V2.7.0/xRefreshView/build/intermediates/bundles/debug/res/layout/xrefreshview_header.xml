@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xrefreshview_header_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     >
+<RelativeLayout
+        android:id="@+id/xlistview_header_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingTop="5dp"
+         >
+
+        <!-- </RelativeLayout> -->
+
+        <ImageView
+            android:id="@+id/refresh_main_top_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:enabled="false"
+              />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/xrefreshview_header_text"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="bottom"
+        android:paddingBottom="10dp"
+        android:visibility="gone" >
+
+        <RelativeLayout
+            android:id="@+id/right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" >
+
+            <TextView
+                android:id="@+id/xrefreshview_header_hint_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/xrefreshview_header_hint_normal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/xrefreshview_header_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/xrefreshview_header_hint_textview"
+                android:layout_marginTop="3dp"
+                android:text="@string/xrefreshview_never_refresh"
+                android:visibility="gone"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/left_images"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/right_text" >
+
+            <ImageView
+                android:id="@+id/xrefreshview_header_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/xrefreshview_arrow" />
+
+            <ProgressBar
+                android:id="@+id/xrefreshview_header_progressbar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+        
+    </RelativeLayout>
+
+</RelativeLayout>

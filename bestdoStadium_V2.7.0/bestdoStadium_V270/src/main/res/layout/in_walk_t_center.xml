@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/dp12"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/img_kio"
+            android:layout_width="@dimen/dp23"
+            android:layout_height="@dimen/dp26"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/kilometer" />
+
+        <TextView
+            android:id="@+id/tv_kio"
+            style="@style/tv_walk_center"
+            android:layout_below="@+id/img_kio"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/walk_d_center_ver_margin"
+            android:layout_marginTop="@dimen/walk_d_center_ver_margin"
+            android:textSize="@dimen/sp24" />
+
+        <TextView
+            style="@style/tv_walk_center"
+            android:layout_below="@+id/tv_kio"
+            android:layout_centerHorizontal="true"
+            android:text="@string/total_km" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/img_rank"
+            android:layout_width="@dimen/dp23"
+            android:layout_height="@dimen/dp26"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ranking" />
+
+        <TextView
+            android:id="@+id/tv_No"
+            style="@style/tv_walk_center"
+            android:layout_below="@+id/img_rank"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/walk_d_center_ver_margin"
+            android:layout_marginTop="@dimen/walk_d_center_ver_margin"
+            android:textSize="@dimen/sp24" />
+
+        <TextView
+            style="@style/tv_walk_center"
+            android:layout_below="@+id/tv_No"
+            android:layout_centerHorizontal="true"
+            android:text="@string/company_rank" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/img_cal"
+            android:layout_width="@dimen/dp23"
+            android:layout_height="@dimen/dp26"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/calories" />
+
+        <TextView
+            android:id="@+id/tv_cal"
+            style="@style/tv_walk_center"
+            android:layout_below="@+id/img_cal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/walk_d_center_ver_margin"
+            android:layout_marginTop="@dimen/walk_d_center_ver_margin"
+            android:textSize="@dimen/sp24" />
+
+        <TextView
+            style="@style/tv_walk_center"
+            android:layout_below="@+id/tv_cal"
+            android:layout_centerHorizontal="true"
+            android:text="@string/consume_cal" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_3453DE"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/rl_title1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/tv_t_count"
+            style="@style/tv_walk_title"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp25"
+            android:text="@string/walk_count"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/t_line1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp2"
+            android:layout_alignLeft="@+id/tv_t_count"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/tv_t_count"
+            android:layout_below="@+id/tv_t_count"
+            android:layout_marginRight="@dimen/dp25"
+            android:background="@drawable/slt_title_white" />
+
+        <ImageView
+            android:id="@+id/img_describes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:onClick="onDescribes"
+            android:paddingBottom="@dimen/dp2"
+            android:paddingLeft="@dimen/dp18"
+            android:paddingRight="@dimen/dp18"
+            android:paddingTop="@dimen/dp9"
+            android:src="@drawable/img_describes" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_t_run"
+            style="@style/tv_walk_title"
+            android:layout_marginLeft="@dimen/dp25"
+            android:text="@string/run" />
+
+        <View
+            android:id="@+id/t_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp2"
+            android:layout_alignLeft="@+id/tv_t_run"
+            android:layout_alignRight="@+id/tv_t_run"
+            android:layout_below="@+id/tv_t_run"
+            android:background="@drawable/slt_title_white"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/img_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="onShare"
+            android:paddingBottom="@dimen/dp2"
+            android:paddingLeft="@dimen/dp9"
+            android:paddingRight="@dimen/dp18"
+            android:paddingTop="@dimen/dp9"
+            android:src="@drawable/share" />
+    </RelativeLayout>
+
+</LinearLayout>

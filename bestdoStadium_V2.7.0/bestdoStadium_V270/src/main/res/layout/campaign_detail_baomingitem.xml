@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/padd_imgtextleftright"
+    android:layout_marginBottom="@dimen/padd_imgtextleftright"
+    android:layout_marginRight="@dimen/padd_imgtextleftright"
+    android:orientation="vertical" >
+
+     <com.bestdo.bestdoStadiums.utils.CircleImageView
+         android:id="@+id/sitem_iv_ablum"
+         android:layout_width="30dp"
+         android:layout_height="30dp" />
+
+    <TextView
+        android:id="@+id/item_tv_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_biaoti_size" />
+</LinearLayout>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top_cash" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <com.andview.refreshview.XRefreshView
+            android:id="@+id/main_xrefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/updatebar_content_height" >
+
+            <com.bestdo.bestdoStadiums.utils.MyScrollView
+                android:id="@+id/listview_placemore"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/cashbook_tv_title"
+                        style="@style/user_item_paddlefgtright"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/blue"
+                        android:paddingTop="30dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white_light"
+                        android:textSize="@dimen/text_pagetop_size" />
+
+                    <RelativeLayout
+                        android:id="@+id/cashbook_relat_sum"
+                        style="@style/user_item_paddlefgtright"
+                        android:layout_width="fill_parent"
+                        android:layout_height="90dp"
+                        android:background="@color/blue" >
+
+                        <TextView
+                            android:id="@+id/cashbook_tv_sum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/cashbook_iv_arrow"
+                            android:gravity="left|center_vertical"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_money_size" />
+
+                        <ImageView
+                            android:id="@+id/cashbook_iv_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/cashbook_img_arrow" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        style="@style/user_item_padd"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/blue_an"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:text="支出（元）"
+                                android:textColor="@color/white_light"
+                                android:textSize="@dimen/text_zhu_size" />
+
+                            <TextView
+                                android:id="@+id/cashbook_tv_pay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_pagetop_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:text="收入（元）"
+                                android:textColor="@color/white_light"
+                                android:textSize="@dimen/text_zhu_size" />
+
+                            <TextView
+                                android:id="@+id/cashbook_tv_income"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_pagetop_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/user_item_paddlefgtright"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/page_bg"
+                        android:gravity="left|center_vertical"
+                        android:paddingBottom="@dimen/padd_imgtextleftright"
+                        android:paddingTop="@dimen/padd_imgtextleftright"
+                        android:text="账单明细"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent" >
+
+                        <com.bestdo.bestdoStadiums.utils.MyListView
+                            android:id="@+id/main_myListView"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:cacheColorHint="@color/page_bg"
+                            android:divider="@null"
+                            android:fadeScrollbars="true"
+                            android:fadingEdge="none"
+                            android:listSelector="@drawable/list_notselector"
+                            android:overScrollMode="never"
+                            android:scrollbars="none" />
+
+                        <LinearLayout
+                            android:id="@+id/not_date"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:visibility="gone" >
+
+                            <include layout="@layout/not_date" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
+            </com.bestdo.bestdoStadiums.utils.MyScrollView>
+        </com.andview.refreshview.XRefreshView>
+
+        <Button
+            android:id="@+id/click_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/updatebar_content_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/blue"
+            android:text="+记一笔"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_pagetop_size" />
+    </RelativeLayout>
+
+</LinearLayout>

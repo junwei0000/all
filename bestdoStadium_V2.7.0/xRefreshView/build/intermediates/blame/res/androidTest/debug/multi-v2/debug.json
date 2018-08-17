@@ -1,0 +1,49 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\ws_studio\\bestdoStadium_V2.7.0\\xRefreshView\\build\\intermediates\\res\\merged\\androidTest\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\xRefreshView\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1059,1120,1185,1251,1320,1385,1451,1520,1586,1646,1713,1782,1844,1915",
+                        "endColumns": "60,64,65,68,64,65,68,65,59,66,68,61,70,57",
+                        "endOffsets": "1115,1180,1246,1315,1380,1446,1515,1581,1641,1708,1777,1839,1910,1968"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\ws_studio\\bestdoStadium_V2.7.0\\xRefreshView\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v11_values-v11.arsc.flat",
+            "map": [
+                {
+                    "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\xRefreshView\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "62",
+                        "endOffsets": "113"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\ws_studio\\bestdoStadium_V2.7.0\\xRefreshView\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v14_values-v14.arsc.flat",
+            "map": [
+                {
+                    "source": "E:\\ws_studio\\bestdoStadium_V2.7.0\\xRefreshView\\build\\intermediates\\bundles\\debug\\res\\values-v14\\values-v14.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "76",
+                        "endOffsets": "127"
+                    }
+                }
+            ]
+        }
+    ]
+}

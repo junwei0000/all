@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teetime_lay"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/teetime_none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:text="@string/stadium_detail_cancel"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size"
+            android:typeface="normal" />
+
+        <TextView
+            android:id="@+id/teetime_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_biaoti_size"
+            android:typeface="normal" />
+
+        <TextView
+            android:id="@+id/teetime_sure"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0.5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size"
+            android:typeface="normal" />
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.bestdo.bestdoStadiums.control.teetime.WheelView
+            android:id="@+id/teetime_one"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2" />
+
+        <com.bestdo.bestdoStadiums.control.teetime.WheelView
+            android:id="@+id/teetime_hour"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <com.bestdo.bestdoStadiums.control.teetime.WheelView
+            android:id="@+id/teetime_mins"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <com.bestdo.bestdoStadiums.control.teetime.WheelView
+            android:id="@+id/teetime_four"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+</LinearLayout>

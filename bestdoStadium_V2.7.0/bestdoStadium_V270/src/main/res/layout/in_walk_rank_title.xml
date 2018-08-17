@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/c_ffffff"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/rl_title1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_personal"
+            style="@style/tv_walk_center.rank_title"
+            android:layout_marginRight="@dimen/dp25"
+            android:enabled="false"
+            android:text="@string/rank_my" />
+
+        <View
+            android:id="@+id/t_r_line1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp2"
+            android:layout_alignLeft="@+id/tv_personal"
+            android:layout_alignRight="@+id/tv_personal"
+            android:layout_below="@+id/tv_personal"
+            android:background="@drawable/slt_title_blue" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_t_company"
+            style="@style/tv_walk_center.rank_title"
+            android:layout_marginLeft="@dimen/dp25"
+            android:enabled="true"
+            android:text="@string/rank_company" />
+
+        <View
+            android:id="@+id/t_r_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp2"
+            android:layout_alignLeft="@+id/tv_t_company"
+            android:layout_alignRight="@+id/tv_t_company"
+            android:layout_below="@+id/tv_t_company"
+            android:background="@drawable/slt_title_blue"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

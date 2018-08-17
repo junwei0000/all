@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false" >
+ 
+    <item android:drawable="@drawable/load_upload1" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload2" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload3" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload4" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload5" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload6" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload7" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload8" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload9" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload10" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload11" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload12" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload13" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload14" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload15" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload16" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload17" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload18" android:duration="100" ></item>
+    <item android:drawable="@drawable/load_upload19" android:duration="100" ></item>
+
+</animation-list>

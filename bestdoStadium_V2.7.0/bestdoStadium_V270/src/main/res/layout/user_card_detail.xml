@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" >
+
+        <ScrollView
+            android:id="@+id/user_card_detail_top_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/user_carddetail_layout_bottom"
+            android:fadingEdge="none"
+            android:visibility="invisible"
+            android:overScrollMode="never"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:id="@+id/user_card_detail_top_gone_lin"
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" 
+                android:visibility="invisible">
+
+                <!-- 上部 -->
+
+                <LinearLayout
+                    android:id="@+id/user_card_detail_top_lin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <ImageView
+                            android:id="@+id/user_card_detail_top_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/contentDescription" />
+
+                        <TextView
+                            android:id="@+id/user_card_detail_top_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_pagetop_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/user_card_detail_top_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/user_item_paddlefgtright"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <LinearLayout
+                    android:id="@+id/user_card_detail_top_lin2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp" >
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/user_card_detail_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="卡券名称："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_name2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line" />
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/user_card_detail_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="卡券编号："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_num2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line" />
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/user_card_detail_youxiaoqi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="有效期至："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_youxiaoqi2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line" />
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/user_card_detail_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="卡券状态："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_status2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line" />
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/user_card_detail_activation_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="激活时间："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_activation_time2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+
+                        <include layout="@layout/line" />
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/user_card_detail_category"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="卡券面额："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_category2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+						<include layout="@layout/line" />
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/user_card_detail_banlace2"
+                                android:text="卡券余额："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_banlace"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+                        <include layout="@layout/line" />
+
+                        <LinearLayout
+                            style="@style/user_item_paddtopbottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/user_card_detail_amount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="可预订商品："
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/user_card_detail_amount2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/user_carddetail_layout_shouzhi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="收支记录"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <com.bestdo.bestdoStadiums.utils.MyListView
+                        android:id="@+id/user_card_detail_lv_shouzhi"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@color/white"
+                        android:cacheColorHint="@color/transparent"
+                        android:divider="@null"
+                        android:fadeScrollbars="true"
+                        android:fadingEdge="none"
+                        android:listSelector="@drawable/list_notselector"
+                        android:overScrollMode="never" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 底部按钮 -->
+
+        <LinearLayout
+            android:id="@+id/user_carddetail_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <include layout="@layout/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/user_carddetail_tv_bottom"
+                    style="@style/user_item_paddtopbottom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/btn_blue_color"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pagetop_size"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp88"
+    android:background="@drawable/slt_pop_walk_item"
+    android:gravity="center_vertical" >
+
+    <ImageView
+        android:id="@+id/img_act_icon"
+        android:layout_width="@dimen/dp58"
+        android:layout_height="@dimen/dp58"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="@dimen/dp16" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_toRightOf="@+id/img_act_icon"
+        android:gravity="start|center_vertical" >
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/tv_walk_center.popw"
+            android:text="春季健步走"
+            android:textSize="@dimen/sp18" />
+
+        <TextView
+            android:id="@+id/tv_state"
+            style="@style/tv_walk_center.popw"
+            android:layout_alignBaseline="@+id/tv_name"
+            android:layout_marginLeft="@dimen/dp6"
+            android:layout_toRightOf="@+id/tv_name"
+            android:text="(报名中)"
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/tv_walk_center.popw"
+            android:layout_below="@+id/tv_name"
+            android:text="活动时间:2017.03.13～2017.03.23"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/tv_walk_center.popw"
+            android:layout_below="@+id/tv_time"
+            android:text="当前报名人数:45"
+            android:textSize="@dimen/sp14" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="@dimen/dp14"
+        android:layout_height="@dimen/dp22"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp12"
+        android:src="@drawable/act_h5_right" />
+
+</RelativeLayout>

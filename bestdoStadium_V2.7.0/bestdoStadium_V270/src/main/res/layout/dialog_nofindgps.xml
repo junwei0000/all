@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="160dp"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/no_gps_text_title"
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/no_gps_text"
+            android:textColor="@color/text_click_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/no_gps_text_off"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:paddingLeft="20dp"
+				android:paddingRight="20dp"
+				android:paddingTop="4dp"
+				android:paddingBottom="4dp"
+                android:gravity="center"
+                android:background="@drawable/user_walking_gps_bg"
+                android:text="知道了"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoti_size" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

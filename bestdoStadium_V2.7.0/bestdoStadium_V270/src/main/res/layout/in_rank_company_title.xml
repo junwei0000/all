@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:background="@drawable/rank_company_title"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_company_name"
+            style="@style/tv_walk_center.rank_comp_title"
+            android:layout_marginTop="@dimen/dp12"
+            android:text="北京新赛点体育投资股份有限公司"/>
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/tv_walk_center.rank_comp_title"
+            android:layout_marginTop="@dimen/dp9"
+            android:text="共132人参加"
+            android:textSize="@dimen/sp12"/>
+        <TextView
+            style="@style/tv_walk_center.rank_comp_title"
+            android:layout_marginTop="@dimen/dp9"
+            android:text="全员平均步数已达"
+            android:textColor="@color/c_038fff"
+            android:textSize="@dimen/sp12"/>
+        <TextView
+            android:id="@+id/tv_company_steps"
+            style="@style/tv_walk_center.rank_comp_title"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="584,638"
+            android:textColor="@color/c_038fff"
+            android:textSize="40sp"/>
+
+    </LinearLayout>
+    <include
+        android:id="@+id/in_my_dep"
+        layout="@layout/in_rank_item_company"/>
+
+    <TextView
+        style="@style/tv_walk_center.rank_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginTop="@dimen/dp6"
+        android:textStyle="bold"
+        android:background="@color/c_ffffff"
+        android:layout_marginBottom="@dimen/dp1"
+        android:gravity="center|left"
+        android:paddingLeft="15dp"
+        android:text="@string/company_rank_l"/>
+</LinearLayout>

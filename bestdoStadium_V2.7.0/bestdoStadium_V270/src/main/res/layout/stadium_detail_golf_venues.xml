@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/page_bg" >
+
+    <LinearLayout
+        style="@style/user_item_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stadium_detail_time"
+            android:contentDescription="@string/contentDescription" />
+
+        <TextView
+            android:id="@+id/stadium_detail_golf_time_text"
+            style="@style/user_item_paddtopbottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+    </LinearLayout>
+
+</LinearLayout>

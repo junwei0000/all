@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:1-12:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:1-12:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:1-12:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:1-12:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:1-12:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:1-12:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:1-12:12
+	package
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:2:5-38
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:4:5-30
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:1:11-69
+	android:versionCode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:3:5-28
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:6:5-8:41
+	android:targetSdkVersion
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:8:9-38
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:7:9-34
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml
+application
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\src\main\AndroidManifest.xml:10:5-20

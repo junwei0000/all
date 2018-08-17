@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/dp20"
+              android:background="@color/c_ffffff"
+              android:orientation="horizontal"
+              android:paddingLeft="@dimen/walk_d_center_margin"
+              android:paddingRight="@dimen/walk_d_center_margin"
+              android:paddingTop="@dimen/dp4">
+    <TextView android:id="@+id/tv_day1"
+              style="@style/tv_walk_center.day"
+              android:text="15日"/>
+    <TextView android:id="@+id/tv_day2"
+              style="@style/tv_walk_center.day"
+              android:text="16日"/>
+    <TextView android:id="@+id/tv_day3"
+              style="@style/tv_walk_center.day"
+              android:text="17日"/>
+    <TextView android:id="@+id/tv_day4"
+              style="@style/tv_walk_center.day"
+              android:text="18日"/>
+    <TextView
+        android:id="@+id/tv_day5"
+        style="@style/tv_walk_center.day"
+        android:text="19日"/>
+    <TextView
+        android:id="@+id/tv_day6"
+        style="@style/tv_walk_center.day"
+        android:text="20日"/>
+    <TextView
+        android:id="@+id/tv_day7"
+        style="@style/tv_walk_center.day"
+        android:text="21日"/>
+</LinearLayout>

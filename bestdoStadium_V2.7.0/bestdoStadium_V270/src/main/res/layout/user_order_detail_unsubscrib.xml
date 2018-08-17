@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/userorderdetailunsubscrib_relay_reason"
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianju"
+            android:background="@color/white" >
+
+            <TextView
+                android:id="@+id/userorderdetailunsubscrib_tv_reasontt"
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="退订原因"
+                android:textColor="@color/text_click_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/userorderdetailunsubscrib_tv_reason"
+                style="@style/user_item_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:layout_toRightOf="@id/userorderdetailunsubscrib_tv_reasontt"
+                android:gravity="right"
+                android:layout_toLeftOf="@+id/userorderdetailunsubscrib_iv_reason"
+                android:hint="选择退订原因"
+                android:textColor="@color/text_noclick_color"
+                android:textColorHint="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                 android:id="@+id/userorderdetailunsubscrib_iv_reason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/usercenter_arrow_img"
+                android:contentDescription="@string/contentDescription" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="@dimen/padd_leftright"
+            android:paddingTop="10dp"
+            android:text="退订原因"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <EditText
+            android:id="@+id/userorderdetailunsubscrib_tv_content"
+            android:layout_width="fill_parent"
+            android:layout_height="170dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="说明退订原因"
+            android:maxLength="200"
+            android:padding="8dip"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/text_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            style="@style/user_item_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianju" >
+
+            <include layout="@layout/click_btn" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

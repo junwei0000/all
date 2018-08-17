@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical" >
+
+
+    <com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView
+        android:id="@+id/venuesScrollViewBottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0.0dip"
+        android:overScrollMode="never"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/stadiundetail_layout_horizontal"
+            style="@style/user_item_padd"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" />
+    </com.bestdo.bestdoStadiums.utils.MyHorizontalScrollView>
+
+</LinearLayout>

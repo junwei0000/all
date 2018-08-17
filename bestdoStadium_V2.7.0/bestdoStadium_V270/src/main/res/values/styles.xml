@@ -1,0 +1,219 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="menu_item">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/menu_item_bg</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="menu_item_right">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/menu_item_bg_right</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <!-- 自定义loading dialog -->
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="MySettingText">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+
+    <style name="showAnDialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_showbottom2top_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_hiddentop2bottom_anim</item>
+    </style>
+
+    <style name="home_tab_bottom">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textSize">@dimen/text_zhu_size</item>
+        <item name="android:textColor">@color/main_tab_text_color_select</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <declare-styleable name="TimeTextView"></declare-styleable>
+
+    <style name="user_item_paddtopbottom">
+        <item name="android:paddingTop">@dimen/padd_topbottom</item>
+        <item name="android:paddingBottom">@dimen/padd_topbottom</item>
+    </style>
+<style name="main_bottom_padd">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">1dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+    <style name="user_item_paddlefgtright">
+        <item name="android:paddingLeft">@dimen/padd_leftright</item>
+        <item name="android:paddingRight">@dimen/padd_leftright</item>
+    </style>
+
+    <style name="user_item_padd">
+        <item name="android:paddingTop">@dimen/padd_topbottom</item>
+        <item name="android:paddingBottom">@dimen/padd_topbottom</item>
+        <item name="android:paddingLeft">@dimen/padd_leftright</item>
+        <item name="android:paddingRight">@dimen/padd_leftright</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="MyDialogStyleBottom" parent="@style/AnimBottom">
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+    
+      <style name="VProgressBar" parent="@android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_bar_vertical</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:minWidth">1dip</item>
+        <item name="android:maxWidth">12dip</item>
+    </style>
+
+    <style name="VProgressBarContainer">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/dp6</item>
+        <item name="android:layout_marginBottom">@dimen/dp4</item>
+    </style>
+
+    <style name="VProgressBar.walk">
+        <item name="android:layout_width">@dimen/dp6</item>
+        <item name="android:layout_height">@dimen/dp40</item>
+        <item name="android:max">10000</item>
+    </style>
+
+    <style name="tv_walk_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp18</item>
+        <item name="android:textColor">@color/c_ffffff</item>
+        <item name="android:paddingTop">@dimen/dp9</item>
+        <item name="android:paddingBottom">@dimen/dp2</item>
+    </style>
+
+    <style name="tv_walk_center">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">@color/c_ffffff</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="tv_walk_center.day">
+        <item name="android:textColor">@color/c_038fff</item>
+        <item name="android:textSize">@dimen/sp9</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="tv_walk_center.popw">
+        <item name="android:textColor">@color/c_6e6e6e</item>
+    </style>
+
+    <style name="tv_walk_center.rank_title">
+        <item name="android:textColor">@color/walk_rank_title</item>
+        <item name="android:textSize">@dimen/sp18</item>
+        <item name="android:paddingTop">@dimen/dp12</item>
+        <item name="android:paddingBottom">@dimen/dp4</item>
+    </style>
+
+    <style name="tv_walk_center.rank_content">
+
+    </style>
+
+    <style name="tv_walk_center.rank_name">
+        <item name="android:textColor">@color/c_585858</item>
+        <item name="android:textSize">@dimen/sp18</item>
+    </style>
+
+    <style name="tv_walk_center.rank_count">
+        <item name="android:textColor">@color/c_656565</item>
+        <item name="android:textSize">@dimen/sp24</item>
+    </style>
+
+    <style name="tv_walk_center.rank_count_top">
+        <item name="android:textColor">@color/c_656565</item>
+    </style>
+
+    <style name="tv_walk_center.rank_min">
+        <item name="android:textColor">@color/c_afafaf</item>
+        <item name="android:textSize">@dimen/sp10</item>
+    </style>
+
+    <style name="tv_walk_center.rank_no">
+        <item name="android:textColor">@color/c_6e6e6e</item>
+        <item name="android:layout_marginLeft">@dimen/dp18</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">@dimen/sp15</item>
+    </style>
+
+    <style name="tv_walk_center.rank_comp_title">
+        <item name="android:textColor">@color/c_737373</item>
+        <item name="android:textSize">@dimen/sp15</item>
+    </style>
+
+    <style name="walk_rank_icon">
+        <item name="android:layout_width">@dimen/dp45</item>
+        <item name="android:layout_height">@dimen/dp45</item>
+    </style>
+    
+
+</resources>

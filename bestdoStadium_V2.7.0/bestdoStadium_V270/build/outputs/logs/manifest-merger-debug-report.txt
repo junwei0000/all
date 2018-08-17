@@ -1,0 +1,1061 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:1-558:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:1-558:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:1-558:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:1-558:12
+MERGED from [:library_zhy_progressbar] E:\ws_studio\bestdoStadium_V2.7.0\library_zhy_progressbar\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-18:12
+MERGED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-31:12
+MERGED from [:xRefreshView] E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\c3e459c3000d29dc5137f938bb337968\AndroidManifest.xml:14:4-17:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:1-558:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:1-558:12
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:1-558:12
+	package
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:3:5-40
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:5:5-32
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:4:5-29
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:83:5-85:41
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:83:5-85:41
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:83:5-85:41
+MERGED from [:library_zhy_progressbar] E:\ws_studio\bestdoStadium_V2.7.0\library_zhy_progressbar\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:library_zhy_progressbar] E:\ws_studio\bestdoStadium_V2.7.0\library_zhy_progressbar\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:xRefreshView] E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:xRefreshView] E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\c3e459c3000d29dc5137f938bb337968\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\c3e459c3000d29dc5137f938bb337968\AndroidManifest.xml:15:5-42
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:83:5-85:41
+INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:83:5-85:41
+	android:targetSdkVersion
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:85:9-38
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:84:9-35
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+		INJECTED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:87:5-81
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:87:22-78
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:88:5-71
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:88:22-68
+uses-permission#android.permission.READ_LOGS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:89:5-68
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:89:22-65
+uses-permission#android.permission.KILL_BACKGROUND_PROCESSES
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:90:5-84
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:90:22-81
+uses-permission#android.permission.BAIDU_LOCATION_SERVICE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:91:5-81
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:91:22-78
+uses-permission#android.permission.ACCES_MOCK_LOCATION
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:92:5-78
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:92:22-75
+uses-permission#android.permission.ACCESS_GPS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:93:5-69
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:93:22-66
+uses-permission#android.permission.GET_TASKS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:95:5-68
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:95:22-65
+uses-permission#android.permission.BROADCAST_STICKY
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:96:5-75
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:96:22-72
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:97:5-73
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:97:22-70
+uses-permission#android.permission.PROCESS_OUTGOING_CALLS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:98:5-81
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:98:22-78
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:99:5-80
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:99:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:100:5-71
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:100:22-68
+uses-feature#android.hardware.camera
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:102:5-60
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:102:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:103:5-70
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:103:19-67
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:105:5-73
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:105:22-70
+uses-permission#android.permission.CALL_PHONE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:106:5-69
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:106:22-66
+uses-permission#android.webkit.permission.PLUGIN
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:107:5-72
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:107:22-69
+uses-permission#android.permission.RUN_INSTRUMENTATION
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:108:5-78
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:108:22-75
+uses-permission#android.permission.READ_SMS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:109:5-67
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:109:22-64
+permission#com.bestdo.bestdoStadiums.permission.JPUSH_MESSAGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:112:5-114:47
+	android:protectionLevel
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:114:9-44
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:113:9-74
+uses-permission#com.bestdo.bestdoStadiums.permission.JPUSH_MESSAGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:116:5-90
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:116:22-87
+uses-permission#android.permission.RECEIVE_USER_PRESENT
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:117:5-79
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:117:22-76
+uses-permission#android.permission.INTERNET
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:118:5-67
+MERGED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-67
+MERGED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:118:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:119:5-68
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:119:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:120:5-75
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:120:22-72
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:121:5-81
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:121:22-78
+uses-permission#android.permission.WRITE_INTERNAL_STORAGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:122:5-81
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:122:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:123:5-80
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:123:22-77
+uses-permission#android.permission.READ_INTERNAL_STORAGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:124:5-80
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:124:22-77
+uses-permission#android.permission.VIBRATE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:125:5-66
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:125:22-63
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:126:5-84
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:126:22-81
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:127:5-79
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:127:22-76
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:128:5-78
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:128:22-75
+uses-permission#android.permission.RESTART_PACKAGES
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:129:5-75
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:129:22-72
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:131:5-81
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:131:22-78
+uses-permission#android.permission.ACCESS_COARSE_UPDATES
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:132:5-80
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:132:22-77
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:133:5-76
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:133:22-73
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:135:5-79
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:135:22-76
+uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:136:5-89
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:136:22-86
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:137:5-79
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:137:22-76
+uses-permission#android.permission.NFC
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:138:5-62
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:138:22-59
+uses-feature#android.hardware.nfc.hce
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:140:5-61
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:140:19-58
+uses-permission#org.simalliance.openmobileapi.SMARTCARD
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:141:5-79
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:141:22-76
+supports-screens
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:143:5-148:39
+	android:largeScreens
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:145:9-36
+	android:smallScreens
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:148:9-36
+	android:normalScreens
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:146:9-37
+	android:resizeable
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:147:9-34
+	android:anyDensity
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:144:9-34
+application
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:150:5-556:19
+MERGED from [:library_zhy_progressbar] E:\ws_studio\bestdoStadium_V2.7.0\library_zhy_progressbar\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-16:19
+MERGED from [:library_zhy_progressbar] E:\ws_studio\bestdoStadium_V2.7.0\library_zhy_progressbar\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-16:19
+MERGED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-29:19
+MERGED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-29:19
+MERGED from [:xRefreshView] E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-20
+MERGED from [:xRefreshView] E:\ws_studio\bestdoStadium_V2.7.0\xRefreshView\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\c3e459c3000d29dc5137f938bb337968\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Dell\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\c3e459c3000d29dc5137f938bb337968\AndroidManifest.xml:16:5-19
+	android:label
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:153:9-41
+	android:allowBackup
+		ADDED from [:library_zhy_progressbar] E:\ws_studio\bestdoStadium_V2.7.0\library_zhy_progressbar\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:9-35
+	android:persistent
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:154:9-34
+	android:icon
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:152:9-45
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:155:9-40
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:151:9-79
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:169:9-171:56
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:171:13-53
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:170:13-52
+activity#com.bestdo.bestdoStadiums.control.activity.BaseActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:174:9-178:45
+	android:label
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:177:13-45
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:178:13-42
+	android:configChanges
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:176:13-63
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:175:13-83
+activity#com.bestdo.bestdoStadiums.control.map.BNavigatorActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:179:9-181:48
+	android:label
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:181:13-45
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:180:13-84
+activity#com.bestdo.bestdoStadiums.control.activity.WelcomeStartActiyity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:182:9-191:20
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:184:13-42
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:185:13-60
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:183:13-91
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:186:13-190:29
+action#android.intent.action.MAIN
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:187:17-69
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:187:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:189:17-77
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:189:27-74
+activity#com.bestdo.bestdoStadiums.control.activity.HomeActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:192:9-197:20
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:194:13-44
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:196:13-67
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:195:13-60
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:193:13-83
+activity#com.bestdo.bestdoStadiums.control.activity.WelcomeGuideActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:198:9-200:63
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:200:13-60
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:199:13-91
+activity#com.bestdo.bestdoStadiums.control.activity.UserLoginActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:202:9-204:47
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:204:13-44
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:203:13-88
+activity#com.bestdo.bestdoStadiums.control.activity.UserFindPWActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:205:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:205:19-95
+activity#com.bestdo.bestdoStadiums.control.activity.UserRegistActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:206:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:206:19-95
+activity#com.bestdo.bestdoStadiums.control.activity.UserRegistSetPwActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:207:9-103
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:207:19-100
+activity#com.bestdo.bestdoStadiums.control.activity.WalkActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:209:9-92
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:209:19-89
+activity#com.bestdo.bestdoStadiums.control.activity.WalkRankActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:210:9-96
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:210:19-93
+activity#com.bestdo.bestdoStadiums.control.activity.UserBalanceActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:212:9-214:47
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:214:13-44
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:213:13-90
+activity#com.bestdo.bestdoStadiums.control.activity.UserBalanceDetailActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:215:9-105
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:215:19-102
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardsTabActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:216:9-100
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:216:19-97
+activity#com.bestdo.bestdoStadiums.control.activity.UserCollectActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:217:9-99
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:217:19-96
+activity#com.bestdo.bestdoStadiums.control.activity.UserCenterActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:218:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:218:19-95
+activity#com.bestdo.bestdoStadiums.control.activity.UserAccountActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:219:9-99
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:219:19-96
+activity#com.bestdo.bestdoStadiums.control.activity.UserWalking
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:220:9-91
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:220:19-88
+activity#com.bestdo.bestdoStadiums.control.activity.UserWalkingTrack
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:221:9-96
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:221:19-93
+activity#com.bestdo.bestdoStadiums.control.activity.UserWalkingTraceActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:222:9-104
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:222:19-101
+activity#com.bestdo.bestdoStadiums.control.activity.UserWalkingHistoryActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:223:9-106
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:223:19-103
+activity#com.bestdo.bestdoStadiums.control.activity.UserWalkingRankActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:224:9-103
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:224:19-100
+activity#com.bestdo.bestdoStadiums.control.activity.UserAccountUpdateActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:225:9-105
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:225:19-102
+activity#com.bestdo.bestdoStadiums.control.activity.UserAccountUpdateSexActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:226:9-108
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:226:19-105
+activity#com.bestdo.bestdoStadiums.control.activity.UserSetActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:227:9-95
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:227:19-92
+activity#com.bestdo.bestdoStadiums.control.activity.UserSetUpdatePwActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:228:9-103
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:228:19-100
+activity#com.bestdo.bestdoStadiums.control.activity.UserSetUpdateSetPwActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:229:9-106
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:229:19-103
+activity#com.bestdo.bestdoStadiums.control.activity.UserAboutActiyity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:230:9-97
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:230:19-94
+activity#com.bestdo.bestdoStadiums.control.activity.UserSendIdearActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:231:9-101
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:231:19-98
+activity#com.bestdo.bestdoStadiums.control.activity.UserQiYeCardsActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:232:9-101
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:232:19-98
+activity#com.bestdo.bestdoStadiums.control.activity.UserOrderActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:233:9-97
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:233:19-94
+activity#com.bestdo.bestdoStadiums.control.activity.UserOrderShengHuoActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:234:9-105
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:234:19-102
+activity#com.bestdo.bestdoStadiums.control.activity.UserOrderDetailsActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:235:9-104
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:235:19-101
+activity#com.bestdo.bestdoStadiums.control.activity.UserOrderUnsubscribActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:236:9-107
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:236:19-104
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardsActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:237:9-97
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:237:19-94
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardDetailActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:238:9-102
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:238:19-99
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardsActivateActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:239:9-105
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:239:19-102
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardAbstractActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:240:9-104
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:240:19-101
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardsBuyActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:241:9-100
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:241:19-97
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignGoodMomentsActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:242:9-107
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:242:19-104
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardMiDetailActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:243:9-104
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:243:19-101
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignGMPublicActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:244:9-104
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:244:19-101
+activity#com.bestdo.bestdoStadiums.control.photo.activity.ImageFile
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:245:9-95
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:245:19-92
+activity#com.bestdo.bestdoStadiums.control.photo.activity.ShowAllPhoto
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:246:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:246:19-95
+activity#com.bestdo.bestdoStadiums.control.photo.activity.GalleryActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:247:9-101
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:247:19-98
+activity#com.bestdo.bestdoStadiums.control.activity.ClubSelectActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:248:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:248:19-95
+activity#com.bestdo.bestdoStadiums.control.activity.UserMeberActiyity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:249:9-97
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:249:19-94
+activity#com.bestdo.bestdoStadiums.control.activity.UserMeberCashActiyity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:250:9-252:70
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:252:13-67
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:251:13-92
+activity#com.bestdo.bestdoStadiums.control.activity.UserMeberResultActiyity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:253:9-103
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:253:19-100
+activity#com.bestdo.bestdoStadiums.control.activity.MainPersonActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:255:9-257:70
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:257:13-67
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:256:13-89
+activity#com.bestdo.bestdoStadiums.control.activity.MainActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:258:9-260:70
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:260:13-67
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:259:13-83
+activity#com.bestdo.bestdoStadiums.control.activity.MainBannerActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:261:9-263:50
+	android:hardwareAccelerated
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:263:13-47
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:262:13-89
+activity#com.bestdo.bestdoStadiums.control.activity.MainNavImgActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:264:9-267:47
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:267:13-44
+	android:hardwareAccelerated
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:266:13-47
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:265:13-89
+activity#com.bestdo.bestdoStadiums.control.activity.StadiumMapActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:268:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:268:19-95
+activity#com.bestdo.bestdoStadiums.control.activity.StadiumListActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:269:9-99
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:269:19-96
+activity#com.bestdo.bestdoStadiums.control.activity.SearchCityActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:270:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:270:19-95
+activity#com.bestdo.bestdoStadiums.control.activity.StadiumDetailActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:271:9-101
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:271:19-98
+activity#com.bestdo.bestdoStadiums.control.activity.StadiumDetailMapActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:272:9-104
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:272:19-101
+activity#com.bestdo.bestdoStadiums.control.activity.UserCardsMiActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:273:9-99
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:273:19-96
+activity#com.bestdo.bestdoStadiums.control.activity.UserWalkingTiShiActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:274:9-104
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:274:19-101
+activity#com.bestdo.bestdoStadiums.control.activity.UserWalkingActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:275:9-99
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:275:19-96
+activity#com.bestdo.bestdoStadiums.control.activity.SearchKeyWordActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:276:9-278:74
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:278:13-71
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:277:13-92
+activity#com.bestdo.bestdoStadiums.control.activity.CreatOrdersActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:279:9-281:47
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:281:13-44
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:280:13-90
+activity#com.bestdo.bestdoStadiums.control.activity.Success_Pay
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:282:9-91
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:282:19-88
+activity#com.bestdo.bestdoStadiums.control.activity.CardSuccess_Pay
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:283:9-95
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:283:19-92
+activity#com.bestdo.bestdoStadiums.control.activity.Success_YuDing
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:284:9-94
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:284:19-91
+activity#com.bestdo.bestdoStadiums.control.activity.Success_Faliure
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:285:9-95
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:285:19-92
+activity#com.bestdo.bestdoStadiums.control.activity.CreatOrdersGetVenuePYLWActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:286:9-111
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:286:19-108
+activity#com.bestdo.bestdoStadiums.control.activity.CreateOrderSelectCardsActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:287:9-110
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:287:19-107
+activity#com.bestdo.bestdoStadiums.control.activity.CreatOrdersBuyCardActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:288:9-106
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:288:19-103
+activity#com.bestdo.bestdoStadiums.control.activity.Success_outtime
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:289:9-95
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:289:19-92
+activity#com.bestdo.bestdoStadiums.control.activity.Success_Off
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:290:9-91
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:290:19-88
+activity#com.bestdo.bestdoStadiums.control.activity.Success_Balanceresult
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:291:9-101
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:291:19-98
+activity#com.bestdo.bestdoStadiums.control.activity.Success_OrderUnsubscrib
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:292:9-103
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:292:19-100
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignQuartMainActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:293:9-105
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:293:19-102
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignPublishActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:294:9-103
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:294:19-100
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignDetailActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:295:9-102
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:295:19-99
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignListActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:296:9-100
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:296:19-97
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignBaoMingUsersListActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:297:9-112
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:297:19-109
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignManagementActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:298:9-106
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:298:19-103
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignManagerDetailActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:299:9-109
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:299:19-106
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignCancelActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:300:9-102
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:300:19-99
+activity#com.bestdo.bestdoStadiums.control.activity.ClubActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:301:9-92
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:301:19-89
+activity#com.bestdo.bestdoStadiums.control.activity.ClubUsersListActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:302:9-101
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:302:19-98
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignQianDaoActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:303:9-103
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:303:19-100
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignRegularListActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:304:9-107
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:304:19-104
+activity#com.bestdo.bestdoStadiums.control.activity.MessageActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:305:9-95
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:305:19-92
+activity#com.bestdo.bestdoStadiums.control.activity.MessageListActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:306:9-99
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:306:19-96
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignPublishAddessActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:307:9-109
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:307:19-106
+activity#com.bestdo.bestdoStadiums.control.activity.CampaignBaoMingListActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:308:9-107
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:308:19-104
+activity#com.bestdo.bestdoStadiums.control.activity.CashBookActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:309:9-96
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:309:19-93
+activity#com.bestdo.bestdoStadiums.control.activity.ImagePagerActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:310:9-98
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:310:19-95
+activity#com.bestdo.bestdoStadiums.control.activity.CashBookSelectDateActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:311:9-106
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:311:19-103
+activity#com.bestdo.bestdoStadiums.control.activity.PayUnionActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:312:9-314:64
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:314:13-61
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:313:13-87
+activity#com.bestdo.bestdoStadiums.control.activity.CashBookSetYearlybudgetActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:315:9-317:68
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:317:13-65
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:316:13-102
+activity#com.bestdo.bestdoStadiums.control.activity.CashBookUpdateActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:318:9-320:68
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:320:13-65
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:319:13-93
+uses-library#org.simalliance.openmobileapi
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:322:9-324:40
+	android:required
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:324:13-37
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:323:13-57
+activity#com.unionpay.uppay.PayActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:326:9-332:20
+	android:screenOrientation
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:330:13-49
+	android:excludeFromRecents
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:329:13-46
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:331:13-55
+	android:configChanges
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:328:13-72
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:327:13-58
+activity#com.unionpay.UPPayWapActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:333:9-338:20
+	android:screenOrientation
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:336:13-49
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:337:13-55
+	android:configChanges
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:335:13-73
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:334:13-57
+activity#com.alipay.sdk.app.H5PayActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:341:9-347:20
+	android:screenOrientation
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:345:13-47
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:346:13-67
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:344:13-37
+	android:configChanges
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:343:13-63
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:342:13-60
+activity#com.bestdo.bestdoStadiums.wxapi.WXPayEntryActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:348:9-352:20
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:351:13-43
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:350:13-36
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:349:13-78
+activity#com.bestdo.bestdoStadiums.wxapi.WXEntryActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:354:9-360:75
+	android:screenOrientation
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:359:13-49
+	android:label
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:358:13-45
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:357:13-36
+	android:configChanges
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:356:13-76
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:360:13-72
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:355:13-50
+activity#com.tencent.tauth.AuthActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:362:9-374:20
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:364:13-44
+	android:noHistory
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:365:13-37
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:363:13-58
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:366:13-373:29
+action#android.intent.action.VIEW
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:367:17-69
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:367:25-66
+category#android.intent.category.DEFAULT
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:369:17-76
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:369:27-73
+category#android.intent.category.BROWSABLE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:370:17-78
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:370:27-75
+data
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:372:17-60
+	android:scheme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:372:23-57
+activity#com.umeng.socialize.view.ShareActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:376:9-382:20
+	android:launchMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:379:13-44
+	android:windowSoftInputMode
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:381:13-68
+	android:noHistory
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:380:13-37
+	android:configChanges
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:378:13-57
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:377:13-66
+activity#com.tencent.connect.common.AssistActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:383:9-386:75
+	android:screenOrientation
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:385:13-49
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:386:13-72
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:384:13-69
+service#com.bestdo.bestdoStadiums.utils.UpdateService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:389:9-390:19
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:389:18-78
+service#com.bestdo.bestdoStadiums.control.walking.StepCounterService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:392:9-393:19
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:392:18-93
+service#com.bestdo.bestdoStadiums.control.walking.StepAllCounterService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:395:9-396:19
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:395:18-96
+service#com.baidu.location.f
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:399:9-403:19
+	android:process
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:402:13-38
+	android:enabled
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:401:13-35
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:400:13-48
+service#com.bestdo.bestdoStadiums.control.walking.MonitorService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:404:9-407:39
+	android:enabled
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:406:13-35
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:407:13-36
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:405:13-84
+service#com.baidu.trace.LBSTraceService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:408:9-411:39
+	android:enabled
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:410:13-35
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:411:13-36
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:409:13-59
+service#com.bestdo.bestdoStadiums.control.service.LocalService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:412:9-413:19
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:412:18-87
+service#com.bestdo.bestdoStadiums.control.service.RemoteService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:414:9-417:19
+	android:process
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:416:13-45
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:415:13-83
+service#com.bestdo.bestdoStadiums.control.service.JobHandleService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:418:9-421:19
+	android:permission
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:420:13-69
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:419:13-86
+activity#cn.jpush.android.ui.PushActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:423:9-433:20
+	android:configChanges
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:425:13-63
+	android:theme
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:426:13-72
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:424:13-60
+intent-filter#android.intent.category.DEFAULT+cn.jpush.android.ui.PushActivity+com.bestdo.bestdoStadiums
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:427:13-432:29
+action#cn.jpush.android.ui.PushActivity
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:428:17-75
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:428:25-72
+category#com.bestdo.bestdoStadiums
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:431:17-70
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:431:27-67
+service#cn.jpush.android.service.DownloadService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:435:9-439:19
+	android:enabled
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:437:13-35
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:438:13-37
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:436:13-68
+service#cn.jpush.android.service.PushService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:441:9-451:19
+	android:enabled
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:443:13-35
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:444:13-37
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:442:13-64
+intent-filter#cn.jpush.android.intent.PUSH_TIME+cn.jpush.android.intent.PushService+cn.jpush.android.intent.REGISTER+cn.jpush.android.intent.REPORT
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:445:13-450:29
+action#cn.jpush.android.intent.REGISTER
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:446:17-75
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:446:25-72
+action#cn.jpush.android.intent.REPORT
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:447:17-73
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:447:25-70
+action#cn.jpush.android.intent.PushService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:448:17-78
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:448:25-75
+action#cn.jpush.android.intent.PUSH_TIME
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:449:17-76
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:449:25-73
+receiver#cn.jpush.android.service.PushReceiver
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:453:9-472:20
+	android:enabled
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:455:13-35
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:454:13-65
+intent-filter#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+com.bestdo.bestdoStadiums
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:456:13-460:29
+	android:priority
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:456:28-51
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:457:17-94
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:457:25-91
+intent-filter#android.intent.action.USER_PRESENT+android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:461:13-464:29
+action#android.intent.action.USER_PRESENT
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:462:17-77
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:462:25-74
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:463:17-79
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:463:25-76
+intent-filter#android.intent.action.PACKAGE_ADDED+android.intent.action.PACKAGE_REMOVED
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:466:13-471:29
+action#android.intent.action.PACKAGE_ADDED
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:467:17-78
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:467:25-75
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:468:17-80
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:468:25-77
+receiver#cn.jpush.android.service.AlarmReceiver
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:474:9-75
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:474:19-72
+receiver#com.bestdo.bestdoStadiums.utils.MyJpushReceiver
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:476:9-493:20
+	android:enabled
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:478:13-35
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:477:13-75
+intent-filter#cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK+cn.jpush.android.intent.MESSAGE_RECEIVED+cn.jpush.android.intent.NOTIFICATION_OPENED+cn.jpush.android.intent.NOTIFICATION_RECEIVED+cn.jpush.android.intent.REGISTRATION+cn.jpush.android.intent.UNREGISTRATION+com.bestdo.bestdoStadiums
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:479:13-492:29
+action#cn.jpush.android.intent.REGISTRATION
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:480:17-79
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:480:25-76
+action#cn.jpush.android.intent.UNREGISTRATION
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:482:17-81
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:482:25-78
+action#cn.jpush.android.intent.MESSAGE_RECEIVED
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:483:17-83
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:483:25-80
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:485:17-88
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:485:25-85
+action#cn.jpush.android.intent.NOTIFICATION_OPENED
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:487:17-86
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:487:25-83
+action#cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:489:17-91
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:489:25-88
+receiver#com.bestdo.bestdoStadiums.control.walking.AlarmReceiver
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:494:9-495:20
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:494:19-89
+service#com.taobao.sophix.aidl.DownloadService
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:497:9-505:19
+	android:exported
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:499:13-36
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:498:13-66
+intent-filter#android.intent.category.DEFAULT+com.taobao.hotfix.action
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:500:13-504:29
+action#com.taobao.hotfix.action
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:501:17-67
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:501:25-64
+meta-data#com.taobao.android.hotfix.IDSECRET
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:507:9-509:40
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:509:13-37
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:508:13-62
+meta-data#com.taobao.android.hotfix.APPSECRET
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:510:9-512:64
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:512:13-61
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:511:13-63
+meta-data#com.taobao.android.hotfix.RSASECRET
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:513:9-515:1656
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:515:13-1653
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:514:13-63
+meta-data#JPUSH_CHANNEL
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:518:9-520:49
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:520:13-46
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:519:13-41
+meta-data#JPUSH_APPKEY
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:521:9-523:56
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:523:13-53
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:522:13-40
+meta-data#UMENG_APPKEY
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:526:9-529:21
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:528:13-53
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:527:13-40
+meta-data#UMENG_MESSAGE_SECRET
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:530:9-533:21
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:532:13-61
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:531:13-48
+meta-data#UMENG_CHANNEL
+ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:553:9-555:40
+	android:value
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:555:13-37
+	android:name
+		ADDED from E:\ws_studio\bestdoStadium_V2.7.0\bestdoStadium_V270\src\main\AndroidManifest.xml:554:13-41
+activity#com.example.androidbridge.MainActivity
+ADDED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:9-28:20
+	android:label
+		ADDED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:19:13-45
+	android:name
+		ADDED from [:mainActivity] E:\ws_studio\bestdoStadium_V2.7.0\mainActivity\build\intermediates\manifests\full\debug\AndroidManifest.xml:18:13-66
