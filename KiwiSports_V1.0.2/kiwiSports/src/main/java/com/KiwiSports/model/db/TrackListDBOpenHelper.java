@@ -300,7 +300,7 @@ public class TrackListDBOpenHelper {
         try {
             long rawid = mSqLiteDatabase.insert(BaseDBHelper.TABLE_TRACKLIST,
                     null, contentValues);
-            Log.e("recordDetailDatas_", "recordDatas_-----" + rawid + "    ");
+            Log.e("recordDetailDatas_", "recordDatas_-----" + mInfo.getDistance() + "    ");
             contentValues.clear();
             contentValues = null;
             if (rawid > 0) {
@@ -376,7 +376,7 @@ public class TrackListDBOpenHelper {
                     String _longitudeOffset = cursor.getString(cursor.getColumnIndex(longitudeOffset));
                     String _latLngDashedStatus = cursor.getString(cursor.getColumnIndex(latLngDashedStatus));
                     long matchSpeedTimestamp = 0;
-                    if (_distance - beforedistance > 1000) {
+                    if (_distance - beforedistance >= 1000) {
                         matchSpeedTimestamp = _duration - beforeDuration;
                         if (maxmatchSpeedTimestamp < matchSpeedTimestamp) {
                             maxmatchSpeedTimestamp = matchSpeedTimestamp;
@@ -389,7 +389,7 @@ public class TrackListDBOpenHelper {
                     }
 
                     //isAfterLast指向查询结果的最后一条记录
-                    if (cursor.isAfterLast()) {
+                    if (cursor.isLast()) {
                         if (beforedistance != (int) _distance && _distance > 0) {
                             matchSpeedTimestamp = _duration - beforeDuration;
                             if (maxmatchSpeedTimestamp < matchSpeedTimestamp) {
@@ -400,6 +400,8 @@ public class TrackListDBOpenHelper {
                             minfo = null;
                         }
                     }
+                    Log.e("recordDetailDatas_", "_distance-----" + _distance + "    ");
+
                     LatLng mLatLng = new LatLng(_latitude, _longitude);
                     MainLocationItemInfo mMainLocationItemInfo = new MainLocationItemInfo(_latitude, _longitude,
                             _speed, _altitude, _accuracy, _nStatus,
@@ -447,7 +449,7 @@ public class TrackListDBOpenHelper {
             String[] selectionArgs = {uidValue, runStartTimeValue};//具体的条件,注意要对应条件字段
             String orderBy = RowId + " desc";
             cursor = mSqLiteDatabase.query(BaseDBHelper.TABLE_TRACKLIST, columns, selection, selectionArgs
-                    , null, null, orderBy, "2");
+                    , null, null, orderBy, "1");
             if (cursor != null) {
                 while (cursor.moveToNext()) {
                     lastdistance = cursor.getDouble(cursor.getColumnIndex(distance));

@@ -98,11 +98,11 @@ public class WelcomeStartActiyity extends BaseActivity {
 	 */
 	@SuppressWarnings("unused")
 	private void simulateWeChatUserInfo() {
-		String uid = "20051";
+		String uid = "10010";
 		String nick_name = "djw";
 		String album_url = "";
 		String token = ConfigUtils.getInstance().getDeviceId(this);
-		String access_token = "12_GGWAGegDaxmdPbHBzcVSd5OnHqmDQJqqOAoGD_6BbXEHU4neCNRKoqFUgGMEi4M0vfOiXCRwZropH2dHwAj6fvngbX2cA2-KU4TYUJgcLNA";
+		String access_token = "13_1-Jcfl5f2ahCA-ehr_YvMa5CauvpKzAQJDd3mM0t0fu2FNnmWAb8mel97AQlI3eCUhH9kWKSUo-MDDY8kghHqw-GR0Rpu-Ca2QVPgO8MNeg";
 		bestDoInfoEditor.putString("loginStatus",
 				Constants.getInstance().loginStatus);
 		bestDoInfoEditor.putString("uid", uid + "");

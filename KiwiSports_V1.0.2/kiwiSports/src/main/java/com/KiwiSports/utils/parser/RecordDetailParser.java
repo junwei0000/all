@@ -112,7 +112,7 @@ public class RecordDetailParser extends BaseParser<Object> {
                         long durations = infoOb.optLong("duration", 0);
                         double distance = infoOb.optDouble("distance", 0);
                         long matchSpeedTimestamp = 0;
-                        if (distance - beforedistance > 1000) {
+                        if (distance - beforedistance >= 1000) {
                             matchSpeedTimestamp = durations - beforeDuration;
                             if (maxmatchSpeedTimestamp < matchSpeedTimestamp) {
                                 maxmatchSpeedTimestamp = matchSpeedTimestamp;

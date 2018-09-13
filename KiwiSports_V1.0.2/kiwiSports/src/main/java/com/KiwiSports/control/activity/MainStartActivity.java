@@ -938,6 +938,8 @@ public class MainStartActivity extends FragmentActivity implements
             if (averageSpeed > topSpeed) {
                 topSpeed = averageSpeed;
             }
+            topSpeed = Double.valueOf(PriceUtils.getInstance().getPriceTwoDecimal(
+                    topSpeed, 2));
         }
         if (distanceTraveled > 0) {
             matchSpeedTimestamp = DatesUtils.getInstance().computeMatchspeed(
@@ -956,26 +958,28 @@ public class MainStartActivity extends FragmentActivity implements
             int juliSt = (int) distanceTraveled;
             // 最快配速取 每公里配速最快值
             if (juliSt - beforemaxMatchSpeedDis >= 1 && runingTimestamp > 1 &&
-                    distanceTraveled >= 1 && distanceTraveled < 1000 &&
-                    (int) (distanceTraveled - beforemaxMatchSpeedDis) >= 1
-                    && runingTimestamp > 0) {
+                    distanceTraveled >= 1 && distanceTraveled < 1000) {
 
                 long erverymatchSpeedTimestamp = DatesUtils.getInstance()
                         .computeMatchspeed(runingTimestamp - previousLapTimestamp,
                                 juliSt - beforemaxMatchSpeedDis);
-                if (erverymatchSpeedTimestamp <= maxMatchSpeedTimestamp
-                        || maxMatchSpeedTimestamp == 0) {
+                //每公里 最快配速
+                if (maxMatchSpeedTimestamp == 0 || erverymatchSpeedTimestamp <= maxMatchSpeedTimestamp) {
                     maxMatchSpeedTimestamp = erverymatchSpeedTimestamp;
                     maxMatchSpeed = DatesUtils.getInstance().formatMatchspeed(
                             maxMatchSpeedTimestamp);
                 }
-
-                if (minmatchSpeedTimestamp == 0 || minmatchSpeedTimestamp < erverymatchSpeedTimestamp) {
-                    minmatchSpeedTimestamp = matchSpeedTimestamp;
+                //每公里 最慢配速
+                if (minmatchSpeedTimestamp == 0 || minmatchSpeedTimestamp <= erverymatchSpeedTimestamp) {
+                    minmatchSpeedTimestamp = erverymatchSpeedTimestamp;
                     minMatchSpeed = DatesUtils.getInstance().formatMatchspeed(
                             minmatchSpeedTimestamp);
                 }
-
+                if ((minmatchSpeedTimestamp / 3600) >= 1) {
+                    minmatchSpeedTimestamp = erverymatchSpeedTimestamp;
+                    minMatchSpeed = DatesUtils.getInstance().formatMatchspeed(
+                            minmatchSpeedTimestamp);
+                }
 
                 cb_voicestatus = welcomeSharedPreferences.getBoolean("cb_voicestatus",
                         true);
@@ -1825,7 +1829,6 @@ public class MainStartActivity extends FragmentActivity implements
         if (loadCancerStartSttus && btnStartStatus && distanceTraveled == 0) {
             mHandler.sendEmptyMessage(UPDATETIME);
         }
-        initSpeed();
         if (btnStartStatus && btnContinueStatus) {
             runingTimestamp = System.currentTimeMillis() - startTimestamp
                     - pauseTimestamp;
@@ -1834,26 +1837,36 @@ public class MainStartActivity extends FragmentActivity implements
             }
             mHandler.sendEmptyMessage(UPDATETIME);// 通知主线程更新UIs
         }
+        if (btnStartStatus) {
+            initSpeed();
+        }
     }
 
     /**
      * 不再运动的时间，大于10秒 速度归0
      */
     double stillTime;
+    double stilldistanceTraveled;
+
     /**
      * 不再运动的时间，持续大于10秒 速度归0,防止无GPS信号时速度无法获取
      */
     private void initSpeed() {
-        if (distanceTraveled == distanceOfBeforeLat) {
+        if (stillTime == 0) {
+            stilldistanceTraveled = distanceTraveled;
+        }
+        if (distanceTraveled == stilldistanceTraveled) {
             stillTime++;
         } else {
             stillTime = 0;
         }
         if (stillTime > 10) {
             Speed = 0;
-            gpslocationListenerStatus=false;
-            stillTime=11;
+            gpslocationListenerStatus = false;
+            stillTime = 11;
         }
+        Log.e("initSpeed", stillTime + "  " + Speed + "  " + gpslocationListenerStatus + " " + distanceTraveled + " " + stilldistanceTraveled);
+//        CommonUtils.getInstance().initToast(stillTime+"  "+Speed+"  "+gpslocationListenerStatus+" "+distanceTraveled+" "+stilldistanceTraveled);
     }
 
     /**
@@ -2677,7 +2690,7 @@ public class MainStartActivity extends FragmentActivity implements
      * 点击结束，上传轨迹
      */
     private void loadRecordDates() {
-        showDilag();
+//        showDilag();
         mhashmap = new HashMap<String, String>();
         mhashmap.put("uid", uid);
         mhashmap.put("token", token);
@@ -2694,8 +2707,8 @@ public class MainStartActivity extends FragmentActivity implements
                             if (status.equals("200")) {
                                 //CommonUtils.getInstance().initToast("上传成功");
                                 record_id = (String) dataMap.get("msg");
-                                addRecordListDB(record_id, RecordListDBOpenHelper.currentTrackBOVER);
                             }
+                            addRecordListDB(record_id, RecordListDBOpenHelper.currentTrackBOVER);
 //                            else {
 //                                String msg = (String) dataMap.get("msg");
 //                                CommonUtils.getInstance().initToast(msg);
@@ -3256,14 +3269,15 @@ public class MainStartActivity extends FragmentActivity implements
         showLatLng = null;
         beforelatLng = null;
         Speed = 0;
+        stillTime = 0;
         distanceOfBeforeLat = 0.0;
         averageSpeed = 0;
         topSpeed = 0;
-        matchSpeed = "0";
-        averageMatchSpeed = "0";
-        minMatchSpeed = "0";
+        matchSpeed = "--";
+        minMatchSpeed = "--";
+        maxMatchSpeed = "--";
+        averageMatchSpeed = "--";
         minmatchSpeedTimestamp = 0;
-        maxMatchSpeed = "0";
         maxMatchSpeedTimestamp = 0;
         beforemaxMatchSpeedDis = 0;// 上一个计算距离点
         previousLapTimestamp = 0;

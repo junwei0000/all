@@ -309,12 +309,11 @@ public class RecordDetailActivity extends BaseActivity {
             boolean lastDisStatus = false;
             if (mTrackListDBOpenHelper.hasInfo(uid, runStartTime)) {
                 Double lastdistance = mTrackListDBOpenHelper.getHistoryDBLastDis(uid, runStartTime);
-                String SubtractSum = PriceUtils.getInstance().gteSubtractSumPrice(String.valueOf(lastdistance), String.valueOf(distanceTraveled));
-                if (Double.valueOf(SubtractSum) < 0.1 * 1000) {
+                if (distanceTraveled-lastdistance < 50) {
                     lastDisStatus = true;
                 }
+                Log.e("map", "lastDisStatus= " + lastDisStatus+"  "+distanceTraveled+"  "+lastdistance);
             }
-            Log.e("map", "lastDisStatus= " + lastDisStatus);
             long startTrackTimeTamp = DatesUtils.getInstance().getDateToTimeStamp(runStartTime, "yyyy-MM-dd HH:mm:ss");
             if (mRecordListDBOpenHelper.hasrunStartTimeTampInfo(uid, String.valueOf(startTrackTimeTamp))
                     && mTrackListDBOpenHelper.hasInfo(uid, runStartTime) && lastDisStatus) {

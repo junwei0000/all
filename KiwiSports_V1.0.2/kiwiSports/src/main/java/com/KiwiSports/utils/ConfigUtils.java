@@ -137,22 +137,22 @@ public class ConfigUtils {
             TelephonyManager tm = (TelephonyManager) context
                     .getSystemService(Context.TELEPHONY_SERVICE);
             String imei = tm.getDeviceId();
-            // 序列号（sn）
-            String sn = tm.getSimSerialNumber();
-            // 如果上面都没有， 则生成一个id：随机码
-            String uuid = getUUID(context);
             if (!TextUtils.isEmpty(imei)) {
                 deviceId.append("imei");
                 deviceId.append(imei);
                 Log.e("getDeviceId : ", deviceId.toString());
                 return deviceId.toString();
             }
+            // 序列号（sn）
+            String sn = tm.getSimSerialNumber();
             if (!TextUtils.isEmpty(sn)) {
                 deviceId.append("sn");
                 deviceId.append(sn);
                 Log.e("getDeviceId : ", deviceId.toString());
                 return deviceId.toString();
             }
+            // 如果上面都没有， 则生成一个id：随机码
+            String uuid = getUUID(context);
             if (!TextUtils.isEmpty(uuid)) {
                 deviceId.append("id");
                 deviceId.append(uuid);
@@ -164,8 +164,8 @@ public class ConfigUtils {
             deviceId.append("id").append(getUUID(context));
         }
         Log.e("getDeviceId : ", deviceId.toString());
-        return "aimei862348032510265";
-//		return deviceId.toString();
+//        return "aimei862348032510265";
+		return deviceId.toString();
     }
 
 

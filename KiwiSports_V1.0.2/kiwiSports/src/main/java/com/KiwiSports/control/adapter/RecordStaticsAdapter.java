@@ -74,6 +74,7 @@ public class RecordStaticsAdapter extends BaseAdapter {
         }else if(position==2){
             viewHolder.layout_sportimg.setBackgroundResource(R.drawable.corners_statistics3);
         }else {
+            info.setSportsType(-1);
             viewHolder.layout_sportimg.setBackgroundResource(R.drawable.corners_statistics4);
         }
         int sportindex=info.getSportsType();
