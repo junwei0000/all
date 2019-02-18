@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padd_topbottom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/item_layout_communethumb"
+            android:layout_width="@dimen/Item_thumbWidth"
+            android:layout_height="@dimen/Item_thumbWidth"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/corners_oval_graycommuebian"
+            android:padding="0.8dp">
+
+            <ImageView
+                android:id="@+id/item_iv_communethumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/wisheach_icon_dedication" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_iv_communename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:layout_toLeftOf="@+id/item_layout_right"
+            android:layout_toRightOf="@+id/item_layout_communethumb"
+            android:singleLine="true"
+            android:text="养神方立春公社"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <LinearLayout
+            android:id="@+id/item_layout_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|right">
+
+            <ImageView
+                android:id="@+id/item_iv_helpme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/mutuallist_love" />
+
+            <TextView
+                android:id="@+id/item_tv_helpme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="祝福我1次"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_dp12_size" />
+
+            <ImageView
+                android:id="@+id/item_iv_helpother"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/mutuallist_shakehands" />
+
+            <TextView
+                android:id="@+id/item_tv_helpother"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="我祝福1次"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_dp12_size" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!--  -->
+    <LinearLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/mallItem_iconWidth"
+            android:layout_height="@dimen/mallItem_iconWidth"
+            android:background="@color/linebg"
+            android:orientation="horizontal"
+            android:padding="0.5dp">
+
+            <ImageView
+                android:id="@+id/item_iv_thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/mall_icon_thedefault"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="山西昂生谷雨公社 一号防癌行动"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+
+            <TextView
+                android:id="@+id/item_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
+                android:text="接福人：韩晓明"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_dp12_size" />
+            <!-- -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10">
+
+                <com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar
+                    android:id="@+id/item_pb_lifeenergynum"
+                    style="@style/NumberProgressBar_Default"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/item_pb_num"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/corners_bg_redprogress"
+                    android:gravity="center"
+                    android:paddingBottom="1dp"
+                    android:paddingTop="1dp"
+                    android:text="0%"
+                    android:textColor="@color/white"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+            <!-- -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp10">
+
+                <TextView
+                    android:id="@+id/item_tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2018-04-12"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="@dimen/jianJu"
+                    android:layout_marginLeft="@dimen/jianJu"
+                    android:layout_marginRight="@dimen/jianJu"
+                    android:background="@color/text_noclick_color" />
+
+                <TextView
+                    android:id="@+id/item_tv_lifeenergynum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已有0寿康宝"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>

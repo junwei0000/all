@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padd_leftright">
+
+    <RelativeLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <com.longcheng.lifecareplan.utils.myview.CircleImageView
+            android:id="@+id/item_iv_thumb"
+            android:layout_width="@dimen/dp43"
+            android:layout_height="@dimen/dp43"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/item_tv_engerynum"
+            android:layout_toRightOf="@+id/item_iv_thumb"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/item_layout_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/padd_leftright">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLength="15"
+                        android:paddingRight="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/item_iv_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/thecommune_brigade_modifythe" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/item_tv_shequ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:singleLine="true"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_dp12_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_tv_engerynum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/item_iv_arrow"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:id="@+id/item_iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>

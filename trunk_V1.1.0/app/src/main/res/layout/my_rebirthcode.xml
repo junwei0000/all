@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        style="@style/login_padd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!---->
+
+        <RelativeLayout
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_graybian">
+
+            <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_getcode"
+                android:background="@color/transparent"
+                android:hint="@string/code_hint"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/text_biaoTi_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/tv_getcode"
+                android:layout_width="@dimen/getcode_width"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|right"
+                android:paddingBottom="@dimen/img_setTextcenter"
+                android:text="@string/code_get"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_contents_size" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_tishi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="*使用重生卡将重置您的星级、已祝福的生命能量和已祝福的次数,使用后将不可恢复，请您慎重使用。"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/btn_next"
+            style="@style/btn"
+            android:text="立即重生" />
+    </LinearLayout>
+</LinearLayout>

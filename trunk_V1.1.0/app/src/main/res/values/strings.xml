@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">CHO</string>
+    <string name="commoncode_errorcode_arguments_invalid">请检查相关的配置信息是否正确。比如：manifest文件中的appid；是否使用证书签名等。</string>
+    <string name="commoncode_errorcode_internal_error">内部接口出现异常，请联系华为方支持人员。</string>
+    <string name="commoncode_errorcode_naming_invalid">请检查构建HuaweiApiClient时设置的API是否正确。</string>
+    <string name="commoncode_errorcode_client_api_invalid">HuaweiApiClient未连接就调用的接口，请检查onConnectionFailed是否正确处理，以及错误码是什么。</string>
+    <string name="commoncode_errorcode_execute_timeout">此错误码只出现在开发者直接调用await接口时，请尝试将超时时间参数加大。如果觉得已经影响业务，请联系华为方支持人员。</string>
+    <string name="commoncode_errorcode_not_in_service">区域不支持此业务</string>
+    <string name="commoncode_errorcode_session_invalid">说明session过期了，需要重新连接华为移动服务。</string>
+    <string name="commoncode_errorcode_other">未知错误码：</string>
+    <string name="please_try_again_hw_push">请重新尝试</string>
+
+    <!--网络请求错误语-->
+    <string name="net_tishi">网络连接不稳定，请稍后重试</string>
+    <string name="connect_error">网络连接失败,请检查网络</string>
+    <string name="connect_timeout">连接超时,请稍后再试</string>
+    <string name="bad_network">服务器异常</string>
+    <string name="parse_error">解析服务器响应数据失败</string>
+    <string name="unknown_error">未知错误</string>
+    <string name="response_return_error">服务器返回数据失败</string>
+    <string name="mark_money">¥</string>
+
+    <!--首页-->
+    <string name="main_title">健康互祝公社</string>
+    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+    <string name="bottom_center">我家</string>
+    <string name="bottom_transaction">兑换</string>
+    <string name="bottom_exchange">互换</string>
+    <string name="bottom_helpwith">互祝</string>
+    <string name="bottom_home">首页</string>
+    <string name="invitation_recording">邀请记录</string>
+    <!--个人信息-->
+    <string name="LoginWx_nottishi">请先安装微信客户端</string>
+    <string name="xingJi">星级</string>
+    <string name="becomeCHO">成为CHO</string>
+    <string name="becomeCHO_tishi">成为CHO呵护家人健康每一天！</string>
+    <string name="hint_write">请填写</string>
+    <string name="hint_select">请选择</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确定</string>
+    <!--登录注册-->
+    <string name="dialog_logout_title">下线通知</string>
+    <string name="dialog_logout_cirt">您的账号已在其他设备登录</string>
+
+
+    <string name="login_account">账号登录</string>
+    <string name="login_phone">手机快捷登录</string>
+    <string name="register">注册</string>
+    <string name="forgetpw">忘记密码？</string>
+    <string name="code_get">获取验证码</string>
+    <string name="tv_codeunit">s</string>
+    <string name="account_hint">请输入手机号码</string>
+    <string name="account_showtishi">请输入正确的手机号码</string>
+    <string name="pw_hint">请输入登录密码</string>
+    <string name="code_hint">请输入验证码</string>
+    <string name="code_showtishi">请输入正确验证码</string>
+    <string name="next">下一步</string>
+    <string name="over">完成</string>
+    <string name="login_text">登录</string>
+    <string name="third_login_text">使用社交账号一键登录</string>
+    <string name="forget_tilte">找回登录密码</string>
+    <string name="code_title">短信验证码</string>
+    <string name="forget_repeatpw">重置密码</string>
+    <string name="forget_repeatpw_hint">请输入6-20位密码</string>
+    <string name="forget_repeatpwtwo_hint">请再次输入6-20位密码</string>
+    <string name="forget_repeatpwtwosame_hint">两次输入密码不一致</string>
+    <string name="register_tilte">输入手机号</string>
+    <string name="register_name_hint">请输入您的真实姓名</string>
+    <string name="set">设置</string>
+    <string name="recovercash_tilte">提现</string>
+
+    <string name="order_all_tilte">全部订单</string>
+    <string name="order_coming_tilte">进行中</string>
+    <string name="order_pendingreceipt_tilte">待收货</string>
+    <string name="order_completed_tilte">已完成</string>
+
+    <string name="rebirth_tishi">
+        1、什么是重生卡？
+　　\n\u3000\u3000可使CHO星级立即清零的特效卡。
+\n\
+2、为什么会有重生卡？
+　　\n\u3000\u3000CHO星级的保持与“互祝次数或互祝能量的日均值”挂钩，针对希望快速升级到预期星级的用户推出重生卡。
+\n\
+3、重生卡使用后效果
+　　\n\u3000\u3000重生卡一经使用，CHO星级立即清零，对应升至下一级的剩余互祝次数或生命能量也清零。原有的累计互祝总次数、累计互祝生命能量、寿康宝、账户余额、我的订单等数据均不改变。
+\n\
+4、如何使用重生卡？
+　　\n\u3000\u3000在“我家”界面点击重生卡按钮，进入重生卡界面，点击左上方CHO重生标签，即可启动CHO重生，系统会提示星级和相关联的剩余互祝次数、互祝生命能量清零，且无法恢复。用户确认后，系统会通过输入短信验证码进行确认。星级清零后，根据互祝情况和星级规则开始重新评定星级，完成重生过程。
+\n\
+5、其它说明
+　\n\u3000\u30001）CHO可在任何时间使用重生卡，只有一次机会；
+　\n\u3000\u30002）使用后CHO原有星级数据无法恢复；
+　\n\u3000\u30003）使用后的星级津贴发放与提现规则不变（详见CHO规则）。
+    </string>
+
+    <string name="news_all">全部</string>
+    <string name="news_healthy_knowledge">健康知识</string>
+    <string name="news_novice_guide">新手指南</string>
+    <string name="news_notice">平台公告</string>
+</resources>
