@@ -293,26 +293,44 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.usercenter_relay_volunteer://志愿者
                 int isVolunteerIdentity = data.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
                 if (isVolunteerIdentity == 0) {
+                    String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+                    if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
+                        intent = new Intent(mContext, VolunteerH5Activity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", data.getBecome_volunteer_url());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    } else {
+                        showNotCHODialog();
+                    }
+                } else {
                     intent = new Intent(mContext, VolunteerH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", data.getBecome_volunteer_url());
+                    intent.putExtra("html_url", data.getAlready_volunteer_url());
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                } else {
-                    ToastUtils.showToast("您已是志愿者");
                 }
                 break;
             case R.id.usercenter_relay_doctor://坐堂医
                 int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
-                intent = new Intent(mContext, VolunteerH5Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 if (isDoctorIdentity == 0) {
-                    intent.putExtra("html_url", data.getBecome_doctor_url());
+                    String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+                    if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
+                        intent = new Intent(mContext, VolunteerH5Activity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", data.getBecome_doctor_url());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    } else {
+                        showNotCHODialog();
+                    }
                 } else {
+                    intent = new Intent(mContext, VolunteerH5Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", data.getAlready_doctor_url());
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
-                startActivity(intent);
-                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_smallpusher://小推手
 //                String promoter_url = data.getPromoter_url();
@@ -796,6 +814,44 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             });
         } else {
             redBaoDialog.show();
+        }
+    }
+
+    MyDialog notCHODialog;
+
+    /**
+     * 申请志愿者 不是cho弹层
+     */
+    public void showNotCHODialog() {
+        if (notCHODialog == null) {
+            notCHODialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mycenter_notcho);// 创建Dialog并设置样式主题
+            notCHODialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = notCHODialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            notCHODialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = notCHODialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            notCHODialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) notCHODialog.findViewById(R.id.layout_cancel);
+            TextView btn_upgrade = (TextView) notCHODialog.findViewById(R.id.btn_upgrade);
+
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    notCHODialog.dismiss();
+                }
+            });
+            btn_upgrade.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    notCHODialog.dismiss();/**/
+                    mHandler.sendEmptyMessage(SkipEDIT);
+                }
+            });
+        } else {
+            notCHODialog.show();
         }
     }
 

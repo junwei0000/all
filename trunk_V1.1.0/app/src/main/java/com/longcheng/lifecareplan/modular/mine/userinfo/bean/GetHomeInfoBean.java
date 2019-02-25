@@ -86,11 +86,20 @@ public class GetHomeInfoBean implements Serializable {
     private String promoter_url;//小推手url
     private String become_doctor_url;//成为坐堂医url
     private String become_volunteer_url;//成为志愿者url
+    private String already_volunteer_url;//志愿者url
     private String already_doctor_url;//坐堂医url
 
     private int isDoctorIdentity;//是否是坐堂医 0不是；1 是
     private int isVolunteerIdentity;//是否是志愿者 0不是；1 是
 
+
+    public String getAlready_volunteer_url() {
+        return already_volunteer_url;
+    }
+
+    public void setAlready_volunteer_url(String already_volunteer_url) {
+        this.already_volunteer_url = already_volunteer_url;
+    }
 
     public String getPromoter_url() {
         return promoter_url;

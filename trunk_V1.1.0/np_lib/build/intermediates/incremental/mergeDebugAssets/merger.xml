@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\longcheng_svn\branch\trunk_V1.1.0\np_lib\src\main\assets"/><source path="E:\longcheng_svn\branch\trunk_V1.1.0\np_lib\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\longcheng_svn\branch\trunk_V1.1.0\np_lib\src\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\all_git\trunk_V1.1.0\np_lib\src\main\assets"/><source path="E:\all_git\trunk_V1.1.0\np_lib\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\all_git\trunk_V1.1.0\np_lib\src\debug\assets"/></dataSet></merger>

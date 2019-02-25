@@ -22,6 +22,8 @@ public class DetailAfterBean {
     private List<DetailItemBean> goodsPrice;//规格
     @SerializedName("userStarLevel")
     private int userStarLevel;
+    @SerializedName("applyHelpMinStarlevel")
+    private int applyHelpMinStarlevel;
     @SerializedName("isExistsHelpGoods")
     private int isExistsHelpGoods;
     @SerializedName("shareUrl")
@@ -35,6 +37,14 @@ public class DetailAfterBean {
     private String notAllowBuyReason;
     @SerializedName("volunteerApplyUrl")
     private String become_volunteer_url;
+
+    public int getApplyHelpMinStarlevel() {
+        return applyHelpMinStarlevel;
+    }
+
+    public void setApplyHelpMinStarlevel(int applyHelpMinStarlevel) {
+        this.applyHelpMinStarlevel = applyHelpMinStarlevel;
+    }
 
     public String getBecome_volunteer_url() {
         return become_volunteer_url;

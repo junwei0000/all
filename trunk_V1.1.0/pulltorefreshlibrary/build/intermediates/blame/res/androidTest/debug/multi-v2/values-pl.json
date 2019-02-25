@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\longcheng_svn\\branch\\trunk_V1.1.0\\pulltorefreshlibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-pl\\values-pl.xml",
+            "outputFile": "E:\\all_git\\trunk_V1.1.0\\pulltorefreshlibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-pl\\values-pl.xml",
             "map": [
                 {
-                    "source": "E:\\longcheng_svn\\branch\\trunk_V1.1.0\\pulltorefreshlibrary\\build\\intermediates\\bundles\\debug\\res\\values-pl\\values-pl.xml",
+                    "source": "E:\\all_git\\trunk_V1.1.0\\pulltorefreshlibrary\\build\\intermediates\\bundles\\debug\\res\\values-pl\\values-pl.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

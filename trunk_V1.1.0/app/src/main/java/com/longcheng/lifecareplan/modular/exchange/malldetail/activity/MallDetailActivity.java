@@ -44,6 +44,7 @@ import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403U
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.mine.set.activity.VolunteerH5Activity;
+import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -137,6 +138,10 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
      * 用户星级，没达到1星级 弹层提示
      */
     private int userStarLevel;
+    /**
+     * 用户互祝需要的最小星级，对每个商品判断
+     */
+    private int applyHelpMinStarlevel;
 
     /**
      * 是否存在申请，0：不存在 1：存在 当存在申请的时候弹层提示
@@ -175,6 +180,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 break;
             case R.id.tv_addShoppingCart:
+                //只针对志愿者判断
                 if (!TextUtils.isEmpty(identityIsAllowBuy) && identityIsAllowBuy.equals("0")) {
                     showConnonDialog();
                     break;
@@ -182,12 +188,13 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 setAddShoppingCartMap();
                 break;
             case R.id.tv_tohelp:
+                //只针对志愿者判断
                 if (!TextUtils.isEmpty(identityIsAllowBuy) && identityIsAllowBuy.equals("0")) {
                     showConnonDialog();
                     break;
                 }
-                if (userStarLevel < 1) {
-                    showLevelDialog();
+                if (userStarLevel < applyHelpMinStarlevel) {
+                    showLevelDialog(applyHelpMinStarlevel);
                     break;
                 }
                 if (isExistsHelpGoods == 1) {
@@ -341,6 +348,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 become_volunteer_url = mDetailAfterBean.getBecome_volunteer_url();
                 shareUrl = mDetailAfterBean.getShareUrl();
                 userStarLevel = mDetailAfterBean.getUserStarLevel();
+                applyHelpMinStarlevel = mDetailAfterBean.getApplyHelpMinStarlevel();
                 isExistsHelpGoods = mDetailAfterBean.getIsExistsHelpGoods();
                 help_goods_id = mDetailAfterBean.getHelpGoodsId();
                 showInitData(mDetailAfterBean);
@@ -504,11 +512,12 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
         }
     };
     MyDialog levelDialog;
+    TextView tv_xingji;
 
     /**
      * 等级不足提示
      */
-    public void showLevelDialog() {
+    public void showLevelDialog(int applyHelpMinStarlevel_) {
         if (levelDialog == null) {
             levelDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_goodsdetail_level);// 创建Dialog并设置样式主题
             levelDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
@@ -521,6 +530,8 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             p.width = d.getWidth() * 4 / 5; //宽度设置为屏幕
             levelDialog.getWindow().setAttributes(p); //设置生效
             TextView btn_know = (TextView) levelDialog.findViewById(R.id.btn_know);
+            tv_xingji = (TextView) levelDialog.findViewById(R.id.tv_xingji);
+            judge(applyHelpMinStarlevel_);
             btn_know.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -528,8 +539,15 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 }
             });
         } else {
+            judge(applyHelpMinStarlevel_);
             levelDialog.show();
         }
+    }
+
+    private void judge(int applyHelpMinStarlevel_) {
+        String[] numArray = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
+        String sd = numArray[applyHelpMinStarlevel_];
+        tv_xingji.setText("CHO" + sd + "星等级");
     }
 
     MyDialog notoverDialog;
@@ -602,12 +620,28 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             btn_jihuo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ConnonDialog.dismiss();
-                    Intent intent = new Intent(mContext, VolunteerH5Activity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", become_volunteer_url);
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+
+                    String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+                    if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
+                        Intent intent = new Intent(mContext, VolunteerH5Activity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", become_volunteer_url);
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                        ConnonDialog.dismiss();
+                    } else {
+                        ToastUtils.showToast("请先完善资料后再成为志愿者");
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(mContext, UserInfoActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                startActivity(intent);
+                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                            }
+                        }, 100);
+                    }
                 }
             });
         } else {
