@@ -1,2 +1,0 @@
-include ':app', ':pulltorefreshlibrary', ':calendarview'
-include ':np_lib'
