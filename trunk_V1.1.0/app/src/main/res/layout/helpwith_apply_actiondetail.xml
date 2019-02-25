@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.longcheng.lifecareplan.utils.myview.MyScrollView
+            android:id="@+id/helpWith_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView
+                    android:id="@+id/mBridgeWebView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <include layout="@layout/line" />
+
+                <TextView
+                    android:id="@+id/tv_engry"
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_biaoTi_size" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_apply"
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="申请互祝"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

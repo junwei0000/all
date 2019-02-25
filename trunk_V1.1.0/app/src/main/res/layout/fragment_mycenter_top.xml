@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddtopbottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:paddingLeft="@dimen/padd_leftright">
+
+        <com.longcheng.lifecareplan.utils.myview.CircleImageView
+            android:id="@+id/mycenter_iv_head"
+            android:layout_width="@dimen/dp72"
+            android:layout_height="@dimen/dp72"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/mycenter_iv_head"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padd_leftright">
+
+            <TextView
+                android:id="@+id/mycenter_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_imgtextleftright"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_pageTop_size" />
+
+            <LinearLayout
+                android:id="@+id/mycenter_relat_stars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corners_bg_blackxingji"
+                android:gravity="center_vertical"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/mycenter_iv_stars"
+                    android:layout_width="@dimen/dp20"
+                    android:layout_height="@dimen/dp20"
+                    android:background="@mipmap/usercenter_star_icon" />
+
+                <TextView
+                    android:id="@+id/mycenter_tv_stars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:paddingBottom="@dimen/img_setTextcenter"
+                    android:text="成为CHO"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <ImageView
+                    android:id="@+id/mycenter_iv_starsarrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:layout_marginRight="@dimen/padd_leftright"
+                    android:background="@mipmap/usercenter_arrowright_img" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mycenter_tv_starsTiShi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padd_leftright"
+                android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:text="@string/becomeCHO_tishi"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mycenter_layout_humanity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="-18dp"
+            android:background="@drawable/corners_bg_blackhumanity"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="28dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:layout_toLeftOf="@+id/mycenter_iv_starsarrow"
+                android:text="人情账"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+
+        </LinearLayout>
+    </RelativeLayout>
+    <!---->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padd_imgtextleftright"
+        android:paddingRight="@dimen/padd_imgtextleftright">
+
+        <LinearLayout
+            android:id="@+id/ll_mycenter_wakeskb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/mycentertop_tv_awakeskb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:text="唤醒寿康宝"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_mycenter_sleepskb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/mycentertop_tv_sleepskb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:text="沉睡寿康宝"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_mycenter_sleepennergy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/mycentertop_tv_sleeplifeenergy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:text="沉睡生命能量"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_mycenter_ennergy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/mycentertop_tv_lifeenergy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:text="生命能量"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

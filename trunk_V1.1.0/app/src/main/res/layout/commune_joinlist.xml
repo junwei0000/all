@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_member"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/jianJu"
+            android:paddingLeft="@dimen/dp30"
+            android:paddingTop="@dimen/jianJu">
+
+            <TextView
+                android:id="@+id/tv_member"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:text="社员数"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:id="@+id/iv_memberarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_arrow_gray" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_like"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:text="被赞数"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:id="@+id/iv_likearrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_arrow_gray" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_engry"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/dp30">
+
+            <TextView
+                android:id="@+id/tv_engry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:text="能量"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_contents_size" />
+
+
+            <ImageView
+                android:id="@+id/iv_engryarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_arrow_down_red" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!---->
+    <include layout="@layout/line" />
+
+
+    <ListView
+        android:id="@+id/join_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/page_bg"
+        android:listSelector="@drawable/list_notselector"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:fadeScrollbars="false"  />
+</LinearLayout>

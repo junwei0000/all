@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_tool" />
+
+    <com.longcheng.lifecareplan.utils.myview.MyViewPager
+        android:id="@+id/vp_bt_menu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <include layout="@layout/line" />
+
+    <RadioGroup
+        android:id="@+id/rg_bottom_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_bottom_height"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_bottom_home"
+            style="@style/home_tab_bottom"
+            android:background="@color/transparent"
+            android:checked="true"
+            android:drawableTop="@drawable/home_tab_main_selector"
+            android:text="@string/bottom_home" />
+
+        <RadioButton
+            android:id="@+id/rb_bottom_helpWith"
+            style="@style/home_tab_bottom"
+            android:background="@color/transparent"
+            android:drawableTop="@drawable/home_tab_helpwith_selector"
+            android:text="@string/bottom_helpwith" />
+
+        <RadioButton
+            android:id="@+id/rb_bottom_exchange"
+            style="@style/home_tab_bottom"
+            android:background="@color/transparent"
+            android:drawableTop="@drawable/home_tab_transaction_selector"
+            android:text="@string/bottom_transaction"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_bottom_me"
+            style="@style/home_tab_bottom"
+            android:background="@color/transparent"
+            android:drawableTop="@drawable/home_tab_center_selector"
+            android:text="@string/bottom_center" />
+
+    </RadioGroup>
+
+</LinearLayout>

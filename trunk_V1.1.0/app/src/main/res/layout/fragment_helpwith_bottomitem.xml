@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_iv_select"
+            android:layout_width="@dimen/engrylistItem_iconHeight"
+            android:layout_height="@dimen/engrylistItem_iconHeight"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/item_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:background="@drawable/corners_oval_red"
+            android:gravity="center"
+            android:minHeight="@dimen/dp15"
+            android:minWidth="@dimen/dp15"
+            android:padding="@dimen/dp2"
+            android:singleLine="true"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp8" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/item_tv_cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padd_imgtextleftright"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_zhu_size" />
+</LinearLayout>

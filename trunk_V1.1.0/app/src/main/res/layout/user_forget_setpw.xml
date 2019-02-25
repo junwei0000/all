@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+
+    <LinearLayout
+        style="@style/login_padd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp30"
+            android:gravity="center"
+            android:text="@string/forget_repeatpw"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_max_size" />
+
+
+        <!---->
+        <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+            android:id="@+id/phonetype_et_pw"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="@string/forget_repeatpw_hint"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <include layout="@layout/line" />
+
+        <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+            android:id="@+id/phonetype_et_pwtwo"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="@string/forget_repeatpwtwo_hint"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/btn_commit"
+            style="@style/btn"
+            android:text="@string/over"  />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp6">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:id="@+id/iv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/dialog_city_cancel" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="温馨提示"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </FrameLayout>
+
+    <include layout="@layout/line" />
+
+    <TextView
+        android:id="@+id/tv_cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp30"
+        android:lineSpacingMultiplier="1.4"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20"
+        android:text="您正在执行变更邀请人操作，邀请人变更只可修改一次，请慎重。"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_contents_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp30"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10">
+
+        <TextView
+            android:id="@+id/btn_left"
+            style="@style/dialog_btn"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:text="再想想" />
+
+        <TextView
+            android:id="@+id/btn_change"
+            style="@style/dialog_btn"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:text="变更" />
+    </LinearLayout>
+</LinearLayout>
