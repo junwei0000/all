@@ -10,10 +10,13 @@ import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -59,6 +62,7 @@ import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -245,7 +249,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                         if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToSINGIN)) {
                             intent = new Intent(mContext, ConnonH5Activity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("kn_url",""+kn_url);
+                            intent.putExtra("kn_url", "" + kn_url);
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
@@ -379,11 +383,63 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         RefreshComplete();
     }
 
-    HashMap<String, HomeAfterBean> HomeAfterDataMap = new HashMap<>();
+    MyDialog CononDialog;
 
+    /**
+     * 是否显示康农弹层
+     */
+    public void showCononDialog() {
+        if (Is_show_knp == 0) {
+            return;
+        }
+        if (CononDialog == null) {
+            CononDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+            CononDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = CononDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            CononDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = CononDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4;
+            p.height = (int) (p.width * 1.182);
+            CononDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) CononDialog.findViewById(R.id.layout_cancel);
+            TextView btn_upgrade = (TextView) CononDialog.findViewById(R.id.btn_upgrade);
+
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CononDialog.dismiss();
+                }
+            });
+            btn_upgrade.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CononDialog.dismiss();/**/
+                    Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("kn_url", "" + kn_url);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+            });
+        } else {
+            CononDialog.show();
+        }
+
+    }
+
+    HashMap<String, HomeAfterBean> HomeAfterDataMap = new HashMap<>();
+    /**
+     * 0 不显示康农弹层;1 显示
+     */
+    int Is_show_knp;
 
     private void setLoadData(HomeAfterBean mHomeAfterBean) {
         if (mHomeAfterBean != null) {
+            Is_show_knp = mHomeAfterBean.getIs_show_knp();
+            showCononDialog();
             kn_url = mHomeAfterBean.getKn_url();
             String sign_url = mHomeAfterBean.getSign_url();
             SharedPreferencesHelper.put(mContext, "sign_url", "" + sign_url);

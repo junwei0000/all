@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@mipmap/home_img_connon"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/layout_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:padding="@dimen/dp20">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/dialog_city_cancel"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:paddingBottom="@dimen/dp20">
+
+        <TextView
+            android:id="@+id/btn_upgrade"
+            style="@style/dialog_btn"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="" />
+    </LinearLayout>
+</FrameLayout>

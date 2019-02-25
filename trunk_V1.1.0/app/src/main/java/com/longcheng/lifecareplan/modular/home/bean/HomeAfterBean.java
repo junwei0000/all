@@ -30,6 +30,16 @@ public class HomeAfterBean implements Serializable {
     private String invite_user_url;
     private String sign_url;
     private String kn_url;
+    private int  is_show_knp;
+
+
+    public int getIs_show_knp() {
+        return is_show_knp;
+    }
+
+    public void setIs_show_knp(int is_show_knp) {
+        this.is_show_knp = is_show_knp;
+    }
 
     public String getKn_url() {
         return kn_url;

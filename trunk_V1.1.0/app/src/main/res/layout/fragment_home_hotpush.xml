@@ -63,8 +63,8 @@
         android:focusable="false"
         android:fadeScrollbars="false"
         android:fadingEdge="none"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:scrollbars="none" />
 
 </LinearLayout>

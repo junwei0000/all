@@ -241,6 +241,8 @@ public class BottomMenuActivity extends BaseActivity {
             ((ExChangeFragment) fragmentList.get(position)).initLoad(solar_terms_id, solar_terms_name);
         } else if (position == tab_position_mine) {
             ((MineFragment) fragmentList.get(position)).initUserInfo();
+        } else if (position == tab_position_home) {
+            ((HomeFragment) fragmentList.get(position)).showCononDialog();
         }
         if (position != tab_position_exchange) {
             solar_terms_name = "24节气";

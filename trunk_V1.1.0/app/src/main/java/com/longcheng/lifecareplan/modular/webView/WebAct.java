@@ -30,6 +30,7 @@ import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.Co
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
 import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFriendsActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
@@ -260,7 +261,7 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.registerHandler("toVolunteer_PreviousPage", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-               doFinish();
+                doFinish();
             }
         });
         //成为志愿者--返回我家
@@ -284,54 +285,35 @@ public abstract class WebAct extends BaseActivity {
                 startActivity(intent);
             }
         });
-//        //成为志愿者/坐堂医--邀请亲友
-//        mBridgeWebView.registerHandler("toVolunDoctor_InviteFriends", new BridgeHandler() {
-//            @Override
-//            public void handler(String data, CallBackFunction function) {
-//                //绑定手机号才能邀请亲友
-//                String phone = UserUtils.getUserPhone(mContext);
-//                Intent intent;
-//                if (TextUtils.isEmpty(phone)) {
-//                    intent = new Intent(mContext, LoginThirdSetPwActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    startActivityForResult(intent, ConstantManager.USERINFO_FORRESULT_PHONE);
-//                } else {
-//                    intent = new Intent(mContext, InviteFriendsActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    startActivity(intent);
-//                }
-//            }
-//        });
-//        //成为志愿者--送出祝福（生命能量列表）
-//        mBridgeWebView.registerHandler("toVolunteer_helpEngry", new BridgeHandler() {
-//            @Override
-//            public void handler(String data, CallBackFunction function) {
-//                Intent intent = new Intent(mContext, HelpWithEnergyActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intent.putExtra("skiptype", "redbao");
-//                startActivity(intent);
-//            }
-//        });
-//        //成为志愿者--为自己或亲友发起一次行动（康农申请页）
-//        mBridgeWebView.registerHandler("toVolunteer_connonApply", new BridgeHandler() {
-//            @Override
-//            public void handler(String data, CallBackFunction function) {
-//                Intent intent = new Intent(mContext, ConnonH5Activity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intent.putExtra("kn_url", "" + data);
-//                startActivity(intent);
-//            }
-//        });
-//        //成为坐堂医--为患者送出一次祝福（康农列表）
-//        mBridgeWebView.registerHandler("toDoctor_connonList", new BridgeHandler() {
-//            @Override
-//            public void handler(String data, CallBackFunction function) {
-//                Intent intent = new Intent(mContext, ConnonH5Activity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intent.putExtra("kn_url", "" + data);
-//                startActivity(intent);
-//            }
-//        });
+        //成为坐堂医--邀请亲友
+        mBridgeWebView.registerHandler("toVolunDoctor_InviteFriends", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                //绑定手机号才能邀请亲友
+                String phone = UserUtils.getUserPhone(mContext);
+                Intent intent;
+                if (TextUtils.isEmpty(phone)) {
+                    intent = new Intent(mContext, LoginThirdSetPwActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivityForResult(intent, ConstantManager.USERINFO_FORRESULT_PHONE);
+                } else {
+                    intent = new Intent(mContext, InviteFriendsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        //成为坐堂医--为患者送出一次祝福（康农列表）
+        mBridgeWebView.registerHandler("toDoctor_connonList", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("kn_url", "" + HomeFragment.kn_url);
+                startActivity(intent);
+            }
+        });
 
         //康农工程-跳转信息完善页
         mBridgeWebView.registerHandler("knp_skiptoperfectuserinfo", new BridgeHandler() {

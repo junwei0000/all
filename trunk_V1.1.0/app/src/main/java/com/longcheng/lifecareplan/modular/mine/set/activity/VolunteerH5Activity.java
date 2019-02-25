@@ -1,17 +1,19 @@
 package com.longcheng.lifecareplan.modular.mine.set.activity;
 
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
+import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 
 import butterknife.BindView;
 
 /**
- * 成为志愿者
+ * 志愿者/坐堂医
  */
 public class VolunteerH5Activity extends WebAct {
 
@@ -58,6 +60,25 @@ public class VolunteerH5Activity extends WebAct {
         super.initDataAfter();
         String about_me_url = getIntent().getStringExtra("html_url");
         loadUrl(about_me_url);
+        firstComIn = false;
+    }
+
+    boolean firstComIn = true;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //坐堂医 回来刷新
+        if (!firstComIn) {
+            Log.e("callHandler", "doctor_taskReload");
+            mBridgeWebView.callHandler("doctor_taskReload", "", new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
+
+                }
+            });
+        }
+
     }
 
     private void back() {
