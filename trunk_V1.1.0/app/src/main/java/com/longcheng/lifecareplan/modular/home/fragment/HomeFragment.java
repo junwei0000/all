@@ -389,7 +389,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 是否显示康农弹层
      */
     public void showCononDialog() {
-        if (Is_show_knp == 0) {
+        String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
+        if (Is_show_knp == 0 || BottomMenuActivity.position != BottomMenuActivity.tab_position_home || !loginStatus.equals(ConstantManager.loginStatus)) {
             return;
         }
         if (CononDialog == null) {

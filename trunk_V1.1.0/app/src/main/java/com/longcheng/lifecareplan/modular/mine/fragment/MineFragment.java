@@ -712,10 +712,20 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     int CurrentStartLevel;
     TextView tv_cont;
 
-    public void showLevelDialog() {
+    /**
+     * 是否是坐堂医交押金成功回到我家提示弹层
+     */
+    public static boolean showDoctorDialogStatus = false;
+
+    private void showAllDialog() {
         String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
         if (!loginStatus.equals(ConstantManager.loginStatus)
                 || BottomMenuActivity.position != BottomMenuActivity.tab_position_mine) {
+            return;
+        }
+        if (showDoctorDialogStatus || (toDoctorDialog != null && toDoctorDialog.isShowing())) {
+            showDoctorDialogStatus = false;
+            showDoctorDialog();
             return;
         }
         if (chatuserStarLevelId == 0) {
@@ -726,6 +736,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             showRedBaoDialog();
             return;
         }
+
+        showLevelDialog();
+    }
+
+
+    public void showLevelDialog() {
         //每次升星级都提示并传给后台已读
         mPresent.doStarLevelRemind(user_id);
         if (LevelDialog == null) {
@@ -790,6 +806,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             WindowManager.LayoutParams p = redBaoDialog.getWindow().getAttributes(); //获取对话框当前的参数值
             p.width = d.getWidth(); //宽度设置为屏幕
             redBaoDialog.getWindow().setAttributes(p); //设置生效
+
+            RelativeLayout relat_redbao = (RelativeLayout) redBaoDialog.findViewById(R.id.relat_redbao);
             LinearLayout layout_cancel = (LinearLayout) redBaoDialog.findViewById(R.id.layout_cancel);
             ImageView iv_cancel = (ImageView) redBaoDialog.findViewById(R.id.iv_cancel);
             ImageView iv_xingji = (ImageView) redBaoDialog.findViewById(R.id.iv_xingji);
@@ -797,6 +815,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             int bmpW = BitmapFactory.decodeResource(getResources(), R.mipmap.my_goodluckto_popupwindow).getWidth();// 获取图片宽度
             layout_cancel.setPadding(0, 0, (d.getWidth() - bmpW) / 2, 0);
             iv_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    redBaoDialog.dismiss();
+                }
+            });
+            relat_redbao.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     redBaoDialog.dismiss();
@@ -852,6 +876,35 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             });
         } else {
             notCHODialog.show();
+        }
+    }
+
+    MyDialog toDoctorDialog;
+
+    /**
+     * 成为坐堂医交押金成功弹层
+     */
+    public void showDoctorDialog() {
+        if (toDoctorDialog == null) {
+            toDoctorDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mycenter_todoctor);// 创建Dialog并设置样式主题
+            toDoctorDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = toDoctorDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            toDoctorDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = toDoctorDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            toDoctorDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) toDoctorDialog.findViewById(R.id.layout_cancel);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toDoctorDialog.dismiss();
+                }
+            });
+        } else {
+            toDoctorDialog.show();
         }
     }
 
@@ -936,7 +989,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             usercenterRelayMyStar.setVisibility(View.GONE);
         }
         UserUtils.saveWXToken(mContext, mGetHomeInfoBean.getWxToken());
-        showLevelDialog();
+        showAllDialog();
     }
 
     private void logoutInit() {

@@ -314,7 +314,16 @@ public abstract class WebAct extends BaseActivity {
                 startActivity(intent);
             }
         });
-
+        //坐堂医--发起申请互祝
+        mBridgeWebView.registerHandler("Doctor_applyHelp", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
+                Intent intent = new Intent(mContext, ApplyHelpActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
         //康农工程-跳转信息完善页
         mBridgeWebView.registerHandler("knp_skiptoperfectuserinfo", new BridgeHandler() {
             @Override
