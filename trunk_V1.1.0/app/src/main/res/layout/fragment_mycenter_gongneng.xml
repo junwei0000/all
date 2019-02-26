@@ -10,19 +10,24 @@
 
     <RelativeLayout
         android:id="@+id/usercenter_relay_volunteer"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_volunteer"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/my_volunteersr_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_volunteersr_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/usercenter_tv_volunteer"
@@ -47,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
@@ -55,19 +60,24 @@
 
     <RelativeLayout
         android:id="@+id/usercenter_relay_doctor"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_doctor"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/my_doctor_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_doctor_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/usercenter_tv_doctor"
@@ -92,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
@@ -100,19 +110,24 @@
 
     <RelativeLayout
         android:id="@+id/usercenter_relay_myenren"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_myenren"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/my_benefactor_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_benefactor_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -136,27 +151,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
     <!--   -->
     <RelativeLayout
         android:id="@+id/usercenter_relay_myStar"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright"
         android:visibility="gone">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_myStar"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/my_star_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_star_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -181,7 +201,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp"
+        android:paddingLeft="40dp"
         android:visibility="gone">
 
         <include layout="@layout/line" />
@@ -189,19 +209,24 @@
     <!--   -->
     <RelativeLayout
         android:id="@+id/usercenter_relay_myorder"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_myorder"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/usercenter_myexchange_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_myexchange_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -225,26 +250,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
     <!--   -->
     <RelativeLayout
         android:id="@+id/usercenter_relay_zodiacdescripte"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_zodiacdescripte"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/usercenter_zodiacdescripte_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_zodiacdescripte_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -268,7 +298,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
@@ -276,19 +306,24 @@
 
     <RelativeLayout
         android:id="@+id/usercenter_relay_appexplanation"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_appexplanation"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/usercenter_appexplanation_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_appexplanation_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -312,7 +347,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
@@ -320,19 +355,24 @@
     <!--   -->
     <RelativeLayout
         android:id="@+id/usercenter_relay_goodluck"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_goodluck"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/usercenter_goodluck_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_goodluck_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -356,26 +396,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
     <!---->
     <RelativeLayout
         android:id="@+id/usercenter_relay_address"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_address"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/usercenter_address_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_address_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -399,7 +444,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
@@ -407,19 +452,24 @@
 
     <RelativeLayout
         android:id="@+id/usercenter_relay_updatepw"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_updatepw"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/usercenter_updatepw_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_updatepw_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -444,7 +494,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="50dp">
+        android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
     </LinearLayout>
@@ -452,19 +502,24 @@
 
     <RelativeLayout
         android:id="@+id/usercenter_relay_changeinviter"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp20"
-        android:paddingRight="@dimen/padd_leftright">
+        android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/usercenter_iv_changeinviter"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp20"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@mipmap/my_change_icon"
-            android:scaleType="matrix" />
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_change_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
 
         <TextView
             style="@style/view_padd"
@@ -484,7 +539,6 @@
             android:background="@mipmap/usercenter_arrow_img" />
     </RelativeLayout>
     <!--   -->
-    <!--   -->
     <LinearLayout
         android:id="@+id/usercenter_layout_rebirth"
         android:layout_width="match_parent"
@@ -496,26 +550,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="50dp">
+            android:paddingLeft="40dp">
 
             <include layout="@layout/line" />
         </LinearLayout>
         <!--   -->
 
         <RelativeLayout
+            style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/dp20"
-            android:paddingRight="@dimen/padd_leftright">
+            android:background="@color/white">
 
-            <ImageView
+            <LinearLayout
                 android:id="@+id/usercenter_iv_rebirth"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp20"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/my_rebirth_icon"
-                android:scaleType="matrix" />
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/my_rebirth_icon"
+                    android:scaleType="matrix" />
+            </LinearLayout>
 
             <TextView
                 style="@style/view_padd"
