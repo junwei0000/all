@@ -7,6 +7,7 @@ import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
@@ -27,6 +28,8 @@ public interface ApplyHelpContract {
         void ActionDetailSuccess(ActionDataBean responseBean);
 
         void PeopleListSuccess(PeopleDataBean responseBean);
+
+        void getOtherUserInfoSuccess(OtherUserInfoDataBean responseBean);
 
         void PeopleSearchListSuccess(PeopleSearchDataBean responseBean);
 

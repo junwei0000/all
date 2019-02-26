@@ -320,6 +320,8 @@ public abstract class WebAct extends BaseActivity {
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
                 Intent intent = new Intent(mContext, ApplyHelpActivity.class);
+                intent.putExtra("other_user_id",""+data);
+                intent.putExtra("skiptype","Doctor_applyHelp");
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }

@@ -24,6 +24,7 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataList
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleItemBean;
@@ -42,6 +43,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import java.util.List;
 
@@ -103,12 +105,17 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     private String mutual_help_apply_id;
     private String qiming_user_id = "0";
 
+    /**
+     *
+     */
+    private String skiptype = "";
+
     @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
-                back();
+                doFinish();
                 break;
             case R.id.relat_action:
                 intent = new Intent(mContext, ActionActivity.class);
@@ -117,10 +124,14 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 break;
             case R.id.relat_people:
-                intent = new Intent(mContext, PeopleActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivityForResult(intent, ConstantManager.APPLYHELP_FORRESULT_PEOPLE);
-                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
+                    doFinish();
+                } else {
+                    intent = new Intent(mContext, PeopleActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivityForResult(intent, ConstantManager.APPLYHELP_FORRESULT_PEOPLE);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                }
                 break;
             case R.id.relat_address:
                 if (!TextUtils.isEmpty(peopleid)) {
@@ -203,7 +214,14 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         pageTopTvName.setText("申请互祝");
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         mPresent.getNeedHelpNumberTask(user_id);
-        mPresent.getPeopleList(user_id);
+
+        skiptype = getIntent().getStringExtra("skiptype");
+        if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
+            peopleid = getIntent().getStringExtra("other_user_id");
+            mPresent.getOtherUserInfo(user_id, peopleid);
+        } else {
+            mPresent.getPeopleList(user_id);
+        }
         setBtnBg();
         showRedSkipData(getIntent());
     }
@@ -313,6 +331,22 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                     }
                 }
             }
+        }
+    }
+
+    @Override
+    public void getOtherUserInfoSuccess(OtherUserInfoDataBean responseBean) {
+        String status = responseBean.getStatus();
+        if (status.equals("400")) {
+            ToastUtils.showToast(responseBean.getMsg());
+        } else if (status.equals("200")) {
+            PeopleItemBean mPeopleItemBean = responseBean.getData();
+            peopleid = mPeopleItemBean.getUser_id();
+            peoplename = mPeopleItemBean.getUser_name();
+            tvPeople.setText(peoplename);
+            String avatar = mPeopleItemBean.getAvatar();
+            GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
+            mPresent.setAddressList(user_id, peopleid);
         }
     }
 
@@ -451,7 +485,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             selectDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                 @Override
                 public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    back();
+                    doFinish();
                     return true;
                 }
             });
@@ -600,16 +634,13 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         mPresent.getExplainList(user_id, action_id);
     }
 
-    private void back() {
-        doFinish();
-    }
 
     /**
      * 重写onkeydown 用于监听返回键
      */
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            back();
+            doFinish();
         }
         return false;
     }

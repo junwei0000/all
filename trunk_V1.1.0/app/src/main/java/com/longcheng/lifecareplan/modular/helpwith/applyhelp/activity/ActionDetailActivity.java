@@ -30,6 +30,7 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressSelectUtils;
@@ -189,6 +190,11 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
 
     @Override
     public void PeopleListSuccess(PeopleDataBean responseBean) {
+
+    }
+
+    @Override
+    public void getOtherUserInfoSuccess(OtherUserInfoDataBean responseBean) {
 
     }
 

@@ -9,6 +9,7 @@ import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
@@ -113,6 +114,33 @@ public class ApplyHelpPresenterImp<T> extends ApplyHelpContract.Presenter<ApplyH
                     public void accept(ActionDataBean responseBean) throws Exception {
                         mView.dismissDialog();
                         mView.ActionDetailSuccess(responseBean);
+                        Log.e("Observable", "" + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.ListError();
+                    }
+                });
+
+    }
+
+    /**
+     * 获取其他人的用户信息
+     *
+     * @param user_id
+     */
+    public void getOtherUserInfo(String user_id, String other_user_id) {
+        mView.showDialog();
+        Observable<OtherUserInfoDataBean> observable = Api.getInstance().service.getOtherUserInfo(user_id, other_user_id, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<OtherUserInfoDataBean>() {
+                    @Override
+                    public void accept(OtherUserInfoDataBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        mView.getOtherUserInfoSuccess(responseBean);
                         Log.e("Observable", "" + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

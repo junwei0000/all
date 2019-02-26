@@ -16,6 +16,7 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.adapter.PeopleListA
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleItemBean;
@@ -172,6 +173,11 @@ public class PeopleActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
                 people_lv.setAdapter(mAdapter);
             }
         }
+    }
+
+    @Override
+    public void getOtherUserInfoSuccess(OtherUserInfoDataBean responseBean) {
+
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartDataBea
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.bean.AutoHelpDataBean;
@@ -244,7 +245,10 @@ public interface ApiService {
 
     @GET(Config.VERSION + "help/receiveUsers")
     Observable<PeopleDataBean> getPeopleList(@Query("user_id") String user_id, @Query("token") String token);
-
+    @GET(Config.VERSION + "user/getOtherUserInfo")
+    Observable<OtherUserInfoDataBean> getOtherUserInfo(@Query("user_id") String user_id,
+                                                       @Query("other_user_id") String other_user_id,
+                                                       @Query("token") String token);
     @GET(Config.VERSION + "help/searchReceiveUsers")
     Observable<PeopleSearchDataBean> getPeopleSearchList(@Query("user_id") String user_id, @Query("user_name") String user_name, @Query("token") String token);
 
