@@ -25,6 +25,7 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnve
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -66,18 +67,8 @@ public class AutoHelpH5Activity extends WebAct {
     ImageView pagetopIvRigth;
 
 
-    private ShareUtils mShareUtils;
     private String kn_url;
 
-    //康农祝福
-    DetailHelpDialogUtils mDetailHelpDialogUtils;
-    List<DetailItemBean> mutual_help_money_all;
-    private String knp_sharetitle, knp_shareurl, knp_sharePic, knp_sharedesc;
-    private int mutual_help_money;
-    private DetailItemBean userInfo;
-    private List<DetailItemBean> blessings_list;
-    private String one_order_id;
-    private String msg_id;
 
     @Override
     public void onClick(View v) {
@@ -114,6 +105,9 @@ public class AutoHelpH5Activity extends WebAct {
     public void initDataAfter() {
         super.initDataAfter();
         kn_url = getIntent().getStringExtra("html_url");
+        if(TextUtils.isEmpty(kn_url)){
+            kn_url= HelpWithFragmentNew.automationHelpUrl;
+        }
         loadUrl(kn_url);
 
     }

@@ -215,11 +215,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (actions != null && actions.size() > 0) {
-                    Intent intent = new Intent(mContext, ActionDetailActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("goods_id", actions.get(position).getGoods_id());
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToInvitefriends)) {
+                        Intent intent = new Intent(mContext, ActionDetailActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("goods_id", actions.get(position).getGoods_id());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
                 }
             }
         });
@@ -329,10 +331,12 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 }
                 break;
             case R.id.mainaction_layout_more://热门行动
-                intent = new Intent(mContext, PopularActionActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToInvitefriends)) {
+                    intent = new Intent(mContext, PopularActionActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
                 break;
             case R.id.mainhotpush_layout_more://热推互祝
                 SharedPreferencesHelper.put(mContext, "skiptype", "HomeFragment");
@@ -384,6 +388,12 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
     MyDialog CononDialog;
+
+    public void dismissCononDialog() {
+        if (CononDialog != null && CononDialog.isShowing()) {
+            CononDialog.dismiss();
+        }
+    }
 
     /**
      * 是否显示康农弹层

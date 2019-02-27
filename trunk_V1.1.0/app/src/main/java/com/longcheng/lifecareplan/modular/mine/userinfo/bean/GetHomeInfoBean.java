@@ -93,6 +93,25 @@ public class GetHomeInfoBean implements Serializable {
     private int isVolunteerIdentity;//是否是志愿者 0不是；1 是
 
 
+    private String patient_record_url;//就诊记录url
+    private int hasDiagnosticRecord;//是否有就诊记录 0没有；1 有
+
+    public String getPatient_record_url() {
+        return patient_record_url;
+    }
+
+    public void setPatient_record_url(String patient_record_url) {
+        this.patient_record_url = patient_record_url;
+    }
+
+    public int getHasDiagnosticRecord() {
+        return hasDiagnosticRecord;
+    }
+
+    public void setHasDiagnosticRecord(int hasDiagnosticRecord) {
+        this.hasDiagnosticRecord = hasDiagnosticRecord;
+    }
+
     public String getAlready_volunteer_url() {
         return already_volunteer_url;
     }

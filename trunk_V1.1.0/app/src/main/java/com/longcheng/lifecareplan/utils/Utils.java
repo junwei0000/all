@@ -153,12 +153,12 @@ public class Utils {
             ToastUtils.showToast(R.string.forget_repeatpw_hint);
             return false;
         }
-        if (TextUtils.isEmpty(pw2)) {
-            ToastUtils.showToast(R.string.forget_repeatpwtwo_hint);
-            return false;
-        }
         if (pw.length() < 6 || pw.length() > 20) {
             ToastUtils.showToast(R.string.forget_repeatpw_hint);
+            return false;
+        }
+        if (TextUtils.isEmpty(pw2)) {
+            ToastUtils.showToast(R.string.forget_repeatpwtwo_hint);
             return false;
         }
         if (!pw.equals(pw2)) {

@@ -112,6 +112,7 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
                         intent.putExtra("extend_info", "");
                         intent.putExtra("action_safety_id", "");
 
+                        intent.putExtra("type", mList.get(position).getType());
                         intent.putExtra("action_abilityprice", mList.get(position).getAbility_price());
                         intent.putExtra("actionname1", mList.get(position).getName1());
                         intent.putExtra("actionnimg", mList.get(position).getImg());
@@ -223,6 +224,7 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
                 intent.putExtra("action_safety_id", action_safety_id);
                 intent.putExtra("extend_info", "");
 
+                intent.putExtra("type", mList.get(actionposition).getType());
                 intent.putExtra("action_abilityprice", mList.get(actionposition).getAbility_price());
                 intent.putExtra("actionname1", mList.get(actionposition).getName1());
                 intent.putExtra("actionnimg", mList.get(actionposition).getImg());
@@ -509,6 +511,7 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
                         intent.putExtra("extend_info", extend_info);
                         intent.putExtra("action_safety_id", "");
 
+                        intent.putExtra("type", mList.get(position).getType());
                         intent.putExtra("action_abilityprice", mList.get(position).getAbility_price());
                         intent.putExtra("actionname1", mList.get(position).getName1());
                         intent.putExtra("actionnimg", mList.get(position).getImg());
@@ -522,6 +525,8 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
                         intent.putExtra("activity_id", mList.get(position).getActivity_id());
                         intent.putExtra("extend_info", extend_info);
                         intent.putExtra("action_safety_id", "");
+
+                        intent.putExtra("type", mList.get(position).getType());
                         intent.putExtra("action_abilityprice", mList.get(position).getAbility_price());
                         intent.putExtra("actionname1", mList.get(position).getName1());
                         intent.putExtra("actionnimg", mList.get(position).getImg());

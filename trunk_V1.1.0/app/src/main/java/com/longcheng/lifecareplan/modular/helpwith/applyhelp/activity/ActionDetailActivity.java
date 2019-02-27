@@ -102,6 +102,7 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
         intent.putExtra("extend_info", extend_info);
         intent.putExtra("action_safety_id", action_safety_id);
 
+        intent.putExtra("type", mActionItemBean.getType());
         intent.putExtra("action_abilityprice", mActionItemBean.getAbility_price());
         intent.putExtra("actionname1", mActionItemBean.getName1());
         intent.putExtra("actionnimg", mActionItemBean.getImg());

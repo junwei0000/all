@@ -189,7 +189,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp8"
-                                android:text="“生命呵护计划”温馨提示："
+                                android:text="“24节气养生指导”温馨提示："
                                 android:textColor="@color/text_contents_color"
                                 android:textSize="@dimen/text_contents_size" />
 

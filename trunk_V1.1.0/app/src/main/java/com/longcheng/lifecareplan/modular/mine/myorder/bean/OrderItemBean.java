@@ -35,10 +35,19 @@ public class OrderItemBean implements Serializable {
     private int is_show_perfect_info;
     private int is_show_consignee_info;
     private int is_show_help_info;
+    private int is_show_pre_delivery;
     private int bottom_status;
     private String bottom_title;
     private int top_status;
     private String top_title;
+
+    public int getIs_show_pre_delivery() {
+        return is_show_pre_delivery;
+    }
+
+    public void setIs_show_pre_delivery(int is_show_pre_delivery) {
+        this.is_show_pre_delivery = is_show_pre_delivery;
+    }
 
     public String getShop_goods_price_id() {
         return shop_goods_price_id;

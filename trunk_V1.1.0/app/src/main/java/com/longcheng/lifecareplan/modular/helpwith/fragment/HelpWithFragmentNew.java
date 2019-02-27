@@ -92,8 +92,8 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     @BindView(R.id.iv_tohelpimg)
     ImageView iv_tohelpimg;
     private String is_cho;
-    private int myBlessHelpCount,blessMeHelpCount;
-    public static String automationHelpUrl,myDedicationUrl,myGratitudeUrl;
+    private int myBlessHelpCount, blessMeHelpCount;
+    public static String automationHelpUrl, myDedicationUrl, myGratitudeUrl;
 
     @Override
     public int bindLayout() {
@@ -125,16 +125,13 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 } else if (position == 2) {
                     //申请互祝
-                    String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
-                    //1:是  ；0：不是
-                    if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-                        intent = new Intent(mContext, ApplyHelpActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                    } else {
-                        ToastUtils.showToast("升级为CHO可用");
-                    }
+                    intent = new Intent(mContext, ApplyHelpActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+//                    } else {
+//                        ToastUtils.showToast("升级为CHO可用");
+//                    }
                 } else if (position == 3) {
                     //申请互祝
                     Intent intents = new Intent();
@@ -153,14 +150,14 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                     //我的奉献
                     intent = new Intent(mContext, MyDeH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url",""+myDedicationUrl);
+                    intent.putExtra("html_url", "" + myDedicationUrl);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 } else if (position == 1) {
                     //我的恩人
                     intent = new Intent(mContext, MyGraH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url",""+myGratitudeUrl);
+                    intent.putExtra("html_url", "" + myGratitudeUrl);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 } else if (position == 2) {
@@ -230,7 +227,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             helpWithGvbottom.setNumColumns(5);
             mBottomList.add(new HelpWithInfo("成为CHO", R.mipmap.wisheach_icon_cho));
         }
-        HelpWithBottomAdapter mHelpWithBottomAdapter = new HelpWithBottomAdapter(mContext, mBottomList,myBlessHelpCount,blessMeHelpCount);
+        HelpWithBottomAdapter mHelpWithBottomAdapter = new HelpWithBottomAdapter(mContext, mBottomList, myBlessHelpCount, blessMeHelpCount);
         helpWithGvbottom.setAdapter(mHelpWithBottomAdapter);
     }
 
@@ -243,7 +240,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                 //智能互祝
                 intent = new Intent(mContext, AutoHelpH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url",""+automationHelpUrl);
+                intent.putExtra("html_url", "" + automationHelpUrl);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -284,9 +281,9 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         if (status.equals("200")) {
             HelpIndexAfterBean mHelpIndexAfterBean = mHomeDataBean.getData();
 
-            automationHelpUrl= mHelpIndexAfterBean.getAutomationHelpUrl();
-            myDedicationUrl= mHelpIndexAfterBean.getMyDedicationUrl();
-            myGratitudeUrl= mHelpIndexAfterBean.getMyGratitudeUrl();
+            automationHelpUrl = mHelpIndexAfterBean.getAutomationHelpUrl();
+            myDedicationUrl = mHelpIndexAfterBean.getMyDedicationUrl();
+            myGratitudeUrl = mHelpIndexAfterBean.getMyGratitudeUrl();
 
             solarTermsEnsImg = mHelpIndexAfterBean.getSolarTermsEnsImg();
             int isStartAutoHelp = mHelpIndexAfterBean.getIsStartAutoHelp();
@@ -301,8 +298,8 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                 iv_autoimg.setLayoutParams(new LinearLayout.LayoutParams(imgwidth, iv_autohelpbg.getMeasuredHeight() - 10));
                 GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, solarTermsEnsImg.get(4), iv_autoimg);
             }
-            myBlessHelpCount=mHelpIndexAfterBean.getMyBlessHelpCount();
-            blessMeHelpCount=mHelpIndexAfterBean.getBlessMeHelpCount();
+            myBlessHelpCount = mHelpIndexAfterBean.getMyBlessHelpCount();
+            blessMeHelpCount = mHelpIndexAfterBean.getBlessMeHelpCount();
             showCont();
             List<String> zangfus = mHelpIndexAfterBean.getZangfus();
             HelpIndexItemBean mUserInfo = mHelpIndexAfterBean.getUser();
@@ -319,7 +316,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                 shoevon = "请完善个人资料，体验24节气定制养生指导";
                 tvTohelp.setText("完善资料");
             }
-            tvShowname.setText("“生命呵护计划”温馨提示" + mUserInfo.getUser_name() + "：");
+            tvShowname.setText("“24节气养生指导”温馨提示" + mUserInfo.getUser_name() + "：");
             tvShowcont.setText(shoevon);
 
             if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 6) {

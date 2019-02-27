@@ -1,8 +1,12 @@
 package com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
@@ -13,6 +17,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,12 +42,15 @@ import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressSelectU
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressItemBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
+import com.longcheng.lifecareplan.modular.mine.userinfo.activity.CalendarActivity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
@@ -109,6 +118,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
      *
      */
     private String skiptype = "";
+
 
     @Override
     public void onClick(View v) {
@@ -213,17 +223,22 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     public void initDataAfter() {
         pageTopTvName.setText("申请互祝");
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
-        mPresent.getNeedHelpNumberTask(user_id);
-
-        skiptype = getIntent().getStringExtra("skiptype");
-        if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
-            peopleid = getIntent().getStringExtra("other_user_id");
-            mPresent.getOtherUserInfo(user_id, peopleid);
+        String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+        //1:是  ；0：不是
+        if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
+            mPresent.getNeedHelpNumberTask(user_id);
+            skiptype = getIntent().getStringExtra("skiptype");
+            if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
+                peopleid = getIntent().getStringExtra("other_user_id");
+                mPresent.getOtherUserInfo(user_id, peopleid);
+            } else {
+                mPresent.getPeopleList(user_id);
+            }
+            setBtnBg();
+            showRedSkipData(getIntent());
         } else {
-            mPresent.getPeopleList(user_id);
+            showNotCHOWindow();
         }
-        setBtnBg();
-        showRedSkipData(getIntent());
     }
 
 
@@ -271,6 +286,12 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             if (mList != null && mList.size() > 0) {
                 for (ActionItemBean mActionItemBean : mList) {
                     if (action_goods_id.equals(mActionItemBean.getId())) {
+                        int type = mActionItemBean.getType();
+                        if (type == 2) {//虚拟的
+                            relatAddress.setVisibility(View.GONE);
+                        } else {
+                            relatAddress.setVisibility(View.VISIBLE);
+                        }
                         action_id = mActionItemBean.getId();
                         actionname = mActionItemBean.getName2();
                         activity_id = mActionItemBean.getActivity_id();
@@ -550,34 +571,39 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
-            if (resultCode == ConstantManager.APPLYHELP_FORRESULT_ACTION) {
-                actionListBackData(data);
-            } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_PEOPLE) {
-                peopleid = data.getStringExtra("peopleid");
-                peoplename = data.getStringExtra("peoplename");
-                String avatar = data.getStringExtra("avatar");
-                GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
-                tvPeople.setText(peoplename);
-                mPresent.setAddressList(user_id, peopleid);
-            } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_ADDRESS) {
-                address_id = data.getStringExtra("address_id");
-                String address_name = data.getStringExtra("address_name");
-                String phone = data.getStringExtra("address_mobile");
-                String address_address = data.getStringExtra("address_address");
-                if (!TextUtils.isEmpty(address_name) && address_name.length() >= 11) {
-                    address_name = address_name.substring(0, 10) + "...";
+            if (resultCode == ConstantManager.USERINFO_FORRESULT_DATE) {
+                birthday = data.getStringExtra("birthday");
+                tv_date.setText(birthday);
+            } else {
+                if (resultCode == ConstantManager.APPLYHELP_FORRESULT_ACTION) {
+                    actionListBackData(data);
+                } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_PEOPLE) {
+                    peopleid = data.getStringExtra("peopleid");
+                    peoplename = data.getStringExtra("peoplename");
+                    String avatar = data.getStringExtra("avatar");
+                    GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
+                    tvPeople.setText(peoplename);
+                    mPresent.setAddressList(user_id, peopleid);
+                } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_ADDRESS) {
+                    address_id = data.getStringExtra("address_id");
+                    String address_name = data.getStringExtra("address_name");
+                    String phone = data.getStringExtra("address_mobile");
+                    String address_address = data.getStringExtra("address_address");
+                    if (!TextUtils.isEmpty(address_name) && address_name.length() >= 11) {
+                        address_name = address_name.substring(0, 10) + "...";
+                    }
+                    if (!TextUtils.isEmpty(phone) && phone.length() >= 11) {
+                        phone = phone.substring(0, 3) + "****" + phone.substring(7);
+                    }
+                    tv_addressname.setText(address_name + "     " + phone);
+                    tvAddress.setText(address_address);
+                    layout_address.setVisibility(View.VISIBLE);
+                } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_EXPLAIN) {
+                    describe = data.getStringExtra("describe");
+                    tvExplain.setText(describe);
                 }
-                if (!TextUtils.isEmpty(phone) && phone.length() >= 11) {
-                    phone = phone.substring(0, 3) + "****" + phone.substring(7);
-                }
-                tv_addressname.setText(address_name + "     " + phone);
-                tvAddress.setText(address_address);
-                layout_address.setVisibility(View.VISIBLE);
-            } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_EXPLAIN) {
-                describe = data.getStringExtra("describe");
-                tvExplain.setText(describe);
+                setBtnBg();
             }
-            setBtnBg();
         } catch (Exception e) {
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -616,6 +642,14 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         action_safety_id = data.getStringExtra("action_safety_id");
         tvAction.setText(actionname);
 
+        int type = data.getIntExtra("type", 0);
+        if (type == 2) {//虚拟的
+            relatAddress.setVisibility(View.GONE);
+        } else {
+            relatAddress.setVisibility(View.VISIBLE);
+        }
+
+
         String Ability_price = data.getStringExtra("action_abilityprice");
         Ability_price = PriceUtils.getInstance().seePrice(Ability_price);
         String name1 = data.getStringExtra("actionname1");
@@ -635,6 +669,182 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     }
 
 
+    /**
+     * ***********************************************
+     */
+    private MyDialog mNotCHODialog;
+    private SupplierEditText et_name, et_phone, et_code, et_pw, et_pwnew;
+    private TextView tv_getcode, tv_date, tv_address;
+    private AddressSelectUtils mAddressSelectUtils;
+    private String pid, cid, aid;
+    private String birthday;
+
+    /**
+     * 不是cho
+     */
+    private void showNotCHOWindow() {
+        if (mNotCHODialog == null) {
+            mNotCHODialog = new MyDialog(this, R.style.dialog, R.layout.dialog_notcho_apply);// 创建Dialog并设置样式主题
+            mNotCHODialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = mNotCHODialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            final EditText et = new EditText(mActivity);
+            et.setHint("请输入");
+            mNotCHODialog.setView(et);//给对话框添加一个EditText输入文本框
+            mNotCHODialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                public void onShow(DialogInterface dialog) {
+                    InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
+                }
+            });
+            mNotCHODialog.show();
+            WindowManager m = getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = mNotCHODialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
+            mNotCHODialog.getWindow().setAttributes(p); //设置生效
+
+            LinearLayout layout_cancel = (LinearLayout) mNotCHODialog.findViewById(R.id.layout_cancel);
+            et_name = (SupplierEditText) mNotCHODialog.findViewById(R.id.et_name);
+            et_phone = (SupplierEditText) mNotCHODialog.findViewById(R.id.et_phone);
+            tv_getcode = (TextView) mNotCHODialog.findViewById(R.id.tv_getcode);
+            et_code = (SupplierEditText) mNotCHODialog.findViewById(R.id.et_code);
+            et_pw = (SupplierEditText) mNotCHODialog.findViewById(R.id.et_pw);
+            et_pwnew = (SupplierEditText) mNotCHODialog.findViewById(R.id.et_pwnew);
+
+            LinearLayout layout_date = (LinearLayout) mNotCHODialog.findViewById(R.id.layout_date);
+            tv_date = (TextView) mNotCHODialog.findViewById(R.id.tv_date);
+
+            LinearLayout layout_address = (LinearLayout) mNotCHODialog.findViewById(R.id.layout_address);
+            tv_address = (TextView) mNotCHODialog.findViewById(R.id.tv_address);
+
+            TextView btn_ok = (TextView) mNotCHODialog.findViewById(R.id.btn_ok);
+
+            mNotCHODialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    return true;
+                }
+            });
+            layout_cancel.setOnClickListener(actionClickListener);
+            layout_date.setOnClickListener(actionClickListener);
+            layout_address.setOnClickListener(actionClickListener);
+            btn_ok.setOnClickListener(actionClickListener);
+
+            ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_name, 20);
+            ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_phone, 11);
+            ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_code, 6);
+            ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_pw, 20);
+            ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_pwnew, 20);
+        } else {
+            mNotCHODialog.show();
+        }
+        showInfo();
+    }
+
+    private void showInfo() {
+        String user_name = (String) SharedPreferencesHelper.get(mContext, "user_name", "");
+        String phone = (String) SharedPreferencesHelper.get(mContext, "phone", "");
+        pid = (String) SharedPreferencesHelper.get(mContext, "pid", "");
+        cid = (String) SharedPreferencesHelper.get(mContext, "cid", "");
+        aid = (String) SharedPreferencesHelper.get(mContext, "aid", "");
+        String area = (String) SharedPreferencesHelper.get(mContext, "area", "");
+        birthday = (String) SharedPreferencesHelper.get(mContext, "birthday", "");
+
+        et_name.setText(user_name);
+        et_phone.setText(phone);
+        if (!TextUtils.isEmpty(birthday) && !birthday.equals("0000-00-00")) {
+            tv_date.setText(birthday);
+        }
+        tv_address.setText(area);
+    }
+
+    View.OnClickListener actionClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.layout_cancel:
+                    mNotCHODialog.dismiss();
+                    doFinish();
+                    break;
+                case R.id.layout_address:
+                    if (mAddressSelectUtils == null) {
+                        mAddressSelectUtils = new AddressSelectUtils(mActivity, mHandler, SELECTADDRESS);
+                    }
+                    mAddressSelectUtils.onSelectShiQu();
+                    break;
+                case R.id.layout_date:
+                    Intent intent = new Intent(mContext, CalendarActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("showDate", birthday);
+                    startActivityForResult(intent, ConstantManager.USERINFO_FORRESULT_DATE);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    break;
+                case R.id.btn_ok:
+                    String user_name = et_name.getText().toString().trim();
+                    String phone = et_phone.getText().toString().trim();
+                    String code = et_code.getText().toString().trim();
+                    String pw = et_pw.getText().toString().trim();
+                    String pwnew = et_pwnew.getText().toString().trim();
+                    if (checkActionStatus(user_name, phone, code, pw, pwnew, birthday)) {
+//                        mPresent.actionSafety(user_id, user_name, phone, code, pw, pwnew, pid, cid, aid
+//                                , birthday);
+                        mNotCHODialog.dismiss();
+                    }
+                    break;
+            }
+        }
+    };
+
+    private boolean checkActionStatus(String user_name, String phone, String code
+            , String pw, String pwnew, String birthday) {
+
+        if (TextUtils.isEmpty(user_name)) {
+            ToastUtils.showToast("请输入您的姓名");
+            return false;
+        }
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showToast("请输入您的手机号");
+            return false;
+        }
+        if (TextUtils.isEmpty(code)) {
+            ToastUtils.showToast("请输入您的验证码");
+            return false;
+        }
+        if (!Utils.isCheckPW(pw, pwnew)) {
+            return false;
+        }
+        if (TextUtils.isEmpty(birthday)) {
+            ToastUtils.showToast("请选择您的出生日期");
+            return false;
+        }
+        if (TextUtils.isEmpty(pid)) {
+            ToastUtils.showToast("请选择出生地");
+            return false;
+        }
+        return true;
+    }
+
+    private final int SELECTADDRESS = 1;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            Bundle bundle = msg.getData();
+            switch (msg.what) {
+                case SELECTADDRESS:
+                    //上传出生地
+                    pid = bundle.getString("pid");
+                    cid = bundle.getString("cid");
+                    aid = bundle.getString("aid");
+                    String area = bundle.getString("area");
+                    tv_address.setText(area);
+                    break;
+            }
+        }
+    };
+    /**
+     * **********************************************************
+     */
     /**
      * 重写onkeydown 用于监听返回键
      */

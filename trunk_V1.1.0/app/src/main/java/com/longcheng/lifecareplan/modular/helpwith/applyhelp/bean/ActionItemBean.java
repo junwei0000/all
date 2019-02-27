@@ -30,6 +30,9 @@ public class ActionItemBean {
     @SerializedName("activity_id")
     private String activity_id;//参与活动ID 等于1为代言行动
 
+    @SerializedName("type")
+    private int type;//2 虚拟商品
+
 
     @SerializedName("extend_type")
     private String extend_type;// 0：通用（无特殊扩展） 1：平安行动-资料填写 2：能量配-属性选择
@@ -59,6 +62,14 @@ public class ActionItemBean {
     private String content;
     private String goods_id;
 
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getAction_id() {
         return action_id;

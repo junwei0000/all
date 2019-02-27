@@ -23,6 +23,8 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.SkipHelpUt
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpActivity;
+import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
@@ -30,6 +32,7 @@ import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity.L
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressAddActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailDataBean;
@@ -100,7 +103,10 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     TextView tv_leftimg;
     @BindView(R.id.tv_rightimg)
     TextView tv_rightimg;
-
+    @BindView(R.id.layout_yajin)
+    LinearLayout layout_yajin;
+    @BindView(R.id.detail_tv_yajin)
+    TextView detail_tv_yajin;
 
     private String user_id, order_id;
     /**
@@ -135,6 +141,11 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     }
+                } else if (type == 4) {//康农工程互祝详情
+                    Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("kn_url", "" + mOrderItemBean.getKnp_info_url());
+                    startActivity(intent);
                 } else {//商品详情
                     if (type == 3) {
                         if (Bottom_status != 0 && Bottom_status != 8 && Bottom_status != -1) {
@@ -355,6 +366,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         detailTvRight.setVisibility(View.GONE);
         tv_leftimg.setVisibility(View.GONE);
         tv_rightimg.setVisibility(View.GONE);
+        layout_yajin.setVisibility(View.GONE);
         detailTvLeft.setBackgroundColor(mContext.getResources().getColor(R.color.white));
         detailTvLeft.setTextColor(mContext.getResources().getColor(R.color.text_contents_color));
         detailTvCenter.setBackgroundColor(mContext.getResources().getColor(R.color.white));
@@ -365,6 +377,11 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         int is_show_perfect_info = mOrderItemBean.getIs_show_perfect_info();
         int is_show_consignee_info = mOrderItemBean.getIs_show_consignee_info();
         int is_show_help_info = mOrderItemBean.getIs_show_help_info();
+        int is_show_pre_delivery = mOrderItemBean.getIs_pre_delivery();
+        if (is_show_pre_delivery == 1) {
+            layout_yajin.setVisibility(View.VISIBLE);
+            detail_tv_yajin.setText(mOrderItemBean.getPre_delivery_deposit() + "元");
+        }
         if (bottom_status == 0) {//申请状态 （显示取消行动 和 送祝福）
             detailTvCenter.setVisibility(View.VISIBLE);
             detailTvRight.setVisibility(View.VISIBLE);
@@ -442,9 +459,58 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
                 detailTvRight.setText("收货地址");
                 detailTvRight.setVisibility(View.VISIBLE);
             }
+            //type 4康农工程不显示
+            if (is_show_pre_delivery == 1 && type != 4) {
+                detailTvRight.setText("支付押金");
+                detailTvRight.setVisibility(View.VISIBLE);
+            }
         } else if (bottom_status == 8) {//已取消订单或退订  或驳回 （不显示按钮）
         } else if (bottom_status == -1) {
         }
+        /**
+         * ***********************新增押金***********************
+         */
+        else if (bottom_status == 9) {//预发货单未发货行动未完成  （显示已付押金）
+        } else if (bottom_status == 10) {//预发货单未发货行动已完成 （显示感恩录，已付押金）
+            detailTvRight.setVisibility(View.VISIBLE);
+            detailTvRight.setText("感恩录");
+        } else if (bottom_status == 11) {//预发货单已发货行动未完成 （显示查看物流  ）
+            detailTvCenter.setVisibility(View.VISIBLE);
+            detailTvCenter.setText("查看物流");
+        } else if (bottom_status == 12) {//预发货单已发货行动已完成 （显示查看物流  ，确认收货，感恩录）
+            detailTvLeft.setVisibility(View.VISIBLE);
+            detailTvCenter.setVisibility(View.VISIBLE);
+            detailTvRight.setVisibility(View.VISIBLE);
+            tv_leftimg.setVisibility(View.VISIBLE);
+            tv_rightimg.setVisibility(View.VISIBLE);
+            detailTvLeft.setText("感恩录");
+            detailTvCenter.setText("查看物流");
+            detailTvRight.setText("确认收货");
+        } else if (bottom_status == 13) {//预发货单已收货行动未完成
+
+        } else if (bottom_status == 14) {//预发货单已收货行动已完成 （显示智能互祝  ，感恩录,再次申请）
+            detailTvLeft.setVisibility(View.VISIBLE);
+            detailTvCenter.setVisibility(View.VISIBLE);
+            detailTvRight.setVisibility(View.VISIBLE);
+            tv_leftimg.setVisibility(View.VISIBLE);
+            tv_rightimg.setVisibility(View.VISIBLE);
+            detailTvLeft.setText("智能互祝");
+            detailTvCenter.setText("感恩录");
+            detailTvRight.setText("再次申请");
+        } else if (bottom_status == 15) {//康农工程订单已完成（不展示按钮）
+
+        } else if (bottom_status == 16) {//康农工程订单未发货（不展示按钮）
+
+        } else if (bottom_status == 17) {//康农工程订单已发货（显示查看物流  ，确认收货）
+            detailTvCenter.setVisibility(View.VISIBLE);
+            detailTvRight.setVisibility(View.VISIBLE);
+            tv_rightimg.setVisibility(View.VISIBLE);
+            detailTvCenter.setText("查看物流");
+            detailTvRight.setText("确认收货");
+        }
+        /**
+         * ***********************end*********************
+         */
     }
 
     /**
@@ -457,7 +523,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         String price = mOrderItemBean.getPrice();
         tvGoodtype.setText(mOrderItemBean.getType_name());
         itemTvGoodname.setText(mOrderItemBean.getGoods_x_name());
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, mOrderItemBean.getImage(), itemIvGoodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(mContext, 80);
             int height = DensityUtil.dip2px(mContext, 50);
@@ -488,9 +554,9 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     private void showStatusView(DetailAfterBean mOrderItemBean) {
         int top_status = mOrderItemBean.getTop_status();
         detailTvStatus.setText(mOrderItemBean.getTop_title());
-        if (top_status == 1) {
+        if (top_status == 1 || top_status == 5 || top_status == 6) {
             detailIvStatusimg.setBackgroundResource(R.mipmap.my_theorder_for);
-        } else if (top_status == 2) {
+        } else if (top_status == 2 || top_status == 7) {
             detailIvStatusimg.setBackgroundResource(R.mipmap.my_theorder_thedelivery);
         } else if (top_status == 3) {
             detailIvStatusimg.setBackgroundResource(R.mipmap.my_theorder_complete);
@@ -535,6 +601,10 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             }
         } else if (bottom_status == 5) {
             mutualWish();
+        } else if (bottom_status == 12) {
+            Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
+        } else if (bottom_status == 14) {
+            mutualWish();
         }
     }
 
@@ -562,7 +632,14 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             if (is_show_perfect_info == 1) {
                 PerfectInformation();
             }
-
+        } else if (bottom_status == 11) {
+            lookLogistics(mOrderItemBean.getOrder_id());
+        } else if (bottom_status == 12) {
+            lookLogistics(mOrderItemBean.getOrder_id());
+        } else if (bottom_status == 14) {
+            Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
+        } else if (bottom_status == 17) {
+            lookLogistics(mOrderItemBean.getOrder_id());
         }
     }
 
@@ -592,14 +669,35 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             if (is_show_consignee_info == 1) {
                 addAddress();
             }
+            if (mOrderItemBean.getIs_pre_delivery() == 1 && mOrderItemBean.getType() != 4) {
+                jioaYaJin();
+            }
+        } else if (bottom_status == 10) {
+            Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
+        } else if (bottom_status == 12) {
+            ConfirmReceipt(order_id);
+        } else if (bottom_status == 14) {
+            ApplyAgain();
+        } else if (bottom_status == 17) {
+            ConfirmReceipt(order_id);
         }
+    }
+
+    /**
+     * 交押金
+     */
+    private void jioaYaJin() {
+        Intent intent = new Intent(mContext, YaJinActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("order_id", "" + order_id);
+        mContext.startActivity(intent);
     }
 
     /**
      * 智能互祝");//跳转智能互祝页面（。。。。返回逻辑待定）
      */
     private void mutualWish() {
-        Intent intent = new Intent(mContext, AutoHelpActivity.class);
+        Intent intent = new Intent(mContext, AutoHelpH5Activity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         mContext.startActivity(intent);
         Log.e("btnClick", "智能互祝");
@@ -679,7 +777,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     private void SendBlessing() {
         Log.e("btnClick", "送祝福");
         sendBroadcastsRefreshList();
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             mPresent.getNeedHelpNumberTask(user_id);
         } else {
             mPresent.getLifeNeedHelpNumberTaskSuccess(user_id, mOrderItemBean.getGoods_id() + "");
@@ -714,7 +812,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
      */
     private void ApplyAgain() {
         Log.e("btnClick", "再次申请");
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             int action_status = mOrderItemBean.getAction_status();
             int action_goods_id = mOrderItemBean.getAction_id();
             if (action_status == 0 && action_goods_id == 27) {

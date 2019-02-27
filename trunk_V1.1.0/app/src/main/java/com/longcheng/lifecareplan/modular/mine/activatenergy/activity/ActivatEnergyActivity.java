@@ -396,6 +396,12 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         IntentFilter filter = new IntentFilter();

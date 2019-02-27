@@ -245,10 +245,12 @@ public interface ApiService {
 
     @GET(Config.VERSION + "help/receiveUsers")
     Observable<PeopleDataBean> getPeopleList(@Query("user_id") String user_id, @Query("token") String token);
+
     @GET(Config.VERSION + "user/getOtherUserInfo")
     Observable<OtherUserInfoDataBean> getOtherUserInfo(@Query("user_id") String user_id,
                                                        @Query("other_user_id") String other_user_id,
                                                        @Query("token") String token);
+
     @GET(Config.VERSION + "help/searchReceiveUsers")
     Observable<PeopleSearchDataBean> getPeopleSearchList(@Query("user_id") String user_id, @Query("user_name") String user_name, @Query("token") String token);
 
@@ -323,6 +325,14 @@ public interface ApiService {
                                             @Field("asset") String asset,
                                             @Field("pay_type") String pay_type,
                                             @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Paydeposit/paydo")
+    Observable<PayWXDataBean> yaJinPay(@Field("user_id") String user_id,
+                                       @Field("order_id") String order_id,
+                                       @Field("money") int money,
+                                       @Field("payWay") String payWay,
+                                       @Field("token") String token);
 
     //********************个人中心*************************
     @GET(Config.VERSION + "help/getRedirectMsgId")
@@ -758,6 +768,11 @@ public interface ApiService {
     Observable<EnergyDetailDataBean> getKNPMsgDetail(@Query("user_id") String user_id,
                                                      @Query("knp_msg_id") String knp_msg_id,
                                                      @Query("token") String token);
+
+    @GET(Config.VERSION + "Paydeposit/index")
+    Observable<DetailDataBean> getYaJinPayInfo(@Query("user_id") String user_id,
+                                               @Query("order_id") String order_id,
+                                               @Query("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "knp/pay")

@@ -61,6 +61,15 @@
                 android:text="@string/order_completed_tilte"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
+            <TextView
+                android:id="@+id/userorder_tv_yajin"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="押金订单"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
         </LinearLayout>
 
         <LinearLayout

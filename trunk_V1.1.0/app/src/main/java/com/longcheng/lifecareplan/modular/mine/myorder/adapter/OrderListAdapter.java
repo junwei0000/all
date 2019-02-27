@@ -22,11 +22,12 @@ import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.SkipHelpUtils;
-import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpActivity;
+import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity.LifeStyleApplyHelpActivity;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressAddActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderItemBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.activity.XiaJiaActivity;
+import com.longcheng.lifecareplan.modular.mine.myorder.detail.activity.YaJinActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.ordertracking.activity.TrankActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.tanksgiving.activity.ThanksActivity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
@@ -137,6 +138,8 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         int is_show_perfect_info = mOrderItemBean.getIs_show_perfect_info();
         int is_show_consignee_info = mOrderItemBean.getIs_show_consignee_info();
         int is_show_help_info = mOrderItemBean.getIs_show_help_info();
+        int is_show_pre_delivery = mOrderItemBean.getIs_show_pre_delivery();
+        int type = mOrderItemBean.getType();
         if (bottom_status == 0) {//申请状态 （显示取消行动 和 送祝福）
             mHolder.item_tv_center.setVisibility(View.VISIBLE);
             mHolder.item_tv_right.setVisibility(View.VISIBLE);
@@ -210,9 +213,64 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
                 mHolder.item_tv_right.setText("收货地址");
                 mHolder.item_tv_right.setVisibility(View.VISIBLE);
             }
+            //type 4康农工程不显示
+            if (is_show_pre_delivery == 1 && type != 4) {
+                mHolder.item_tv_right.setText("支付押金");
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+            }
         } else if (bottom_status == 8) {//已取消订单或退订  或驳回 （不显示按钮）
         } else if (bottom_status == -1) {
         }
+        /**
+         * ***********************新增押金***********************
+         */
+        else if (bottom_status == 9) {//预发货单未发货行动未完成  （显示已付押金）
+            mHolder.item_tv_left.setText("已付押金");
+            mHolder.item_tv_left.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+            mHolder.item_tv_left.setVisibility(View.VISIBLE);
+            mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_write);
+        } else if (bottom_status == 10) {//预发货单未发货行动已完成 （显示感恩录，已付押金）
+            mHolder.item_tv_left.setText("已付押金");
+            mHolder.item_tv_left.setVisibility(View.VISIBLE);
+            mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_write);
+            mHolder.item_tv_right.setVisibility(View.VISIBLE);
+            mHolder.item_tv_right.setText("感恩录");
+        } else if (bottom_status == 11) {//预发货单已发货行动未完成 （显示查看物流  ）
+            mHolder.item_tv_center.setVisibility(View.VISIBLE);
+            mHolder.item_tv_center.setText("查看物流");
+        } else if (bottom_status == 12) {//预发货单已发货行动已完成 （显示查看物流  ，确认收货，感恩录）
+            mHolder.item_tv_left.setVisibility(View.VISIBLE);
+            mHolder.item_tv_center.setVisibility(View.VISIBLE);
+            mHolder.item_tv_right.setVisibility(View.VISIBLE);
+            mHolder.item_tv_left.setText("感恩录");
+            mHolder.item_tv_center.setText("查看物流");
+            mHolder.item_tv_right.setText("确认收货");
+        } else if (bottom_status == 13) {//预发货单已收货行动未完成
+
+        } else if (bottom_status == 14) {//预发货单已收货行动已完成 （显示智能互祝  ，感恩录,再次申请）
+            mHolder.item_tv_left.setVisibility(View.VISIBLE);
+            mHolder.item_tv_center.setVisibility(View.VISIBLE);
+            mHolder.item_tv_right.setVisibility(View.VISIBLE);
+            mHolder.item_tv_left.setText("智能互祝");
+            mHolder.item_tv_center.setText("感恩录");
+            mHolder.item_tv_right.setText("再次申请");
+            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+        } else if (bottom_status == 15) {//康农工程订单已完成（不展示按钮）
+
+        } else if (bottom_status == 16) {//康农工程订单未发货（不展示按钮）
+
+        } else if (bottom_status == 17) {//康农工程订单已发货（显示查看物流  ，确认收货）
+            mHolder.item_tv_center.setVisibility(View.VISIBLE);
+            mHolder.item_tv_right.setVisibility(View.VISIBLE);
+            mHolder.item_tv_center.setText("查看物流");
+            mHolder.item_tv_right.setText("确认收货");
+            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+        }
+        /**
+         * ***********************end*********************
+         */
     }
 
     /**
@@ -226,7 +284,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         mHolder.tv_goodtype.setText(mOrderItemBean.getType_name());
         mHolder.item_tv_goodname.setText(mOrderItemBean.getGoods_x_name());
         mHolder.item_tv_date.setText(mOrderItemBean.getDate());
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             GlideDownLoadImage.getInstance().loadCircleImageRole(context, mOrderItemBean.getImage(), mHolder.item_iv_goodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(context, 80);
             int height = DensityUtil.dip2px(context, 50);
@@ -285,6 +343,10 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             }
         } else if (bottom_status == 5) {
             mutualWish();
+        } else if (bottom_status == 12) {
+            Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
+        } else if (bottom_status == 14) {
+            mutualWish();
         }
     }
 
@@ -312,6 +374,14 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             if (is_show_perfect_info == 1) {
                 PerfectInformation();
             }
+        } else if (bottom_status == 11) {
+            lookLogistics(mOrderItemBean.getOrder_id());
+        } else if (bottom_status == 12) {
+            lookLogistics(mOrderItemBean.getOrder_id());
+        } else if (bottom_status == 14) {
+            Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
+        } else if (bottom_status == 17) {
+            lookLogistics(mOrderItemBean.getOrder_id());
         }
     }
 
@@ -340,14 +410,35 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             if (is_show_consignee_info == 1) {
                 addAddress();
             }
+            if (mOrderItemBean.getIs_show_pre_delivery() == 1 && mOrderItemBean.getType() != 4) {
+                jioaYaJin(order_id);
+            }
+        } else if (bottom_status == 10) {
+            Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
+        } else if (bottom_status == 12) {
+            ConfirmReceipt(order_id);
+        } else if (bottom_status == 14) {
+            ApplyAgain(mOrderItemBean.getAction_status(), mOrderItemBean.getType(), mOrderItemBean.getAction_id(), mOrderItemBean.getGoods_id(), mOrderItemBean.getShop_goods_price_id());
+        } else if (bottom_status == 17) {
+            ConfirmReceipt(order_id);
         }
+    }
+
+    /**
+     * 交押金
+     */
+    private void jioaYaJin(String order_id) {
+        Intent intent = new Intent(context, YaJinActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("order_id", "" + order_id);
+        context.startActivity(intent);
     }
 
     /**
      * 智能互祝");//跳转智能互祝页面（。。。。返回逻辑待定）
      */
     private void mutualWish() {
-        Intent intent = new Intent(context, AutoHelpActivity.class);
+        Intent intent = new Intent(context, AutoHelpH5Activity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
         Log.e("btnClick", "智能互祝");
@@ -406,7 +497,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
      */
     private void SendBlessing(int type, int goods_id) {
         Log.e("btnClick", "送祝福");
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             mHandler.sendEmptyMessage(ConstantManager.ORDER_HANDLE_SendBlessing);
         } else {
             Message message = new Message();
@@ -444,7 +535,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
      * 再次申请， 生命能量跳转申请互祝页面
      */
     private void ApplyAgain(int action_status, int type, int action_goods_id, int goodsid, String shop_goods_price_id) {
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             if (action_status == 0 && action_goods_id == 27) {
                 action_goods_id = 0;
             }

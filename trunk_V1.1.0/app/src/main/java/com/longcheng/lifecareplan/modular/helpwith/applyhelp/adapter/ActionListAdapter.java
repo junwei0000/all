@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,14 +73,15 @@ public class ActionListAdapter extends BaseAdapterHelper<ActionItemBean> {
         int height = (int) (width * 0.55) + DensityUtil.dip2px(context, 10);
         mHolder.relat_img.setLayoutParams(new LinearLayout.LayoutParams(width, height));
 
-        mHolder.item_tv_todetail.setTag(mHelpWithInfo.getGoods_id());
+        mHolder.item_tv_todetail.setTag(mHelpWithInfo);
         mHolder.item_tv_todetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String goods_id = (String) v.getTag();
+                ActionItemBean mHelpWithInfo = (ActionItemBean) v.getTag();
+                Log.e("setOnClickListener", "goods_id=" + mHelpWithInfo.getGoods_id());
                 Intent intent = new Intent(context, ActionDetailActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("goods_id", goods_id);
+                intent.putExtra("goods_id", "" + mHelpWithInfo.getGoods_id());
                 context.startActivity(intent);
             }
         });

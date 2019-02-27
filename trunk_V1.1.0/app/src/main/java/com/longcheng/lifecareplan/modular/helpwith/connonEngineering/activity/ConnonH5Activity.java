@@ -311,7 +311,7 @@ public class ConnonH5Activity extends WebAct {
     }
 
     private void knpPaySuccessBack() {
-        //康农工程-----刷新康农详情页
+        //康农工程-----刷新康农详情页返回列表
         mBridgeWebView.callHandler("knp_paySuccessBack", "", new CallBackFunction() {
             @Override
             public void onCallBack(String data) {

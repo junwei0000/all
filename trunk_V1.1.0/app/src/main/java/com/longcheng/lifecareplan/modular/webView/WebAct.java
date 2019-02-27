@@ -185,6 +185,30 @@ public abstract class WebAct extends BaseActivity {
                 qiMingSkipApplyHelp(data);
             }
         });
+        //每日签到-跳转康农详情
+        mBridgeWebView.registerHandler("knp_detailsBack", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
+                if (!data.contains(Config.BASE_HEAD_URL)) {
+                    data = Config.BASE_HEAD_URL + data;
+                }
+                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("kn_url", "" + data);
+                startActivity(intent);
+            }
+        });
+        //每日签到-跳转康农列表
+        mBridgeWebView.registerHandler("knp_indexBack", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("kn_url", "" + HomeFragment.kn_url);
+                startActivity(intent);
+            }
+        });
         //每日签到-跳转兑换首页
         mBridgeWebView.registerHandler("signIn_skiptoexchange", new BridgeHandler() {
             @Override
@@ -320,8 +344,8 @@ public abstract class WebAct extends BaseActivity {
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
                 Intent intent = new Intent(mContext, ApplyHelpActivity.class);
-                intent.putExtra("other_user_id",""+data);
-                intent.putExtra("skiptype","Doctor_applyHelp");
+                intent.putExtra("other_user_id", "" + data);
+                intent.putExtra("skiptype", "Doctor_applyHelp");
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
@@ -377,7 +401,18 @@ public abstract class WebAct extends BaseActivity {
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
             }
         });
-
+        //智能互祝-跳转生命能量互祝列表
+        mBridgeWebView.registerHandler(" helpList_back", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
+                Intent intent = new Intent(mContext, HelpWithEnergyActivity.class);
+                intent.putExtra("skiptype", "myDeGra");
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+            }
+        });
         //我的恩人我的奉献-跳转生命能量互祝列表
         mBridgeWebView.registerHandler("myDeGra_helpEnergy", new BridgeHandler() {
             @Override

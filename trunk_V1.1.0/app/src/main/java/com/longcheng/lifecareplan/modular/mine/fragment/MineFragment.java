@@ -53,7 +53,6 @@ import com.longcheng.lifecareplan.modular.mine.recovercash.activity.RecoverCashA
 import com.longcheng.lifecareplan.modular.mine.relationship.activity.RelationshipAccountAct;
 import com.longcheng.lifecareplan.modular.mine.rewardcenters.activity.RewardCentersActivity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.SetActivity;
-import com.longcheng.lifecareplan.modular.mine.set.activity.SmallPushH5Activity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.VolunteerH5Activity;
 import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
 import com.longcheng.lifecareplan.modular.mine.starinstruction.StarInstructionAct;
@@ -202,6 +201,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     TextView usercenterTvDoctor;
     @BindView(R.id.usercenter_relay_doctor)
     RelativeLayout usercenterRelayDoctor;
+    @BindView(R.id.layout_jiuzhen)
+    LinearLayout layoutJiuzhen;
+    Unbinder unbinder;
 
     private String is_cho;
     private String user_id;
@@ -265,6 +267,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         mycenterLayoutsmallpusher.setOnClickListener(this);
         usercenter_layout_rebirth.setOnClickListener(this);
         usercenter_relay_changeinviter.setOnClickListener(this);
+        layoutJiuzhen.setOnClickListener(this);
         initUserInfo();
     }
 
@@ -331,6 +334,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
+                break;
+            case R.id.layout_jiuzhen://就诊记录
+                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", data.getPatient_record_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_smallpusher://小推手
 //                String promoter_url = data.getPromoter_url();
@@ -944,6 +954,15 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             usercenterTvVolunteer.setText("我是志愿者");
         }
+
+        int hasDiagnosticRecord = mGetHomeInfoBean.getHasDiagnosticRecord();
+        if (hasDiagnosticRecord == 0) {
+            layoutJiuzhen.setVisibility(View.GONE);
+        } else {
+            layoutJiuzhen.setVisibility(View.VISIBLE);
+        }
+
+
         about_me_url = mGetHomeInfoBean.getAbout_me_url();
         isDirectorOrTeamLeader = mGetHomeInfoBean.getIsDirectorOrTeamLeader();
         isUnopenedRedPackage = mGetHomeInfoBean.getIsUnopenedRedPackage();
@@ -1031,5 +1050,19 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         MineAfterDataMap.clear();
         MineAfterDataMap.put("mGetHomeInfoBean", mHomeAfterBean);
         SharedPreferencesUtil.getInstance().putHashMapData("mMineAfterData_" + user_id, MineAfterDataMap);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

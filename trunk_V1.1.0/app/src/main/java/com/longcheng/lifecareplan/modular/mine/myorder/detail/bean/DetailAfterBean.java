@@ -26,12 +26,18 @@ public class DetailAfterBean implements Serializable {
     private String help_goods_id;
     private String order_status;
     private String shipping_status;
-    private int type;//订单类型	1商城订单 2 生命能量订单 3 生活方式互祝订单
+    private int type;//订单类型	1商城订单 2 生命能量订单 3 生活方式互祝订单,4 康农工程
     private String order_sn;
     private String date;
     private int is_show_perfect_info;
     private int is_show_consignee_info;
     private int is_show_help_info;
+    private int is_pre_delivery;//1 显示押金
+
+    private String pre_delivery_deposit;//押金
+
+    private String knp_info_url;
+
     private int bottom_status;
     private String bottom_title;
     private int top_status;
@@ -39,6 +45,87 @@ public class DetailAfterBean implements Serializable {
     private String goods_info_url;
 
     private int action_status;//是否已下架：0已下架
+
+
+    //押金信息
+    private String avatar;
+    private String user_asset;
+    private String user_name;
+    private int deposit_type;//2 坐堂医; 1 cho
+    private int deposit;
+    private String deposit_str;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getUser_asset() {
+        return user_asset;
+    }
+
+    public void setUser_asset(String user_asset) {
+        this.user_asset = user_asset;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public int getDeposit_type() {
+        return deposit_type;
+    }
+
+    public void setDeposit_type(int deposit_type) {
+        this.deposit_type = deposit_type;
+    }
+
+    public int getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(int deposit) {
+        this.deposit = deposit;
+    }
+
+    public String getDeposit_str() {
+        return deposit_str;
+    }
+
+    public void setDeposit_str(String deposit_str) {
+        this.deposit_str = deposit_str;
+    }
+
+    public String getKnp_info_url() {
+        return knp_info_url;
+    }
+
+    public void setKnp_info_url(String knp_info_url) {
+        this.knp_info_url = knp_info_url;
+    }
+
+    public int getIs_pre_delivery() {
+        return is_pre_delivery;
+    }
+
+    public void setIs_pre_delivery(int is_pre_delivery) {
+        this.is_pre_delivery = is_pre_delivery;
+    }
+
+    public String getPre_delivery_deposit() {
+        return pre_delivery_deposit;
+    }
+
+    public void setPre_delivery_deposit(String pre_delivery_deposit) {
+        this.pre_delivery_deposit = pre_delivery_deposit;
+    }
 
 
     public String getShop_goods_price_id() {

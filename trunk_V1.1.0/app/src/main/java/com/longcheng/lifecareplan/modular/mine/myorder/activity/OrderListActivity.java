@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
-import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 
@@ -29,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 我的订单
@@ -54,6 +54,8 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
     ImageView userorderIvCursor;
     @BindView(R.id.userorder_vPager)
     ViewPager userorderVPager;
+    @BindView(R.id.userorder_tv_yajin)
+    TextView userorderTvYajin;
 
 
     private List<Fragment> fragmentList = new ArrayList<>();
@@ -79,6 +81,10 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
                 break;
             case R.id.userorder_tv_overed:
                 position = 3;
+                selectPage();
+                break;
+            case R.id.userorder_tv_yajin:
+                position = 4;
                 selectPage();
                 break;
         }
@@ -107,6 +113,7 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
         userorderTvComing.setOnClickListener(this);
         userorderTvPendingreceipt.setOnClickListener(this);
         userorderTvOvered.setOnClickListener(this);
+        userorderTvYajin.setOnClickListener(this);
     }
 
     @Override
@@ -127,6 +134,7 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
         userorderTvComing.setTextColor(getResources().getColor(R.color.text_contents_color));
         userorderTvPendingreceipt.setTextColor(getResources().getColor(R.color.text_contents_color));
         userorderTvOvered.setTextColor(getResources().getColor(R.color.text_contents_color));
+        userorderTvYajin.setTextColor(getResources().getColor(R.color.text_contents_color));
         if (position == 0) {
             userorderTvAll.setTextColor(getResources().getColor(R.color.blue));
         } else if (position == 1) {
@@ -135,6 +143,8 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
             userorderTvPendingreceipt.setTextColor(getResources().getColor(R.color.blue));
         } else if (position == 3) {
             userorderTvOvered.setTextColor(getResources().getColor(R.color.blue));
+        } else if (position == 4) {
+            userorderTvYajin.setTextColor(getResources().getColor(R.color.blue));
         }
         InitImageView(position);
     }
@@ -158,6 +168,8 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
         OveredFragment mOveredFragment = new OveredFragment();
         fragmentList.add(mOveredFragment);
 
+        YaJinFragment mYaJinFragment = new YaJinFragment();
+        fragmentList.add(mYaJinFragment);
     }
 
     /**
@@ -177,12 +189,13 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
                 list.add(new ComingFragment());
                 list.add(new PendingFragment());
                 list.add(new OveredFragment());
+                list.add(new YaJinFragment());
                 tabPageAdapter.setPagerItems(list);
             }
         });
         userorderVPager.setAdapter(tabPageAdapter);
         selectPage();
-        userorderVPager.setOffscreenPageLimit(4);
+        userorderVPager.setOffscreenPageLimit(5);
         userorderVPager.addOnPageChangeListener(this);
     }
 
@@ -197,7 +210,7 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
     private void InitImageView(int selectArg0) {
         bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// 获取图片宽度
         int screenW = DensityUtil.getPhoneWidHeigth(this).widthPixels;
-        offset = (screenW / 4 - bmpW) / 2;// 计算偏移量
+        offset = (screenW / 5 - bmpW) / 2;// 计算偏移量
         Matrix matrix = new Matrix();
         matrix.postTranslate(offset, 0);
         userorderIvCursor.setImageMatrix(matrix);// 设置动画初始位置
