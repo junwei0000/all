@@ -108,6 +108,7 @@ public class UserLoginSkipUtils {
      * 登录后多方向跳转判断
      */
     public void skipToPage() {
+        loginskiptostatus = (String) SharedPreferencesHelper.get(mActivity, "loginSkipToStatus", "");
         if (loginskiptostatus.equals(ConstantManager.loginSkipToMainNext)) {
             intents = new Intent();
             intents.setAction(ConstantManager.MAINMENU_ACTION);
@@ -120,9 +121,6 @@ public class UserLoginSkipUtils {
             mActivity.startActivity(intents);
             mActivity.finish();
         } else if (loginskiptostatus.equals(ConstantManager.loginSkipToInvitefriends)) {//邀请亲友
-//            intents = new Intent(mActivity, InviteFriendsActivity.class);
-//            intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//            mActivity.startActivity(intents);
             intents = new Intent();
             intents.setAction(ConstantManager.MAINMENU_ACTION);
             intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);
@@ -178,6 +176,7 @@ public class UserLoginSkipUtils {
             mActivity.startActivity(intents);
             mActivity.finish();
         }
+        SharedPreferencesHelper.put(mActivity, "loginSkipToStatus", "");
     }
 
     /**

@@ -93,6 +93,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     private String is_cho;
     private int myBlessHelpCount, blessMeHelpCount;
     public static String automationHelpUrl, myDedicationUrl, myGratitudeUrl;
+    private List<String> zangfus;
 
     @Override
     public int bindLayout() {
@@ -248,7 +249,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.tv_tohelp:
-                if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
+                if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1") && zangfus != null && zangfus.size() > 0) {
                     Intent intents = new Intent();
                     intents.setAction(ConstantManager.MAINMENU_ACTION);
                     intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_EXCHANGE);
@@ -297,7 +298,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             myBlessHelpCount = mHelpIndexAfterBean.getMyBlessHelpCount();
             blessMeHelpCount = mHelpIndexAfterBean.getBlessMeHelpCount();
             showCont();
-            List<String> zangfus = mHelpIndexAfterBean.getZangfus();
+            zangfus = mHelpIndexAfterBean.getZangfus();
             HelpIndexItemBean mUserInfo = mHelpIndexAfterBean.getUser();
             is_cho = mUserInfo.getIs_cho();
             String shoevon = "";

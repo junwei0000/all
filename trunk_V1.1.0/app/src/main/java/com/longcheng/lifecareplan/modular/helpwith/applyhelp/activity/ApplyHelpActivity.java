@@ -38,6 +38,8 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDa
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressListActivity;
@@ -124,8 +126,10 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
      */
     private String skiptype = "";
 
-
-    int type;//2 虚拟
+    /**
+     * 2 虚拟
+     */
+    int actiontype;
 
     @Override
     public void onClick(View v) {
@@ -192,7 +196,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         btnClickStatus = false;
         if (!TextUtils.isEmpty(action_id) && !TextUtils.isEmpty(peopleid) &&
                 !TextUtils.isEmpty(describe)) {
-            if (type == 2 || (!TextUtils.isEmpty(address_id) && type != 2)) {
+            if (actiontype == 2 || (!TextUtils.isEmpty(address_id) && actiontype != 2)) {
                 btnClickStatus = true;
                 btnSave.setBackgroundResource(R.drawable.corners_bg_helpbtn);
             } else {
@@ -241,14 +245,18 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         mPresent.getNeedHelpNumberTask(user_id);
         skiptype = getIntent().getStringExtra("skiptype");
+        showPeople();
+        setBtnBg();
+        showRedSkipData(getIntent());
+    }
+
+    private void showPeople() {
         if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
             peopleid = getIntent().getStringExtra("other_user_id");
             mPresent.getOtherUserInfo(user_id, peopleid);
         } else {
             mPresent.getPeopleList(user_id);
         }
-        setBtnBg();
-        showRedSkipData(getIntent());
     }
 
     private boolean showNotCHODialog() {
@@ -307,8 +315,8 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             if (mList != null && mList.size() > 0) {
                 for (ActionItemBean mActionItemBean : mList) {
                     if (action_goods_id.equals(mActionItemBean.getId())) {
-                        int type = mActionItemBean.getType();
-                        if (type == 2) {//虚拟的
+                        actiontype = mActionItemBean.getType();
+                        if (actiontype == 2) {//虚拟的
                             relatAddress.setVisibility(View.GONE);
                         } else {
                             relatAddress.setVisibility(View.VISIBLE);
@@ -489,6 +497,8 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
 
     }
 
+    UserLoginSkipUtils mUserLoginSkipUtils;
+
     @Override
     public void saveUserInfo(LoginDataBean responseBean) {
         String status = responseBean.getStatus();
@@ -496,6 +506,22 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status.equals("200")) {
             mNotCHODialog.dismiss();
+            LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
+            if (mLoginInfo != null && !TextUtils.isEmpty(mLoginInfo.getUser_id())) {
+                SharedPreferencesHelper.put(mActivity, "loginSkipToStatus", "");
+                if (mUserLoginSkipUtils == null) {
+                    mUserLoginSkipUtils = new UserLoginSkipUtils(this);
+                }
+                mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
+            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    showPeople();
+                }
+            }, 1500);
+
         }
     }
 
@@ -687,8 +713,8 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         action_safety_id = data.getStringExtra("action_safety_id");
         tvAction.setText(actionname);
 
-        type = data.getIntExtra("type", 0);
-        if (type == 2) {//虚拟的
+        actiontype = data.getIntExtra("type", 0);
+        if (actiontype == 2) {//虚拟的
             relatAddress.setVisibility(View.GONE);
         } else {
             relatAddress.setVisibility(View.VISIBLE);
@@ -804,7 +830,6 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             switch (v.getId()) {
                 case R.id.layout_cancel:
                     mNotCHODialog.dismiss();
-                    doFinish();
                     break;
                 case R.id.tv_getcode:
                     String phoneNum = et_phone.getText().toString().trim();
@@ -956,6 +981,12 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         if (timerTask != null) {
             timerTask.cancel();
             mHandler.removeCallbacks(timerTask);
+        }
+        if (mNotCHODialog != null && mNotCHODialog.isShowing()) {
+            mNotCHODialog.dismiss();
+        }
+        if (selectDialog != null && selectDialog.isShowing()) {
+            selectDialog.dismiss();
         }
     }
 
