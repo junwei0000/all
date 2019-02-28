@@ -120,6 +120,8 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     private String skiptype = "";
 
 
+    int type;//2 虚拟
+
     @Override
     public void onClick(View v) {
         Intent intent;
@@ -169,8 +171,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                 break;
             case R.id.btn_save:
                 Log.e("Observable", "address_id = " + address_id);
-                if (!TextUtils.isEmpty(action_id) && !TextUtils.isEmpty(peopleid) &&
-                        !TextUtils.isEmpty(address_id) && !TextUtils.isEmpty(describe)) {
+                if (btnClickStatus) {
                     mPresent.applyAction(user_id, action_id,
                             peopleid, address_id, describe, action_safety_id, extend_info, qiming_user_id);
                 }
@@ -178,10 +179,18 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         }
     }
 
+    boolean btnClickStatus = false;
+
     private void setBtnBg() {
+        btnClickStatus = false;
         if (!TextUtils.isEmpty(action_id) && !TextUtils.isEmpty(peopleid) &&
-                !TextUtils.isEmpty(address_id) && !TextUtils.isEmpty(describe)) {
-            btnSave.setBackgroundResource(R.drawable.corners_bg_helpbtn);
+                !TextUtils.isEmpty(describe)) {
+            if (type == 2 || (!TextUtils.isEmpty(address_id) && type != 2)) {
+                btnClickStatus = true;
+                btnSave.setBackgroundResource(R.drawable.corners_bg_helpbtn);
+            } else {
+                btnSave.setBackgroundResource(R.drawable.corners_bg_logingray);
+            }
         } else {
             btnSave.setBackgroundResource(R.drawable.corners_bg_logingray);
         }
@@ -642,7 +651,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         action_safety_id = data.getStringExtra("action_safety_id");
         tvAction.setText(actionname);
 
-        int type = data.getIntExtra("type", 0);
+        type = data.getIntExtra("type", 0);
         if (type == 2) {//虚拟的
             relatAddress.setVisibility(View.GONE);
         } else {

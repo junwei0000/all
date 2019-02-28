@@ -575,7 +575,15 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             phone = phone.substring(0, 3) + "****" + phone.substring(7);
         }
         detailTvName.setText(mOrderItemBean.getConsignee() + "     " + phone);
-        detailTvAddress.setText(mOrderItemBean.getAddress());
+        String addre = mOrderItemBean.getAddress();
+        if (TextUtils.isEmpty(addre)) {
+            detailTvName.setVisibility(View.GONE);
+            detailTvAddress.setText("暂无地址");
+        } else {
+            detailTvName.setVisibility(View.VISIBLE);
+            detailTvAddress.setText(addre);
+        }
+
         detailTvOrdernum.setText(mOrderItemBean.getOrder_sn());
         detailTvTime.setText(mOrderItemBean.getDate());
     }

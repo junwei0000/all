@@ -55,6 +55,7 @@
                 android:id="@+id/detail_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padd_imgtextleftright"
                 android:textColor="@color/text_contents_color"
                 android:textSize="@dimen/text_contents_size" />
 
@@ -62,7 +63,6 @@
                 android:id="@+id/detail_tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/padd_imgtextleftright"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />
 
