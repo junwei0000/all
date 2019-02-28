@@ -91,7 +91,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     @BindView(R.id.iv_tohelpimg)
     ImageView iv_tohelpimg;
     private String is_cho;
-    private int myBlessHelpCount, blessMeHelpCount;
+    private String myBlessHelpCount = "0", blessMeHelpCount = "0";
     public static String automationHelpUrl, myDedicationUrl, myGratitudeUrl;
     private List<String> zangfus;
 

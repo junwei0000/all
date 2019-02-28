@@ -277,6 +277,7 @@ public abstract class WebAct extends BaseActivity {
                     data = "0";
                 }
                 intent.putExtra("type", Integer.valueOf(data));
+                intent.putExtra("skiptype", "about");
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
             }

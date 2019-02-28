@@ -134,7 +134,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Config.VERSION + "user/bindPhone")
-    Observable<EditDataBean> bindPhone(@Field("user_id") String user_id, @Field("code") String code,
+    Observable<LoginDataBean> bindPhone(@Field("user_id") String user_id, @Field("code") String code,
                                        @Field("phone") String phone, @Field("pwd") String pwd,
                                        @Field("token") String token);
 

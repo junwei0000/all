@@ -24,7 +24,9 @@ public interface LoginContract {
 
         void getCodeSuccess(SendCodeBean responseBean);
 
-        void bindPhoneSuccess(EditDataBean responseBean);
+        void bindPhoneSuccess(LoginDataBean responseBean);
+
+        void updatepwSuccess(EditDataBean responseBean);
     }
 
     abstract class Presenter<T> extends BasePresent<View> {

@@ -150,12 +150,11 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
      */
     public void bindPhone(String user_id, String code, String phone, String pwd) {
         mView.showDialog();
-        String token = ExampleApplication.token;
-        Observable<EditDataBean> observable = Api.getInstance().service.bindPhone(user_id, code, phone, pwd, ExampleApplication.token);
+        Observable<LoginDataBean> observable = Api.getInstance().service.bindPhone(user_id, code, phone, pwd, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
-                    public void accept(EditDataBean responseBean) throws Exception {
+                .subscribe(new io.reactivex.functions.Consumer<LoginDataBean>() {
+                    public void accept(LoginDataBean responseBean) throws Exception {
                         mView.dismissDialog();
                         mView.bindPhoneSuccess(responseBean);
                         Log.e("Observable", "   " + responseBean.toString());
@@ -184,7 +183,7 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
                 .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
                     public void accept(EditDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.bindPhoneSuccess(responseBean);
+                        mView.updatepwSuccess(responseBean);
                         Log.e("Observable", "   " + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

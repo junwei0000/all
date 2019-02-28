@@ -25,10 +25,10 @@ import java.util.List;
 
 public class HelpWithBottomAdapter extends BaseAdapterHelper<HelpWithInfo> {
     ViewHolder mHolder = null;
-    private int myBlessHelpCount, blessMeHelpCount;
+    private String myBlessHelpCount, blessMeHelpCount;
     Context context;
 
-    public HelpWithBottomAdapter(Context context, List<HelpWithInfo> list, int myBlessHelpCount, int blessMeHelpCount) {
+    public HelpWithBottomAdapter(Context context, List<HelpWithInfo> list, String myBlessHelpCount, String blessMeHelpCount) {
         super(context, list);
         this.context = context;
         this.myBlessHelpCount = myBlessHelpCount;
@@ -56,23 +56,15 @@ public class HelpWithBottomAdapter extends BaseAdapterHelper<HelpWithInfo> {
             mHolder.item_tv_num.setVisibility(View.VISIBLE);
         }
         if (position == 0) {
-            if(myBlessHelpCount>1000){
-                mHolder.item_tv_num.setText("…");
-            }else{
-                mHolder.item_tv_num.setText("" + myBlessHelpCount);
-            }
-            if (myBlessHelpCount == 0) {
+            mHolder.item_tv_num.setText("" + myBlessHelpCount);
+            if (myBlessHelpCount.equals("0")) {
                 mHolder.item_tv_num.setVisibility(View.GONE);
             } else {
                 mHolder.item_tv_num.setVisibility(View.VISIBLE);
             }
         } else if (position == 1) {
-            if(blessMeHelpCount>1000){
-                mHolder.item_tv_num.setText("…");
-            }else{
-                mHolder.item_tv_num.setText("" + blessMeHelpCount);
-            }
-            if (blessMeHelpCount == 0) {
+            mHolder.item_tv_num.setText("" + blessMeHelpCount);
+            if (blessMeHelpCount.equals("0")) {
                 mHolder.item_tv_num.setVisibility(View.GONE);
             } else {
                 mHolder.item_tv_num.setVisibility(View.VISIBLE);

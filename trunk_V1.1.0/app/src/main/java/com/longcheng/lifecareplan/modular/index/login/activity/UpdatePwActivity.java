@@ -217,7 +217,7 @@ public class UpdatePwActivity extends BaseActivityMVP<LoginContract.View, LoginP
     }
 
     @Override
-    public void bindPhoneSuccess(EditDataBean responseBean) {
+    public void updatepwSuccess(EditDataBean responseBean) {
         String status = responseBean.getStatus();
         if (status.equals("400")) {
             ToastUtils.showToast(responseBean.getMsg());
@@ -244,6 +244,11 @@ public class UpdatePwActivity extends BaseActivityMVP<LoginContract.View, LoginP
             mHandler.sendMessage(msg);
             msg = null;
         }
+    }
+
+    @Override
+    public void bindPhoneSuccess(LoginDataBean responseBean) {
+
     }
 
     /**

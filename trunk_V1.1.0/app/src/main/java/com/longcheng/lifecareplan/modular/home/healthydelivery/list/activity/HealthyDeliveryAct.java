@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -269,11 +270,15 @@ public class HealthyDeliveryAct extends BaseActivity implements ViewPager.OnPage
     }
 
     private void back() {
-        Intent intents = new Intent();
-        intents.setAction(ConstantManager.MAINMENU_ACTION);
-        intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);
-        LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
-        ActivityManager.getScreenManager().popAllActivityOnlyMain();
+        String skiptype = getIntent().getStringExtra("skiptype");
+        if (!TextUtils.isEmpty(skiptype) && skiptype.equals("about")) {
+        } else {
+            Intent intents = new Intent();
+            intents.setAction(ConstantManager.MAINMENU_ACTION);
+            intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);
+            LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+            ActivityManager.getScreenManager().popAllActivityOnlyMain();
+        }
         doFinish();
     }
 

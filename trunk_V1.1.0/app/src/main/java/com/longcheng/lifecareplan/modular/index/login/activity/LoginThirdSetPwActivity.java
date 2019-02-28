@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
@@ -195,18 +196,28 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
     }
 
     @Override
-    public void bindPhoneSuccess(EditDataBean responseBean) {
+    public void bindPhoneSuccess(LoginDataBean responseBean) {
         String status = responseBean.getStatus();
         if (status.equals("400")) {
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status.equals("200")) {
-            ToastUtils.showToast(responseBean.getData());
-            SharedPreferencesHelper.put(mContext, "phone", phone);
+            ToastUtils.showToast(responseBean.getMsg());
+            LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
+            if (mLoginInfo != null && !TextUtils.isEmpty(mLoginInfo.getUser_id())) {
+                SharedPreferencesHelper.put(mActivity, "loginSkipToStatus", "");
+                UserLoginSkipUtils mUserLoginSkipUtils = new UserLoginSkipUtils(this);
+                mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
+            }
             Intent intent = new Intent();
             intent.putExtra("phone", phone);
             setResult(ConstantManager.USERINFO_FORRESULT_PHONE, intent);
             doFinish();
         }
+    }
+
+    @Override
+    public void updatepwSuccess(EditDataBean responseBean) {
+
     }
 
     @Override

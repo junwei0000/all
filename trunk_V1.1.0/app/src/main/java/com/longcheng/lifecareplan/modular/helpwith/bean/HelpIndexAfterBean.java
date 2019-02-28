@@ -14,9 +14,9 @@ public class HelpIndexAfterBean {
     @SerializedName("isStartAutoHelp")
     private int isStartAutoHelp;
     @SerializedName("myBlessHelpCount")
-    private int myBlessHelpCount;
+    private String myBlessHelpCount;
     @SerializedName("blessMeHelpCount")
-    private int blessMeHelpCount;
+    private String blessMeHelpCount;
     @SerializedName("autoHelpNumberTotal")
     private String autoHelpNumberTotal;
 
@@ -66,19 +66,19 @@ public class HelpIndexAfterBean {
         this.isStartAutoHelp = isStartAutoHelp;
     }
 
-    public int getMyBlessHelpCount() {
+    public String getMyBlessHelpCount() {
         return myBlessHelpCount;
     }
 
-    public void setMyBlessHelpCount(int myBlessHelpCount) {
+    public void setMyBlessHelpCount(String myBlessHelpCount) {
         this.myBlessHelpCount = myBlessHelpCount;
     }
 
-    public int getBlessMeHelpCount() {
+    public String getBlessMeHelpCount() {
         return blessMeHelpCount;
     }
 
-    public void setBlessMeHelpCount(int blessMeHelpCount) {
+    public void setBlessMeHelpCount(String blessMeHelpCount) {
         this.blessMeHelpCount = blessMeHelpCount;
     }
 

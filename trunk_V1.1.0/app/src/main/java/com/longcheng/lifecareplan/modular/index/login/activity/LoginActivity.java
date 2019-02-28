@@ -409,7 +409,12 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     }
 
     @Override
-    public void bindPhoneSuccess(EditDataBean responseBean) {
+    public void bindPhoneSuccess(LoginDataBean responseBean) {
+
+    }
+
+    @Override
+    public void updatepwSuccess(EditDataBean responseBean) {
 
     }
 
