@@ -21,6 +21,8 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleAfterBea
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -215,6 +217,16 @@ public class PeopleActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
 
     @Override
     public void actionSafetySuccess(ActionDataBean responseBean) {
+
+    }
+
+    @Override
+    public void saveUserInfo(LoginDataBean responseBean) {
+
+    }
+
+    @Override
+    public void getCodeSuccess(SendCodeBean responseBean) {
 
     }
 

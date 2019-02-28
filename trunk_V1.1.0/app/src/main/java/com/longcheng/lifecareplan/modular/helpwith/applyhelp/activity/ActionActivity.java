@@ -31,6 +31,8 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBea
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressSelectUtils;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.CalendarActivity;
@@ -232,6 +234,16 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
                 doFinish();
             }
         }
+    }
+
+    @Override
+    public void saveUserInfo(LoginDataBean responseBean) {
+
+    }
+
+    @Override
+    public void getCodeSuccess(SendCodeBean responseBean) {
+
     }
 
     //*******************************平安行动*******************************************

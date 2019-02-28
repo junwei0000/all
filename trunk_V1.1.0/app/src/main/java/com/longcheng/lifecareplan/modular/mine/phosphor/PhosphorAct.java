@@ -1,10 +1,8 @@
 package com.longcheng.lifecareplan.modular.mine.phosphor;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,25 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.api.Api;
-import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.mine.goodluck.bean.GoodLuckListDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * 启明星

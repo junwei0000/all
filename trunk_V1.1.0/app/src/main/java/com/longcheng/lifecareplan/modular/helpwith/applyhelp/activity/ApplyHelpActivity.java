@@ -37,6 +37,9 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleItemBean
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
+import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressListActivity;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressSelectUtils;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressAfterBean;
@@ -55,6 +58,8 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesH
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -170,10 +175,11 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                 }
                 break;
             case R.id.btn_save:
-                Log.e("Observable", "address_id = " + address_id);
-                if (btnClickStatus) {
-                    mPresent.applyAction(user_id, action_id,
-                            peopleid, address_id, describe, action_safety_id, extend_info, qiming_user_id);
+                if (!showNotCHODialog()) {
+                    if (btnClickStatus) {
+                        mPresent.applyAction(user_id, action_id,
+                                peopleid, address_id, describe, action_safety_id, extend_info, qiming_user_id);
+                    }
                 }
                 break;
         }
@@ -182,6 +188,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     boolean btnClickStatus = false;
 
     private void setBtnBg() {
+        showNotCHODialog();
         btnClickStatus = false;
         if (!TextUtils.isEmpty(action_id) && !TextUtils.isEmpty(peopleid) &&
                 !TextUtils.isEmpty(describe)) {
@@ -232,24 +239,29 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     public void initDataAfter() {
         pageTopTvName.setText("申请互祝");
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
+        mPresent.getNeedHelpNumberTask(user_id);
+        skiptype = getIntent().getStringExtra("skiptype");
+        if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
+            peopleid = getIntent().getStringExtra("other_user_id");
+            mPresent.getOtherUserInfo(user_id, peopleid);
+        } else {
+            mPresent.getPeopleList(user_id);
+        }
+        setBtnBg();
+        showRedSkipData(getIntent());
+    }
+
+    private boolean showNotCHODialog() {
+        boolean stauts = false;
         String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
         //1:是  ；0：不是
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-            mPresent.getNeedHelpNumberTask(user_id);
-            skiptype = getIntent().getStringExtra("skiptype");
-            if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
-                peopleid = getIntent().getStringExtra("other_user_id");
-                mPresent.getOtherUserInfo(user_id, peopleid);
-            } else {
-                mPresent.getPeopleList(user_id);
-            }
-            setBtnBg();
-            showRedSkipData(getIntent());
         } else {
+            stauts = true;
             showNotCHOWindow();
         }
+        return stauts;
     }
-
 
     @Override
     protected ApplyHelpPresenterImp<ApplyHelpContract.View> createPresent() {
@@ -475,6 +487,30 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     @Override
     public void actionSafetySuccess(ActionDataBean responseBean) {
 
+    }
+
+    @Override
+    public void saveUserInfo(LoginDataBean responseBean) {
+        String status = responseBean.getStatus();
+        if (status.equals("400")) {
+            ToastUtils.showToast(responseBean.getMsg());
+        } else if (status.equals("200")) {
+            mNotCHODialog.dismiss();
+        }
+    }
+
+    @Override
+    public void getCodeSuccess(SendCodeBean responseBean) {
+        codeSendingStatus = false;
+        String status = responseBean.getStatus();
+        if (status.equals("400")) {
+            ToastUtils.showToast(responseBean.getMsg());
+        } else if (status.equals("200")) {
+            Message msg = new Message();
+            msg.what = Daojishistart;
+            mcodeHandler.sendMessage(msg);
+            msg = null;
+        }
     }
 
     @Override
@@ -729,17 +765,11 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
 
             TextView btn_ok = (TextView) mNotCHODialog.findViewById(R.id.btn_ok);
 
-            mNotCHODialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    return true;
-                }
-            });
             layout_cancel.setOnClickListener(actionClickListener);
             layout_date.setOnClickListener(actionClickListener);
             layout_address.setOnClickListener(actionClickListener);
             btn_ok.setOnClickListener(actionClickListener);
-
+            tv_getcode.setOnClickListener(actionClickListener);
             ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_name, 20);
             ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_phone, 11);
             ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_code, 6);
@@ -776,6 +806,14 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                     mNotCHODialog.dismiss();
                     doFinish();
                     break;
+                case R.id.tv_getcode:
+                    String phoneNum = et_phone.getText().toString().trim();
+                    if (Utils.isCheckPhone(phoneNum) && !codeSendingStatus) {
+                        codeSendingStatus = true;
+                        mPresent.pUseSendCode(phoneNum, "9");
+                    }
+                    break;
+
                 case R.id.layout_address:
                     if (mAddressSelectUtils == null) {
                         mAddressSelectUtils = new AddressSelectUtils(mActivity, mHandler, SELECTADDRESS);
@@ -796,14 +834,71 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                     String pw = et_pw.getText().toString().trim();
                     String pwnew = et_pwnew.getText().toString().trim();
                     if (checkActionStatus(user_name, phone, code, pw, pwnew, birthday)) {
-//                        mPresent.actionSafety(user_id, user_name, phone, code, pw, pwnew, pid, cid, aid
-//                                , birthday);
-                        mNotCHODialog.dismiss();
+                        mPresent.saveUserInfo(user_id, user_name, phone, code, pw, pwnew, pid, cid, aid
+                                , birthday);
                     }
                     break;
             }
         }
     };
+    /**
+     * 是否正在请求发送验证码，防止多次重发
+     */
+    boolean codeSendingStatus = false;
+    private MyHandler mcodeHandler = new MyHandler();
+    private TimerTask timerTask;
+    private final int Daojishistart = 0;
+    private final int Daojishiover = 1;
+    private int count;
+
+    private void daojishi() {
+        final long nowTime = System.currentTimeMillis();
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                count--;
+                Message msg = new Message();
+                msg.what = Daojishiover;
+                msg.arg1 = count;
+                msg.obj = nowTime;
+                mcodeHandler.sendMessage(msg);
+                if (count <= 0) {
+                    this.cancel();
+                }
+                msg = null;
+            }
+        };
+        new Timer().schedule(timerTask, 0, 1000);
+    }
+
+    private class MyHandler extends Handler {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case Daojishistart:
+                    tv_getcode.setEnabled(false);
+                    count = 60;
+                    daojishi();
+                    break;
+                case Daojishiover:
+                    if (msg.arg1 < 10) {
+                        tv_getcode.setText("0" + msg.arg1 + getString(R.string.tv_codeunit));
+                    } else {
+                        tv_getcode.setText(msg.arg1 + getString(R.string.tv_codeunit));
+                    }
+                    if (msg.arg1 <= 0) {
+                        tv_getcode.setTextColor(getResources().getColor(R.color.blue));
+                        tv_getcode.setEnabled(true);
+                        tv_getcode.setText(getString(R.string.code_get));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     private boolean checkActionStatus(String user_name, String phone, String code
             , String pw, String pwnew, String birthday) {
@@ -851,9 +946,19 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             }
         }
     };
+
     /**
      * **********************************************************
      */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timerTask != null) {
+            timerTask.cancel();
+            mHandler.removeCallbacks(timerTask);
+        }
+    }
+
     /**
      * 重写onkeydown 用于监听返回键
      */

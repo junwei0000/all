@@ -13,9 +13,12 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoD
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetUserSETDataBean;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -346,6 +349,65 @@ public class ApplyHelpPresenterImp<T> extends ApplyHelpContract.Presenter<ApplyH
                     public void accept(ActionDataBean responseBean) throws Exception {
                         mView.dismissDialog();
                         mView.actionSafetySuccess(responseBean);
+                        Log.e("Observable", "" + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.ListError();
+                    }
+                });
+
+    }
+    /**
+     * 1：注册 2：找回密码 3.修改手机号 4.快捷登陆 默认是4 5.绑定手机号
+     *
+     * @param phoneNum
+     * @param type
+     */
+    public void pUseSendCode(String phoneNum, String type) {
+        mView.showDialog();
+
+        Observable<SendCodeBean> observable = Api.getInstance().service.userSendCode2(UserUtils.getUserId(mContext),phoneNum, type, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<SendCodeBean>() {
+                    public void accept(SendCodeBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        mView.getCodeSuccess(responseBean);
+                        Log.e("Observable", "   " + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        Log.e("Observable", throwable.getMessage() + "   " + throwable.toString());
+                    }
+                });
+    }
+    /**
+     * 非cho保存资料
+     *
+     * @param user_id
+     */
+    public void saveUserInfo(String user_id, String user_name,
+                             String phone, String code, String pw, String pwnew, String pid,
+                             String cid, String aid, String birthday) {
+        Log.e("saveUserInfo","user_id="+user_id+"&user_name="+user_name
+                +"&phone="+phone+"&code="+code+"&password="+pw+"&repassword="+pwnew
+                +"&pid="+pid+"&cid="+cid+"&aid="+aid
+                +"&birthday="+birthday+"&token="+ExampleApplication.token);
+        mView.showDialog();
+        Observable<LoginDataBean> observable = Api.getInstance().service.saveUserInfo(user_id, user_name, phone, code, pw, pwnew,
+                pid, cid, aid
+                , birthday, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<LoginDataBean>() {
+                    @Override
+                    public void accept(LoginDataBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        mView.saveUserInfo(responseBean);
                         Log.e("Observable", "" + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

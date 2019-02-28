@@ -510,7 +510,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
             btnHelp.setVisibility(View.VISIBLE);
         }
         pbLifeprogressnum.setProgress(progress);
-        ProgressUtils mProgressUtils = new ProgressUtils(mContext);
+        DetailProgressUtils mProgressUtils = new DetailProgressUtils(mActivity);
         mProgressUtils.showNum(progress, pbLifeprogressnum.getMax(), pbNum);
     }
 

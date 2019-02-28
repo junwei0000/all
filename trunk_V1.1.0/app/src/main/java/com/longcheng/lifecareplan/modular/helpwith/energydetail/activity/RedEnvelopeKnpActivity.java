@@ -21,7 +21,6 @@ import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.SkipHelpUtils;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.PayAfterBean;

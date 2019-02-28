@@ -10,6 +10,8 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBea
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 
 /**
@@ -38,6 +40,10 @@ public interface ApplyHelpContract {
         void applyActionSuccess(ActionDataBean responseBean);
 
         void actionSafetySuccess(ActionDataBean responseBean);
+
+        void saveUserInfo(LoginDataBean responseBean);
+
+        void getCodeSuccess(SendCodeBean responseBean);
 
         void ListError();
 

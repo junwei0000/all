@@ -527,20 +527,12 @@ public abstract class WebAct extends BaseActivity {
      * 启明星页面-右边按钮 跳转申请互祝页
      */
     private void qiMingSkipApplyHelp(String action_goods_id) {
-        Intent intent;
-        String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
-        if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-            intent = new Intent(mContext, ApplyHelpActivity.class);
-            intent.putExtra("action_goods_id", "" + action_goods_id);
-            intent.putExtra("qiming_user_id", "" + qiming_user_id);
-            intent.putExtra("skipType", ConstantManager.skipType_OPENRED);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-        } else {
-            intent = new Intent(mContext, UserInfoActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(mContext, ApplyHelpActivity.class);
+        intent.putExtra("action_goods_id", "" + action_goods_id);
+        intent.putExtra("qiming_user_id", "" + qiming_user_id);
+        intent.putExtra("skipType", ConstantManager.skipType_OPENRED);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
     public void getRedirectMsgId(String action_goods_id) {

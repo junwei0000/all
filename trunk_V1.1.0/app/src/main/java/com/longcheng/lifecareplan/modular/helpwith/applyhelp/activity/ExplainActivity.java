@@ -17,6 +17,8 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBea
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
+import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -160,6 +162,16 @@ public class ExplainActivity extends BaseActivityMVP<ApplyHelpContract.View, App
 
     @Override
     public void actionSafetySuccess(ActionDataBean responseBean) {
+
+    }
+
+    @Override
+    public void saveUserInfo(LoginDataBean responseBean) {
+
+    }
+
+    @Override
+    public void getCodeSuccess(SendCodeBean responseBean) {
 
     }
 

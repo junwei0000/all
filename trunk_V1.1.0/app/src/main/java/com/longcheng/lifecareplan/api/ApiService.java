@@ -116,7 +116,15 @@ public interface ApiService {
                                        @Field("token") String token);
 
     @GET(Config.VERSION + "code/sendCode")
-    Observable<SendCodeBean> userSendCode(@Query("phone") String phone, @Query("type") String type, @Query("token") String token);
+    Observable<SendCodeBean> userSendCode(@Query("phone") String phone,
+                                          @Query("type") String type,
+                                          @Query("token") String token);
+
+    @GET(Config.VERSION + "code/sendCode")
+    Observable<SendCodeBean> userSendCode2(@Query("user_id") String user_id,
+                                           @Query("phone") String phone,
+                                           @Query("type") String type,
+                                           @Query("token") String token);
 
     @GET(Config.VERSION + "code/sendCode")
     Observable<SendCodeBean> cashSendCode(@Query("user_id") String user_id, @Query("phone") String phone, @Query("token") String token);
@@ -234,6 +242,20 @@ public interface ApiService {
                                             @Field("phone") String phone,
                                             @Field("email") String email,
                                             @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "user/ajaxSaveUserInfo")
+    Observable<LoginDataBean> saveUserInfo(@Field("user_id") String user_id,
+                                           @Field("user_name") String user_name,
+                                           @Field("phone") String phone,
+                                           @Field("code") String code,
+                                           @Field("password") String password,
+                                           @Field("repassword") String repassword,
+                                           @Field("pid") String pid,
+                                           @Field("cid") String cid,
+                                           @Field("aid") String aid,
+                                           @Field("birthday") String birthday,
+                                           @Field("token") String token);
 
     @GET(Config.VERSION + "help/actionList")
     Observable<ActionDataListBean> getActionList(@Query("user_id") String user_id, @Query("token") String token);

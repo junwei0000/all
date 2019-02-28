@@ -21,7 +21,6 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.adapter.HelpWithBottomAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.adapter.HelpWithTopAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
@@ -129,9 +128,6 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-//                    } else {
-//                        ToastUtils.showToast("升级为CHO可用");
-//                    }
                 } else if (position == 3) {
                     //申请互祝
                     Intent intents = new Intent();
@@ -316,7 +312,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                 shoevon = "请完善个人资料，体验24节气定制养生指导";
                 tvTohelp.setText("完善资料");
             }
-            tvShowname.setText("“24节气养生指导”温馨提示" + mUserInfo.getUser_name() + "：");
+            tvShowname.setText("“24节气养生指导”温馨提示\n" + mUserInfo.getUser_name() + "：");
             tvShowcont.setText(shoevon);
 
             if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 6) {

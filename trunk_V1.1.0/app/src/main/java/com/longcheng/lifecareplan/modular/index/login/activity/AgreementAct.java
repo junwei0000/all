@@ -2,20 +2,13 @@ package com.longcheng.lifecareplan.modular.index.login.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 
 import butterknife.BindView;
 
