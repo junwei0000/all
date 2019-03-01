@@ -141,10 +141,12 @@ public class ConnonH5Activity extends WebAct {
                     JSONObject jsonObject = new JSONObject(data);
                     String url = jsonObject.optString("url", "");
                     String knp_msg_id = jsonObject.optString("knp_msg_id", "");
-                    if (!TextUtils.isEmpty(url) && url.contains("/knp/info")) {
-                        pagetopIvRigth.setVisibility(View.VISIBLE);
-                    } else {
-                        pagetopIvRigth.setVisibility(View.GONE);
+                    if (pagetopIvRigth != null) {
+                        if (!TextUtils.isEmpty(url) && url.contains("/knp/info")) {
+                            pagetopIvRigth.setVisibility(View.VISIBLE);
+                        } else {
+                            pagetopIvRigth.setVisibility(View.GONE);
+                        }
                     }
                     if (!knp_msg_id.equals("0"))
                         getKNPMsgDetail(knp_msg_id);

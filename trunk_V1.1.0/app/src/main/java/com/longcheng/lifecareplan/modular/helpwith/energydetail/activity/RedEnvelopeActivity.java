@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.helpwith.energydetail.activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -188,6 +189,13 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
         one_order_id = intent.getStringExtra("one_order_id");
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         mPresent.getRedEnvelopeData(user_id, one_order_id);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showRedEvelope();
+            }
+        }, 500);
     }
 
     @Override
@@ -204,33 +212,6 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
     }
 
 
-    /**
-     * 返回上一页按钮 默认 1 返回互助列表,2 返回互助申请页面
-     */
-    private void back() {
-        if (!TextUtils.isEmpty(backToPrePage) && backToPrePage.equals("1")) {
-            Intent intent = new Intent(mActivity, HelpWithEnergyActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.putExtra("skiptype", "redbao");
-            startActivity(intent);
-        } else if (!TextUtils.isEmpty(backToPrePage) && backToPrePage.equals("2")) {
-            Intent intent = new Intent(mActivity, ApplyHelpActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-        }
-        finish();
-        ConfigUtils.getINSTANCE().setPageLoginBackAnim(mActivity);
-    }
-
-    /**
-     * 重写onkeydown 用于监听返回键
-     */
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            back();
-        }
-        return false;
-    }
 
     /**
      * 拆红包后展示数据和动画
@@ -239,11 +220,6 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
         startRed = true;
         int type = data.getType();
         tvRedDetail.setText(data.getRed_packet_money());
-//                tvRedtype.setVisibility(View.VISIBLE);
-//                iv_daiyan.setVisibility(View.VISIBLE);
-//                ivRedtop.setVisibility(View.GONE);
-//                ivRedbottom.setBackgroundResource(R.mipmap.aredenvelope_openthe);
-
         //红包类型 1:money, 2:skb,
         if (type == 1) {
             tvRedtype.setText("现金");
@@ -375,7 +351,6 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
             } else if (!TextUtils.isEmpty(backToPrePage) && backToPrePage.equals("2")) {
                 btnBacklist.setText(R.string.back_to_application);
             }
-            showRedEvelope();
         }
     }
 
@@ -407,5 +382,33 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
     public void onOpenRedEnvelopeError(String msg) {
         ToastUtils.showToast(msg);
         showRedEvelope();
+    }
+
+    /**
+     * 返回上一页按钮 默认 1 返回互助列表,2 返回互助申请页面
+     */
+    private void back() {
+        if (!TextUtils.isEmpty(backToPrePage) && backToPrePage.equals("1")) {
+            Intent intent = new Intent(mActivity, HelpWithEnergyActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("skiptype", "redbao");
+            startActivity(intent);
+        } else if (!TextUtils.isEmpty(backToPrePage) && backToPrePage.equals("2")) {
+            Intent intent = new Intent(mActivity, ApplyHelpActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        }
+        finish();
+        ConfigUtils.getINSTANCE().setPageLoginBackAnim(mActivity);
+    }
+
+    /**
+     * 重写onkeydown 用于监听返回键
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            back();
+        }
+        return false;
     }
 }

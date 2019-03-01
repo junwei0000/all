@@ -818,9 +818,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                             /**
                              * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
                              */
-                            ScrollView scrollview = main_sv.getRefreshableView();
-                            scrollview.smoothScrollTo(0, 0);
-                            frame_bottom.setVisibility(View.VISIBLE);
+                            if(main_sv!=null){
+                                ScrollView scrollview = main_sv.getRefreshableView();
+                                scrollview.smoothScrollTo(0, 0);
+                                frame_bottom.setVisibility(View.VISIBLE);
+                            }
                         }
                     });
         }

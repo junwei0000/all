@@ -250,6 +250,15 @@ public abstract class WebAct extends BaseActivity {
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
             }
         });
+        //每日签到-跳转生命能量申请互祝
+        mBridgeWebView.registerHandler("signIn_applyHelp", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(mContext, ApplyHelpActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
         //健康速递详情-返回关闭页面
         mBridgeWebView.registerHandler("Newspu_ReturnJudgement", new BridgeHandler() {
             @Override
@@ -404,7 +413,7 @@ public abstract class WebAct extends BaseActivity {
             }
         });
         //智能互祝-跳转生命能量互祝列表
-        mBridgeWebView.registerHandler(" helpList_back", new BridgeHandler() {
+        mBridgeWebView.registerHandler("helpList_back", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
