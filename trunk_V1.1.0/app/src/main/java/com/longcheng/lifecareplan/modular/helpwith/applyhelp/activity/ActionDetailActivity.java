@@ -171,7 +171,7 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
 
     }
 
-    ActionItemBean mActionItemBean;
+    ActionItemBean mActionItemBean = new ActionItemBean();
 
     @Override
     public void ActionDetailSuccess(ActionDataBean responseBean) {

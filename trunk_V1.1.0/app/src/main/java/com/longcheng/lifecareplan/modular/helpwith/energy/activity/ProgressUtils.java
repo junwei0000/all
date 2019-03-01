@@ -37,7 +37,8 @@ public class ProgressUtils {
         } else if (progress <= 10) {
             ww = ww - 2;
         }
-        Log.e("progress", "progress=" + progress + " ;ww==" + ww);
+        Log.e("progress", "progress=" + progress
+                + " ;progresslen==" + progresslen + " ;contentlen==" + contentlen + " ;ww==" + ww);
         if (ww < 0) {
             ww = 0;
         }

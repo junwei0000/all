@@ -722,16 +722,25 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
 
 
         String Ability_price = data.getStringExtra("action_abilityprice");
+        if (TextUtils.isEmpty(Ability_price)) {
+            tvActionengry.setVisibility(View.INVISIBLE);
+        } else {
+            tvActionengry.setVisibility(View.VISIBLE);
+        }
         Ability_price = PriceUtils.getInstance().seePrice(Ability_price);
         String name1 = data.getStringExtra("actionname1");
         String img = data.getStringExtra("actionnimg");
         tvActionengry.setText(Ability_price + "生命能量");
         tvAction1.setText(name1);
+        if (TextUtils.isEmpty(img)) {
+            ivActionimg.setVisibility(View.GONE);
+        } else {
+            ivActionimg.setVisibility(View.VISIBLE);
+        }
         GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, img, ivActionimg, ConstantManager.image_angle);
-        ivActionimg.setVisibility(View.VISIBLE);
+
         tvAction1.setVisibility(View.VISIBLE);
         tvAction.setVisibility(View.VISIBLE);
-        tvActionengry.setVisibility(View.VISIBLE);
 
 
         describe = "";

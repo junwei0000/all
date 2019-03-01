@@ -85,7 +85,6 @@ public class CommuneJoinListActivity extends BaseListActivity<CommuneContract.Vi
 
     @Override
     public void onClick(View v) {
-        ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
                 back();
