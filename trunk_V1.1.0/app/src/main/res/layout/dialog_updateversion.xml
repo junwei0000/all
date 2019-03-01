@@ -29,10 +29,10 @@
 
         <TextView
             android:id="@+id/tv_update"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp40"
-            android:background="@drawable/corners_bg_login"
+            android:background="@drawable/corners_bg_blue"
             android:gravity="center"
             android:paddingBottom="@dimen/dp10"
             android:paddingTop="@dimen/dp10"
