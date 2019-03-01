@@ -61,7 +61,7 @@ public class MyGraH5Activity extends WebAct {
     @Override
     public void initView(View view) {
         super.initView(view);
-        pageTopTvName.setText("智能互祝");
+        pageTopTvName.setText("我的恩人");
         setOrChangeTranslucentColor(toolbar, null);
     }
 

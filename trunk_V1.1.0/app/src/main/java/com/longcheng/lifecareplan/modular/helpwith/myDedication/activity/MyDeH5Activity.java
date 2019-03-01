@@ -59,7 +59,7 @@ public class MyDeH5Activity extends WebAct {
     @Override
     public void initView(View view) {
         super.initView(view);
-        pageTopTvName.setText("智能互祝");
+        pageTopTvName.setText("我的奉献");
         setOrChangeTranslucentColor(toolbar, null);
     }
 

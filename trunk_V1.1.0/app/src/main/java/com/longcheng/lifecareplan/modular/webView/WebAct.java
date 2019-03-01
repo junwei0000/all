@@ -149,7 +149,8 @@ public abstract class WebAct extends BaseActivity {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
-                pageTopTvName.setText(data);
+                if (pageTopTvName != null)
+                    pageTopTvName.setText(""+data);
             }
         });
         mBridgeWebView.registerHandler("main_qiming_skipdetail", new BridgeHandler() {
@@ -190,7 +191,7 @@ public abstract class WebAct extends BaseActivity {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
-                if (!data.contains(Config.BASE_HEAD_URL)) {
+                if (!data.contains("http")) {
                     data = Config.BASE_HEAD_URL + data;
                 }
                 Intent intent = new Intent(mContext, ConnonH5Activity.class);
