@@ -44,7 +44,9 @@ public class UserLoginBack403Utils {
         boolean tishi = false;
         if (status.equals("499")) {
             tishi = true;
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
+            boolean IsLogout = MySharedPreferences.getInstance().getIsLogout();
+            if (!IsLogout)
+                UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         } else if (status.equals("500")) {
             tishi = true;
             UserLoginBack403Utils.getInstance().sendBroadcastUpdatePw500();
@@ -91,9 +93,8 @@ public class UserLoginBack403Utils {
      */
     MyDialog selectDialog;
 
-    public void showDialogPromptReLogin() {
+    public void showDialogPromptReLogin(Activity mActivity) {
         if (selectDialog == null || (selectDialog != null && !selectDialog.isShowing())) {
-            Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
             selectDialog = new MyDialog(mActivity, R.style.dialog,
                     R.layout.dialog_logout);
             selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog

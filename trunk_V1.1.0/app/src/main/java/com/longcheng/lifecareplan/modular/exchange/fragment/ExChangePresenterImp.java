@@ -4,6 +4,7 @@ import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.exchange.bean.JieQiListDataBean;
 import com.longcheng.lifecareplan.modular.exchange.bean.MallGoodsListDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderListDataBean;
 
 import io.reactivex.Observable;
@@ -56,7 +57,8 @@ public class ExChangePresenterImp<T> extends ExChangeContract.Present<ExChangeCo
                     @Override
                     public void accept(MallGoodsListDataBean responseBean) throws Exception {
                         view.dismissDialog();
-                        view.ListSuccess(responseBean, page);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            view.ListSuccess(responseBean, page);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

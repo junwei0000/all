@@ -297,11 +297,10 @@ public class BottomMenuActivity extends BaseActivity {
                     } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_LOGIN403)) {
                         //单点登录
                         Log.e("ResponseBody", "单点登录");
-                        UserLoginBack403Utils.getInstance()
-                                .showDialogPromptReLogin();
+                        Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
+                        UserLoginBack403Utils.getInstance().showDialogPromptReLogin(mActivity);
                     } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_UPDATEPW500)) {
-                        //单点登录
-                        Log.e("ResponseBody", "单点登录");
+                        //设置密码
                         Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
                         intent = new Intent(mActivity, UpdatePwActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

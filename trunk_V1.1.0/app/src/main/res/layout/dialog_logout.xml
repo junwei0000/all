@@ -24,7 +24,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_logout_title"
                 android:textColor="@color/text_contents_color"
-                android:textSize="@dimen/text_contents_size" />
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/myexit_text_cirt"
@@ -34,7 +35,8 @@
                 android:paddingTop="5dp"
                 android:text="@string/dialog_logout_cirt"
                 android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_contents_size" />
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <include layout="@layout/line" />
@@ -52,9 +54,9 @@
                 android:gravity="center"
                 android:text="@string/cancel"
                 android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_contents_size" />
+                android:textSize="@dimen/text_contents_size"
+                android:visibility="gone" />
 
-            <include layout="@layout/line_su" />
 
             <TextView
                 android:id="@+id/myexit_text_sure"
@@ -65,7 +67,8 @@
                 android:gravity="center"
                 android:text="@string/sure"
                 android:textColor="@color/red_course"
-                android:textSize="@dimen/text_contents_size" />
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 

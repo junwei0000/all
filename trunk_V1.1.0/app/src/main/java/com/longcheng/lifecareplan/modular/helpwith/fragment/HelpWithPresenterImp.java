@@ -6,6 +6,7 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -42,7 +43,8 @@ public class HelpWithPresenterImp<T> extends HelpWithContract.Present<HelpWithCo
                     @Override
                     public void accept(HelpIndexDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.getHelpIndexSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.getHelpIndexSuccess(responseBean);
                         Log.e("Observable", "" + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

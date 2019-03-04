@@ -34,6 +34,7 @@ import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
 import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFriendsActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.activity.AWordOfGoldAct;
 import com.longcheng.lifecareplan.modular.mine.phosphor.RedirectDataBean;
@@ -450,6 +451,16 @@ public abstract class WebAct extends BaseActivity {
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
             }
         });
+        //APP跳转到登录
+        mBridgeWebView.registerHandler("APP_ReLogin", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
+                UserLoginBack403Utils.getInstance()
+                        .showDialogPromptReLogin(mActivity);
+            }
+        });
+
     }
 
     /**
