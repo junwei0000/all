@@ -97,6 +97,7 @@ public class BottomMenuActivity extends BaseActivity {
     public void initView(View view) {
         registerMessageReceiver();
         setOrChangeTranslucentColor(mToolbar, null);
+//        ShortcutUtils.setDynamicShort(mActivity);
     }
 
 
@@ -141,6 +142,7 @@ public class BottomMenuActivity extends BaseActivity {
     /**
      * 是否登录判断
      */
+
     private void chackSkipByLoginStatus() {
         try {
             String loginStatus = (String) SharedPreferencesHelper.get(getApplicationContext(), "loginStatus", "");

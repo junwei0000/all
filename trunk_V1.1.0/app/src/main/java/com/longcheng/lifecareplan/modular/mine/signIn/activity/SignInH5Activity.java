@@ -42,7 +42,7 @@ public class SignInH5Activity extends WebAct {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
-                doFinish();
+                back();
                 break;
             case R.id.pagetop_layout_rigth:
                 //分享
@@ -94,12 +94,21 @@ public class SignInH5Activity extends WebAct {
     }
 
 
+
+    private void back() {
+        if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
+            mBridgeWebView.goBack();
+        } else {
+            doFinish();
+        }
+    }
+
     /**
      * 重写onkeydown 用于监听返回键
      */
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            doFinish();
+            back();
         }
         return false;
     }
