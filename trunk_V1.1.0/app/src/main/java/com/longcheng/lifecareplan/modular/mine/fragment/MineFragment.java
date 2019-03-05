@@ -72,6 +72,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreference
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 
 import java.util.HashMap;
 
@@ -343,13 +344,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_smallpusher://小推手
+//                ToastUtils.showToast("程序猿正在攻坚中…");
 //                String promoter_url = data.getPromoter_url();
-//                intent = new Intent(mContext, SmallPushH5Activity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intent.putExtra("html_url", promoter_url);
-//                startActivity(intent);
-//                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                ToastUtils.showToast("程序猿正在攻坚中…");
+                intent = new Intent(mContext, MipcaCaptureActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_iv_head://用户信息
                 intent = new Intent(mContext, UserInfoActivity.class);

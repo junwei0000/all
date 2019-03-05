@@ -61,11 +61,11 @@ public final class ViewfinderView extends View {
     /**
      * 四个绿色边角对应的宽度
      */
-    private static final int CORNER_WIDTH = 10;
+    private static final int CORNER_WIDTH = 8;
     /**
      * 扫描框中的中间线的宽度
      */
-    private static final int MIDDLE_LINE_WIDTH = 6;
+    private static final int MIDDLE_LINE_WIDTH = 5;
 
     /**
      * 扫描框中的中间线的与扫描框左右的间隙
@@ -84,7 +84,7 @@ public final class ViewfinderView extends View {
     /**
      * 字体大小
      */
-    private static final int TEXT_SIZE = 16;
+    private static final int TEXT_SIZE = 15;
     /**
      * 字体距离扫描框下面的距离
      */
@@ -109,9 +109,14 @@ public final class ViewfinderView extends View {
      * 将扫描的二维码拍下来，这里没有这个功能，暂时不考虑
      */
     private Bitmap resultBitmap;
+    /**
+     * 初始化的背景颜色
+     */
     private final int maskColor;
     private final int resultColor;
-
+    /**
+     * 扫描出现的点的颜色
+     */
     private final int resultPointColor;
     private Collection<ResultPoint> possibleResultPoints;
     private Collection<ResultPoint> lastPossibleResultPoints;
@@ -127,10 +132,10 @@ public final class ViewfinderView extends View {
 
         paint = new Paint();
         Resources resources = getResources();
-        maskColor = resources.getColor(R.color.text_noclick_color);
+        maskColor = resources.getColor(R.color.viewfinder_mask);
         resultColor = resources.getColor(R.color.text_contents_color);
 
-        resultPointColor = resources.getColor(R.color.yellow);
+        resultPointColor = resources.getColor(R.color.red);
         possibleResultPoints = new HashSet<ResultPoint>(5);
     }
 
@@ -152,9 +157,12 @@ public final class ViewfinderView extends View {
         int width = canvas.getWidth();
         int height = canvas.getHeight();
 
+        /**
+         * 画出扫描框外面的阴影部分，共四个部分，扫描框的上面到屏幕上面，扫描框的下面到屏幕下面
+         扫描框的左边面到屏幕左边，扫描框的右边到屏幕右边
+         */
+        paint.setAlpha(50);
         paint.setColor(resultBitmap != null ? resultColor : maskColor);
-        //画出扫描框外面的阴影部分，共四个部分，扫描框的上面到屏幕上面，扫描框的下面到屏幕下面
-        //扫描框的左边面到屏幕左边，扫描框的右边到屏幕右边
         canvas.drawRect(0, 0, width, frame.top, paint);
         canvas.drawRect(0, frame.top, frame.left, frame.bottom + 1, paint);
         canvas.drawRect(frame.right + 1, frame.top, width, frame.bottom + 1, paint);
@@ -167,8 +175,12 @@ public final class ViewfinderView extends View {
             canvas.drawBitmap(resultBitmap, frame.left, frame.top, paint);
         } else {
 
-            //画扫描框边上的角，总共8个部分
-            paint.setColor(getContext().getResources().getColor(R.color.blue));
+            /**
+             * 画扫描框边上的角，总共8个部分
+             */
+
+            paint.setColor(getContext().getResources().getColor(R.color.QRcode_color));
+
             canvas.drawRect(frame.left, frame.top, frame.left + ScreenRate,
                     frame.top + CORNER_WIDTH, paint);
             canvas.drawRect(frame.left, frame.top, frame.left + CORNER_WIDTH, frame.top
@@ -187,7 +199,10 @@ public final class ViewfinderView extends View {
                     frame.right, frame.bottom, paint);
 
 
-            //绘制中间的线,每次刷新界面，中间的线往下移动SPEEN_DISTANCE
+            /**
+             * 绘制中间的线,每次刷新界面，中间的线往下移动SPEEN_DISTANCE
+             */
+
             slideTop += SPEEN_DISTANCE;
             if (slideTop >= frame.bottom) {
                 slideTop = frame.top;
@@ -198,11 +213,14 @@ public final class ViewfinderView extends View {
                     slideTop + MIDDLE_LINE_WIDTH / 2, paint);
 
 
-            //画扫描框下面的字
+            /**
+             * 画扫描框下面的字
+             */
+
             paint.setColor(Color.WHITE);
             paint.setTextSize(TEXT_SIZE * density);
             paint.setAlpha(0x40);
-            paint.setTypeface(Typeface.create("System", Typeface.BOLD));
+//            paint.setTypeface(Typeface.create("System", Typeface.BOLD));
             canvas.drawText(getResources().getString(R.string.scan_text), frame.left, (float) (frame.bottom + (float) TEXT_PADDING_TOP * density), paint);
 
 

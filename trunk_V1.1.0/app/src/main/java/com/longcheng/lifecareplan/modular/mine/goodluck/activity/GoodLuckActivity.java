@@ -326,15 +326,6 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
         }
     }
 
-    /**
-     * 重写onkeydown 用于监听返回键
-     */
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            doFinish();
-        }
-        return false;
-    }
 
     @Override
     protected void onDestroy() {
@@ -368,4 +359,14 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
             mHomeHotPushAdapter.refreshListView(helpAllList);
         }
     };
+
+    /**
+     * 重写onkeydown 用于监听返回键
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            doFinish();
+        }
+        return false;
+    }
 }

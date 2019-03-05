@@ -5,21 +5,24 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
-import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.zxing.camera.CameraManager;
 import com.longcheng.lifecareplan.zxing.decoding.CaptureActivityHandler;
 import com.longcheng.lifecareplan.zxing.decoding.InactivityTimer;
@@ -27,6 +30,8 @@ import com.longcheng.lifecareplan.zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;
+
+import butterknife.BindView;
 
 /**
  * 作者：MarkShuai
@@ -37,8 +42,17 @@ import java.util.Vector;
 public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.Callback {
 
 
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
+    @BindView(R.id.pagetop_layout_left)
+    LinearLayout pagetopLayoutLeft;
+    @BindView(R.id.preview_view)
+    SurfaceView previewView;
+    @BindView(R.id.viewfinder_view)
+    ViewfinderView viewfinderView;
+
+
     private CaptureActivityHandler handler;
-    private ViewfinderView viewfinderView;
     private boolean hasSurface;
     private Vector<BarcodeFormat> decodeFormats;
     private String characterSet;
@@ -47,13 +61,8 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
     private boolean playBeep;
     private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
-    private String name;
+    private String name = "";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        CameraManager.init(getApplication());
-    }
 
     @Override
     public View bindView() {
@@ -67,12 +76,20 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
 
     @Override
     public void initView(View view) {
+        CameraManager.init(getApplication());
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity,getResources().getColor(R.color.transparent));
+//        setOrChangeTranslucentColor(toolbar, null);
+    }
+
+
+    @Override
+    public void setListener() {
+        pagetopLayoutLeft.setOnClickListener(this);
+    }
+
+    @Override
+    public void initDataAfter() {
         getIntentData();
-        viewfinderView = view.findViewById(R.id.viewfinder_view);
-        Button mButtonBack = view.findViewById(R.id.button_back);
-        mButtonBack.setOnClickListener(this);
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        setOrChangeTranslucentColor(toolbar, null);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
     }
@@ -85,34 +102,57 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
      */
     private void getIntentData() {
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        name = bundle.getString("name");
-    }
-
-    @Override
-    public void initDataAfter() {
-
-    }
-
-    @Override
-    public void setListener() {
-
+        name = intent.getStringExtra("name");
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button_back:
-                finish();
+            case R.id.pagetop_layout_left:
+                doFinish();
                 break;
+        }
+    }
+
+    /**
+     * 处理扫描结果
+     *
+     * @param result
+     * @param barcode
+     */
+    public void handleDecode(Result result, Bitmap barcode) {
+        inactivityTimer.onActivity();
+        playBeepSoundAndVibrate();
+        String resultString = result.getText();
+        Log.e("handleDecode", "resultString=" + resultString);
+        if ("webView".equals(name)) {
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString("resultString", resultString);
+            intent.putExtras(bundle);
+            MipcaCaptureActivity.this.setResult(1, intent);
+        }
+//        MipcaCaptureActivity.this.finish();
+    }
+
+    private void initCamera(SurfaceHolder surfaceHolder) {
+        try {
+            CameraManager.get().openDriver(surfaceHolder);
+        } catch (IOException ioe) {
+            return;
+        } catch (RuntimeException e) {
+            return;
+        }
+        if (handler == null) {
+            handler = new CaptureActivityHandler(this, decodeFormats,
+                    characterSet);
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SurfaceView surfaceView = (SurfaceView) findViewById(R.id.preview_view);
-        SurfaceHolder surfaceHolder = surfaceView.getHolder();
+        SurfaceHolder surfaceHolder = previewView.getHolder();
         if (hasSurface) {
             initCamera(surfaceHolder);
         } else {
@@ -146,40 +186,6 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
     protected void onDestroy() {
         inactivityTimer.shutdown();
         super.onDestroy();
-    }
-
-    /**
-     * 处理扫描结果
-     *
-     * @param result
-     * @param barcode
-     */
-    public void handleDecode(Result result, Bitmap barcode) {
-        inactivityTimer.onActivity();
-        playBeepSoundAndVibrate();
-        String resultString = result.getText();
-        if ("webView".equals(name)) {
-            Intent intent = new Intent();
-            Bundle bundle = new Bundle();
-            bundle.putString("resultString", resultString);
-            intent.putExtras(bundle);
-            MipcaCaptureActivity.this.setResult(1, intent);
-        }
-        MipcaCaptureActivity.this.finish();
-    }
-
-    private void initCamera(SurfaceHolder surfaceHolder) {
-        try {
-            CameraManager.get().openDriver(surfaceHolder);
-        } catch (IOException ioe) {
-            return;
-        } catch (RuntimeException e) {
-            return;
-        }
-        if (handler == null) {
-            handler = new CaptureActivityHandler(this, decodeFormats,
-                    characterSet);
-        }
     }
 
 
@@ -272,4 +278,14 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
             mediaPlayer.seekTo(0);
         }
     };
+
+    /**
+     * 重写onkeydown 用于监听返回键
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            doFinish();
+        }
+        return false;
+    }
 }

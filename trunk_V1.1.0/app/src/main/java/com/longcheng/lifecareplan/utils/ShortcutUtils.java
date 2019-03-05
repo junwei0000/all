@@ -12,9 +12,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * 作者：jun on
