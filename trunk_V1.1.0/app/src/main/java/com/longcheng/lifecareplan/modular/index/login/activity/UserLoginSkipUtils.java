@@ -120,7 +120,7 @@ public class UserLoginSkipUtils {
             intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mActivity.startActivity(intents);
             mActivity.finish();
-        } else if (loginskiptostatus.equals(ConstantManager.loginSkipToInvitefriends)) {//邀请亲友
+        } else if (loginskiptostatus.equals(ConstantManager.loginSkipToHome)) {//邀请亲友登录后返回首页
             intents = new Intent();
             intents.setAction(ConstantManager.MAINMENU_ACTION);
             intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);

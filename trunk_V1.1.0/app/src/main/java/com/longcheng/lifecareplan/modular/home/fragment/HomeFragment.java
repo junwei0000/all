@@ -68,6 +68,7 @@ import com.longcheng.lifecareplan.utils.myview.MyListView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,6 +88,8 @@ import butterknife.Unbinder;
 public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresenterImp<HomeContract.View>> implements HomeContract.View {
     @BindView(R.id.pagetop_iv_left)
     ImageView pagetopIvLeft;
+    @BindView(R.id.pagetop_layout_left)
+    LinearLayout pagetopLayoutLeft;
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
     @BindView(R.id.pagetop_iv_rigth)
@@ -167,12 +170,12 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 是否有未讀消息
      */
     public void haveNotReadMsg() {
-        pagetopIvRigth.setBackgroundResource(R.mipmap.usercenter_notinfo_icon);
+        pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_notinfo_icon);
         String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
         if (loginStatus.equals(ConstantManager.loginStatus)) {
             boolean haveNotReadMsg = (boolean) SharedPreferencesHelper.get(mContext, "haveNotReadMsgStatus", false);
             if (haveNotReadMsg) {
-                pagetopIvRigth.setBackgroundResource(R.mipmap.usercenter_info_icon);
+                pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);
             }
         }
     }
@@ -181,11 +184,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public void initView(View view) {
         AppUpdate appUpdate = new AppUpdate(getActivity());
         appUpdate.startUpdateAsy("Home");
-
+        pagetopIvRigth.setBackgroundResource(R.mipmap.homepage_scan_icon);
         pagetopIvRigth.setVisibility(View.VISIBLE);
         haveNotReadMsg();
         pageTopTvName.setText(getString(R.string.main_title));
-        pagetopIvLeft.setVisibility(View.GONE);
         ScrowUtil.ScrollViewDownConfig(main_sv);
         homedediVpTop.addOnPageChangeListener(mOnPageChangeTopListener);
         homedediVpHealth.addOnPageChangeListener(mOnPageChangeHealthListener);
@@ -215,7 +217,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (actions != null && actions.size() > 0) {
-                    if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToInvitefriends)) {
+                    if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
                         Intent intent = new Intent(mContext, ActionDetailActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("goods_id", actions.get(position).getGoods_id());
@@ -232,7 +234,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     int sort = icons.get(position).getSort();
                     Intent intent;
                     if (sort == 1) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToInvitefriends)) {
+                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
                             //绑定手机号才能邀请亲友
                             String phone = UserUtils.getUserPhone(mContext);
                             if (TextUtils.isEmpty(phone)) {
@@ -289,6 +291,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void doBusiness(Context mContext) {
+        pagetopLayoutLeft.setOnClickListener(this);
         pagetopLayoutRigth.setOnClickListener(this);
         mainhealthLayoutMore.setOnClickListener(this);
         mainhotpushLayoutMore.setOnClickListener(this);
@@ -322,7 +325,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public void widgetClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.pagetop_layout_rigth:
+            case R.id.pagetop_layout_left:
                 if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToMessage)) {
                     intent = new Intent(mContext, MessageActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -330,8 +333,16 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
+            case R.id.pagetop_layout_rigth:
+                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
+                    intent = new Intent(mContext, MipcaCaptureActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+                break;
             case R.id.mainaction_layout_more://热门行动
-                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToInvitefriends)) {
+                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
                     intent = new Intent(mContext, PopularActionActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);

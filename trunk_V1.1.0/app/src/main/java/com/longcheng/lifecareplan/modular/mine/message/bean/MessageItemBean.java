@@ -16,13 +16,22 @@ public class MessageItemBean implements Serializable {
     private String help_action_id;
 
     private String type;
-    private String help_type;
+    private int help_type;
+    private String info_url;
     private String date;
 
     private List<MessageItemBean> info;
 
     private String key;
     private String value;
+
+    public String getInfo_url() {
+        return info_url;
+    }
+
+    public void setInfo_url(String info_url) {
+        this.info_url = info_url;
+    }
 
     public String getApp_push_id() {
         return app_push_id;
@@ -72,11 +81,11 @@ public class MessageItemBean implements Serializable {
         this.type = type;
     }
 
-    public String getHelp_type() {
+    public int getHelp_type() {
         return help_type;
     }
 
-    public void setHelp_type(String help_type) {
+    public void setHelp_type(int help_type) {
         this.help_type = help_type;
     }
 

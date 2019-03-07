@@ -15,8 +15,10 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseListActivity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.message.adapter.MessageAdapter;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageAfterBean;
@@ -122,12 +124,21 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (helpAllList != null && helpAllList.size() > 0) {
                     Log.e("Observable", "position=" + position);
-                    ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
-                    Intent intent = new Intent(mContext, DetailActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("msg_id", helpAllList.get(position - 1).getHelp_action_id());
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    int help_type = helpAllList.get(position - 1).getHelp_type();
+                    if (help_type == 1) {
+                        Intent intent = new Intent(mContext, DetailActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("msg_id", helpAllList.get(position - 1).getHelp_action_id());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    } else if (help_type == 3) {
+                        Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("kn_url", "" + helpAllList.get(position - 1).getInfo_url());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    }
+
                 }
             }
         });

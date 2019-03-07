@@ -96,6 +96,37 @@ public class GetHomeInfoBean implements Serializable {
     private String patient_record_url;//就诊记录url
     private int hasDiagnosticRecord;//是否有就诊记录 0没有；1 有
 
+
+    private String partymember_url;//志愿者列表
+    private int isPartymember;//是否有志愿者列表 0没有；1 有
+
+
+    private String receiptCodeUrl;//收付款
+
+    public String getReceiptCodeUrl() {
+        return receiptCodeUrl;
+    }
+
+    public void setReceiptCodeUrl(String receiptCodeUrl) {
+        this.receiptCodeUrl = receiptCodeUrl;
+    }
+
+    public String getPartymember_url() {
+        return partymember_url;
+    }
+
+    public void setPartymember_url(String partymember_url) {
+        this.partymember_url = partymember_url;
+    }
+
+    public int getIsPartymember() {
+        return isPartymember;
+    }
+
+    public void setIsPartymember(int isPartymember) {
+        this.isPartymember = isPartymember;
+    }
+
     public String getPatient_record_url() {
         return patient_record_url;
     }

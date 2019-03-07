@@ -79,11 +79,7 @@ final class CameraConfigurationManager {
         parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         setFlash(parameters);
         setZoom(parameters);
-        //setSharpness(parameters);
-        //modify here
-
 //    camera.setDisplayOrientation(90);
-        //����2.1
         setDisplayOrientation(camera, 90);
         camera.setParameters(parameters);
 
@@ -95,26 +91,18 @@ final class CameraConfigurationManager {
 //    Toast.showText(context, "pic "+pic.width+"  "+pic.height+"\n pre "+pre.width+" "+pre.height, 1);
     }
 
-
     private Size getPicSize(List<Size> list, double d) {
-        // TODO Auto-generated method stub
-
         Collections.sort(list, new Comparator<Size>() {
-
             @Override
             public int compare(Size lhs, Size rhs) {
-                // TODO Auto-generated method stub
                 if (lhs.width - rhs.width == 0) {
                     return lhs.height - rhs.height;
-
                 }
-
                 return lhs.width - rhs.width;
             }
         });
         for (Size size : list) {
             if (Math.abs(size.width * 1.0 / size.height - d) < 0.03) {
-
                 return size;
             }
         }
@@ -142,54 +130,53 @@ final class CameraConfigurationManager {
         System.out.println("pingmu  " + screenResolution.x + "  " + screenResolution.y);
         List<Size> list = parameters.getSupportedPreviewSizes();
         Collections.sort(list, new Comparator<Size>() {
-
             @Override
             public int compare(Size lhs, Size rhs) {
-                // TODO Auto-generated method stub
                 if (lhs.width - rhs.width == 0) {
                     return lhs.height - rhs.height;
-
                 }
-
                 return lhs.width - rhs.width;
             }
         });
         for (Size size : list) {
             System.out.println(size.width + "   " + size.height);
             if (Math.abs(size.width * 1.0 / size.height - 1.0 * screenResolution.y / screenResolution.x) < 0.1) {
-
                 return new Point(size.width, size.height);
             }
         }
-        return new Point(list.get(0).width, list.get(0).height);
+//        原码
+//        return new Point(list.get(0).width, list.get(0).height);
 
-//    String previewSizeValueString = parameters.get("preview-size-values");
-//    // saw this on Xperia
-//    if (previewSizeValueString == null) {
-//      previewSizeValueString = parameters.get("preview-size-value");
-//    }
-//
-//    Point cameraResolution = null;
-//
-//    if (previewSizeValueString != null) {
-//      Log.d(TAG, "preview-size-values parameter: " + previewSizeValueString);
-//      cameraResolution = findBestPreviewSizeValue(previewSizeValueString, screenResolution);
-//    }
-//
-//    if (cameraResolution == null) {
-//      // Ensure that the camera resolution is a multiple of 8, as the screen may not be.
-//      cameraResolution = new Point(
-//          (screenResolution.x >> 3) << 3,
-//          (screenResolution.y >> 3) << 3);
-//    }
-//
-//    return cameraResolution;
+        /**
+         * ********2019-3-7*************修改：防止一部分手机无法扫描  变形******************
+         */
+        String previewSizeValueString = parameters.get("preview-size-values");
+        // saw this on Xperia
+        if (previewSizeValueString == null) {
+            previewSizeValueString = parameters.get("preview-size-value");
+        }
+        Point cameraResolution = null;
+        if (previewSizeValueString != null) {
+            Log.d(TAG, "preview-size-values parameter: " + previewSizeValueString);
+            cameraResolution = findBestPreviewSizeValue(previewSizeValueString, screenResolution);
+        }
+        if (cameraResolution == null) {
+            // Ensure that the camera resolution is a multiple of 8, as the screen may not be.
+            cameraResolution = new Point(
+                    (screenResolution.x >> 3) << 3,
+                    (screenResolution.y >> 3) << 3);
+        }
+        return cameraResolution;
+        /**
+         * ***********************************************************
+         */
     }
 
     private static Point findBestPreviewSizeValue(CharSequence previewSizeValueString, Point screenResolution) {
         int bestX = 0;
         int bestY = 0;
         int diff = Integer.MAX_VALUE;
+        Log.d(TAG, "screen point: " + screenResolution);
         for (String previewSize : COMMA_PATTERN.split(previewSizeValueString)) {
 
             previewSize = previewSize.trim();
@@ -208,7 +195,6 @@ final class CameraConfigurationManager {
                 Log.w(TAG, "Bad preview-size: " + previewSize);
                 continue;
             }
-
             int newDiff = Math.abs(newX - screenResolution.x) + Math.abs(newY - screenResolution.y);
             if (newDiff == 0) {
                 bestX = newX;
@@ -219,7 +205,7 @@ final class CameraConfigurationManager {
                 bestY = newY;
                 diff = newDiff;
             }
-
+            Log.w(TAG, "preview-size: " + previewSize + ", newDiff: " + newDiff + ", diff: " + diff);
         }
 
         if (bestX > 0 && bestY > 0) {

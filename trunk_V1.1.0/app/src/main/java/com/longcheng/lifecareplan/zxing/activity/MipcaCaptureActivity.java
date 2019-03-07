@@ -3,12 +3,14 @@ package com.longcheng.lifecareplan.zxing.activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.hardware.Camera;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
@@ -22,6 +24,9 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
+import com.longcheng.lifecareplan.modular.mine.set.activity.ReceiveH5Activity;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.zxing.camera.CameraManager;
 import com.longcheng.lifecareplan.zxing.decoding.CaptureActivityHandler;
@@ -42,7 +47,7 @@ import butterknife.BindView;
 public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.Callback {
 
 
-//    @BindView(R.id.toolbar)
+    //    @BindView(R.id.toolbar)
 //    Toolbar toolbar;
     @BindView(R.id.pagetop_layout_left)
     LinearLayout pagetopLayoutLeft;
@@ -61,7 +66,6 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
     private boolean playBeep;
     private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
-    private String name = "";
 
 
     @Override
@@ -77,8 +81,9 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
     @Override
     public void initView(View view) {
         CameraManager.init(getApplication());
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity,getResources().getColor(R.color.transparent));
-//        setOrChangeTranslucentColor(toolbar, null);
+        hasSurface = false;
+        inactivityTimer = new InactivityTimer(this);
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity, getResources().getColor(R.color.transparent));
     }
 
 
@@ -89,20 +94,6 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
 
     @Override
     public void initDataAfter() {
-        getIntentData();
-        hasSurface = false;
-        inactivityTimer = new InactivityTimer(this);
-    }
-
-    /**
-     * @param
-     * @Name 获取传递来的值
-     * @Data 2018/1/30 10:40
-     * @Author :MarkShuai
-     */
-    private void getIntentData() {
-        Intent intent = getIntent();
-        name = intent.getStringExtra("name");
     }
 
     @Override
@@ -125,14 +116,16 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
         playBeepSoundAndVibrate();
         String resultString = result.getText();
         Log.e("handleDecode", "resultString=" + resultString);
-        if ("webView".equals(name)) {
-            Intent intent = new Intent();
-            Bundle bundle = new Bundle();
-            bundle.putString("resultString", resultString);
-            intent.putExtras(bundle);
-            MipcaCaptureActivity.this.setResult(1, intent);
+        if (!TextUtils.isEmpty(resultString) && resultString.contains("home/ticket/receipt/")) {
+            Intent intent = new Intent(mContext, ReceiveH5Activity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("html_url", "" + resultString);
+            startActivity(intent);
+            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+           doFinish();
+        }else{
+            ToastUtils.showToast("扫描失败");
         }
-//        MipcaCaptureActivity.this.finish();
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
@@ -199,7 +192,8 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+//        Camera camera = CameraManager.get().getCamera();
+//        setCameraDisplayOrientation(this, 0, camera);
     }
 
     @Override

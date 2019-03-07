@@ -52,6 +52,7 @@ import com.longcheng.lifecareplan.modular.mine.rebirth.activity.RebirthActivity;
 import com.longcheng.lifecareplan.modular.mine.recovercash.activity.RecoverCashActivity;
 import com.longcheng.lifecareplan.modular.mine.relationship.activity.RelationshipAccountAct;
 import com.longcheng.lifecareplan.modular.mine.rewardcenters.activity.RewardCentersActivity;
+import com.longcheng.lifecareplan.modular.mine.set.activity.ReceiveH5Activity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.SetActivity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.VolunteerH5Activity;
 import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
@@ -204,7 +205,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     RelativeLayout usercenterRelayDoctor;
     @BindView(R.id.layout_jiuzhen)
     LinearLayout layoutJiuzhen;
-    Unbinder unbinder;
+
+    @BindView(R.id.usercenter_relay_receiving)
+    RelativeLayout usercenter_relay_receiving;
+
+    @BindView(R.id.layout_volunteerlist)
+    LinearLayout layout_volunteerlist;
+
 
     private String is_cho;
     private String user_id;
@@ -269,6 +276,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         usercenter_layout_rebirth.setOnClickListener(this);
         usercenter_relay_changeinviter.setOnClickListener(this);
         layoutJiuzhen.setOnClickListener(this);
+        usercenter_relay_receiving.setOnClickListener(this);
+        layout_volunteerlist.setOnClickListener(this);
         initUserInfo();
     }
 
@@ -291,6 +300,20 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent = new Intent(mContext, SetActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("about_me_url", about_me_url);
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.usercenter_relay_receiving://收付款
+                intent = new Intent(mContext, ReceiveH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", data.getReceiptCodeUrl());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.layout_volunteerlist://志愿者申请列表
+                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", data.getPartymember_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -344,12 +367,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_smallpusher://小推手
-//                ToastUtils.showToast("程序猿正在攻坚中…");
-//                String promoter_url = data.getPromoter_url();
-                intent = new Intent(mContext, MipcaCaptureActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                ToastUtils.showToast("程序猿正在攻坚中…");
                 break;
             case R.id.mycenter_iv_head://用户信息
                 intent = new Intent(mContext, UserInfoActivity.class);
@@ -962,6 +980,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             layoutJiuzhen.setVisibility(View.VISIBLE);
         }
 
+        int isPartymember = mGetHomeInfoBean.getIsPartymember();
+        if (isPartymember == 0) {
+            layout_volunteerlist.setVisibility(View.GONE);
+        } else {
+            layout_volunteerlist.setVisibility(View.VISIBLE);
+        }
 
         about_me_url = mGetHomeInfoBean.getAbout_me_url();
         isDirectorOrTeamLeader = mGetHomeInfoBean.getIsDirectorOrTeamLeader();
@@ -1050,19 +1074,5 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         MineAfterDataMap.clear();
         MineAfterDataMap.put("mGetHomeInfoBean", mHomeAfterBean);
         SharedPreferencesUtil.getInstance().putHashMapData("mMineAfterData_" + user_id, MineAfterDataMap);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 }

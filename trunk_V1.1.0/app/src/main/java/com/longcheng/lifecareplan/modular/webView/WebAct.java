@@ -394,7 +394,7 @@ public abstract class WebAct extends BaseActivity {
                 function.onCallBack(jsonObject.toString());
             }
         });
-        //关于我们-返回按钮
+        //返回按钮
         mBridgeWebView.registerHandler("about_back", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -458,6 +458,16 @@ public abstract class WebAct extends BaseActivity {
                 Log.e("registerHandler", "data=" + data);
                 UserLoginBack403Utils.getInstance()
                         .showDialogPromptReLogin(mActivity);
+            }
+        });
+        //收付款-选择套餐-申请跳转商品详情
+        mBridgeWebView.registerHandler("CodePay_ToShopInfo", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(mContext, MallDetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("shop_goods_id",""+data);
+                startActivity(intent);
             }
         });
 
