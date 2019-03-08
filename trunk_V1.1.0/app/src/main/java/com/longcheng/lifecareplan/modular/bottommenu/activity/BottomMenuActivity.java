@@ -329,13 +329,7 @@ public class BottomMenuActivity extends BaseActivity {
             selectPage(tab_position_home);
         } else {
 //            exit();
-            /**
-             * 返回键返回桌面不退出程序
-             */
-            Intent setIntent = new Intent(Intent.ACTION_MAIN);
-            setIntent.addCategory(Intent.CATEGORY_HOME);
-            setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(setIntent);
+             ActivityManager.getScreenManager().backHome(mActivity);
         }
     }
 

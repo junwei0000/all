@@ -219,9 +219,8 @@ public class ConfigUtils {
      * @param context
      * @return
      */
-    public float getWindowPD(Activity context) {
-        DisplayMetrics dm = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(dm);
+    public float getWindowPD(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
         int heightPixels = dm.heightPixels;
         int widthPixels = dm.widthPixels;
         float density = dm.density;

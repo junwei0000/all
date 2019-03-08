@@ -207,7 +207,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     LinearLayout layoutJiuzhen;
 
     @BindView(R.id.usercenter_relay_receiving)
-    RelativeLayout usercenter_relay_receiving;
+    LinearLayout usercenter_relay_receiving;
 
     @BindView(R.id.layout_volunteerlist)
     LinearLayout layout_volunteerlist;
@@ -986,7 +986,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             layout_volunteerlist.setVisibility(View.VISIBLE);
         }
-
+        int is_show_payment_received = mGetHomeInfoBean.getIs_show_payment_received();
+        if (is_show_payment_received == 0) {
+            usercenter_relay_receiving.setVisibility(View.GONE);
+        } else {
+            usercenter_relay_receiving.setVisibility(View.VISIBLE);
+        }
         about_me_url = mGetHomeInfoBean.getAbout_me_url();
         isDirectorOrTeamLeader = mGetHomeInfoBean.getIsDirectorOrTeamLeader();
         isUnopenedRedPackage = mGetHomeInfoBean.getIsUnopenedRedPackage();

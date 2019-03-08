@@ -29,6 +29,8 @@ import android.view.View;
 
 import com.google.zxing.ResultPoint;
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.zxing.camera.CameraManager;
 
 import java.util.Collection;
@@ -84,11 +86,11 @@ public final class ViewfinderView extends View {
     /**
      * 字体大小
      */
-    private static final int TEXT_SIZE = 15;
+    private static int TEXT_SIZE = 15;
     /**
      * 字体距离扫描框下面的距离
      */
-    private static final int TEXT_PADDING_TOP = 30;
+    private static int TEXT_PADDING_TOP = 30;
 
     /**
      * 画笔对象的引用
@@ -129,6 +131,11 @@ public final class ViewfinderView extends View {
         density = context.getResources().getDisplayMetrics().density;
         //将像素转换成dp
         ScreenRate = (int) (20 * density);
+        if (ConfigUtils.getINSTANCE().getWindowPD(context) > 400) {
+            TEXT_SIZE = 18;
+            TEXT_PADDING_TOP = 35;
+        }
+
 
         paint = new Paint();
         Resources resources = getResources();
@@ -221,7 +228,14 @@ public final class ViewfinderView extends View {
             paint.setTextSize(TEXT_SIZE * density);
             paint.setAlpha(0x40);
 //            paint.setTypeface(Typeface.create("System", Typeface.BOLD));
-            canvas.drawText(getResources().getString(R.string.scan_text), frame.left, (float) (frame.bottom + (float) TEXT_PADDING_TOP * density), paint);
+
+            /**
+             * 设置text水平居中
+             */
+            String text = getResources().getString(R.string.scan_text);
+            int textWidth = (int) paint.measureText(text);
+            int leftx = (getMeasuredWidth() - textWidth) / 2;
+            canvas.drawText(text, leftx, (float) (frame.bottom + (float) TEXT_PADDING_TOP * density), paint);
 
 
             Collection<ResultPoint> currentPossible = possibleResultPoints;

@@ -102,6 +102,16 @@ public class GetHomeInfoBean implements Serializable {
 
 
     private String receiptCodeUrl;//收付款
+    private int is_show_payment_received;//是否有收付款 0没有；1 有
+
+
+    public int getIs_show_payment_received() {
+        return is_show_payment_received;
+    }
+
+    public void setIs_show_payment_received(int is_show_payment_received) {
+        this.is_show_payment_received = is_show_payment_received;
+    }
 
     public String getReceiptCodeUrl() {
         return receiptCodeUrl;

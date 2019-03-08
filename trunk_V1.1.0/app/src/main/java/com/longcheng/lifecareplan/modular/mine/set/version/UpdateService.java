@@ -60,6 +60,10 @@ public class UpdateService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        String url = intent.getStringExtra("url");
+        if (!TextUtils.isEmpty(url)) {
+            ToastUtils.showToast("正在下载更新中...");
+        }
         if (!states && intent != null) {
             nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notification = new Notification();
@@ -81,9 +85,10 @@ public class UpdateService extends Service {
             Message message = myHandler.obtainMessage(3, 0);
             myHandler.sendMessage(message);
             // 启动线程开始执行下载任务
-            String url = intent.getStringExtra("url");
-            if (!TextUtils.isEmpty(url))
+            url = intent.getStringExtra("url");
+            if (!TextUtils.isEmpty(url)) {
                 downFile(url);
+            }
         }
 
         return super.onStartCommand(intent, flags, startId);
@@ -162,7 +167,7 @@ public class UpdateService extends Service {
                         states = false;
                     }
                 } catch (Exception e) {
-                    Message message = myHandler.obtainMessage(4, "下载更新文件失败");
+                    Message message = myHandler.obtainMessage(4, "下载更新失败");
                     myHandler.sendMessage(message);
                     states = false;
                 }

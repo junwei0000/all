@@ -79,16 +79,8 @@ final class CameraConfigurationManager {
         parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
         setFlash(parameters);
         setZoom(parameters);
-//    camera.setDisplayOrientation(90);
         setDisplayOrientation(camera, 90);
         camera.setParameters(parameters);
-
-        Size pic = getPicSize(parameters.getSupportedPictureSizes(), 1.0 * cameraResolution.x / cameraResolution.y);
-        parameters.setPictureSize(pic.width, pic.height);
-
-        pic = parameters.getPictureSize();
-        Size pre = parameters.getPreviewSize();
-//    Toast.showText(context, "pic "+pic.width+"  "+pic.height+"\n pre "+pre.width+" "+pre.height, 1);
     }
 
     private Size getPicSize(List<Size> list, double d) {
@@ -126,27 +118,6 @@ final class CameraConfigurationManager {
     }
 
     private static Point getCameraResolution(Camera.Parameters parameters, Point screenResolution) {
-
-        System.out.println("pingmu  " + screenResolution.x + "  " + screenResolution.y);
-        List<Size> list = parameters.getSupportedPreviewSizes();
-        Collections.sort(list, new Comparator<Size>() {
-            @Override
-            public int compare(Size lhs, Size rhs) {
-                if (lhs.width - rhs.width == 0) {
-                    return lhs.height - rhs.height;
-                }
-                return lhs.width - rhs.width;
-            }
-        });
-        for (Size size : list) {
-            System.out.println(size.width + "   " + size.height);
-            if (Math.abs(size.width * 1.0 / size.height - 1.0 * screenResolution.y / screenResolution.x) < 0.1) {
-                return new Point(size.width, size.height);
-            }
-        }
-//        原码
-//        return new Point(list.get(0).width, list.get(0).height);
-
         /**
          * ********2019-3-7*************修改：防止一部分手机无法扫描  变形******************
          */
@@ -195,7 +166,11 @@ final class CameraConfigurationManager {
                 Log.w(TAG, "Bad preview-size: " + previewSize);
                 continue;
             }
-            int newDiff = Math.abs(newX - screenResolution.x) + Math.abs(newY - screenResolution.y);
+            /**
+             * 修改：防止一部分手机无法扫描  变形
+             */
+            int newDiff = Math.abs(newY - screenResolution.x) + Math.abs(newX - screenResolution.y);
+//            int newDiff = Math.abs(newX - screenResolution.x) + Math.abs(newY - screenResolution.y);
             if (newDiff == 0) {
                 bestX = newX;
                 bestY = newY;

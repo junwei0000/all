@@ -23,6 +23,7 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -131,15 +132,12 @@ public final class CameraManager {
                 configManager.initFromCameraParameters(camera);
             }
             configManager.setDesiredCameraParameters(camera);
-
-            //FIXME
-            //     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-//      if (prefs.getBoolean(PreferencesActivity.KEY_FRONT_LIGHT, false)) {
-//        FlashlightManager.enableFlashlight();
-//      }
             FlashlightManager.enableFlashlight();
         }
+    }
+
+    public Camera getCamera() {
+        return camera;
     }
 
     /**

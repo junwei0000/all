@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
+import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -198,25 +199,30 @@ public class AppUpdate {
         TextView tv_cont = (TextView) selectDialog.findViewById(R.id.tv_cont);
         TextView tv_update = (TextView) selectDialog.findViewById(R.id.tv_update);
         TextView tv_xicai = (TextView) selectDialog.findViewById(R.id.tv_xicai);
-        if (level.equals("1")) {
-            // 必须更新
-            tv_xicai.setVisibility(View.INVISIBLE);
-        }
         if (!TextUtils.isEmpty(androidVersion) && androidVersion.contains("_")) {
             androidVersion = androidVersion.replace("_", ".");
         }
         tv_cont.setText("发现新版本：V" + androidVersion);
         tv_update.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
-                selectDialog.dismiss();
                 Intent updateIntent = new Intent(context, UpdateService.class);
                 updateIntent.putExtra("url", url);
                 context.startService(updateIntent);
+                if (level.equals("1")) {
+                    // 必须更新
+                } else {
+                    selectDialog.dismiss();
+                }
             }
         });
         tv_xicai.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
-                selectDialog.dismiss();
+                if (level.equals("1")) {
+                    // 必须更新时点击取消退出程序
+                    ActivityManager.getScreenManager().backHome(context);
+                } else {
+                    selectDialog.dismiss();
+                }
             }
         });
 

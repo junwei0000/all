@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.base;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.R;
@@ -109,4 +110,17 @@ public class ActivityManager {
             }
         }
     }
+
+    /**
+     * 返回键返回桌面不退出程序
+     * @param mActivity
+     */
+
+    public void backHome(Activity mActivity){
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mActivity.startActivity(setIntent);
+    }
+
 }
