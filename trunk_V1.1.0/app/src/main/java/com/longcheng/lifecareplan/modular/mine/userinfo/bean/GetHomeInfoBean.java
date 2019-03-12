@@ -105,6 +105,17 @@ public class GetHomeInfoBean implements Serializable {
     private int is_show_payment_received;//是否有收付款 0没有；1 有
 
 
+
+    private String jieqi_pic;
+
+    public String getJieqi_pic() {
+        return jieqi_pic;
+    }
+
+    public void setJieqi_pic(String jieqi_pic) {
+        this.jieqi_pic = jieqi_pic;
+    }
+
     public int getIs_show_payment_received() {
         return is_show_payment_received;
     }

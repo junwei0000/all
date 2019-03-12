@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/view_paddtopbottom"
-    android:paddingLeft="@dimen/dp15"
-    android:paddingRight="@dimen/dp15"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/jianJu"
@@ -10,54 +8,24 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/mycenter_layout_smallpusher"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.8"
-        android:gravity="left"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/my_driver_icon" />
-
-            <TextView
-                android:id="@+id/tv_jieqiname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padd_imgtextleftright"
-                android:text="小推手"
-                android:singleLine="true"
-                android:textColor="@color/text_contents_color"
-                android:textSize="@dimen/text_zhu_size" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/mycenter_layout_jieqisignin"
+        android:id="@+id/mycenter_layout_invitationrecord"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/my_signinr_icon" />
+            android:background="@mipmap/homepage_icon_theinvitation" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padd_imgtextleftright"
-            android:text="每日签到"
+            android:text="@string/invitation_recording"
             android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_zhu_size" />
     </LinearLayout>
@@ -73,7 +41,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/my_reward_icon" />
+            android:background="@mipmap/homepage_icon_wisheach" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,31 +53,72 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/mycenter_layout_invitationrecord"
+        android:id="@+id/usercenter_relay_zodiacdescripte"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.8"
-        android:gravity="right"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_thecommune" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/my_theinvitation_icon" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:text="一字千金"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padd_imgtextleftright"
-                android:text="@string/invitation_recording"
-                android:textColor="@color/text_contents_color"
-                android:textSize="@dimen/text_zhu_size" />
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/usercenter_relay_myorder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_dingdan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="我的订单"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/usercenter_relay_receiving"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_energy" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="收付款"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
     </LinearLayout>
 </LinearLayout>

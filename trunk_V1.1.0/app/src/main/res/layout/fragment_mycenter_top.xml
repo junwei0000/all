@@ -3,13 +3,13 @@
     style="@style/view_paddtopbottom"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@mipmap/mycenter_top_bj"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="@dimen/dp8"
         android:paddingLeft="@dimen/padd_leftright">
 
         <com.longcheng.lifecareplan.utils.myview.CircleImageView
@@ -17,12 +17,12 @@
             android:layout_width="@dimen/dp72"
             android:layout_height="@dimen/dp72"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            android:layout_marginBottom="30dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_marginBottom="30dp"
             android:layout_toRightOf="@+id/mycenter_iv_head"
             android:gravity="center_vertical"
             android:orientation="vertical"
@@ -36,6 +36,7 @@
                 android:ellipsize="end"
                 android:maxEms="8"
                 android:maxLines="1"
+                android:text="姓名"
                 android:textColor="@color/text_biaoTi_color"
                 android:textSize="@dimen/text_pageTop_size" />
 
@@ -88,7 +89,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="-18dp"
             android:background="@drawable/corners_bg_blackhumanity"
             android:gravity="center_vertical"
@@ -116,8 +116,15 @@
                 android:background="@mipmap/usercenter_arrow_img" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/mycenter_iv_jieqi"
+            android:layout_width="135dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/mycenter_layout_humanity" />
     </RelativeLayout>
-    <!---->
+    <!--  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

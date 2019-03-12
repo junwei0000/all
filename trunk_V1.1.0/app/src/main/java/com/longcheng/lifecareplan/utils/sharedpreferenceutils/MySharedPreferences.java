@@ -30,8 +30,19 @@ public class MySharedPreferences {
     private volatile static SharedPreferences sharedPreferences;
     private volatile static MySharedPreferences instance;
 
+    /**
+     * 引导页
+     */
     private static final String ISFIRSTIN = "isFirstIn";
+    /**
+     * 是否已退出登录
+     */
     private static final String ISLOGOUT = "isLogout";
+    /**
+     * 我家的常用功能状态
+     */
+    private static final String MINE_FUUNCTIONTYPEList = "MINE_FUUNCTIONTYPEList";
+
 
     public static MySharedPreferences getInstance() {
         if (instance == null) {
@@ -54,23 +65,8 @@ public class MySharedPreferences {
      * @Data 2018/2/1 10:27
      * @Author :MarkShuai
      */
-    @SuppressLint("ApplySharedPref")
     public void saveIsFirstIn(boolean isFirstIn) {
         sharedPreferences.edit().putBoolean(ISFIRSTIN, isFirstIn).commit();
-    }
-
-    /**
-     * 是否已退出
-     *
-     * @param isLogout
-     */
-    @SuppressLint("ApplySharedPref")
-    public void saveIsLogout(boolean isLogout) {
-        sharedPreferences.edit().putBoolean(ISLOGOUT, isLogout).commit();
-    }
-
-    public boolean getIsLogout() {
-        return sharedPreferences.getBoolean(ISLOGOUT, true);
     }
 
     /**
@@ -82,4 +78,32 @@ public class MySharedPreferences {
     public boolean getIsFirstIn() {
         return sharedPreferences.getBoolean(ISFIRSTIN, true);
     }
+
+    /**
+     * 是否已退出
+     *
+     * @param isLogout
+     */
+    public void saveIsLogout(boolean isLogout) {
+        sharedPreferences.edit().putBoolean(ISLOGOUT, isLogout).commit();
+    }
+
+    public boolean getIsLogout() {
+        return sharedPreferences.getBoolean(ISLOGOUT, true);
+    }
+
+    /**
+     * 我家的常用功能状态 默认 list true
+     *
+     * @param MineFuunctiontypeList
+     */
+    public void saveMineFuunctiontypeList(boolean MineFuunctiontypeList) {
+        sharedPreferences.edit().putBoolean(MINE_FUUNCTIONTYPEList, MineFuunctiontypeList).commit();
+    }
+
+    public boolean getMineFuunctiontypeList() {
+        return sharedPreferences.getBoolean(MINE_FUUNCTIONTYPEList, true);
+    }
+
+
 }

@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,6 +32,7 @@ import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.PerfectInfoDialog;
+import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.UpdatePwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
@@ -68,6 +70,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.CircleImageView;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.MyScrollView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -75,6 +78,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesU
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -156,9 +160,10 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.tv_jieqiname)
     TextView tv_jieqiname;
     @BindView(R.id.mycenter_layout_jieqisignin)
-    LinearLayout mycenterLayoutJieqisignin;
+    RelativeLayout mycenterLayoutJieqisignin;
     @BindView(R.id.mycenter_layout_smallpusher)
-    LinearLayout mycenterLayoutsmallpusher;
+    RelativeLayout mycenterLayoutsmallpusher;
+
     @BindView(R.id.mycenter_layout_reward)
     LinearLayout mycenterLayoutreward;
     @BindView(R.id.mycenter_layout_invitationrecord)
@@ -172,9 +177,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.ll_mystar)
     LinearLayout dividerStar;
     @BindView(R.id.usercenter_relay_myorder)
-    RelativeLayout usercenterRelayMyorder;
+    LinearLayout usercenterRelayMyorder;
     @BindView(R.id.usercenter_relay_zodiacdescripte)
-    RelativeLayout usercenterRelayzodiacdescripte;
+    LinearLayout usercenterRelayzodiacdescripte;
     @BindView(R.id.usercenter_relay_appexplanation)
     RelativeLayout usercenterRelayappexplanation;
     @BindView(R.id.usercenter_relay_goodluck)
@@ -213,10 +218,29 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     LinearLayout layout_volunteerlist;
 
 
+    @BindView(R.id.layout_functionstatus)
+    LinearLayout layout_functionstatus;
+    @BindView(R.id.tv_functionstatus)
+    TextView tv_functionstatus;
+    @BindView(R.id.layout_gongnengnlist)
+    LinearLayout layout_gongnengnlist;
+
+    @BindView(R.id.layout_gongnengngv)
+    LinearLayout layout_gongnengngv;
+    @BindView(R.id.gongnengn_gv1)
+    MyGridView gongnengn_gv1;
+    @BindView(R.id.gongnengn_gv2)
+    MyGridView gongnengn_gv2;
+    @BindView(R.id.mycenter_iv_jieqi)
+    ImageView mycenter_iv_jieqi;
+
+
+
+
     private String is_cho;
     private String user_id;
 
-    private GetHomeInfoBean data;
+    private GetHomeInfoBean data = new GetHomeInfoBean();
     private int star_level;
     private String star_level_illustrate_url;
     /**
@@ -233,6 +257,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private int isDirectorOrTeamLeader;
     private String about_me_url;
     private String qimingaction_goods_id;
+    boolean mAllowanceLayoutShow = false;
+    PerfectInfoDialog mPerfectInfoDialog;
 
     @Override
     public int bindLayout() {
@@ -278,24 +304,126 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         layoutJiuzhen.setOnClickListener(this);
         usercenter_relay_receiving.setOnClickListener(this);
         layout_volunteerlist.setOnClickListener(this);
+        layout_functionstatus.setOnClickListener(this);
+
+        mycenterTvName.setFocusable(true);
+        mycenterTvName.setFocusableInTouchMode(true);
+        mycenterTvName.requestFocus();
+        setFunctionType();
+        showFunctionGVData();
         initUserInfo();
     }
 
     @Override
     public void doBusiness(Context mContext) {
-
+        gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (FunctionGVlist1 != null && FunctionGVlist1.size() > 0) {
+                    int viewId = FunctionGVlist1.get(position).getViewId();
+                    viewClick(viewId);
+                }
+            }
+        });
+        gongnengn_gv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (FunctionGVlist2 != null && FunctionGVlist2.size() > 0) {
+                    int viewId = FunctionGVlist2.get(position).getViewId();
+                    viewClick(viewId);
+                }
+            }
+        });
     }
 
-    boolean mAllowanceLayoutShow = false;
-    PerfectInfoDialog mPerfectInfoDialog;
+    /**
+     * 设置常用功能显示类型
+     */
+    private void setFunctionType() {
+        boolean MineFuunctiontypeList = MySharedPreferences.getInstance().getMineFuunctiontypeList();
+        if (MineFuunctiontypeList) {
+            layout_gongnengnlist.setVisibility(View.VISIBLE);
+            layout_gongnengngv.setVisibility(View.GONE);
+        } else {
+            layout_gongnengnlist.setVisibility(View.GONE);
+            layout_gongnengngv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    ArrayList<FunctionGVItemBean> FunctionGVlist1;
+    ArrayList<FunctionGVItemBean> FunctionGVlist2;
+
+    /**
+     * 初始化显示宫格常用功能
+     */
+    private void showFunctionGVData() {
+        FunctionGVlist1 = new ArrayList();
+        FunctionGVlist2 = new ArrayList();
+
+
+        int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
+        int isVolunteerIdentity = data.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
+        String Voname = "";
+        String Doname = "";
+        if (isVolunteerIdentity == 0) {
+            Voname = "申请志愿者";
+        } else {
+            Voname = "我是志愿者";
+        }
+        if (isDoctorIdentity == 0) {
+            Doname = "申请坐堂医";
+        } else {
+            Doname = "我是坐堂医";
+        }
+        FunctionGVlist1.add(new FunctionGVItemBean(Voname, R.id.usercenter_relay_volunteer, R.mipmap.my_volunteersr_icon));
+        FunctionGVlist1.add(new FunctionGVItemBean(Doname, R.id.usercenter_relay_doctor, R.mipmap.my_doctor_icon));
+        int hasDiagnosticRecord = data.getHasDiagnosticRecord();
+        if (hasDiagnosticRecord == 0) {
+        } else {
+            FunctionGVlist1.add(new FunctionGVItemBean("就诊记录", R.id.layout_jiuzhen, R.mipmap.my_treatment_icon));
+        }
+        FunctionGVlist1.add(new FunctionGVItemBean("我的恩人", R.id.usercenter_relay_myenren, R.mipmap.my_benefactor_icon));
+        FunctionGVlist1.add(new FunctionGVItemBean("好运来", R.id.usercenter_relay_goodluck, R.mipmap.usercenter_goodluck_icon));
+        FunctionGVlist1.add(new FunctionGVItemBean(HomeFragment.jieqi_name + "小推手", R.id.mycenter_layout_smallpusher, R.mipmap.my_smallpusher_icon));
+        FunctionGVlist1.add(new FunctionGVItemBean("每日签到", R.id.mycenter_layout_jieqisignin, R.mipmap.my_signin_icon));
+        if (data.issQimingSponsorUser()) {
+            FunctionGVlist1.add(new FunctionGVItemBean("启明星", R.id.usercenter_relay_myStar, R.mipmap.my_star_icon));
+        }
+        int isPartymember = data.getIsPartymember();
+        if (isPartymember == 0) {
+        } else {
+            FunctionGVlist1.add(new FunctionGVItemBean("志愿者列表", R.id.layout_volunteerlist, R.mipmap.my_volunteers_icon));
+        }
+        FunctionAdapter mFunctionAdapter1 = new FunctionAdapter(mContext, FunctionGVlist1);
+        gongnengn_gv1.setAdapter(mFunctionAdapter1);
+
+
+        FunctionGVlist2.add(new FunctionGVItemBean("一目了然", R.id.usercenter_relay_appexplanation, R.mipmap.usercenter_appexplanation_icon));
+        FunctionGVlist2.add(new FunctionGVItemBean("地址管理", R.id.usercenter_relay_address, R.mipmap.usercenter_address_icon));
+        FunctionGVlist2.add(new FunctionGVItemBean("修改密码", R.id.usercenter_relay_updatepw, R.mipmap.usercenter_updatepw_icon));
+        FunctionGVlist2.add(new FunctionGVItemBean("变更邀请人", R.id.usercenter_relay_changeinviter, R.mipmap.my_change_icon));
+        //是否显示复活卡  0：不显示  1：显示
+        int isResetCard = data.getIsResetCard();
+        if (isResetCard == 0) {
+        } else {
+            FunctionGVlist2.add(new FunctionGVItemBean("重生卡", R.id.usercenter_layout_rebirth, R.mipmap.my_rebirth_icon));
+        }
+        FunctionAdapter mFunctionAdapter2 = new FunctionAdapter(mContext, FunctionGVlist2);
+        gongnengn_gv2.setAdapter(mFunctionAdapter2);
+    }
 
     /**
      * @param v
      */
     @Override
     public void widgetClick(View v) {
+        int viewId = v.getId();
+        viewClick(viewId);
+    }
+
+    private void viewClick(int viewId) {
         Intent intent;
-        switch (v.getId()) {
+        switch (viewId) {
             case R.id.pagetop_layout_rigth://设置
                 intent = new Intent(mContext, SetActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -303,6 +431,18 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
+            case R.id.layout_functionstatus://切换功能显示类型
+                boolean MineFuunctiontypeList = MySharedPreferences.getInstance().getMineFuunctiontypeList();
+                if (MineFuunctiontypeList) {
+                    tv_functionstatus.setText("列表展示");
+                    MySharedPreferences.getInstance().saveMineFuunctiontypeList(false);
+                } else {
+                    tv_functionstatus.setText("宫格展示");
+                    MySharedPreferences.getInstance().saveMineFuunctiontypeList(true);
+                }
+                setFunctionType();
+                break;
+
             case R.id.usercenter_relay_receiving://收付款
                 intent = new Intent(mContext, ReceiveH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -700,6 +840,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
         tv_jieqiname.setText(jieqi + "小推手");
         GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mContext, avatar, mycenterIvHead);
+        GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, data.getJieqi_pic(), mycenter_iv_jieqi);
+        showFunctionGVData();
     }
 
     private void saveNewInfo(GetHomeInfoBean mGetHomeInfoBean) {
@@ -986,12 +1128,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             layout_volunteerlist.setVisibility(View.VISIBLE);
         }
-        int is_show_payment_received = mGetHomeInfoBean.getIs_show_payment_received();
-        if (is_show_payment_received == 0) {
-            usercenter_relay_receiving.setVisibility(View.GONE);
-        } else {
-            usercenter_relay_receiving.setVisibility(View.VISIBLE);
-        }
         about_me_url = mGetHomeInfoBean.getAbout_me_url();
         isDirectorOrTeamLeader = mGetHomeInfoBean.getIsDirectorOrTeamLeader();
         isUnopenedRedPackage = mGetHomeInfoBean.getIsUnopenedRedPackage();
@@ -1009,6 +1145,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             usercenter_layout_rebirth.setVisibility(View.VISIBLE);
         }
+
+
         String shoukangyuan = mGetHomeInfoBean.getShoukangyuan();
         mycentertopTvAwakeskb.setText(shoukangyuan);
         String dongjie = mGetHomeInfoBean.getDongjie();

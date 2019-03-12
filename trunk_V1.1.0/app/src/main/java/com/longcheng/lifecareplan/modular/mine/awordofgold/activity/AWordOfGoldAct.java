@@ -67,12 +67,10 @@ public class AWordOfGoldAct extends BaseActivityMVP<AWordOfGoldContract.View, AW
 
     @Override
     public void showDialog() {
-        LoadingDialog.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-        LoadingDialog.dismiss(mContext);
     }
 
     @Override
