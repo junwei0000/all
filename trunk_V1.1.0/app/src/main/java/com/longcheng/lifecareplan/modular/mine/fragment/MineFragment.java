@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,6 +30,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.PerfectInfoDialog;
@@ -233,8 +235,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     MyGridView gongnengn_gv2;
     @BindView(R.id.mycenter_iv_jieqi)
     ImageView mycenter_iv_jieqi;
-
-
 
 
     private String is_cho;
@@ -893,6 +893,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 || BottomMenuActivity.position != BottomMenuActivity.tab_position_mine) {
             return;
         }
+        //坐堂医支付成功弹层  1
         if (showDoctorDialogStatus || (toDoctorDialog != null && toDoctorDialog.isShowing())) {
             showDoctorDialogStatus = false;
             showDoctorDialog();
@@ -900,14 +901,25 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
         if (chatuserStarLevelId == 0) {
             //防止等级弹层提示后，黑屏后重新打开刷新没关闭问题
+            if (toDoctorDialog != null && toDoctorDialog.isShowing()) {
+                toDoctorDialog.dismiss();
+            }
             if (LevelDialog != null && LevelDialog.isShowing()) {
                 LevelDialog.dismiss();
             }
+
+            //天才行动 3
+            if (data.getIs_commonweal_activity() > 0) {
+                showActionDialog();
+                return;
+            }
+            //红包 4
             showRedBaoDialog();
             return;
+        } else {
+            //等级提示  2
+            showLevelDialog();
         }
-
-        showLevelDialog();
     }
 
 
@@ -949,6 +961,56 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             tv_cont.setText("恭喜您成为" + CurrentStartLevel + "星CHO~");
             LevelDialog.show();
+        }
+    }
+
+
+    MyDialog actionDialog;
+
+    /**
+     * 天才行动弹层
+     */
+    public void showActionDialog() {
+        String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
+        if (BottomMenuActivity.position != BottomMenuActivity.tab_position_mine || !loginStatus.equals(ConstantManager.loginStatus)) {
+            return;
+        }
+        if (actionDialog == null) {
+            actionDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+            actionDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = actionDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            actionDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = actionDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4;
+            p.height = (int) (p.width * 1.28);
+            actionDialog.getWindow().setAttributes(p); //设置生效
+            FrameLayout fram_bg = (FrameLayout) actionDialog.findViewById(R.id.fram_bg);
+            fram_bg.setBackgroundResource(R.mipmap.my_action_icon);
+            LinearLayout layout_cancel = (LinearLayout) actionDialog.findViewById(R.id.layout_cancel);
+            TextView btn_upgrade = (TextView) actionDialog.findViewById(R.id.btn_upgrade);
+
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    actionDialog.dismiss();
+                }
+            });
+            btn_upgrade.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    actionDialog.dismiss();
+                    Intent intent = new Intent(mContext, ActionH5Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("kn_url", "" + data.getCommonweal_activity_url());
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+            });
+        } else {
+            actionDialog.show();
         }
     }
 

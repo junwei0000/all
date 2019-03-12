@@ -104,9 +104,27 @@ public class GetHomeInfoBean implements Serializable {
     private String receiptCodeUrl;//收付款
     private int is_show_payment_received;//是否有收付款 0没有；1 有
 
-
-
     private String jieqi_pic;
+
+    private int is_commonweal_activity;//是否显示 0不显示；>=1 显示
+    private String commonweal_activity_url;//天才行动
+
+
+    public int getIs_commonweal_activity() {
+        return is_commonweal_activity;
+    }
+
+    public void setIs_commonweal_activity(int is_commonweal_activity) {
+        this.is_commonweal_activity = is_commonweal_activity;
+    }
+
+    public String getCommonweal_activity_url() {
+        return commonweal_activity_url;
+    }
+
+    public void setCommonweal_activity_url(String commonweal_activity_url) {
+        this.commonweal_activity_url = commonweal_activity_url;
+    }
 
     public String getJieqi_pic() {
         return jieqi_pic;

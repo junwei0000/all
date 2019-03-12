@@ -426,6 +426,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             p.width = d.getWidth() * 3 / 4;
             p.height = (int) (p.width * 1.182);
             CononDialog.getWindow().setAttributes(p); //设置生效
+            FrameLayout fram_bg = (FrameLayout) CononDialog.findViewById(R.id.fram_bg);
+            fram_bg.setBackgroundResource(R.mipmap.home_img_connon);
             LinearLayout layout_cancel = (LinearLayout) CononDialog.findViewById(R.id.layout_cancel);
             TextView btn_upgrade = (TextView) CononDialog.findViewById(R.id.btn_upgrade);
 

@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@mipmap/home_img_connon"
+    android:id="@+id/fram_bg"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -27,12 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:gravity="bottom"
-        android:paddingBottom="@dimen/dp20">
+        android:gravity="bottom">
 
         <TextView
             android:id="@+id/btn_upgrade"
-            style="@style/dialog_btn"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:background="@color/transparent"
