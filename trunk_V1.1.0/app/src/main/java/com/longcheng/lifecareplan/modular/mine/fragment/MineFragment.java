@@ -876,6 +876,20 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     int CurrentStartLevel;
     TextView tv_cont;
 
+    public void dismissAllDialog(){
+        if (toDoctorDialog != null && toDoctorDialog.isShowing()) {
+            toDoctorDialog.dismiss();
+        }
+        if (LevelDialog != null && LevelDialog.isShowing()) {
+            LevelDialog.dismiss();
+        }
+        if (actionDialog != null && actionDialog.isShowing()) {
+            actionDialog.dismiss();
+        }
+        if (redBaoDialog != null && redBaoDialog.isShowing()) {
+            redBaoDialog.dismiss();
+        }
+    }
     /**
      * 是否是坐堂医交押金成功回到我家提示弹层
      */

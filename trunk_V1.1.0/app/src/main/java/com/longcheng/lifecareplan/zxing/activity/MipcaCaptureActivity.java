@@ -118,16 +118,16 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
         playBeepSoundAndVibrate();
         String resultString = result.getText();
         Log.e("handleDecode", "resultString=" + resultString);
-        if (!TextUtils.isEmpty(resultString) && resultString.contains("home/ticket/receipt/")) {
+        if (!TextUtils.isEmpty(resultString) && resultString.contains("asdyf.com")) {
             Intent intent = new Intent(mContext, ReceiveH5Activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("html_url", "" + resultString);
             startActivity(intent);
             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-            doFinish();
         } else {
             ToastUtils.showToast("扫描失败");
         }
+        doFinish();
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {

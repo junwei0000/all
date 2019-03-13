@@ -239,15 +239,19 @@ public class BottomMenuActivity extends BaseActivity {
         radioButtonList.get(position).setChecked(true);
         if (position == tab_position_helpwith) {
             ((HelpWithFragmentNew) fragmentList.get(position)).initInfo();
-        } else if (position == tab_position_exchange) {
+        }
+        if (position == tab_position_exchange) {
             ((ExChangeFragment) fragmentList.get(position)).initLoad(solar_terms_id, solar_terms_name);
-        } else if (position == tab_position_mine) {
+        }
+        if (position == tab_position_mine) {
             ((MineFragment) fragmentList.get(position)).initUserInfo();
+        }else{
+            ((MineFragment) fragmentList.get(tab_position_mine)).dismissAllDialog();
         }
         if (position == tab_position_home) {
             ((HomeFragment) fragmentList.get(position)).showCononDialog();
         } else {
-            ((HomeFragment) fragmentList.get(position)).dismissCononDialog();
+            ((HomeFragment) fragmentList.get(tab_position_home)).dismissCononDialog();
         }
         if (position != tab_position_exchange) {
             solar_terms_name = "24节气";

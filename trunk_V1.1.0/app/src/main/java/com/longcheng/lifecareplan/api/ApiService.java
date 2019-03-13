@@ -821,6 +821,25 @@ public interface ApiService {
                                             @Field("token") String token);
 
     @FormUrlEncoded
+    @POST(Config.VERSION + "ticket/receivePay")
+    Observable<PayWXDataBean> receivePay(@Field("user_id") String user_id,
+                                         @Field("receive_user_id") String receive_user_id,
+                                         @Field("payment_channel") String pay_way,
+                                         @Field("user_ticket_id") String user_ticket_id,
+                                         @Field("pay_check_code") String pay_check_code,
+                                         @Field("pay_money") String pay_money,
+                                         @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "ticket/paymentCodePay")
+    Observable<PayWXDataBean> MerchantPay(@Field("user_id") String user_id,
+                                          @Field("payment_order_id") String payment_order_id,
+                                          @Field("payment_channel") String pay_way,
+                                          @Field("pay_check_code") String pay_check_code,
+                                          @Field("current_time") String current_time,
+                                          @Field("token") String token);
+
+    @FormUrlEncoded
     @POST(Config.VERSION + "Doctor/createOrder")
     Observable<PayWXDataBean> doctorPay(@Field("user_id") String user_id,
                                         @Field("payment_channel") String payment_channel,
