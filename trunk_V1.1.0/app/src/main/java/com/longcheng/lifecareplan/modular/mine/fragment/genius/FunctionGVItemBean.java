@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.modular.mine.fragment;
+package com.longcheng.lifecareplan.modular.mine.fragment.genius;
 
 /**
  * 作者：jun on

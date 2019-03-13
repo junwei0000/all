@@ -135,8 +135,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "user/bindPhone")
     Observable<LoginDataBean> bindPhone(@Field("user_id") String user_id, @Field("code") String code,
-                                       @Field("phone") String phone, @Field("pwd") String pwd,
-                                       @Field("token") String token);
+                                        @Field("phone") String phone, @Field("pwd") String pwd,
+                                        @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "user/editPwd")
@@ -791,6 +791,11 @@ public interface ApiService {
                                                      @Query("knp_msg_id") String knp_msg_id,
                                                      @Query("token") String token);
 
+    @GET(Config.VERSION + "commonweal/info")
+    Observable<EnergyDetailDataBean> getCommonwealMsgDetail(@Query("user_id") String user_id,
+                                                            @Query("commonweal_activity_id") String commonweal_activity_id,
+                                                            @Query("token") String token);
+
     @GET(Config.VERSION + "Paydeposit/index")
     Observable<DetailDataBean> getYaJinPayInfo(@Query("user_id") String user_id,
                                                @Query("order_id") String order_id,
@@ -804,6 +809,16 @@ public interface ApiService {
                                          @Field("id") String msg_id,
                                          @Field("money") int money,
                                          @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Commonweal/pay")
+    Observable<PayWXDataBean> GenuisPayHelp(@Field("user_id") String user_id,
+                                            @Field("share_user_id") String share_user_id,
+                                            @Field("commonweal_activity_id") String commonweal_activity_id,
+                                            @Field("payWay") String pay_way,
+                                            @Field("msg_id") String msg_id,
+                                            @Field("money") int money,
+                                            @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Doctor/createOrder")

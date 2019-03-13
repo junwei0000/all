@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.modular.mine.fragment;
+package com.longcheng.lifecareplan.modular.mine.fragment.genius;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -69,8 +69,7 @@ public class ActionH5Activity extends WebAct {
     private ShareUtils mShareUtils;
     private String kn_url;
 
-    //康农祝福
-    DetailHelpDialogUtils mDetailHelpDialogUtils;
+    ActionlHelpDialogUtils mDetailHelpDialogUtils;
     List<DetailItemBean> mutual_help_money_all;
     private String knp_sharetitle, knp_shareurl, knp_sharePic, knp_sharedesc;
     private int mutual_help_money;
@@ -78,6 +77,7 @@ public class ActionH5Activity extends WebAct {
     private List<DetailItemBean> blessings_list;
     private String one_order_id;
     private String msg_id;
+    private String commonweal_activity_id;
 
     @Override
     public void onClick(View v) {
@@ -105,7 +105,7 @@ public class ActionH5Activity extends WebAct {
     @Override
     public void initView(View view) {
         super.initView(view);
-        pageTopTvName.setText("天才行动");
+        pageTopTvName.setText("呵护天才行动");
         setOrChangeTranslucentColor(toolbar, null);
     }
 
@@ -114,7 +114,7 @@ public class ActionH5Activity extends WebAct {
         super.setListener();
         pagetopIvRigth.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
-        pagetopIvRigth.setVisibility(View.GONE);
+        pagetopIvRigth.setVisibility(View.VISIBLE);
         pagetopIvRigth.setBackgroundResource(R.mipmap.wisheachdetails_share);
     }
 
@@ -125,38 +125,24 @@ public class ActionH5Activity extends WebAct {
         kn_url = getIntent().getStringExtra("kn_url");
         Log.e("getIntent", "kn_url=[" + kn_url);
         loadUrl(kn_url);
-        //康农工程-----获取分享 knp_msg_id
-        mBridgeWebView.registerHandler("knp_getKnpMsgId", new BridgeHandler() {
+        //天才行动-----获取分享  msg_id
+        mBridgeWebView.registerHandler("Genius_AppActivityId", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
-                try {
-                    JSONObject jsonObject = new JSONObject(data);
-                    String url = jsonObject.optString("url", "");
-                    String knp_msg_id = jsonObject.optString("knp_msg_id", "");
-                    if (pagetopIvRigth != null) {
-                        if (!TextUtils.isEmpty(url) && url.contains("/knp/info")) {
-                            pagetopIvRigth.setVisibility(View.VISIBLE);
-                        } else {
-                            pagetopIvRigth.setVisibility(View.GONE);
-                        }
-                    }
-                    if (!knp_msg_id.equals("0"))
-                        getKNPMsgDetail(knp_msg_id);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                commonweal_activity_id = data;
+                getKNPMsgDetail(commonweal_activity_id);
             }
         });
-        //康农工程-----显示祝福弹层
-        mBridgeWebView.registerHandler("knp_showHelpDialog", new BridgeHandler() {
+        //天才行动-----显示祝福弹层
+        mBridgeWebView.registerHandler("Genius_AppPayment", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 msg_id = data;
                 Log.e("registerHandler", "data=" + data);
                 if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
                     if (mDetailHelpDialogUtils == null) {
-                        mDetailHelpDialogUtils = new DetailHelpDialogUtils(mActivity, mHandler, BLESSING);
+                        mDetailHelpDialogUtils = new ActionlHelpDialogUtils(mActivity, mHandler, BLESSING);
                     }
                     mDetailHelpDialogUtils.initData(userInfo, blessings_list, 0, mutual_help_money, mutual_help_money_all);
                     mDetailHelpDialogUtils.showPopupWindow();
@@ -173,10 +159,9 @@ public class ActionH5Activity extends WebAct {
             switch (msg.what) {
                 case BLESSING:
                     Bundle bundle = msg.getData();
-                    String help_comment_content = bundle.getString("help_comment_content");
                     String payType = bundle.getString("payType");
                     int selectmoney = bundle.getInt("selectmoney");
-                    payHelp(UserUtils.getUserId(mContext), help_comment_content, payType, msg_id, selectmoney);
+                    payHelp(UserUtils.getUserId(mContext), commonweal_activity_id, payType, msg_id, selectmoney);
                     break;
             }
         }
@@ -186,21 +171,20 @@ public class ActionH5Activity extends WebAct {
      * 支付
      *
      * @param user_id
-     * @param help_comment_content
+     * @param commonweal_activity_id
      * @param pay_way
      * @param msg_id
      * @param money
      */
-    public void payHelp(String user_id, String help_comment_content, String pay_way, String msg_id, int money) {
+    public void payHelp(String user_id, String commonweal_activity_id, String pay_way, String msg_id, int money) {
         Log.e("Observable", "" + ExampleApplication.token);
-        Observable<PayWXDataBean> observable = Api.getInstance().service.KNPPayHelp(user_id,
-                help_comment_content, pay_way, msg_id, money, ExampleApplication.token);
+        Observable<PayWXDataBean> observable = Api.getInstance().service.GenuisPayHelp(user_id, user_id,
+                commonweal_activity_id, pay_way, msg_id, money, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
-//                        mView.PayHelpSuccess(responseBean);
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -239,20 +223,22 @@ public class ActionH5Activity extends WebAct {
     }
 
     private void helpSkipSuccess() {
-        Intent intent = new Intent(mActivity, RedEnvelopeKnpActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra("one_order_id", one_order_id);
-        startActivity(intent);
-        ConfigUtils.getINSTANCE().setPageLoginIntentAnim(intent, mActivity);
+        Log.e("helpSkipSuccess", "one_order_id=" + one_order_id);
+        mBridgeWebView.callHandler("Genius_GetOneOrderId", one_order_id, new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
     }
 
     /**
-     * 获取康农详情数据
+     * 获取详情数据
      *
-     * @param knp_msg_id
+     * @param commonweal_activity_id
      */
-    public void getKNPMsgDetail(String knp_msg_id) {
-        Observable<EnergyDetailDataBean> observable = Api.getInstance().service.getKNPMsgDetail(UserUtils.getUserId(mContext), knp_msg_id,
+    public void getKNPMsgDetail(String commonweal_activity_id) {
+        Observable<EnergyDetailDataBean> observable = Api.getInstance().service.getCommonwealMsgDetail(UserUtils.getUserId(mContext), commonweal_activity_id,
                 ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -262,7 +248,6 @@ public class ActionH5Activity extends WebAct {
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                         } else if (status.equals("200")) {
-                            //http://test.t.asdyf.com/api/v1_0_0/help/lj_payment?id=1350&user_id=942&token=7e3ddf48a199421e37d17b57c7d66a1c
                             DetailAfterBean mDetailAfterBean = (DetailAfterBean) responseBean.getData();
                             if (mDetailAfterBean != null) {
                                 knp_sharetitle = mDetailAfterBean.getKnp_sharetitle();
@@ -305,28 +290,7 @@ public class ActionH5Activity extends WebAct {
         registerReceiver(mReceiver, filter);
     }
 
-    private void knpPaySuccessBack() {
-        //康农工程-----刷新康农详情页返回列表
-        mBridgeWebView.callHandler("knp_paySuccessBack", "", new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
 
-            }
-        });
-    }
-
-    private void knpPaySucRreDetail() {
-        //康农工程-----刷新康农详情页
-        mBridgeWebView.callHandler("knp_paySucRreDetail", "", new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
-
-            }
-        });
-    }
-
-    public static final int knpPaySuccessBack = 11;
-    public static final int knpPaySucRreDetail = 22;
     /**
      * 微信支付回调广播
      */
@@ -340,10 +304,6 @@ public class ActionH5Activity extends WebAct {
                 ToastUtils.showToast("支付失败");
             } else if (errCode == WXPayEntryActivity.PAY_CANCLE) {
                 ToastUtils.showToast("支付取消");
-            } else if (errCode == knpPaySuccessBack) {
-                knpPaySuccessBack();
-            } else if (errCode == knpPaySucRreDetail) {
-                knpPaySucRreDetail();
             }
         }
     };

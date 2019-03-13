@@ -1,20 +1,15 @@
-package com.longcheng.lifecareplan.modular.mine.fragment;
+package com.longcheng.lifecareplan.modular.mine.fragment.genius;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
-import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
-import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;
 

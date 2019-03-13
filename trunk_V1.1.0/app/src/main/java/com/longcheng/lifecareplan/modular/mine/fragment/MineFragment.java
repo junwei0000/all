@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
@@ -12,9 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -30,11 +27,9 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.PerfectInfoDialog;
-import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.UpdatePwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
@@ -47,6 +42,9 @@ import com.longcheng.lifecareplan.modular.mine.bill.activity.SleepEngryActivity;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.SleepSkbActivity;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.WakeSkbActivity;
 import com.longcheng.lifecareplan.modular.mine.changeinviter.activity.ChangeInviterActivity;
+import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
+import com.longcheng.lifecareplan.modular.mine.fragment.genius.FunctionAdapter;
+import com.longcheng.lifecareplan.modular.mine.fragment.genius.FunctionGVItemBean;
 import com.longcheng.lifecareplan.modular.mine.goodluck.activity.GoodLuckActivity;
 import com.longcheng.lifecareplan.modular.mine.invitation.activity.InvitationAct;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressListActivity;
@@ -78,14 +76,11 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreference
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
-import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @author MarkShuai
@@ -342,9 +337,11 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private void setFunctionType() {
         boolean MineFuunctiontypeList = MySharedPreferences.getInstance().getMineFuunctiontypeList();
         if (MineFuunctiontypeList) {
+            tv_functionstatus.setText("宫格展示");
             layout_gongnengnlist.setVisibility(View.VISIBLE);
             layout_gongnengngv.setVisibility(View.GONE);
         } else {
+            tv_functionstatus.setText("列表展示");
             layout_gongnengnlist.setVisibility(View.GONE);
             layout_gongnengngv.setVisibility(View.VISIBLE);
         }
@@ -359,7 +356,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private void showFunctionGVData() {
         FunctionGVlist1 = new ArrayList();
         FunctionGVlist2 = new ArrayList();
-
 
         int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
         int isVolunteerIdentity = data.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
@@ -434,10 +430,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.layout_functionstatus://切换功能显示类型
                 boolean MineFuunctiontypeList = MySharedPreferences.getInstance().getMineFuunctiontypeList();
                 if (MineFuunctiontypeList) {
-                    tv_functionstatus.setText("列表展示");
                     MySharedPreferences.getInstance().saveMineFuunctiontypeList(false);
                 } else {
-                    tv_functionstatus.setText("宫格展示");
                     MySharedPreferences.getInstance().saveMineFuunctiontypeList(true);
                 }
                 setFunctionType();
