@@ -11,28 +11,26 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:paddingTop="@dimen/dp15"
-            android:paddingBottom="@dimen/dp20"
+            style="@style/view_padd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择生命能量"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
             <TextView
                 android:id="@+id/detailhelp_tv_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="216"
-                android:textColor="@color/red"
-                android:textSize="@dimen/dp30"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="生命能量"
+                android:text="（95元）"
                 android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_contents_size" />
+                android:textSize="@dimen/text_contents_size"
+                  />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -76,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选择支付方式"
-        android:textColor="@color/text_contents_color"
+        android:textColor="@color/text_biaoTi_color"
         android:textSize="@dimen/text_contents_size" />
     <!---->
     <LinearLayout

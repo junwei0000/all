@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -33,6 +34,7 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBea
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
+import com.longcheng.lifecareplan.modular.home.fragment.PopularActionActivity;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressSelectUtils;
@@ -73,6 +75,16 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
     TextView tvApply;
     @BindView(R.id.mBridgeWebView)
     BridgeWebView mBridgeWebView;
+
+
+    @BindView(R.id.relat_data)
+    RelativeLayout relat_data;
+    @BindView(R.id.layout_xiajia)
+    LinearLayout layout_xiajia;
+    @BindView(R.id.btn_xiajia)
+    TextView btn_xiajia;
+
+
     private String user_id;
 
     @Override
@@ -91,6 +103,12 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
                 } else {
                     applyHelp("", "");
                 }
+                break;
+            case R.id.btn_xiajia:
+                Intent intent = new Intent(mContext, PopularActionActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                mContext.startActivity(intent);
+                doFinish();
                 break;
         }
     }
@@ -131,6 +149,7 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
     public void setListener() {
         pagetopLayoutLeft.setOnClickListener(this);
         tvApply.setOnClickListener(this);
+        btn_xiajia.setOnClickListener(this);
     }
 
     @Override
@@ -183,6 +202,19 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
             String showT = "生命能量：<font color=\"#b58c1a\">" + mActionItemBean.getAbility_price() + "</font>";
             tvEngry.setText(Html.fromHtml(showT));
             ConfigUtils.getINSTANCE().showBridgeWebView(mBridgeWebView, mActionItemBean.getContent());
+
+            String xiajia_status = mActionItemBean.getXiajia_status();
+            if (!TextUtils.isEmpty(xiajia_status) && xiajia_status.equals("0")) {
+                pageTopTvName.setText("行动下架");
+                relat_data.setVisibility(View.GONE);
+                layout_xiajia.setVisibility(View.VISIBLE);
+            } else {
+                pageTopTvName.setText("行动详情");
+                relat_data.setVisibility(View.VISIBLE);
+                layout_xiajia.setVisibility(View.GONE);
+            }
+
+
         }
     }
 

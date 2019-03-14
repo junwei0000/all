@@ -9,6 +9,7 @@
     <include layout="@layout/line" />
 
     <LinearLayout
+        android:layout_marginTop="@dimen/dp60"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -18,7 +19,6 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp43"
             android:src="@mipmap/xiajia" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp35"
-            android:layout_marginTop="@dimen/dp35"
+            android:layout_marginTop="@dimen/dp30"
             android:gravity="center"
             android:text="该商品已抢购一空，敬请期待..."
             android:textColor="@color/text_contents_color"

@@ -822,10 +822,11 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         Log.e("btnClick", "再次申请");
         if (type == 2 || type == 4) {
             int action_status = mOrderItemBean.getAction_status();
-            int action_goods_id = mOrderItemBean.getAction_id();
-            if (action_status == 0 && action_goods_id == 27) {
-                action_goods_id = 0;
+            if (action_status == 0) {
+                xiajia();
+                return;
             }
+            int action_goods_id = mOrderItemBean.getAction_id();
             SkipHelpUtils.getInstance().skipIntent(mActivity, action_goods_id);
         } else {
             RedeemAgain();

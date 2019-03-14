@@ -536,8 +536,9 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
      */
     private void ApplyAgain(int action_status, int type, int action_goods_id, int goodsid, String shop_goods_price_id) {
         if (type == 2 || type == 4) {
-            if (action_status == 0 && action_goods_id == 27) {
-                action_goods_id = 0;
+            if (action_status == 0) {
+                xiajia(action_status, type);
+                return;
             }
             SkipHelpUtils.getInstance().skipIntent(context, action_goods_id);
         } else {

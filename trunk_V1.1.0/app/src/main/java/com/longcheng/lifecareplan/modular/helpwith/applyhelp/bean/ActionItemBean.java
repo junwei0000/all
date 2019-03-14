@@ -32,6 +32,9 @@ public class ActionItemBean {
 
     @SerializedName("type")
     private int type;//2 虚拟商品
+    @SerializedName("status")
+    private String xiajia_status;//0下架
+
 
 
     @SerializedName("extend_type")
@@ -62,6 +65,14 @@ public class ActionItemBean {
     private String content;
     private String goods_id;
 
+
+    public String getXiajia_status() {
+        return xiajia_status;
+    }
+
+    public void setXiajia_status(String xiajia_status) {
+        this.xiajia_status = xiajia_status;
+    }
 
     public int getType() {
         return type;

@@ -281,7 +281,7 @@ public class ActionlHelpDialogUtils {
     private void setEngery(DetailItemBean mEnergyItemBean) {
         selectmoney = mEnergyItemBean.getMoney();
         selectengery = mEnergyItemBean.getAbility();
-        detailhelp_tv_money.setText(""+selectengery);
+        detailhelp_tv_money.setText("（"+selectmoney+"元）");
         if (ability >= selectengery) {
             payType = "ability";
         } else if (Double.valueOf(asset) >= selectmoney) {
