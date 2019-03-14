@@ -237,25 +237,25 @@ public class BottomMenuActivity extends BaseActivity {
         // 切换页面
         mViewPager.setCurrentItem(position, false);
         radioButtonList.get(position).setChecked(true);
-        if (position == tab_position_helpwith) {
-            ((HelpWithFragmentNew) fragmentList.get(position)).initInfo();
-        }
-        if (position == tab_position_exchange) {
-            ((ExChangeFragment) fragmentList.get(position)).initLoad(solar_terms_id, solar_terms_name);
-        }
-        if (position == tab_position_mine) {
-            ((MineFragment) fragmentList.get(position)).initUserInfo();
-        }else{
-            ((MineFragment) fragmentList.get(tab_position_mine)).dismissAllDialog();
-        }
+
         if (position == tab_position_home) {
             ((HomeFragment) fragmentList.get(position)).showCononDialog();
         } else {
             ((HomeFragment) fragmentList.get(tab_position_home)).dismissCononDialog();
         }
-        if (position != tab_position_exchange) {
+        if (position == tab_position_helpwith) {
+            ((HelpWithFragmentNew) fragmentList.get(position)).initInfo();
+        }
+        if (position == tab_position_exchange) {
+            ((ExChangeFragment) fragmentList.get(position)).initLoad(solar_terms_id, solar_terms_name);
+        } else {
             solar_terms_name = "24节气";
             solar_terms_id = 0;
+        }
+        if (position == tab_position_mine) {
+            ((MineFragment) fragmentList.get(position)).initUserInfo();
+        } else {
+            ((MineFragment) fragmentList.get(tab_position_mine)).dismissAllDialog();
         }
     }
 
@@ -333,7 +333,7 @@ public class BottomMenuActivity extends BaseActivity {
             selectPage(tab_position_home);
         } else {
 //            exit();
-             ActivityManager.getScreenManager().backHome(mActivity);
+            ActivityManager.getScreenManager().backHome(mActivity);
         }
     }
 
