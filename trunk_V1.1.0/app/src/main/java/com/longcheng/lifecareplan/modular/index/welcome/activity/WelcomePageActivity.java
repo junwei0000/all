@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
-import com.longcheng.lifecareplan.modular.home.fragment.PopularActionActivity;
 import com.longcheng.lifecareplan.modular.index.welcome.adapter.GuidePagerAdapter;
 import com.longcheng.lifecareplan.modular.index.welcome.bean.WelcomeBean;
 import com.longcheng.lifecareplan.modular.index.welcome.frag.GuidePage1Frag;
@@ -90,7 +89,7 @@ public class WelcomePageActivity extends BaseActivityMVP<WelcomeContract.View, W
 
 
     private void intentIndexPage() {
-        Intent intent = new Intent(mContext, PopularActionActivity.class);
+        Intent intent = new Intent(mContext, BottomMenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
