@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".modular.index.login.activity.LoginActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/title_right_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        android:layout_below="@+id/include"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:src="@mipmap/logo" />
+
+    <RelativeLayout
+        android:id="@+id/rl_input"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_below="@+id/iv_logo"
+        android:background="@mipmap/line_login">
+
+        <RelativeLayout
+            android:id="@+id/rl_phone_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="99dp">
+
+            <ImageView
+                android:id="@+id/iv_heard"
+                android:layout_width="30dp"
+                android:layout_height="45dp"
+                android:layout_alignBottom="@+id/et_phoneNum"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/ic_launcher_round" />
+
+            <EditText
+                android:id="@+id/et_phoneNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/iv_heard"
+                android:hint="@string/please_phone_num"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textCursorDrawable="@drawable/login_edittext_background"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_verification_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_phone_num"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iv_code"
+                android:layout_width="30dp"
+                android:layout_height="45dp"
+                android:layout_alignBottom="@+id/et_code"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/ic_launcher_round" />
+
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/iv_code"
+                android:hint="@string/get_password"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textCursorDrawable="@drawable/login_edittext_background"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/iv_see_password"
+                android:layout_width="21dp"
+                android:layout_height="11dp"
+                android:layout_alignRight="@+id/et_code"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:background="@mipmap/ic_launcher_round" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_verification_code"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="23dp"
+                android:background="@drawable/check_bag"
+                android:button="@null"
+                android:checked="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="下次自动登录"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="345dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/rl_verification_code"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/login_bt_bag"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_input"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="45dp"
+            android:layout_height="1dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/cfcfcf" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/third_login"
+            android:textColor="@color/cfcfcf"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="45dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="4dp"
+            android:background="@color/cfcfcf" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ll_third"
+        android:layout_alignRight="@+id/ll_third"
+        android:layout_below="@+id/ll_third">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_third_wechat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_launcher_round" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_third_qq"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_launcher_round" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

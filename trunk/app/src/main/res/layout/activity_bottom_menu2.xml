@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/primss"
+        android:fitsSystemWindows="true" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_bt_menu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.longcheng.lifecareplan.widget.view.XRadioGroup
+        android:id="@+id/rg_bottom_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/tv_back6">
+
+            <RadioButton
+                android:id="@+id/rb_bottom_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@drawable/buttontuijian"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tv_bottom_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="@string/bottom_home"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom_helpWith"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/tv_back6">
+
+            <RadioButton
+                android:id="@+id/rb_bottom_helpWith"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@drawable/buttontuijian"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tv_bottom_helpWith"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="@string/bottom_helpwith"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom_exchange"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/tv_back6">
+
+            <RadioButton
+                android:id="@+id/rb_bottom_exchange"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@drawable/buttontuijian"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tv_bottom_exchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="@string/bottom_exchange"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom_transaction"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/tv_back6">
+
+            <RadioButton
+                android:id="@+id/rb_bottom_transaction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@drawable/buttontuijian"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tv_bottom_transaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="@string/bottom_transaction"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom_me"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/tv_back6">
+
+            <RadioButton
+                android:id="@+id/rb_bottom_me"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@drawable/buttontuijian"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tv_bottom_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="@string/bottom_transaction"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+    </com.longcheng.lifecareplan.widget.view.XRadioGroup>
+
+</LinearLayout>
