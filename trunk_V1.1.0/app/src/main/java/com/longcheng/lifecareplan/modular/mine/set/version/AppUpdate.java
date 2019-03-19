@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.modular.mine.set.version;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -179,6 +181,12 @@ public class AppUpdate {
         selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_updateversion);// 创建Dialog并设置样式主题
         selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
         selectDialog.show();
+        WindowManager m = context.getWindowManager();
+        Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+        WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+        p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+        p.height = (int) (p.width * 1.36);
+        selectDialog.getWindow().setAttributes(p); //设置生效
         selectDialog.setOnDismissListener(new OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface arg0) {
@@ -195,7 +203,6 @@ public class AppUpdate {
                 }
             }
         });
-        ImageView iv_xingji = (ImageView) selectDialog.findViewById(R.id.iv_xingji);
         TextView tv_cont = (TextView) selectDialog.findViewById(R.id.tv_cont);
         TextView tv_update = (TextView) selectDialog.findViewById(R.id.tv_update);
         TextView tv_xicai = (TextView) selectDialog.findViewById(R.id.tv_xicai);
