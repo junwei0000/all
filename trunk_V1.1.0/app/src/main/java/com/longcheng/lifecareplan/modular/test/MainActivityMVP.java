@@ -198,12 +198,12 @@ public class MainActivityMVP extends BaseActivityMVP<HomeContract.View, HomePres
                 .subscribe(new DefaultObserver<BasicResponse<Bean>>(this) {
                     @Override
                     public void onSuccess(BasicResponse<Bean> response) {
-                        Bean results = response.getResults();
+                        Bean results = response.getData();
 //                        ToastUtils.showToast(results.toString());
                     }
 
                     @Override
-                    public void onErrorUser() {
+                    public void onError() {
 
                     }
                 });
