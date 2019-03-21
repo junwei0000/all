@@ -321,8 +321,6 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
                     }
                 }
             }
-        } else if (status.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 
@@ -368,6 +366,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
             }
         });
     }
+
     private void autohelpRefresh() {
         //智能互祝----刷新页面数据
         Intent intent = new Intent();
@@ -375,6 +374,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
         intent.putExtra("errCode", AutoHelpH5Activity.knpPaySuccessBack);
         sendBroadcast(intent);
     }
+
     private void jihuoSuccess() {
         autohelpRefresh();
         ToastUtils.showToast("激活成功");

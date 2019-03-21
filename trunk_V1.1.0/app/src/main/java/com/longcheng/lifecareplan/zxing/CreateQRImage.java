@@ -34,7 +34,7 @@ public class CreateQRImage {
      * <p>
      * 要转换的地址或字符串,可以是中文
      */
-    public static void createQRImage(String url,ImageView sweepIV) {
+    public static void createQRImage(String url, ImageView sweepIV) {
         try {
             //判断URL合法性
             if (url == null || "".equals(url) || url.length() < 1) {
@@ -65,8 +65,6 @@ public class CreateQRImage {
             e.printStackTrace();
         }
     }
-
-
 
 
 }

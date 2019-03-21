@@ -94,7 +94,6 @@ public class SignInH5Activity extends WebAct {
     }
 
 
-
     private void back() {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
             mBridgeWebView.goBack();

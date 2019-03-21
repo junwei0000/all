@@ -203,8 +203,6 @@ public class MyDedicationActivity extends BaseListActivity<MyDedicationContract.
                 checkLoadOver(size);
                 ListUtils.getInstance().setNotDateViewL(mHomeHotPushAdapter, layoutNotdate);
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

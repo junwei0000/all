@@ -75,6 +75,7 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
     public static final int INDEX_PENDING = 2;
     public static final int INDEX_OVERED = 3;
     public static final int INDEX_YAJIN = 4;
+
     @Override
     public int bindLayout() {
         return R.layout.my_order_fragment;
@@ -194,8 +195,6 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
                 checkLoadOver(size);
                 ListUtils.getInstance().setNotDateViewL(mAdapter, layoutNotdate);
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

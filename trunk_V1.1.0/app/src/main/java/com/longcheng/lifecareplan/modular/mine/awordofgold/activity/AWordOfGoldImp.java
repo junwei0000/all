@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.bean.AWordOfGoldResponseBean;
 
 import io.reactivex.Observable;
@@ -42,12 +43,8 @@ public class AWordOfGoldImp<T> extends AWordOfGoldContract.Presenter<AWordOfGold
                     public void accept(AWordOfGoldResponseBean responseBean) throws Exception {
                         Log.e("aaa", "accept --> " + responseBean.toString());
                         mView.dismissDialog();
-                        if ("200".equals(responseBean.getStatus())) {
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
                             mView.onSuccess(responseBean);
-                        } else {
-                            mView.onError(responseBean.getMsg());
-                        }
-
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

@@ -388,8 +388,6 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
                 page = page_;
                 setFocuse();
             }
-        } else if (status.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
         RefreshComplete();
     }

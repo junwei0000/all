@@ -332,8 +332,6 @@ public class RecoverCashActivity extends BaseActivityMVP<RecoverCashContract.Vie
                 withdraw_ability_ratio = mAcountAfterBean.getWithdraw_ability_ratio();
             }
             initView("");
-        } else if (status.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

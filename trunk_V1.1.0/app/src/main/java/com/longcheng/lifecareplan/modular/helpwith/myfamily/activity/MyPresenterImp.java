@@ -9,6 +9,7 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.MyFamilyDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.MyFamilyListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.RelationListDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 
@@ -51,7 +52,8 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
                     @Override
                     public void accept(MyFamilyListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.ListSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.ListSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

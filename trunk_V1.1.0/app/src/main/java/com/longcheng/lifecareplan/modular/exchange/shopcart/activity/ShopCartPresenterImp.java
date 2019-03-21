@@ -6,6 +6,7 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
@@ -79,7 +80,8 @@ public class ShopCartPresenterImp<T> extends ShopCartContract.Presenter<ShopCart
                     @Override
                     public void accept(ShopCartDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.GetTuiJianListSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.GetTuiJianListSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

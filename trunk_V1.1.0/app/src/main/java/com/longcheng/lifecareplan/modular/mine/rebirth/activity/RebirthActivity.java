@@ -127,8 +127,6 @@ public class RebirthActivity extends BaseActivityMVP<RebirthContract.View, Rebir
                     ivThumb.setBackgroundResource(R.mipmap.my_rebirth_blue);
                 }
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

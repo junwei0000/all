@@ -227,8 +227,6 @@ public class CommuneJoinListActivity extends BaseListActivity<CommuneContract.Vi
                 mAdapter = new CommuneJoinListAdapter(mContext, groupList, isLeader, mHandler, CLCIKLIKE);
                 joinListview.setAdapter(mAdapter);
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

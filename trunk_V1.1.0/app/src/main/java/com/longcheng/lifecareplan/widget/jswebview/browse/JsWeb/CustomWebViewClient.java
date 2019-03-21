@@ -22,9 +22,10 @@ import java.util.Map;
 public abstract class CustomWebViewClient extends BridgeWebViewClient {
 
     Context mContext;
-    public CustomWebViewClient(Context mContext,BridgeWebView webView) {
+
+    public CustomWebViewClient(Context mContext, BridgeWebView webView) {
         super(webView);
-        this.mContext=mContext;
+        this.mContext = mContext;
     }
 
     @Override

@@ -59,7 +59,7 @@ public class WebActivity extends BaseActivity {
     }
 
     private void initWebView() {
-        mProgressBarWebView.setWebViewClient(new CustomWebViewClient(mContext,mProgressBarWebView.getWebView()) {
+        mProgressBarWebView.setWebViewClient(new CustomWebViewClient(mContext, mProgressBarWebView.getWebView()) {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {

@@ -360,6 +360,7 @@ public class ApplyHelpPresenterImp<T> extends ApplyHelpContract.Presenter<ApplyH
                 });
 
     }
+
     /**
      * 1：注册 2：找回密码 3.修改手机号 4.快捷登陆 默认是4 5.绑定手机号
      *
@@ -369,7 +370,7 @@ public class ApplyHelpPresenterImp<T> extends ApplyHelpContract.Presenter<ApplyH
     public void pUseSendCode(String phoneNum, String type) {
         mView.showDialog();
 
-        Observable<SendCodeBean> observable = Api.getInstance().service.userSendCode2(UserUtils.getUserId(mContext),phoneNum, type, ExampleApplication.token);
+        Observable<SendCodeBean> observable = Api.getInstance().service.userSendCode2(UserUtils.getUserId(mContext), phoneNum, type, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<SendCodeBean>() {
@@ -385,6 +386,7 @@ public class ApplyHelpPresenterImp<T> extends ApplyHelpContract.Presenter<ApplyH
                     }
                 });
     }
+
     /**
      * 非cho保存资料
      *
@@ -393,10 +395,10 @@ public class ApplyHelpPresenterImp<T> extends ApplyHelpContract.Presenter<ApplyH
     public void saveUserInfo(String user_id, String user_name,
                              String phone, String code, String pw, String pwnew, String pid,
                              String cid, String aid, String birthday) {
-        Log.e("saveUserInfo","user_id="+user_id+"&user_name="+user_name
-                +"&phone="+phone+"&code="+code+"&password="+pw+"&repassword="+pwnew
-                +"&pid="+pid+"&cid="+cid+"&aid="+aid
-                +"&birthday="+birthday+"&token="+ExampleApplication.token);
+        Log.e("saveUserInfo", "user_id=" + user_id + "&user_name=" + user_name
+                + "&phone=" + phone + "&code=" + code + "&password=" + pw + "&repassword=" + pwnew
+                + "&pid=" + pid + "&cid=" + cid + "&aid=" + aid
+                + "&birthday=" + birthday + "&token=" + ExampleApplication.token);
         mView.showDialog();
         Observable<LoginDataBean> observable = Api.getInstance().service.saveUserInfo(user_id, user_name, phone, code, pw, pwnew,
                 pid, cid, aid

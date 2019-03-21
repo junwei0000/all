@@ -159,8 +159,6 @@ public class SetActivity extends BaseActivity {
                                     cbMylocation.setChecked(false);
                                 }
                             }
-                        } else if (status.equals("499")) {
-                            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
                         }
 
                     }
@@ -191,8 +189,6 @@ public class SetActivity extends BaseActivity {
                             ToastUtils.showToast(responseBean.getMsg());
                         } else if (status.equals("200")) {
                             push_need_received = push_need_received_;
-                        } else if (status.equals("499")) {
-                            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
                         }
 
                     }

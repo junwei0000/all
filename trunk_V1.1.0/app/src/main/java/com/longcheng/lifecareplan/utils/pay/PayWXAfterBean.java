@@ -38,6 +38,7 @@ public class PayWXAfterBean {
 
     @SerializedName("alipayPayInfo")
     private String payInfo;
+
     public PayWXAfterBean() {
 
     }

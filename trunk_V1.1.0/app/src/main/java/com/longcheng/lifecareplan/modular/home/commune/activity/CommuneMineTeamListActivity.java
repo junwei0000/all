@@ -210,8 +210,6 @@ public class CommuneMineTeamListActivity extends BaseListActivity<CommuneContrac
                 }
             }
             ListUtils.getInstance().setNotDateViewL(mAdapter, layoutNotdate);
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

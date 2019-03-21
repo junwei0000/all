@@ -214,8 +214,6 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
                 ListUtils.getInstance().setNotDateViewL(mHomeHotPushAdapter, layoutNotdate);
                 checkLoadOver(size);
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

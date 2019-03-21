@@ -19,6 +19,7 @@ public interface HelpWithContract {
 
     interface View extends BaseView<Present> {
         void getHelpIndexSuccess(HelpIndexDataBean mHomeDataBean);
+
         void ListError();
     }
 

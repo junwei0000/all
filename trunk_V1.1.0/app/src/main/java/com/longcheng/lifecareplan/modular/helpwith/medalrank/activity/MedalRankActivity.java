@@ -249,8 +249,6 @@ public class MedalRankActivity extends BaseListActivity<MyContract.View, MyPrese
                 checkLoadOver(size, listviewPersonal);
                 personalpage = back_page;
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 
@@ -323,8 +321,6 @@ public class MedalRankActivity extends BaseListActivity<MyContract.View, MyPrese
                 checkLoadOver(size, listviewCommune);
                 communepage = back_page;
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

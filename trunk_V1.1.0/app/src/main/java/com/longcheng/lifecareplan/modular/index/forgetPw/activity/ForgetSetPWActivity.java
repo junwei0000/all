@@ -50,15 +50,15 @@ public class ForgetSetPWActivity extends BaseActivityMVP<ForgetPWContract.View, 
     @Override
     public void checkPhoneSuccess(EditDataBean responseBean) {
         String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
+        if (status.equals("200")) {
             ToastUtils.showToast(responseBean.getData());
             Intent intent = new Intent(mContext, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
             finish();
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
         }
     }
 

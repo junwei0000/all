@@ -379,8 +379,6 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
                 page = backPage;
                 checkLoadOver(size);
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
         ListUtils.getInstance().setNotDateViewL(mHomeHotPushAdapter, layoutNotdate);
     }

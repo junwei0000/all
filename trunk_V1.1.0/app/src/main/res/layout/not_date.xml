@@ -34,9 +34,9 @@
         android:id="@+id/not_date_cont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/jianJu"
-        android:paddingBottom="@dimen/dp10"
         android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingTop="@dimen/jianJu"
         android:text="请刷新或检查网络"
         android:textColor="@color/text_noclick_color"
         android:textSize="@dimen/text_zhu_size" />

@@ -212,7 +212,6 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
     }
 
 
-
     /**
      * 拆红包后展示数据和动画
      */

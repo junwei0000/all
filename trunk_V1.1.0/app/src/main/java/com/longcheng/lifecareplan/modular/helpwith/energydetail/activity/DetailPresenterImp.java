@@ -88,7 +88,8 @@ public class DetailPresenterImp<T> extends DetailContract.Presenter<DetailContra
                 .subscribe(new io.reactivex.functions.Consumer<EnergyDetailDataBean>() {
                     @Override
                     public void accept(EnergyDetailDataBean responseBean) throws Exception {
-                        mView.CommentListSuccess(responseBean, page);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.CommentListSuccess(responseBean, page);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

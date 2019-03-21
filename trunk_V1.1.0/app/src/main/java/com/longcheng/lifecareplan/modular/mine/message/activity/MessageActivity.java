@@ -205,8 +205,6 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
                 ListUtils.getInstance().setNotDateViewL(mHomeHotPushAdapter, layoutNotdate);
                 checkLoadOver(size);
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

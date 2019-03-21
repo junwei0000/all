@@ -386,8 +386,6 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
                 tvGonggaocont.setText(content);
             }
             checkRankType();
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

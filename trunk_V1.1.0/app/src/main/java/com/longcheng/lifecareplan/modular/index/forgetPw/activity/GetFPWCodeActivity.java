@@ -102,13 +102,13 @@ public class GetFPWCodeActivity extends BaseActivityMVP<ForgetPWContract.View, F
     public void getCodeSuccess(SendCodeBean responseBean) {
         codeSendingStatus = false;
         String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
+        if (status.equals("200")) {
             Message msg = new Message();
             msg.what = Daojishistart;
             mHandler.sendMessage(msg);
             msg = null;
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
         }
     }
 

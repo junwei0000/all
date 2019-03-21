@@ -177,8 +177,6 @@ public class MyGratitudeDetailActivity extends BaseListActivity<MynContract.View
                 ListUtils.getInstance().setNotDateViewL(mHomeHotPushAdapter, layoutNotdate);
                 checkLoadOver(size);
             }
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

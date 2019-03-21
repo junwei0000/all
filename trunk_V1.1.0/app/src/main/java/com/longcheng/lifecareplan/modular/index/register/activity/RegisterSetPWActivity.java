@@ -76,6 +76,8 @@ public class RegisterSetPWActivity extends BaseActivityMVP<RegisterContract.View
                     EventBus.getDefault().post(new MessageEvent("register"));
                 }
             }.start();
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
         }
     }
 

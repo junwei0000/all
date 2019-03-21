@@ -6,6 +6,7 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.medalrank.bean.MyRankListDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 
@@ -48,7 +49,8 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
                     @Override
                     public void accept(MyRankListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.PersonalListSuccess(responseBean, page);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.PersonalListSuccess(responseBean, page);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

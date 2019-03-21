@@ -294,8 +294,6 @@ public class CommuneMineMemberListActivity extends BaseListActivity<CommuneContr
                 checkLoadOver(size);
             }
             ListUtils.getInstance().setNotDateViewL(mAdapter, layoutNotdate);
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

@@ -29,8 +29,10 @@ allprojects {
 }
 
 ext {
-    versionCode = 162
-    versionName = '1.6.2'
+    versionCode = 163
+    versionName = '1.6.3'
+//    versionCode = 162
+//    versionName = '1.6.2'
 //    versionCode = 160
 //    versionName = '1.6.0'
 //    versionCode = 154

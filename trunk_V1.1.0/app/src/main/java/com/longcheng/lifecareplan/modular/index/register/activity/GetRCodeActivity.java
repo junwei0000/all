@@ -136,6 +136,8 @@ public class GetRCodeActivity extends BaseActivityMVP<RegisterContract.View, Reg
             msg.what = Daojishistart;
             mHandler.sendMessage(msg);
             msg = null;
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
         }
     }
 

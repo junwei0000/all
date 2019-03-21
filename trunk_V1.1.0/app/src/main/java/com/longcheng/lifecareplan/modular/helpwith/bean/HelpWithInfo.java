@@ -11,6 +11,7 @@ public class HelpWithInfo implements Serializable {
     private String name2;
     private int bgColorId;
     private int imgId;
+
     public HelpWithInfo(String name, int imgId) {
         this.name = name;
         this.imgId = imgId;

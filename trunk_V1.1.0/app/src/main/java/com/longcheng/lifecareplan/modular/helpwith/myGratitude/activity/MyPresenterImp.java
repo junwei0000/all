@@ -5,6 +5,7 @@ import android.content.Context;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.bean.MyListDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -50,7 +51,8 @@ public class MyPresenterImp<T> extends MynContract.Presenter<MynContract.View> {
                     @Override
                     public void accept(MyListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.ListSuccess(responseBean, page);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.ListSuccess(responseBean, page);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

@@ -80,7 +80,8 @@ public class CommunePresenterImp<T> extends CommuneContract.Presenter<CommuneCon
                     @Override
                     public void accept(CommuneListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.GetTeamListSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.GetTeamListSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
@@ -106,7 +107,8 @@ public class CommunePresenterImp<T> extends CommuneContract.Presenter<CommuneCon
                     @Override
                     public void accept(CommuneListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.GetMemberListSuccess(responseBean, page);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.GetMemberListSuccess(responseBean, page);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

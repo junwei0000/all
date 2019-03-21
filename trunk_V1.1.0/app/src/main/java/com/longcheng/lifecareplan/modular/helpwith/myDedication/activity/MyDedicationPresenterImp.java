@@ -8,6 +8,7 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpEnergyListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.myDedication.bean.MyDedicationListDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -53,7 +54,8 @@ public class MyDedicationPresenterImp<T> extends MyDedicationContract.Presenter<
                     @Override
                     public void accept(MyDedicationListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.ListSuccess(responseBean, page);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.ListSuccess(responseBean, page);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
@@ -83,7 +85,8 @@ public class MyDedicationPresenterImp<T> extends MyDedicationContract.Presenter<
                     @Override
                     public void accept(MyDedicationListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.ListSuccess(responseBean, page);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.ListSuccess(responseBean, page);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

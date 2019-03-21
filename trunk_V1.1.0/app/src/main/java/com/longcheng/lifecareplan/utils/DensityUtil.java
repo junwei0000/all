@@ -21,9 +21,9 @@ public class DensityUtil {
      * @param context
      */
     public static void getPhoneToKey(Context context, String tel) {
-        String tel_=tel;
-        if(!TextUtils.isEmpty(tel_)&&!tel_.contains("tel:")){
-            tel_="tel:" + tel;
+        String tel_ = tel;
+        if (!TextUtils.isEmpty(tel_) && !tel_.contains("tel:")) {
+            tel_ = "tel:" + tel;
         }
         Intent intent = new Intent("android.intent.action.DIAL", Uri.parse(tel_));
         context.startActivity(intent);

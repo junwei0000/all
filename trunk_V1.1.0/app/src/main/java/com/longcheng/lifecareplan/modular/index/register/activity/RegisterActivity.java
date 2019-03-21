@@ -79,6 +79,8 @@ public class RegisterActivity extends BaseActivityMVP<RegisterContract.View, Reg
             intent.putExtra("phone", phoneNum);
             startActivity(intent);
             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
         }
     }
 

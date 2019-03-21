@@ -221,6 +221,7 @@ public class GlideDownLoadImage {
 
     /**
      * 互祝首页加载节气图标
+     *
      * @param mContext
      * @param url
      * @param view
@@ -335,6 +336,7 @@ public class GlideDownLoadImage {
                     }
                 });
     }
+
     /**
      * @param mContext
      * @param url

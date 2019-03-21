@@ -5,6 +5,7 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
 
@@ -48,6 +49,7 @@ public class MinePresenterImp<T> extends MineContract.Present<MineContract.View>
                     public void accept(GetHomeInfoDataBean responseBean) throws Exception {
                         mView.dismissDialog();
                         mView.getHomeInfoSuccess(responseBean);
+                        UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus());
                         Log.e("Observable", "" + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

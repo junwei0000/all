@@ -36,7 +36,6 @@ public class ActionItemBean {
     private String xiajia_status;//0下架
 
 
-
     @SerializedName("extend_type")
     private String extend_type;// 0：通用（无特殊扩展） 1：平安行动-资料填写 2：能量配-属性选择
 
@@ -57,7 +56,6 @@ public class ActionItemBean {
     private String remain_number;//剩余互祝次数
     @SerializedName("mutual_help_apply_id")
     private String mutual_help_apply_id;
-
 
 
     //行动详情

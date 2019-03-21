@@ -151,6 +151,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
     public void setOrChangeTranslucentColor(Toolbar toolbar, View bottomNavigationBar) {
         Immersive.setOrChangeTranslucentColor(toolbar, bottomNavigationBar, this.getResources().getColor(R.color.white), this);
     }
+
     /**
      * 调用此方法设置沉浸式效果，向下兼容4.4
      *

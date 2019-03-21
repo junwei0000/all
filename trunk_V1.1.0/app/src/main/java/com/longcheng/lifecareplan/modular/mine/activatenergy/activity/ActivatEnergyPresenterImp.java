@@ -6,6 +6,7 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.GetEnergyListDataBean;
 import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 
@@ -50,7 +51,8 @@ public class ActivatEnergyPresenterImp<T> extends ActivatEnergyContract.Presente
                     @Override
                     public void accept(GetEnergyListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.ListSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.ListSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

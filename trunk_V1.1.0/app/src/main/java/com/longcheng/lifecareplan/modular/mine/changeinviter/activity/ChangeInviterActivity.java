@@ -223,8 +223,6 @@ public class ChangeInviterActivity extends BaseActivityMVP<ChangeInviterContract
                 tvChange.setBackgroundResource(R.drawable.corners_bg_logingray);
             }
 
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

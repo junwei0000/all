@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.mine.set.activity.NotServiceActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
@@ -42,36 +43,25 @@ public class UserLoginBack403Utils {
      */
     public boolean login499Or500(String status) {
         boolean tishi = false;
+        Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
         if (status.equals("499")) {
             tishi = true;
             boolean IsLogout = MySharedPreferences.getInstance().getIsLogout();
             if (!IsLogout)
-                UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
+                showDialogPromptReLogin(mActivity);
         } else if (status.equals("500")) {
             tishi = true;
-            UserLoginBack403Utils.getInstance().sendBroadcastUpdatePw500();
+            Intent intent = new Intent(mActivity, UpdatePwActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_UPDATEPW500);
+            mActivity.startActivity(intent);
+        } else if (status.equals("550")) {
+            tishi = true;
+            Intent intent = new Intent(mActivity, NotServiceActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            mActivity.startActivity(intent);
         }
         return tishi;
-    }
-
-    /**
-     * 单点登录弹层
-     */
-    public void sendBroadcastLoginBack403() {
-        Intent intents = new Intent();
-        intents.setAction(ConstantManager.MAINMENU_ACTION);
-        intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_LOGIN403);
-        LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
-    }
-
-    /**
-     * 无密码跳转设置密码
-     */
-    public void sendBroadcastUpdatePw500() {
-        Intent intents = new Intent();
-        intents.setAction(ConstantManager.MAINMENU_ACTION);
-        intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_UPDATEPW500);
-        LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
     }
 
     public void zhuXiao() {
@@ -128,4 +118,5 @@ public class UserLoginBack403Utils {
             });
         }
     }
+
 }

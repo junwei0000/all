@@ -161,8 +161,6 @@ public class CommuneJoinTeamListActivity extends BaseListActivity<CommuneContrac
                 join_listview.setAdapter(mAdapter);
             }
             ListUtils.getInstance().setNotDateViewL(mAdapter, layoutNotdate);
-        } else if (status_.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

@@ -394,11 +394,11 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     @Override
     public void loginSuccess(LoginDataBean responseBean) {
         String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
+        if (status.equals("200")) {
             LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
             mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
         }
         Log.e(TAG, "*******************************" + responseBean.toString());
     }

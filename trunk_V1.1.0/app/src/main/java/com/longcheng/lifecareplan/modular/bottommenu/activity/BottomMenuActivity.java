@@ -300,18 +300,6 @@ public class BottomMenuActivity extends BaseActivity {
                         selectPage(before_tab_position);
                     } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_NEXT)) {
                         selectPage(after_tab_position);
-                    } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_LOGIN403)) {
-                        //单点登录
-                        Log.e("ResponseBody", "单点登录");
-                        Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
-                        UserLoginBack403Utils.getInstance().showDialogPromptReLogin(mActivity);
-                    } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_UPDATEPW500)) {
-                        //设置密码
-                        Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
-                        intent = new Intent(mActivity, UpdatePwActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_UPDATEPW500);
-                        startActivity(intent);
                     }
                 }
             } catch (Exception e) {

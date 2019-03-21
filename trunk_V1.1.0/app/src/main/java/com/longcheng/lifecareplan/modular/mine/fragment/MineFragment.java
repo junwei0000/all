@@ -1181,11 +1181,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             }
         } else if (status.equals("499")) {
             logoutInit();
-            boolean IsLogout = MySharedPreferences.getInstance().getIsLogout();
-            if (!IsLogout)
-                UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
-        } else if (status.equals("500")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastUpdatePw500();
         }
     }
 

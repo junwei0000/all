@@ -105,8 +105,8 @@ public class AutoHelpH5Activity extends WebAct {
     public void initDataAfter() {
         super.initDataAfter();
         kn_url = getIntent().getStringExtra("html_url");
-        if(TextUtils.isEmpty(kn_url)){
-            kn_url= HelpWithFragmentNew.automationHelpUrl;
+        if (TextUtils.isEmpty(kn_url)) {
+            kn_url = HelpWithFragmentNew.automationHelpUrl;
         }
         loadUrl(kn_url);
 

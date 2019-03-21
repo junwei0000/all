@@ -441,8 +441,6 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
                     tuijianGv.setAdapter(mAdapter);
                 }
             }
-        } else if (status.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

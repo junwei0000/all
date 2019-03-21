@@ -353,8 +353,6 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 help_goods_id = mDetailAfterBean.getHelpGoodsId();
                 showInitData(mDetailAfterBean);
             }
-        } else if (status.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
     }
 

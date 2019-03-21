@@ -151,7 +151,7 @@ public abstract class WebAct extends BaseActivity {
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
                 if (pageTopTvName != null)
-                    pageTopTvName.setText(""+data);
+                    pageTopTvName.setText("" + data);
             }
         });
         mBridgeWebView.registerHandler("main_qiming_skipdetail", new BridgeHandler() {
@@ -466,7 +466,7 @@ public abstract class WebAct extends BaseActivity {
             public void handler(String data, CallBackFunction function) {
                 Intent intent = new Intent(mContext, MallDetailActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("shop_goods_id",""+data);
+                intent.putExtra("shop_goods_id", "" + data);
                 startActivity(intent);
             }
         });

@@ -416,8 +416,6 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                 page = page_;
                 setFocuse();
             }
-        } else if (status.equals("499")) {
-            UserLoginBack403Utils.getInstance().sendBroadcastLoginBack403();
         }
         RefreshComplete();
     }

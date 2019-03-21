@@ -267,8 +267,9 @@ public class GPSUtil {
     }
 
     /**
-     * 强制帮用户打开GPS 
+     * 强制帮用户打开GPS
      * https://my.oschina.net/apm/blog/226256
+     *
      * @param context
      */
     public static final void openGPS(Context context) {

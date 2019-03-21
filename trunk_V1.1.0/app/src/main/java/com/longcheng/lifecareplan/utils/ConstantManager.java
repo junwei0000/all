@@ -81,7 +81,6 @@ public class ConstantManager {
     public static final String MAIN_ACTION_TYPE_CENTER = "MAIN_ACTION_TYPE_CENTER";
     public static final String MAIN_ACTION_TYPE_BACK = "MAIN_ACTION_TYPE_BACK";
     public static final String MAIN_ACTION_TYPE_NEXT = "MAIN_ACTION_TYPE_NEXT";
-    public static final String MAIN_ACTION_TYPE_LOGIN403 = "action_home_type_login403";
     public static final String MAIN_ACTION_TYPE_UPDATEPW500 = "action_home_type_updatepw500";
     public static final String MAIN_ACTION_TYPE_EXCHANGE = "MAIN_ACTION_TYPE_EXCHANGE";
     public static final String MAIN_ACTION_TYPE_HOME = "MAIN_ACTION_TYPE_HOME";

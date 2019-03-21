@@ -77,8 +77,8 @@ public class MyDeH5Activity extends WebAct {
     public void initDataAfter() {
         super.initDataAfter();
         kn_url = getIntent().getStringExtra("html_url");
-        if(TextUtils.isEmpty(kn_url)){
-            kn_url= "http://dev.t.asdyf.com/home/help/my_dedication";
+        if (TextUtils.isEmpty(kn_url)) {
+            kn_url = "http://dev.t.asdyf.com/home/help/my_dedication";
         }
         loadUrl(kn_url);
 
