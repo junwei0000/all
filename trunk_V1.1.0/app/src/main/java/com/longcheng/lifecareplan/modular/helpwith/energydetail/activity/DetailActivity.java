@@ -601,7 +601,9 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
      * @param commentList
      */
     private void commentView(List<DetailItemBean> commentList) {
-        detail_lv_comment.setFocusable(false);
+        if (detail_lv_comment != null) {
+            detail_lv_comment.setFocusable(false);
+        }
         if (mCommentAdapter == null) {
             mCommentAdapter = new CommentAdapter(mContext, commentList, mHandler);
             detail_lv_comment.setAdapter(mCommentAdapter);
@@ -680,7 +682,6 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
     @Override
     public void ListError() {
         RefreshComplete();
-        ToastUtils.showToast(R.string.net_tishi);
     }
 
     /**

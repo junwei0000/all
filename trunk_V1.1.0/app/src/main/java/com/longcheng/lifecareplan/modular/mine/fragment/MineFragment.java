@@ -231,6 +231,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.mycenter_iv_jieqi)
     ImageView mycenter_iv_jieqi;
 
+    @BindView(R.id.layout_commissioner)
+    LinearLayout layout_commissioner;
+
 
     private String is_cho;
     private String user_id;
@@ -300,6 +303,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         usercenter_relay_receiving.setOnClickListener(this);
         layout_volunteerlist.setOnClickListener(this);
         layout_functionstatus.setOnClickListener(this);
+        layout_commissioner.setOnClickListener(this);
 
         mycenterTvName.setFocusable(true);
         mycenterTvName.setFocusableInTouchMode(true);
@@ -373,6 +377,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
         FunctionGVlist1.add(new FunctionGVItemBean(Voname, R.id.usercenter_relay_volunteer, R.mipmap.my_volunteersr_icon));
         FunctionGVlist1.add(new FunctionGVItemBean(Doname, R.id.usercenter_relay_doctor, R.mipmap.my_doctor_icon));
+
+        int isCommissionerIdentity = data.getIsCommissionerIdentity();
+        if (isCommissionerIdentity == 0) {
+        } else {
+            FunctionGVlist1.add(new FunctionGVItemBean("我是特派员", R.id.layout_commissioner, R.mipmap.my_commissioner_icon));
+        }
         int hasDiagnosticRecord = data.getHasDiagnosticRecord();
         if (hasDiagnosticRecord == 0) {
         } else {
@@ -423,7 +433,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.pagetop_layout_rigth://设置
                 intent = new Intent(mContext, SetActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("about_me_url", about_me_url);
+                intent.putExtra("about_me_url", "" + about_me_url);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -440,14 +450,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.usercenter_relay_receiving://收付款
                 intent = new Intent(mContext, ReceiveH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", data.getReceiptCodeUrl());
+                intent.putExtra("html_url", "" + data.getReceiptCodeUrl());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_volunteerlist://志愿者申请列表
                 intent = new Intent(mContext, VolunteerH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", data.getPartymember_url());
+                intent.putExtra("html_url", "" + data.getPartymember_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -458,7 +468,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                         intent = new Intent(mContext, VolunteerH5Activity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("html_url", data.getBecome_volunteer_url());
+                        intent.putExtra("html_url", "" + data.getBecome_volunteer_url());
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     } else {
@@ -467,7 +477,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 } else {
                     intent = new Intent(mContext, VolunteerH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", data.getAlready_volunteer_url());
+                    intent.putExtra("html_url", "" + data.getAlready_volunteer_url());
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
@@ -479,7 +489,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                         intent = new Intent(mContext, VolunteerH5Activity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("html_url", data.getBecome_doctor_url());
+                        intent.putExtra("html_url", "" + data.getBecome_doctor_url());
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     } else {
@@ -488,7 +498,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 } else {
                     intent = new Intent(mContext, VolunteerH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", data.getAlready_doctor_url());
+                    intent.putExtra("html_url", "" + data.getAlready_doctor_url());
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
@@ -496,10 +506,18 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.layout_jiuzhen://就诊记录
                 intent = new Intent(mContext, VolunteerH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", data.getPatient_record_url());
+                intent.putExtra("html_url", "" + data.getPatient_record_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
+            case R.id.layout_commissioner://我是特派员
+                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getCommissioner_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+
             case R.id.mycenter_layout_smallpusher://小推手
                 ToastUtils.showToast("程序猿正在攻坚中…");
                 break;
@@ -657,7 +675,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                     if (!TextUtils.isEmpty(star_level_illustrate_url)) {
                         intent = new Intent(mContext, StarInstructionAct.class);
-                        intent.putExtra("starturl", star_level_illustrate_url);
+                        intent.putExtra("starturl", "" + star_level_illustrate_url);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -876,7 +894,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     int CurrentStartLevel;
     TextView tv_cont;
 
-    public void dismissAllDialog(){
+    public void dismissAllDialog() {
         if (toDoctorDialog != null && toDoctorDialog.isShowing()) {
             toDoctorDialog.dismiss();
         }
@@ -890,6 +908,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             redBaoDialog.dismiss();
         }
     }
+
     /**
      * 是否是坐堂医交押金成功回到我家提示弹层
      */
@@ -1184,7 +1203,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             usercenterTvVolunteer.setText("我是志愿者");
         }
-
+        int isCommissionerIdentity = mGetHomeInfoBean.getIsCommissionerIdentity();
+        if (isCommissionerIdentity == 0) {
+            layout_commissioner.setVisibility(View.GONE);
+        } else {
+            layout_commissioner.setVisibility(View.VISIBLE);
+        }
         int hasDiagnosticRecord = mGetHomeInfoBean.getHasDiagnosticRecord();
         if (hasDiagnosticRecord == 0) {
             layoutJiuzhen.setVisibility(View.GONE);

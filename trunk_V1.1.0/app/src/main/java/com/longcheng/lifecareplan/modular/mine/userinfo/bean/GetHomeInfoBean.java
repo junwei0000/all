@@ -110,6 +110,26 @@ public class GetHomeInfoBean implements Serializable {
     private String commonweal_activity_url;//天才行动
 
 
+    private int isCommissionerIdentity;//是否是特派员身份  0 不是 1 是
+    private String commissioner_url;//特派员
+
+
+    public int getIsCommissionerIdentity() {
+        return isCommissionerIdentity;
+    }
+
+    public void setIsCommissionerIdentity(int isCommissionerIdentity) {
+        this.isCommissionerIdentity = isCommissionerIdentity;
+    }
+
+    public String getCommissioner_url() {
+        return commissioner_url;
+    }
+
+    public void setCommissioner_url(String commissioner_url) {
+        this.commissioner_url = commissioner_url;
+    }
+
     public int getIs_commonweal_activity() {
         return is_commonweal_activity;
     }
