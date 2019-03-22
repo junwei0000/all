@@ -1,12 +1,15 @@
 package com.longcheng.lifecareplan.http.basebean;
 
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  *
  */
 public class BasicResponse<T> {
 
     protected String msg;
+    @SerializedName(value = "status", alternate = {"code"})
     protected String status;
     private T data;
 

@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.api;
 
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.config.Config;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.exchange.bean.JieQiListDataBean;
 import com.longcheng.lifecareplan.modular.exchange.bean.MallGoodsListDataBean;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.GoodsDetailDataBean;
@@ -59,6 +60,7 @@ import com.longcheng.lifecareplan.modular.mine.recovercash.bean.AcountInfoDataBe
 import com.longcheng.lifecareplan.modular.mine.relationship.bean.RelationshipBean;
 import com.longcheng.lifecareplan.modular.mine.rewardcenters.bean.RewardCentersResultBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.PushDataBean;
+import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionDataBean;
 import com.longcheng.lifecareplan.modular.mine.signIn.bean.SignInDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
@@ -82,6 +84,12 @@ import retrofit2.http.Query;
  * 需要注意的是必须要使用@FormUrlEncoded来注解，因为post是以表单方式来请求的。
  */
 public interface ApiService {
+    //*******************TEST***************************
+    @GET("version/android")
+    Observable<BasicResponse<VersionAfterBean>> updateVersionTEST(@Query("version") String version);
+
+    //*******************TEST*************************
+
     @GET("version/android")
     Observable<VersionDataBean> updateVersion(@Query("version") String version);
 

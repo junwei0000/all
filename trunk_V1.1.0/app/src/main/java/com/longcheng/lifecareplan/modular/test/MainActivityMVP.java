@@ -16,12 +16,16 @@ import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.bean.Bean;
 import com.longcheng.lifecareplan.http.api.DefaultObserver;
 import com.longcheng.lifecareplan.http.api.IdeaApi;
+import com.longcheng.lifecareplan.http.api.IdeaApiTest;
+import com.longcheng.lifecareplan.http.api.IdeaApiTest2;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
 import com.longcheng.lifecareplan.modular.test.adapter.HomeAdapter;
 import com.longcheng.lifecareplan.modular.webView.WebProjectActivityBridge;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -146,7 +150,7 @@ public class MainActivityMVP extends BaseActivityMVP<HomeContract.View, HomePres
                 mPresent.setListViewData(index);
             }
         });
-
+        testLoadData();
     }
 
     @Override
@@ -163,9 +167,7 @@ public class MainActivityMVP extends BaseActivityMVP<HomeContract.View, HomePres
                 startActivity(intent2);
                 break;
             case R.id.btn_help:
-                Intent intent3 = new Intent(mContext, WebProjectActivityBridge.class);
-                intent3.putExtra("name", "help");
-                startActivity(intent3);
+                testLoadData();
                 break;
         }
     }
@@ -186,12 +188,27 @@ public class MainActivityMVP extends BaseActivityMVP<HomeContract.View, HomePres
         InstallUtil.installApk(mContext, ConstantManager.NEW_APK_PATH);
     }
 
-    /**
-     * 从后台获取数据
-     */
-    private void getDate() {
+    private void testLoadData() {
         IdeaApi.getApiService()
-                .getappfindmeanu()
+                .updateVersionTEST("1_6_0")
+                .compose(this.<BasicResponse<VersionAfterBean>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse<VersionAfterBean>>(this) {
+                    @Override
+                    public void onSuccess(BasicResponse<VersionAfterBean> response) {
+                        VersionAfterBean results = response.getData();
+                        ToastUtils.showToast(results.toString());
+                        Log.e("Observable", "https://t.asdyf.com/api/============" + results.toString());
+                    }
+
+                    @Override
+                    public void onError() {
+                        Log.e("Observable", "onErrorUser");
+                    }
+                });
+        IdeaApiTest.getApiService()
+                .getappfindmeanu("1.6.0")
                 .compose(this.<BasicResponse<Bean>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -199,14 +216,51 @@ public class MainActivityMVP extends BaseActivityMVP<HomeContract.View, HomePres
                     @Override
                     public void onSuccess(BasicResponse<Bean> response) {
                         Bean results = response.getData();
-//                        ToastUtils.showToast(results.toString());
+                        ToastUtils.showToast(results.toString());
+                        Log.e("Observable", "http://www.kiwiloc.com/api/============" + results.toString());
                     }
 
                     @Override
                     public void onError() {
-
+                        Log.e("Observable", "onErrorUser");
                     }
                 });
+        IdeaApiTest2.getApiService()
+                .getaa()
+                .compose(this.<BasicResponse<Bean>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse<Bean>>(this) {
+                    @Override
+                    public void onSuccess(BasicResponse<Bean> response) {
+                        Bean results = response.getData();
+                        ToastUtils.showToast(results.toString());
+                        Log.e("Observable", "https://www.bestdo.com/new-bd-app/2.7.0/============" + results.toString());
+                    }
+
+                    @Override
+                    public void onError() {
+                        Log.e("Observable", "onErrorUser");
+                    }
+                });
+//        IdeaApi.getApiService()
+//                .getHomeList("", "fgjlkdjkl")
+//                .compose(this.<BasicResponse<HomeAfterBean>>bindToLifecycle())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new DefaultObserver<BasicResponse<HomeAfterBean>>(this) {
+//                    @Override
+//                    public void onSuccess(BasicResponse<HomeAfterBean> response) {
+//                        HomeAfterBean results = response.getData();
+//                        ToastUtils.showToast(results.toString());
+//                        Log.e("Observable", "" + results.toString());
+//                    }
+//
+//                    @Override
+//                    public void onError() {
+//                        Log.e("Observable", "onErrorUser");
+//                    }
+//                });
     }
 
 

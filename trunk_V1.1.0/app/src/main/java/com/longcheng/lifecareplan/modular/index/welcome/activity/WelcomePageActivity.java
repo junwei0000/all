@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.index.welcome.adapter.GuidePagerAdapter;
@@ -17,7 +20,10 @@ import com.longcheng.lifecareplan.modular.index.welcome.bean.WelcomeBean;
 import com.longcheng.lifecareplan.modular.index.welcome.frag.GuidePage1Frag;
 import com.longcheng.lifecareplan.modular.index.welcome.frag.GuidePage2Frag;
 import com.longcheng.lifecareplan.modular.index.welcome.frag.GuidePage3Frag;
+import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
+import com.longcheng.lifecareplan.modular.mine.set.bean.VersionDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
@@ -25,6 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class WelcomePageActivity extends BaseActivityMVP<WelcomeContract.View, WelcomePresenterImp<WelcomeContract.View>> implements WelcomeContract.View, ViewPager.OnPageChangeListener, GuidePage3Frag.IGuidePageInListener {
 
@@ -66,6 +75,7 @@ public class WelcomePageActivity extends BaseActivityMVP<WelcomeContract.View, W
     @Override
     public void initView(View view) {
         try {
+            getServerVerCode();
             Thread.sleep(1000);//防止启动页消失太快
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -94,6 +104,28 @@ public class WelcomePageActivity extends BaseActivityMVP<WelcomeContract.View, W
         startActivity(intent);
         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
         doFinish();
+    }
+
+    private String getServerVerCode() {
+        String appVersion = ConfigUtils.getINSTANCE().getVerCode(mContext);
+        if (!TextUtils.isEmpty(appVersion) && appVersion.contains(".")) {
+            Log.e("appVersion", "appVersion=" + appVersion);
+            appVersion = appVersion.replace(".", "_");
+        }
+        Log.e("appVersion", "appVersion new=" + appVersion);
+        Observable<VersionDataBean> observable = Api.getInstance().service.updateVersion(appVersion);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<VersionDataBean>() {
+                    @Override
+                    public void accept(VersionDataBean responseBean) throws Exception {
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                    }
+                });
+        return null;
     }
 
     @Override
