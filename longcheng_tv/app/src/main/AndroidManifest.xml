@@ -96,25 +96,21 @@
         <activity
             android:name=".modular.test.MainActivityMVP"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme" />
+            android:launchMode="singleTask"/>
         <activity
             android:name=".modular.login.activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme" />
+            android:launchMode="singleTask"/>
 
         <activity
             android:name=".zxing.activity.MipcaCaptureActivity"
             android:configChanges="navigation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme" />
+            android:launchMode="singleTask" />
 
         <service
             android:name=".utils.apkupload.service.DownloadService"
             android:enabled="true"
-            android:exported="true"
-            android:theme="@style/AppTheme" />
+            android:exported="true" />
 
 
         <!-- 小米max2，全面屏手机沉浸式效果适配 -->
