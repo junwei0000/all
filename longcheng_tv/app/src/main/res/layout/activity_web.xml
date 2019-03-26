@@ -5,9 +5,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/page_top" />
-
-    <include layout="@layout/line" />
 
     <com.longcheng.lifecareplantv.widget.jswebview.browse.BridgeWebView
         android:id="@+id/webView"

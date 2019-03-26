@@ -131,11 +131,13 @@ public class ConfigUtils {
             String androidId = getAndroidId(context);
             // 序列号（sn）
             String sn = tm.getSimSerialNumber();
-            long leastSigBits;
-            if (TextUtils.isEmpty(sn)) {
-                leastSigBits = ((long) imei.hashCode() << 32);
-            } else {
-                leastSigBits = ((long) imei.hashCode() << 32) | sn.hashCode();
+            long leastSigBits = 0;
+            if(!TextUtils.isEmpty(imei)){
+                if (TextUtils.isEmpty(sn)) {
+                    leastSigBits = ((long) imei.hashCode() << 32);
+                } else {
+                    leastSigBits = ((long) imei.hashCode() << 32) | sn.hashCode();
+                }
             }
             UUID deviceUuid = new UUID(androidId.hashCode(), leastSigBits);
             deviceId = MD5(deviceUuid.toString());

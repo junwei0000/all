@@ -57,6 +57,7 @@
     <color name="main_tab_text_color">#555555</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_9a">#9a9a9a</color>
     <color name="gray">#e5e5e5</color>
     <color name="gray_bian">#d1d1d1</color>
     <color name="page_bg">#F0F0F0</color>
@@ -74,7 +75,7 @@
     <color name="search_bg">#f4f4f4</color>
     <color name="good_bg">#f8f8f8</color>
     <color name="linebg">#e4e4e4</color>
-    <color name="linesubg">#cbcbcb</color>
+    <color name="linesubg">#e2e2e2</color>
     <color name="cartnumbg">#818181</color>
 
 

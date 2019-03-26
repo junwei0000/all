@@ -156,7 +156,7 @@
         <item name="android:layout_marginTop">@dimen/dp20</item>
         <item name="android:background">@drawable/corners_bg_login</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/text_biaoTi_size</item>
+        <item name="android:textSize">@dimen/text_max_size</item>
     </style>
 
     <style name="dialog_btn">

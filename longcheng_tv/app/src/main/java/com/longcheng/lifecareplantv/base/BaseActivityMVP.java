@@ -102,7 +102,8 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
         }
         //是否禁止屏幕旋转
         if (!isAllowScreenRoate) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
         //设置主布局

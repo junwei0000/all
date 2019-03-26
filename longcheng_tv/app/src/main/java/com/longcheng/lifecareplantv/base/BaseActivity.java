@@ -91,7 +91,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         }
         //是否禁止屏幕旋转
         if (!isAllowScreenRoate) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         //设置主布局
         mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);

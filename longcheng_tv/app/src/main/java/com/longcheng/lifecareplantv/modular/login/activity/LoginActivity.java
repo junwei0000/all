@@ -1,16 +1,17 @@
 package com.longcheng.lifecareplantv.modular.login.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplantv.R;
@@ -32,6 +33,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.jpush.android.api.TagAliasCallback;
 
 /**
@@ -39,68 +41,33 @@ import cn.jpush.android.api.TagAliasCallback;
  */
 public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPresenterImp<LoginContract.View>> implements LoginContract.View {
 
-
-    @BindView(R.id.pagetop_iv_left)
-    ImageView pagetopIvLeft;
-    @BindView(R.id.pagetop_layout_left)
-    LinearLayout pagetopLayoutLeft;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.pageTop_tv_time)
+    TextView pageTopTvTime;
+    @BindView(R.id.pageTop_tv_date)
+    TextView pageTopTvDate;
+    @BindView(R.id.pageTop_tv_week)
+    TextView pageTopTvWeek;
+    @BindView(R.id.pagetop_layout_set)
+    LinearLayout pagetopLayoutSet;
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
-    @BindView(R.id.pagetop_iv_rigth)
-    ImageView pagetopIvRigth;
-    @BindView(R.id.pageTop_tv_rigth)
-    TextView pageTopTvRigth;
+    @BindView(R.id.pageTop_tv_phone)
+    TextView pageTopTvPhone;
     @BindView(R.id.pagetop_layout_rigth)
     LinearLayout pagetopLayoutRigth;
-    @BindView(R.id.login_tv_tilte)
-    TextView loginTvTilte;
-    @BindView(R.id.phonetype_tv_tilte)
-    TextView phonetypeTvTilte;
-    @BindView(R.id.phonetype_tv_num)
-    TextView phonetypeTvNum;
-    @BindView(R.id.login_rl_phonetype)
-    RelativeLayout loginRlPhonetype;
     @BindView(R.id.phonetype_et_phone)
     EditText phonetypeEtPhone;
-    @BindView(R.id.phonetype_et_pw)
-    EditText phonetypeEtPw;
-
-    @BindView(R.id.login_rl_pw)
-    RelativeLayout loginRlPw;
     @BindView(R.id.phonetype_et_code)
     EditText phonetypeEtCode;
     @BindView(R.id.phonetype_tv_getcode)
     TextView phonetypeTvGetcode;
-    @BindView(R.id.login_rl_code)
-    RelativeLayout loginRlCode;
     @BindView(R.id.btn_login)
     TextView btnLogin;
-    @BindView(R.id.login_lt_forgetpw)
-    RelativeLayout loginLtForgetpw;
-    @BindView(R.id.yuedu_tv_ti)
-    TextView yueduTvTi;
-    @BindView(R.id.yuedu_tv_tiaojian)
-    TextView yueduTvTiaojian;
-    @BindView(R.id.login_lt_yuedu)
-    RelativeLayout loginLtYuedu;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.login_btn_forgetpw)
-    TextView loginBtnForgetpw;
-    @BindView(R.id.login_btn_phone)
-    TextView loginBtnPhone;
-    @BindView(R.id.login_btn_account)
-    TextView loginBtnAccount;
 
 
-    /**
-     * 当前登录类型, 是否快捷登录
-     */
-    boolean phoneLoginStus = false;
-
-
-
-    UserLoginSkipUtils mUserLoginSkipUtils;
+    public UserLoginSkipUtils mUserLoginSkipUtils;
 
     @Override
     public void showDialog() {
@@ -124,69 +91,28 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
     @Override
     public void initView(View view) {
-        setOrChangeTranslucentColor(toolbar, null);
-        pageTopTvRigth.setVisibility(View.VISIBLE);
-        pageTopTvRigth.setText(getString(R.string.register));
     }
 
     @Override
     public void initDataAfter() {
         mUserLoginSkipUtils = new UserLoginSkipUtils(this);
-        String Alias = ConfigUtils.getINSTANCE().getDeviceId(mActivity);
-        PushClient.getINSTANCE(mActivity).setAlias(Alias, mAliasCallback);
     }
 
-    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
-        @Override
-        public void gotResult(int code, String alias, Set<String> tags) {
-            String logs;
-            switch (code) {
-                case 0:
-                    logs = "Set tag and alias success";
-                    Log.i(TAG, logs);
-                    // 建议这里往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
-                    break;
-                case 6002:
-                    logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
-                    Log.i(TAG, logs);
-                    initDataAfter();
-                    break;
-                default:
-                    logs = "Failed with errorCode = " + code;
-                    Log.e(TAG, logs);
-            }
-        }
-    };
 
     @Override
     public void setListener() {
-        btnLogin.setOnClickListener(this);
-        pagetopLayoutLeft.setOnClickListener(this);
-        pagetopLayoutRigth.setOnClickListener(this);
-        loginBtnPhone.setOnClickListener(this);
-        loginBtnAccount.setOnClickListener(this);
-        loginBtnForgetpw.setOnClickListener(this);
+        pagetopLayoutSet.setOnClickListener(this);
         phonetypeTvGetcode.setOnClickListener(this);
-        loginLtYuedu.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(phonetypeEtPhone, 11);
-        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(phonetypeEtPw, 20);
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(phonetypeEtCode, 6);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent;
         switch (v.getId()) {
-            case R.id.pagetop_layout_left:
-                doFinish();
-                break;
-            case R.id.login_btn_phone:
-                phoneLoginStus = true;
-                setLoginStusView();
-                break;
-            case R.id.login_btn_account:
-                phoneLoginStus = false;
-                setLoginStusView();
+            case R.id.pagetop_layout_set:
+
                 break;
             case R.id.phonetype_tv_getcode:
                 String phoneNum1 = phonetypeEtPhone.getText().toString().trim();
@@ -198,45 +124,13 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
             case R.id.btn_login:
                 ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                 String phoneNum = phonetypeEtPhone.getText().toString().trim();
-                String pw = phonetypeEtPw.getText().toString().trim();
                 String code = phonetypeEtCode.getText().toString().trim();
-
-
-                /**
-                 * 点击事件时调用
-                 */
-                if (phoneLoginStus) {
-                    //手机快捷登录
-                    if (isCheckLogin(phoneNum, code)) {
-                        mPresent.pUsePhoneLogin(phoneNum, code);
-                    }
-
+                if (isCheckLogin(phoneNum, code)) {
+                    mPresent.pUsePhoneLogin(phoneNum, code);
                 }
                 break;
             default:
                 break;
-        }
-    }
-
-    /**
-     * 设置当前登录类型的布局
-     */
-    private void setLoginStusView() {
-
-        if (phoneLoginStus) {
-            //手机号登录
-            loginTvTilte.setText(getString(R.string.login_phone));
-            loginRlPw.setVisibility(View.GONE);
-            loginRlCode.setVisibility(View.VISIBLE);
-            loginLtForgetpw.setVisibility(View.GONE);
-            loginLtYuedu.setVisibility(View.VISIBLE);
-        } else {
-            //账号登录
-            loginTvTilte.setText(getString(R.string.login_account));
-            loginRlPw.setVisibility(View.VISIBLE);
-            loginRlCode.setVisibility(View.GONE);
-            loginLtForgetpw.setVisibility(View.VISIBLE);
-            loginLtYuedu.setVisibility(View.GONE);
         }
     }
 
@@ -250,7 +144,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     @Override
     public void loginSuccess(BasicResponse<LoginAfterBean> responseBean) {
         int status = responseBean.getStatus();
-        if (status==200) {
+        if (status == 200) {
             LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
             mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
         } else {
@@ -262,9 +156,9 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     public void getCodeSuccess(BasicResponse<Bean> responseBean) {
         codeSendingStatus = false;
         int status = responseBean.getStatus();
-        if (status==400) {
+        if (status == 400) {
             ToastUtils.showToast(responseBean.getMsg());
-        } else if (status==200) {
+        } else if (status == 200) {
             Message msg = new Message();
             msg.what = Daojishistart;
             mHandler.sendMessage(msg);
@@ -276,9 +170,6 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     public void loginFail() {
         ToastUtils.showToast(getString(R.string.net_tishi));
     }
-
-
-
 
 
     /**
@@ -353,20 +244,9 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
             ToastUtils.showToast(getString(R.string.account_hint));
             return false;
         }
-        if (phoneLoginStus) {
-            if (password.length() != 6) {
-                ToastUtils.showToast(getString(R.string.code_showtishi));
-                return false;
-            }
-        } else {
-            if (TextUtils.isEmpty(password)) {
-                ToastUtils.showToast(getString(R.string.forget_repeatpw_hint));
-                return false;
-            }
-            if (password.length() < 6 || password.length() > 20) {
-                ToastUtils.showToast(getString(R.string.forget_repeatpw_hint));
-                return false;
-            }
+        if (password.length() != 6) {
+            ToastUtils.showToast(getString(R.string.code_showtishi));
+            return false;
         }
         return true;
     }
@@ -381,14 +261,5 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void onMessageEventBackground(MessageEvent event) {
-        if (event != null) {
-            String mesg = event.getMessage();
-            if (!TextUtils.isEmpty(mesg) && mesg.equals("register")) {
-                doFinish();
-            }
-        }
-    }
 
 }

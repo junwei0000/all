@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CHO</string>
+    <string name="app_name">电视CHO</string>
     <string name="commoncode_errorcode_arguments_invalid">请检查相关的配置信息是否正确。比如：manifest文件中的appid；是否使用证书签名等。</string>
     <string name="commoncode_errorcode_internal_error">内部接口出现异常，请联系华为方支持人员。</string>
     <string name="commoncode_errorcode_naming_invalid">请检查构建HuaweiApiClient时设置的API是否正确。</string>
@@ -49,14 +49,14 @@
     <string name="forgetpw">忘记密码？</string>
     <string name="code_get">获取验证码</string>
     <string name="tv_codeunit">s</string>
-    <string name="account_hint">请输入手机号码</string>
+    <string name="account_hint">请输入您的手机号码</string>
     <string name="account_showtishi">请输入正确的手机号码</string>
     <string name="pw_hint">请输入登录密码</string>
     <string name="code_hint">请输入验证码</string>
     <string name="code_showtishi">请输入正确验证码</string>
     <string name="next">下一步</string>
     <string name="over">完成</string>
-    <string name="login_text">登录</string>
+    <string name="login_text">登 录</string>
     <string name="third_login_text">使用社交账号一键登录</string>
     <string name="forget_tilte">找回登录密码</string>
     <string name="code_title">短信验证码</string>

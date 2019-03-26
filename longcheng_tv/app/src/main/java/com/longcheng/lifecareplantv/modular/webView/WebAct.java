@@ -31,8 +31,6 @@ import butterknife.BindView;
 
 public abstract class WebAct extends BaseActivity {
 
-    @BindView(R.id.pageTop_tv_name)
-    public TextView pageTopTvName;
     @BindView(R.id.webView)
     public BridgeWebView mBridgeWebView;
     private ValueCallback<Uri> mUploadMessage;
@@ -112,8 +110,6 @@ public abstract class WebAct extends BaseActivity {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
-                if (pageTopTvName != null)
-                    pageTopTvName.setText("" + data);
             }
         });
 

@@ -4,50 +4,52 @@
     package="com.longcheng.lifecareplantv">
 
     <!-- 可用网络 -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.permission.INTERNET" />
     <!-- 网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- WIFI网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-feature android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 屏幕保持唤醒 不锁屏 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-feature android:name="android.permission.WAKE_LOCK" />
     <!-- 调整多媒体音量 -->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-feature android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-feature android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <!-- ************************************************ SD卡权限 *********************************************** -->
     <!-- 在sdcard中创建/删除文件的权限 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-feature android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- sdcard操作允许 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 允许读取SD卡数据 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- ************************************************ SD卡权限 end *********************************************** -->
 
 
     <!-- ************************************************ 日历 *********************************************** -->
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-feature android:name="android.permission.READ_CALENDAR" />
+    <uses-feature android:name="android.permission.WRITE_CALENDAR" />
     <!-- ************************************************ 日历 end *********************************************** -->
 
 
     <!-- ************************************************ 访问照相机 *********************************************** -->
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.permission.CAMERA" />
     <!-- ************************************************ 访问照相机 end *********************************************** -->
 
 
     <!-- ************************************************ 联系人 *********************************************** -->
     <!-- 读联系人 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-feature android:name="android.permission.READ_CONTACTS" />
     <!-- 写联系人 -->
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-feature android:name="android.permission.WRITE_CONTACTS" />
     <!-- ************************************************ 联系人 end *********************************************** -->
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-feature android:name="android.permission.VIBRATE" />
     <!-- 闪光灯 -->
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-feature android:name="android.permission.FLASHLIGHT" />
 
     <!-- 极光推送 start -->
     <!-- Required -->
@@ -55,28 +57,27 @@
         android:name="com.longcheng.lifecareplantv.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
     <!-- Required  一些系统要求的权限，如访问网络等 -->
-    <uses-permission android:name="com.longcheng.lifecareplan.permission.JPUSH_MESSAGE" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-feature android:name="com.longcheng.lifecareplan.permission.JPUSH_MESSAGE" />
+    <uses-feature android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-feature android:name="android.permission.READ_PHONE_STATE" />
+    <uses-feature android:name="android.permission.WRITE_SETTINGS" />
     <!-- Optional for location -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-feature android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-feature android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-feature android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-feature android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-feature android:name="android.permission.GET_TASKS" />
     <!-- 极光推送 end -->
 
 
-    <!-- 小米推送 start -->
-    <permission
-        android:name="${applicationId}.permission.MIPUSH_RECEIVE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="${applicationId}.permission.MIPUSH_RECEIVE" />
-    <!-- 小米推送 end -->
+    <uses-feature android:required="false" android:name="android.software.leanback"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 
+    <uses-feature android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application
         android:name=".base.ExampleApplication"
         android:allowBackup="true"
@@ -84,12 +85,15 @@
         android:label="@string/app_name"
         android:persistent="true"
         android:supportsRtl="true"
-        android:theme="@style/SplashTheme">
+        android:screenOrientation="landscape"
+        android:theme="@style/SplashTheme"
+        android:banner="@mipmap/app_icon">
 
         <activity android:name=".modular.welcome.activity.WelcomePageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" /><!--运行应用到TV，不见应用logo和应用名称 的设置-->
             </intent-filter>
         </activity>
 
@@ -97,20 +101,17 @@
             android:name=".modular.test.MainActivityMVP"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".modular.login.activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
             android:name=".zxing.activity.MipcaCaptureActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="navigation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <service
@@ -139,7 +140,6 @@
             android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.longcheng.lifecareplan" />
             </intent-filter>

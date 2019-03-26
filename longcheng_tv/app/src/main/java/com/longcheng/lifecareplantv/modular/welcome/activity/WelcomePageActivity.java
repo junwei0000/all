@@ -27,7 +27,6 @@ public class WelcomePageActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setAllowFullScreen(true);
         super.onCreate(savedInstanceState);
     }
 
