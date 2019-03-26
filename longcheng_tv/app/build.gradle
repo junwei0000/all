@@ -144,5 +144,5 @@ dependencies {
     compile "com.android.support:design:$rootProject.ext.appcompatVersion"
     compile "com.android.support:appcompat-v7:$rootProject.ext.appcompatVersion"
     compile "com.android.support:support-v4:$rootProject.ext.appcompatVersion"
-    implementation 'com.android.support:leanback-v17:23.1.0'
+    compile "com.android.support:leanback-v17:$rootProject.ext.appcompatVersion"
 }
