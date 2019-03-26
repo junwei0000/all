@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.longcheng.lifecareplantv">
 
     <!-- 可用网络 -->
@@ -71,12 +70,9 @@
     <uses-feature android:name="android.permission.GET_TASKS" />
     <!-- 极光推送 end -->
 
-
+    <!-- tv -->
     <uses-feature android:required="false" android:name="android.software.leanback"/>
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
-
-    <uses-feature android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application
         android:name=".base.ExampleApplication"

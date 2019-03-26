@@ -407,7 +407,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         FunctionGVlist2.add(new FunctionGVItemBean("一目了然", R.id.usercenter_relay_appexplanation, R.mipmap.usercenter_appexplanation_icon));
         FunctionGVlist2.add(new FunctionGVItemBean("地址管理", R.id.usercenter_relay_address, R.mipmap.usercenter_address_icon));
         FunctionGVlist2.add(new FunctionGVItemBean("修改密码", R.id.usercenter_relay_updatepw, R.mipmap.usercenter_updatepw_icon));
-        FunctionGVlist2.add(new FunctionGVItemBean("变更邀请人", R.id.usercenter_relay_changeinviter, R.mipmap.my_change_icon));
+//        FunctionGVlist2.add(new FunctionGVItemBean("变更邀请人", R.id.usercenter_relay_changeinviter, R.mipmap.my_change_icon));
         //是否显示复活卡  0：不显示  1：显示
         int isResetCard = data.getIsResetCard();
         if (isResetCard == 0) {

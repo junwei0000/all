@@ -653,6 +653,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:paddingLeft="40dp">
 
         <include layout="@layout/line" />
@@ -664,6 +665,7 @@
         style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:background="@color/white">
 
         <LinearLayout

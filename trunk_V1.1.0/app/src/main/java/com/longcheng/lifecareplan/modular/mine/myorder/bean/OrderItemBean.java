@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 public class OrderItemBean implements Serializable {
     private int position;
+    private int progress;
     private String order_id;
     private String consignee;
     private String mobile;
@@ -40,6 +41,14 @@ public class OrderItemBean implements Serializable {
     private String bottom_title;
     private int top_status;
     private String top_title;
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
 
     public int getIs_show_pre_delivery() {
         return is_show_pre_delivery;
