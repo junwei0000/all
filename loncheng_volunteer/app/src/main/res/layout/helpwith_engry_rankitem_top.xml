@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_top"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:layout_marginBottom="@dimen/jianJu"
+    android:background="@color/white"
+    android:gravity="center_horizontal|bottom"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/padd_topbottom">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/rankitemtop_iv_headimg3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-7dp"
+            android:background="@mipmap/rankitemtop_iv_headimg3" />
+
+        <LinearLayout
+            android:id="@+id/rankitemtop_layout3"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/corners_bg_rank3">
+
+            <com.longcheng.volunteer.utils.myview.CircleImageView
+                android:id="@+id/rankitemtop_iv_head3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianJu"
+            android:gravity="center"
+            android:text="暂无"
+            android:singleLine="true"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size"  />
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_shequ3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp2"
+            android:paddingLeft="@dimen/dp8"
+            android:paddingRight="@dimen/dp8"
+            android:paddingTop="@dimen/dp2"
+            android:singleLine="true"
+            android:text="暂无"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_engerynum3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/text_engry_bg"
+            android:textSize="@dimen/text_pageTop_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/rankitemtop_iv_headimg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-7dp"
+            android:background="@mipmap/rankitemtop_iv_headimg1" />
+
+        <LinearLayout
+            android:id="@+id/rankitemtop_layout1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/corners_bg_rank1">
+
+            <com.longcheng.volunteer.utils.myview.CircleImageView
+                android:id="@+id/rankitemtop_iv_head1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianJu"
+            android:gravity="center"
+            android:text="暂无"
+            android:singleLine="true"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_shequ1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp2"
+            android:paddingLeft="@dimen/dp8"
+            android:paddingRight="@dimen/dp8"
+            android:paddingTop="@dimen/dp2"
+            android:singleLine="true"
+            android:text="暂无"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_engerynum1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/text_engry_bg"
+            android:textSize="@dimen/text_pageTop_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-7dp"
+            android:background="@mipmap/rankitemtop_iv_headimg2" />
+
+        <LinearLayout
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/corners_bg_rank2">
+
+            <com.longcheng.volunteer.utils.myview.CircleImageView
+                android:id="@+id/rankitemtop_iv_head2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianJu"
+            android:gravity="center"
+            android:text="暂无"
+            android:singleLine="true"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size"  />
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_shequ2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp2"
+            android:paddingLeft="@dimen/dp8"
+            android:paddingRight="@dimen/dp8"
+            android:paddingTop="@dimen/dp2"
+            android:singleLine="true"
+            android:text="暂无"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/rankitemtop_tv_engerynum2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/text_engry_bg"
+            android:textSize="@dimen/text_pageTop_size" />
+    </LinearLayout>
+
+
+</LinearLayout>

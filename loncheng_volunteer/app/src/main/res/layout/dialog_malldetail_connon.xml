@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp20">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:id="@+id/iv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_rebirth_shutdown" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_thumb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@mipmap/my_volunteer_icon" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:gravity="center"
+        android:text="此套餐只限康农工程志愿者申请"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_tishi_size"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp27">
+
+        <TextView
+            android:id="@+id/btn_gohelp"
+            style="@style/dialog_btn"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_redbian"
+            android:text="再逛逛"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/btn_jihuo"
+            style="@style/dialog_btn"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:text="成为志愿者" />
+    </LinearLayout>
+</LinearLayout>

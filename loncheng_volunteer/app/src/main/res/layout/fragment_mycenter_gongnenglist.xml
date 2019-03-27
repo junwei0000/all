@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/jianJu"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!--   -->
+
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_volunteer"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_volunteer"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_volunteersr_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/usercenter_tv_volunteer"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_volunteer"
+            android:text="申请志愿者"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_doctor"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_doctor"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_doctor_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/usercenter_tv_doctor"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_doctor"
+            android:text="申请坐堂医"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <!--   -->
+    <LinearLayout
+        android:id="@+id/layout_commissioner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="40dp">
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/usercenter_iv_commissioner"
+                android:layout_width="@dimen/dp20"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/my_commissioner_icon"
+                    android:scaleType="matrix" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/usercenter_iv_commissioner"
+                android:text="我是特派员"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!--   -->
+    <LinearLayout
+        android:id="@+id/layout_jiuzhen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="40dp">
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/usercenter_iv_jiuzhe"
+                android:layout_width="@dimen/dp20"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/my_treatment_icon"
+                    android:scaleType="matrix" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/usercenter_tv_jiuzhe"
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/usercenter_iv_jiuzhe"
+                android:text="就诊记录"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!--   -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/jianJu"
+        android:background="@color/page_bg" />
+
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_myenren"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_myenren"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_benefactor_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_myenren"
+            android:text="我的恩人"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_goodluck"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_goodluck"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_goodluck_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_goodluck"
+            android:text="好运来"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+    <RelativeLayout
+        android:id="@+id/mycenter_layout_smallpusher"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_smallpusher"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_smallpusher_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_jieqiname"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_smallpusher"
+            android:text="小推手"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+    <RelativeLayout
+        android:id="@+id/mycenter_layout_jieqisignin"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_jieqisignin"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_signin_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_jieqisignin"
+            android:text="每日签到"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_mystar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_myStar"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_myStar"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_star_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_myStar"
+            android:text="启明星"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+    <!--   -->
+
+    <LinearLayout
+        android:id="@+id/layout_volunteerlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="40dp">
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/usercenter_iv_volunteerlist"
+                android:layout_width="@dimen/dp20"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/my_volunteers_icon"
+                    android:scaleType="matrix" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/usercenter_iv_volunteerlist"
+                android:text="志愿者列表"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/jianJu"
+        android:background="@color/page_bg" />
+    <!--   -->
+
+
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_appexplanation"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_appexplanation"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_appexplanation_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_appexplanation"
+            android:text="一目了然"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+
+
+    <!---->
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_address"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_address"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_address_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_address"
+            android:text="地址管理"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_updatepw"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_updatepw"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_updatepw_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_updatepw"
+            android:text="修改密码"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <!--   -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingLeft="40dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+
+    <RelativeLayout
+        android:id="@+id/usercenter_relay_changeinviter"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/usercenter_iv_changeinviter"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_change_icon"
+                android:scaleType="matrix" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/usercenter_iv_changeinviter"
+            android:text="变更邀请人"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+    <!--   -->
+    <LinearLayout
+        android:id="@+id/usercenter_layout_rebirth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="40dp">
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+        <!--   -->
+
+        <RelativeLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/usercenter_iv_rebirth"
+                android:layout_width="@dimen/dp20"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/my_rebirth_icon"
+                    android:scaleType="matrix" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/usercenter_iv_rebirth"
+                android:text="重生卡"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/page_bg">
+    <!--top部viewitem-->
+
+    <include layout="@layout/helpwith_engry_rankitem_top" />
+    <!--下部viewitem-->
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padd_leftright">
+
+        <RelativeLayout
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/padd_leftright">
+
+            <TextView
+                android:id="@+id/item_tv_num"
+                android:layout_width="@dimen/dp35"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <com.longcheng.volunteer.utils.myview.CircleImageView
+                android:id="@+id/item_iv_thumb"
+                android:layout_width="@dimen/dp43"
+                android:layout_height="@dimen/dp43"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padd_leftright"
+                android:layout_toRightOf="@+id/item_tv_num"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/item_tv_engerynum"
+                android:layout_toRightOf="@+id/item_iv_thumb"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/item_tv_shequ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/dp2"
+                    android:singleLine="true"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_dp12_size" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_tv_engerynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+        </RelativeLayout>
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+</RelativeLayout>

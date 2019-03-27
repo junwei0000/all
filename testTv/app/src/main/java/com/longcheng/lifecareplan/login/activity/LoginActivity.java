@@ -65,7 +65,6 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     @BindView(R.id.keyboardViewPlace)
     LinearLayout keyboardViewPlace;
     public UserLoginSkipUtils mUserLoginSkipUtils;
-    private SafeKeyboard safeKeyboard/**/;
 
     @Override
     public void showDialog() {
@@ -118,8 +117,8 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     }
 
     private void initSafeKeyboard() {
-        safeKeyboard = new SafeKeyboard(mContext, keyboardViewPlace);
-        safeKeyboard.setmEditText(phonetypeEtPhone);
+//        safeKeyboard = new SafeKeyboard(mContext, keyboardViewPlace);
+//        safeKeyboard.setmEditText(phonetypeEtPhone);
 //        safeKeyboard.setmEditText(phonetypeEtCode);
     }
 
@@ -128,7 +127,6 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.phonetype_tv_getcode:
-                safeKeyboard.setmEditText(phonetypeEtCode);
                 String phoneNum1 = phonetypeEtPhone.getText().toString().trim();
                 if (Utils.isCheckPhone(phoneNum1) && !codeSendingStatus) {
                     codeSendingStatus = true;
@@ -281,10 +279,6 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
     // 当点击返回键时, 如果软键盘正在显示, 则隐藏软键盘并是此次返回无效
     public void onBackPressed() {
-        if (safeKeyboard.isShow()) {
-            safeKeyboard.hideKeyboard();
-        } else {
             exit();
-        }
     }
 }

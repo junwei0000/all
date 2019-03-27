@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddlefgtright"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/padd_topbottom">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="填写受保人信息"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/iv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/dialog_city_cancel" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padd_imgtextleftright"
+        android:gravity="center"
+        android:text="参与平安行动"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_min_size" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="需真实无误的提供受保人信息，以备投保成功"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_min_size" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="姓\u3000\u3000名："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.longcheng.volunteer.utils.myview.SupplierEditText
+            android:id="@+id/et_name"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_blackhealth"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="性\u3000\u3000别："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/cb_man"
+            android:layout_width="@dimen/dp15"
+            android:layout_height="@dimen/dp15"
+            android:layout_marginRight="@dimen/padd_imgtextleftright"
+            android:background="@mipmap/check_true_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp55"
+            android:gravity="center"
+            android:text="男"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <TextView
+            android:id="@+id/cb_feman"
+            android:layout_width="@dimen/dp15"
+            android:layout_height="@dimen/dp15"
+            android:layout_marginRight="@dimen/padd_imgtextleftright"
+            android:background="@mipmap/check_false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="女"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+    <!---->
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="籍\u3000\u3000贯："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_jiguan"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_blackhealth"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright">
+
+            <TextView
+                android:id="@+id/tv_jiguan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!---->
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="职\u3000\u3000业："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.longcheng.volunteer.utils.myview.SupplierEditText
+            android:id="@+id/et_job"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_blackhealth"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+    <!---->
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="出生日期："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_date"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_blackhealth"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text=""
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/account_icon_thedateof" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!---->
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="身份证号："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.longcheng.volunteer.utils.myview.SupplierEditText
+            android:id="@+id/et_idcardnum"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_blackhealth"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+    <!---->
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="联系电话："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.longcheng.volunteer.utils.myview.SupplierEditText
+            android:id="@+id/et_phone"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_blackhealth"
+            android:inputType="phone"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+    <!---->
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center"
+            android:text="常用邮箱："
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.longcheng.volunteer.utils.myview.SupplierEditText
+            android:id="@+id/et_mailbox"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_blackhealth"
+            android:inputType="textWebEmailAddress"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+    <!---->
+    <TextView
+        android:id="@+id/btn_ok"
+        style="@style/dialog_btn"
+        android:layout_marginBottom="0dp"
+        android:text="完善资料" />
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_tv_bingyi"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/userinfo_iv_name"
+        android:background="@color/white"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_contents_size" />
+
+    <include layout="@layout/line" />
+</LinearLayout>

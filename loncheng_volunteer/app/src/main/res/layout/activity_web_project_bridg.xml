@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_web_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.longcheng.volunteer.com.longcheng.volunteer.modular.webView.WebProjectActivityBridge">
+
+    <include layout="@layout/activity_tool" />
+
+    <com.longcheng.volunteer.widget.jswebview.view.NumberProgressBar
+        android:id="@+id/num_progress"
+        style="@style/NumberProgressBar_Default"
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <com.github.lzyzsd.jsbridge.BridgeWebView
+        android:id="@+id/js_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/num_progress" />
+</RelativeLayout>

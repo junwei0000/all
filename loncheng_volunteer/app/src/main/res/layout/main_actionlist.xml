@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_bg"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <com.longcheng.volunteer.utils.myview.MyScrollView
+        android:id="@+id/helpWith_sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.longcheng.volunteer.utils.myview.MyGridView
+                android:id="@+id/action_lv"
+                style="@style/view_paddlefgtright"
+                android:paddingBottom="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/padd_leftright"
+                android:numColumns="2"
+                android:scrollbars="none"
+                android:verticalSpacing="0dp" />
+        </LinearLayout>
+    </com.longcheng.volunteer.utils.myview.MyScrollView>
+</LinearLayout>

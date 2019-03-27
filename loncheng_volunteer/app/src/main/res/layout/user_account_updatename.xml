@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <com.longcheng.volunteer.utils.myview.SupplierEditText
+        android:id="@+id/updatename_et_name"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="请输入姓名"
+        android:maxLength="16"
+        android:textColor="@color/text_contents_color"
+        android:textColorHint="@color/login_hint_color"
+        android:textSize="@dimen/text_contents_size" />
+</LinearLayout>

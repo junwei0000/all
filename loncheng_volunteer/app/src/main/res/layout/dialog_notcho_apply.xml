@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="注册信息"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_pageTop_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_rebirth_shutdown" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingRight="@dimen/dp15">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="姓名"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <com.longcheng.volunteer.utils.myview.SupplierEditText
+                android:id="@+id/et_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入您的姓名"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+        <!---->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="绑定手机号"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5">
+
+                <com.longcheng.volunteer.utils.myview.SupplierEditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tv_getcode"
+                    android:background="@color/transparent"
+                    android:hint="请输入您的手机号"
+                    android:inputType="number"
+                    android:textColor="@color/text_contents_color"
+                    android:textColorHint="@color/login_hint_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/tv_getcode"
+                    android:layout_width="@dimen/getcode_width"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical|right"
+                    android:paddingBottom="@dimen/img_setTextcenter"
+                    android:text="@string/code_get"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_contents_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+        <!---->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="手机号验证"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <com.longcheng.volunteer.utils.myview.SupplierEditText
+                android:id="@+id/et_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入您的验证码"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+        <!---->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="登录密码"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <com.longcheng.volunteer.utils.myview.SupplierEditText
+                android:id="@+id/et_pw"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请设置您的登录密码"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+        <!---->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="确认密码"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <com.longcheng.volunteer.utils.myview.SupplierEditText
+                android:id="@+id/et_pwnew"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请再次确认密码"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+        <!---->
+        <LinearLayout
+            android:id="@+id/layout_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="出生日期"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:hint="请选择您的出生日期"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+        <!---->
+        <LinearLayout
+            android:id="@+id/layout_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="出生地"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:hint="请选择出生地"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+        <!---->
+        <TextView
+            android:id="@+id/btn_ok"
+            style="@style/dialog_btn"
+            android:layout_marginBottom="@dimen/dp20"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:text="保存" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/view_margintopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_tv_sortNum"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="111"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <RelativeLayout
+            android:id="@+id/layout_thumb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:layout_toRightOf="@+id/item_tv_sortNum"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rel_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="2dp">
+
+                <ImageView
+                    android:id="@+id/iv_top"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@mipmap/homepage_list_11"
+                    android:visibility="invisible" />
+
+                <com.longcheng.volunteer.utils.myview.CircleImageView
+                    android:id="@+id/item_iv_thumb"
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@mipmap/user_default_icon"
+                    android:scaleType="centerCrop"
+                    app:border_color="@color/yellow"
+                    app:border_width="1dp" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tvmoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/rel_avatar"
+                android:gravity="center"
+                android:text="1288"
+                android:textColor="@color/white"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/layout_thumb"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="王建国"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/item_tv_shequ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="LCP公社"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/item_tv_engerynum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:ems="8"
+                    android:maxEms="8"
+                    android:singleLine="true"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:id="@+id/item_tv_renci"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:ems="8"
+                    android:maxEms="8"
+                    android:singleLine="true"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>
