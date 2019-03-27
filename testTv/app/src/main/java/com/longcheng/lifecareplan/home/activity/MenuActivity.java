@@ -82,6 +82,8 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     public void setListener() {
         pagetopLayoutRigth.setVisibility(View.VISIBLE);
         pagetopLayoutSet.setOnClickListener(this);
+        pagetopLayoutSet.setFocusable(false);
+        ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
     }
 
     @Override

@@ -82,8 +82,10 @@
                 android:id="@+id/pagetop_layout_set"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/dp30"
-                android:paddingRight="@dimen/dp30">
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15">
 
                 <TextView
                     android:layout_width="wrap_content"

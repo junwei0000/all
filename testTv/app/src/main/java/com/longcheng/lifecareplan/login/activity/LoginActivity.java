@@ -92,11 +92,12 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
     @Override
     public void setListener() {
-        pagetopLayoutSet.setOnClickListener(this);
         phonetypeTvGetcode.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(phonetypeEtPhone, 11);
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(phonetypeEtCode, 6);
+        ConfigUtils.getINSTANCE().setSelectFouseBtn(phonetypeTvGetcode);
+        ConfigUtils.getINSTANCE().setSelectFouseBtn(btnLogin);
     }
 
     @Override
@@ -134,7 +135,6 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
                 }
                 break;
             case R.id.btn_login:
-                ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                 String phoneNum = phonetypeEtPhone.getText().toString().trim();
                 String code = phonetypeEtCode.getText().toString().trim();
                 if (isCheckLogin(phoneNum, code)) {
@@ -279,6 +279,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
     // 当点击返回键时, 如果软键盘正在显示, 则隐藏软键盘并是此次返回无效
     public void onBackPressed() {
-            exit();
+        exit();
     }
+
 }
