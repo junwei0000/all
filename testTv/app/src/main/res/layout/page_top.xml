@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp20"
+    android:paddingLeft="@dimen/dp35"
+    android:paddingRight="@dimen/dp35"
+    android:paddingTop="@dimen/dp20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical">
+
+            <TextView
+                android:id="@+id/pageTop_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/jianJu"
+                android:gravity="center"
+                android:text="10:20"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_dp25_size" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pageTop_tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="2019-03-25"
+                    android:textColor="@color/white_9a"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:id="@+id/pageTop_tv_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="星期一"
+                    android:textColor="@color/white_9a"
+                    android:textSize="@dimen/text_zhu_size" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp50"
+                android:layout_marginLeft="@dimen/jianJu"
+                android:background="@mipmap/weather_bg" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pagetop_layout_rigth"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="right|center_vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/pagetop_layout_set"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/dp30"
+                android:paddingRight="@dimen/dp30">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="设置"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_max_size" />
+
+                <TextView
+                    android:layout_width="@dimen/dp8"
+                    android:layout_height="@dimen/dp8"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:layout_marginTop="-4dp"
+                    android:background="@drawable/corners_oval_red" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/pageTop_iv_thumb"
+                    android:layout_width="@dimen/dp43"
+                    android:layout_height="@dimen/dp43"
+                    android:background="@mipmap/user_default_icon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/jianJu"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pageTop_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="JUN"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_tishi_size" />
+
+                    <TextView
+                        android:id="@+id/pageTop_tv_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="188****8842"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
