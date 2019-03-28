@@ -26,6 +26,7 @@ import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpWithInfo;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 import com.longcheng.lifecareplan.modular.helpwith.myDedication.activity.MyDeH5Activity;
@@ -74,12 +75,6 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     @BindView(R.id.helpWith_sv)
     MyScrollView helpWithSv;
 
-    @BindView(R.id.iv_autohelpbg)
-    ImageView iv_autohelpbg;
-    @BindView(R.id.iv_autoimg)
-    ImageView iv_autoimg;
-    @BindView(R.id.tv_autohelpstatus)
-    TextView tv_autohelpstatus;
     @BindView(R.id.layout_golf)
     LinearLayout layoutGolf;
     @BindView(R.id.tv_showname)
@@ -94,6 +89,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     private String myBlessHelpCount = "0", blessMeHelpCount = "0";
     public static String automationHelpUrl, myDedicationUrl, myGratitudeUrl;
     private List<String> zangfus;
+    private String lifeUrl;
 
     @Override
     public int bindLayout() {
@@ -103,7 +99,6 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     @Override
     public void initView(View view) {
         tvTohelp.setOnClickListener(this);
-        iv_autohelpbg.setOnClickListener(this);
         layoutGolf.setOnClickListener(this);
         pagetop_iv_left.setVisibility(View.GONE);
         pageTopTvName.setText(getString(R.string.bottom_helpwith));
@@ -136,6 +131,20 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                     intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_EXCHANGE);
                     LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
                     ActivityManager.getScreenManager().popAllActivityOnlyMain();
+                } else if (position == 4) {
+                    //生活保障
+                    intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + lifeUrl);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                } else if (position == 5) {
+                    //智能互祝
+                    intent = new Intent(mContext, AutoHelpH5Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + automationHelpUrl);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
             }
         });
@@ -195,17 +204,18 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     List<String> solarTermsEnsImg;
 
     public void initInfo() {
-        showCont();
+        showCont("未开启");
         mPresent.getHelpInfo(UserUtils.getUserId(mContext));
     }
 
-    private void showCont() {
+    private void showCont(String open) {
         List<HelpWithInfo> mList = new ArrayList();
         mList.add(new HelpWithInfo("生命能量互祝", "", R.mipmap.wisheach_icon_energy));
         mList.add(new HelpWithInfo("生活方式互祝", "", R.mipmap.wisheach_icon_life));
         mList.add(new HelpWithInfo("申请互祝", "生命能量", R.mipmap.wisheach_icon_toapplyfor));
         mList.add(new HelpWithInfo("申请互祝", "生活方式", R.mipmap.wisheach_icon_lsa));
-
+        mList.add(new HelpWithInfo("生活保障互祝", "", R.mipmap.wisheach_icon_baoz));
+        mList.add(new HelpWithInfo("智能互祝", open, R.mipmap.wisheach_icon_autohelp));
         HelpWithTopAdapter mHelpWithTopAdapter = new HelpWithTopAdapter(mContext, mList, solarTermsEnsImg);
         helpWithGvtop.setAdapter(mHelpWithTopAdapter);
 
@@ -233,14 +243,6 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     public void widgetClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.iv_autohelpbg:
-                //智能互祝
-                intent = new Intent(mContext, AutoHelpH5Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", "" + automationHelpUrl);
-                startActivity(intent);
-                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                break;
             case R.id.layout_golf:
                 intent = new Intent(mContext, AWordOfGoldAct.class);
                 intent.putExtra("otherId", UserUtils.getUserId(mContext));
@@ -281,23 +283,19 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             automationHelpUrl = mHelpIndexAfterBean.getAutomationHelpUrl();
             myDedicationUrl = mHelpIndexAfterBean.getMyDedicationUrl();
             myGratitudeUrl = mHelpIndexAfterBean.getMyGratitudeUrl();
-
+            lifeUrl = mHelpIndexAfterBean.getLifeUrl();
             solarTermsEnsImg = mHelpIndexAfterBean.getSolarTermsEnsImg();
             int isStartAutoHelp = mHelpIndexAfterBean.getIsStartAutoHelp();
+            String open;
             if (isStartAutoHelp == 0) {//未开启智能互祝
-                tv_autohelpstatus.setText("未开启");
+                open = "未开启";
             } else {
                 String autoHelpNumberTotal = mHelpIndexAfterBean.getAutoHelpNumberTotal();
-                tv_autohelpstatus.setText("今日帮您送出" + autoHelpNumberTotal + "次祝福");
-            }
-            if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 5) {
-                int imgwidth = (int) ((iv_autohelpbg.getMeasuredHeight() - 10) * 1.68);
-                iv_autoimg.setLayoutParams(new LinearLayout.LayoutParams(imgwidth, iv_autohelpbg.getMeasuredHeight() - 10));
-                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, solarTermsEnsImg.get(4), iv_autoimg);
+                open = "今日帮您送出" + autoHelpNumberTotal + "次祝福";
             }
             myBlessHelpCount = mHelpIndexAfterBean.getMyBlessHelpCount();
             blessMeHelpCount = mHelpIndexAfterBean.getBlessMeHelpCount();
-            showCont();
+            showCont(open);
             zangfus = mHelpIndexAfterBean.getZangfus();
             HelpIndexItemBean mUserInfo = mHelpIndexAfterBean.getUser();
             is_cho = mUserInfo.getIs_cho();
@@ -316,11 +314,11 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             tvShowname.setText("“24节气养生指导”温馨提示\n" + mUserInfo.getUser_name() + "：");
             tvShowcont.setText(shoevon);
 
-            if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 6) {
-                int width = (int) (iv_autohelpbg.getMeasuredWidth() * 2.7 / 7);
+            if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 7) {
+                int width = (int) (DensityUtil.screenWith(mContext) * 2.7 / 7);
                 int imghei = (int) (width * 0.6);
                 iv_tohelpimg.setLayoutParams(new LinearLayout.LayoutParams(width, imghei));
-                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, solarTermsEnsImg.get(5), iv_tohelpimg);
+                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, solarTermsEnsImg.get(6), iv_tohelpimg);
             }
         }
     }

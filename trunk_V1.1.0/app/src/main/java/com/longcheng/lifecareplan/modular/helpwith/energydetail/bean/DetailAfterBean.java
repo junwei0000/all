@@ -49,7 +49,7 @@ public class DetailAfterBean {
     private DetailItemBean current_jieqi;
 
     //金额
-    @SerializedName("mutual_help_money_all")
+    @SerializedName(value = "mutual_help_money_all", alternate = {"life_money_all"})
     private List<DetailItemBean> mutual_help_money_all;
     @SerializedName("user_info")
     private DetailItemBean user_info;

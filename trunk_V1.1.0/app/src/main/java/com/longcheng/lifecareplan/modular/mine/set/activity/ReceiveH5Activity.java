@@ -4,12 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
@@ -18,6 +20,8 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnve
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.utils.SaveImageUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.pay.PayCallBack;
 import com.longcheng.lifecareplan.utils.pay.PayUtils;
@@ -115,6 +119,34 @@ public class ReceiveH5Activity extends WebAct {
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 doFinish();
+            }
+        });
+        //收款码-保存图片
+        mBridgeWebView.registerHandler("receiptCodeImageUrl", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            final Bitmap myBitmap = Glide.with(mActivity)//上下文
+                                    .load(data)//url
+                                    .asBitmap() //必须
+                                    .centerCrop()
+                                    .into(DensityUtil.screenWith(mActivity), DensityUtil.screenHigh(mActivity))
+                                    .get();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    SaveImageUtils.saveImageToGallerys(mActivity, myBitmap);
+                                }
+                            });
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
     }

@@ -1,12 +1,19 @@
 package com.longcheng.lifecareplan.home.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v17.leanback.widget.ArrayObjectAdapter;
+import android.support.v17.leanback.widget.ClassPresenterSelector;
+import android.support.v17.leanback.widget.HeaderItem;
+import android.support.v17.leanback.widget.ListRow;
+import android.support.v17.leanback.widget.ListRowPresenter;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,16 +22,25 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.BasicResponse;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.home.adapter.MenuAdapter;
+import com.longcheng.lifecareplan.home.bean.MenuInfo;
 import com.longcheng.lifecareplan.login.activity.LoginContract;
 import com.longcheng.lifecareplan.login.activity.LoginPresenterImp;
 import com.longcheng.lifecareplan.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;
+import com.longcheng.lifecareplan.test.CardPresenter;
+import com.longcheng.lifecareplan.test.MainActivity;
+import com.longcheng.lifecareplan.test.Movie;
+import com.longcheng.lifecareplan.test.MovieList;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.keyboard.SafeKeyboard;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -52,7 +68,8 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     LinearLayout pagetopLayoutRigth;
     @BindView(R.id.pageTop_iv_thumb)
     ImageView pageTopIvThumb;
-
+    @BindView(R.id.gvbottom)
+    GridView gvbottom;
 
     @Override
     public void showDialog() {
@@ -89,6 +106,7 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     @Override
     public void initDataAfter() {
         initTimer();
+        initD();
     }
 
 
@@ -106,13 +124,11 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pagetop_layout_set:
-
                 break;
             default:
                 break;
         }
     }
-
 
     @Override
     protected MenuPresenterImp<MenuContract.View> createPresent() {
@@ -123,6 +139,22 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     @Override
     public void getMenuInfoSuccess(BasicResponse<LoginAfterBean> responseBean) {
 
+    }
+
+    private void initD() {
+        List<MenuInfo> mBottomList = new ArrayList();
+        mBottomList.add(new MenuInfo("春分", "玉兰花", "春分第七天",
+                R.mipmap.lichun, R.mipmap.login_icon_phone, "视频"));
+        mBottomList.add(new MenuInfo("清明", "杜鸥花", "距离清明第14天",
+                R.mipmap.qingming, R.mipmap.login_icon_phone, "视频"));
+        mBottomList.add(new MenuInfo("谷雨", "玉兰花", "春分第七天",
+                R.mipmap.guyu, R.mipmap.login_icon_phone, "视频"));
+        mBottomList.add(new MenuInfo("立夏", "玉兰花", "春分第七天",
+                R.mipmap.lixia, R.mipmap.login_icon_phone, "视频"));
+        mBottomList.add(new MenuInfo("", "", "",
+                R.mipmap.jieqiyangsheng, R.mipmap.login_icon_phone, "视频"));
+        MenuAdapter mAdapter = new MenuAdapter(mContext, mBottomList);
+        gvbottom.setAdapter(mAdapter);
     }
 
     @Override

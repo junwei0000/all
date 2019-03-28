@@ -19,12 +19,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/padd_topbottom">
+            android:orientation="vertical">
 
             <com.longcheng.lifecareplan.utils.myview.MyGridView
                 android:id="@+id/helpWith_gvtop"
-                style="@style/view_paddlefgtright"
+                style="@style/view_padd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -37,60 +36,6 @@
                 android:numColumns="2"
                 android:scrollbars="none"
                 android:verticalSpacing="@dimen/padd_topbottom" />
-
-            <RelativeLayout
-                style="@style/view_paddlefgtright"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/padd_topbottom"
-                android:layout_marginTop="@dimen/padd_topbottom"
-                android:background="@color/white">
-
-                <ImageView
-                    android:id="@+id/iv_autohelpbg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@mipmap/wisheach_icon_autohelp"
-                    android:scaleType="centerCrop" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_horizontal|bottom"
-                    android:paddingRight="@dimen/dp50">
-
-                    <ImageView
-                        android:id="@+id/iv_autoimg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
-                    android:text="智能互祝"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_biaoTi_size"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_autohelpstatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
-                    android:layout_marginRight="@dimen/dp15"
-                    android:text="未开启"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_zhu_size" />
-            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

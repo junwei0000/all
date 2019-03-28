@@ -799,6 +799,11 @@ public interface ApiService {
                                                      @Query("knp_msg_id") String knp_msg_id,
                                                      @Query("token") String token);
 
+    @GET(Config.VERSION + "life/repayInfo")
+    Observable<EnergyDetailDataBean> getBaoZMsgDetail(@Query("user_id") String user_id,
+                                                      @Query("life_repay_id") String life_repay_id,
+                                                      @Query("token") String token);
+
     @GET(Config.VERSION + "commonweal/info")
     Observable<EnergyDetailDataBean> getCommonwealMsgDetail(@Query("user_id") String user_id,
                                                             @Query("commonweal_activity_id") String commonweal_activity_id,
@@ -817,6 +822,15 @@ public interface ApiService {
                                          @Field("id") String msg_id,
                                          @Field("money") int money,
                                          @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "life/repayToPay")
+    Observable<PayWXDataBean> BaoZhangPayHelp(@Field("user_id") String user_id,
+                                              @Field("help_comment_content") String help_comment_content,
+                                              @Field("payment_channel") String payment_channel,
+                                              @Field("life_id") String life_id,
+                                              @Field("money") int money,
+                                              @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Commonweal/pay")

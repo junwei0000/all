@@ -120,9 +120,13 @@ public class DedicationAdapter extends PagerAdapter {
             int type = mHomeItemBean.getType();
             if (type == 1) {
                 layout_right.setVisibility(View.VISIBLE);
-                item_tv_time.setText(mHomeItemBean.getStart_time() + "至" + mHomeItemBean.getEnd_time());
             } else {
                 layout_right.setVisibility(View.INVISIBLE);
+            }
+            if (!TextUtils.isEmpty(mHomeItemBean.getStart_time()) && !TextUtils.isEmpty(mHomeItemBean.getEnd_time())) {
+                item_tv_time.setText(mHomeItemBean.getStart_time() + "至" + mHomeItemBean.getEnd_time());
+                item_tv_time.setVisibility(View.VISIBLE);
+            } else {
                 item_tv_time.setVisibility(View.INVISIBLE);
             }
             Log.i("BannerListSuccess", "BannerListSuccess: " + mHomeItemBean.getPic());
