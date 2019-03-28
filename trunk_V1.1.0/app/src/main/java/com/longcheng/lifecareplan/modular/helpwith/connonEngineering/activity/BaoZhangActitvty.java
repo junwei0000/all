@@ -101,9 +101,6 @@ public class BaoZhangActitvty extends WebAct {
     @Override
     public void initView(View view) {
         super.initView(view);
-        String title = getIntent().getStringExtra("title");
-        pageTopTvName.setText(title);
-        pagetopLayoutLeft.setOnClickListener(this);
         setOrChangeTranslucentColor(toolbar, null);
     }
 
@@ -121,7 +118,7 @@ public class BaoZhangActitvty extends WebAct {
         super.initDataAfter();
         String url = getIntent().getStringExtra("html_url");
         loadUrl(url);
-        //康农工程-----获取分享 knp_msg_id
+        //获取分享 knp_msg_id
         mBridgeWebView.registerHandler("knp_getKnpMsgId", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -144,7 +141,7 @@ public class BaoZhangActitvty extends WebAct {
                 }
             }
         });
-        //康农工程-----显示祝福弹层
+        //显示祝福弹层
         mBridgeWebView.registerHandler("Life_AppPayment", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {

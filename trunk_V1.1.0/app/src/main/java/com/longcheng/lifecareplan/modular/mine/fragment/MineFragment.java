@@ -27,6 +27,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.PerfectInfoDialog;
@@ -455,7 +456,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_volunteerlist://志愿者申请列表
-                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartymember_url());
                 startActivity(intent);
@@ -466,7 +467,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 if (isVolunteerIdentity == 0) {
                     String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-                        intent = new Intent(mContext, VolunteerH5Activity.class);
+                        intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + data.getBecome_volunteer_url());
                         startActivity(intent);

@@ -43,16 +43,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 志愿者/坐堂医
+ * 坐堂医
  */
 public class VolunteerH5Activity extends WebAct {
-
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.pagetop_layout_left)
     LinearLayout pagetopLayoutLeft;
-
 
     @Override
     public void onClick(View v) {
