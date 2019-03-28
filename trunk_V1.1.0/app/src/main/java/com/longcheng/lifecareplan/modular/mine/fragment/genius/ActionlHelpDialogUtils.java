@@ -60,10 +60,10 @@ public class ActionlHelpDialogUtils {
      */
     String payType = "wxpay";
     int selectmoney;
-    int selectengery;
+    String selectengery = "0";
     ActionDetailMoneyAdapter mMoneyAdapter;
-    private int ability;//生命能量
-    private String asset;//金额
+    private String ability = "0";//生命能量
+    private String asset = "0";//金额
     Activity context;
     int is_applying_help;
     int mutual_help_money;
@@ -172,7 +172,7 @@ public class ActionlHelpDialogUtils {
                     selectDialog.dismiss();
                     break;
                 case R.id.detailhelp_relat_engry:
-                    if (ability >= selectengery) {
+                    if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
                         payType = "ability";
                         selectPayTypeView();
                     }
@@ -282,7 +282,7 @@ public class ActionlHelpDialogUtils {
         selectmoney = mEnergyItemBean.getMoney();
         selectengery = mEnergyItemBean.getAbility();
         detailhelp_tv_money.setText("（" + selectmoney + "元）");
-        if (ability >= selectengery) {
+        if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
             payType = "ability";
         } else if (Double.valueOf(asset) >= selectmoney) {
             payType = "asset";
@@ -315,7 +315,7 @@ public class ActionlHelpDialogUtils {
 
 
         //设置默认
-        if (ability < selectengery) {
+        if (Double.valueOf(ability) < Double.valueOf(selectengery)) {
             detailhelp_tv_engrytitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_engry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_blackhealth);

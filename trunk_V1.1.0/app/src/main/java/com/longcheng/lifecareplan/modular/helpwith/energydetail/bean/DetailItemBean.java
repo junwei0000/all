@@ -122,7 +122,7 @@ public class DetailItemBean implements Serializable {
     @SerializedName("money")
     private int money;
     @SerializedName("ability")
-    private int ability;
+    private String ability = "0";
     @SerializedName("weight")
     private String weight;
     @SerializedName("is_default")
@@ -178,11 +178,11 @@ public class DetailItemBean implements Serializable {
         this.money = money;
     }
 
-    public int getAbility() {
+    public String getAbility() {
         return ability;
     }
 
-    public void setAbility(int ability) {
+    public void setAbility(String ability) {
         this.ability = ability;
     }
 

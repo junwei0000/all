@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.home.bean.MenuInfo;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 
 import java.util.List;
@@ -36,41 +37,24 @@ public class MenuAdapter extends BaseAdapterHelper<MenuInfo> {
     @Override
     public View getItemView(int position, View convertView, ViewGroup parent, List<MenuInfo> list, LayoutInflater inflater) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.menu_item, parent, false);
+            convertView = inflater.inflate(R.layout.menu_item, parent);
             mHolder = new ViewHolder(convertView);
             convertView.setTag(mHolder);
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        MenuInfo mHelpWithInfo = list.get(position);
-        mHolder.item_tv_cont.setText(mHelpWithInfo.getName());
-        mHolder.item_tv_cont2.setText(mHelpWithInfo.getName2());
-        mHolder.item_iv_select.setBackgroundResource(mHelpWithInfo.getBgColorId());
-
-        int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 30)) / 2;
-        int height = (int) (width * 0.476);
-        mHolder.item_iv_select.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
-
-        int imgwidth = (int) ((height - 10) * 1.68);
-        mHolder.item_iv_img.setLayoutParams(new RelativeLayout.LayoutParams(imgwidth, height - 10));
-        if (solarTermsEnsImg != null && solarTermsEnsImg.size() - 1 >= position) {
-            GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(context, solarTermsEnsImg.get(position), mHolder.item_iv_img);
-        }
+        MenuInfo mInfo = list.get(position);
+        mHolder.bg.setBackgroundResource(mInfo.getBgImgId());
+        ConfigUtils.getINSTANCE().setSelectFouseText(convertView);
         return convertView;
     }
 
 
     private class ViewHolder {
-        private TextView item_tv_cont;
-        private TextView item_tv_cont2;
-        private ImageView item_iv_select;
-        private ImageView item_iv_img;
+        private RelativeLayout bg;
 
         public ViewHolder(View view) {
-            item_tv_cont = (TextView) view.findViewById(R.id.item_tv_cont);
-            item_tv_cont2 = (TextView) view.findViewById(R.id.item_tv_cont2);
-            item_iv_select = (ImageView) view.findViewById(R.id.item_iv_select);
-            item_iv_img = (ImageView) view.findViewById(R.id.item_iv_img);
+            bg = (RelativeLayout) view.findViewById(R.id.bg);
         }
     }
 }

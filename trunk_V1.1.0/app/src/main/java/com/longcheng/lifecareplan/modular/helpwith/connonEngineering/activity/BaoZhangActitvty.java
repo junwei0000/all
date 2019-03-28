@@ -254,7 +254,6 @@ public class BaoZhangActitvty extends WebAct {
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                         } else if (status.equals("200")) {
-                            //http://test.t.asdyf.com/api/v1_0_0/help/lj_payment?id=1350&user_id=942&token=7e3ddf48a199421e37d17b57c7d66a1c
                             DetailAfterBean mDetailAfterBean = (DetailAfterBean) responseBean.getData();
                             if (mDetailAfterBean != null) {
                                 knp_sharetitle = mDetailAfterBean.getKnp_sharetitle();
@@ -267,6 +266,7 @@ public class BaoZhangActitvty extends WebAct {
                                 } else {
                                     mutual_help_money_all = new ArrayList<>();
                                 }
+                                Log.e("ResponseBody","____________________"+mutual_help_money_all.size());
                             }
                         }
                     }
@@ -274,6 +274,7 @@ public class BaoZhangActitvty extends WebAct {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
 //                        qiMingSkipHelp("0");
+                        Log.e("ResponseBody","____________________"+throwable.toString());
                     }
                 });
 

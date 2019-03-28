@@ -331,9 +331,10 @@ public class ConfigUtils {
 
     /**
      * 设置选中布局高亮
+     *
      * @param mTextView
      */
-    public static void setSelectFouseBtn(View mTextView){
+    public static void setSelectFouseBtn(View mTextView) {
         mTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -345,15 +346,18 @@ public class ConfigUtils {
             }
         });
     }
+
     /**
      * 设置选中布局高亮
+     *
      * @param mTextView
      */
-    public static void setSelectFouseText(View mTextView){
+    public static void setSelectFouseText(View mTextView) {
         mTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
+                    Log.e("OnFocusChange", "OnFocusChange=" + hasFocus);
                     mTextView.setBackgroundResource(R.drawable.corners_bg_textselect);
                 } else {
                     mTextView.setBackgroundResource(R.drawable.corners_bg_text);

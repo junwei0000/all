@@ -5,8 +5,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="@dimen/dp20"
-    android:paddingLeft="@dimen/dp35"
-    android:paddingRight="@dimen/dp35"
+    android:paddingLeft="@dimen/dp30"
+    android:paddingRight="@dimen/dp30"
     android:paddingTop="@dimen/dp20">
 
     <LinearLayout
@@ -47,7 +47,6 @@
                     android:id="@+id/pageTop_tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:text="2019-03-25"
                     android:textColor="@color/white_9a"
                     android:textSize="@dimen/text_zhu_size" />
@@ -56,17 +55,16 @@
                     android:id="@+id/pageTop_tv_week"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:text="星期一"
                     android:textColor="@color/white_9a"
-                    android:textSize="@dimen/text_zhu_size" />
+                    android:textSize="@dimen/text_dp12_size" />
 
             </LinearLayout>
 
             <ImageView
                 android:layout_width="@dimen/dp50"
                 android:layout_height="@dimen/dp50"
-                android:layout_marginLeft="@dimen/jianJu"
+                android:layout_marginLeft="@dimen/dp8"
                 android:background="@mipmap/weather_bg" />
 
         </LinearLayout>
@@ -82,10 +80,10 @@
                 android:id="@+id/pagetop_layout_set"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/dp15"
-                android:layout_marginRight="@dimen/dp15"
-                android:paddingLeft="@dimen/dp15"
-                android:paddingRight="@dimen/dp15">
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:paddingLeft="@dimen/dp20"
+                android:paddingRight="@dimen/dp20">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -93,7 +91,7 @@
                     android:gravity="center"
                     android:text="设置"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_max_size" />
+                    android:textSize="@dimen/text_pageTop_size" />
 
                 <TextView
                     android:layout_width="@dimen/dp8"

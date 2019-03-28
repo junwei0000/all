@@ -111,7 +111,7 @@ public class DetailMoneyAdapter extends BaseAdapter {
         DetailItemBean mEnergyItemBean = list.get(position);
         mHolder.item_layout_money.setLayoutParams(new LinearLayout.LayoutParams(width / 3, width / 3));
         GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mEnergyItemBean.getImage(), mHolder.item_tv_moneyimg, 0);
-        int Ability = mEnergyItemBean.getAbility();
+        String Ability = mEnergyItemBean.getAbility();
         mHolder.item_tv_money.setText(Ability + "");
         if (selectMonetPostion == position && selectDefaultStatus) {//默认
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_redmoney);

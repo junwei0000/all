@@ -11,8 +11,10 @@ import android.support.v17.leanback.widget.HeaderItem;
 import android.support.v17.leanback.widget.ListRow;
 import android.support.v17.leanback.widget.ListRowPresenter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -99,8 +101,14 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     public void setListener() {
         pagetopLayoutRigth.setVisibility(View.VISIBLE);
         pagetopLayoutSet.setOnClickListener(this);
-        pagetopLayoutSet.setFocusable(false);
+        pageTopTvTime.setFocusable(true);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
+        gvbottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ToastUtils.showToast("点击了   "+position);
+            }
+        });
     }
 
     @Override
@@ -124,6 +132,7 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pagetop_layout_set:
+                ToastUtils.showToast("点击了  设置");
                 break;
             default:
                 break;

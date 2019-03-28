@@ -456,7 +456,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_volunteerlist://志愿者申请列表
-                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent = new Intent(mContext, VolunteerH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartymember_url());
                 startActivity(intent);
@@ -476,7 +476,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                         showNotCHODialog();
                     }
                 } else {
-                    intent = new Intent(mContext, VolunteerH5Activity.class);
+                    intent = new Intent(mContext, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getAlready_volunteer_url());
                     startActivity(intent);

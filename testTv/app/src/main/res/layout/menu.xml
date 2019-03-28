@@ -15,20 +15,17 @@
 
         <GridView
             android:id="@+id/gvbottom"
-            style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="@color/transparent"
             android:cacheColorHint="@color/page_bg"
             android:divider="@null"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
             android:gravity="center"
-            android:horizontalSpacing="@dimen/padd_topbottom"
+            android:horizontalSpacing="@dimen/dp10"
             android:numColumns="5"
-            android:paddingBottom="@dimen/dp20"
-            android:paddingTop="@dimen/dp20"
-            android:scrollbars="none"
-            android:verticalSpacing="@dimen/padd_topbottom" />
+            android:padding="@dimen/dp23"
+            android:scrollbars="none" />
     </LinearLayout>
 </LinearLayout>

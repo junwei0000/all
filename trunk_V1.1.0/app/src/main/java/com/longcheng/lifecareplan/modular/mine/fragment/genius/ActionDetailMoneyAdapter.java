@@ -108,17 +108,14 @@ public class ActionDetailMoneyAdapter extends BaseAdapter {
         int width = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 40);
         mHolder.item_tv_money.setWidth(width / 3);
         DetailItemBean mEnergyItemBean = list.get(position);
-        int money_ = mEnergyItemBean.getAbility();
-        mHolder.item_tv_money.setText("" + money_);
+        String Ability = mEnergyItemBean.getAbility();
+        mHolder.item_tv_money.setText("" + Ability);
         if (selectMonetPostion == position && selectDefaultStatus) {//默认
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.white));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_login);
         } else {
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.text_contents_color));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_skbgray);
-        }
-        if (is_applying_help > 0 && mutual_help_money > money_) {
-            mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
         }
         return convertView;
     }
