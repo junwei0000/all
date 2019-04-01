@@ -1,18 +1,6 @@
-package com.longcheng.lifecareplan.home.activity;
+package com.longcheng.lifecareplan.home.menu.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v17.leanback.widget.ArrayObjectAdapter;
-import android.support.v17.leanback.widget.ClassPresenterSelector;
-import android.support.v17.leanback.widget.HeaderItem;
-import android.support.v17.leanback.widget.ListRow;
-import android.support.v17.leanback.widget.ListRowPresenter;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -22,33 +10,20 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.BasicResponse;
-import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.home.adapter.MenuAdapter;
-import com.longcheng.lifecareplan.home.bean.MenuInfo;
+import com.longcheng.lifecareplan.home.help.HelpActivity;
+import com.longcheng.lifecareplan.home.menu.adapter.MenusAdapter;
+import com.longcheng.lifecareplan.home.menu.bean.MenuInfo;
 import com.longcheng.lifecareplan.home.set.SetActivity;
-import com.longcheng.lifecareplan.login.activity.LoginContract;
-import com.longcheng.lifecareplan.login.activity.LoginPresenterImp;
-import com.longcheng.lifecareplan.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;
-import com.longcheng.lifecareplan.test.CardPresenter;
-import com.longcheng.lifecareplan.test.MainActivity;
-import com.longcheng.lifecareplan.test.Movie;
-import com.longcheng.lifecareplan.test.MovieList;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.Utils;
-import com.longcheng.lifecareplan.utils.keyboard.SafeKeyboard;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 菜单首页
@@ -103,19 +78,15 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     public void setListener() {
         pagetopLayoutRigth.setVisibility(View.VISIBLE);
         pagetopLayoutSet.setOnClickListener(this);
-        pageTopTvTime.setFocusable(true);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
-        gvbottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtils.showToast("点击了   " + position);
-            }
-        });
+        pageTopTvTime.setFocusable(true);//设置无用的view焦点，其他可点击view默认无焦点
         gvbottom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     mAdapter.setSelectItem(-1);
+                } else {
+                    pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
                 }
             }
         });
@@ -128,6 +99,24 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 mAdapter.setSelectItem(-1);
+            }
+        });
+        gvbottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+
+                } else if (position == 1) {
+
+                } else if (position == 2) {
+                    Intent intent = new Intent(mContext, HelpActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                } else if (position == 3) {
+
+                } else if (position == 4) {
+
+                }
             }
         });
     }
@@ -172,7 +161,7 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
 
     }
 
-    MenuAdapter mAdapter;
+    MenusAdapter mAdapter;
 
     private void initD() {
         List<MenuInfo> mBottomList = new ArrayList();
@@ -186,8 +175,9 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
                 R.mipmap.lixia, R.mipmap.login_icon_phone, "动态"));
         mBottomList.add(new MenuInfo("", "", "",
                 R.mipmap.jieqiyangsheng, R.mipmap.login_icon_phone, ""));
-        mAdapter = new MenuAdapter(mContext, mBottomList);
+        mAdapter = new MenusAdapter(mContext, mBottomList);
         gvbottom.setAdapter(mAdapter);
+        mAdapter.setSelectItem(-1);
     }
 
     @Override

@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
-import com.longcheng.lifecareplan.home.activity.MenuActivity;
+import com.longcheng.lifecareplan.home.menu.activity.MenuActivity;
 import com.longcheng.lifecareplan.login.activity.LoginActivity;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.SharedPreferencesHelper;

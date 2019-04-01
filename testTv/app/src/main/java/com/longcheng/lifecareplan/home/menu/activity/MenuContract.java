@@ -1,8 +1,7 @@
-package com.longcheng.lifecareplan.home.activity;
+package com.longcheng.lifecareplan.home.menu.activity;
 
 
 import com.longcheng.lifecareplan.api.BasicResponse;
-import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;

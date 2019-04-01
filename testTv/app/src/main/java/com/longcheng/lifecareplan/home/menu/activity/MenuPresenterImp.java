@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.home.activity;
+package com.longcheng.lifecareplan.home.menu.activity;
 
 import android.app.Activity;
 import android.util.Log;
@@ -7,7 +7,6 @@ import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.api.BasicResponse;
 import com.longcheng.lifecareplan.api.DefaultObserver;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.login.activity.*;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 

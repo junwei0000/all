@@ -39,7 +39,8 @@
         <activity
             android:name=".login.activity.LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".home.activity.MenuActivity" />
+        <activity android:name=".home.menu.activity.MenuActivity" />
+        <activity android:name=".home.help.HelpActivity" />
         <activity android:name=".home.set.SetActivity" />
         <activity android:name=".home.set.AboutActivity" />
     </application>

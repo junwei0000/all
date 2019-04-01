@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.home.bean;
+package com.longcheng.lifecareplan.home.menu.bean;
 
 import java.io.Serializable;
 

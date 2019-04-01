@@ -1,7 +1,6 @@
-package com.longcheng.lifecareplan.home.adapter;
+package com.longcheng.lifecareplan.home.menu.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.home.bean.MenuInfo;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.home.menu.bean.MenuInfo;
 import com.longcheng.lifecareplan.utils.FontUtils;
 
 import java.util.List;
@@ -25,7 +22,7 @@ import java.util.List;
  * 意图：
  */
 
-public class MenuAdapter extends BaseAdapterHelper<MenuInfo> {
+public class MenusAdapter extends BaseAdapterHelper<MenuInfo> {
     ViewHolder mHolder = null;
 
     Context context;
@@ -37,7 +34,7 @@ public class MenuAdapter extends BaseAdapterHelper<MenuInfo> {
         super.notifyDataSetChanged();
     }
 
-    public MenuAdapter(Context context, List<MenuInfo> list) {
+    public MenusAdapter(Context context, List<MenuInfo> list) {
         super(context, list);
         this.context = context;
     }

@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.home.set;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,12 +9,11 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
-import com.longcheng.lifecareplan.home.activity.MenuActivity;
+import com.longcheng.lifecareplan.home.menu.activity.MenuActivity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 设置
