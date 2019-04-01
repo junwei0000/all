@@ -88,6 +88,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
     @Override
     public void initView(View view) {
+        initTimer();
     }
 
     @Override
@@ -104,7 +105,6 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     public void initDataAfter() {
         mUserLoginSkipUtils = new UserLoginSkipUtils(this);
         initSafeKeyboard();
-        initTimer();
     }
 
     @Override

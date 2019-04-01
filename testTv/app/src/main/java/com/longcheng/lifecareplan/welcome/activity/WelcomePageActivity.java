@@ -55,6 +55,11 @@ public class WelcomePageActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void setDateInfo() {
+
+    }
+
 
     private void intentIndexPage() {
         String loginStatus = (String) SharedPreferencesHelper.get(getApplicationContext(), "loginStatus", "");

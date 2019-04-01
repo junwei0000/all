@@ -1,9 +1,12 @@
 package com.longcheng.lifecareplan.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -13,6 +16,9 @@ import android.view.WindowManager;
 
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -117,7 +123,41 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
      */
     public abstract void initDataAfter();
 
+    /**
+     * **********************头部时间*****************************
+     */
+    /**
+     * 开始计时
+     */
+    TimerTask dateTask;
 
+    protected void initTimer() {
+        dateTask = new TimerTask() {
+            @Override
+            public void run() {
+                mTimeHandler.sendEmptyMessage(1);
+            }
+        };
+        new Timer().schedule(dateTask, 1000, 30 * 1000);
+    }
+
+    @SuppressLint("HandlerLeak")
+    Handler mTimeHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    setDateInfo();
+                    break;
+            }
+        }
+    };
+
+    public abstract void setDateInfo();
+
+    /**
+     * *********************end**************************
+     */
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -154,6 +194,10 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         activityManager.popActivity(this);
         //butterknife 解绑
         bind.unbind();
+        if (dateTask != null) {
+            dateTask.cancel();
+            mTimeHandler.removeCallbacks(dateTask);
+        }
         //绑定activity
         super.onDestroy();
         Log.d(TAG, "onDestroy()");

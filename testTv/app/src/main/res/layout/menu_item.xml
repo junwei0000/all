@@ -5,11 +5,65 @@
     android:padding="1dp">
 
     <RelativeLayout
-        android:id="@+id/bg"
+        android:id="@+id/imgbg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/dp20">
 
+        <TextView
+            android:id="@+id/item_tv_dayname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="1"
+            android:gravity="bottom"
+            android:text="春分第一天"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_contents_size" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:id="@+id/item_tv_jieeqiname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="1"
+                android:text="立春"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_dp25_size" />
+
+            <TextView
+                android:id="@+id/item_tv_huaname"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp3"
+                android:ems="1"
+                android:gravity="bottom"
+                android:text="玉兰花"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/item_iv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/item_tv_iconname"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/login_icon_phone" />
+
+        <TextView
+            android:id="@+id/item_tv_iconname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/jianJu"
+            android:text="视频"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_max_size" />
     </RelativeLayout>
 
 </LinearLayout>

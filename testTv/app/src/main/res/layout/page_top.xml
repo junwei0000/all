@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:text="10:20"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_dp25_size" />
+                android:textSize="@dimen/text_max_size" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:text="2019-03-25"
                     android:textColor="@color/white_9a"
-                    android:textSize="@dimen/text_zhu_size" />
+                    android:textSize="@dimen/text_min_size" />
 
                 <TextView
                     android:id="@+id/pageTop_tv_week"
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="星期一"
                     android:textColor="@color/white_9a"
-                    android:textSize="@dimen/text_dp12_size" />
+                    android:textSize="@dimen/text_min_size" />
 
             </LinearLayout>
 
@@ -91,11 +91,11 @@
                     android:gravity="center"
                     android:text="设置"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_pageTop_size" />
+                    android:textSize="@dimen/text_biaoTi_size" />
 
                 <TextView
-                    android:layout_width="@dimen/dp8"
-                    android:layout_height="@dimen/dp8"
+                    android:layout_width="@dimen/dp6"
+                    android:layout_height="@dimen/dp6"
                     android:layout_marginLeft="@dimen/padd_imgtextleftright"
                     android:layout_marginTop="-4dp"
                     android:background="@drawable/corners_oval_red" />
@@ -103,14 +103,15 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginLeft="@dimen/jianJu"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/pageTop_iv_thumb"
-                    android:layout_width="@dimen/dp43"
-                    android:layout_height="@dimen/dp43"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
                     android:background="@mipmap/user_default_icon" />
 
                 <LinearLayout
@@ -127,7 +128,7 @@
                         android:gravity="center"
                         android:text="JUN"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_tishi_size" />
+                        android:textSize="@dimen/text_zhu_size" />
 
                     <TextView
                         android:id="@+id/pageTop_tv_phone"
@@ -136,7 +137,7 @@
                         android:gravity="center"
                         android:text="188****8842"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_biaoTi_size" />
+                        android:textSize="@dimen/text_zhu_size" />
 
                 </LinearLayout>
 

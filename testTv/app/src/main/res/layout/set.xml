@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/start_page"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <LinearLayout
+        android:layout_width="520dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/set_relay_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_setnotselect"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/padd_imgtextleftright">
+
+            <ImageView
+                android:id="@+id/set_iv_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/set_icon_gengxin"
+                android:scaleType="matrix" />
+
+            <TextView
+                android:id="@+id/set_tv_versiontile"
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_toRightOf="@id/set_iv_update"
+                android:text="检查更新"
+                android:textColor="@color/white_9a"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/set_tv_version"
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/set_iv_updatearrow"
+                android:text="当前版本：v1.0.0"
+                android:textColor="@color/white_9a"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:id="@+id/set_iv_updatearrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/set_icon_jiantou" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/set_relay_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/corners_bg_setnotselect"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/padd_imgtextleftright">
+
+            <ImageView
+                android:id="@+id/set_iv_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/set_icon_about"
+                android:scaleType="matrix" />
+
+            <TextView
+                android:id="@+id/set_tv_about"
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_toRightOf="@id/set_iv_about"
+                android:text="关于我们"
+                android:textColor="@color/white_9a"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:id="@+id/set_iv_aboutarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/set_icon_jiantou" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/set_relay_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/corners_bg_setnotselect"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/padd_imgtextleftright">
+
+            <ImageView
+                android:id="@+id/set_iv_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/set_icon_clear"
+                android:scaleType="matrix" />
+
+            <TextView
+                android:id="@+id/set_tv_clear"
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_toRightOf="@id/set_iv_clear"
+                android:text="清除缓存"
+                android:textColor="@color/white_9a"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:id="@+id/set_iv_cleararrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/set_icon_jiantou" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

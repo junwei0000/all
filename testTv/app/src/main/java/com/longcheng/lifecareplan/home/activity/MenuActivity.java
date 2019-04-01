@@ -26,6 +26,7 @@ import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.home.adapter.MenuAdapter;
 import com.longcheng.lifecareplan.home.bean.MenuInfo;
+import com.longcheng.lifecareplan.home.set.SetActivity;
 import com.longcheng.lifecareplan.login.activity.LoginContract;
 import com.longcheng.lifecareplan.login.activity.LoginPresenterImp;
 import com.longcheng.lifecareplan.login.activity.UserLoginSkipUtils;
@@ -95,6 +96,7 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
 
     @Override
     public void initView(View view) {
+        initTimer();
     }
 
     @Override
@@ -106,14 +108,32 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
         gvbottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtils.showToast("点击了   "+position);
+                ToastUtils.showToast("点击了   " + position);
+            }
+        });
+        gvbottom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    mAdapter.setSelectItem(-1);
+                }
+            }
+        });
+        gvbottom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mAdapter.setSelectItem(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mAdapter.setSelectItem(-1);
             }
         });
     }
 
     @Override
     public void initDataAfter() {
-        initTimer();
         initD();
     }
 
@@ -132,7 +152,9 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pagetop_layout_set:
-                ToastUtils.showToast("点击了  设置");
+                Intent intent = new Intent(this, SetActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -150,19 +172,21 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
 
     }
 
+    MenuAdapter mAdapter;
+
     private void initD() {
         List<MenuInfo> mBottomList = new ArrayList();
         mBottomList.add(new MenuInfo("春分", "玉兰花", "春分第七天",
                 R.mipmap.lichun, R.mipmap.login_icon_phone, "视频"));
         mBottomList.add(new MenuInfo("清明", "杜鸥花", "距离清明第14天",
-                R.mipmap.qingming, R.mipmap.login_icon_phone, "视频"));
+                R.mipmap.qingming, R.mipmap.login_icon_phone, "图库"));
         mBottomList.add(new MenuInfo("谷雨", "玉兰花", "春分第七天",
-                R.mipmap.guyu, R.mipmap.login_icon_phone, "视频"));
+                R.mipmap.guyu, R.mipmap.login_icon_phone, "互祝"));
         mBottomList.add(new MenuInfo("立夏", "玉兰花", "春分第七天",
-                R.mipmap.lixia, R.mipmap.login_icon_phone, "视频"));
+                R.mipmap.lixia, R.mipmap.login_icon_phone, "动态"));
         mBottomList.add(new MenuInfo("", "", "",
-                R.mipmap.jieqiyangsheng, R.mipmap.login_icon_phone, "视频"));
-        MenuAdapter mAdapter = new MenuAdapter(mContext, mBottomList);
+                R.mipmap.jieqiyangsheng, R.mipmap.login_icon_phone, ""));
+        mAdapter = new MenuAdapter(mContext, mBottomList);
         gvbottom.setAdapter(mAdapter);
     }
 

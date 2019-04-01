@@ -23,24 +23,25 @@
         android:theme="@style/SplashTheme">
         <activity
             android:name=".welcome.activity.WelcomePageActivity"
-            android:banner="@drawable/app_icon_your_company"
-            android:icon="@drawable/app_icon_your_company"
+            android:banner="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:logo="@drawable/app_icon_your_company"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".login.activity.LoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".home.activity.MenuActivity" />
         <activity android:name=".test.MainActivity" />
         <activity android:name=".test.DetailsActivity" />
         <activity android:name=".test.PlaybackActivity" />
         <activity android:name=".test.BrowseErrorActivity" />
+
+        <activity
+            android:name=".login.activity.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name=".home.activity.MenuActivity" />
+        <activity android:name=".home.set.SetActivity" />
+        <activity android:name=".home.set.AboutActivity" />
     </application>
 
 </manifest>

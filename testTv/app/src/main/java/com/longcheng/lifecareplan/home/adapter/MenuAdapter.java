@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.home.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.home.bean.MenuInfo;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.utils.FontUtils;
 
 import java.util.List;
 
@@ -27,6 +29,13 @@ public class MenuAdapter extends BaseAdapterHelper<MenuInfo> {
     ViewHolder mHolder = null;
 
     Context context;
+    private int selectItem = -1;
+
+
+    public void setSelectItem(int selectItem) {
+        this.selectItem = selectItem;
+        super.notifyDataSetChanged();
+    }
 
     public MenuAdapter(Context context, List<MenuInfo> list) {
         super(context, list);
@@ -37,24 +46,57 @@ public class MenuAdapter extends BaseAdapterHelper<MenuInfo> {
     @Override
     public View getItemView(int position, View convertView, ViewGroup parent, List<MenuInfo> list, LayoutInflater inflater) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.menu_item, parent);
+            convertView = inflater.inflate(R.layout.menu_item, parent, false);
             mHolder = new ViewHolder(convertView);
             convertView.setTag(mHolder);
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
+        if (selectItem == position) {
+            convertView.setBackgroundResource(R.drawable.corners_bg_textselect);
+        } else {
+            convertView.setBackgroundResource(R.drawable.corners_bg_text);
+        }
+        FontUtils.setFontKaiTi(context, mHolder.item_tv_dayname);
+        FontUtils.setFontKaiTi(context, mHolder.item_tv_jieeqiname);
+        FontUtils.setFontKaiTi(context, mHolder.item_tv_huaname);
+        FontUtils.setFontKaiTi(context, mHolder.item_tv_iconname);
         MenuInfo mInfo = list.get(position);
-        mHolder.bg.setBackgroundResource(mInfo.getBgImgId());
-        ConfigUtils.getINSTANCE().setSelectFouseText(convertView);
+        mHolder.imgbg.setBackgroundResource(mInfo.getBgImgId());
+        mHolder.item_tv_dayname.setText(mInfo.getNextday());
+        mHolder.item_tv_jieeqiname.setText(mInfo.getJieqiname());
+        mHolder.item_tv_huaname.setText(mInfo.getHuaname());
+        mHolder.item_tv_iconname.setText(mInfo.getIconname());
+        mHolder.item_iv_icon.setBackgroundResource(mInfo.getIconId());
+        if (position == 4) {
+            mHolder.item_tv_dayname.setVisibility(View.INVISIBLE);
+            mHolder.item_tv_jieeqiname.setVisibility(View.INVISIBLE);
+            mHolder.item_tv_huaname.setVisibility(View.INVISIBLE);
+            mHolder.item_tv_iconname.setVisibility(View.INVISIBLE);
+            mHolder.item_iv_icon.setVisibility(View.INVISIBLE);
+        } else {
+            mHolder.item_tv_dayname.setVisibility(View.VISIBLE);
+            mHolder.item_tv_jieeqiname.setVisibility(View.VISIBLE);
+            mHolder.item_tv_huaname.setVisibility(View.VISIBLE);
+            mHolder.item_tv_iconname.setVisibility(View.VISIBLE);
+            mHolder.item_iv_icon.setVisibility(View.VISIBLE);
+        }
         return convertView;
     }
 
 
     private class ViewHolder {
-        private RelativeLayout bg;
+        private ImageView item_iv_icon;
+        private TextView item_tv_dayname, item_tv_jieeqiname, item_tv_huaname, item_tv_iconname;
+        private RelativeLayout imgbg;
 
         public ViewHolder(View view) {
-            bg = (RelativeLayout) view.findViewById(R.id.bg);
+            imgbg = (RelativeLayout) view.findViewById(R.id.imgbg);
+            item_tv_dayname = (TextView) view.findViewById(R.id.item_tv_dayname);
+            item_tv_jieeqiname = (TextView) view.findViewById(R.id.item_tv_jieeqiname);
+            item_tv_huaname = (TextView) view.findViewById(R.id.item_tv_huaname);
+            item_iv_icon = (ImageView) view.findViewById(R.id.item_iv_icon);
+            item_tv_iconname = (TextView) view.findViewById(R.id.item_tv_iconname);
         }
     }
 }
