@@ -1,25 +1,33 @@
-package com.longcheng.lifecareplan.home.menu.activity;
+package com.longcheng.lifecareplan.home.dynamic.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.BasicResponse;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.home.dynamic.activity.DynamicActivity;
+import com.longcheng.lifecareplan.home.dynamic.adapter.DynamicAdapter;
+import com.longcheng.lifecareplan.home.dynamic.bean.DynamicInfo;
 import com.longcheng.lifecareplan.home.help.HelpActivity;
-import com.longcheng.lifecareplan.home.menu.adapter.MenusAdapter;
-import com.longcheng.lifecareplan.home.menu.bean.MenuInfo;
 import com.longcheng.lifecareplan.home.set.SetActivity;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.SmoothScrollListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +35,9 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * 菜单首页
+ * 动态
  */
-public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresenterImp<MenuContract.View>> implements MenuContract.View {
+public class DynamicActivity extends BaseActivityMVP<DynamicContract.View, DynamicPresenterImp<DynamicContract.View>> implements DynamicContract.View {
 
     @BindView(R.id.pageTop_tv_time)
     TextView pageTopTvTime;
@@ -47,8 +55,8 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     LinearLayout pagetopLayoutRigth;
     @BindView(R.id.pageTop_iv_thumb)
     ImageView pageTopIvThumb;
-    @BindView(R.id.gvbottom)
-    GridView gvbottom;
+    @BindView(R.id.ftf_lv)
+    SmoothScrollListView ftf_lv;
 
     @Override
     public void showDialog() {
@@ -67,7 +75,7 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
 
     @Override
     public int bindLayout() {
-        return R.layout.menu;
+        return R.layout.dynamic;
     }
 
     @Override
@@ -75,53 +83,49 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
         initTimer();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void setListener() {
         pagetopLayoutRigth.setVisibility(View.VISIBLE);
         pagetopLayoutSet.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
         pageTopTvTime.setFocusable(true);//设置无用的view焦点，其他可点击view默认无焦点
-        gvbottom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        ftf_lv.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                /**
+                 * 点击时 打开页面先运行这个
+                 */
                 if (!hasFocus) {
                     mAdapter.setSelectItem(-1);
                 } else {
-                    pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
+                    mAdapter.setSelectItem(0);
                 }
+                pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
+                Log.e("convertView", "   setMoveStatus=  " + hasFocus + "   ");
             }
         });
-        gvbottom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ftf_lv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                /**
+                 * 使用遥控器 初始化运行这里
+                 */
+                Log.e("convertView", "  setSelectItem ;parent=  " + parent.getCount() + "   " + id);
                 mAdapter.setSelectItem(position);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 mAdapter.setSelectItem(-1);
+                Log.e("convertView", " onNothingSelected=  " + "   ");
             }
         });
-        gvbottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ftf_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-
-                } else if (position == 1) {
-
-                } else if (position == 2) {
-                    Intent intent = new Intent(mContext, HelpActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                } else if (position == 3) {
-                    Intent intent = new Intent(mContext, DynamicActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                } else if (position == 4) {
-                    Intent intent = new Intent(mContext, DynamicActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                }
+                ToastUtils.showToast("点击了  " + position);
+                mAdapter.setSelectItem(position);
             }
         });
     }
@@ -156,8 +160,8 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     }
 
     @Override
-    protected MenuPresenterImp<MenuContract.View> createPresent() {
-        return new MenuPresenterImp<>(mActivity, this);
+    protected DynamicPresenterImp<DynamicContract.View> createPresent() {
+        return new DynamicPresenterImp<>(mActivity, this);
     }
 
 
@@ -166,24 +170,29 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
 
     }
 
-    MenusAdapter mAdapter;
+    DynamicAdapter mAdapter;
 
     private void initD() {
-        List<MenuInfo> mBottomList = new ArrayList();
-        mBottomList.add(new MenuInfo("春分", "玉兰花", "春分第七天",
-                R.mipmap.lichun, R.mipmap.login_icon_phone, "视频"));
-        mBottomList.add(new MenuInfo("清明", "杜鸥花", "距离清明第14天",
-                R.mipmap.qingming, R.mipmap.login_icon_phone, "图库"));
-        mBottomList.add(new MenuInfo("谷雨", "玉兰花", "春分第七天",
-                R.mipmap.guyu, R.mipmap.login_icon_phone, "互祝"));
-        mBottomList.add(new MenuInfo("立夏", "玉兰花", "春分第七天",
-                R.mipmap.lixia, R.mipmap.login_icon_phone, "动态"));
-        mBottomList.add(new MenuInfo("", "", "",
-                R.mipmap.jieqiyangsheng, R.mipmap.login_icon_phone, ""));
-        mAdapter = new MenusAdapter(mContext, mBottomList);
-        gvbottom.setAdapter(mAdapter);
-        mAdapter.setSelectItem(-1);
+        List<DynamicInfo> mBottomList = new ArrayList();
+        for (int i = 0; i < 30; i++) {
+            mBottomList.add(new DynamicInfo());
+        }
+        mAdapter = new DynamicAdapter(mContext, mBottomList);
+        ftf_lv.setAdapter(mAdapter);
+        myHandler.sendEmptyMessageDelayed(11, 40);
     }
+
+    @SuppressLint("HandlerLeak")
+    Handler myHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 11:
+                    mAdapter.setSelectItem(-1);
+                    break;
+            }
+        }
+    };
 
     @Override
     public void onError() {
@@ -195,10 +204,4 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
         super.onDestroy();
     }
 
-    /**
-     * 监听返回键
-     */
-    public void onBackPressed() {
-        exit();
-    }
 }

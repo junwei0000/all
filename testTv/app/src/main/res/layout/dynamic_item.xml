@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/engrylistItem_iconHeight"
+            android:layout_height="@dimen/engrylistItem_iconHeight"
+            android:background="@color/white"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp20"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="CHO是一款实施生命呵护计划的软件，传承廿四节气养生文化，培养家庭首席健康官（CHO），通过互相祝福和感恩，让更多人的生命能量流动和融合，提升每位家庭成员的生命品质。"
+                android:textColor="@color/white_9a"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019-02-22"
+                android:textColor="@color/cyanblue"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white_9a" />
+</LinearLayout>
+
+
+

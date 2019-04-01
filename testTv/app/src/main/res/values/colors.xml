@@ -24,16 +24,7 @@
     <color name="color_db4065">#db4065</color>
 
     <!-- 青色 -->
-    <color name="cyanblue">#A5793A</color>
-    <!-- 青色背景 -->
-    <color name="cyanbluebg">#ccaa62</color>
-    <color name="cyanbluebg2">#d4a82f</color>
-    <color name="likebluebg">#e2bb68</color>
-    <color name="commcyanbluebg">#fff7e6</color>
-    <color name="text_engry_bg">#b58c1a</color>
-    <color name="rank_num1_bg">#ffd236</color>
-    <color name="thanks_kuangbg">#fdedad</color>
-    <color name="hongbaoget_bg">#fcf0a0</color>
+    <color name="cyanblue">#feda5c</color>
 
 
     <color name="green">#6e9cb6</color>

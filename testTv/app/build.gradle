@@ -54,7 +54,7 @@ greendao {
 //自定义生成数据库文件的目录，可以将生成的文件放到我们的java目录中，而不是build中，这样就不用额外的设置资源目录了。
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -81,4 +81,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "com.android.support:appcompat-v7:$rootProject.ext.appcompatVersion"
     compile "com.android.support:leanback-v17:$rootProject.ext.appcompatVersion"
+    implementation project(':pulltorefreshlibrary')
 }

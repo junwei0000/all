@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/menu_bg"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <include layout="@layout/page_top" />
@@ -10,22 +11,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp80"
+        android:layout_marginRight="@dimen/dp80"
+        android:layout_marginTop="@dimen/dp30"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <GridView
-            android:id="@+id/gvbottom"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/red" />
+
+        <com.longcheng.lifecareplan.utils.myview.SmoothScrollListView
+            android:id="@+id/ftf_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent"
-            android:cacheColorHint="@color/page_bg"
+            android:cacheColorHint="@color/transparent"
             android:divider="@null"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
-            android:gravity="center"
-            android:horizontalSpacing="@dimen/dp10"
-            android:numColumns="5"
-            android:padding="@dimen/dp23"
             android:scrollbars="none" />
     </LinearLayout>
 </LinearLayout>
