@@ -20,7 +20,7 @@ import android.os.Bundle;
 import com.longcheng.lifecareplan.R;
 
 /*
- * MainActivity class that loads {@link MainFragment}.
+ * VedioActivity class that loads {@link MainFragment}.
  */
 public class MainActivity extends Activity {
 

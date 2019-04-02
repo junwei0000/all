@@ -16,6 +16,7 @@ import com.longcheng.lifecareplan.home.help.HelpActivity;
 import com.longcheng.lifecareplan.home.menu.adapter.MenusAdapter;
 import com.longcheng.lifecareplan.home.menu.bean.MenuInfo;
 import com.longcheng.lifecareplan.home.set.SetActivity;
+import com.longcheng.lifecareplan.home.vedio.activity.VediosActivity;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
@@ -105,7 +106,9 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-
+                    Intent intent = new Intent(mContext, VediosActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
                 } else if (position == 1) {
 
                 } else if (position == 2) {

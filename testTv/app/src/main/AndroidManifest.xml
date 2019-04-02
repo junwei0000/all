@@ -101,6 +101,7 @@
         <activity android:name=".home.menu.activity.MenuActivity" />
         <activity android:name=".home.help.HelpActivity" />
         <activity android:name=".home.dynamic.activity.DynamicActivity" />
+        <activity android:name=".home.vedio.activity.VediosActivity" />
         <activity android:name=".home.set.SetActivity" />
         <activity android:name=".home.set.AboutActivity" />
     </application>
