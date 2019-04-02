@@ -29,6 +29,7 @@ import android.widget.ViewFlipper;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.autolayout.utils.L;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
@@ -56,6 +57,7 @@ import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
 import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.utils.CleanMessageUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
@@ -304,6 +306,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         pagetopLayoutRigth.requestFocus();
         showChache(false);
         mHandler.sendEmptyMessage(CLCIKLIKE);
+        try {
+            String d=CleanMessageUtil.getTotalCacheSize(mContext);
+            Log.e("CleanMessageUtil",d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     protected static final int CLCIKLIKE = 1;

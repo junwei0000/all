@@ -1,6 +1,9 @@
 package com.longcheng.lifecareplan.home.set;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,9 +12,9 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
-import com.longcheng.lifecareplan.home.menu.activity.MenuActivity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
+import com.longcheng.lifecareplan.utils.clearCache.CleanMessageUtil;
 
 import butterknife.BindView;
 
@@ -62,7 +65,8 @@ public class SetActivity extends BaseActivity {
     ImageView setIvCleararrow;
     @BindView(R.id.set_relay_clear)
     RelativeLayout setRelayClear;
-
+    @BindView(R.id.set_tv_clearsize)
+    TextView set_tv_clearsize;
 
     @Override
     public View bindView() {
@@ -131,10 +135,22 @@ public class SetActivity extends BaseActivity {
         });
     }
 
+
     @Override
     public void initDataAfter() {
         String verName = ConfigUtils.getINSTANCE().getVerCode(mContext);
         setTvVersion.setText("当前版本：v" + verName);
+        getSize();
+    }
+
+    private void getSize() {
+        try {
+            String size = CleanMessageUtil.getTotalCacheSize(mContext);
+            Log.e("getSize",""+size);
+            set_tv_clearsize.setText(size);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -160,7 +176,8 @@ public class SetActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.set_relay_clear:
-
+                CleanMessageUtil.cleanApplicationData(mContext);
+                getSize();
                 break;
             default:
                 break;

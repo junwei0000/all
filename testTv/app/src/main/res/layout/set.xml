@@ -134,7 +134,16 @@
                 android:text="清除缓存"
                 android:textColor="@color/white_9a"
                 android:textSize="@dimen/text_contents_size" />
-
+            <TextView
+                android:id="@+id/set_tv_clearsize"
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/set_iv_cleararrow"
+                android:text="0.0KB"
+                android:textColor="@color/white_9a"
+                android:textSize="@dimen/text_contents_size" />
             <ImageView
                 android:id="@+id/set_iv_cleararrow"
                 android:layout_width="wrap_content"
