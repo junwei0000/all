@@ -86,9 +86,8 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     mAdapter.setSelectItem(-1);
-                } else {
-                    pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
                 }
+                pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
             }
         });
         gvbottom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

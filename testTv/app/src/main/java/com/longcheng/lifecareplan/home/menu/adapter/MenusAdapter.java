@@ -26,6 +26,11 @@ public class MenusAdapter extends BaseAdapterHelper<MenuInfo> {
     ViewHolder mHolder = null;
 
     Context context;
+
+    public int getSelectItem() {
+        return selectItem;
+    }
+
     private int selectItem = -1;
 
 
