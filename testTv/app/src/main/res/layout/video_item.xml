@@ -10,10 +10,10 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:padding="3dp">
+    android:padding="2dp">
 
     <!--
-      注意要空出3dp给焦点显示,否则会看不到焦点效果
+      注意要空出2dp给焦点显示,否则会看不到焦点效果
      -->
     <ImageView
         android:id="@+id/iv_result_image"

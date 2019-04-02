@@ -14,8 +14,10 @@ import android.view.FocusFinder;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 
 
 /**
@@ -394,12 +396,12 @@ public class TvRecyclerView extends RecyclerView {
                         }
                     case KeyEvent.KEYCODE_DPAD_DOWN:
                         View downView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_DOWN);
-                        Log.i(TAG, " downView is null:" + (downView == null));
+                        Log.i(TAG, " downView is null:" + (downView == null) + "  ;dy==" + dy);
+                        this.smoothScrollBy(0, dy + DensityUtil.dip2px(getContext(), 26));
                         if (downView != null) {
                             downView.requestFocus();
                             return true;
                         } else {
-                            this.smoothScrollBy(0, dy);
                             return true;
                         }
                     case KeyEvent.KEYCODE_DPAD_UP:
@@ -408,12 +410,18 @@ public class TvRecyclerView extends RecyclerView {
                         if (event.getAction() == KeyEvent.ACTION_UP) {
                             return true;
                         } else {
+                            this.smoothScrollBy(0, -dy - DensityUtil.dip2px(getContext(), 23));
                             if (upView != null) {
                                 upView.requestFocus();
                                 return true;
                             } else {
-                                this.smoothScrollBy(0, -dy);
-                                return true;
+                                //不让焦点出去
+//                                return true;
+                                /**
+                                 * 修改位置： 设置焦点可以出去
+                                 */
+                                mLinearLayout.setFocusable(true);
+                                return false;
                             }
 
                         }
@@ -423,6 +431,12 @@ public class TvRecyclerView extends RecyclerView {
 
         }
         return result;
+    }
+
+    LinearLayout mLinearLayout;
+
+    public void setBtnFouse(LinearLayout mLinearLayout) {
+        this.mLinearLayout = mLinearLayout;
     }
 
     @Override

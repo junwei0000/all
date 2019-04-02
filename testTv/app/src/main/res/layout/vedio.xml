@@ -11,10 +11,9 @@
         android:id="@+id/search_result_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/dp38"
         android:layout_marginLeft="@dimen/dp20"
         android:layout_marginRight="@dimen/dp20"
-        android:layout_marginTop="@dimen/dp27"
+        android:layout_marginTop="@dimen/dp30"
         android:scrollbars="none" />
 
 </LinearLayout>

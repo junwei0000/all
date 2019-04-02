@@ -96,23 +96,18 @@ public class VediosActivity extends BaseActivityMVP<VediosContract.View, VediosP
         pagetopLayoutRigth.setVisibility(View.VISIBLE);
         pagetopLayoutSet.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
-        pageTopTvTime.setFocusable(true);//设置无用的view焦点，其他可点击view默认无焦点
-        mRecyclerView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
-            }
-        });
+        pagetopLayoutSet.setFocusable(false);//设置无用的view焦点，其他可点击view默认无焦点
     }
 
     @Override
     public void initDataAfter() {
-        mRecyclerView.setFocusable(false);
+        mRecyclerView.setBtnFouse(pagetopLayoutSet);
         //去掉动画,否则当notify数据的时候,焦点会丢失
         mRecyclerView.setItemAnimator(null);
         mLayoutManager = new TvGridLayoutManager(this, 4);
         mLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setFocusable(false);
         mRecyclerView.setSelectedItemOffset(180, 180);
 
         mRecyclerView.setOnLoadMoreListener(new TvRecyclerView.OnLoadMoreListener() {
