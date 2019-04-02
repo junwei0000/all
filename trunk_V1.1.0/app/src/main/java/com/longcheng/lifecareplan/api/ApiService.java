@@ -866,7 +866,12 @@ public interface ApiService {
     Observable<PayWXDataBean> doctorPay(@Field("user_id") String user_id,
                                         @Field("payment_channel") String payment_channel,
                                         @Field("token") String token);
-
+    @FormUrlEncoded
+    @POST(Config.VERSION + "life/openAutomationHelp")
+    Observable<PayWXDataBean> VoluntePay(@Field("user_id") String user_id,
+                                        @Field("payment_channel") String payment_channel,
+                                         @Field("pay_money") String pay_money,
+                                        @Field("token") String token);
     //********************商城*************************************************************************
     @GET(Config.VERSION + "shop/index")
     Observable<MallGoodsListDataBean> getMallGoodsList(@Query("user_id") String user_id,

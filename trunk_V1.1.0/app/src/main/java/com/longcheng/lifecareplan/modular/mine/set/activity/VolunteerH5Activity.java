@@ -1,9 +1,13 @@
 package com.longcheng.lifecareplan.modular.mine.set.activity;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
@@ -19,6 +23,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.VolunterDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnvelopeKnpActivity;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
@@ -42,6 +47,8 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty.VolunterSelectPay;
+
 /**
  * 坐堂医
  */
@@ -51,6 +58,7 @@ public class VolunteerH5Activity extends WebAct {
     Toolbar toolbar;
     @BindView(R.id.pagetop_layout_left)
     LinearLayout pagetopLayoutLeft;
+    private VolunterDialogUtils mVolunterDialogUtils;
 
     @Override
     public void onClick(View v) {
@@ -93,54 +101,34 @@ public class VolunteerH5Activity extends WebAct {
         mBridgeWebView.registerHandler("toVolunDoctor_pay", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                showpayDialog();
+                if (mVolunterDialogUtils == null) {
+                    mVolunterDialogUtils = new VolunterDialogUtils(mActivity, mHandler, VolunterSelectPay);
+                }
+                mVolunterDialogUtils.showPopupWindow();
             }
         });
     }
 
-    MyDialog payDialog;
+    public static final int VolunterSelectPay = 33;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        Bundle bundle;
 
-
-    public void showpayDialog() {
-        if (payDialog == null) {
-            payDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_doctor_pay);// 创建Dialog并设置样式主题
-            payDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = payDialog.getWindow();
-            window.setGravity(Gravity.BOTTOM);
-            window.setWindowAnimations(R.style.showBottomDialog);
-            payDialog.show();
-            WindowManager m = getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = payDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth();
-            payDialog.getWindow().setAttributes(p); //设置生效
-            TextView tv_cancel = (TextView) payDialog.findViewById(R.id.tv_cancel);
-            TextView tv_weixin = (TextView) payDialog.findViewById(R.id.tv_weixin);
-            TextView tv_alipay = (TextView) payDialog.findViewById(R.id.tv_alipay);
-            tv_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    payDialog.dismiss();
-                }
-            });
-            tv_weixin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    payDialog.dismiss();
-                    doctorPay("wxpay");
-                }
-            });
-            tv_alipay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    payDialog.dismiss();
-                    doctorPay("alipay");
-                }
-            });
-        } else {
-            payDialog.show();
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case VolunterSelectPay:
+                    bundle = msg.getData();
+                    String payTypes = bundle.getString("payType");
+                    if (payTypes.equals("1")) {
+                        payTypes = "wxpay";
+                    } else if (payTypes.equals("2")) {
+                        payTypes = "alipay";
+                    }
+                    doctorPay(payTypes);
+                    break;
+            }
         }
-    }
+    };
 
     private void doctorPay(String payment_channel) {
         Observable<PayWXDataBean> observable = Api.getInstance().service.doctorPay(UserUtils.getUserId(mContext),
