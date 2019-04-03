@@ -1,17 +1,25 @@
 package com.longcheng.lifecareplan.utils;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.longcheng.lifecareplan.base.ExampleApplication;
+
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * @author 作者：zoc
@@ -46,6 +54,7 @@ public class LocationUtils {
             if (location != null) {
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
+                Log.e("getLngAndLat", "" + location.toString());
             } else {//当GPS信号弱没获取到位置的时候又从网络获取
                 return getLngAndLatWithNetwork(context);
             }
@@ -55,6 +64,7 @@ public class LocationUtils {
             if (location != null) {
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
+                Log.e("getLngAndLat", "" + location.toString());
             }
         }
         return new double[]{latitude, longitude};
@@ -69,6 +79,7 @@ public class LocationUtils {
         if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
+            Log.e("getLngAndLat", "" + location.toString());
         }
         return new double[]{latitude, longitude};
     }
@@ -90,4 +101,29 @@ public class LocationUtils {
         public void onLocationChanged(Location location) {
         }
     };
+
+    /**
+     * 根据经纬度获取地理位置
+     *
+     * @param mContext
+     * @param latitude
+     * @param longitude
+     * @return
+     */
+    public String getAddress(Context mContext, double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude,
+                    longitude, 1);
+            if (addresses.size() > 0) {
+                Address address = addresses.get(0);
+                Log.e("getLngAndLat", "" + address.getAddressLine(0));
+                return address.getAddressLine(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
+
