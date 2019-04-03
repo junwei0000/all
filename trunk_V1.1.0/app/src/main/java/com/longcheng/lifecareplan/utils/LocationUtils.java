@@ -27,17 +27,17 @@ import java.util.Locale;
  * @Description 类描述：获取定位
  */
 public class LocationUtils {
-    private static LocationUtils instance;
-
-    private LocationUtils() {
-    }
-
-    public static synchronized LocationUtils getInstance() {
-        if (instance == null) {
-            instance = new LocationUtils();
-        }
-        return instance;
-    }
+//    private static LocationUtils instance;
+//
+//    private LocationUtils() {
+//    }
+//
+//    public static synchronized LocationUtils getInstance() {
+//        if (instance == null) {
+//            instance = new LocationUtils();
+//        }
+//        return instance;
+//    }
 
     /**
      * 获取经纬度
@@ -45,7 +45,7 @@ public class LocationUtils {
      * @param context
      * @return
      */
-    public double[] getLngAndLat(Context context) {
+    public static double[] getLngAndLat(Context context) {
         double latitude = 0.0;
         double longitude = 0.0;
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -59,18 +59,12 @@ public class LocationUtils {
                 return getLngAndLatWithNetwork(context);
             }
         } else { //从网络获取经纬度
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
-            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location != null) {
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
-                Log.e("getLngAndLat", "" + location.toString());
-            }
+            return getLngAndLatWithNetwork(context);
         }
         return new double[]{latitude, longitude};
-    } //从网络获取经纬度
+    }
 
-    private double[] getLngAndLatWithNetwork(Context context) {
+    private static double[] getLngAndLatWithNetwork(Context context) {
         double latitude = 0.0;
         double longitude = 0.0;
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -84,7 +78,7 @@ public class LocationUtils {
         return new double[]{latitude, longitude};
     }
 
-    LocationListener locationListener = new LocationListener() { // Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
+    static LocationListener locationListener = new LocationListener() { // Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
         } // Provider被enable时触发此函数，比如GPS被打开
@@ -110,7 +104,7 @@ public class LocationUtils {
      * @param longitude
      * @return
      */
-    public String getAddress(Context mContext, double latitude, double longitude) {
+    public static String getAddress(Context mContext, double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude,

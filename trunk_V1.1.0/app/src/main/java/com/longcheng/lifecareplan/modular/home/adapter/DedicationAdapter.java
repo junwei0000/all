@@ -79,15 +79,25 @@ public class DedicationAdapter extends PagerAdapter {
                 if (extend_info.size() >= 1) {
                     Log.i("BannerListSuccess", "BannerListSuccess: " + extend_info.get(0).getAvatar());
                     GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, extend_info.get(0).getAvatar(), item_iv_head1);
+                } else {
+                    item_iv_head1.setBackgroundResource(R.mipmap.user_default_icon);
                 }
                 if (extend_info.size() >= 2) {
                     Log.i("BannerListSuccess", "BannerListSuccess: " + extend_info.get(1).getAvatar());
                     GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, extend_info.get(1).getAvatar(), item_iv_head2);
+                } else {
+                    item_iv_head2.setBackgroundResource(R.mipmap.user_default_icon);
                 }
                 if (extend_info.size() >= 3) {
                     Log.i("BannerListSuccess", "BannerListSuccess: " + extend_info.get(2).getAvatar());
                     GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, extend_info.get(2).getAvatar(), item_iv_head3);
+                } else {
+                    item_iv_head3.setBackgroundResource(R.mipmap.user_default_icon);
                 }
+            } else {
+                item_iv_head1.setBackgroundResource(R.mipmap.user_default_icon);
+                item_iv_head2.setBackgroundResource(R.mipmap.user_default_icon);
+                item_iv_head3.setBackgroundResource(R.mipmap.user_default_icon);
             }
             view.setTag(mHomeItemBean);
             view.setOnClickListener(new View.OnClickListener() {
@@ -120,14 +130,24 @@ public class DedicationAdapter extends PagerAdapter {
             int type = mHomeItemBean.getType();
             if (type == 1) {
                 layout_right.setVisibility(View.VISIBLE);
+                if (!TextUtils.isEmpty(mHomeItemBean.getStart_time()) && !TextUtils.isEmpty(mHomeItemBean.getEnd_time())) {
+                    item_tv_time.setText(mHomeItemBean.getStart_time() + "至" + mHomeItemBean.getEnd_time());
+                    item_tv_time.setVisibility(View.VISIBLE);
+                } else {
+                    item_tv_time.setVisibility(View.INVISIBLE);
+                }
             } else {
+                if (!TextUtils.isEmpty(mHomeItemBean.getStart_time()) && !TextUtils.isEmpty(mHomeItemBean.getEnd_time())) {
+                    item_tv_time.setText(mHomeItemBean.getStart_time() + "至" + mHomeItemBean.getEnd_time());
+                    item_tv_time.setVisibility(View.VISIBLE);
+                } else {
+                    item_tv_time.setVisibility(View.INVISIBLE);
+                    if (!TextUtils.isEmpty(mHomeItemBean.getSubtitle())) {
+                        item_tv_time.setText(mHomeItemBean.getSubtitle());
+                        item_tv_time.setVisibility(View.VISIBLE);
+                    }
+                }
                 layout_right.setVisibility(View.INVISIBLE);
-            }
-            if (!TextUtils.isEmpty(mHomeItemBean.getStart_time()) && !TextUtils.isEmpty(mHomeItemBean.getEnd_time())) {
-                item_tv_time.setText(mHomeItemBean.getStart_time() + "至" + mHomeItemBean.getEnd_time());
-                item_tv_time.setVisibility(View.VISIBLE);
-            } else {
-                item_tv_time.setVisibility(View.INVISIBLE);
             }
             Log.i("BannerListSuccess", "BannerListSuccess: " + mHomeItemBean.getPic());
             GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, mHomeItemBean.getPic(), item_iv_pic, 0);
