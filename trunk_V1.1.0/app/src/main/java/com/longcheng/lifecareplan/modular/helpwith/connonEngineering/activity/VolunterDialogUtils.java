@@ -41,7 +41,7 @@ public class VolunterDialogUtils {
 
     RelativeLayout detailhelp_relat_wx, detailhelp_relat_zfb;
     ImageView detailhelp_iv_wxselect, detailhelp_iv_zfbselect;
-    private TextView btn_helpsure;
+    private TextView btn_helpsure, tv_money;
     private TextView detailhelp_tv_wxselecttitle;
     private TextView tv_zfbtitle;
     Handler mHandler;
@@ -59,7 +59,7 @@ public class VolunterDialogUtils {
         this.context = context;
     }
 
-    public void showPopupWindow() {
+    public void showPopupWindow(String money) {
         if (selectDialog == null) {
             selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_doctor_pay);// 创建Dialog并设置样式主题
             selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
@@ -73,6 +73,7 @@ public class VolunterDialogUtils {
             p.width = d.getWidth(); //宽度设置为屏幕
             selectDialog.getWindow().setAttributes(p); //设置生效
 
+            tv_money = (TextView) selectDialog.findViewById(R.id.tv_money);
             LinearLayout layout_cancel = (LinearLayout) selectDialog.findViewById(R.id.layout_cancel);
             detailhelp_relat_wx = (RelativeLayout) selectDialog.findViewById(R.id.detailhelp_relat_wx);
             detailhelp_iv_wxselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_wxselect);
@@ -89,6 +90,7 @@ public class VolunterDialogUtils {
         } else {
             selectDialog.show();
         }
+        tv_money.setText("" + money);
     }
 
     View.OnClickListener dialogClick = new View.OnClickListener() {

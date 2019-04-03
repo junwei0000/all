@@ -43,15 +43,15 @@ public class PlaybackVideoFragment extends VideoSupportFragment {
         mTransportControlGlue.setHost(glueHost);
         mTransportControlGlue.setTitle(movie.getTitle());
         mTransportControlGlue.setArtist(movie.getDescription());
-        mTransportControlGlue.addPlayerCallback(
-                new PlaybackGlue.PlayerCallback() {
-                    @Override
-                    public void onPreparedStateChanged(PlaybackGlue glue) {
-                        if (glue.isPrepared()) {
-                            glue.play();
-                        }
-                    }
-                });
+//        mTransportControlGlue.addPlayerCallback(
+//                new PlaybackGlue.PlayerCallback() {
+//                    @Override
+//                    public void onPreparedStateChanged(PlaybackGlue glue) {
+//                        if (glue.isPrepared()) {
+//                            glue.play();
+//                        }
+//                    }
+//                });
         mTransportControlGlue.setVideoUrl(movie.getVideoUrl());
     }
 

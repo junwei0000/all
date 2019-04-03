@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CHO</string>
+    <string name="app_name">互祝</string>
     <string name="commoncode_errorcode_arguments_invalid">请检查相关的配置信息是否正确。比如：manifest文件中的appid；是否使用证书签名等。</string>
     <string name="commoncode_errorcode_internal_error">内部接口出现异常，请联系华为方支持人员。</string>
     <string name="commoncode_errorcode_naming_invalid">请检查构建HuaweiApiClient时设置的API是否正确。</string>
