@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.modular.home.bangdan.BangDanActitvty;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -108,8 +108,8 @@ public class DedicationAdapter extends PagerAdapter {
                             } else {
                                 title = mHomeItemBean.getTitle();
                             }
-                            Intent intent = new Intent(mContext, BangDanActitvty.class);
-                            intent.putExtra("starturl", url);
+                            Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                            intent.putExtra("html_url", url);
                             intent.putExtra("title", title);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             mContext.startActivity(intent);

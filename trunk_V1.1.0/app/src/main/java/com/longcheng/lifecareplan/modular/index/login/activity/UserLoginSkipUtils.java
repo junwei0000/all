@@ -6,16 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.home.bangdan.BangDanActitvty;
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneJoinListActivity;
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneMineActivity;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.detail.activity.HealthyDeliveryDetailAct;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
-import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
@@ -150,9 +149,9 @@ public class UserLoginSkipUtils {
             mActivity.startActivity(intents);
             mActivity.finish();
         } else if (loginskiptostatus.equals(ConstantManager.loginSkipToBangDan)) {//榜单
-            intents = new Intent(mActivity, BangDanActitvty.class);
+            intents = new Intent(mActivity, BaoZhangActitvty.class);
             intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intents.putExtra("starturl", "" + SharedPreferencesHelper.get(mActivity, "starturl", ""));
+            intents.putExtra("html_url", "" + SharedPreferencesHelper.get(mActivity, "starturl", ""));
             intents.putExtra("title", "" + SharedPreferencesHelper.get(mActivity, "title", ""));
             mActivity.startActivity(intents);
             mActivity.finish();

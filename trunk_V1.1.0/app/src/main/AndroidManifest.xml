@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.longcheng.lifecareplan">
 
     <!-- 可用网络 -->
@@ -276,11 +275,6 @@
             android:name=".modular.helpwith.lifestyleapplyhelp.activity.LifeStyleApplyHelpActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".modular.home.bangdan.BangDanActitvty"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity

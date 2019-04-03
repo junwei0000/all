@@ -123,6 +123,8 @@ public class BaoZhangActitvty extends WebAct {
     @Override
     public void initDataAfter() {
         super.initDataAfter();
+        String title = getIntent().getStringExtra("title");
+        pageTopTvName.setText(title);
         String url = getIntent().getStringExtra("html_url");
         loadUrl(url);
         //生活保障--获取分享 knp_msg_id
