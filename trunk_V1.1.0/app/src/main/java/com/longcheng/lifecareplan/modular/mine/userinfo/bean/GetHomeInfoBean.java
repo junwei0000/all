@@ -113,6 +113,15 @@ public class GetHomeInfoBean implements Serializable {
     private int isCommissionerIdentity;//是否是特派员身份  0 不是 1 是
     private String commissioner_url;//特派员
 
+    private int is_show_invitation;//是否显示变更邀请人  0 不显示 1 显示
+
+    public int getIs_show_invitation() {
+        return is_show_invitation;
+    }
+
+    public void setIs_show_invitation(int is_show_invitation) {
+        this.is_show_invitation = is_show_invitation;
+    }
 
     public int getIsCommissionerIdentity() {
         return isCommissionerIdentity;

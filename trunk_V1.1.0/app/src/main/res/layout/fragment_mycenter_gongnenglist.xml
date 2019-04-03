@@ -650,55 +650,61 @@
 
     <!--   -->
     <LinearLayout
+        android:id="@+id/usercenter_layout_changeinviter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:paddingLeft="40dp">
-
-        <include layout="@layout/line" />
-    </LinearLayout>
-    <!--   -->
-
-    <RelativeLayout
-        android:id="@+id/usercenter_relay_changeinviter"
-        style="@style/view_paddlefgtright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:background="@color/white">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
-            android:id="@+id/usercenter_iv_changeinviter"
-            android:layout_width="@dimen/dp20"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:gravity="center">
+            android:orientation="horizontal"
+            android:paddingLeft="40dp">
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+        <!--   -->
+
+        <RelativeLayout
+            android:id="@+id/usercenter_relay_changeinviter"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/usercenter_iv_changeinviter"
+                android:layout_width="@dimen/dp20"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/my_change_icon"
+                    android:scaleType="matrix" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/usercenter_iv_changeinviter"
+                android:text="变更邀请人"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/my_change_icon"
-                android:scaleType="matrix" />
-        </LinearLayout>
-
-        <TextView
-            style="@style/view_padd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/usercenter_iv_changeinviter"
-            android:text="变更邀请人"
-            android:textColor="@color/text_biaoTi_color"
-            android:textSize="@dimen/text_contents_size" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/usercenter_arrow_img" />
-    </RelativeLayout>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </RelativeLayout>
+    </LinearLayout>
     <!--   -->
     <LinearLayout
         android:id="@+id/usercenter_layout_rebirth"

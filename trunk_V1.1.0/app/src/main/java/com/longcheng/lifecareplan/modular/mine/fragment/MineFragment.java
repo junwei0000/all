@@ -189,6 +189,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
     @BindView(R.id.usercenter_layout_rebirth)
     LinearLayout usercenter_layout_rebirth;
+    @BindView(R.id.usercenter_layout_changeinviter)
+    LinearLayout usercenter_layout_changeinviter;
+
     @BindView(R.id.usercenter_relay_changeinviter)
     RelativeLayout usercenter_relay_changeinviter;
     @BindView(R.id.home_sv)
@@ -408,7 +411,11 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         FunctionGVlist2.add(new FunctionGVItemBean("一目了然", R.id.usercenter_relay_appexplanation, R.mipmap.usercenter_appexplanation_icon));
         FunctionGVlist2.add(new FunctionGVItemBean("地址管理", R.id.usercenter_relay_address, R.mipmap.usercenter_address_icon));
         FunctionGVlist2.add(new FunctionGVItemBean("修改密码", R.id.usercenter_relay_updatepw, R.mipmap.usercenter_updatepw_icon));
-//        FunctionGVlist2.add(new FunctionGVItemBean("变更邀请人", R.id.usercenter_relay_changeinviter, R.mipmap.my_change_icon));
+        int is_show_invitation = data.getIs_show_invitation();
+        if (is_show_invitation == 1) {
+            FunctionGVlist2.add(new FunctionGVItemBean("变更邀请人", R.id.usercenter_relay_changeinviter, R.mipmap.my_change_icon));
+        }
+
         //是否显示复活卡  0：不显示  1：显示
         int isResetCard = data.getIsResetCard();
         if (isResetCard == 0) {
@@ -1228,6 +1235,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         is_cho = mGetHomeInfoBean.getIs_cho();
         saveNewInfo(mGetHomeInfoBean);
         showInfoView();
+        int is_show_invitation = mGetHomeInfoBean.getIs_show_invitation();
+        if (is_show_invitation == 1) {
+            usercenter_layout_changeinviter.setVisibility(View.VISIBLE);
+        } else {
+            usercenter_layout_changeinviter.setVisibility(View.GONE);
+        }
         //是否显示复活卡  0：不显示  1：显示
         int isResetCard = mGetHomeInfoBean.getIsResetCard();
         if (isResetCard == 0) {
