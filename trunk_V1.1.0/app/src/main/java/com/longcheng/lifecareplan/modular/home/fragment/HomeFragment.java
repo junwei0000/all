@@ -167,7 +167,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         return R.layout.fragment_home;
     }
 
-
     /**
      * 是否有未讀消息
      */
@@ -182,13 +181,20 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
     }
 
-    @Override
-    public void initView(View view) {
+    /**
+     *
+     */
+    public void reLoadData() {
         AppUpdate appUpdate = new AppUpdate(getActivity());
         appUpdate.startUpdateAsy("Home");
+        haveNotReadMsg();
+        mPresent.setListViewData();
+    }
+
+    @Override
+    public void initView(View view) {
         pagetopIvRigth.setBackgroundResource(R.mipmap.homepage_scan_icon);
         pagetopIvRigth.setVisibility(View.VISIBLE);
-        haveNotReadMsg();
         pageTopTvName.setText(getString(R.string.main_title));
         ScrowUtil.ScrollViewDownConfig(main_sv);
         homedediVpTop.addOnPageChangeListener(mOnPageChangeTopListener);
@@ -197,7 +203,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         main_sv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                mPresent.setListViewData();
+                reLoadData();
             }
         });
         mainhotpushLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -305,30 +311,15 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         pagetopLayoutRigth.setFocusableInTouchMode(true);
         pagetopLayoutRigth.requestFocus();
         showChache(false);
-        mHandler.sendEmptyMessage(CLCIKLIKE);
+        reLoadData();
         try {
-            String d=CleanMessageUtil.getTotalCacheSize(mContext);
-            Log.e("CleanMessageUtil",d);
+            String d = CleanMessageUtil.getTotalCacheSize(mContext);
+            Log.e("CleanMessageUtil", d);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
-    protected static final int CLCIKLIKE = 1;
-    @SuppressLint("HandlerLeak")
-    Handler mHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case CLCIKLIKE:
-                    mPresent.setListViewData();
-                    break;
-                case 2:
-
-                    break;
-            }
-        }
-    };
 
     @Override
     public void widgetClick(View v) {
@@ -871,8 +862,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         btnNoData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                haveNotReadMsg();
-                mPresent.setListViewData();
+                reLoadData();
             }
         });
     }
@@ -887,8 +877,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
         Log.e("super.onResume", "onResume");
         if (!isFirstComIn) {
-            haveNotReadMsg();
-            mPresent.setListViewData();
+            reLoadData();
         }
     }
 

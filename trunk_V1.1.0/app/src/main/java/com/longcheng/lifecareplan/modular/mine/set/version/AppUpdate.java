@@ -47,7 +47,9 @@ import io.reactivex.schedulers.Schedulers;
 public class AppUpdate {
     private Activity context;
     private MyDialog selectDialog;
-    String dialogstatus = "";
+    boolean dialogstatus = false;
+
+    boolean loadDataStatus = false;
 
     public AppUpdate(Activity context) {
         this.context = context;
@@ -60,9 +62,9 @@ public class AppUpdate {
      */
     public void startUpdateAsy(String updateDirection) {
         String verName = ConfigUtils.getINSTANCE().getVerCode(context);
-        if (!TextUtils.isEmpty(verName) && !dialogstatus.equals("show")) {
+        if (!TextUtils.isEmpty(verName) && !loadDataStatus && !dialogstatus) {
+            loadDataStatus = true;
             getServerVerCode(verName, updateDirection);
-            dialogstatus = "show";
         }
     }
 
@@ -88,6 +90,7 @@ public class AppUpdate {
                     @Override
                     public void accept(VersionDataBean responseBean) throws Exception {
                         String status = responseBean.getStatus();
+                        loadDataStatus = false;
                         if (status.equals("200")) {
                             VersionAfterBean mVersionAfterBean = responseBean.getData();
                             if (mVersionAfterBean != null) {
@@ -99,6 +102,7 @@ public class AppUpdate {
                                         ToastUtils.showToast("当前已为最新版本");
                                     }
                                 } else {// 更新
+                                    dialogstatus = true;
                                     defineUpdated(version, url, level, "");
                                 }
                             }
@@ -116,7 +120,7 @@ public class AppUpdate {
     }
 
     private void getIsOpenNotification(String updateDirection) {
-        //首页 最新版本时提示
+        //首页 是否开启通知
         if (!TextUtils.isEmpty(updateDirection) && level.equals("0")) {
             NotificationManagerCompat manager = NotificationManagerCompat.from(context);
             boolean isOpened = manager.areNotificationsEnabled();
@@ -190,7 +194,7 @@ public class AppUpdate {
         selectDialog.setOnDismissListener(new OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface arg0) {
-                dialogstatus = "";
+                dialogstatus = false;
             }
         });
         selectDialog.setOnKeyListener(new OnKeyListener() {
