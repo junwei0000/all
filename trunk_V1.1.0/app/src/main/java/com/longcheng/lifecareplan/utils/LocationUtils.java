@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,17 +28,6 @@ import java.util.Locale;
  * @Description 类描述：获取定位
  */
 public class LocationUtils {
-//    private static LocationUtils instance;
-//
-//    private LocationUtils() {
-//    }
-//
-//    public static synchronized LocationUtils getInstance() {
-//        if (instance == null) {
-//            instance = new LocationUtils();
-//        }
-//        return instance;
-//    }
 
     /**
      * 获取经纬度
@@ -45,7 +35,7 @@ public class LocationUtils {
      * @param context
      * @return
      */
-    public static double[] getLngAndLat(Context context) {
+    public double[] getLngAndLat(Context context) {
         double latitude = 0.0;
         double longitude = 0.0;
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -64,11 +54,27 @@ public class LocationUtils {
         return new double[]{latitude, longitude};
     }
 
-    private static double[] getLngAndLatWithNetwork(Context context) {
+    private double[] getLngAndLatWithNetwork(Context context) {
         double latitude = 0.0;
         double longitude = 0.0;
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, new LocationListener() {
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            } // Provider被enable时触发此函数，比如GPS被打开
+
+            @Override
+            public void onProviderEnabled(String provider) {
+            } // Provider被disable时触发此函数，比如GPS被关闭
+
+            @Override
+            public void onProviderDisabled(String provider) {
+            } //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+
+            @Override
+            public void onLocationChanged(Location location) {
+            }
+        });
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         if (location != null) {
             latitude = location.getLatitude();
@@ -78,24 +84,6 @@ public class LocationUtils {
         return new double[]{latitude, longitude};
     }
 
-    static LocationListener locationListener = new LocationListener() { // Provider的状态在可用、暂时不可用和无服务三个状态直接切换时触发此函数
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-        } // Provider被enable时触发此函数，比如GPS被打开
-
-        @Override
-        public void onProviderEnabled(String provider) {
-        } // Provider被disable时触发此函数，比如GPS被关闭
-
-        @Override
-        public void onProviderDisabled(String provider) {
-        } //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
-
-        @Override
-        public void onLocationChanged(Location location) {
-        }
-    };
-
     /**
      * 根据经纬度获取地理位置
      *
@@ -104,7 +92,7 @@ public class LocationUtils {
      * @param longitude
      * @return
      */
-    public static String getAddress(Context mContext, double latitude, double longitude) {
+    public String getAddress(Context mContext, double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude,

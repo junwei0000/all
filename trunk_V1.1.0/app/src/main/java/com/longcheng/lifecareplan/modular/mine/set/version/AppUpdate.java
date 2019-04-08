@@ -27,9 +27,12 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ActivityManager;
+import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionDataBean;
+import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
@@ -103,6 +106,10 @@ public class AppUpdate {
                                     }
                                 } else {// 更新
                                     dialogstatus = true;
+                                    Intent intents = new Intent();
+                                    intents.setAction(ConstantManager.MAINMENU_ACTION);
+                                    intents.putExtra("type", ConstantManager.MAIN_ACTION_UpdateVerDisAllDialog);
+                                    LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
                                     defineUpdated(version, url, level, "");
                                 }
                             }

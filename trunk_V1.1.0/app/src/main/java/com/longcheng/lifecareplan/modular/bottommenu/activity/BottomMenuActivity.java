@@ -259,6 +259,21 @@ public class BottomMenuActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 是否显示版本更新提示弹层
+     */
+    public static boolean updatedialogstatus = false;
+
+    /**
+     * 弹出版本更新时，关闭两个页面的弹层
+     */
+    private void UpdatVerDisAllDialog() {
+        updatedialogstatus = true;
+        ((HomeFragment) fragmentList.get(tab_position_home)).dismissCononDialog();
+        ((MineFragment) fragmentList.get(tab_position_mine)).dismissAllDialog();
+    }
+
+
     public void registerMessageReceiver() {
         mMessageReceiver = new MessageReceiver();
         IntentFilter filter = new IntentFilter();
@@ -300,6 +315,8 @@ public class BottomMenuActivity extends BaseActivity {
                         selectPage(before_tab_position);
                     } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_NEXT)) {
                         selectPage(after_tab_position);
+                    } else if (type.equals(ConstantManager.MAIN_ACTION_UpdateVerDisAllDialog)) {
+                        UpdatVerDisAllDialog();
                     }
                 }
             } catch (Exception e) {

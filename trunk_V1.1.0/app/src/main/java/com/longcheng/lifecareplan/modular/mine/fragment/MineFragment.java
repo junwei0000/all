@@ -925,7 +925,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private void showAllDialog() {
         String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
         if (!loginStatus.equals(ConstantManager.loginStatus)
-                || BottomMenuActivity.position != BottomMenuActivity.tab_position_mine) {
+                || BottomMenuActivity.position != BottomMenuActivity.tab_position_mine
+                || BottomMenuActivity.updatedialogstatus) {
+            BottomMenuActivity.updatedialogstatus = false;
             return;
         }
         //坐堂医支付成功弹层  1

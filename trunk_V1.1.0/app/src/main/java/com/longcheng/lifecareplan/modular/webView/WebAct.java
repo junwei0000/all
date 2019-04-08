@@ -383,13 +383,14 @@ public abstract class WebAct extends BaseActivity {
             @Override
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
-                double[] mLngAndLat = LocationUtils.getLngAndLat(mContext);
+                LocationUtils mLocationUtils = new LocationUtils();
+                double[] mLngAndLat = mLocationUtils.getLngAndLat(mContext);
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("phone_user_latitude", "" + mLngAndLat[0]);
                     jsonObject.put("phone_user_longitude", "" + mLngAndLat[1]);
-                    String address = LocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
-                    jsonObject.put("phone_user_address", "" + address);
+                    String address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
+                    jsonObject.put("phone_user_address", "" + mLngAndLat[0] + "    " + mLngAndLat[1] + address);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

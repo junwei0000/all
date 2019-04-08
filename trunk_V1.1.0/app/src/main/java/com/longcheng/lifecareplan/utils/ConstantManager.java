@@ -84,6 +84,7 @@ public class ConstantManager {
     public static final String MAIN_ACTION_TYPE_UPDATEPW500 = "action_home_type_updatepw500";
     public static final String MAIN_ACTION_TYPE_EXCHANGE = "MAIN_ACTION_TYPE_EXCHANGE";
     public static final String MAIN_ACTION_TYPE_HOME = "MAIN_ACTION_TYPE_HOME";
+    public static final String MAIN_ACTION_UpdateVerDisAllDialog = "MAIN_ACTION_UpdateVerDisAllDialog";
     /**
      * jpush接收信息
      */

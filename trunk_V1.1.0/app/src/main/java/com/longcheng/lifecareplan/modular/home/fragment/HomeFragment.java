@@ -411,7 +411,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     public void showCononDialog() {
         String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
-        if (Is_show_knp == 0 || BottomMenuActivity.position != BottomMenuActivity.tab_position_home || !loginStatus.equals(ConstantManager.loginStatus)) {
+        if (Is_show_knp == 0 || BottomMenuActivity.position != BottomMenuActivity.tab_position_home
+                || !loginStatus.equals(ConstantManager.loginStatus) || BottomMenuActivity.updatedialogstatus) {
+            BottomMenuActivity.updatedialogstatus = false;
             return;
         }
         if (CononDialog == null) {
