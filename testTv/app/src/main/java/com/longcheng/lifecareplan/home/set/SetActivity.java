@@ -14,6 +14,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.clearCache.CleanMessageUtil;
 
 import butterknife.BindView;
@@ -146,7 +147,7 @@ public class SetActivity extends BaseActivity {
     private void getSize() {
         try {
             String size = CleanMessageUtil.getTotalCacheSize(mContext);
-            Log.e("getSize",""+size);
+            Log.e("getSize", "" + size);
             set_tv_clearsize.setText(size);
         } catch (Exception e) {
             e.printStackTrace();
@@ -178,6 +179,7 @@ public class SetActivity extends BaseActivity {
             case R.id.set_relay_clear:
                 CleanMessageUtil.cleanApplicationData(mContext);
                 getSize();
+                ToastUtils.showToast("清理完成");
                 break;
             default:
                 break;

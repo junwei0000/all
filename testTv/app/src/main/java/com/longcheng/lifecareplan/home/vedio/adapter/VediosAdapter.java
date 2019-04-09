@@ -7,9 +7,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.tvrecyclerview.BaseRecyclerAdapter;
 import com.longcheng.lifecareplan.utils.tvrecyclerview.BaseRecyclerViewHolder;
 import com.longcheng.lifecareplan.utils.tvrecyclerview.FocusUtil;
@@ -108,6 +110,15 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
 
                 }
             });
+            viewHolder.itemView.setTag(position);
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    // 点击事件
+                    int postion = (int) arg0.getTag();
+                    ToastUtils.showToast("点击了  " + postion + "");
+                }
+            });
             /**
              * (1)这个方法内还可以做边界的焦点处理
              * mRecyclerView.setNextFocusLeftId();//如果是到了左边缘,设置左边一排的view往左的焦点
@@ -153,7 +164,6 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
         public ImageView ivResultImage;
         public TextView tvResultTitle;
 
-
         protected GuessYouLikeViewHolder(View itemView) {
             super(itemView);
             ivResultImage = (ImageView) itemView.findViewById(R.id.iv_result_image);
@@ -184,7 +194,6 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
     public static class SearchTopicViewHolder extends BaseRecyclerViewHolder {
         public ImageView ivResultImage;
         public TextView tvResultTitle;
-
 
         protected SearchTopicViewHolder(View itemView) {
             super(itemView);
