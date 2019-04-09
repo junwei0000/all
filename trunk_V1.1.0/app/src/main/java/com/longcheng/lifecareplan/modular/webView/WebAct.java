@@ -384,7 +384,7 @@ public abstract class WebAct extends BaseActivity {
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
                 LocationUtils mLocationUtils = new LocationUtils();
-                double[] mLngAndLat = mLocationUtils.getLngAndLat(mContext);
+                double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("phone_user_latitude", "" + mLngAndLat[0]);

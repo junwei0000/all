@@ -54,7 +54,7 @@ public class LocationUtils {
         return new double[]{latitude, longitude};
     }
 
-    private double[] getLngAndLatWithNetwork(Context context) {
+    public double[] getLngAndLatWithNetwork(Context context) {
         double latitude = 0.0;
         double longitude = 0.0;
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
