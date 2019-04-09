@@ -95,12 +95,15 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
             viewHolder.itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View view, boolean hasFocus) {
+                    /**
+                     * 设置选中item 大小
+                     */
                     if (hasFocus) {
                         viewHolder.focusIn();
-                        FocusUtil.onFocusIn(view, 1.10f);
+                        FocusUtil.onFocusIn(view, 1.00f);
                     } else {
                         viewHolder.focusOut();
-                        FocusUtil.onFocusOut(view, 1.10f);
+                        FocusUtil.onFocusOut(view, 1.00f);
                     }
 
                 }

@@ -356,13 +356,11 @@ public class TvRecyclerView extends RecyclerView {
         if (mInterceptLister != null && mInterceptLister.onIntercept(event)) {
             return true;
         }
-
         boolean result = super.dispatchKeyEvent(event);
         View focusView = this.getFocusedChild();
         if (focusView == null) {
             return result;
         } else {
-
             int dy = 0;
             int dx = 0;
             if (getChildCount() > 0) {
@@ -370,6 +368,7 @@ public class TvRecyclerView extends RecyclerView {
                 dy = firstView.getHeight();
                 dx = firstView.getWidth();
             }
+            dy = dy + DensityUtil.dip2px(getContext(), 25);
             if (event.getAction() == KeyEvent.ACTION_UP) {
                 return true;
             } else {
@@ -397,33 +396,32 @@ public class TvRecyclerView extends RecyclerView {
                     case KeyEvent.KEYCODE_DPAD_DOWN:
                         View downView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_DOWN);
                         Log.i(TAG, " downView is null:" + (downView == null) + "  ;dy==" + dy);
-                        this.smoothScrollBy(0, dy + DensityUtil.dip2px(getContext(), 26));
+                        /**
+                         * 设置点击下键滑动时跟随滚动
+                         */
+                        this.smoothScrollBy(0, dy);
                         if (downView != null) {
                             downView.requestFocus();
                             return true;
                         } else {
+//                            this.smoothScrollBy(0, dy + DensityUtil.dip2px(getContext(), 26));
                             return true;
                         }
                     case KeyEvent.KEYCODE_DPAD_UP:
                         View upView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_UP);
-                        Log.i(TAG, "upView is null:" + (upView == null));
-                        if (event.getAction() == KeyEvent.ACTION_UP) {
+                        Log.i(TAG, "upView is null:" + (upView == null) + "  ;dy==" + -dy);
+                        this.smoothScrollBy(0, -dy);
+                        if (upView != null) {
+                            upView.requestFocus();
                             return true;
                         } else {
-                            this.smoothScrollBy(0, -dy - DensityUtil.dip2px(getContext(), 23));
-                            if (upView != null) {
-                                upView.requestFocus();
-                                return true;
-                            } else {
-                                //不让焦点出去
+                            //不让焦点出去
 //                                return true;
-                                /**
-                                 * 修改位置： 设置焦点可以出去
-                                 */
-                                mLinearLayout.setFocusable(true);
-                                return false;
-                            }
-
+                            /**
+                             * 修改位置： 设置焦点可以出去
+                             */
+                            mLinearLayout.setFocusable(true);
+                            return false;
                         }
                 }
 

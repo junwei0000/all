@@ -108,8 +108,8 @@ public class VediosActivity extends BaseActivityMVP<VediosContract.View, VediosP
         mLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setFocusable(false);
-        mRecyclerView.setSelectedItemOffset(180, 180);
-
+        mRecyclerView.setSelectedItemOffset(0, 0);
+        mRecyclerView.setSelectedItemAtCentered(true);
         mRecyclerView.setOnLoadMoreListener(new TvRecyclerView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -128,7 +128,7 @@ public class VediosActivity extends BaseActivityMVP<VediosContract.View, VediosP
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    int pageSize = 8;
+    int pageSize = 20;
 
     public void initData() {
         for (int i = 0; i < pageSize; i++) {
