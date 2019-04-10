@@ -15,6 +15,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.home.dynamic.activity.DynamicActivity;
 import com.longcheng.lifecareplan.home.help.HelpActivity;
 import com.longcheng.lifecareplan.home.menu.bean.MenuInfo;
+import com.longcheng.lifecareplan.home.picture.activity.PictureActivity;
 import com.longcheng.lifecareplan.home.vedio.activity.VediosActivity;
 import com.longcheng.lifecareplan.utils.FontUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -90,13 +91,15 @@ public class MeAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, MenuI
                 @Override
                 public void onClick(View arg0) {
                     // 点击事件
-                    int postion = (int) arg0.getTag();
+                    int position = (int) arg0.getTag();
                     if (position == 0) {
                         Intent intent = new Intent(context, VediosActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         context.startActivity(intent);
                     } else if (position == 1) {
-
+                        Intent intent = new Intent(context, PictureActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        context.startActivity(intent);
                     } else if (position == 2) {
                         Intent intent = new Intent(context, HelpActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
