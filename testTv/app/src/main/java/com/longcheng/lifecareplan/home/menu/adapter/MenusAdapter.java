@@ -44,6 +44,34 @@ public class MenusAdapter extends BaseAdapterHelper<MenuInfo> {
         this.context = context;
     }
 
+    private void setGV() {
+        //        gvbottom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus) {
+//                    mAdapter.setSelectItem(-1);
+//                }
+//                pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
+//            }
+//        });
+//        gvbottom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                mAdapter.setSelectItem(position);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                mAdapter.setSelectItem(-1);
+//            }
+//        });
+//        gvbottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//            }
+//        });
+    }
 
     @Override
     public View getItemView(int position, View convertView, ViewGroup parent, List<MenuInfo> list, LayoutInflater inflater) {

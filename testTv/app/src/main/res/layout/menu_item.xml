@@ -1,8 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="false"
-    android:padding="@dimen/dp2">
+    android:layout_marginRight="@dimen/padd_imgtextleftright"
+    android:background="@drawable/selector_item_focus_change_bg"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="2dp">
 
     <RelativeLayout
         android:id="@+id/imgbg"

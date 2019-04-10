@@ -7,25 +7,14 @@
 
     <include layout="@layout/page_top" />
 
-    <LinearLayout
+
+    <com.longcheng.lifecareplan.utils.tvrecyclerview.TvRecyclerView
+        android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <GridView
-            android:id="@+id/gvbottom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent"
-            android:cacheColorHint="@color/page_bg"
-            android:divider="@null"
-            android:fadeScrollbars="false"
-            android:fadingEdge="none"
-            android:gravity="center"
-            android:horizontalSpacing="@dimen/dp10"
-            android:numColumns="5"
-            android:padding="@dimen/dp23"
-            android:scrollbars="none" />
-    </LinearLayout>
+        android:layout_marginBottom="@dimen/dp50"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp23"
+        android:scrollbars="none" />
 </LinearLayout>

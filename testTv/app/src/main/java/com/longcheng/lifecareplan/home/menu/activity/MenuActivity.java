@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.home.menu.activity;
 
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -13,14 +14,18 @@ import com.longcheng.lifecareplan.api.BasicResponse;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.home.dynamic.activity.DynamicActivity;
 import com.longcheng.lifecareplan.home.help.HelpActivity;
+import com.longcheng.lifecareplan.home.menu.adapter.MeAdapter;
 import com.longcheng.lifecareplan.home.menu.adapter.MenusAdapter;
 import com.longcheng.lifecareplan.home.menu.bean.MenuInfo;
 import com.longcheng.lifecareplan.home.set.SetActivity;
 import com.longcheng.lifecareplan.home.vedio.activity.VediosActivity;
+import com.longcheng.lifecareplan.home.vedio.adapter.VediosAdapter;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.tvrecyclerview.TvGridLayoutManager;
+import com.longcheng.lifecareplan.utils.tvrecyclerview.TvRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +53,8 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
     LinearLayout pagetopLayoutRigth;
     @BindView(R.id.pageTop_iv_thumb)
     ImageView pageTopIvThumb;
-    @BindView(R.id.gvbottom)
-    GridView gvbottom;
+    @BindView(R.id.recycler_menu)
+    TvRecyclerView mRecyclerView;
 
     @Override
     public void showDialog() {
@@ -81,55 +86,22 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
         pagetopLayoutRigth.setVisibility(View.VISIBLE);
         pagetopLayoutSet.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
-        pageTopTvTime.setFocusable(true);//设置无用的view焦点，其他可点击view默认无焦点
-        gvbottom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    mAdapter.setSelectItem(-1);
-                }
-                pageTopTvTime.setFocusable(false);//防止点击上下键还有焦点
-            }
-        });
-        gvbottom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mAdapter.setSelectItem(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mAdapter.setSelectItem(-1);
-            }
-        });
-        gvbottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Intent intent = new Intent(mContext, VediosActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                } else if (position == 1) {
-
-                } else if (position == 2) {
-                    Intent intent = new Intent(mContext, HelpActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                } else if (position == 3) {
-                    Intent intent = new Intent(mContext, DynamicActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                } else if (position == 4) {
-                    Intent intent = new Intent(mContext, DynamicActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                }
-            }
-        });
+        pagetopLayoutSet.setFocusable(false);//设置无用的view焦点，其他可点击view默认无焦点
     }
+
+    TvGridLayoutManager mLayoutManager;
 
     @Override
     public void initDataAfter() {
+        mRecyclerView.setBtnFouse(pagetopLayoutSet);
+        //去掉动画,否则当notify数据的时候,焦点会丢失
+        mRecyclerView.setItemAnimator(null);
+        mLayoutManager = new TvGridLayoutManager(this, 5);
+        mLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setFocusable(false);
+        mRecyclerView.setSelectedItemOffset(0, 0);
+        mRecyclerView.setSelectedItemAtCentered(true);
         initD();
     }
 
@@ -168,7 +140,7 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
 
     }
 
-    MenusAdapter mAdapter;
+    MeAdapter mAdapter;
 
     private void initD() {
         List<MenuInfo> mBottomList = new ArrayList();
@@ -182,9 +154,8 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
                 R.mipmap.lixia, R.mipmap.login_icon_phone, "动态"));
         mBottomList.add(new MenuInfo("", "", "",
                 R.mipmap.jieqiyangsheng, R.mipmap.login_icon_phone, ""));
-        mAdapter = new MenusAdapter(mContext, mBottomList);
-        gvbottom.setAdapter(mAdapter);
-        mAdapter.setSelectItem(-1);
+        mAdapter = new MeAdapter(this, mBottomList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
