@@ -109,7 +109,7 @@
             style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/corners_bg_blackhealth"
+            android:background="@drawable/corners_bg_graybian"
             android:gravity="center_vertical"
             android:paddingBottom="@dimen/padd_imgtextleftright"
             android:paddingTop="@dimen/padd_imgtextleftright">

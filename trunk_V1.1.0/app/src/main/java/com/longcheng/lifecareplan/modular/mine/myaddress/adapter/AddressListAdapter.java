@@ -96,8 +96,8 @@ public class AddressListAdapter extends BaseAdapterHelper<AddressItemBean> {
             mHolder.item_tv_moren.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             mHolder.item_tv_edit.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             mHolder.item_tv_del.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
-            mHolder.item_tv_edit.setBackgroundResource(R.drawable.corners_bg_blackhealth);
-            mHolder.item_tv_del.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+            mHolder.item_tv_edit.setBackgroundResource(R.drawable.corners_bg_graybian);
+            mHolder.item_tv_del.setBackgroundResource(R.drawable.corners_bg_graybian);
         }
         return convertView;
     }

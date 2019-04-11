@@ -273,8 +273,8 @@ public class AddFamilyActivity extends BaseActivityMVP<MyContract.View, MyPresen
             ToastUtils.showToast("请输入家人的电话号码");
             return false;
         }
-        if (!Utils.isPhoneNum(phone)) {
-            ToastUtils.showToast("请输入正确的手机号码");
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showToast("请输入手机号码");
             return false;
         }
         if (TextUtils.isEmpty(pid)) {

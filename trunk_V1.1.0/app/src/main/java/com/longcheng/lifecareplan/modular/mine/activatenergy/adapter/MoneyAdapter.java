@@ -82,7 +82,7 @@ public class MoneyAdapter extends BaseAdapter {
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_login);
         } else {
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.text_contents_color));
-            mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+            mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_graybian);
         }
         return convertView;
     }

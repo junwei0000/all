@@ -112,9 +112,6 @@ public class ChangeInviterActivity extends BaseActivityMVP<ChangeInviterContract
         if (TextUtils.isEmpty(phone)) {
             showMyDialog(false, "请输入变更人的手机号");
             return;
-        } else if (!Utils.isPhoneNum(phone)) {
-            showMyDialog(false, "请输入正确的手机号");
-            return;
         } else {
             ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
             mPresent.SearchInvite(user_id, phone);

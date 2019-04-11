@@ -4,7 +4,7 @@
     <corners android:radius="0dp" />
     <solid android:color="@color/white" />
     <stroke
-        android:width="0.9dp"
+        android:width="1dp"
         android:color="@color/linebg" />
 
 </shape><!--首页-健康知识背景-->

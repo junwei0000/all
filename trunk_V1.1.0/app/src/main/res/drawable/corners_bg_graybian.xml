@@ -4,7 +4,7 @@
     <corners android:radius="3dp" />
     <solid android:color="@color/white" />
     <stroke
-        android:width="0.8dp"
+        android:width="1dp"
         android:color="@color/gray_bian" />
 </shape>
 <!--白色实心圆角-->

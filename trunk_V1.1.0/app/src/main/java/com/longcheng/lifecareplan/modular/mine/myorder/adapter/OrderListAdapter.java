@@ -132,11 +132,11 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         mHolder.item_tv_left.setVisibility(View.GONE);
         mHolder.item_tv_center.setVisibility(View.GONE);
         mHolder.item_tv_right.setVisibility(View.GONE);
-        mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_black);
         mHolder.item_tv_left.setTextColor(context.getResources().getColor(R.color.text_contents_color));
-        mHolder.item_tv_center.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        mHolder.item_tv_center.setBackgroundResource(R.drawable.corners_bg_black);
         mHolder.item_tv_center.setTextColor(context.getResources().getColor(R.color.text_contents_color));
-        mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_black);
         mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.text_contents_color));
         int bottom_status = mOrderItemBean.getBottom_status();
         int is_show_perfect_info = mOrderItemBean.getIs_show_perfect_info();

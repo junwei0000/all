@@ -10,7 +10,7 @@
         android:id="@+id/item_layout_money"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/corners_bg_blackhealth"
+        android:background="@drawable/corners_bg_black"
         android:gravity="center"
         android:orientation="vertical">
 

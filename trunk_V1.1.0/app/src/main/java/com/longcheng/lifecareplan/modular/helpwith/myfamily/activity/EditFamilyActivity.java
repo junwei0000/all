@@ -354,11 +354,7 @@ public class EditFamilyActivity extends BaseActivityMVP<MyContract.View, MyPrese
             return false;
         }
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.showToast("请输入手机号");
-            return false;
-        }
-        if (!Utils.isPhoneNum(phone)) {
-            ToastUtils.showToast("请输入正确的手机号");
+            ToastUtils.showToast("请输入手机号码");
             return false;
         }
         if (TextUtils.isEmpty(pid)) {

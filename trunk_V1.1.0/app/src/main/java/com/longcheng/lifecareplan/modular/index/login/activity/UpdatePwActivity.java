@@ -252,20 +252,6 @@ public class UpdatePwActivity extends BaseActivityMVP<LoginContract.View, LoginP
     }
 
     /**
-     * 获取验证码前判断手机号
-     *
-     * @param phone
-     * @return
-     */
-    private boolean isCheckPhone(String phone) {
-        if (TextUtils.isEmpty(phone) || !Utils.isPhoneNum(phone)) {
-            ToastUtils.showToast(getString(R.string.account_showtishi));
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * 前验证
      *
      * @param phone
@@ -273,11 +259,11 @@ public class UpdatePwActivity extends BaseActivityMVP<LoginContract.View, LoginP
      * @return
      */
     private boolean isCheck(String phone, String code, String password, String newpassword) {
-        if (TextUtils.isEmpty(phone) || !Utils.isPhoneNum(phone)) {
-            ToastUtils.showToast(getString(R.string.account_showtishi));
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showToast(getString(R.string.account_hint));
             return false;
         }
-        if (TextUtils.isEmpty(phone) || (!TextUtils.isEmpty(phone) && code.length() != 6)) {
+        if (TextUtils.isEmpty(code) || (!TextUtils.isEmpty(code) && code.length() != 6)) {
             ToastUtils.showToast(getString(R.string.code_showtishi));
             return false;
         }

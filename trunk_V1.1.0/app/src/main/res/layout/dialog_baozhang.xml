@@ -19,9 +19,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="选择生命能量"
+                android:text="选择奉献金额"
                 android:textColor="@color/text_biaoTi_color"
-                android:textSize="@dimen/text_contents_size" />
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/detailhelp_tv_money"
@@ -69,6 +70,57 @@
         android:scrollbars="none"
         android:verticalSpacing="@dimen/dp10" />
 
+    <TextView
+        style="@style/view_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选择奉献倍数"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_contents_size"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_jian"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_black"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp8"
+            android:paddingTop="@dimen/dp8"
+            android:text="—"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_max_size" />
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:layout_marginRight="@dimen/padd_imgtextleftright"
+            android:layout_weight="4"
+            android:background="@drawable/corners_bg_black"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_max_size" />
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_black"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_dp25_size" />
+    </LinearLayout>
 
     <TextView
         style="@style/view_margin"
@@ -76,14 +128,14 @@
         android:layout_height="wrap_content"
         android:text="选择支付方式"
         android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_contents_size" />
+        android:textSize="@dimen/text_contents_size"
+        android:textStyle="bold" />
     <!---->
     <LinearLayout
         style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/padd_leftright">
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/detailhelp_relat_wx"
@@ -172,14 +224,15 @@
         android:layout_height="wrap_content"
         android:text="祝福感言"
         android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_contents_size" />
+        android:textSize="@dimen/text_contents_size"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/detailhelp_et_content"
         style="@style/view_marginlefgtright"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp60"
-        android:background="@drawable/corners_bg_blackhealth"
+        android:background="@drawable/corners_bg_black"
         android:hint="送一句祝福：永远幸福安康"
         android:paddingLeft="@dimen/padd_leftright"
         android:paddingRight="@dimen/padd_leftright"

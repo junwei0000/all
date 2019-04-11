@@ -216,11 +216,11 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
 
     private void selectPayTypeView() {
         activatIvWxselect.setVisibility(View.GONE);
-        activatRelatWx.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        activatRelatWx.setBackgroundResource(R.drawable.corners_bg_graybian);
         activatIvAccountselect.setVisibility(View.GONE);
-        activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_graybian);
         detailhelpIvZfbselect.setVisibility(View.GONE);
-        detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_graybian);
         if (payType.equals("2")) {
             activatIvWxselect.setVisibility(View.VISIBLE);
             activatRelatWx.setBackgroundResource(R.drawable.corners_bg_redbian);

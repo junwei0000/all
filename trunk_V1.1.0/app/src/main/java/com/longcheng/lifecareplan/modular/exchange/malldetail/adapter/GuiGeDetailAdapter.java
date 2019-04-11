@@ -56,7 +56,7 @@ public class GuiGeDetailAdapter extends BaseAdapterHelper<DetailItemBean> {
             mHolder.item_tv_name.setTextColor(context.getResources().getColor(R.color.blue));
         } else {
             mHolder.item_tv_name.setTextColor(context.getResources().getColor(R.color.text_contents_color));
-            mHolder.item_tv_name.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+            mHolder.item_tv_name.setBackgroundResource(R.drawable.corners_bg_black);
         }
         return convertView;
     }

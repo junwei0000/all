@@ -276,7 +276,7 @@
         style="@style/view_marginlefgtright"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp60"
-        android:background="@drawable/corners_bg_blackhealth"
+        android:background="@drawable/corners_bg_black"
         android:hint="送一句祝福：永远幸福安康"
         android:paddingLeft="@dimen/padd_leftright"
         android:paddingRight="@dimen/padd_leftright"

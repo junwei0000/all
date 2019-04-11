@@ -57,7 +57,7 @@
                     style="@style/view_margin"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp60"
-                    android:background="@drawable/corners_bg_blackhealth">
+                    android:background="@drawable/corners_bg_graybian">
 
                     <ImageView
                         android:id="@+id/activat_iv_icon"
@@ -222,7 +222,7 @@
                         android:layout_height="@dimen/dp43"
                         android:layout_marginLeft="@dimen/dp3"
                         android:layout_weight="1"
-                        android:background="@drawable/corners_bg_blackhealth"
+                        android:background="@drawable/corners_bg_graybian"
                         android:padding="0dp">
 
 
@@ -273,7 +273,7 @@
                         android:layout_height="@dimen/dp43"
                         android:layout_marginRight="@dimen/dp3"
                         android:layout_weight="1"
-                        android:background="@drawable/corners_bg_blackhealth"
+                        android:background="@drawable/corners_bg_graybian"
                         android:padding="0dp">
 
                         <LinearLayout
@@ -314,7 +314,7 @@
                         android:layout_marginLeft="@dimen/dp3"
                         android:layout_weight="1"
                         android:visibility="invisible"
-                        android:background="@drawable/corners_bg_blackhealth"
+                        android:background="@drawable/corners_bg_graybian"
                         android:padding="0dp" />
                 </LinearLayout>
             </LinearLayout>

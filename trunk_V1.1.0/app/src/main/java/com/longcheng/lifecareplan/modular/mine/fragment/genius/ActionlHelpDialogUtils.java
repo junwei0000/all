@@ -318,12 +318,12 @@ public class ActionlHelpDialogUtils {
         if (Double.valueOf(ability) < Double.valueOf(selectengery)) {
             detailhelp_tv_engrytitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_engry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
-            detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+            detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_black);
         }
         if (Double.valueOf(asset) < selectmoney) {
             detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_account.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
-            detailhelp_relat_account.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+            detailhelp_relat_account.setBackgroundResource(R.drawable.corners_bg_black);
         }
 
         if (payType.equals("wxpay")) {

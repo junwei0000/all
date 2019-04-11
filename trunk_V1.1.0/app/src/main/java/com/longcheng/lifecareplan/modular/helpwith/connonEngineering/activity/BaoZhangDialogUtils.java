@@ -26,6 +26,7 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemB
 import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneItemBean;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionDetailMoneyAdapter;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 
@@ -52,6 +53,7 @@ public class BaoZhangDialogUtils {
      */
     String payType = "1";
     int selectmoney;
+    int num = 1;
     BaoZhangMoneyAdapter mMoneyAdapter;
     Activity context;
     List<DetailItemBean> mutual_help_money_all;
@@ -61,6 +63,7 @@ public class BaoZhangDialogUtils {
     List<DetailItemBean> blessings_list;
     String blessings;
     private EditText detailhelp_et_content;
+    private TextView tv_jian, tv_num, tv_add;
 
     public BaoZhangDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
@@ -119,8 +122,13 @@ public class BaoZhangDialogUtils {
             detailhelp_iv_zfbselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_zfbselect);
             tv_zfbtitle = (TextView) selectDialog.findViewById(R.id.tv_zfbtitle);
 
+            tv_jian = (TextView) selectDialog.findViewById(R.id.tv_jian);
+            tv_num = (TextView) selectDialog.findViewById(R.id.tv_num);
+            tv_add = (TextView) selectDialog.findViewById(R.id.tv_add);
             btn_helpsure = (TextView) selectDialog.findViewById(R.id.btn_helpsure);
             layout_cancel.setOnClickListener(dialogClick);
+            tv_jian.setOnClickListener(dialogClick);
+            tv_add.setOnClickListener(dialogClick);
             btn_helpsure.setOnClickListener(dialogClick);
             detailhelp_relat_wx.setOnClickListener(dialogClick);
             detailhelp_relat_zfb.setOnClickListener(dialogClick);
@@ -148,6 +156,22 @@ public class BaoZhangDialogUtils {
             switch (v.getId()) {
                 case R.id.layout_cancel:
                     selectDialog.dismiss();
+                    break;
+                case R.id.tv_add:
+                    if (num < 100) {
+                        num++;
+                    } else {
+                        ToastUtils.showToast("已到最大奉献倍数");
+                    }
+                    tv_num.setText("" + num);
+                    break;
+                case R.id.tv_jian:
+                    if (num > 1) {
+                        num--;
+                    } else {
+                        ToastUtils.showToast("已到最小奉献倍数");
+                    }
+                    tv_num.setText("" + num);
                     break;
                 case R.id.detailhelp_relat_wx:
                     payType = "1";

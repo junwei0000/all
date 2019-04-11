@@ -106,7 +106,7 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
                 break;
             case R.id.phonetype_tv_getcode:
                 String phoneNum1 = phonetypeEtPhone.getText().toString().trim();
-                if (isCheckPhone(phoneNum1) && !codeSendingStatus) {
+                if (Utils.isCheckPhone(phoneNum1) && !codeSendingStatus) {
                     codeSendingStatus = true;
                     mPresent.pUseSendCode(phoneNum1, "5");
                 }
@@ -239,19 +239,6 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
         }
     }
 
-    /**
-     * 获取验证码前判断手机号
-     *
-     * @param phone
-     * @return
-     */
-    private boolean isCheckPhone(String phone) {
-        if (TextUtils.isEmpty(phone) || !Utils.isPhoneNum(phone)) {
-            ToastUtils.showToast(getString(R.string.account_showtishi));
-            return false;
-        }
-        return true;
-    }
 
     /**
      * 前验证
@@ -261,11 +248,11 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
      * @return
      */
     private boolean isCheck(String phone, String code, String password, String newpassword) {
-        if (TextUtils.isEmpty(phone) || !Utils.isPhoneNum(phone)) {
-            ToastUtils.showToast(getString(R.string.account_showtishi));
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showToast(getString(R.string.account_hint));
             return false;
         }
-        if (TextUtils.isEmpty(phone) || (!TextUtils.isEmpty(phone) && code.length() != 6)) {
+        if (TextUtils.isEmpty(code) || (!TextUtils.isEmpty(code) && code.length() != 6)) {
             ToastUtils.showToast(getString(R.string.code_showtishi));
             return false;
         }

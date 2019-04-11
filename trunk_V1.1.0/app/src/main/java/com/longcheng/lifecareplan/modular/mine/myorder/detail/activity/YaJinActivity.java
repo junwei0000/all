@@ -194,11 +194,11 @@ public class YaJinActivity extends BaseActivity {
 
     private void selectPayTypeView() {
         activatIvWxselect.setVisibility(View.GONE);
-        activatRelatWx.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        activatRelatWx.setBackgroundResource(R.drawable.corners_bg_black);
         activatIvAccountselect.setVisibility(View.GONE);
-        activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_black);
         detailhelpIvZfbselect.setVisibility(View.GONE);
-        detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_blackhealth);
+        detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_black);
         if (payWay.equals("wxpay")) {
             activatIvWxselect.setVisibility(View.VISIBLE);
             activatRelatWx.setBackgroundResource(R.drawable.corners_bg_redbian);
