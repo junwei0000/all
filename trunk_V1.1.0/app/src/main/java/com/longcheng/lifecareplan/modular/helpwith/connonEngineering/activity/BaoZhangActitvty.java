@@ -82,6 +82,8 @@ public class BaoZhangActitvty extends WebAct {
     private List<DetailItemBean> blessings_list;
     private VolunterDialogUtils mVolunterDialogUtils;
 
+    String life_order_id = "";
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -260,7 +262,7 @@ public class BaoZhangActitvty extends WebAct {
                     String payType = bundle.getString("payType");
                     int selectmoney = bundle.getInt("selectmoney");
                     int help_number = bundle.getInt("help_number");
-                    Log.e("lifepayHelp","help_number="+help_number);
+                    Log.e("lifepayHelp", "help_number=" + help_number);
                     lifepayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
                     break;
                 case VolunterSelectPay:
@@ -301,6 +303,7 @@ public class BaoZhangActitvty extends WebAct {
                                 PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
                             } else if (pay_way.equals("2")) {
                                 String payInfo = payWeChatBean.getPayInfo();
+                                life_order_id = payWeChatBean.getOne_order_id();
                                 PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
                                     @Override
                                     public void onSuccess() {
@@ -328,7 +331,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     private void lifeSkipSuccess() {
-        mBridgeWebView.callHandler("Life_paySuccessBack", "", new CallBackFunction() {
+        mBridgeWebView.callHandler("Life_paySuccessBack", "" + life_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
