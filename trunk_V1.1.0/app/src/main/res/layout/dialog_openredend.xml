@@ -14,7 +14,7 @@
         android:background="@mipmap/my_luck_successful"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/dp50"
+        android:paddingBottom="@dimen/dp65"
         android:paddingLeft="@dimen/dp30"
         android:paddingRight="@dimen/dp30">
 
@@ -66,7 +66,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
             android:background="@drawable/corners_bg_write"
             android:orientation="horizontal">
 
@@ -108,6 +108,42 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/corners_bg_write"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginLeft="@dimen/jianJu"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_weight="1"
+                android:text="获得生命能量"
+                android:textColor="@color/red_openredfen"
+                android:textSize="@dimen/text_contents_size" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_openred">
+
+                <TextView
+                    android:id="@+id/tv_ablity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_imgtextleftright"
+                    android:paddingLeft="@dimen/padd_imgtextleftright"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView

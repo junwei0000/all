@@ -27,6 +27,15 @@ public class OpenRedAfterBean implements Serializable {
     private String totalNumber;
     private String totalMoney;
     private String totalSkb;
+    private String totalAbility;
+
+    public String getTotalAbility() {
+        return totalAbility;
+    }
+
+    public void setTotalAbility(String totalAbility) {
+        this.totalAbility = totalAbility;
+    }
 
     public String getTotalNumber() {
         return totalNumber;

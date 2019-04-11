@@ -13,8 +13,9 @@ import java.util.List;
 
 public class GoodLuckAfterBean implements Serializable {
     private int count;
-    private double money;
-    private double skb;
+    private String money;
+    private String skb;
+    private String ability;
     private List<GoodLuckBean> list;
     private List<GoodLuckBean> solar_terms_endorsement_star;
 
@@ -34,20 +35,28 @@ public class GoodLuckAfterBean implements Serializable {
         this.count = count;
     }
 
-    public double getMoney() {
+    public String getMoney() {
         return money;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(String money) {
         this.money = money;
     }
 
-    public double getSkb() {
+    public String getSkb() {
         return skb;
     }
 
-    public void setSkb(double skb) {
+    public void setSkb(String skb) {
         this.skb = skb;
+    }
+
+    public String getAbility() {
+        return ability;
+    }
+
+    public void setAbility(String ability) {
+        this.ability = ability;
     }
 
     public List<GoodLuckBean> getList() {

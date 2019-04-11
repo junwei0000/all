@@ -84,7 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <com.longcheng.lifecareplan.utils.myview.LongClickButton
             android:id="@+id/tv_jian"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -110,7 +110,7 @@
             android:textColor="@color/text_healthcontents_color"
             android:textSize="@dimen/text_max_size" />
 
-        <TextView
+        <com.longcheng.lifecareplan.utils.myview.LongClickButton
             android:id="@+id/tv_add"
             android:layout_width="0dp"
             android:layout_height="match_parent"

@@ -33,7 +33,7 @@ import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import butterknife.BindView;
 
 /**
- * 开红包
+ * 好运来开红包
  */
 public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.View, GoodLuckPresenterImp<GoodLuckContract.View>> implements GoodLuckContract.View {
     @BindView(R.id.toolbar)
@@ -84,7 +84,7 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
     private int action_goods_id;
     private String qiming_user_id;
     private int position;
-    private String one_order_id, user_id;
+    private String mutual_help_user_red_packet_id, user_id;
 
 
     @Override
@@ -96,7 +96,7 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
             case R.id.llredenvelope:
                 if (!startRed) {
                     stopShake();
-                    mPresent.openRedEnvelope(user_id, one_order_id);
+                    mPresent.openRedEnvelope(user_id, mutual_help_user_red_packet_id);
                 }
                 break;
             case R.id.iv_represent:
@@ -147,7 +147,7 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
         btnProceed.setVisibility(View.INVISIBLE);
         user_id = UserUtils.getUserId(mContext);
         Intent intent = getIntent();
-        one_order_id = intent.getStringExtra("one_order_id");
+        mutual_help_user_red_packet_id = intent.getStringExtra("mutual_help_user_red_packet_id");
         if (intent != null) {
             skiptype = intent.getIntExtra("type", 0);
             skipurl = intent.getStringExtra("url");
@@ -198,6 +198,8 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
         //红包类型 1:money, 2:skb,
         if (type == 1) {
             tvRedtype.setText("现金");
+        } else if (type == 3) {
+            tvRedtype.setText("生命能量");
         } else {
             tvRedtype.setText("寿康宝");
         }

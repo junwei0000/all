@@ -27,6 +27,7 @@ import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneItemBean;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionDetailMoneyAdapter;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.LongClickButton;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 
@@ -58,12 +59,12 @@ public class BaoZhangDialogUtils {
     Activity context;
     List<DetailItemBean> mutual_help_money_all;
     private TextView btn_helpsure;
-    private TextView detailhelp_tv_wxselecttitle;
+    private TextView detailhelp_tv_wxselecttitle, tv_num;
     private TextView tv_zfbtitle;
     List<DetailItemBean> blessings_list;
     String blessings;
     private EditText detailhelp_et_content;
-    private TextView tv_jian, tv_num, tv_add;
+    private LongClickButton tv_jian, tv_add;
 
     public BaoZhangDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
@@ -122,9 +123,9 @@ public class BaoZhangDialogUtils {
             detailhelp_iv_zfbselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_zfbselect);
             tv_zfbtitle = (TextView) selectDialog.findViewById(R.id.tv_zfbtitle);
 
-            tv_jian = (TextView) selectDialog.findViewById(R.id.tv_jian);
+            tv_jian = (LongClickButton) selectDialog.findViewById(R.id.tv_jian);
             tv_num = (TextView) selectDialog.findViewById(R.id.tv_num);
-            tv_add = (TextView) selectDialog.findViewById(R.id.tv_add);
+            tv_add = (LongClickButton) selectDialog.findViewById(R.id.tv_add);
             btn_helpsure = (TextView) selectDialog.findViewById(R.id.btn_helpsure);
             layout_cancel.setOnClickListener(dialogClick);
             tv_jian.setOnClickListener(dialogClick);
@@ -141,6 +142,20 @@ public class BaoZhangDialogUtils {
                     setGVMoney();
                 }
             });
+            //连续减
+            tv_jian.setLongClickRepeatListener(new LongClickButton.LongClickRepeatListener() {
+                @Override
+                public void repeatAction() {
+                    processClick(R.id.tv_jian);
+                }
+            }, 50);
+            //连续加
+            tv_add.setLongClickRepeatListener(new LongClickButton.LongClickRepeatListener() {
+                @Override
+                public void repeatAction() {
+                    processClick(R.id.tv_add);
+                }
+            }, 50);
         } else {
             selectDialog.show();
         }
@@ -154,55 +169,63 @@ public class BaoZhangDialogUtils {
     View.OnClickListener dialogClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            switch (v.getId()) {
-                case R.id.layout_cancel:
-                    selectDialog.dismiss();
-                    break;
-                case R.id.tv_add:
-                    if (num < 100) {
-                        num++;
-                    } else {
-                        ToastUtils.showToast("已到最大奉献倍数");
-                    }
-                    tv_num.setText("" + num);
-                    break;
-                case R.id.tv_jian:
-                    if (num > 1) {
-                        num--;
-                    } else {
-                        ToastUtils.showToast("已到最小奉献倍数");
-                    }
-                    tv_num.setText("" + num);
-                    break;
-                case R.id.detailhelp_relat_wx:
-                    payType = "1";
-                    selectPayTypeView();
-                    break;
-                case R.id.detailhelp_relat_zfb:
-                    payType = "2";
-                    selectPayTypeView();
-                    break;
-                case R.id.btn_helpsure://立即互祝
-                    selectDialog.dismiss();
-                    Message message = new Message();
-                    message.what = mHandlerID;
-                    Bundle bundle = new Bundle();
-                    bundle.putString("payType", payType);
-                    bundle.putInt("selectmoney", selectmoney);
-                    bundle.putInt("help_number", num);
-                    String help_comment_content = detailhelp_et_content.getText().toString().trim();
-                    bundle.putString("help_comment_content", help_comment_content);
-                    message.setData(bundle);
-                    mHandler.sendMessage(message);
-                    message = null;
-                    break;
-                default:
-
-                    break;
-            }
+            processClick(v.getId());
         }
     };
+
+    /**
+     * 处理事件
+     *
+     * @param id
+     */
+    private void processClick(int id) {
+        switch (id) {
+            case R.id.layout_cancel:
+                selectDialog.dismiss();
+                break;
+            case R.id.tv_add:
+                if (num < 100) {
+                    num++;
+                } else {
+                    ToastUtils.showToast("已到最大奉献倍数");
+                }
+                tv_num.setText("" + num);
+                break;
+            case R.id.tv_jian:
+                if (num > 1) {
+                    num--;
+                } else {
+                    ToastUtils.showToast("已到最小奉献倍数");
+                }
+                tv_num.setText("" + num);
+                break;
+            case R.id.detailhelp_relat_wx:
+                payType = "1";
+                selectPayTypeView();
+                break;
+            case R.id.detailhelp_relat_zfb:
+                payType = "2";
+                selectPayTypeView();
+                break;
+            case R.id.btn_helpsure://立即互祝
+                selectDialog.dismiss();
+                Message message = new Message();
+                message.what = mHandlerID;
+                Bundle bundle = new Bundle();
+                bundle.putString("payType", payType);
+                bundle.putInt("selectmoney", selectmoney);
+                bundle.putInt("help_number", num);
+                String help_comment_content = detailhelp_et_content.getText().toString().trim();
+                bundle.putString("help_comment_content", help_comment_content);
+                message.setData(bundle);
+                mHandler.sendMessage(message);
+                message = null;
+                break;
+            default:
+
+                break;
+        }
+    }
 
     int selectMonetPostion;
 

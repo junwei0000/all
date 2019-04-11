@@ -73,6 +73,8 @@ public class GoodLuckAdapter extends BaseAdapterHelper<GoodLuckBean> {
         String tilt = "";
         if (type == 1) {
             tilt = "现金";
+        } else if (type == 3) {
+            tilt = "生命能量";
         } else {
             tilt = "寿康宝";
         }
@@ -91,7 +93,7 @@ public class GoodLuckAdapter extends BaseAdapterHelper<GoodLuckBean> {
                     GoodLuckBean mGoodLuckItemBean = (GoodLuckBean) v.getTag();
                     Intent intent = new Intent(context, OpenRedEnvelopeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("one_order_id", mGoodLuckItemBean.getOne_order_id());
+                    intent.putExtra("mutual_help_user_red_packet_id", mGoodLuckItemBean.getMutual_help_user_red_packet_id());
                     intent.putExtra("position", mGoodLuckItemBean.getPosition());
 
                     Log.e("mGoodLuckItemBean", "" + mGoodLuckItemBean.toString());

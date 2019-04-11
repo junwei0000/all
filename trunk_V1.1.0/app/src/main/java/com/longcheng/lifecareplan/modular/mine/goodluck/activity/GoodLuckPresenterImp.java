@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.mine.goodluck.activity;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
@@ -56,6 +57,7 @@ public class GoodLuckPresenterImp<T> extends GoodLuckContract.Presenter<GoodLuck
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        Log.e("Observable", "" + throwable.toString());
                         mView.ListError();
                     }
                 });
@@ -66,11 +68,11 @@ public class GoodLuckPresenterImp<T> extends GoodLuckContract.Presenter<GoodLuck
      * 开红包
      *
      * @param user_id
-     * @param one_order_id
+     * @param mutual_help_user_red_packet_id
      */
-    public void openRedEnvelope(String user_id, String one_order_id) {
-        Observable<OpenRedDataBean> observable = Api.getInstance().service.openRedEnvelope(user_id,
-                one_order_id, ExampleApplication.token);
+    public void openRedEnvelope(String user_id, String mutual_help_user_red_packet_id) {
+        Observable<OpenRedDataBean> observable = Api.getInstance().service.GoodLuckopenRedEnvelope(user_id,
+                mutual_help_user_red_packet_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<OpenRedDataBean>() {
@@ -82,6 +84,7 @@ public class GoodLuckPresenterImp<T> extends GoodLuckContract.Presenter<GoodLuck
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         mView.onOpenRedEnvelopeError("");
+                        Log.e("Observable", "" + throwable.toString());
                     }
                 });
     }

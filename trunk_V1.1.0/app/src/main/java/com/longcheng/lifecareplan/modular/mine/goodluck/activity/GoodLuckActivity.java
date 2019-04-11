@@ -76,6 +76,8 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
     TextView tv_summoney;
     @BindView(R.id.tv_sumskb)
     TextView tv_sumskb;
+    @BindView(R.id.tv_sumability)
+    TextView tv_sumability;
 
     @BindView(R.id.iv_onekeyopen)
     ImageView iv_onekeyopen;
@@ -87,7 +89,7 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
     GoodLuckAdapter mHomeHotPushAdapter;
     List<GoodLuckBean> helpAllList = new ArrayList<>();
     private int count;
-    private double money, skb;
+    private String money = "0", skb = "0", totalAbility = "0";
 
     @Override
     public void onClick(View v) {
@@ -192,6 +194,7 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
                 count = mEnergyAfterBean.getCount();
                 money = mEnergyAfterBean.getMoney();
                 skb = mEnergyAfterBean.getSkb();
+                totalAbility = mEnergyAfterBean.getAbility();
                 showBottomView();
                 List<GoodLuckBean> starList = mEnergyAfterBean.getSolar_terms_endorsement_star();
                 List<GoodLuckBean> helpList = mEnergyAfterBean.getList();
@@ -231,10 +234,13 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
     private void showBottomView() {
         String showT = "共获得红包<font color=\"#ff0000\">" + count + "</font>个";
         tv_num.setText(Html.fromHtml(showT));
-        String showmoney = "已拆现金<font color=\"#ff0000\">" + PriceUtils.getInstance().getPriceTwoDecimalDown(money, 2) + "</font>元";
+        String showmoney = "已拆现金<font color=\"#ff0000\">" + money + "</font>元";
         tv_summoney.setText(Html.fromHtml(showmoney));
-        String showskb = "已拆寿康宝<font color=\"#ff0000\">" + PriceUtils.getInstance().getPriceTwoDecimalDown(skb, 2) + "</font>个";
+        String showskb = "已拆寿康宝<font color=\"#ff0000\">" + skb + "</font>个";
         tv_sumskb.setText(Html.fromHtml(showskb));
+        String showability = "已拆生命能量<font color=\"#ff0000\">" + totalAbility + "</font>";
+        tv_sumability.setText(Html.fromHtml(showability));
+
     }
 
     @Override
@@ -276,7 +282,7 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
             WindowManager m = getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = selectOpenLoadingDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
             selectOpenLoadingDialog.getWindow().setAttributes(p); //设置生效
         } else {
             selectOpenLoadingDialog.show();
@@ -294,24 +300,26 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
     private void showEndDialog(OpenRedAfterBean responseBean) {
         if (selectendDialog == null) {
             selectendDialog = new MyDialog(this, R.style.dialog, R.layout.dialog_openredend);// 创建Dialog并设置样式主题
-            selectendDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            selectendDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectendDialog.getWindow();
             window.setGravity(Gravity.CENTER);
             selectendDialog.show();
             WindowManager m = getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = selectendDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
+            p.width = d.getWidth() * 4 / 5; //宽度设置为屏幕
             selectendDialog.getWindow().setAttributes(p); //设置生效
             LinearLayout layout_bg = selectendDialog.findViewById(R.id.layout_bg);
             int hei = (int) (p.width * 1.296);
             layout_bg.setLayoutParams(new FrameLayout.LayoutParams(p.width, hei));
             TextView tv_money = selectendDialog.findViewById(R.id.tv_money);
             TextView tv_skb = selectendDialog.findViewById(R.id.tv_skb);
+            TextView tv_ablity = selectendDialog.findViewById(R.id.tv_ablity);
             TextView tv_rednum = selectendDialog.findViewById(R.id.tv_rednum);
             TextView tv_know = selectendDialog.findViewById(R.id.tv_know);
             tv_money.setText(responseBean.getTotalMoney());
             tv_skb.setText(responseBean.getTotalSkb());
+            tv_ablity.setText(responseBean.getTotalAbility());
             tv_rednum.setText("本次开启红包" + responseBean.getTotalNumber() + "个");
             tv_know.setOnClickListener(new View.OnClickListener() {
                 @Override

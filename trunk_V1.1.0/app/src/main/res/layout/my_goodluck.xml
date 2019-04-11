@@ -65,7 +65,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/padd_imgtextleftright"
+                    android:paddingTop="@dimen/padd_imgtextleftright">
 
                     <TextView
                         android:id="@+id/tv_summoney"
@@ -80,6 +82,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="已拆寿康宝0个"
+                        android:textColor="@color/text_contents_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/tv_sumability"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已拆生命能量0"
                         android:textColor="@color/text_contents_color"
                         android:textSize="@dimen/text_contents_size" />
                 </LinearLayout>
