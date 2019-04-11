@@ -144,6 +144,8 @@ public class BaoZhangDialogUtils {
         } else {
             selectDialog.show();
         }
+        num = 1;
+        tv_num.setText("" + num);
         setBless();
         setapplingDefault();
         setGVMoney();
@@ -188,6 +190,7 @@ public class BaoZhangDialogUtils {
                     Bundle bundle = new Bundle();
                     bundle.putString("payType", payType);
                     bundle.putInt("selectmoney", selectmoney);
+                    bundle.putInt("help_number", num);
                     String help_comment_content = detailhelp_et_content.getText().toString().trim();
                     bundle.putString("help_comment_content", help_comment_content);
                     message.setData(bundle);

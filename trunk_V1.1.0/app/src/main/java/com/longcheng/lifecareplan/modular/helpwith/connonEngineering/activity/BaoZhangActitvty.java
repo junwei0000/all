@@ -259,7 +259,9 @@ public class BaoZhangActitvty extends WebAct {
                     String help_comment_content = bundle.getString("help_comment_content");
                     String payType = bundle.getString("payType");
                     int selectmoney = bundle.getInt("selectmoney");
-                    lifepayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney);
+                    int help_number = bundle.getInt("help_number");
+                    Log.e("lifepayHelp","help_number="+help_number);
+                    lifepayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
                     break;
                 case VolunterSelectPay:
                     bundle = msg.getData();
@@ -279,10 +281,10 @@ public class BaoZhangActitvty extends WebAct {
      * @param life_id
      * @param money
      */
-    public void lifepayHelp(String user_id, String help_comment_content, String pay_way, String life_id, int money) {
+    public void lifepayHelp(String user_id, String help_comment_content, String pay_way, String life_id, int money, int help_number) {
         Log.e("Observable", "" + ExampleApplication.token);
         Observable<PayWXDataBean> observable = Api.getInstance().service.BaoZhangPayHelp(user_id,
-                help_comment_content, pay_way, life_id, money, ExampleApplication.token);
+                help_comment_content, pay_way, life_id, money, help_number, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
