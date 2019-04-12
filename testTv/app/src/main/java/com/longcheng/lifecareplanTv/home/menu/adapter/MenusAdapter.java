@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.longcheng.lifecareplanTv.R;
 import com.longcheng.lifecareplanTv.base.BaseAdapterHelper;
 import com.longcheng.lifecareplanTv.home.menu.bean.MenuInfo;
-import com.longcheng.lifecareplanTv.utils.FontUtils;
 
 import java.util.List;
 
@@ -87,10 +86,6 @@ public class MenusAdapter extends BaseAdapterHelper<MenuInfo> {
         } else {
             convertView.setBackgroundResource(R.drawable.corners_bg_text);
         }
-        FontUtils.setFontKaiTi(context, mHolder.item_tv_dayname);
-        FontUtils.setFontKaiTi(context, mHolder.item_tv_jieeqiname);
-        FontUtils.setFontKaiTi(context, mHolder.item_tv_huaname);
-        FontUtils.setFontKaiTi(context, mHolder.item_tv_iconname);
         MenuInfo mInfo = list.get(position);
         mHolder.imgbg.setBackgroundResource(mInfo.getBgImgId());
         mHolder.item_tv_dayname.setText(mInfo.getNextday());

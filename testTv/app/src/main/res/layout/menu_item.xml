@@ -14,6 +14,7 @@
         android:id="@+id/imgbg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@mipmap/lichun"
         android:padding="@dimen/dp20">
 
         <TextView

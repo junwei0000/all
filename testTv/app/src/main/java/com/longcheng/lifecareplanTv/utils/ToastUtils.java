@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.longcheng.lifecareplanTv.base.ExampleApplication;
+import com.longcheng.lifecareplanTv.base.MyApplication;
 
 
 /**
@@ -18,7 +18,7 @@ import com.longcheng.lifecareplanTv.base.ExampleApplication;
  * 意图：吐司工具类
  */
 public class ToastUtils {
-    private static Context context = ExampleApplication.getInstance();
+    private static Context context = MyApplication.getInstance();
     private static Toast toast;
 
     public static void showToast(int resID) {

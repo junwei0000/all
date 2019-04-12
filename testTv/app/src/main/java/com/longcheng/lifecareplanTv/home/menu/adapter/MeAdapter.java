@@ -2,7 +2,6 @@ package com.longcheng.lifecareplanTv.home.menu.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,12 +9,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplanTv.R;
+import com.longcheng.lifecareplanTv.base.MyApplication;
 import com.longcheng.lifecareplanTv.home.dynamic.activity.DynamicActivity;
 import com.longcheng.lifecareplanTv.home.help.HelpActivity;
 import com.longcheng.lifecareplanTv.home.menu.bean.MenuInfo;
 import com.longcheng.lifecareplanTv.home.picture.activity.PictureActivity;
 import com.longcheng.lifecareplanTv.home.vedio.activity.VediosActivity;
-import com.longcheng.lifecareplanTv.utils.FontUtils;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerAdapter;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerViewHolder;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.FocusUtil;
@@ -127,6 +126,10 @@ public class MeAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, MenuI
             item_tv_huaname = (TextView) itemView.findViewById(R.id.item_tv_huaname);
             item_iv_icon = (ImageView) itemView.findViewById(R.id.item_iv_icon);
             item_tv_iconname = (TextView) itemView.findViewById(R.id.item_tv_iconname);
+            item_tv_dayname.setTypeface(MyApplication.getInstance().getTypeface());
+            item_tv_jieeqiname.setTypeface(MyApplication.getInstance().getTypeface());
+            item_tv_huaname.setTypeface(MyApplication.getInstance().getTypeface());
+            item_tv_iconname.setTypeface(MyApplication.getInstance().getTypeface());
         }
 
         @Override
@@ -141,10 +144,6 @@ public class MeAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, MenuI
             if (mInfo == null) {
                 return;
             }
-            FontUtils.setFontKaiTi(context, item_tv_dayname);
-            FontUtils.setFontKaiTi(context, item_tv_jieeqiname);
-            FontUtils.setFontKaiTi(context, item_tv_huaname);
-            FontUtils.setFontKaiTi(context, item_tv_iconname);
             imgbg.setBackgroundResource(mInfo.getBgImgId());
             item_tv_dayname.setText(mInfo.getNextday());
             item_tv_jieeqiname.setText(mInfo.getJieqiname());

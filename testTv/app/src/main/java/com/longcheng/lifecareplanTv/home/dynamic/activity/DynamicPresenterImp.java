@@ -6,7 +6,7 @@ import android.util.Log;
 import com.longcheng.lifecareplanTv.api.Api;
 import com.longcheng.lifecareplanTv.api.BasicResponse;
 import com.longcheng.lifecareplanTv.api.DefaultObserver;
-import com.longcheng.lifecareplanTv.base.ExampleApplication;
+import com.longcheng.lifecareplanTv.base.MyApplication;
 import com.longcheng.lifecareplanTv.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplanTv.utils.ToastUtils;
 
@@ -33,10 +33,10 @@ public class DynamicPresenterImp<T> extends DynamicContract.Presenter<DynamicCon
 
 
     public void pUsePhoneLogin(String phoneNum, String code) {
-        String token = ExampleApplication.token;
+        String token = MyApplication.token;
         Log.e("Observable", phoneNum + "   " + code + "  " + token);
 
-        Observable<BasicResponse<LoginAfterBean>> observable = Api.getInstance().service.userPhoneLogin(phoneNum, code, ExampleApplication.token);
+        Observable<BasicResponse<LoginAfterBean>> observable = Api.getInstance().service.userPhoneLogin(phoneNum, code, MyApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DefaultObserver<BasicResponse<LoginAfterBean>>(mContext) {

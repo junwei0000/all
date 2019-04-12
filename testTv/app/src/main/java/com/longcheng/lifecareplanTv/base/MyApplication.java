@@ -2,6 +2,7 @@ package com.longcheng.lifecareplanTv.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
 
 import com.longcheng.lifecareplanTv.utils.ConfigUtils;
 
@@ -12,11 +13,12 @@ import com.longcheng.lifecareplanTv.utils.ConfigUtils;
  * 意图：Application全局的
  */
 
-public class ExampleApplication extends Application {
+public class MyApplication extends Application {
 
-    public static ExampleApplication exampleApplication;
+    public static MyApplication exampleApplication;
     private static Context context;
     public static String token = "";
+    private Typeface typeface;
 
     @Override
     public void onCreate() {
@@ -24,6 +26,7 @@ public class ExampleApplication extends Application {
         exampleApplication = this;
         context = getApplicationContext();
         token = ConfigUtils.getINSTANCE().getDeviceId(this);
+        typeface = Typeface.createFromAsset(getAssets(), "kaiti.ttf");
     }
 
 
@@ -31,9 +34,15 @@ public class ExampleApplication extends Application {
         return context;
     }
 
-    public static ExampleApplication getInstance() {
+    public static MyApplication getInstance() {
         return exampleApplication;
     }
 
+    public Typeface getTypeface() {
+        return typeface;
+    }
 
+    public void setTypeface(Typeface typeface) {
+        this.typeface = typeface;
+    }
 }

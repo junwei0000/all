@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.longcheng.lifecareplanTv.base.ExampleApplication;
+import com.longcheng.lifecareplanTv.base.MyApplication;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -22,7 +22,7 @@ public class SharedPreferencesHelper {
     /**
      * 保存在手机里面的文件名
      */
-    public static final String FILE_NAME = ExampleApplication.getContext().getPackageName();
+    public static final String FILE_NAME = MyApplication.getContext().getPackageName();
 
     public static final String TOKEN = "token";
 
