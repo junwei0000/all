@@ -7,9 +7,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplanTv.R;
+import com.longcheng.lifecareplanTv.utils.DensityUtil;
 import com.longcheng.lifecareplanTv.utils.ToastUtils;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerAdapter;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerViewHolder;
@@ -34,6 +37,7 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
     private GridLayoutManager mLayoutManager;
     private OnLeftEdgeListener mOnLeftEdgeListener;
 
+    Context context;
 
     public interface OnLeftEdgeListener {
         void onLeftEdge();
@@ -45,6 +49,7 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
 
     public VediosAdapter(Context context, TvRecyclerView recyclerView, GridLayoutManager layoutManager, List<SearchResultModel> dataList) {
         super(context, dataList);
+        this.context = context;
         mRecyclerView = recyclerView;
         mLayoutManager = layoutManager;
 //        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -73,7 +78,7 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
             case 2:
                 return new SearchTopicViewHolder(mInflate.inflate(R.layout.video_item, viewGroup, false));
             case 1:
-                return new GuessYouLikeViewHolder(mInflate.inflate(R.layout.video_item, viewGroup, false));
+                return new GuessYouLikeViewHolder(mInflate.inflate(R.layout.video_item, viewGroup, false), context);
         }
         return null;
     }
@@ -163,10 +168,14 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
         public ImageView ivResultImage;
         public TextView tvResultTitle;
 
-        protected GuessYouLikeViewHolder(View itemView) {
+        protected GuessYouLikeViewHolder(View itemView, Context context) {
             super(itemView);
             ivResultImage = (ImageView) itemView.findViewById(R.id.iv_result_image);
             tvResultTitle = (TextView) itemView.findViewById(R.id.tv_result_title);
+            Log.e("TvR  ", "getMeasuredWidth  " + itemView.getMeasuredWidth() + "  " + itemView.getWidth());
+            int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 100)) / 4;
+            int heigth = (int) (width * 0.7);
+            ivResultImage.setLayoutParams(new RelativeLayout.LayoutParams(width, heigth));
         }
 
         @Override

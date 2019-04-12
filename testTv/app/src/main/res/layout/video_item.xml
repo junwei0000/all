@@ -26,7 +26,7 @@
         android:id="@+id/tv_result_title"
         style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="@dimen/dp30"
         android:layout_alignParentBottom="true"
         android:background="@color/black"
         android:ellipsize="marquee"

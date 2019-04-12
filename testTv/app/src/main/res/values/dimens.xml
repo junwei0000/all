@@ -66,6 +66,7 @@
     <dimen name="dp180">180dp</dimen>
     <dimen name="dp200">200dp</dimen>
     <dimen name="dp400">400dp</dimen>
+    <dimen name="dp520">520dp</dimen>
     <dimen name="getcode_width">100dp</dimen>
     <!-- 左右之间padd -->
     <dimen name="padd_leftright">10dp</dimen>
