@@ -33,7 +33,7 @@
     </style>
     <!-- 防止欢迎页白屏或者黑屏，设置图片 -->
     <style name="SplashTheme" parent="AppBaseTheme">
-        <item name="android:windowBackground">@mipmap/start_page</item>
+        <item name="android:windowBackground">@mipmap/welcom_bg</item>
         <!-- 隐藏标题栏 -->
         <!--<item name="windowNoTitle">true</item>-->
         <!-- 隐藏状态栏 -->

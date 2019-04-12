@@ -251,7 +251,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
      */
     private boolean isCheckLogin(String phone, String password) {
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.showToast(getString(R.string.account_hint));
+            ToastUtils.showToastOnUiThread(mActivity,getString(R.string.account_hint));
             return false;
         }
         if (password.length() != 6) {
