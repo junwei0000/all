@@ -292,18 +292,17 @@ public class BaoZhangActitvty extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
-//                        mView.PayHelpSuccess(responseBean);
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
                         } else if (status.equals("200")) {
                             PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                            life_order_id = payWeChatBean.getOne_order_id();
                             if (pay_way.equals("1")) {
                                 Log.e(TAG, payWeChatBean.toString());
                                 PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
                             } else if (pay_way.equals("2")) {
                                 String payInfo = payWeChatBean.getPayInfo();
-                                life_order_id = payWeChatBean.getOne_order_id();
                                 PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
                                     @Override
                                     public void onSuccess() {
