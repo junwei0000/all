@@ -88,16 +88,16 @@ public class Utils {
      * @time 2017/11/21 15:14
      * @author MarkShuai
      */
-    public static boolean isPhoneNum(String phone) {
-        String regExp = "^[1][3-8]+\\d{9}";
-        Pattern p = Pattern.compile(regExp);
-        Matcher m = p.matcher(phone);
-        if (phone.getBytes().length == 11 && m.find()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public static boolean isPhoneNum(String phone) {
+//        String regExp = "^[1][3-8]+\\d{9}";
+//        Pattern p = Pattern.compile(regExp);
+//        Matcher m = p.matcher(phone);
+//        if (phone.getBytes().length == 11 && m.find()) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     public static boolean isConnected(Context context) {
         ConnectivityManager conn = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -137,9 +137,6 @@ public class Utils {
     public static boolean isCheckPhone(String phone) {
         if (TextUtils.isEmpty(phone)) {
             ToastUtils.showToast(R.string.account_hint);
-            return false;
-        } else if (!Utils.isPhoneNum(phone)) {
-            ToastUtils.showToast(R.string.account_showtishi);
             return false;
         }
         return true;
