@@ -172,7 +172,6 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
             super(itemView);
             ivResultImage = (ImageView) itemView.findViewById(R.id.iv_result_image);
             tvResultTitle = (TextView) itemView.findViewById(R.id.tv_result_title);
-            Log.e("TvR  ", "getMeasuredWidth  " + itemView.getMeasuredWidth() + "  " + itemView.getWidth());
             int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 100)) / 4;
             int heigth = (int) (width * 0.7);
             ivResultImage.setLayoutParams(new RelativeLayout.LayoutParams(width, heigth));
