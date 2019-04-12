@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplanTv.R;
 import com.longcheng.lifecareplanTv.utils.DensityUtil;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerAdapter;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerViewHolder;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.FocusUtil;
@@ -119,7 +119,7 @@ public class PictureAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, 
                 public void onClick(View arg0) {
                     // 点击事件
                     int postion = (int) arg0.getTag();
-                    ToastUtils.showToast("点击了  " + postion + "");
+                    ToastUtilsNew.showToast("点击了  " + postion + "");
                 }
             });
             /**

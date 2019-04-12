@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.Timer;
@@ -193,6 +193,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         activityManager.popActivity(this);
         //butterknife 解绑
         bind.unbind();
+        // 重置ToastUtils
+        ToastUtilsNew.reset();
         if (dateTask != null) {
             dateTask.cancel();
             mTimeHandler.removeCallbacks(dateTask);
@@ -209,7 +211,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
      */
     protected void exit() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            ToastUtils.showToast("再按一次退出程序");
+            ToastUtilsNew.showToast("再按一次退出程序");
             exitTime = System.currentTimeMillis();
         } else {
             activityManager.popAllActivity();

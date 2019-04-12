@@ -14,9 +14,10 @@ public class PictureInfo implements Serializable {
     private int iconId;
     private String iconname;
 
-    public PictureInfo(){
+    public PictureInfo() {
         super();
     }
+
     public PictureInfo(String jieqiname, String huaname, String nextday, int bgImgId, int iconId, String iconname) {
         this.jieqiname = jieqiname;
         this.huaname = huaname;

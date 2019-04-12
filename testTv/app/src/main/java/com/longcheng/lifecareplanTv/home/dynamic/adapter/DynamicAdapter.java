@@ -46,7 +46,7 @@ public class DynamicAdapter extends BaseAdapterHelper<DynamicInfo> {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        if ( (selectItem == position)) {
+        if ((selectItem == position)) {
             convertView.setBackgroundColor(context.getResources().getColor(R.color.white));
             convertView.getBackground().setAlpha(35);
             Log.e("convertView", "  selectItem=  " + selectItem + "  ;position=  " + position);

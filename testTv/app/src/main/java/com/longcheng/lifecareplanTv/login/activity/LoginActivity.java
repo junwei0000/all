@@ -19,7 +19,7 @@ import com.longcheng.lifecareplanTv.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplanTv.utils.ConfigUtils;
 import com.longcheng.lifecareplanTv.utils.DatesUtils;
 import com.longcheng.lifecareplanTv.utils.DensityUtil;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.Utils;
 
 import java.util.Timer;
@@ -158,7 +158,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
             LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
             mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
         } else {
-            ToastUtils.showToast(responseBean.getMsg());
+            ToastUtilsNew.showToast(responseBean.getMsg());
         }
     }
 
@@ -167,7 +167,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
         codeSendingStatus = false;
         int status = responseBean.getStatus();
         if (status == 400) {
-            ToastUtils.showToast(responseBean.getMsg());
+            ToastUtilsNew.showToast(responseBean.getMsg());
         } else if (status == 200) {
             Message msg = new Message();
             msg.what = Daojishistart;
@@ -178,7 +178,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
     @Override
     public void loginFail() {
-        ToastUtils.showToast(getString(R.string.net_tishi));
+        ToastUtilsNew.showToast(getString(R.string.net_tishi));
     }
 
 
@@ -251,16 +251,15 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
      */
     private boolean isCheckLogin(String phone, String password) {
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.showToastOnUiThread(mActivity,getString(R.string.account_hint));
+            ToastUtilsNew.showToast(getString(R.string.account_hint));
             return false;
         }
         if (password.length() != 6) {
-            ToastUtils.showToast(getString(R.string.code_showtishi));
+            ToastUtilsNew.showToast(getString(R.string.code_showtishi));
             return false;
         }
         return true;
     }
-
 
     @Override
     protected void onDestroy() {

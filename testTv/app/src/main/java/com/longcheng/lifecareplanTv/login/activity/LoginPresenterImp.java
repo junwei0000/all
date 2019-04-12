@@ -8,7 +8,7 @@ import com.longcheng.lifecareplanTv.api.BasicResponse;
 import com.longcheng.lifecareplanTv.api.DefaultObserver;
 import com.longcheng.lifecareplanTv.base.MyApplication;
 import com.longcheng.lifecareplanTv.login.bean.LoginAfterBean;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -50,7 +50,7 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
                     @Override
                     public void onSuccess(BasicResponse<LoginAfterBean> response) {
                         LoginAfterBean results = response.getData();
-                        ToastUtils.showToast(results.toString());
+                        ToastUtilsNew.showToast(results.toString());
                         Log.e("Observable", "https://www.bestdo.com/new-bd-app/2.7.0/============" + results.toString());
                     }
 
@@ -72,7 +72,7 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
                     @Override
                     public void onSuccess(BasicResponse<LoginAfterBean> response) {
                         LoginAfterBean results = response.getData();
-                        ToastUtils.showToast(results.toString());
+                        ToastUtilsNew.showToast(results.toString());
                         Log.e("Observable", "https://www.bestdo.com/new-bd-app/2.7.0/============" + results.toString());
                     }
 

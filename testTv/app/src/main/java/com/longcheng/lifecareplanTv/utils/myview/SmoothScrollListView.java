@@ -92,13 +92,13 @@ public class SmoothScrollListView extends ListView implements OnKeyListener {
             //当时倒数第二个的时候
             if (currentItemPosition == itemsCount - 2) {
                 //如果listView的最后一个可见Item是倒数第二个item，或者是倒数第一个item同时timer不为空，这时要滚动一次，并让最后一个item获取焦点
-                if(this.getLastVisiblePosition() == itemsCount - 2 || (this.getLastVisiblePosition() == itemsCount - 1 && timer != null)){
-                    Log.e("","倒数第二个");
+                if (this.getLastVisiblePosition() == itemsCount - 2 || (this.getLastVisiblePosition() == itemsCount - 1 && timer != null)) {
+                    Log.e("", "倒数第二个");
                     this.smoothScrollBy(itemHeight, scrollDuration);
 
-                    if(timer == null){
+                    if (timer == null) {
                         smoothScrollToBottom();
-                    }else{
+                    } else {
                         timer.cancel();
                         timer = null;
                         //延迟一下，再让最后一个item编程selected状态，不让没有动画，太突兀
@@ -126,7 +126,7 @@ public class SmoothScrollListView extends ListView implements OnKeyListener {
         if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
             if (currentItemPosition == 1) {
 
-                if(this.getChildAt(0).isFocusable() == false){
+                if (this.getChildAt(0).isFocusable() == false) {
                     this.smoothScrollBy(-itemHeight, scrollDuration);
                 }
                 return false;
@@ -147,8 +147,8 @@ public class SmoothScrollListView extends ListView implements OnKeyListener {
     }
 
 
-    private void smoothScrollToBottom(){
-        Log.e("","平滑移动到最后");
+    private void smoothScrollToBottom() {
+        Log.e("", "平滑移动到最后");
         timer = new Timer();
         timer.schedule(new TimerTask() {
 
@@ -192,9 +192,6 @@ public class SmoothScrollListView extends ListView implements OnKeyListener {
         isScrollTop = true;
         this.onScrollTopListener = onScrollTopListener;
     }
-
-
-
 
 
 }

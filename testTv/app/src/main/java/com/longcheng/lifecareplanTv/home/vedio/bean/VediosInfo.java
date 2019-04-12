@@ -14,9 +14,10 @@ public class VediosInfo implements Serializable {
     private int iconId;
     private String iconname;
 
-    public VediosInfo(){
+    public VediosInfo() {
         super();
     }
+
     public VediosInfo(String jieqiname, String huaname, String nextday, int bgImgId, int iconId, String iconname) {
         this.jieqiname = jieqiname;
         this.huaname = huaname;

@@ -56,6 +56,7 @@ public class TvGridLayoutManager extends GridLayoutManager {
 
     /**
      * RecyclerView的smoothScrollToPosition方法最终会执行smoothScrollToPosition
+     *
      * @param recyclerView
      * @param state
      * @param position
@@ -78,7 +79,6 @@ public class TvGridLayoutManager extends GridLayoutManager {
     public PointF computeVectorForPosition(int targetPosition) {
         return super.computeScrollVectorForPosition(targetPosition);
     }
-
 
 
 }

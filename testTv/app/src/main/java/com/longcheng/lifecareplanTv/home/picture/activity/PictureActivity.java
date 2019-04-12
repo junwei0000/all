@@ -18,7 +18,7 @@ import com.longcheng.lifecareplanTv.home.set.SetActivity;
 import com.longcheng.lifecareplanTv.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplanTv.utils.ConfigUtils;
 import com.longcheng.lifecareplanTv.utils.DatesUtils;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.SearchResultModel;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvGridLayoutManager;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerView;
@@ -158,7 +158,7 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
 
     @Override
     public void onError() {
-        ToastUtils.showToast(getString(R.string.net_tishi));
+        ToastUtilsNew.showToast(getString(R.string.net_tishi));
     }
 
     @Override

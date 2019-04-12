@@ -13,7 +13,6 @@ public abstract class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-
     public abstract void focusIn();
 
     public abstract void focusOut();

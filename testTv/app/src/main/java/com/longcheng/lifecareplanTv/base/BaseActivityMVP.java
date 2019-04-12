@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.longcheng.lifecareplanTv.utils.MPermissionUtils;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.Timer;
@@ -204,7 +204,8 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
         mPresent.detach();
         activityManager.popActivity(this);
         bind.unbind();
-
+        // 重置ToastUtils
+        ToastUtilsNew.reset();
         if (dateTask != null) {
             dateTask.cancel();
             mTimeHandler.removeCallbacks(dateTask);
@@ -239,7 +240,7 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
      */
     protected void exit() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            ToastUtils.showToast("再按一次退出程序");
+            ToastUtilsNew.showToast("再按一次退出程序");
             exitTime = System.currentTimeMillis();
         } else {
             activityManager.popAllActivity();

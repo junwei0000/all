@@ -4,7 +4,7 @@ package com.longcheng.lifecareplanTv.utils.tvrecyclerview;
 /**
  * Created by liuyu8 on 2015/10/16.
  */
-public class SearchResultModel implements java.io.Serializable{
+public class SearchResultModel implements java.io.Serializable {
 
 
     /**

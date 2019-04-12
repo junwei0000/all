@@ -12,7 +12,7 @@ import com.longcheng.lifecareplanTv.R;
 import com.longcheng.lifecareplanTv.base.BaseActivity;
 import com.longcheng.lifecareplanTv.utils.ConfigUtils;
 import com.longcheng.lifecareplanTv.utils.DatesUtils;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.clearCache.CleanMessageUtil;
 
 import butterknife.BindView;
@@ -177,7 +177,7 @@ public class SetActivity extends BaseActivity {
             case R.id.set_relay_clear:
                 CleanMessageUtil.cleanApplicationData(mContext);
                 getSize();
-                ToastUtils.showToast("清理完成");
+                ToastUtilsNew.showToast("清理完成");
                 break;
             default:
                 break;

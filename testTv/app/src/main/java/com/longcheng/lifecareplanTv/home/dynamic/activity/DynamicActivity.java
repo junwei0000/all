@@ -22,7 +22,7 @@ import com.longcheng.lifecareplanTv.home.set.SetActivity;
 import com.longcheng.lifecareplanTv.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplanTv.utils.ConfigUtils;
 import com.longcheng.lifecareplanTv.utils.DatesUtils;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.myview.SmoothScrollListView;
 
 import java.util.ArrayList;
@@ -120,7 +120,7 @@ public class DynamicActivity extends BaseActivityMVP<DynamicContract.View, Dynam
         ftf_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtils.showToast("点击了  " + position);
+                ToastUtilsNew.showToast("点击了  " + position);
                 mAdapter.setSelectItem(position);
             }
         });
@@ -192,7 +192,7 @@ public class DynamicActivity extends BaseActivityMVP<DynamicContract.View, Dynam
 
     @Override
     public void onError() {
-        ToastUtils.showToast(getString(R.string.net_tishi));
+        ToastUtilsNew.showToast(getString(R.string.net_tishi));
     }
 
     @Override

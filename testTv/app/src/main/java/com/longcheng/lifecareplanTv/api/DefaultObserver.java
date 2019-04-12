@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.google.gson.JsonParseException;
 import com.longcheng.lifecareplanTv.R;
-import com.longcheng.lifecareplanTv.utils.ToastUtils;
+import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 
 import org.json.JSONException;
 
@@ -95,7 +95,7 @@ public abstract class DefaultObserver<T extends BasicResponse> implements Observ
         int status = response.getStatus();
         switch (status) {
             case 400: // 数据请求失败
-                ToastUtils.showToast(message);
+                ToastUtilsNew.showToast(message);
                 break;
             case 499: // 单点登录弹层
                 break;
@@ -115,20 +115,20 @@ public abstract class DefaultObserver<T extends BasicResponse> implements Observ
     public void onException(ExceptionReason reason) {
         switch (reason) {
             case CONNECT_ERROR:
-                ToastUtils.showToast(R.string.connect_error);
+                ToastUtilsNew.showToast(R.string.connect_error);
                 break;
             case CONNECT_TIMEOUT:
-                ToastUtils.showToast(R.string.connect_timeout);
+                ToastUtilsNew.showToast(R.string.connect_timeout);
                 break;
             case BAD_NETWORK:
-                ToastUtils.showToast(R.string.bad_network);
+                ToastUtilsNew.showToast(R.string.bad_network);
                 break;
             case PARSE_ERROR:
-                ToastUtils.showToast(R.string.parse_error);
+                ToastUtilsNew.showToast(R.string.parse_error);
                 break;
             case UNKNOWN_ERROR:
             default:
-                ToastUtils.showToast(R.string.unknown_error);
+                ToastUtilsNew.showToast(R.string.unknown_error);
                 break;
         }
         onError();

@@ -14,9 +14,10 @@ public class DynamicInfo implements Serializable {
     private int iconId;
     private String iconname;
 
-    public DynamicInfo(){
+    public DynamicInfo() {
         super();
     }
+
     public DynamicInfo(String jieqiname, String huaname, String nextday, int bgImgId, int iconId, String iconname) {
         this.jieqiname = jieqiname;
         this.huaname = huaname;

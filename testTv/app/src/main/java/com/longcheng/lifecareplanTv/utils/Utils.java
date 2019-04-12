@@ -98,7 +98,6 @@ public class Utils {
 //            return false;
 //        }
 //    }
-
     public static boolean isConnected(Context context) {
         ConnectivityManager conn = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = conn.getActiveNetworkInfo();
@@ -136,7 +135,7 @@ public class Utils {
      */
     public static boolean isCheckPhone(String phone) {
         if (TextUtils.isEmpty(phone)) {
-            ToastUtils.showToast(R.string.account_hint);
+            ToastUtilsNew.showToast(R.string.account_hint);
             return false;
         }
         return true;

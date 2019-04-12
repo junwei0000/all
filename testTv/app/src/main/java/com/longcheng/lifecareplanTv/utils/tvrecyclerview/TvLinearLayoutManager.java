@@ -54,6 +54,7 @@ public class TvLinearLayoutManager extends LinearLayoutManager {
 
     /**
      * RecyclerView的smoothScrollToPosition方法最终会执行smoothScrollToPosition
+     *
      * @param recyclerView
      * @param state
      * @param position

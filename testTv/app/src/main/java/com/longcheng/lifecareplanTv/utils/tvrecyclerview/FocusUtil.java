@@ -19,7 +19,7 @@ public class FocusUtil {
 
     public static final float SCALE_RATE = 1.045f;//一
 
-   // public static final float SCALE_RATE = 1.0571f;
+    // public static final float SCALE_RATE = 1.0571f;
 
     /**
      * 当焦点发生变化
@@ -29,9 +29,9 @@ public class FocusUtil {
      */
     public static void onFocusChange(View view, boolean gainFocus) {
         if (gainFocus) {
-            onFocusIn(view,SCALE_RATE);
+            onFocusIn(view, SCALE_RATE);
         } else {
-            onFocusOut(view,SCALE_RATE);
+            onFocusOut(view, SCALE_RATE);
         }
     }
 
