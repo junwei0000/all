@@ -300,6 +300,7 @@ public class BaoZhangActitvty extends WebAct {
                             life_order_id = payWeChatBean.getOne_order_id();
                             if (pay_way.equals("1")) {
                                 Log.e(TAG, payWeChatBean.toString());
+                                payWeChatBean.setWeChatPayType(ConstantManager.WECHATAPPIDBaoZhang);
                                 PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
                             } else if (pay_way.equals("2")) {
                                 String payInfo = payWeChatBean.getPayInfo();

@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.utils;
 
 import android.app.Activity;
 import android.os.Environment;
+import android.text.TextUtils;
 
 import java.io.File;
 
@@ -25,9 +26,30 @@ public class ConstantManager {
     public static final String ReleaseUpLabel = "上拉加载...";
     /////////////////////上下拉的字段
 
-    //微信
+    /**
+     * 默认微信appid
+     */
     public static final String WECHATAPPID = "wxaa9690f972196106";
     public static final String WECHATSECRET = "5cfff365b5eb89fb12b4d97cdd00338f";
+    /**
+     * 生活保障支付   微信appid（工会）
+     */
+    public static final String WECHATAPPIDBaoZhang = "wxf0f9de997bdf640b";
+    public static final String WECHATSECRETBaoZhang = "27c8812bbf6f60975550439e7b3e8035";
+    /**
+     * 默认渠道
+     */
+    public static String WeChatAppType = "";
+
+    public static String getWeChatAppId() {
+        if (!TextUtils.isEmpty(WeChatAppType) && WeChatAppType.equals(WECHATAPPIDBaoZhang)) {
+            return WECHATAPPIDBaoZhang;
+        } else {
+            return WECHATAPPID;
+        }
+    }
+
+
     //友盟APPID
     public static final String UMENGAPPID = "5a25fe0df29d983549000075";
 

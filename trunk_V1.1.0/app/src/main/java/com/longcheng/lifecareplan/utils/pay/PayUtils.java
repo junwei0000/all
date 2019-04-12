@@ -224,19 +224,19 @@ public class PayUtils {
     /**
      * 吊起微信支付
      */
-    private static void getWeChatPay(Context context, PayWXAfterBean payWeChatBean) {
-        PayReq req = new PayReq();
-        req.appId = payWeChatBean.getAppid();
-        req.partnerId = payWeChatBean.getPartnerid();
-        req.prepayId = payWeChatBean.getPrepayid();
-        req.nonceStr = payWeChatBean.getNoncestr();
-        req.timeStamp = payWeChatBean.getTimestamp();
-        req.packageValue = payWeChatBean.getPackages();
-        req.sign = payWeChatBean.getSign();
-        IWXAPI wxapi = WXAPIFactory.createWXAPI(context, null);
-        wxapi.registerApp(ConstantManager.WECHATAPPID);
-        wxapi.sendReq(req);
-    }
+//    private static void getWeChatPay(Context context, PayWXAfterBean payWeChatBean) {
+//        PayReq req = new PayReq();
+//        req.appId = payWeChatBean.getAppid();
+//        req.partnerId = payWeChatBean.getPartnerid();
+//        req.prepayId = payWeChatBean.getPrepayid();
+//        req.nonceStr = payWeChatBean.getNoncestr();
+//        req.timeStamp = payWeChatBean.getTimestamp();
+//        req.packageValue = payWeChatBean.getPackages();
+//        req.sign = payWeChatBean.getSign();
+//        IWXAPI wxapi = WXAPIFactory.createWXAPI(context, null);
+//        wxapi.registerApp(ConstantManager.WECHATAPPID);
+//        wxapi.sendReq(req);
+//    }
 
     /**
      * 吊起微信支付
@@ -251,8 +251,17 @@ public class PayUtils {
         req.packageValue = payWeChatBean.getPackages();
         req.sign = payWeChatBean.getSign();
 
+        /**
+         * 每次调起时判断一下 支付商户类别
+         */
+        String mWeChatAppType = payWeChatBean.getWeChatPayType();
+        if (!TextUtils.isEmpty(mWeChatAppType) && mWeChatAppType.equals(ConstantManager.WECHATAPPIDBaoZhang)) {
+            ConstantManager.WeChatAppType = ConstantManager.WECHATAPPIDBaoZhang;
+        } else {
+            ConstantManager.WeChatAppType = "";
+        }
         IWXAPI wxapi = WXAPIFactory.createWXAPI(context, null);
-        wxapi.registerApp(ConstantManager.WECHATAPPID);
+        wxapi.registerApp(ConstantManager.getWeChatAppId());
         wxapi.sendReq(req);
     }
 
