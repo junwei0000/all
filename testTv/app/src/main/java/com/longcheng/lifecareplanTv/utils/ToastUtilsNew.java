@@ -82,12 +82,14 @@ public class ToastUtilsNew {
 
     public static void showToast(int resID) {
         Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
-        makeText(mActivity, resID, Toast.LENGTH_SHORT).show();
+        if (mActivity != null)
+            makeText(mActivity, resID, Toast.LENGTH_SHORT).show();
     }
 
     public static void showToast(String text) {
         Activity mActivity = ActivityManager.getScreenManager().getCurrentActivity();
-        makeText(mActivity, text, Toast.LENGTH_SHORT).show();
+        if (mActivity != null)
+            makeText(mActivity, text, Toast.LENGTH_SHORT).show();
     }
 
     public void show() {

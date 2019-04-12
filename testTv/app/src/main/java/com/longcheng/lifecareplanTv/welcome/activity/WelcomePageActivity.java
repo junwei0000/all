@@ -2,6 +2,7 @@ package com.longcheng.lifecareplanTv.welcome.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 
@@ -38,12 +39,14 @@ public class WelcomePageActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        try {
-            Thread.sleep(1000);//防止启动页消失太快
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        intentIndexPage();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                intentIndexPage();
+            }
+        }, 2000);
+
     }
 
     @Override
