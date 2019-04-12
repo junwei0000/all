@@ -8,7 +8,7 @@
     <include layout="@layout/page_top" />
 
 
-    <com.longcheng.lifecareplan.utils.tvrecyclerview.TvRecyclerView
+    <com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerView
         android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

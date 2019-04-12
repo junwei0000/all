@@ -22,7 +22,7 @@
             android:layout_height="2dp"
             android:background="@color/red" />
 
-        <com.longcheng.lifecareplan.utils.myview.SmoothScrollListView
+        <com.longcheng.lifecareplanTv.utils.myview.SmoothScrollListView
             android:id="@+id/ftf_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

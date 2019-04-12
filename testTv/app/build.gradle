@@ -5,7 +5,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.longcheng.lifecareplan"
+        applicationId "com.longcheng.lifecareplanTv"
         //最低版本
         minSdkVersion rootProject.ext.minSdkVersion
         //标记版本
@@ -48,7 +48,7 @@ android {
 //greendao配置
 greendao {
     schemaVersion 1//指定数据库schema版本号，迁移等操作会用到；
-    daoPackage 'com.longcheng.lifecareplan.db'
+    daoPackage 'com.longcheng.lifecareplanTv.db'
 //通过gradle插件生成的数据库相关文件的包名，默认为你的entity所在的包名；
     targetGenDir 'src/main/java'
 //自定义生成数据库文件的目录，可以将生成的文件放到我们的java目录中，而不是build中，这样就不用额外的设置资源目录了。

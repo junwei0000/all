@@ -64,7 +64,7 @@
         android:layout_marginBottom="10sp"
         android:layout_marginTop="2sp">
 
-        <com.longcheng.lifecareplan.utils.keyboard.SafeKeyboardView
+        <com.longcheng.lifecareplanTv.utils.keyboard.SafeKeyboardView
             android:id="@+id/safeKeyboardLetter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

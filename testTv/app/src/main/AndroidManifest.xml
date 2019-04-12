@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.longcheng.lifecareplan">
+    package="com.longcheng.lifecareplanTv">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -76,14 +76,14 @@
         android:required="true" />
 
     <application
-        android:name=".base.ExampleApplication"
+        android:name="com.longcheng.lifecareplanTv.base.ExampleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
         <activity
-            android:name=".welcome.activity.WelcomePageActivity"
+            android:name="com.longcheng.lifecareplanTv.welcome.activity.WelcomePageActivity"
             android:banner="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:screenOrientation="landscape">
@@ -94,21 +94,21 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".test.MainActivity" />
-        <activity android:name=".test.DetailsActivity" />
-        <activity android:name=".test.PlaybackActivity" />
-        <activity android:name=".test.BrowseErrorActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.test.MainActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.test.DetailsActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.test.PlaybackActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.test.BrowseErrorActivity" />
 
         <activity
-            android:name=".login.activity.LoginActivity"
+            android:name="com.longcheng.lifecareplanTv.login.activity.LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".home.menu.activity.MenuActivity" />
-        <activity android:name=".home.help.HelpActivity" />
-        <activity android:name=".home.dynamic.activity.DynamicActivity" />
-        <activity android:name=".home.vedio.activity.VediosActivity" />
-        <activity android:name=".home.picture.activity.PictureActivity" />
-        <activity android:name=".home.set.SetActivity" />
-        <activity android:name=".home.set.AboutActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.home.menu.activity.MenuActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.home.help.HelpActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.home.dynamic.activity.DynamicActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.home.vedio.activity.VediosActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.home.picture.activity.PictureActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.home.set.SetActivity" />
+        <activity android:name="com.longcheng.lifecareplanTv.home.set.AboutActivity" />
     </application>
 
 </manifest>
