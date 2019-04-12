@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.home.menu.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -168,10 +169,15 @@ public class MenuActivity extends BaseActivityMVP<MenuContract.View, MenuPresent
         super.onDestroy();
     }
 
+
     /**
-     * 监听返回键
+     *
+     * 重写onkeydown 用于监听返回键
      */
-    public void onBackPressed() {
-        exit();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            exit();
+        }
+        return false;
     }
 }

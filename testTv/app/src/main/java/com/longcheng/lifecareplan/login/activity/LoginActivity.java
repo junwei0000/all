@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.longcheng.lifecareplan.home.menu.activity.MenuActivity;
 import com.longcheng.lifecareplan.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.Utils;
 
@@ -52,8 +54,8 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     TextView phonetypeTvGetcode;
     @BindView(R.id.btn_login)
     TextView btnLogin;
-    @BindView(R.id.keyboardViewPlace)
-    LinearLayout keyboardViewPlace;
+    @BindView(R.id.layout_login)
+    LinearLayout layout_login;
     public UserLoginSkipUtils mUserLoginSkipUtils;
 
     @Override
@@ -89,6 +91,8 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(phonetypeEtCode, 6);
         ConfigUtils.getINSTANCE().setSelectFouseBtn(phonetypeTvGetcode);
         ConfigUtils.getINSTANCE().setSelectFouseBtn(btnLogin);
+        int width = DensityUtil.screenWith(mContext);
+        layout_login.setLayoutParams(new LinearLayout.LayoutParams(width * 2 / 5, LinearLayout.LayoutParams.MATCH_PARENT));
     }
 
     @Override
