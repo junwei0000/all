@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -227,4 +228,13 @@ public class DynamicActivity extends BaseActivityMVP<DynamicContract.View, Dynam
         super.onDestroy();
     }
 
+    /**
+     * 重写onkeydown 用于监听返回键
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            finish();
+        }
+        return false;
+    }
 }
