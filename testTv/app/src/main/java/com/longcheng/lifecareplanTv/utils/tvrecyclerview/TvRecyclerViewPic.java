@@ -23,7 +23,7 @@ import com.longcheng.lifecareplanTv.utils.DensityUtil;
 /**
  * Created by liuyu on 17/1/6.
  */
-public class TvRecyclerView extends RecyclerView {
+public class TvRecyclerViewPic extends RecyclerView {
     private static final String TAG = "TvRecyclerView";
 
     private int position;
@@ -38,15 +38,15 @@ public class TvRecyclerView extends RecyclerView {
     //分页的时候使用
     private int mLoadMoreBeforehandCount = 0;
 
-    public TvRecyclerView(Context context) {
+    public TvRecyclerViewPic(Context context) {
         this(context, null);
     }
 
-    public TvRecyclerView(Context context, AttributeSet attrs) {
+    public TvRecyclerViewPic(Context context, AttributeSet attrs) {
         this(context, attrs, -1);
     }
 
-    public TvRecyclerView(Context context, AttributeSet attrs, int defStyle) {
+    public TvRecyclerViewPic(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context, attrs, defStyle);
     }
@@ -368,7 +368,6 @@ public class TvRecyclerView extends RecyclerView {
                 dy = firstView.getHeight();
                 dx = firstView.getWidth();
             }
-            dy = dy + DensityUtil.dip2px(getContext(), 25);
             if (event.getAction() == KeyEvent.ACTION_UP) {
                 return true;
             } else {

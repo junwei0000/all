@@ -2,6 +2,7 @@ package com.longcheng.lifecareplanTv.home.picture.activity;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.KeyEvent;
@@ -22,6 +23,8 @@ import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.SearchResultModel;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvGridLayoutManager;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerView;
+import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerViewList;
+import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerViewPic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +53,12 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
     @BindView(R.id.pageTop_iv_thumb)
     ImageView pageTopIvThumb;
     @BindView(R.id.search_result_recyclerView)
-    TvRecyclerView mRecyclerView;
+    TvRecyclerViewPic mRecyclerView;
+    @BindView(R.id.layout_left)
+    LinearLayout layoutLeft;
+    @BindView(R.id.layout_right)
+    LinearLayout layoutRight;
     private TvGridLayoutManager mLayoutManager;
-    private List<SearchResultModel> dataList = new ArrayList<>();
     private PictureAdapter mAdapter;
 
     @Override
@@ -72,7 +78,7 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
 
     @Override
     public int bindLayout() {
-        return R.layout.vedio;
+        return R.layout.picture;
     }
 
     @Override
@@ -85,8 +91,12 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
     public void setListener() {
         pagetopLayoutRigth.setVisibility(View.VISIBLE);
         pagetopLayoutSet.setOnClickListener(this);
+        layoutLeft.setOnClickListener(this);
+        layoutRight.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
-        pagetopLayoutSet.setFocusable(false);//设置无用的view焦点，其他可点击view默认无焦点
+        ConfigUtils.getINSTANCE().setSelectFouseText(layoutLeft);
+        ConfigUtils.getINSTANCE().setSelectFouseText(layoutRight);
+        pagetopLayoutSet.setFocusable(false);
     }
 
     @Override
@@ -94,31 +104,28 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
         mRecyclerView.setBtnFouse(pagetopLayoutSet);
         //去掉动画,否则当notify数据的时候,焦点会丢失
         mRecyclerView.setItemAnimator(null);
-        mLayoutManager = new TvGridLayoutManager(this, 4);
+        mLayoutManager = new TvGridLayoutManager(this, 6);
         mLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setFocusable(false);
         mRecyclerView.setSelectedItemOffset(0, 0);
         mRecyclerView.setSelectedItemAtCentered(true);
-        initData();
-        mAdapter = new PictureAdapter(this, mRecyclerView, mLayoutManager, dataList);
-        mRecyclerView.setAdapter(mAdapter);
+        initData(1);
     }
 
-    int pageSize = 9;
+    int page = 1;
+    int pageSize = 12;
 
-    public void initData() {
-        for (int i = 0; i < pageSize; i++) {
+    int totalPage = 10;
+
+    public void initData(int page_) {
+        this.page = page_;
+        List<SearchResultModel> dataList = new ArrayList<>();
+        for (int i = (page - 1) * pageSize; i < (page) * pageSize; i++) {
             dataList.add(new SearchResultModel(i + 1, "title : " + (i + 1)));
         }
-    }
-
-    public List<SearchResultModel> getMoreData() {
-        List<SearchResultModel> list = new ArrayList<>();
-        for (int i = 0; i < pageSize; i++) {
-            list.add(new SearchResultModel(i + 1, "title : " + (i + 1)));
-        }
-        return list;
+        mAdapter = new PictureAdapter(this, mRecyclerView, mLayoutManager, dataList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -138,6 +145,20 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
                 Intent intent = new Intent(this, SetActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
+                break;
+            case R.id.layout_left:
+                if (page > 1) {
+                    initData(page - 1);
+                } else {
+                    ToastUtilsNew.showToast("已到第一页");
+                }
+                break;
+            case R.id.layout_right:
+                if (page < totalPage) {
+                    initData(page + 1);
+                } else {
+                    ToastUtilsNew.showToast("已到最后一页");
+                }
                 break;
             default:
                 break;

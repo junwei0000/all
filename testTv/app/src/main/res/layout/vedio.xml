@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/dp20"
         android:layout_marginRight="@dimen/dp20"
-        android:layout_marginTop="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp20"
         android:scrollbars="none" />
 
 </LinearLayout>
