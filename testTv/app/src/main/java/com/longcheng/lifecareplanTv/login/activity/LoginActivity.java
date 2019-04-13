@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -51,9 +52,9 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
     @BindView(R.id.phonetype_et_code)
     EditText phonetypeEtCode;
     @BindView(R.id.phonetype_tv_getcode)
-    TextView phonetypeTvGetcode;
+    Button phonetypeTvGetcode;
     @BindView(R.id.btn_login)
-    TextView btnLogin;
+    Button btnLogin;
     @BindView(R.id.layout_login)
     LinearLayout layout_login;
     public UserLoginSkipUtils mUserLoginSkipUtils;

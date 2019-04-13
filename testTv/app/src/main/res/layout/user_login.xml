@@ -100,7 +100,7 @@
                     android:textSize="@dimen/text_biaoTi_size" />
             </LinearLayout>
 
-            <TextView
+            <Button
                 android:id="@+id/phonetype_tv_getcode"
                 style="@style/view_paddtopbottom"
                 android:layout_width="@dimen/getcode_width"
@@ -115,7 +115,7 @@
         </RelativeLayout>
 
 
-        <TextView
+        <Button
             android:id="@+id/btn_login"
             style="@style/btn"
             android:layout_width="match_parent"
