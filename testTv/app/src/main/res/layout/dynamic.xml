@@ -22,12 +22,10 @@
             android:layout_height="2dp"
             android:background="@color/red" />
 
-        <com.longcheng.lifecareplanTv.utils.myview.SmoothScrollListView
+        <com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerViewList
             android:id="@+id/ftf_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:cacheColorHint="@color/transparent"
-            android:divider="@null"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
             android:scrollbars="none" />

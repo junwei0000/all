@@ -50,8 +50,8 @@ public class ToastUtilsNew {
         mTextView = (TextView) mView.findViewById(R.id.mbMessage);
     }
 
-    public static ToastUtilsNew makeText(Context context, String message,
-                                         int HIDE_DELAY) {
+    private static ToastUtilsNew makeText(Context context, String message,
+                                          int HIDE_DELAY) {
         if (mInstance == null) {
             mInstance = new ToastUtilsNew(context);
         } else {
@@ -70,7 +70,7 @@ public class ToastUtilsNew {
         return mInstance;
     }
 
-    public static ToastUtilsNew makeText(Context context, int resId, int HIDE_DELAY) {
+    private static ToastUtilsNew makeText(Context context, int resId, int HIDE_DELAY) {
         String mes = "";
         try {
             mes = context.getResources().getString(resId);
@@ -92,7 +92,7 @@ public class ToastUtilsNew {
             makeText(mActivity, text, Toast.LENGTH_SHORT).show();
     }
 
-    public void show() {
+    private void show() {
         if (isShow) {
             // 若已经显示，则不再次显示
             return;
@@ -154,7 +154,7 @@ public class ToastUtilsNew {
         mInstance = null;
     }
 
-    public void setText(CharSequence s) {
+    private void setText(CharSequence s) {
         if (mInstance == null) return;
 
         TextView mTextView = (TextView) mView.findViewById(R.id.mbMessage);
@@ -166,7 +166,7 @@ public class ToastUtilsNew {
         mTextView.setText(s);
     }
 
-    public void setText(int resId) {
+    private void setText(int resId) {
         setText(mContext.getText(resId));
     }
 }
