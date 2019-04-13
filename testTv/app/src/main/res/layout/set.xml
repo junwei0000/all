@@ -19,6 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/corners_bg_setnotselect"
+            android:focusable="true"
+            android:nextFocusDown="@+id/set_relay_about"
+            android:focusableInTouchMode="true"
             android:paddingBottom="@dimen/padd_imgtextleftright"
             android:paddingLeft="@dimen/dp20"
             android:paddingRight="@dimen/dp20"
@@ -70,6 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp20"
             android:background="@drawable/corners_bg_setnotselect"
+            android:nextFocusDown="@+id/set_relay_clear"
+            android:nextFocusUp="@+id/set_relay_update"
+            android:focusableInTouchMode="true"
             android:paddingBottom="@dimen/padd_imgtextleftright"
             android:paddingLeft="@dimen/dp20"
             android:paddingRight="@dimen/dp20"
@@ -110,6 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp20"
             android:background="@drawable/corners_bg_setnotselect"
+            android:nextFocusUp="@+id/set_relay_about"
+            android:focusableInTouchMode="true"
             android:paddingBottom="@dimen/padd_imgtextleftright"
             android:paddingLeft="@dimen/dp20"
             android:paddingRight="@dimen/dp20"
@@ -134,6 +142,7 @@
                 android:text="清除缓存"
                 android:textColor="@color/white_9a"
                 android:textSize="@dimen/text_contents_size" />
+
             <TextView
                 android:id="@+id/set_tv_clearsize"
                 style="@style/view_padd"
@@ -144,6 +153,7 @@
                 android:text="0.0KB"
                 android:textColor="@color/white_9a"
                 android:textSize="@dimen/text_contents_size" />
+
             <ImageView
                 android:id="@+id/set_iv_cleararrow"
                 android:layout_width="wrap_content"

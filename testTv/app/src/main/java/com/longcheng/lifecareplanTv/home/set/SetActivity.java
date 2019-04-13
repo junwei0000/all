@@ -87,7 +87,6 @@ public class SetActivity extends BaseActivity {
         setRelayUpdate.setOnClickListener(this);
         setRelayAbout.setOnClickListener(this);
         setRelayClear.setOnClickListener(this);
-        pageTopTvTime.setFocusable(true);
         setRelayUpdate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
