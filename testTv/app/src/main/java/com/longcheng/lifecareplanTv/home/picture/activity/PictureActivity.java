@@ -7,6 +7,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -62,7 +64,8 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
     LinearLayout layoutFirstImg;
     @BindView(R.id.tv_first_title)
     TextView tvFirstTitle;
-
+    @BindView(R.id.layout_cont)
+    LinearLayout layout_cont;
     private TvGridLayoutManager mLayoutManager;
     private PictureAdapter mAdapter;
 
@@ -164,6 +167,9 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
         pageTopTvTime.setText(time);
     }
 
+    Animation myleftAnim;
+    Animation myrightAnim;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -174,6 +180,11 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
                 break;
             case R.id.layout_left:
                 if (page > 1) {
+                    if (myrightAnim == null) {
+                        myrightAnim = AnimationUtils.loadAnimation(mActivity, R.anim.out_to_rigth);
+                        myrightAnim.setFillAfter(false);//android动画结束后停在结束位置
+                    }
+                    layout_cont.startAnimation(myrightAnim);
                     initData(page - 1);
                 } else {
                     ToastUtilsNew.showToast("已到第一页");
@@ -181,6 +192,11 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
                 break;
             case R.id.layout_right:
                 if (page < totalPage) {
+                    if (myleftAnim == null) {
+                        myleftAnim = AnimationUtils.loadAnimation(mActivity, R.anim.out_to_left);
+                        myleftAnim.setFillAfter(false);//android动画结束后停在结束位置
+                    }
+                    layout_cont.startAnimation(myleftAnim);
                     initData(page + 1);
                 } else {
                     ToastUtilsNew.showToast("已到最后一页");
