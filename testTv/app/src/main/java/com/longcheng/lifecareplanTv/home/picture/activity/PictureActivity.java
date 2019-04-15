@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,14 +23,13 @@ import com.longcheng.lifecareplanTv.utils.DatesUtils;
 import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.SearchResultModel;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvGridLayoutManager;
-import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerView;
-import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerViewList;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerViewPic;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 图片
@@ -58,6 +58,13 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
     LinearLayout layoutLeft;
     @BindView(R.id.layout_right)
     LinearLayout layoutRight;
+    @BindView(R.id.iv_first_image)
+    ImageView ivFirstImage;
+    @BindView(R.id.layout_first_img)
+    LinearLayout layoutFirstImg;
+    @BindView(R.id.tv_first_title)
+    TextView tvFirstTitle;
+
     private TvGridLayoutManager mLayoutManager;
     private PictureAdapter mAdapter;
 
@@ -93,10 +100,25 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
         pagetopLayoutSet.setOnClickListener(this);
         layoutLeft.setOnClickListener(this);
         layoutRight.setOnClickListener(this);
+        layoutFirstImg.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
-        ConfigUtils.getINSTANCE().setSelectFouseText(layoutLeft);
         ConfigUtils.getINSTANCE().setSelectFouseText(layoutRight);
+        ConfigUtils.getINSTANCE().setSelectFouseText(layoutFirstImg);
+        pagetopLayoutSet.setNextFocusLeftId(R.id.layout_left);
+        pagetopLayoutSet.setNextFocusRightId(R.id.layout_right);
+        pagetopLayoutSet.setNextFocusDownId(R.id.layout_left);
         pagetopLayoutSet.setFocusable(false);
+        layoutLeft.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    layoutLeft.setBackgroundResource(R.drawable.corners_bg_textselect);
+                } else {
+                    layoutLeft.setBackgroundResource(R.drawable.corners_bg_text);
+                }
+                pagetopLayoutSet.setFocusable(true);
+            }
+        });
     }
 
     @Override
@@ -104,7 +126,7 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
         mRecyclerView.setBtnFouse(pagetopLayoutSet);
         //去掉动画,否则当notify数据的时候,焦点会丢失
         mRecyclerView.setItemAnimator(null);
-        mLayoutManager = new TvGridLayoutManager(this, 6);
+        mLayoutManager = new TvGridLayoutManager(this, 4);
         mLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setFocusable(false);
@@ -114,9 +136,9 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
     }
 
     int page = 1;
-    int pageSize = 12;
-
+    int pageSize = 9;
     int totalPage = 10;
+    SearchResultModel firstInfo;
 
     public void initData(int page_) {
         this.page = page_;
@@ -124,7 +146,13 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
         for (int i = (page - 1) * pageSize; i < (page) * pageSize; i++) {
             dataList.add(new SearchResultModel(i + 1, "title : " + (i + 1)));
         }
-        mAdapter = new PictureAdapter(this, mRecyclerView, mLayoutManager, dataList);
+        firstInfo = dataList.get(0);
+        tvFirstTitle.setText("节气" + firstInfo.id);
+        List<SearchResultModel> dataListnew = new ArrayList<>();
+        for (int i = 1; i < dataList.size(); i++) {
+            dataListnew.add(dataList.get(i));
+        }
+        mAdapter = new PictureAdapter(this, mRecyclerView, mLayoutManager, dataListnew);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -159,6 +187,9 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
                 } else {
                     ToastUtilsNew.showToast("已到最后一页");
                 }
+                break;
+            case R.id.layout_first_img:
+                ToastUtilsNew.showToast("点击了  " + firstInfo.id);
                 break;
             default:
                 break;

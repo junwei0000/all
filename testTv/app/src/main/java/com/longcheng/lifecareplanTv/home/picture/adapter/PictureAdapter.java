@@ -101,7 +101,7 @@ public class PictureAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, 
             public void onClick(View arg0) {
                 // 点击事件
                 int postion = (int) arg0.getTag();
-                ToastUtilsNew.showToast("点击了  " + postion + "");
+                ToastUtilsNew.showToast("点击了  " + mDataList.get(postion).id);
             }
         });
         /**
@@ -110,7 +110,7 @@ public class PictureAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, 
          * mRecyclerView.setNextFocusRightId();//如果是到了右边缘,设置右边一排的view网右的焦点
          */
         if (mRecyclerView.isLeftEdge(position)) {
-            viewHolder.itemView.setNextFocusLeftId(R.id.layout_left);
+            viewHolder.itemView.setNextFocusLeftId(R.id.layout_first_img);
         }
         if (mRecyclerView.isRightEdge(position)) {
             viewHolder.itemView.setNextFocusLeftId(R.id.layout_right);

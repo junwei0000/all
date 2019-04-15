@@ -349,17 +349,16 @@ public class ConfigUtils {
     /**
      * 设置选中布局高亮
      *
-     * @param mTextView
+     * @param mView
      */
-    public static void setSelectFouseText(View mTextView) {
-        mTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    public static void setSelectFouseText(View mView) {
+        mView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    Log.e("OnFocusChange", "OnFocusChange=" + hasFocus);
-                    mTextView.setBackgroundResource(R.drawable.corners_bg_textselect);
+                    mView.setBackgroundResource(R.drawable.corners_bg_textselect);
                 } else {
-                    mTextView.setBackgroundResource(R.drawable.corners_bg_text);
+                    mView.setBackgroundResource(R.drawable.corners_bg_text);
                 }
             }
         });
