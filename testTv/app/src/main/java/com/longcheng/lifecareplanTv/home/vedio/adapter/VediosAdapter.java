@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplanTv.home.vedio.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,7 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplanTv.R;
+import com.longcheng.lifecareplanTv.home.set.SetActivity;
+import com.longcheng.lifecareplanTv.home.vedio.activity.VediosPlayActivity;
 import com.longcheng.lifecareplanTv.utils.DensityUtil;
+import com.longcheng.lifecareplanTv.utils.PlayerUtils;
 import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerAdapter;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerViewHolder;
@@ -120,7 +124,13 @@ public class VediosAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, S
                 public void onClick(View arg0) {
                     // 点击事件
                     int postion = (int) arg0.getTag();
-                    ToastUtilsNew.showToast("点击了  " + postion + "");
+                    String url;
+                    if(postion==0){
+                        url="http://test.t.asdyf.com/uploads/02096c7f81ab578308ee69de361420c5.mp4";
+                    }else{
+                        url="http://v.weishi.qq.com/v.weishi.qq.com/szg_831572820_1047_97d58ea5cc3f4ba2bf3c0e2a333evide.f0.mp4?dis_k=6a16559499231bab5ff50e4a32649a04&dis_t=1555320248&guid=0508AFC000E081E13F01036CF26192E5&fromtag=0&personid=h5";
+                    }
+                    PlayerUtils.getINSTANCE().playNetworkVideo(context, url);
                 }
             });
             /**

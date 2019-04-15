@@ -20,6 +20,7 @@ import com.longcheng.lifecareplanTv.base.BaseActivityMVP;
 import com.longcheng.lifecareplanTv.home.picture.adapter.PictureAdapter;
 import com.longcheng.lifecareplanTv.home.set.SetActivity;
 import com.longcheng.lifecareplanTv.login.bean.LoginAfterBean;
+import com.longcheng.lifecareplanTv.utils.AnimUtils;
 import com.longcheng.lifecareplanTv.utils.ConfigUtils;
 import com.longcheng.lifecareplanTv.utils.DatesUtils;
 import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
@@ -168,49 +169,6 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
         pageTopTvTime.setText(time);
     }
 
-    Animation myleftAnim;
-    Animation myrightAnim;
-
-    /**
-     * 淡入淡出动画方法
-     */
-    public void alpha() {
-        // 创建透明度动画，第一个参数是开始的透明度，第二个参数是要转换到的透明度
-        AlphaAnimation alphaAni = new AlphaAnimation(0.4f, 1f);
-        //设置动画执行的时间，单位是毫秒
-        alphaAni.setDuration(800);
-        // 设置动画结束后停止在哪个状态（true表示动画完成后的状态）
-//        alphaAni.setFillAfter(false);
-        // true动画结束后回到开始状态
-        alphaAni.setFillBefore(true);
-        // 设置动画重复次数 // -1或者Animation.INFINITE表示无限重复，正数表示重复次数，0表示不重复只播放一次
-        alphaAni.setRepeatCount(0);
-        // 设置动画模式（Animation.REVERSE设置循环反转播放动画,Animation.RESTART每次都从头开始）
-        alphaAni.setRepeatMode(Animation.REVERSE); // 启动动画
-        layout_cont.startAnimation(alphaAni);
-    }
-
-    /**
-     * 设置从左向右移动
-     */
-    private void setMoveToRight() {
-        if (myrightAnim == null) {
-            myrightAnim = AnimationUtils.loadAnimation(mActivity, R.anim.out_to_rigth);
-            myrightAnim.setFillAfter(false);//android动画结束后停在结束位置
-        }
-        layout_cont.startAnimation(myrightAnim);
-    }
-
-    /**
-     * 设置从右向左移动
-     */
-    private void setMoveToLeft() {
-        if (myleftAnim == null) {
-            myleftAnim = AnimationUtils.loadAnimation(mActivity, R.anim.out_to_left);
-            myleftAnim.setFillAfter(false);//android动画结束后停在结束位置
-        }
-        layout_cont.startAnimation(myleftAnim);
-    }
 
     @Override
     public void onClick(View v) {
@@ -222,7 +180,7 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
                 break;
             case R.id.layout_left:
                 if (page > 1) {
-                    setMoveToRight();
+                    AnimUtils.getINSTANCE().setMoveToRight(layout_cont);
                     initData(page - 1);
                 } else {
                     ToastUtilsNew.showToast("已到第一页");
@@ -230,7 +188,7 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
                 break;
             case R.id.layout_right:
                 if (page < totalPage) {
-                    setMoveToLeft();
+                    AnimUtils.getINSTANCE().setMoveToLeft(layout_cont);
                     initData(page + 1);
                 } else {
                     ToastUtilsNew.showToast("已到最后一页");
