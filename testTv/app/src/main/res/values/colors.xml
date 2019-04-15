@@ -14,6 +14,8 @@
     <color name="transparent">#00000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="QRcode_color">#65A8DF</color>
+    <color name="darkblue">#28376f</color>
+
     <!--个人中心-->
     <color name="color_232323">#232323</color>
     <color name="color_464646">#464646</color>

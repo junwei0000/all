@@ -8,18 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplanTv.R;
-import com.longcheng.lifecareplanTv.utils.DensityUtil;
 import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerAdapter;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerViewHolder;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.FocusUtil;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.SearchResultModel;
-import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerView;
-import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerViewList;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.TvRecyclerViewPic;
 
 import java.util.List;
@@ -163,18 +159,19 @@ public class PictureAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, 
 
         @Override
         public void focusIn() {
-            layout_img.setBackgroundResource(R.drawable.corners_bg_textselect);
+            layout_img.setBackgroundResource(R.drawable.corners_bg_selectred);
         }
 
         @Override
         public void focusOut() {
-            layout_img.setBackgroundResource(R.drawable.corners_bg_text);
+            layout_img.setBackgroundResource(R.drawable.corners_bg_selectdarkblue);
         }
 
         public void setData(final SearchResultModel model) {
             if (model == null) {
                 return;
             }
+            layout_img.setBackgroundResource(R.drawable.corners_bg_selectdarkblue);
             tvResultTitle.setText("节气 " + model.id + "");
         }
     }

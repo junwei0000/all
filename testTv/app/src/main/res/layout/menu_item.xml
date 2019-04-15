@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginRight="@dimen/padd_imgtextleftright"
-    android:background="@drawable/selector_item_focus_change_bg"
+    android:background="@drawable/selector_item_focuschangebg"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:focusable="true"

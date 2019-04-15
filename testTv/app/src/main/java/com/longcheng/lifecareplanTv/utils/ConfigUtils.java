@@ -338,7 +338,7 @@ public class ConfigUtils {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    mTextView.setBackgroundResource(R.drawable.corners_bg_btnselect);
+                    mTextView.setBackgroundResource(R.drawable.corners_bg_selectbtn);
                 } else {
                     mTextView.setBackgroundResource(R.drawable.corners_bg_btn);
                 }
@@ -356,14 +356,30 @@ public class ConfigUtils {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    mView.setBackgroundResource(R.drawable.corners_bg_textselect);
+                    mView.setBackgroundResource(R.drawable.corners_bg_selectred);
                 } else {
-                    mView.setBackgroundResource(R.drawable.corners_bg_text);
+                    mView.setBackgroundResource(R.drawable.corners_bg_transparent);
                 }
             }
         });
     }
-
+    /**
+     * 设置选中布局高亮
+     *
+     * @param mView
+     */
+    public static void setSelectFouseImg(View mView) {
+        mView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mView.setBackgroundResource(R.drawable.corners_bg_selectred);
+                } else {
+                    mView.setBackgroundResource(R.drawable.corners_bg_selectdarkblue);
+                }
+            }
+        });
+    }
     private String getHtmlData(String bodyHTML) {
         String head = "<head><style>img{max-width:100%; width:100%; height:auto;}</style></head>";
         return "<html>" + head + "<body>" + bodyHTML + "</body></html>";

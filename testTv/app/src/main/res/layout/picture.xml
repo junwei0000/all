@@ -59,6 +59,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="3dp"
                     android:layout_weight="1"
+                    android:background="@drawable/corners_bg_selectdarkblue"
                     android:focusableInTouchMode="true"
                     android:nextFocusUp="@+id/pagetop_layout_set"
                     android:orientation="vertical"

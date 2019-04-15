@@ -82,9 +82,9 @@ public class MenusAdapter extends BaseAdapterHelper<MenuInfo> {
             mHolder = (ViewHolder) convertView.getTag();
         }
         if (selectItem == position) {
-            convertView.setBackgroundResource(R.drawable.corners_bg_textselect);
+            convertView.setBackgroundResource(R.drawable.corners_bg_selectred);
         } else {
-            convertView.setBackgroundResource(R.drawable.corners_bg_text);
+            convertView.setBackgroundResource(R.drawable.corners_bg_transparent);
         }
         MenuInfo mInfo = list.get(position);
         mHolder.imgbg.setBackgroundResource(mInfo.getBgImgId());

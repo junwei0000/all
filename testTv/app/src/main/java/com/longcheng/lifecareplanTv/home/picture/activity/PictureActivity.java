@@ -2,10 +2,8 @@ package com.longcheng.lifecareplanTv.home.picture.activity;
 
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 图片
@@ -103,7 +100,7 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
         layoutFirstImg.setOnClickListener(this);
         ConfigUtils.getINSTANCE().setSelectFouseText(pagetopLayoutSet);
         ConfigUtils.getINSTANCE().setSelectFouseText(layoutRight);
-        ConfigUtils.getINSTANCE().setSelectFouseText(layoutFirstImg);
+        ConfigUtils.getINSTANCE().setSelectFouseImg(layoutFirstImg);
         pagetopLayoutSet.setNextFocusLeftId(R.id.layout_left);
         pagetopLayoutSet.setNextFocusRightId(R.id.layout_right);
         pagetopLayoutSet.setNextFocusDownId(R.id.layout_left);
@@ -112,9 +109,9 @@ public class PictureActivity extends BaseActivityMVP<PictureContract.View, Pictu
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    layoutLeft.setBackgroundResource(R.drawable.corners_bg_textselect);
+                    layoutLeft.setBackgroundResource(R.drawable.corners_bg_selectred);
                 } else {
-                    layoutLeft.setBackgroundResource(R.drawable.corners_bg_text);
+                    layoutLeft.setBackgroundResource(R.drawable.corners_bg_transparent);
                 }
                 pagetopLayoutSet.setFocusable(true);
             }
