@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplanTv.R;
+import com.longcheng.lifecareplanTv.utils.DensityUtil;
 import com.longcheng.lifecareplanTv.utils.ToastUtilsNew;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerAdapter;
 import com.longcheng.lifecareplanTv.utils.tvrecyclerview.BaseRecyclerViewHolder;
@@ -152,9 +153,10 @@ public class PictureAdapter extends BaseRecyclerAdapter<BaseRecyclerViewHolder, 
             layout_img = (LinearLayout) itemView.findViewById(R.id.layout_img);
             ivResultImage = (ImageView) itemView.findViewById(R.id.iv_result_image);
             tvResultTitle = (TextView) itemView.findViewById(R.id.tv_result_title);
-//            int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 100)) / 4;
-//            int heigth = (int) (width * 0.7);
-//            ivResultImage.setLayoutParams(new LinearLayout.LayoutParams(width, heigth));
+
+            int width = (((DensityUtil.screenWith(context) * 8 / 10) * 4 / 6) - DensityUtil.dip2px(context, 24)) / 4;
+            int heigth = (int) (width * 1.184);
+            ivResultImage.setLayoutParams(new LinearLayout.LayoutParams(width, heigth));
         }
 
         @Override
