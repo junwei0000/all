@@ -218,6 +218,10 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.layout_volunteerlist)
     LinearLayout layout_volunteerlist;
 
+    @BindView(R.id.layout_partygroup)
+    LinearLayout layout_partygroup;
+    @BindView(R.id.layout_creditor)
+    LinearLayout layout_creditor;
 
     @BindView(R.id.layout_functionstatus)
     LinearLayout layout_functionstatus;
@@ -306,6 +310,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         layoutJiuzhen.setOnClickListener(this);
         usercenter_relay_receiving.setOnClickListener(this);
         layout_volunteerlist.setOnClickListener(this);
+        layout_partygroup.setOnClickListener(this);
+        layout_creditor.setOnClickListener(this);
         layout_functionstatus.setOnClickListener(this);
         layout_commissioner.setOnClickListener(this);
 
@@ -399,10 +405,20 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (data.issQimingSponsorUser()) {
             FunctionGVlist1.add(new FunctionGVItemBean("启明星", R.id.usercenter_relay_myStar, R.mipmap.my_star_icon));
         }
+        int isPartyGroupLeader = data.getIsPartyGroupLeader();
+        if (isPartyGroupLeader == 0) {
+        } else {
+            FunctionGVlist1.add(new FunctionGVItemBean("党小组审批", R.id.layout_partygroup, R.mipmap.my_thegroupleader_icon));
+        }
         int isPartymember = data.getIsPartymember();
         if (isPartymember == 0) {
         } else {
             FunctionGVlist1.add(new FunctionGVItemBean("志愿者列表", R.id.layout_volunteerlist, R.mipmap.my_volunteers_icon));
+        }
+        int isVolunteerCreditor = data.getIsVolunteerCreditor();
+        if (isVolunteerCreditor == 0) {
+        } else {
+            FunctionGVlist1.add(new FunctionGVItemBean("债权人", R.id.layout_creditor, R.mipmap.my_debt_icon));
         }
         FunctionAdapter mFunctionAdapter1 = new FunctionAdapter(mContext, FunctionGVlist1);
         gongnengn_gv1.setAdapter(mFunctionAdapter1);
@@ -466,6 +482,20 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent = new Intent(mContext, VolunteerH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartymember_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.layout_creditor://债权人
+                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.layout_partygroup://党小组审批
+                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getPartyGroupLeaderUrl());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -1227,6 +1257,20 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             layout_volunteerlist.setVisibility(View.VISIBLE);
         }
+
+        int isPartyGroupLeader = data.getIsPartyGroupLeader();
+        if (isPartyGroupLeader == 0) {
+            layout_partygroup.setVisibility(View.GONE);
+        } else {
+            layout_partygroup.setVisibility(View.VISIBLE);
+        }
+        int isVolunteerCreditor = data.getIsVolunteerCreditor();
+        if (isVolunteerCreditor == 0) {
+            layout_creditor.setVisibility(View.GONE);
+        } else {
+            layout_creditor.setVisibility(View.VISIBLE);
+        }
+
         about_me_url = mGetHomeInfoBean.getAbout_me_url();
         isDirectorOrTeamLeader = mGetHomeInfoBean.getIsDirectorOrTeamLeader();
         isUnopenedRedPackage = mGetHomeInfoBean.getIsUnopenedRedPackage();

@@ -115,6 +115,46 @@ public class GetHomeInfoBean implements Serializable {
 
     private int is_show_invitation;//是否显示变更邀请人  0 不显示 1 显示
 
+
+    private int isPartyGroupLeader;//是否党小组组长 0：否 1：是
+    private String partyGroupLeaderUrl;//党小组审核地址
+
+    private int isVolunteerCreditor;//是否债权人 0：否 1：是
+    private String volunteerCreditorUrl;//债权人审核地址
+
+
+    public int getIsPartyGroupLeader() {
+        return isPartyGroupLeader;
+    }
+
+    public void setIsPartyGroupLeader(int isPartyGroupLeader) {
+        this.isPartyGroupLeader = isPartyGroupLeader;
+    }
+
+    public String getPartyGroupLeaderUrl() {
+        return partyGroupLeaderUrl;
+    }
+
+    public void setPartyGroupLeaderUrl(String partyGroupLeaderUrl) {
+        this.partyGroupLeaderUrl = partyGroupLeaderUrl;
+    }
+
+    public int getIsVolunteerCreditor() {
+        return isVolunteerCreditor;
+    }
+
+    public void setIsVolunteerCreditor(int isVolunteerCreditor) {
+        this.isVolunteerCreditor = isVolunteerCreditor;
+    }
+
+    public String getVolunteerCreditorUrl() {
+        return volunteerCreditorUrl;
+    }
+
+    public void setVolunteerCreditorUrl(String volunteerCreditorUrl) {
+        this.volunteerCreditorUrl = volunteerCreditorUrl;
+    }
+
     public int getIs_show_invitation() {
         return is_show_invitation;
     }
