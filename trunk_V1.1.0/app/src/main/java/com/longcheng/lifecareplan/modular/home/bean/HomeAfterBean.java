@@ -32,16 +32,6 @@ public class HomeAfterBean implements Serializable {
     private String kn_url;
     private int is_show_knp;
 
-    private List<HomeItemBean> layer;
-
-
-    public List<HomeItemBean> getLayer() {
-        return layer;
-    }
-
-    public void setLayer(List<HomeItemBean> layer) {
-        this.layer = layer;
-    }
 
     public int getIs_show_knp() {
         return is_show_knp;
