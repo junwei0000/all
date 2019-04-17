@@ -78,25 +78,6 @@ public class HomeItemBean implements Serializable {
     private int status;
     private String avatar;
 
-
-    private String href;
-
-    public String getAdd_time() {
-        return add_time;
-    }
-
-    public void setAdd_time(String add_time) {
-        this.add_time = add_time;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
-    }
-
     public int getSort() {
         return sort;
     }

@@ -1043,7 +1043,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             return;
         }
         if (actionDialog == null) {
-            actionDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mine_action);// 创建Dialog并设置样式主题
+            actionDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
             actionDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = actionDialog.getWindow();
             window.setGravity(Gravity.CENTER);
