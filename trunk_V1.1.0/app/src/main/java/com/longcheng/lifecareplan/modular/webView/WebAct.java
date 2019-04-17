@@ -18,6 +18,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ActivityManager;
@@ -44,7 +45,9 @@ import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.AblumWebUtils;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.LocationUtils;
+import com.longcheng.lifecareplan.utils.SaveImageUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -367,6 +370,9 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.registerHandler("volunteerList_LifeIndemnify", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
+                if (!data.contains("http")) {
+                    data = Config.BASE_HEAD_URL + data;
+                }
                 Log.e("registerHandler", "data=" + data);
                 Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -486,7 +492,34 @@ public abstract class WebAct extends BaseActivity {
                 startActivity(intent);
             }
         });
+        //收款码-保存图片
+        mBridgeWebView.registerHandler("receiptCodeImageUrl", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            final Bitmap myBitmap = Glide.with(mActivity)//上下文
+                                    .load(data)//url
+                                    .asBitmap() //必须
+                                    .centerCrop()
+                                    .into(DensityUtil.screenWith(mActivity), DensityUtil.screenHigh(mActivity))
+                                    .get();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    SaveImageUtils.saveImageToGallerys(mActivity, myBitmap);
+                                }
+                            });
 
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
     }
 
     /**

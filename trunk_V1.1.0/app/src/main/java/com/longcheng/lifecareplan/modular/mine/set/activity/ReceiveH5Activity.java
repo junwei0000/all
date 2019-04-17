@@ -121,34 +121,7 @@ public class ReceiveH5Activity extends WebAct {
                 doFinish();
             }
         });
-        //收款码-保存图片
-        mBridgeWebView.registerHandler("receiptCodeImageUrl", new BridgeHandler() {
-            @Override
-            public void handler(String data, CallBackFunction function) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            final Bitmap myBitmap = Glide.with(mActivity)//上下文
-                                    .load(data)//url
-                                    .asBitmap() //必须
-                                    .centerCrop()
-                                    .into(DensityUtil.screenWith(mActivity), DensityUtil.screenHigh(mActivity))
-                                    .get();
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    SaveImageUtils.saveImageToGallerys(mActivity, myBitmap);
-                                }
-                            });
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-            }
-        });
     }
 
     private String PaymentStatus = "";
