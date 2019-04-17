@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.utils;
 import android.app.Activity;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.File;
 
@@ -43,8 +44,10 @@ public class ConstantManager {
 
     public static String getWeChatAppId() {
         if (!TextUtils.isEmpty(WeChatAppType) && WeChatAppType.equals(WECHATAPPIDBaoZhang)) {
+            Log.e("ResponseBody","getWeChatAppId  ="+WECHATAPPIDBaoZhang);
             return WECHATAPPIDBaoZhang;
         } else {
+            Log.e("ResponseBody","getWeChatAppId  ="+WECHATAPPID);
             return WECHATAPPID;
         }
     }
