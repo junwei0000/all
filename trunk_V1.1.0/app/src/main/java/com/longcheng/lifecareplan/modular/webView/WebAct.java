@@ -367,6 +367,7 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.registerHandler("volunteerList_LifeIndemnify", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
                 Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data);

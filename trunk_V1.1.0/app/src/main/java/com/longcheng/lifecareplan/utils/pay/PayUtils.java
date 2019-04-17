@@ -254,8 +254,7 @@ public class PayUtils {
         /**
          * 每次调起时判断一下 支付商户类别
          */
-        String mWeChatAppType = payWeChatBean.getWeChatPayType();
-        if (!TextUtils.isEmpty(mWeChatAppType) && mWeChatAppType.equals(ConstantManager.WECHATAPPIDBaoZhang)) {
+        if (payWeChatBean.getAppid().equals(ConstantManager.WECHATAPPIDBaoZhang)) {
             ConstantManager.WeChatAppType = ConstantManager.WECHATAPPIDBaoZhang;
         } else {
             ConstantManager.WeChatAppType = "";

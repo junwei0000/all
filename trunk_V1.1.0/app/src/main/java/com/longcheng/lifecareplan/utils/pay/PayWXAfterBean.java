@@ -40,23 +40,6 @@ public class PayWXAfterBean {
     private String payInfo;
 
 
-    /**
-     * 设置微信支付类型
-     */
-    private String WeChatPayType="";
-
-    public String getWeChatPayType() {
-        return WeChatPayType;
-    }
-
-    /**
-     * 设置微信支付类型(默认和工会商户)
-     * @param weChatPayType
-     */
-    public void setWeChatPayType(String weChatPayType) {
-        WeChatPayType = weChatPayType;
-    }
-
     public PayWXAfterBean() {
 
     }

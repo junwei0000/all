@@ -144,6 +144,7 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
     private int group_id;
     private int team_id;
     private int role;//角色 1：主任 2：执行主任
+    int isDisplayChangeTeam;//是否显示 换公社 功能
     private int is_head;
     private String team_name;
     private AblumUtils mAblumUtils;
@@ -163,9 +164,11 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
                 break;
             case R.id.frame_thumb:
                 if (role == 0) {//社员
-                    intent = new Intent(mContext, CommuneJoinListActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
+                    if (isDisplayChangeTeam != 0) {
+                        intent = new Intent(mContext, CommuneJoinListActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                    }
                 } else {//更换头像
                     mAblumUtils.onAddAblumClick();
                 }
@@ -329,6 +332,12 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
                     ivChangethumb.setVisibility(View.VISIBLE);
                     layoutBottom.setVisibility(View.GONE);
                     tv_bang.setVisibility(View.GONE);
+                    isDisplayChangeTeam = mCommuneAfterBean.getIsDisplayChangeTeam();
+                    if (isDisplayChangeTeam == 0) {
+                        layoutChangethumb.setVisibility(View.INVISIBLE);
+                    } else {
+                        layoutChangethumb.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     tvChangethumb.setText("更换头像");
                     ivChangethumb.setVisibility(View.GONE);

@@ -41,6 +41,8 @@ public class CommuneAfterBean {
     @SerializedName("isGroupLikes")
     private int isGroupLikes;
 
+    @SerializedName("isDisplayChangeTeam")
+    private int isDisplayChangeTeam;
     // 能量排行
     @SerializedName("ranking")
     private List<CommuneItemBean> ranking;
@@ -65,6 +67,14 @@ public class CommuneAfterBean {
     private int teamRotation;
     @SerializedName("rotation")
     private int rotation;
+
+    public int getIsDisplayChangeTeam() {
+        return isDisplayChangeTeam;
+    }
+
+    public void setIsDisplayChangeTeam(int isDisplayChangeTeam) {
+        this.isDisplayChangeTeam = isDisplayChangeTeam;
+    }
 
     public int getTeamRotation() {
         return teamRotation;
