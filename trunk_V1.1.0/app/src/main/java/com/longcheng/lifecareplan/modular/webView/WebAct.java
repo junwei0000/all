@@ -510,12 +510,12 @@ public abstract class WebAct extends BaseActivity {
                     @Override
                     public void run() {
                         try {
+                            int width = DensityUtil.getPhoneWidHeigth(mActivity).widthPixels;
+                            int height = DensityUtil.getPhoneWidHeigth(mActivity).heightPixels;
                             final Bitmap myBitmap = Glide.with(mActivity)//上下文
                                     .load(data)//url
                                     .asBitmap() //必须
-                                    .centerCrop()
-//                                    .into(DensityUtil.screenWith(mActivity), DensityUtil.screenHigh(mActivity))
-                                    .into(1298, 1956)
+                                    .into(width, height)
                                     .get();
                             runOnUiThread(new Runnable() {
                                 @Override

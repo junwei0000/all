@@ -18,6 +18,7 @@ import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.set.bean.PushAfterBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.PushDataBean;
@@ -108,7 +109,7 @@ public class NotServiceActivity extends WebAct {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String url = "http://t.asdyf.com/home/upgrade/index";
+                String url = Config.BASE_URL+"home/upgrade/index";
                 //第一步：创建HttpClient对象
                 HttpClient httpCient = new DefaultHttpClient();
                 //第二步：创建代表请求的对象,参数是访问的服务器地址
