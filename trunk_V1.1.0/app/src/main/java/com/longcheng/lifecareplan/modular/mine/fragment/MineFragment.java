@@ -486,7 +486,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_creditor://债权人
-                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
                 startActivity(intent);
