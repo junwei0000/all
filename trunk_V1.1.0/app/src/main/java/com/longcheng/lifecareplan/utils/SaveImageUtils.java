@@ -89,7 +89,7 @@ public class SaveImageUtils {
         Uri uri = Uri.fromFile(file);
         intent.setData(uri);
         context.sendBroadcast(intent);
-        ToastUtils.showToast("保存成功");
+        ToastUtils.showToast("保存相册成功");
     }
 
 }
