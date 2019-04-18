@@ -122,6 +122,15 @@ public class GetHomeInfoBean implements Serializable {
     private int isVolunteerCreditor;//是否债权人 0：否 1：是
     private String volunteerCreditorUrl;//债权人审核地址
 
+    private String debtwithdrawUrl;//提现地址
+
+    public String getDebtwithdrawUrl() {
+        return debtwithdrawUrl;
+    }
+
+    public void setDebtwithdrawUrl(String debtwithdrawUrl) {
+        this.debtwithdrawUrl = debtwithdrawUrl;
+    }
 
     public int getIsPartyGroupLeader() {
         return isPartyGroupLeader;

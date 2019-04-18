@@ -19,11 +19,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="@dimen/padd_topbottom">
 
             <com.longcheng.lifecareplan.utils.myview.MyGridView
                 android:id="@+id/helpWith_gvtop"
-                style="@style/view_padd"
+                style="@style/view_paddlefgtright"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -35,7 +36,53 @@
                 android:horizontalSpacing="@dimen/padd_leftright"
                 android:numColumns="2"
                 android:scrollbars="none"
-                android:verticalSpacing="@dimen/padd_topbottom" />
+                android:verticalSpacing="@dimen/padd_leftright" />
+
+            <RelativeLayout
+                android:id="@+id/layout_autohelp"
+                style="@style/view_marginlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_topbottom"
+                android:layout_marginTop="@dimen/padd_leftright"
+                android:background="@mipmap/wisheach_icon_autohelp"
+                android:paddingLeft="@dimen/dp8"
+                android:paddingRight="@dimen/padd_leftright">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="智能互祝"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="bottom"
+                    android:paddingRight="@dimen/dp72">
+
+                    <ImageView
+                        android:id="@+id/iv_autohelpimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_autohelpNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="今日您送出0次祝福"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_zhu_size" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,12 +100,12 @@
                 android:fadeScrollbars="false"
                 android:fadingEdge="none"
                 android:gravity="center"
-                android:horizontalSpacing="@dimen/padd_topbottom"
-                android:numColumns="4"
+                android:horizontalSpacing="@dimen/padd_leftright"
+                android:numColumns="5"
                 android:paddingBottom="@dimen/dp20"
                 android:paddingTop="@dimen/dp20"
                 android:scrollbars="none"
-                android:verticalSpacing="@dimen/padd_topbottom" />
+                android:verticalSpacing="@dimen/padd_leftright" />
 
             <LinearLayout
                 android:layout_width="match_parent"

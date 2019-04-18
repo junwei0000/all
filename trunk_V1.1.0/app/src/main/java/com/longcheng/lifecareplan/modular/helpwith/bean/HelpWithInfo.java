@@ -11,16 +11,26 @@ public class HelpWithInfo implements Serializable {
     private String name2;
     private int bgColorId;
     private int imgId;
+    private String skipurl;
 
     public HelpWithInfo(String name, int imgId) {
         this.name = name;
         this.imgId = imgId;
     }
 
-    public HelpWithInfo(String name, String name2, int bgColorId) {
+    public HelpWithInfo(String name, String name2, int bgColorId, String skipurl) {
         this.name = name;
         this.name2 = name2;
         this.bgColorId = bgColorId;
+        this.skipurl = skipurl;
+    }
+
+    public String getSkipurl() {
+        return skipurl;
+    }
+
+    public void setSkipurl(String skipurl) {
+        this.skipurl = skipurl;
     }
 
     public String getName2() {
