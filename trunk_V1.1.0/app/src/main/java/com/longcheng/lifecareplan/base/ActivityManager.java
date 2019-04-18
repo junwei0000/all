@@ -34,6 +34,10 @@ public class ActivityManager {
         return instance;
     }
 
+    public static int getActivityStackSize() {
+        return activityStack.size();
+    }
+
     public Activity getCurrentActivity() {
         if (activityStack.size() == 0) {
             return null;

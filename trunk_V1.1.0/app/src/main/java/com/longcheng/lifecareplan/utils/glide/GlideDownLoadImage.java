@@ -142,7 +142,8 @@ public class GlideDownLoadImage {
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                         //图片加载完成
-                        view.setImageDrawable(resource);
+                        if (view != null)
+                            view.setImageDrawable(resource);
                     }
                 });
     }
@@ -332,7 +333,8 @@ public class GlideDownLoadImage {
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                         //图片加载完成
-                        view.setImageDrawable(resource);
+                        if (view != null)
+                            view.setImageDrawable(resource);
                     }
                 });
     }
@@ -355,7 +357,8 @@ public class GlideDownLoadImage {
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                         //图片加载完成
-                        view.setImageDrawable(resource);
+                        if (view != null)
+                            view.setImageDrawable(resource);
                     }
                 });
     }

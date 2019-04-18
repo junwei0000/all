@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.autolayout.utils.L;
+import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
@@ -56,6 +58,7 @@ import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtil
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
+import com.longcheng.lifecareplan.modular.mine.set.activity.NotServiceActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
 import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
@@ -421,60 +424,79 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             BottomMenuActivity.updatedialogstatus = false;
             return;
         }
-        if (CononDialog == null) {
-            CononDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
-            CononDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = CononDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            CononDialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = CononDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4;
-            CononDialog.getWindow().setAttributes(p); //设置生效
-            fram_bg = (ImageView) CononDialog.findViewById(R.id.fram_bg);
-            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.433)));
-            LinearLayout layout_cancel = (LinearLayout) CononDialog.findViewById(R.id.layout_cancel);
+        try {
+            if (showLayerIndex + 1 < layer.size()) {
+                showLayerIndex++;
+            } else {
+                showLayerIndex = 0;
+            }
+            if (CononDialog == null) {
+                CononDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+                CononDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = CononDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
 
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CononDialog.dismiss();
-                }
-            });
-            fram_bg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CononDialog.dismiss();/**/
-                    String url = layer.get(showLayerIndex).getHref();
-                    if (!TextUtils.isEmpty(url) && url.contains("knp/index")) {
-                        Intent intent = new Intent(mContext, ConnonH5Activity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("kn_url", "" + url);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                    } else if (!TextUtils.isEmpty(url) && url.contains("life/index")) {
-                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("html_url", "" + url);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                    } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {
-                        Intent intent = new Intent(mContext, ActionH5Activity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("kn_url", "" + url);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                showD();
+
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = CononDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                CononDialog.getWindow().setAttributes(p); //设置生效
+                fram_bg = (ImageView) CononDialog.findViewById(R.id.fram_bg);
+                fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.433)));
+                LinearLayout layout_cancel = (LinearLayout) CononDialog.findViewById(R.id.layout_cancel);
+
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CononDialog.dismiss();
                     }
+                });
+                fram_bg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CononDialog.dismiss();/**/
+                        String url = layer.get(showLayerIndex).getHref();
+                        if (!TextUtils.isEmpty(url) && url.contains("knp/index")) {
+                            Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("kn_url", "" + url);
+                            startActivity(intent);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                        } else if (!TextUtils.isEmpty(url) && url.contains("life/index")) {
+                            Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("html_url", "" + url);
+                            startActivity(intent);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                        } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {
+                            Intent intent = new Intent(mContext, ActionH5Activity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("kn_url", "" + url);
+                            startActivity(intent);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                        }
 
 
-                }
-            });
-        } else {
+                    }
+                });
+            } else {
+                showD();
+            }
+            String img = layer.get(showLayerIndex).getImg();
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, img, fram_bg, 0);
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void showD() {
+        int mActivitySize = ActivityManager.getScreenManager().getActivityStackSize();
+        if (mActivitySize == 1) {
             CononDialog.show();
         }
-        String img = layer.get(showLayerIndex).getImg();
-        GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, img, fram_bg, 0);
     }
 
     HashMap<String, HomeAfterBean> HomeAfterDataMap = new HashMap<>();
@@ -488,11 +510,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (mHomeAfterBean != null) {
             layer = mHomeAfterBean.getLayer();
             if (layer != null && layer.size() > 0) {
-                if (showLayerIndex + 1 < layer.size()) {
-                    showLayerIndex++;
-                } else {
-                    showLayerIndex = 0;
-                }
                 showCononDialog();
             }
             kn_url = mHomeAfterBean.getKn_url();
@@ -599,7 +616,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             //防止数据加载有跳动
             frame_bottom.setVisibility(View.VISIBLE);
         }
-        isFirstComIn = false;
         ListUtils.getInstance().RefreshCompleteS(main_sv);
     }
 
@@ -906,13 +922,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (vp != null && !vp.isFlipping()) {
             vp.startFlipping();
         }
-        Log.e("super.onResume", "onResume");
-        if (!isFirstComIn) {
+        Log.e("super.onResume", "onResume " + FirstComIn);
+        if (!FirstComIn) {
             reLoadData();
         }
     }
-
-    boolean isFirstComIn = true;
 
     @Override
     public void onPause() {
@@ -920,6 +934,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (vp != null && vp.isFlipping()) {
             vp.stopFlipping();
         }
+        dismissCononDialog();
         Log.e("super.onResume", "onPause");
     }
 

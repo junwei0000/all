@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.modular.mine.set.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -24,10 +25,16 @@ import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
+import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,23 +46,20 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * 服务器升级提示
  */
-public class NotServiceActivity extends BaseActivity {
+public class NotServiceActivity extends WebAct {
 
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.pagetop_layout_left)
-    LinearLayout pagetopLayoutLeft;
+    @BindView(R.id.pagetop_iv_left)
+    ImageView pagetop_iv_left;
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
-    @BindView(R.id.not_date_cont)
-    TextView notDateCont;
-
 
     /**
      * 维护状态
      */
-    boolean notService = true;
+    static boolean notService = true;
 
     @Override
     public void onClick(View v) {
@@ -73,54 +77,60 @@ public class NotServiceActivity extends BaseActivity {
 
     @Override
     public int bindLayout() {
-        return R.layout.set_notservice;
+        return R.layout.activity_web;
     }
 
     @Override
     public void initView(View view) {
-        pageTopTvName.setText("系统维护");
+        pageTopTvName.setText("系统维护中");
         setOrChangeTranslucentColor(toolbar, null);
     }
 
     @Override
     public void setListener() {
-        pagetopLayoutLeft.setOnClickListener(this);
+        pagetop_iv_left.setVisibility(View.GONE);
     }
 
 
     @Override
     public void initDataAfter() {
-
+        String url = getIntent().getStringExtra("html_url");
+        loadUrl(url);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getDate();
+        sendRequestWithHttpClient();
     }
 
-    private void getDate() {
-        Observable<GetHomeInfoDataBean> observable = Api.getInstance().service.getUserHomeInfo(UserUtils.getUserId(mContext), ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<GetHomeInfoDataBean>() {
-                    @Override
-                    public void accept(GetHomeInfoDataBean responseBean) throws Exception {
-                        if (responseBean.getStatus().equals("550")) {
-                            notDateCont.setText("" + responseBean.getMsg());
-                            notService = true;
-                        } else {
-                            notService = false;
-                            doFinish();
-                        }
+    private void sendRequestWithHttpClient() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url = "http://t.asdyf.com/home/upgrade/index";
+                //第一步：创建HttpClient对象
+                HttpClient httpCient = new DefaultHttpClient();
+                //第二步：创建代表请求的对象,参数是访问的服务器地址
+                HttpGet httpGet = new HttpGet(url);
+                try {
+                    //第三步：执行请求，获取服务器发还的相应对象
+                    HttpResponse httpResponse = httpCient.execute(httpGet);
+                    //第四步：检查相应的状态是否正常：检查状态码的值是200表示正常
+                    int code = httpResponse.getStatusLine().getStatusCode();
+                    Log.e("getModifyDomainName", "code=" + code + "  notServicePage=");
+                    if (code == 200) {
+                        notService = true;
+                    } else {
+                        notService = false;
+                        doFinish();
                     }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                    }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();//这个start()方法不要忘记了
     }
-
 
     private void back() {
         if (!notService) {

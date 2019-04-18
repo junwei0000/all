@@ -10,6 +10,7 @@
     <include layout="@layout/line" />
 
     <LinearLayout
+        android:id="@+id/layout_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -30,7 +31,7 @@
             android:gravity="center_horizontal"
             android:lineSpacingMultiplier="1.4"
             android:paddingTop="@dimen/dp30"
-            android:text="请刷新或检查网络"
+            android:text="请点击刷新数据"
             android:textColor="@color/text_noclick_color"
             android:textSize="@dimen/text_contents_size" />
     </LinearLayout>
