@@ -239,11 +239,17 @@
         android:textColor="@color/text_noclick_color"
         android:textColorHint="@color/login_hint_color"
         android:textSize="@dimen/text_zhu_size" />
-
+    <TextView
+        android:paddingTop="@dimen/padd_topbottom"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_min_size"
+        android:text="您的爱心善款将用于消除志愿者债务。消除一笔债，健康两家人！" />
     <TextView
         android:id="@+id/btn_helpsure"
         style="@style/btn"
-        android:layout_alignParentBottom="true"
         android:background="@color/red"
         android:text="立即祝福" />
 
