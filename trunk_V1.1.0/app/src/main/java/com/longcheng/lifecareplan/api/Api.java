@@ -62,7 +62,7 @@ public class Api {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String url = Config.BASE_URL+"home/upgrade/index";
+                String url = Config.BASE_HEAD_URL+"home/upgrade/index";
                 //第一步：创建HttpClient对象
                 HttpClient httpCient = new DefaultHttpClient();
                 //第二步：创建代表请求的对象,参数是访问的服务器地址
