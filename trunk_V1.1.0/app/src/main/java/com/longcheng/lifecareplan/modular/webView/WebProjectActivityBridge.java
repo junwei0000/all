@@ -200,7 +200,6 @@ public class WebProjectActivityBridge extends BaseActivity {
                 payBean.setSign(jsonObject.getString("sign"));
                 payBean.setPackages(jsonObject.getString("package"));
                 payBean.setTimestamp(jsonObject.getString("timestamp"));
-                ConstantManager.isHtmlPayMethod = 1;
                 PayUtils.getWeChatPayHtml(mContext, payBean);
 
             }
@@ -228,11 +227,11 @@ public class WebProjectActivityBridge extends BaseActivity {
                     String httpContent = param.getString("http");
                     switch (v.getId()) {
                         case R.id.rl_wechat:
-                            ShareHelper.shareActionAll((Activity) mContext, SHARE_MEDIA.WEIXIN, imgUrl,
+                            ShareHelper.getINSTANCE().shareActionAll((Activity) mContext, SHARE_MEDIA.WEIXIN, imgUrl,
                                     content, httpContent, title);
                             break;
                         case R.id.rl_friends:
-                            ShareHelper.shareActionAll((Activity) mContext, SHARE_MEDIA.WEIXIN_CIRCLE, imgUrl,
+                            ShareHelper.getINSTANCE().shareActionAll((Activity) mContext, SHARE_MEDIA.WEIXIN_CIRCLE, imgUrl,
                                     content, httpContent, title);
                             break;
                     }
@@ -362,7 +361,7 @@ public class WebProjectActivityBridge extends BaseActivity {
             jsWebView.destroy();
         }
 
-        ShareHelper.release(this);
+        ShareHelper.getINSTANCE().release(this);
     }
 
     //记录用户首次点击返回键的时间

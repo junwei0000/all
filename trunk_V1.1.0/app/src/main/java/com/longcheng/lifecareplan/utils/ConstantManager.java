@@ -69,9 +69,6 @@ public class ConstantManager {
     //新版本apk的目录
     public static final String NEW_APK_PATH = SD_CARD + "BsDiff.apk";
 
-    //判断是不是H5来的支付
-    public static int isHtmlPayMethod = 0;
-
 
     //个人信息result回调
     public static final int USERINFO_FORRESULT_BINGYI = 1;

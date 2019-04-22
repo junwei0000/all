@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.utils.share;
 
 import android.app.Activity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
@@ -37,6 +39,7 @@ public class ShareUtils {
         this.thumb = thumb;
         this.targetUrl = targetUrl;
         this.title = title;
+        Log.e("ResponseBody","text= "+text+"  ;targetUrl="+targetUrl+"  ;title="+title);
         if (selectDialog == null) {
             selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_share);// 创建Dialog并设置样式主题
             selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
@@ -58,6 +61,7 @@ public class ShareUtils {
         } else {
             selectDialog.show();
         }
+        ConstantManager.WeChatAppType = "";
     }
 
     View.OnClickListener mClickListener = new View.OnClickListener() {
@@ -68,16 +72,16 @@ public class ShareUtils {
                     break;
                 case R.id.layout_wxquan:
                     if (!TextUtils.isEmpty(thumb)) {
-                        ShareHelper.shareActionAll(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, thumb, text, targetUrl, text);
+                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, thumb, text, targetUrl, text);
                     } else {
-                        ShareHelper.shareActionAll(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, text, targetUrl, text);
+                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, text, targetUrl, text);
                     }
                     break;
                 case R.id.layout_wx:
                     if (!TextUtils.isEmpty(thumb)) {
-                        ShareHelper.shareActionAll(mContext, SHARE_MEDIA.WEIXIN, thumb, text, targetUrl, title);
+                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN, thumb, text, targetUrl, title);
                     } else {
-                        ShareHelper.shareActionAll(mContext, SHARE_MEDIA.WEIXIN, text, targetUrl, title);
+                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN, text, targetUrl, title);
                     }
                     break;
                 default:

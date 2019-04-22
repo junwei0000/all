@@ -44,6 +44,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
+import com.umeng.socialize.UmengTool;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +73,8 @@ public class BaoZhangActitvty extends WebAct {
     TextView pageTopTvName;
     @BindView(R.id.pagetop_iv_rigth)
     ImageView pagetopIvRigth;
-
+    @BindView(R.id.pagetop_layout_rigth)
+    LinearLayout pagetopLayoutRigth;
     private ShareUtils mShareUtils;
 
     BaoZhangDialogUtils mDetailHelpDialogUtils;
@@ -90,7 +92,7 @@ public class BaoZhangActitvty extends WebAct {
             case R.id.pagetop_layout_left:
                 back();
                 break;
-            case R.id.pagetop_iv_rigth:
+            case R.id.pagetop_layout_rigth:
                 //分享
                 if (mShareUtils == null) {
                     mShareUtils = new ShareUtils(mActivity);
@@ -116,7 +118,7 @@ public class BaoZhangActitvty extends WebAct {
     @Override
     public void setListener() {
         super.setListener();
-        pagetopIvRigth.setOnClickListener(this);
+        pagetopLayoutRigth.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         pagetopIvRigth.setVisibility(View.GONE);
         pagetopIvRigth.setBackgroundResource(R.mipmap.wisheachdetails_share);

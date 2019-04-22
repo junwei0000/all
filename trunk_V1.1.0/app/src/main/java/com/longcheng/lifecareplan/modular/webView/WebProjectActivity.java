@@ -348,7 +348,6 @@ public class WebProjectActivity extends BaseActivity {
         @JavascriptInterface
         public void weChatPayHtml() {
             Log.i(TAG, "weChatPayHtml()");
-            ConstantManager.isHtmlPayMethod = 1;
             payJsMethod();
         }
     }

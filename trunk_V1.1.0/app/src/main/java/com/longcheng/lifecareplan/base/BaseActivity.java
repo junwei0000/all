@@ -18,6 +18,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.socialize.UmengTool;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -112,6 +113,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         initView(mContextView);
         initDataAfter();
         setListener();
+
+        //友盟配置检测弹窗提示，打包时隐藏
+//        UmengTool.checkWx(this);
     }
 
     /**

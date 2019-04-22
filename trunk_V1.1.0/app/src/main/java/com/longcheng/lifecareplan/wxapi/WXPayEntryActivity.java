@@ -33,11 +33,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         api = WXAPIFactory.createWXAPI(this, ConstantManager.getWeChatAppId());
         api.handleIntent(getIntent(), this);
         Log.i(TAG, "onCreate: ");
-        if (ConstantManager.isHtmlPayMethod == 1) {
-            ConstantManager.isHtmlPayMethod = 0;
-            Log.i(TAG, "onCreate: finish");
-            finish();
-        }
     }
 
     @Override
