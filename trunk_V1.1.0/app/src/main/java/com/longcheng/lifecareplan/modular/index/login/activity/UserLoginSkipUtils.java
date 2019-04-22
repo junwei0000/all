@@ -119,7 +119,7 @@ public class UserLoginSkipUtils {
             intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mActivity.startActivity(intents);
             mActivity.finish();
-        } else if (loginskiptostatus.equals(ConstantManager.loginSkipToHome)) {//邀请亲友登录后返回首页
+        } else if (loginskiptostatus.equals(ConstantManager.loginSkipToHome)) {//邀请亲友、每日签到、康农、扫一扫、热门行动    登录后返回首页
             intents = new Intent();
             intents.setAction(ConstantManager.MAINMENU_ACTION);
             intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);
@@ -135,12 +135,6 @@ public class UserLoginSkipUtils {
             intents = new Intent(mActivity, ActivatEnergyActivity.class);
             intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mActivity.startActivity(intents);
-            mActivity.finish();
-        } else if (loginskiptostatus.equals(ConstantManager.loginSkipToSINGIN)) {//每日签到
-            intents = new Intent();
-            intents.setAction(ConstantManager.MAINMENU_ACTION);
-            intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);
-            LocalBroadcastManager.getInstance(mActivity).sendBroadcast(intents);
             mActivity.finish();
         } else if (loginskiptostatus.equals(ConstantManager.loginSkipToEnergyDetail)) {//能量详情
             intents = new Intent(mActivity, DetailActivity.class);

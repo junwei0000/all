@@ -264,7 +264,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                             }
                         }
                     } else if (sort == 2) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToSINGIN)) {
+                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
                             intent = new Intent(mContext, ConnonH5Activity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             intent.putExtra("kn_url", "" + kn_url);
@@ -293,7 +293,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
                     } else if (sort == 5) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToSINGIN)) {
+                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
                             ((MineFragment) BottomMenuActivity.fragmentList.get(BottomMenuActivity.tab_position_mine)).signInGetInfo("signIn");
                         }
                     }
@@ -317,7 +317,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         pagetopLayoutRigth.setFocusableInTouchMode(true);
         pagetopLayoutRigth.requestFocus();
         showChache(false);
-        reLoadData();
+//        reLoadData();
         try {
             String d = CleanMessageUtil.getTotalCacheSize(mContext);
             Log.e("CleanMessageUtil", d);
@@ -418,9 +418,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 是否显示康农弹层
      */
     public void showCononDialog() {
-        String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
         if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home
-                || !loginStatus.equals(ConstantManager.loginStatus) || BottomMenuActivity.updatedialogstatus) {
+                || BottomMenuActivity.updatedialogstatus
+                || (CononDialog != null && CononDialog.isShowing())) {
             BottomMenuActivity.updatedialogstatus = false;
             return;
         }
@@ -457,27 +457,29 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     @Override
                     public void onClick(View v) {
                         CononDialog.dismiss();/**/
-                        String url = layer.get(showLayerIndex).getHref();
-                        if (!TextUtils.isEmpty(url) && url.contains("knp/index")) {
-                            Intent intent = new Intent(mContext, ConnonH5Activity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("kn_url", "" + url);
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                        } else if (!TextUtils.isEmpty(url) && url.contains("life/index")) {
-                            Intent intent = new Intent(mContext, BaoZhangActitvty.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("html_url", "" + url);
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                        } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {
-                            Intent intent = new Intent(mContext, ActionH5Activity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("kn_url", "" + url);
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                        }
+                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
+                            String url = layer.get(showLayerIndex).getHref();
+                            if (!TextUtils.isEmpty(url) && url.contains("knp/index")) {
+                                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.putExtra("kn_url", "" + url);
+                                startActivity(intent);
+                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                            } else if (!TextUtils.isEmpty(url) && url.contains("life/index")) {
+                                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.putExtra("html_url", "" + url);
+                                startActivity(intent);
+                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                            } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {
+                                Intent intent = new Intent(mContext, ActionH5Activity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.putExtra("kn_url", "" + url);
+                                startActivity(intent);
+                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                            }
 
+                        }
 
                     }
                 });
@@ -922,10 +924,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (vp != null && !vp.isFlipping()) {
             vp.startFlipping();
         }
-        Log.e("super.onResume", "onResume " + FirstComIn);
-        if (!FirstComIn) {
-            reLoadData();
-        }
+        Log.e("ResponseBody", "onResume " + FirstComIn);
+//        if (!FirstComIn) {
+        reLoadData();
+//        }
     }
 
     @Override

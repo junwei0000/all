@@ -151,8 +151,7 @@ public class ConstantManager {
     public static final String loginSkipToEnergyDetail = "loginSkipToEnergyDetail";//跳转互祝能量详情
     public static final String loginSkipToBangDan = "loginSkipToBangDan";//跳转榜单h5
     public static final String loginSkipToCommuneJoinList = "loginSkipToCommuneJoinList";//跳转加入公社
-    public static final String loginSkipToHome = "loginSkipToHome";//跳转回首页
-    public static final String loginSkipToSINGIN = "loginSkipToSINGIN";//跳转签到
+    public static final String loginSkipToHome = "loginSkipToHome";//登录后返回首页
     /**
      * 提现-----转换生命能量的倍数
      */

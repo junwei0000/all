@@ -96,6 +96,8 @@ public class Api {
         Log.e("Api", "Api-----------");
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.connectTimeout(30, TimeUnit.SECONDS);
+        httpClient.dns(new ApiDns());//自定义okhttp中dns解析 防止https第一次请求过慢
+
         OkHttpClient client = httpClient.build();
         //启用Log日志
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
