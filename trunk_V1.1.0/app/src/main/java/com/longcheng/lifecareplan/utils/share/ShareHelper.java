@@ -147,7 +147,7 @@ public class ShareHelper {
          */
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            ToastUtils.showToast("分享成功");
+//            ToastUtils.showToast("分享成功");
             Log.e("ResponseBody", "分享成功=" + platform.toString());
         }
 
@@ -168,8 +168,8 @@ public class ShareHelper {
          */
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            ToastUtils.showToast("分享取消");
-            Log.e("ResponseBody", "分享失败=" + platform.toString());
+//            ToastUtils.showToast("分享取消");
+            Log.e("ResponseBody", "分享取消=" + platform.toString());
         }
     };
 
