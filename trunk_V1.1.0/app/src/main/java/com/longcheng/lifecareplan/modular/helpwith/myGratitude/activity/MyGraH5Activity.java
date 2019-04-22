@@ -1,26 +1,14 @@
 package com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
-import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.share.ShareUtils;
-import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -36,9 +24,6 @@ public class MyGraH5Activity extends WebAct {
     LinearLayout pagetopLayoutLeft;
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
-    @BindView(R.id.pagetop_iv_rigth)
-    ImageView pagetopIvRigth;
-
 
     private String kn_url;
 
@@ -68,10 +53,7 @@ public class MyGraH5Activity extends WebAct {
     @Override
     public void setListener() {
         super.setListener();
-        pagetopIvRigth.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
-        pagetopIvRigth.setVisibility(View.GONE);
-        pagetopIvRigth.setBackgroundResource(R.mipmap.wisheachdetails_share);
     }
 
 

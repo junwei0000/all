@@ -5,10 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineContract;
 import com.longcheng.lifecareplan.utils.BitmapUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.utils.SaveImageUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
@@ -16,6 +19,8 @@ import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * 作者:MarkShuai
@@ -45,16 +50,36 @@ public class ShareHelper {
      * @Params 分享带链接 （缩略图 标题 简述）
      */
     public void shareActionAll(Activity activity, SHARE_MEDIA platform, String imgUrl, String text, String targetUrl, String title) {
-        UMImage image = new UMImage(activity, imgUrl);
-        UMWeb web = new UMWeb(targetUrl);
-        web.setTitle(title);//标题
-        web.setThumb(image);  //缩略图
-        web.setDescription(text);//描述
-        new ShareAction(activity)
-                .setPlatform(platform)
-                .withMedia(web)
-                .setCallback(shareListener)
-                .share();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap myBitmap = null;
+                UMImage image;
+                try {
+                    myBitmap = Glide.with(activity)//上下文
+                            .load(imgUrl)//url
+                            .asBitmap() //必须
+                            .into(120, 120)
+                            .get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (myBitmap == null) {
+                    image = new UMImage(activity, imgUrl);
+                } else {
+                    image = new UMImage(activity, myBitmap);
+                }
+                UMWeb web = new UMWeb(targetUrl);
+                web.setTitle(title);//标题
+                web.setThumb(image);  //缩略图
+                web.setDescription(text);//描述
+                new ShareAction(activity)
+                        .setPlatform(platform)
+                        .withMedia(web)
+                        .setCallback(shareListener)
+                        .share();
+            }
+        }).start();
     }
 
     /**

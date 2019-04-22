@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.healthydelivery.detail.activity;
 
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
-import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
-import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 
 import butterknife.BindView;
 

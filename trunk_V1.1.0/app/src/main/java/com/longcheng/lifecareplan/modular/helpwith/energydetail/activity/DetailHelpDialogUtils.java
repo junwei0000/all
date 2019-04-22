@@ -70,9 +70,9 @@ public class DetailHelpDialogUtils {
      */
     String payType = "wxpay";
     int selectmoney;
-    String selectengery="0";
+    String selectengery = "0";
     DetailMoneyAdapter mMoneyAdapter;
-    private String ability="0";//生命能量
+    private String ability = "0";//生命能量
     private String asset;//金额
     Activity context;
     int is_applying_help;

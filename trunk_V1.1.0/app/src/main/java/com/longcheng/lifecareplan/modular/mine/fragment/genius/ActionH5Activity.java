@@ -64,7 +64,8 @@ public class ActionH5Activity extends WebAct {
     TextView pageTopTvName;
     @BindView(R.id.pagetop_iv_rigth)
     ImageView pagetopIvRigth;
-
+    @BindView(R.id.pagetop_layout_rigth)
+    LinearLayout pagetopLayoutRigth;
 
     private ShareUtils mShareUtils;
     private String kn_url;
@@ -85,7 +86,7 @@ public class ActionH5Activity extends WebAct {
             case R.id.pagetop_layout_left:
                 back();
                 break;
-            case R.id.pagetop_iv_rigth:
+            case R.id.pagetop_layout_rigth:
                 //分享
                 if (mShareUtils == null) {
                     mShareUtils = new ShareUtils(mActivity);
@@ -112,7 +113,7 @@ public class ActionH5Activity extends WebAct {
     @Override
     public void setListener() {
         super.setListener();
-        pagetopIvRigth.setOnClickListener(this);
+        pagetopLayoutRigth.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         pagetopIvRigth.setVisibility(View.VISIBLE);
         pagetopIvRigth.setBackgroundResource(R.mipmap.wisheachdetails_share);

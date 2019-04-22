@@ -1,18 +1,14 @@
 package com.longcheng.lifecareplan.modular.mine.signIn.activity;
 
-import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
-import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 
 import butterknife.BindView;
@@ -29,13 +25,8 @@ public class SignInH5Activity extends WebAct {
     LinearLayout pagetopLayoutLeft;
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
-    @BindView(R.id.pagetop_iv_rigth)
-    ImageView pagetopIvRigth;
-    @BindView(R.id.pagetop_layout_rigth)
-    LinearLayout pagetopLayoutRigth;
 
 
-    private ShareUtils mShareUtils;
     private String sign_url;
 
     @Override
@@ -43,22 +34,6 @@ public class SignInH5Activity extends WebAct {
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
                 back();
-                break;
-            case R.id.pagetop_layout_rigth:
-                //分享
-                if (mShareUtils == null) {
-                    mShareUtils = new ShareUtils(mActivity);
-                }
-                if (!TextUtils.isEmpty(sign_url)) {
-                    String title = "开启生命与财富能量！" + qiming_name + "邀请您";
-                    String text = "这是一堂觉醒的课程，也是一项对生命、健康和财富的全方位公益教育。《财富启明》——开启你生命智慧的明灯，照亮你璀璨富足的人生。";
-
-                    String showurl = sign_url;
-                    if (sign_url.contains("is_app/1")) {
-                        showurl = sign_url.substring(0, sign_url.length() - 1) + "0";
-                    }
-                    mShareUtils.setShare(text, "", showurl, title);
-                }
                 break;
         }
     }
@@ -78,10 +53,7 @@ public class SignInH5Activity extends WebAct {
     @Override
     public void setListener() {
         super.setListener();
-        pagetopLayoutRigth.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
-        pagetopIvRigth.setVisibility(View.GONE);
-        pagetopIvRigth.setBackgroundResource(R.mipmap.wisheachdetails_share);
     }
 
 

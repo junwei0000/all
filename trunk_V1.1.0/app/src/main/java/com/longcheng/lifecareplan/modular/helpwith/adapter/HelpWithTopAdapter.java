@@ -64,8 +64,8 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
         String cont = mHelpWithInfo.getName2();
         mHolder.item_tv_cont.setText(mHelpWithInfo.getName());
         mHolder.item_tv_cont2.setText(cont);
-        GlideDownLoadImage.getInstance().loadCircleImageRole(mHelpWithInfo.getBgColorId(),  mHolder.item_iv_applyselect, 0);
-        GlideDownLoadImage.getInstance().loadCircleImageRole(mHelpWithInfo.getBgColorId(),  mHolder.item_iv_select, 0);
+        GlideDownLoadImage.getInstance().loadCircleImageRole(mHelpWithInfo.getBgColorId(), mHolder.item_iv_applyselect, 0);
+        GlideDownLoadImage.getInstance().loadCircleImageRole(mHelpWithInfo.getBgColorId(), mHolder.item_iv_select, 0);
         int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 30)) / 2;
         int height = (int) (width * 0.476);
         mHolder.item_iv_select.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));

@@ -39,7 +39,7 @@ public class ShareUtils {
         this.thumb = thumb;
         this.targetUrl = targetUrl;
         this.title = title;
-        Log.e("ResponseBody","text= "+text+"  ;targetUrl="+targetUrl+"  ;title="+title);
+        Log.e("ResponseBody", "text= " + text + "  ;targetUrl=" + targetUrl + "  ;title=" + title + "  ;thumb= " + thumb);
         if (selectDialog == null) {
             selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_share);// 创建Dialog并设置样式主题
             selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
