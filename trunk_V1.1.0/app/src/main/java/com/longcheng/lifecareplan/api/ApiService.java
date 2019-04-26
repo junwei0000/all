@@ -878,6 +878,7 @@ public interface ApiService {
     Observable<PayWXDataBean> VoluntePay(@Field("user_id") String user_id,
                                          @Field("payment_channel") String payment_channel,
                                          @Field("pay_money") String pay_money,
+                                         @Field("volunteer_debt_item_id") String volunteer_debt_item_id,
                                          @Field("token") String token);
 
     //********************商城*************************************************************************

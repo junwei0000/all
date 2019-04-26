@@ -175,13 +175,23 @@ public class BaoZhangActitvty extends WebAct {
         mBridgeWebView.registerHandler("Life_PayMoney", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                Log.e("registerHandler", "data=" + data);
+                Log.e("registerHandler", "Life_PayMoney=" + data);
                 weixinPayBackType = "VoluntePay";
-                Voluntepay_money = data;
+                try {
+                    if (data.startsWith("{")) {
+                        JSONObject jsonObject = new JSONObject(data);
+                        Voluntepay_money = jsonObject.optString("money", "365");
+                        volunteer_debt_item_id = jsonObject.optString("volunteer_debt_item_id", "0");
+                    } else {
+                        Voluntepay_money = data;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 if (mVolunterDialogUtils == null) {
                     mVolunterDialogUtils = new VolunterDialogUtils(mActivity, mHandler, VolunterSelectPay);
                 }
-                mVolunterDialogUtils.showPopupWindow(data);
+                mVolunterDialogUtils.showPopupWindow(Voluntepay_money);
             }
         });
     }
@@ -196,9 +206,11 @@ public class BaoZhangActitvty extends WebAct {
 
     String Voluntepay_money = "";
 
-    private void VoluntePay(String payment_channel, String pay_money) {
+    String volunteer_debt_item_id = "0";
+
+    private void VoluntePay(String payment_channel, String pay_money, String volunteer_debt_item_id) {
         Observable<PayWXDataBean> observable = Api.getInstance().service.VoluntePay(UserUtils.getUserId(mContext),
-                payment_channel, pay_money, ExampleApplication.token);
+                payment_channel, pay_money, volunteer_debt_item_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
@@ -270,7 +282,7 @@ public class BaoZhangActitvty extends WebAct {
                 case VolunterSelectPay:
                     bundle = msg.getData();
                     String payTypes = bundle.getString("payType");
-                    VoluntePay(payTypes, Voluntepay_money);
+                    VoluntePay(payTypes, Voluntepay_money, volunteer_debt_item_id);
                     break;
             }
         }
