@@ -419,9 +419,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     public void showCononDialog() {
         if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home
-                || BottomMenuActivity.updatedialogstatus
-                || (CononDialog != null && CononDialog.isShowing())) {
+                || BottomMenuActivity.updatedialogstatus) {
             BottomMenuActivity.updatedialogstatus = false;
+            return;
+        }
+        if (CononDialog != null && CononDialog.isShowing()) {
             return;
         }
         try {
