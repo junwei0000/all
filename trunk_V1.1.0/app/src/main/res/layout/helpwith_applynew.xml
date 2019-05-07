@@ -40,7 +40,8 @@
                 style="@style/view_paddlefgtright"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp10">
                 <!--接福人-->
                 <RelativeLayout
                     android:layout_width="match_parent"

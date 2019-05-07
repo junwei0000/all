@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -59,6 +60,8 @@ public class YaJinActivity extends BaseActivity {
     ImageView ivHead;
     @BindView(R.id.tv_name)
     TextView tvName;
+    @BindView(R.id.tv_moneyunit)
+    TextView tv_moneyunit;
     @BindView(R.id.tv_money)
     TextView tvMoney;
     @BindView(R.id.paywx_iv_icon)
@@ -110,7 +113,8 @@ public class YaJinActivity extends BaseActivity {
                 selectPayTypeView();
                 break;
             case R.id.btn_pay:
-                yaJinPay(UserUtils.getUserId(mContext));
+                if (!TextUtils.isEmpty(asset))
+                    yaJinPay(UserUtils.getUserId(mContext));
                 break;
         }
     }
@@ -177,6 +181,8 @@ public class YaJinActivity extends BaseActivity {
     }
 
     private void showView(DetailAfterBean mDetailAfterBean) {
+        tv_moneyunit.setVisibility(View.VISIBLE);
+        btnPay.setBackgroundResource(R.drawable.corners_bg_login);
         asset = mDetailAfterBean.getUser_asset();
         deposit = mDetailAfterBean.getDeposit();
         GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mContext, mDetailAfterBean.getAvatar(), ivHead);
