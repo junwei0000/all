@@ -1,9 +1,13 @@
 package com.longcheng.lifecareplan.base;
 
+import android.Manifest;
 import android.app.Application;
 import android.app.Notification;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
@@ -67,7 +71,20 @@ public class ExampleApplication extends MultiDexApplication {
 
     private void initToken() {
         token = ConfigUtils.getINSTANCE().getDeviceId(this);
+        setStrictModePermission();
     }
+
+    /**
+     * Android7.0 provider FileUriExposedException 兼容问题
+     */
+    private void setStrictModePermission() {
+        //取消严格模式 FileProvider
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
+    }
+
 
     /**
      * 友盟初始化

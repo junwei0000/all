@@ -371,7 +371,7 @@ public class BaoZhangActitvty extends WebAct {
      * 刷新生活保障详情页
      */
     private void lifeDetailRefresh() {
-        mBridgeWebView.callHandler("Life_DetailRefresh", "" , new CallBackFunction() {
+        mBridgeWebView.callHandler("Life_DetailRefresh", "" + life_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 

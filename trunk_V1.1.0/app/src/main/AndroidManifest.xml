@@ -31,6 +31,7 @@
 
     <!-- ************************************************ 访问照相机 *********************************************** -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <!-- ************************************************ 访问照相机 end *********************************************** -->
 
 
@@ -40,9 +41,6 @@
     <!-- 写联系人 -->
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <!-- ************************************************ 联系人 end *********************************************** -->
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <!-- 闪光灯 -->
