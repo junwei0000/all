@@ -1,15 +1,19 @@
 package com.longcheng.lifecareplan.utils.share;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineContract;
 import com.longcheng.lifecareplan.utils.BitmapUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.SaveImageUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -31,7 +35,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ShareHelper {
     private static volatile ShareHelper INSTANCE;
-
+    Activity activity;
 
     public static ShareHelper getINSTANCE() {
         if (INSTANCE == null) {
@@ -50,6 +54,7 @@ public class ShareHelper {
      * @Params 分享带链接 （缩略图 标题 简述）
      */
     public void shareActionAll(Activity activity, SHARE_MEDIA platform, String imgUrl, String text, String targetUrl, String title) {
+        this.activity = activity;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -88,6 +93,7 @@ public class ShareHelper {
      * @Params 分享带链接 （缩略图 标题 简述）
      */
     public void shareActionAll(Activity activity, SHARE_MEDIA platform, String text, String targetUrl, String title) {
+        this.activity = activity;
         Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(), R.mipmap.share_icon);
         UMImage image = new UMImage(activity, bitmap);
         UMWeb web = new UMWeb(targetUrl);
@@ -107,6 +113,7 @@ public class ShareHelper {
      * @Params 分享不带链接 （缩略图 标题 简述）
      */
     public void shareActionImageAndText(Activity activity, SHARE_MEDIA platform, String imgUrl, String text) {
+        this.activity = activity;
         UMImage image = new UMImage(activity, imgUrl);
         new ShareAction(activity)
                 .setPlatform(platform)
@@ -122,6 +129,7 @@ public class ShareHelper {
      * @Params 分享图片
      */
     public void shareActionImage(Activity activity, SHARE_MEDIA platform, String imgUrl) {
+        this.activity = activity;
         UMImage image = new UMImage(activity, imgUrl);
         new ShareAction(activity)
                 .setPlatform(platform)
@@ -149,6 +157,13 @@ public class ShareHelper {
         public void onResult(SHARE_MEDIA platform) {
 //            ToastUtils.showToast("分享成功");
             Log.e("ResponseBody", "分享成功=" + platform.toString());
+            if (!TextUtils.isEmpty(BaoZhangActitvty.life_repay_id) && !BaoZhangActitvty.life_repay_id.equals("0")) {
+                Intent intent2 = new Intent();
+                intent2.setAction(ConstantManager.BroadcastReceiver_KNP_ACTION);
+                intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE);
+                activity.sendBroadcast(intent2);
+                Log.e("ResponseBody", "分享成功=BaoZhangActitvty.life_repay_id=" + BaoZhangActitvty.life_repay_id);
+            }
         }
 
         /**

@@ -809,6 +809,11 @@ public interface ApiService {
                                                       @Query("life_repay_id") String life_repay_id,
                                                       @Query("token") String token);
 
+    @GET(Config.VERSION + "life/addForward")
+    Observable<ResponseBean> sendLifeDetailShareNum(@Query("user_id") String user_id,
+                                                    @Query("life_repay_id") String life_repay_id,
+                                                    @Query("token") String token);
+
     @GET(Config.VERSION + "commonweal/info")
     Observable<EnergyDetailDataBean> getCommonwealMsgDetail(@Query("user_id") String user_id,
                                                             @Query("commonweal_activity_id") String commonweal_activity_id,
