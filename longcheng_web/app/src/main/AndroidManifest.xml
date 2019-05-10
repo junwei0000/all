@@ -68,15 +68,21 @@
         android:persistent="true"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyDeH5Activity" />
-        <activity android:name=".MyDe2H5Activity" />
+        <activity
+            android:name=".MyDeH5Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".MyDe2H5Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
     </application>
 
 </manifest>

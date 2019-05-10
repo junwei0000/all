@@ -94,19 +94,4 @@ public class MainActivity extends BaseTabActivity {
         });
     }
 
-
-
-
-    /**
-     * 重写onkeydown 用于监听返回键
-     */
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent setIntent = new Intent(Intent.ACTION_MAIN);
-            setIntent.addCategory(Intent.CATEGORY_HOME);
-            setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(setIntent);
-        }
-        return false;
-    }
 }

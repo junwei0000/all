@@ -2,6 +2,7 @@ package com.longcheng.web;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -271,5 +272,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void doFinish() {
         activityManager.popActivity(this);
         finish();
+    }
+    public void backs(){
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
     }
 }

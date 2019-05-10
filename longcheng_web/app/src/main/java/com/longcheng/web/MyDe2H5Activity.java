@@ -49,17 +49,14 @@ public class MyDe2H5Activity extends WebAct {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
             mBridgeWebView.goBack();
         } else {
-            doFinish();
+            backs();
         }
     }
 
     /**
-     * 重写onkeydown 用于监听返回键
+     * 退出监听
      */
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            back();
-        }
-        return false;
+    public void onBackPressed() {
+        backs();
     }
 }
