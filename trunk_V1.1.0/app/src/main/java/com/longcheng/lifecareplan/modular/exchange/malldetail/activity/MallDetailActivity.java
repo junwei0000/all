@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.modular.exchange.malldetail.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +18,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -415,6 +418,23 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             } else {
                 tv_showComplexH5Text.setVisibility(View.GONE);
             }
+            // 覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
+            tv_showComplexH5Text.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    // TODO Auto-generated method stub
+                    // 返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
+                    if (!TextUtils.isEmpty(cont) && cont.contains("<a")) {
+                        Intent intent = new Intent();
+                        intent.setAction("android.intent.action.VIEW");
+                        Uri content_url = Uri.parse(url);
+                        intent.setData(content_url);
+                        startActivity(intent);
+                        return false;
+                    }
+                    return true;
+                }
+            });
         }
         GoodsPhotoList = mDetailAfterBean.getGoodsPhoto();
         if (GoodsPhotoList != null && GoodsPhotoList.size() > 1) {
