@@ -1,15 +1,21 @@
 package com.longcheng.web;
 
 import android.annotation.SuppressLint;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
+import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -105,14 +111,7 @@ public abstract class WebAct extends BaseActivity {
 
     private void initWebView() {
         updateWebPic();
-        //刷新头部标题
-        mBridgeWebView.registerHandler("public_TitleChange", new BridgeHandler() {
-            @Override
-            public void handler(String data, CallBackFunction function) {
-                Log.e("registerHandler", "data=" + data);
-            }
-        });
-
+        WebDownload();
         //地图定位获取坐标----康农  坐堂医
         mBridgeWebView.registerHandler("user_getLongitudeLatitude", new BridgeHandler() {
             @Override
@@ -129,14 +128,97 @@ public abstract class WebAct extends BaseActivity {
                 function.onCallBack(jsonObject.toString());
             }
         });
-        //返回按钮
-        mBridgeWebView.registerHandler("about_back", new BridgeHandler() {
+    }
+
+    /**
+     * ***********************下载*************************
+     */
+    private void WebDownload() {
+        mBridgeWebView.setDownloadListener(new DownloadListener() {
             @Override
-            public void handler(String data, CallBackFunction function) {
-                Log.e("registerHandler", "data=" + data);
-                doFinish();
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimeType, long contentLength) {
+                // TODO: 2017-5-6 处理下载事件
+                downloadByBrowser(url);
             }
         });
+    }
+
+    /**
+     * 1. 跳转浏览器下载
+     *
+     * @param url
+     */
+    private void downloadByBrowser(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    /**
+     * 2. 使用系统的下载服务
+     *
+     * @param url
+     * @param contentDisposition
+     * @param mimeType
+     */
+    private void downloadBySystem(String url, String contentDisposition, String mimeType) {
+        // 指定下载地址
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+        // 允许媒体扫描，根据下载的文件类型被加入相册、音乐等媒体库
+        request.allowScanningByMediaScanner();
+        // 设置通知的显示类型，下载进行时和完成后显示通知
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        // 设置通知栏的标题，如果不设置，默认使用文件名
+//        request.setTitle("This is title");
+        // 设置通知栏的描述
+//        request.setDescription("This is description");
+        // 允许在计费流量下下载
+        request.setAllowedOverMetered(false);
+        // 允许该记录在下载管理界面可见
+        request.setVisibleInDownloadsUi(false);
+        // 允许漫游时下载
+        request.setAllowedOverRoaming(true);
+        // 允许下载的网路类型
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+        // 设置下载文件保存的路径和文件名
+        String fileName = URLUtil.guessFileName(url, contentDisposition, mimeType);
+//        log.debug("fileName:{}", fileName);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+//        另外可选一下方法，自定义下载路径
+//        request.setDestinationUri()
+//        request.setDestinationInExternalFilesDir()
+        final DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        // 添加一个下载任务
+        long downloadId = downloadManager.enqueue(request);
+//        log.debug("downloadId:{}", downloadId);
+    }
+
+    private class DownloadCompleteReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+//            log.verbose("onReceive. intent:{}", intent != null ? intent.toUri(0) : null);
+            if (intent != null) {
+                if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
+                    long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+//                    log.debug("downloadId:{}", downloadId);
+                    DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+                    String type = downloadManager.getMimeTypeForDownloadedFile(downloadId);
+//                    log.debug("getMimeTypeForDownloadedFile:{}", type);
+                    if (TextUtils.isEmpty(type)) {
+                        type = "*/*";
+                    }
+                    Uri uri = downloadManager.getUriForDownloadedFile(downloadId);
+//                    log.debug("UriForDownloadedFile:{}", uri);
+                    if (uri != null) {
+                        Intent handlerIntent = new Intent(Intent.ACTION_VIEW);
+                        handlerIntent.setDataAndType(uri, type);
+                        context.startActivity(handlerIntent);
+                    }
+                }
+            }
+        }
     }
 
     /**
