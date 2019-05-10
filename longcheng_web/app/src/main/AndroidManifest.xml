@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.longcheng.web">
+
+    <!-- 可用网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- WIFI网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 屏幕保持唤醒 不锁屏 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 调整多媒体音量 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <!-- ************************************************ SD卡权限 *********************************************** -->
+    <!-- 在sdcard中创建/删除文件的权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- sdcard操作允许 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许读取SD卡数据 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- ************************************************ SD卡权限 end *********************************************** -->
+
+
+    <!-- ************************************************ 日历 *********************************************** -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <!-- ************************************************ 日历 end *********************************************** -->
+
+
+    <!-- ************************************************ 访问照相机 *********************************************** -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- ************************************************ 访问照相机 end *********************************************** -->
+
+
+    <!-- ************************************************ 联系人 *********************************************** -->
+    <!-- 读联系人 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 写联系人 -->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <!-- ************************************************ 联系人 end *********************************************** -->
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 闪光灯 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 极光推送 end -->
+    <application
+        android:name="com.longcheng.web.ExampleApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@style/SplashTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MyDeH5Activity" />
+        <activity android:name=".MyDe2H5Activity" />
+    </application>
+
+</manifest>

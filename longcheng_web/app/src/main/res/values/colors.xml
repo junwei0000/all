@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yellow">#ffff00</color>
+    <color name="mediumseagreen">#3cb371</color>
+
+    <color name="progressbarbg">#60000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="QRcode_color">#65A8DF</color>
+    <!--个人中心-->
+    <color name="color_232323">#232323</color>
+    <color name="color_464646">#464646</color>
+    <color name="color_9a9a9a">#9a9a9a</color>
+    <color name="color_858585">#858585</color>
+    <color name="color_ff2c2c">#ff2c2c</color>
+    <color name="color_fb4c76">#fb4c76</color>
+    <color name="color_db4065">#db4065</color>
+
+    <!-- 青色 -->
+    <color name="cyanblue">#A5793A</color>
+    <!-- 青色背景 -->
+    <color name="cyanbluebg">#ccaa62</color>
+    <color name="cyanbluebg2">#d4a82f</color>
+    <color name="likebluebg">#e2bb68</color>
+    <color name="commcyanbluebg">#fff7e6</color>
+    <color name="text_engry_bg">#b58c1a</color>
+    <color name="rank_num1_bg">#ffd236</color>
+    <color name="thanks_kuangbg">#fdedad</color>
+    <color name="hongbaoget_bg">#fcf0a0</color>
+
+
+    <color name="green">#6e9cb6</color>
+    <color name="thanks_bg">#d0121b</color>
+    <color name="signin_bg">#F65341</color>
+    <color name="signin_timebg">#ffc8bf</color>
+    <color name="commune_daduibg">#e79c88</color>
+
+    <color name="signin_textbg">#8b3129</color>
+    <color name="signin_textshadowColor">#690d00</color>
+    <color name="new_title_bg">#ff4d5b</color>
+    <color name="btn_red">#D63F41</color>
+    <color name="btn_red_hover">#E8484B</color>
+    <color name="red">#e60c0c</color>
+    <color name="red_fen">#fde5e5</color>
+    <color name="red_openredfen">#fc6421</color>
+    <color name="ranking_tab_selected">#e66109</color>
+    <color name="red_course">#F76185</color>
+    <!--淡粉色-->
+    <color name="red_dandan">#FF8D9B</color>
+    <color name="detail_progress_bg">#e60c0c</color>
+    <color name="detail_progressnot_bg">#dedede</color>
+    <color name="commbluebg">#636efd</color>
+
+    <!-- 蓝色 -->
+    <color name="bluebg">#4478ff</color>
+    <color name="blue">#e60c0c</color>
+    <!-- 首页菜单字体颜色 -->
+    <color name="main_tab_text_color">#555555</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#e5e5e5</color>
+    <color name="gray_bian">#d1d1d1</color>
+    <color name="page_bg">#F0F0F0</color>
+    <color name="f3">#f3f3f3</color>
+    <color name="e9">#9e9e9e</color>
+    <color name="text_contents_color">#464646</color>
+    <color name="text_biaoTi_color">#232323</color>
+    <color name="text_healthcontents_color">#858585</color>
+    <color name="text_noclick_color">#939393</color>
+    <color name="text_joinlistnum_color">#394659</color>
+    <color name="text_joinlist_color">#a7aeb9</color>
+    <color name="text_bottom_color">#f9f9f9</color>
+    <color name="text_gonggao_color">#545454</color>
+    <color name="login_hint_color">#c3c2c2</color>
+    <color name="search_bg">#f4f4f4</color>
+    <color name="good_bg">#f8f8f8</color>
+    <color name="linebg">#e4e4e4</color>
+    <color name="linesubg">#cbcbcb</color>
+    <color name="cartnumbg">#818181</color>
+
+
+
+    <color name="xing_left">#6b2fdd</color>
+    <color name="xing_rigth">#9159f8</color>
+
+    <color name="main_mangzhong">#6d4223</color>
+    <color name="main_lixia">#bf0f1b</color>
+    <color name="main_xiaohan">#302825</color>
+    <color name="main_dongzhi">#0258c2</color>
+    <color name="main_qiufen">#a23c21</color>
+</resources>

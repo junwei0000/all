@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_tool" />
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/home_tab_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0" />
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.0"
+                android:visibility="gone" />
+
+            <include layout="@layout/line" />
+
+            <RadioGroup
+                android:id="@+id/rg_bottom_main"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_bottom_height"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_bottom_home"
+                    style="@style/home_tab_bottom"
+                    android:background="@color/transparent"
+                    android:checked="true"
+                    android:drawableTop="@drawable/home_tab_main_selector"
+                    android:text="后台" />
+
+                <RadioButton
+                    android:id="@+id/rb_bottom_helpWith"
+                    style="@style/home_tab_bottom"
+                    android:background="@color/transparent"
+                    android:drawableTop="@drawable/home_tab_helpwith_selector"
+                    android:text="商户平台" />
+            </RadioGroup>
+        </LinearLayout>
+
+    </TabHost>
+</LinearLayout>
+
