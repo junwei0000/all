@@ -28,6 +28,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionDataBean;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
@@ -101,6 +102,7 @@ public class AppUpdate {
                                 String version = mVersionAfterBean.getVersion();
                                 level = mVersionAfterBean.getLevel();
                                 if (level.equals("0")) {
+                                    BottomMenuActivity.updatedialogstatus = false;
                                     if (TextUtils.isEmpty(updateDirection)) {
                                         ToastUtils.showToast("当前已为最新版本");
                                     }

@@ -430,7 +430,6 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                         Uri content_url = Uri.parse(url);
                         intent.setData(content_url);
                         startActivity(intent);
-                        return false;
                     }
                     return true;
                 }

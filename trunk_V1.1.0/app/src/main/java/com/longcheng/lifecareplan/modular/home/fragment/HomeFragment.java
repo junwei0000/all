@@ -420,7 +420,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public void showCononDialog() {
         if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home
                 || BottomMenuActivity.updatedialogstatus) {
-            BottomMenuActivity.updatedialogstatus = false;
+            dismissCononDialog();
             return;
         }
         if (CononDialog != null && CononDialog.isShowing()) {
