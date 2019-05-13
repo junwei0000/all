@@ -83,6 +83,11 @@
         <activity
             android:name=".MyDe2H5Activity"
             android:configChanges="keyboardHidden|screenSize" />
+
+        <!-- APP适配全面屏  -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
     </application>
 
 </manifest>
