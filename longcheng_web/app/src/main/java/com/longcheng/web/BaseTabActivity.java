@@ -1,9 +1,13 @@
 package com.longcheng.web;
 
 import android.app.TabActivity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.database.ContentObserver;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -83,7 +87,7 @@ public abstract class BaseTabActivity extends TabActivity implements View.OnClic
         }
         //是否禁止屏幕旋转
         if (!isAllowScreenRoate) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         //设置主布局
         mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
@@ -185,6 +189,7 @@ public abstract class BaseTabActivity extends TabActivity implements View.OnClic
         Log.d(TAG, "onStart()");
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -195,6 +200,53 @@ public abstract class BaseTabActivity extends TabActivity implements View.OnClic
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause()");
+    }
+
+    //创建观察类对象
+//            mRotationObserver = new RotationObserver(new Handler());
+    private void setScreenOrientation() {
+        try {
+            int screenchange = Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
+            Log.d(TAG, "setScreenOrientation() screenchange=" + screenchange);
+            //是否开启自动旋转设置 1 开启 0 关闭
+            if (screenchange == 1) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            }
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //观察屏幕旋转设置变化，类似于注册动态广播监听变化机制
+    private class RotationObserver extends ContentObserver {
+        ContentResolver mResolver;
+
+        public RotationObserver(Handler handler) {
+            super(handler);
+            mResolver = getContentResolver();
+            // TODO Auto-generated constructor stub
+        }
+
+        //屏幕旋转设置改变时调用
+        @Override
+        public void onChange(boolean selfChange) {
+            // TODO Auto-generated method stub
+            super.onChange(selfChange);
+            //更新按钮状态
+            setScreenOrientation();
+        }
+
+        public void startObserver() {
+            mResolver.registerContentObserver(Settings.System
+                            .getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
+                    this);
+        }
+
+        public void stopObserver() {
+            mResolver.unregisterContentObserver(this);
+        }
     }
 
     @Override

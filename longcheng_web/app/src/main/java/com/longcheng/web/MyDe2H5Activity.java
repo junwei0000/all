@@ -1,6 +1,7 @@
 package com.longcheng.web;
 
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -44,19 +45,14 @@ public class MyDe2H5Activity extends WebAct {
 
     }
 
-
-    private void back() {
-        if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
-            mBridgeWebView.goBack();
-        } else {
-            backs();
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
-
     /**
      * 退出监听
      */
     public void onBackPressed() {
-        backs();
+        exitDialog();
     }
 }

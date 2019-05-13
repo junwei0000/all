@@ -1,10 +1,14 @@
 package com.longcheng.web;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.ContentObserver;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -67,6 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public Activity mActivity = this;
     private ActivityManager activityManager;
     private Unbinder bind;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
         //是否禁止屏幕旋转
         if (!isAllowScreenRoate) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         //设置主布局
         mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
@@ -190,6 +196,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Log.d(TAG, "onStart()");
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -258,6 +265,41 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     * 描述：退出程序
+     */
+    protected void exitDialog() {
+        defineBackPressed();
+    }
+
+    /**
+     * 自定义退出应用提示
+     */
+    public MyDialog defineBackPressed() {
+        final MyDialog selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_myexit);// 创建Dialog并设置样式主题
+        selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+        selectDialog.show();
+        TextView text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);// 取消
+        final TextView text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);// 确定
+
+
+        text_off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectDialog.dismiss();
+            }
+        });
+        text_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectDialog.dismiss();
+                activityManager.popAllActivity();
+            }
+        });
+        return selectDialog;
+    }
+
+
     public void setOnlyShowStatusBar(boolean onlyShowStatusBar) {
         this.onlyShowStatusBar = onlyShowStatusBar;
     }
@@ -273,7 +315,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         activityManager.popActivity(this);
         finish();
     }
-    public void backs(){
+
+    public void backs() {
         Intent setIntent = new Intent(Intent.ACTION_MAIN);
         setIntent.addCategory(Intent.CATEGORY_HOME);
         setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

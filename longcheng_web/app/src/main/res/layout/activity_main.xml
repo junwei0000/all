@@ -48,7 +48,7 @@
                     android:background="@color/transparent"
                     android:checked="true"
                     android:drawableTop="@drawable/home_tab_main_selector"
-                    android:text="后台" />
+                    android:text="管理后台" />
 
                 <RadioButton
                     android:id="@+id/rb_bottom_helpWith"

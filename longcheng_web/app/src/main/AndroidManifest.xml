@@ -79,10 +79,10 @@
         </activity>
         <activity
             android:name=".MyDeH5Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:configChanges="keyboardHidden|screenSize" />
         <activity
             android:name=".MyDe2H5Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:configChanges="keyboardHidden|screenSize" />
     </application>
 
 </manifest>

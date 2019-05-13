@@ -93,5 +93,9 @@ public class MainActivity extends BaseTabActivity {
             }
         });
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume()");
+    }
 }
