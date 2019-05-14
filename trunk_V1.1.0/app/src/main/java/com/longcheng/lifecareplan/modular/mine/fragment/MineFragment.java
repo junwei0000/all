@@ -956,6 +956,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (redBaoDialog != null && redBaoDialog.isShowing()) {
             redBaoDialog.dismiss();
         }
+        if (CrediterCashDialog != null && CrediterCashDialog.isShowing()) {
+            CrediterCashDialog.dismiss();
+        }
     }
 
     /**
@@ -968,7 +971,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (!loginStatus.equals(ConstantManager.loginStatus)
                 || BottomMenuActivity.position != BottomMenuActivity.tab_position_mine
                 || BottomMenuActivity.updatedialogstatus) {
-            BottomMenuActivity.updatedialogstatus = false;
             return;
         }
         //坐堂医支付成功弹层  1
@@ -985,13 +987,17 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             if (LevelDialog != null && LevelDialog.isShowing()) {
                 LevelDialog.dismiss();
             }
-
-            //天才行动 3
+            //志愿者首关联债权人页弹层  3
+            if (data.getIsDisplayCrediterCash() > 0 || CrediterCashDialog != null && CrediterCashDialog.isShowing()) {
+                showCrediterCashDialog();
+                return;
+            }
+            //天才行动 4
             if (data.getIs_commonweal_activity() > 0) {
                 showActionDialog();
                 return;
             }
-            //红包 4
+            //红包 5
             showRedBaoDialog();
             return;
         } else {
@@ -1042,6 +1048,48 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
     }
 
+    MyDialog CrediterCashDialog;
+
+    /**
+     * 提现债务提示弹层
+     */
+    public void showCrediterCashDialog() {
+        if (CrediterCashDialog == null) {
+            CrediterCashDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mycenter_creditercash);// 创建Dialog并设置样式主题
+            CrediterCashDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = CrediterCashDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            CrediterCashDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = CrediterCashDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4;
+            p.height = (int) (p.width * 1.28);
+            CrediterCashDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) CrediterCashDialog.findViewById(R.id.layout_cancel);
+            TextView btn_tixian = (TextView) CrediterCashDialog.findViewById(R.id.btn_tixian);
+
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CrediterCashDialog.dismiss();
+                }
+            });
+            btn_tixian.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CrediterCashDialog.dismiss();
+                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+            });
+        } else {
+            CrediterCashDialog.show();
+        }
+    }
 
     MyDialog actionDialog;
 
@@ -1305,8 +1353,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             usercenter_layout_rebirth.setVisibility(View.VISIBLE);
         }
-
-
         String shoukangyuan = mGetHomeInfoBean.getShoukangyuan();
         mycentertopTvAwakeskb.setText(shoukangyuan);
         String dongjie = mGetHomeInfoBean.getDongjie();

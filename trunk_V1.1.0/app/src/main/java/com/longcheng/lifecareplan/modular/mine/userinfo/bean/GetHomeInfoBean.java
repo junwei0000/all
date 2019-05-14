@@ -124,6 +124,16 @@ public class GetHomeInfoBean implements Serializable {
 
     private String debtwithdrawUrl;//提现地址
 
+    private int isDisplayCrediterCash;//志愿者首关联债权人页弹层 0：不弹 1：弹
+
+    public int getIsDisplayCrediterCash() {
+        return isDisplayCrediterCash;
+    }
+
+    public void setIsDisplayCrediterCash(int isDisplayCrediterCash) {
+        this.isDisplayCrediterCash = isDisplayCrediterCash;
+    }
+
     public String getDebtwithdrawUrl() {
         return debtwithdrawUrl;
     }
