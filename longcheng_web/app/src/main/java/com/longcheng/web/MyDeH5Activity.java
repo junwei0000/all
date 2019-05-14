@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.BindView;
 
 /**
@@ -43,13 +46,24 @@ public class MyDeH5Activity extends WebAct {
     public void initDataAfter() {
         super.initDataAfter();
         loadUrl("http://t.admin.asdyf.com/admin/");
+    }
 
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onMessageEventBackground(MessageEvent event) {
+        if (event != null) {
+            String mesg = event.getMessage();
+            if (!TextUtils.isEmpty(mesg) && mesg.equals("refreshPingTai")) {
+                Log.e("mesg",""+mesg);
+                loadUrl("http://t.admin.asdyf.com/admin/index");
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
     }
+
     /**
      * 退出监听
      */

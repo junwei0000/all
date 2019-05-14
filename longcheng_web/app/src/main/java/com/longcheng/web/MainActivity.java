@@ -8,11 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 
 import com.longcheng.web.adapter.TabPageAdapter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +35,70 @@ public class MainActivity extends BaseTabActivity {
 
     @BindView(R.id.rg_bottom_main)
     RadioGroup mRadioGroup;
+
+    @BindView(R.id.iv_show)
+    ImageView iv_show;
+
+    @BindView(R.id.iv_refresh)
+    ImageView iv_refresh;
+
+
+    /**
+     * 是否显示全屏
+     */
+    boolean showAllStatus = false;
     public static final String TAB_MAIN = "MAIN_ACTIVITY";
     public static final String TAB_SPORTQURAT = "SPORTQURAT_ACTIVITY";
+
+    int index = 0;
+
     @Override
     public void widgetClick(View v) {
         switch (v.getId()) {
-            case  R.id.rb_bottom_home:
-
+            case R.id.iv_show:
+                if (showAllStatus) {
+                    showAllStatus = false;
+                } else {
+                    showAllStatus = true;
+                }
+                setShow();
                 break;
-            case  R.id.rb_bottom_helpWith:
-
+            case R.id.iv_refresh:
+                setRefresh();
                 break;
         }
     }
+
+    private void setShow() {
+        if (showAllStatus) {
+            mRadioGroup.setVisibility(View.GONE);
+            iv_show.setBackgroundResource(R.mipmap.map_shrink);
+        } else {
+            iv_show.setBackgroundResource(R.mipmap.map_all);
+            mRadioGroup.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setRefresh() {
+        if (index == 0) {
+            // 发布事件
+            new Thread("posting") {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new MessageEvent("refreshPingTai"));
+                }
+            }.start();
+        } else {
+            // 发布事件
+            new Thread("posting") {
+                @Override
+                public void run() {
+                    EventBus.getDefault().post(new MessageEvent("refreshShangHu"));
+                }
+            }.start();
+        }
+    }
+
     @Override
     public View bindView() {
         return null;
@@ -67,13 +121,16 @@ public class MainActivity extends BaseTabActivity {
 
     @Override
     public void setListener() {
+        iv_show.setOnClickListener(this);
+        iv_refresh.setOnClickListener(this);
     }
+
+    Intent i_main, i_sportqurat;
 
     private void initView() {
         mTabHost = getTabHost();
-        Intent i_main = new Intent(this, MyDeH5Activity.class);
-        Intent i_sportqurat = new Intent(this, MyDe2H5Activity.class);
-
+        i_main = new Intent(this, MyDeH5Activity.class);
+        i_sportqurat = new Intent(this, MyDe2H5Activity.class);
         mTabHost.addTab(mTabHost.newTabSpec(TAB_MAIN).setIndicator(TAB_MAIN).setContent(i_main));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_SPORTQURAT).setIndicator(TAB_SPORTQURAT).setContent(i_sportqurat));
 
@@ -82,9 +139,11 @@ public class MainActivity extends BaseTabActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_bottom_home:
+                        index = 0;
                         mTabHost.setCurrentTabByTag(TAB_MAIN);
                         break;
                     case R.id.rb_bottom_helpWith:
+                        index = 1;
                         mTabHost.setCurrentTabByTag(TAB_SPORTQURAT);
                         break;
                     default:
@@ -93,6 +152,7 @@ public class MainActivity extends BaseTabActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();

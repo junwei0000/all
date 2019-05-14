@@ -15,6 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -96,6 +100,9 @@ public abstract class BaseTabActivity extends TabActivity implements View.OnClic
         //Activity的管理，将Activity压入栈
         activityManager = ActivityManager.getScreenManager();
         activityManager.pushActivity(this);
+
+        // 注册订阅者
+        EventBus.getDefault().register(this);
         //判断是否设置了沉浸式效果
         if (isSetStatusBar) {
             steepStatusBar();
@@ -255,13 +262,22 @@ public abstract class BaseTabActivity extends TabActivity implements View.OnClic
         Log.d(TAG, "onStop()");
     }
 
+    /**
+     * @param event
+     * @Subscribe注解的方法，必须是公共方法，否则会报错！
+     */
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onMessageEventBackground(MessageEvent event) {
+        Log.i(TAG, "onMessageEventBackground(), current thread is " + Thread.currentThread().getName());
+    }
 
     @Override
     protected void onDestroy() {
         activityManager.popActivity(this);
         //butterknife 解绑
         bind.unbind();
-        //绑定activity
+        // 注销订阅者
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
 
