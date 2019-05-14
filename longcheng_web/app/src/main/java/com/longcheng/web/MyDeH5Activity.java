@@ -1,5 +1,9 @@
 package com.longcheng.web;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -54,11 +58,21 @@ public class MyDeH5Activity extends WebAct {
             String mesg = event.getMessage();
             if (!TextUtils.isEmpty(mesg) && mesg.equals("refreshPingTai")) {
                 Log.e("mesg",""+mesg);
-                loadUrl("http://t.admin.asdyf.com/admin/index");
+                mHandler.sendEmptyMessage(1);
             }
         }
     }
 
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    loadUrl("http://t.admin.asdyf.com/admin/index");
+                    break;
+            }
+        }
+    };
     @Override
     protected void onResume() {
         super.onResume();
