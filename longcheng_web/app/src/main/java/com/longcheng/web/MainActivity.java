@@ -45,8 +45,6 @@ public class MainActivity extends BaseTabActivity {
     @BindView(R.id.iv_refresh)
     LinearLayout iv_refresh;
 
-    @BindView(R.id.group)
-    FreeMoveView group;
     /**
      * 是否显示全屏
      */
