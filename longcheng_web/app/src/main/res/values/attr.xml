@@ -3,6 +3,12 @@
     <!--autoLayout中用到的属性
        MarkMingShuai
        2017-8-9-->
+    <declare-styleable name="free" >
+        <attr name="millisInFuture" format="integer" />
+        <attr name="toAlpha" format="float" />
+        <attr name="moveable" format="boolean"/>
+        <attr name="autoBack" format="boolean"/>
+    </declare-styleable>
     <declare-styleable name="AutoLayout_Layout">
 
         <attr name="layout_auto_basewidth">

@@ -68,10 +68,23 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         this.defaultHandler = handler;
     }
 
+    private String MobileUserAgent = "appasdyf/android"; //手机头识别码 伪装User-Agent
+
     private void init() {
         this.setVerticalScrollBarEnabled(false);
         this.setHorizontalScrollBarEnabled(false);
         this.getSettings().setJavaScriptEnabled(true);
+        //自适应屏幕
+        this.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        this.getSettings().setLoadWithOverviewMode(true);
+        this.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"); //自适应屏幕
+        this.getSettings().setUseWideViewPort(true);
+        this.getSettings().setLoadWithOverviewMode(true);
+        // 伪装User-Agent
+//        String webviewUa = this.getSettings().getUserAgentString();
+//        if (webviewUa.indexOf(MobileUserAgent) == -1) {
+//            this.getSettings().setUserAgentString(webviewUa + MobileUserAgent);
+//        }
         /**
          * webview js 点击事件失效 localStorage  缓存问题
          */

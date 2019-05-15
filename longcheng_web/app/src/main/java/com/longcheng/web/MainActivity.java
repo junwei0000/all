@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
@@ -37,12 +40,13 @@ public class MainActivity extends BaseTabActivity {
     RadioGroup mRadioGroup;
 
     @BindView(R.id.iv_show)
-    ImageView iv_show;
+    Button iv_show;
 
     @BindView(R.id.iv_refresh)
-    ImageView iv_refresh;
+    LinearLayout iv_refresh;
 
-
+    @BindView(R.id.group)
+    FreeMoveView group;
     /**
      * 是否显示全屏
      */
@@ -51,6 +55,10 @@ public class MainActivity extends BaseTabActivity {
     public static final String TAB_SPORTQURAT = "SPORTQURAT_ACTIVITY";
 
     int index = 0;
+    private long startTime = 0;
+    private long endTime = 0;
+
+    private boolean isclick;
 
     @Override
     public void widgetClick(View v) {
@@ -123,8 +131,37 @@ public class MainActivity extends BaseTabActivity {
     public void setListener() {
         iv_show.setOnClickListener(this);
         iv_refresh.setOnClickListener(this);
+        iv_show.setOnTouchListener(onTouchListener);
+        iv_refresh.setOnTouchListener(onTouchListener);
     }
 
+    View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    isclick = false;//当按下的时候设置isclick为false，具体原因看后边的讲解
+                    startTime = System.currentTimeMillis();
+                    System.out.println("执行顺序down");
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    isclick = true;//当按钮被移动的时候设置isclick为true
+                    break;
+                case MotionEvent.ACTION_UP:
+                    endTime = System.currentTimeMillis();
+                    //当从点击到弹起小于半秒的时候,则判断为点击,如果超过则不响应点击事件
+                    if ((endTime - startTime) > 0.1 * 1000L) {
+                        isclick = true;
+                    } else {
+                        isclick = false;
+                    }
+                    System.out.println("执行顺序up");
+                    break;
+                default:
+            }
+            return isclick;
+        }
+    };
     Intent i_main, i_sportqurat;
 
     private void initView() {
