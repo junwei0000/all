@@ -22,7 +22,7 @@ import android.widget.RelativeLayout;
  * Time:        13:54
  */
 
-public class FreeMoveView extends LinearLayout {
+public class FreeMoveView extends RadioGroup {
 
     private MyCountDownTimer countDownTimer;
     /**
@@ -76,43 +76,6 @@ public class FreeMoveView extends LinearLayout {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        if (moveable) {
-            if (viewWidth == 0 && viewHight == 0) {//防止转屏获取不到宽高，只初始化获取
-                viewWidth = getMeasuredWidth();
-                viewHight = getMeasuredHeight();
-            }
-            ViewGroup parentView = ((ViewGroup) getParent());
-            MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
-            parentWidth = parentView.getMeasuredWidth();
-            parentHeight = parentView.getMeasuredHeight();
-            leftPadding = parentView.getPaddingLeft();
-            rightDistance = lp.rightMargin + parentView.getPaddingRight();
-            maxLeftMargin = parentWidth - rightDistance - viewWidth - leftPadding;
-            topPadding = parentView.getPaddingTop();
-            bottomDistance = lp.bottomMargin + parentView.getPaddingBottom();
-            maxTopMargin = parentHeight - bottomDistance - viewHight - topPadding;
-        }
-        Log.e("onSizeChanged", "onSizeChanged\n    "
-                + " parentWidth " + parentWidth
-                + " parentHeight " + parentHeight
-                + " getRight() " + getRight()
-                + " getLeft() " + getLeft()
-                + " getBottom() " + getBottom()
-                + " getTop() " + getTop()
-                + " w " + w
-                + " h " + h
-                + " oldw " + oldw
-                + " oldh " + oldh
-                + " viewWidth " + viewWidth
-                + " viewHight " + viewHight
-                + " minLeftMargin " + minLeftMargin
-                + " leftPadding " + leftPadding
-                + " rightDistance " + rightDistance
-                + " maxLeftMargin " + maxLeftMargin
-                + " minTopMargin " + minTopMargin
-                + " topPadding " + topPadding
-                + " bottomDistance " + bottomDistance
-                + " maxTopMargin " + maxTopMargin);
         initShowArea();
     }
 
@@ -175,6 +138,42 @@ public class FreeMoveView extends LinearLayout {
      * 设置初始显示位置
      */
     public void initShowArea() {
+        if (moveable) {
+            if (viewWidth == 0 && viewHight == 0) {//防止转屏获取不到宽高，只初始化获取
+                viewWidth = getMeasuredWidth();
+                viewHight = getMeasuredHeight();
+            }
+            ViewGroup parentView = ((ViewGroup) getParent());
+            MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
+            parentWidth = parentView.getMeasuredWidth();
+            parentHeight = parentView.getMeasuredHeight();
+            leftPadding = parentView.getPaddingLeft();
+            rightDistance = lp.rightMargin + parentView.getPaddingRight();
+            maxLeftMargin = parentWidth - rightDistance - viewWidth - leftPadding;
+            topPadding = parentView.getPaddingTop();
+            bottomDistance = lp.bottomMargin + parentView.getPaddingBottom();
+            maxTopMargin = parentHeight - bottomDistance - viewHight - topPadding;
+        }
+        Log.e("onSizeChanged", "onSizeChanged\n    "
+                + " parentWidth " + parentWidth
+                + " parentHeight " + parentHeight
+                + " getRight() " + getRight()
+                + " getLeft() " + getLeft()
+                + " getBottom() " + getBottom()
+                + " getTop() " + getTop()
+                + " viewWidth " + viewWidth
+                + " viewHight " + viewHight
+                + " minLeftMargin " + minLeftMargin
+                + " leftPadding " + leftPadding
+                + " rightDistance " + rightDistance
+                + " maxLeftMargin " + maxLeftMargin
+                + " minTopMargin " + minTopMargin
+                + " topPadding " + topPadding
+                + " bottomDistance " + bottomDistance
+                + " maxTopMargin " + maxTopMargin);
+
+
+
         MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
         lp.leftMargin = maxLeftMargin;
         lp.topMargin = maxTopMargin;

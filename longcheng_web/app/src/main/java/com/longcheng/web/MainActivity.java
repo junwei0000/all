@@ -2,6 +2,7 @@ package com.longcheng.web;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -46,6 +49,12 @@ public class MainActivity extends BaseTabActivity {
 
     @BindView(R.id.iv_refresh)
     LinearLayout iv_refresh;
+
+    @BindView(R.id.group)
+    FreeMoveView group;
+
+    @BindView(R.id.mFrameLayout)
+    FrameLayout mFrameLayout;
     /**
      * 是否显示全屏
      */
@@ -106,10 +115,6 @@ public class MainActivity extends BaseTabActivity {
         }
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
 
     @Override
     public View bindView() {
@@ -137,6 +142,7 @@ public class MainActivity extends BaseTabActivity {
         iv_refresh.setOnClickListener(this);
         iv_show.setOnTouchListener(onTouchListener);
         iv_refresh.setOnTouchListener(onTouchListener);
+        mFrameLayout.getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayoutListener);
     }
 
     View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -199,4 +205,47 @@ public class MainActivity extends BaseTabActivity {
         super.onResume();
         Log.d(TAG, "onResume()");
     }
+
+
+    /**
+     * 转屏时刷新布局
+     *
+     * @param newConfig
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        group.initShowArea();
+        rootBottom = Integer.MIN_VALUE;
+        msetRefreshEnable = true;
+    }
+
+    /**
+     * 键盘显示隐藏时刷新布局
+     */
+    private boolean msetRefreshEnable = true;
+    private int rootBottom = Integer.MIN_VALUE;
+    private ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            Rect r = new Rect();
+            mFrameLayout.getGlobalVisibleRect(r);
+            // 进入Activity时会布局，第一次调用onGlobalLayout，先记录开始软键盘没有弹出时底部的位置
+            if (rootBottom == Integer.MIN_VALUE) {
+                rootBottom = r.bottom;
+                return;
+            }
+            Log.e("onSizeChanged", "rootBottom=" + rootBottom + "  ;r.bottom=" + r.bottom);
+            // adjustResize，软键盘弹出后高度会变小
+            if (r.bottom < rootBottom) {
+                msetRefreshEnable = true;
+            } else {
+                if (msetRefreshEnable) {
+                    group.initShowArea();
+                    msetRefreshEnable = false;
+                }
+            }
+
+        }
+    };
 }
