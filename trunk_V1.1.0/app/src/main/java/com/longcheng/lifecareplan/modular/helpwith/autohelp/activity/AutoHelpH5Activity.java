@@ -6,18 +6,36 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.api.Api;
+import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.VolunterDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.pay.PayCallBack;
+import com.longcheng.lifecareplan.utils.pay.PayUtils;
+import com.longcheng.lifecareplan.utils.pay.PayWXAfterBean;
+import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
+import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  *
@@ -72,12 +90,77 @@ public class AutoHelpH5Activity extends WebAct {
             kn_url = HelpWithFragmentNew.automationHelpUrl;
         }
         loadUrl(kn_url);
+        //充值
+        mBridgeWebView.registerHandler("CashRecharge_APP", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "Life_PayMoney=" + data);
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    String type = jsonObject.optString("type", "2");
+                    String money = jsonObject.optString("money", "");
+                    RechargePay(type, money);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
+    private void RechargePay(String payment_channel, String pay_money) {
+        Observable<PayWXDataBean> observable = Api.getInstance().service.RechargePay(UserUtils.getUserId(mContext),
+                payment_channel, pay_money, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        String status = responseBean.getStatus();
+                        if (status.equals("400")) {
+                            ToastUtils.showToast(responseBean.getMsg());
+                        } else if (status.equals("200")) {
+                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                            if (payment_channel.equals("2")) {
+                                Log.e(TAG, payWeChatBean.toString());
+                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                            } else if (payment_channel.equals("3")) {
+                                String payInfo = payWeChatBean.getPayInfo();
+                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                    @Override
+                                    public void onSuccess() {
+                                        PayRefresh();
+                                    }
+
+                                    @Override
+                                    public void onFailure(String error) {
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastUtils.showToast(R.string.net_tishi);
+                        Log.e("Observable", "" + throwable.toString());
+                    }
+                });
     }
 
     private void autohelpRefresh() {
         //智能互祝----刷新页面数据
         mBridgeWebView.callHandler("autohelp_refresh", "", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    private void PayRefresh() {
+        //智能互祝----刷新页面数据
+        mBridgeWebView.callHandler("LifePaySuccess_AppBack", "", new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
@@ -96,6 +179,7 @@ public class AutoHelpH5Activity extends WebAct {
         super.onStart();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConstantManager.BroadcastReceiver_KNP_ACTION);
+        filter.addAction(ConstantManager.BroadcastReceiver_PAY_ACTION);
         registerReceiver(mReceiver, filter);
     }
 
@@ -104,7 +188,13 @@ public class AutoHelpH5Activity extends WebAct {
         @Override
         public void onReceive(Context context, Intent intent) {
             int errCode = intent.getIntExtra("errCode", 100);
-            if (errCode == knpPaySuccessBack) {
+            if (errCode == WXPayEntryActivity.PAY_SUCCESS) {
+                PayRefresh();
+            } else if (errCode == WXPayEntryActivity.PAY_FAILE) {
+                ToastUtils.showToast("支付失败");
+            } else if (errCode == WXPayEntryActivity.PAY_CANCLE) {
+                ToastUtils.showToast("支付取消");
+            } else if (errCode == knpPaySuccessBack) {
                 autohelpRefresh();
             }
         }

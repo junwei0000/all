@@ -2,11 +2,13 @@ package com.longcheng.web;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.CountDownTimer;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -20,7 +22,7 @@ import android.widget.RelativeLayout;
  * Time:        13:54
  */
 
-public class FreeMoveView extends RadioGroup {
+public class FreeMoveView extends LinearLayout {
 
     private MyCountDownTimer countDownTimer;
     /**
@@ -70,32 +72,50 @@ public class FreeMoveView extends RadioGroup {
         ta.recycle();
         countDownTimer = new MyCountDownTimer(millisInFuture, countDownInterval);
         countDownTimer.start();
-        Log.e("onSizeChanged", "init=" + maxLeftMargin);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         if (moveable) {
+            if (viewWidth == 0 && viewHight == 0) {//防止转屏获取不到宽高，只初始化获取
+                viewWidth = getMeasuredWidth();
+                viewHight = getMeasuredHeight();
+            }
             ViewGroup parentView = ((ViewGroup) getParent());
             MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
-            viewWidth = getRight() - getLeft();
-            viewHight = getBottom() - getTop();
             parentWidth = parentView.getMeasuredWidth();
             parentHeight = parentView.getMeasuredHeight();
-            minLeftMargin = lp.leftMargin;
             leftPadding = parentView.getPaddingLeft();
             rightDistance = lp.rightMargin + parentView.getPaddingRight();
             maxLeftMargin = parentWidth - rightDistance - viewWidth - leftPadding;
-            minTopMargin = lp.topMargin;
             topPadding = parentView.getPaddingTop();
             bottomDistance = lp.bottomMargin + parentView.getPaddingBottom();
             maxTopMargin = parentHeight - bottomDistance - viewHight - topPadding;
         }
-        Log.e("onSizeChanged", "maxLeftMargin=" + maxLeftMargin);
+        Log.e("onSizeChanged", "onSizeChanged\n    "
+                + " parentWidth " + parentWidth
+                + " parentHeight " + parentHeight
+                + " getRight() " + getRight()
+                + " getLeft() " + getLeft()
+                + " getBottom() " + getBottom()
+                + " getTop() " + getTop()
+                + " w " + w
+                + " h " + h
+                + " oldw " + oldw
+                + " oldh " + oldh
+                + " viewWidth " + viewWidth
+                + " viewHight " + viewHight
+                + " minLeftMargin " + minLeftMargin
+                + " leftPadding " + leftPadding
+                + " rightDistance " + rightDistance
+                + " maxLeftMargin " + maxLeftMargin
+                + " minTopMargin " + minTopMargin
+                + " topPadding " + topPadding
+                + " bottomDistance " + bottomDistance
+                + " maxTopMargin " + maxTopMargin);
         initShowArea();
     }
 
-    boolean firstSet = true;
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -155,17 +175,13 @@ public class FreeMoveView extends RadioGroup {
      * 设置初始显示位置
      */
     public void initShowArea() {
-        if (firstSet) {
-            firstSet = false;
-            Log.e("onSizeChanged", "initShowArea   maxLeftMargin=" + maxLeftMargin);
-            MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
-            lp.leftMargin = maxLeftMargin;
-            lp.topMargin = maxTopMargin;
-            setLayoutParams(lp);
-            ObjectAnimator marginChange = ObjectAnimator.ofInt(new Wrapper(this), "leftMargin", maxLeftMargin, lp.leftMargin);
-            marginChange.setDuration(100);
-            marginChange.start();
-        }
+        MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
+        lp.leftMargin = maxLeftMargin;
+        lp.topMargin = maxTopMargin;
+        setLayoutParams(lp);
+        ObjectAnimator marginChange = ObjectAnimator.ofInt(new Wrapper(this), "leftMargin", maxLeftMargin, lp.leftMargin);
+        marginChange.setDuration(100);
+        marginChange.start();
     }
 
     /**

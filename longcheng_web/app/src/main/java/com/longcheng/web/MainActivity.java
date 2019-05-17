@@ -1,6 +1,7 @@
 package com.longcheng.web;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.longcheng.web.adapter.TabPageAdapter;
 
@@ -44,7 +46,6 @@ public class MainActivity extends BaseTabActivity {
 
     @BindView(R.id.iv_refresh)
     LinearLayout iv_refresh;
-
     /**
      * 是否显示全屏
      */
@@ -103,6 +104,11 @@ public class MainActivity extends BaseTabActivity {
                 }
             }.start();
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override

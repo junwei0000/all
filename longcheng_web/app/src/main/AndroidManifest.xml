@@ -68,6 +68,7 @@
         android:persistent="true"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
+        <!--android:configChanges="orientation"防止转屏报错-->
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -78,11 +79,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyDeH5Activity"
-            android:configChanges="keyboardHidden|screenSize" />
+            android:name=".MyDeH5Activity" />
         <activity
-            android:name=".MyDe2H5Activity"
-            android:configChanges="keyboardHidden|screenSize" />
+            android:name=".MyDe2H5Activity" />
 
         <!-- APP适配全面屏  -->
         <meta-data
