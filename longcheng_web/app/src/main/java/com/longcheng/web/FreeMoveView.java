@@ -1,10 +1,13 @@
 package com.longcheng.web;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -24,7 +27,7 @@ import android.widget.RelativeLayout;
 
 public class FreeMoveView extends RadioGroup {
 
-    private MyCountDownTimer countDownTimer;
+//    private MyCountDownTimer countDownTimer;
     /**
      * 倒计时时间
      */
@@ -70,8 +73,9 @@ public class FreeMoveView extends RadioGroup {
         moveable = ta.getBoolean(R.styleable.free_moveable, false);
         autoBack = ta.getBoolean(R.styleable.free_autoBack, false);
         ta.recycle();
-        countDownTimer = new MyCountDownTimer(millisInFuture, countDownInterval);
-        countDownTimer.start();
+        mHandler.sendEmptyMessageDelayed(1, 0);
+//        countDownTimer = new MyCountDownTimer(millisInFuture, countDownInterval);
+//        countDownTimer.start();
     }
 
     @Override
@@ -85,7 +89,7 @@ public class FreeMoveView extends RadioGroup {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 setAlpha(1f);
-                countDownTimer.cancel();
+//                countDownTimer.cancel();
                 if (moveable) {
                     MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
                     currentX = ev.getRawX();
@@ -115,7 +119,8 @@ public class FreeMoveView extends RadioGroup {
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                countDownTimer.start();
+//                countDownTimer.start();
+                mHandler.sendEmptyMessageDelayed(1, millisInFuture);
                 if (moveable && autoBack) {
                     MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
                     int fromLeftMargin = lp.leftMargin;
@@ -133,6 +138,17 @@ public class FreeMoveView extends RadioGroup {
         }
         return super.dispatchTouchEvent(ev);
     }
+
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    setAlpha(toAlpha);
+                    break;
+            }
+        }
+    };
 
     /**
      * 设置初始显示位置
@@ -173,7 +189,6 @@ public class FreeMoveView extends RadioGroup {
                 + " maxTopMargin " + maxTopMargin);
 
 
-
         MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
         lp.leftMargin = maxLeftMargin;
         lp.topMargin = maxTopMargin;
@@ -205,19 +220,19 @@ public class FreeMoveView extends RadioGroup {
         }
     }
 
-    public class MyCountDownTimer extends CountDownTimer {
-
-        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-        }
-
-        @Override
-        public void onFinish() {
-            setAlpha(toAlpha);
-        }
-    }
+//    public class MyCountDownTimer extends CountDownTimer {
+//
+//        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+//            super(millisInFuture, countDownInterval);
+//        }
+//
+//        @Override
+//        public void onTick(long millisUntilFinished) {
+//        }
+//
+//        @Override
+//        public void onFinish() {
+//            setAlpha(toAlpha);
+//        }
+//    }
 }
