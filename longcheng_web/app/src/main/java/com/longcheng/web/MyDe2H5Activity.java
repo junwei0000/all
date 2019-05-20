@@ -66,7 +66,8 @@ public class MyDe2H5Activity extends WebAct {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    loadUrl("http://t.admin.asdyf.com/ESale/Manager/index");
+//                    loadUrl("http://t.admin.asdyf.com/ESale/Manager/index");
+                    mBridgeWebView.reload();//刷新
                     break;
             }
         }

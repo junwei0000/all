@@ -57,7 +57,7 @@ public class MyDeH5Activity extends WebAct {
         if (event != null) {
             String mesg = event.getMessage();
             if (!TextUtils.isEmpty(mesg) && mesg.equals("refreshPingTai")) {
-                Log.e("mesg",""+mesg);
+                Log.e("mesg", "" + mesg);
                 mHandler.sendEmptyMessage(1);
             }
         }
@@ -68,11 +68,13 @@ public class MyDeH5Activity extends WebAct {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    loadUrl("http://t.admin.asdyf.com/admin/index");
+//                    loadUrl("http://t.admin.asdyf.com/admin/index");
+                    mBridgeWebView.reload();//刷新
                     break;
             }
         }
     };
+
     @Override
     protected void onResume() {
         super.onResume();
