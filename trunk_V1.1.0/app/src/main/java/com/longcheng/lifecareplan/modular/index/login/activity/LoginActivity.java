@@ -356,7 +356,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
                 Log.d(TAG, "onComplete " + "授权完成");
 
                 //sdk是6.4.4的,但是获取值的时候用的是6.2以前的(access_token)才能获取到值,未知原因
-                String openid = map.get("uid");
+                String openid = map.get("openid");
                 String unionid = map.get("unionid");//微博没有
                 String nick_name = map.get("name");
                 String headimgurl = map.get("iconurl");

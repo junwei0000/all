@@ -255,7 +255,7 @@ public class BaoZhangActitvty extends WebAct {
             @Override
             public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
                 Log.d(TAG, "onComplete " + "授权完成");
-                String openid = map.get("uid");
+                String openid = map.get("openid");
                 creditorBack("1", openid);
             }
 
