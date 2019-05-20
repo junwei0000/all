@@ -52,6 +52,7 @@ public class HelpWithPresenterImp<T> extends HelpWithContract.Present<HelpWithCo
                     public void accept(Throwable throwable) throws Exception {
                         mView.dismissDialog();
                         mView.ListError();
+                        Log.e("Observable", "help===" + throwable.toString());
                     }
                 });
 

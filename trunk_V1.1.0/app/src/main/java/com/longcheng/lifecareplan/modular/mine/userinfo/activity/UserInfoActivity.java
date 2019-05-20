@@ -223,14 +223,19 @@ public class UserInfoActivity extends BaseActivityMVP<UserInfoContract.View, Use
     }
 
     private void shoeDateView() {
-        if (!TextUtils.isEmpty(birthday) && !birthday.equals("0000-00-00")) {
-            String year = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "yyyy");
-            String month = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "MM");
-            String day = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "dd");
-            String yinliDate = new LunarCalendarUtils().getLunarDateYYYY(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
-            String yinliDateShow = new LunarCalendarUtils().getLunarDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
-            userinfoTvBirthday.setText(birthday + "\n" + yinliDateShow);
+        try {
+            if (!TextUtils.isEmpty(birthday) && !birthday.equals("0000-00-00")) {
+                String year = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "yyyy");
+                String month = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "MM");
+                String day = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "dd");
+                String yinliDate = new LunarCalendarUtils().getLunarDateYYYY(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
+                String yinliDateShow = new LunarCalendarUtils().getLunarDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
+                userinfoTvBirthday.setText(birthday + "\n" + yinliDateShow);
+            }
+        } catch (Exception e) {
+            birthday = "0000-00-00";
         }
+
     }
 
     @Override
