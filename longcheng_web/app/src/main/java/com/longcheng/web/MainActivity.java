@@ -1,15 +1,19 @@
 package com.longcheng.web;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -46,11 +50,16 @@ public class MainActivity extends BaseTabActivity {
     @BindView(R.id.rg_bottom_main)
     RadioGroup mRadioGroup;
 
-    @BindView(R.id.iv_show)
-    Button iv_show;
+    @BindView(R.id.iv_function)
+    Button iv_function;
+    @BindView(R.id.layout_function)
+    LinearLayout layout_function;
 
     @BindView(R.id.iv_refresh)
-    LinearLayout iv_refresh;
+    Button iv_refresh;
+
+    @BindView(R.id.iv_show)
+    Button iv_show;
 
     @BindView(R.id.group)
     FreeMoveView group;
@@ -80,9 +89,13 @@ public class MainActivity extends BaseTabActivity {
                     showAllStatus = true;
                 }
                 setShow();
+                mHandler.sendEmptyMessage(FUNCTOIN);
                 break;
             case R.id.iv_refresh:
                 setRefresh();
+                mHandler.sendEmptyMessage(FUNCTOIN);
+                break;
+            default:
                 break;
         }
     }
@@ -142,8 +155,7 @@ public class MainActivity extends BaseTabActivity {
     public void setListener() {
         iv_show.setOnClickListener(this);
         iv_refresh.setOnClickListener(this);
-        iv_show.setOnTouchListener(onTouchListener);
-        iv_refresh.setOnTouchListener(onTouchListener);
+        iv_function.setOnTouchListener(onTouchListener);
         mFrameLayout.getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayoutListener);
     }
 
@@ -166,6 +178,14 @@ public class MainActivity extends BaseTabActivity {
                         isclick = true;
                     } else {
                         isclick = false;
+                        layout_function.setVisibility(View.VISIBLE);
+                        group.setVisibility(View.INVISIBLE);
+                        if(group.currentLeft>0){
+                            layout_function.setGravity(Gravity.BOTTOM|Gravity.RIGHT);
+                        }else{
+                            layout_function.setGravity(Gravity.BOTTOM|Gravity.LEFT);
+                        }
+                        mHandler.sendEmptyMessageDelayed(FUNCTOIN, 3 * 1000);
                     }
                     System.out.println("执行顺序up");
                     break;
@@ -174,12 +194,23 @@ public class MainActivity extends BaseTabActivity {
             return isclick;
         }
     };
-    Intent i_main, i_sportqurat;
+    private static final int FUNCTOIN = 1;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case FUNCTOIN:
+                    layout_function.setVisibility(View.GONE);
+                    group.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
+    };
 
     private void initView() {
         mTabHost = getTabHost();
-        i_main = new Intent(this, MyDeH5Activity.class);
-        i_sportqurat = new Intent(this, MyDe2H5Activity.class);
+        Intent i_main = new Intent(this, MyDeH5Activity.class);
+        Intent i_sportqurat = new Intent(this, MyDe2H5Activity.class);
         mTabHost.addTab(mTabHost.newTabSpec(TAB_MAIN).setIndicator(TAB_MAIN).setContent(i_main));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_SPORTQURAT).setIndicator(TAB_SPORTQURAT).setContent(i_sportqurat));
 

@@ -31,7 +31,7 @@ public class FreeMoveView extends RadioGroup {
     /**
      * 倒计时时间
      */
-    private long millisInFuture;
+    public long millisInFuture=3 * 1000;
     /**
      * 倒计时过程中
      * 回调{@link CountDownTimer#onTick(long)}的间隔时间
@@ -39,7 +39,7 @@ public class FreeMoveView extends RadioGroup {
     private long countDownInterval = 500;
     private float currentX;
     private float currentY;
-    private int currentLeft;
+    public int currentLeft;
     private int currentTop;
     private int parentWidth;
     private int parentHeight;

@@ -230,8 +230,13 @@ public class BaoZhangActitvty extends WebAct {
      */
     private void creditorBack(String type, String relation_str) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.optString("relation_str", relation_str);
-        jsonObject.optString("type", type);
+        try {
+            jsonObject.put("relation_str", relation_str);
+            jsonObject.put("type", type);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.e("creditorBack", "" + jsonObject.toString());
         mBridgeWebView.callHandler("ObtainAPP_relation_str", jsonObject.toString(), new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
