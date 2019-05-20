@@ -146,6 +146,7 @@ public abstract class WebAct extends BaseActivity {
         cookieManager.setCookie(url, "phone_user_avatar=" + avatar + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "phone_user_token=" + token + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "isApp_Storage=1" + Config.WEB_DOMAIN);
+        cookieManager.setCookie(url, "APP_type_pay_source=2" + Config.WEB_DOMAIN);//安卓source=2
         Log.e("aaa", "name : " + name + " , " + phone + " , userId : " + userId + avatar + " , token : " + token);
         cookieManager.getCookie(url);
         CookieSyncManager.getInstance().sync();

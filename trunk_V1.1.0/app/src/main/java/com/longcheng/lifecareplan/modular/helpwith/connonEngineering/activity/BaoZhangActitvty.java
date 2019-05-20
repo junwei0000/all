@@ -45,13 +45,16 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
+import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UmengTool;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
@@ -203,8 +206,67 @@ public class BaoZhangActitvty extends WebAct {
                 mVolunterDialogUtils.showPopupWindow(Voluntepay_money);
             }
         });
+
+
+        //债权人--获取openid
+        mBridgeWebView.registerHandler("APPTuneUp_WX", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                if (ExampleApplication.mUMShareAPI.isInstall(mActivity, SHARE_MEDIA.WEIXIN)) {
+                    creditorAuthorization(SHARE_MEDIA.WEIXIN);
+                } else {
+                    creditorBack("-1", "");
+                }
+            }
+        });
+
+
     }
 
+    /**
+     * 债权人- 返回
+     *
+     * @param type 0:无  ； 1：有 ； -1：未安装微信
+     */
+    private void creditorBack(String type, String relation_str) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.optString("relation_str", relation_str);
+        jsonObject.optString("type", type);
+        mBridgeWebView.callHandler("ObtainAPP_relation_str", jsonObject.toString(), new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    private void creditorAuthorization(SHARE_MEDIA share_media) {
+        ExampleApplication.mUMShareAPI.getPlatformInfo(this, share_media, new UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA share_media) {
+                Log.d(TAG, "onStart " + "授权开始");
+            }
+
+            @Override
+            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                Log.d(TAG, "onComplete " + "授权完成");
+                String openid = map.get("uid");
+                creditorBack("1", openid);
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+                Log.d(TAG, "onError " + "授权失败");
+                creditorBack("0", "");
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media, int i) {
+                Log.d(TAG, "onCancel " + "授权取消");
+                creditorBack("0", "");
+            }
+        });
+    }
     /**
      * ____________________________________________________________
      */
@@ -367,6 +429,7 @@ public class BaoZhangActitvty extends WebAct {
             }
         });
     }
+
     /**
      * 刷新生活保障详情页
      */
@@ -378,6 +441,7 @@ public class BaoZhangActitvty extends WebAct {
             }
         });
     }
+
     /**
      * 获取生活保障详情数据
      *
