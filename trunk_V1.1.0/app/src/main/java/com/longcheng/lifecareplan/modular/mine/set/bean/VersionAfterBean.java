@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.mine.set.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,15 @@ public class VersionAfterBean implements Serializable {
     protected String url;
     protected String level;
     protected String version;
+    protected ArrayList<String> description;
 
+    public ArrayList<String> getDescription() {
+        return description;
+    }
+
+    public void setDescription(ArrayList<String> description) {
+        this.description = description;
+    }
 
     public String getUrl() {
         return url;

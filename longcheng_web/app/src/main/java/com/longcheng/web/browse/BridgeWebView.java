@@ -68,8 +68,8 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         this.defaultHandler = handler;
     }
 
-    private String MobileUserAgent = "appasdyf/androidtv"; //手机头识别码 伪装User-Agent
-
+    private String MobileUserAgent = "appasdyf/android"; //手机头识别码 伪装User-Agent
+    private String MobileUserAgenttv = "appasdyf/androidtv"; //tv识别码 伪装User-Agent
     private void init() {
         this.setVerticalScrollBarEnabled(false);
         this.setHorizontalScrollBarEnabled(false);
@@ -83,6 +83,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 //        String webviewUa = this.getSettings().getUserAgentString();
 //        if (webviewUa.indexOf(MobileUserAgent) == -1) {
         this.getSettings().setUserAgentString(MobileUserAgent);
+//        this.getSettings().setUserAgentString(MobileUserAgenttv);
 //        }
         /**
          * webview js 点击事件失效 localStorage  缓存问题

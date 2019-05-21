@@ -38,6 +38,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -112,7 +113,15 @@ public class AppUpdate {
                                     intents.setAction(ConstantManager.MAINMENU_ACTION);
                                     intents.putExtra("type", ConstantManager.MAIN_ACTION_UpdateVerDisAllDialog);
                                     LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
-                                    defineUpdated(version, url, level, "");
+
+                                    ArrayList<String> descriptionList = mVersionAfterBean.getDescription();
+                                    StringBuffer description = new StringBuffer();
+                                    if (descriptionList != null && descriptionList.size() > 0) {
+                                        for (String str : descriptionList) {
+                                            description.append(str + "\n");
+                                        }
+                                    }
+                                    defineUpdated(version, url, level, description.toString());
                                 }
                             }
                         }
@@ -198,7 +207,6 @@ public class AppUpdate {
         Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
         WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
         p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
-        p.height = (int) (p.width * 1.36);
         selectDialog.getWindow().setAttributes(p); //设置生效
         selectDialog.setOnDismissListener(new OnDismissListener() {
             @Override
@@ -216,13 +224,17 @@ public class AppUpdate {
                 }
             }
         });
+        ImageView iv_top = (ImageView) selectDialog.findViewById(R.id.iv_top);
+        iv_top.setLayoutParams(new LinearLayout.LayoutParams(d.getWidth() * 3 / 4, (int) (p.width * 0.64)));
+        TextView tv_version = (TextView) selectDialog.findViewById(R.id.tv_version);
         TextView tv_cont = (TextView) selectDialog.findViewById(R.id.tv_cont);
         TextView tv_update = (TextView) selectDialog.findViewById(R.id.tv_update);
         TextView tv_xicai = (TextView) selectDialog.findViewById(R.id.tv_xicai);
         if (!TextUtils.isEmpty(androidVersion) && androidVersion.contains("_")) {
             androidVersion = androidVersion.replace("_", ".");
         }
-        tv_cont.setText("发现新版本：V" + androidVersion);
+        tv_version.setText("版本号：V" + androidVersion);
+        tv_cont.setText(description);
         tv_update.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
                 Intent updateIntent = new Intent(context, UpdateService.class);

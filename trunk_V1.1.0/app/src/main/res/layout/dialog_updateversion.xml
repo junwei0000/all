@@ -1,33 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/teetime_lay"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/my_setupthe_update"
-    android:layout_gravity="center">
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/my_setupthe_update" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom|center_horizontal"
-        android:gravity="bottom|center_horizontal"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_writebottom"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_cont"
+            android:id="@+id/tv_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="V1.5.0"
             android:textColor="@color/text_biaoTi_color"
-            android:textSize="@dimen/text_biaoTi_size"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_tishi_size" />
+
+        <TextView
+            android:id="@+id/tv_cont"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.3"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
 
         <TextView
             android:id="@+id/tv_update"
-            android:layout_width="230dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp30"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
             android:background="@drawable/corners_bg_blue"
             android:gravity="center"
             android:paddingBottom="@dimen/dp10"
@@ -42,10 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:gravity="center"
-            android:paddingBottom="@dimen/jianJu"
-            android:paddingTop="@dimen/jianJu"
+            android:paddingBottom="@dimen/padd_topbottom"
+            android:paddingTop="@dimen/padd_topbottom"
             android:text="取消"
             android:textColor="@color/text_noclick_color"
             android:textSize="@dimen/text_zhu_size" />
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

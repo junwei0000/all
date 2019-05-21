@@ -85,9 +85,9 @@ public abstract class WebAct extends BaseActivity {
         /**
          * 缓存  Cookie
          */
-        CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.setAcceptCookie(true);
-        cookieManager.removeAllCookie();
+//        CookieManager cookieManager = CookieManager.getInstance();
+//        cookieManager.setAcceptCookie(true);
+//        cookieManager.removeAllCookie();
 //        String name = UserUtils.getUserName(mContext);
 //        String phone = UserUtils.getUserPhone(mContext);
 //        String userId = UserUtils.getUserId(mContext);
@@ -100,8 +100,8 @@ public abstract class WebAct extends BaseActivity {
 //        cookieManager.setCookie(url, "phone_user_token=" + token + Config.WEB_DOMAIN);
 //        cookieManager.setCookie(url, "isApp_Storage=1" + Config.WEB_DOMAIN);
 //        Log.e("aaa", "name : " + name + " , " + phone + " , userId : " + userId + avatar + " , token : " + token);
-        cookieManager.getCookie(url);
-        CookieSyncManager.getInstance().sync();
+//        cookieManager.getCookie(url);
+//        CookieSyncManager.getInstance().sync();
     }
 
     @Override
