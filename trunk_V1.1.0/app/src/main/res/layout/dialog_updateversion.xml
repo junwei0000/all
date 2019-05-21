@@ -44,7 +44,7 @@
             android:gravity="center"
             android:paddingBottom="@dimen/dp10"
             android:paddingTop="@dimen/dp10"
-            android:text="立即升级"
+            android:text="立即更新"
             android:textColor="@color/white"
             android:textSize="@dimen/text_biaoTi_size" />
 

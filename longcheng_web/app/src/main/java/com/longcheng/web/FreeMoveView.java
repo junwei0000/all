@@ -31,7 +31,7 @@ public class FreeMoveView extends RadioGroup {
     /**
      * 倒计时时间
      */
-    public long millisInFuture=3 * 1000;
+    public long millisInFuture = 3 * 1000;
     /**
      * 倒计时过程中
      * 回调{@link CountDownTimer#onTick(long)}的间隔时间
@@ -80,9 +80,14 @@ public class FreeMoveView extends RadioGroup {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        initShowArea();
+        if (first) {
+            first = false;
+            initShowArea();
+        }
+
     }
 
+    boolean first = true;
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -150,6 +155,7 @@ public class FreeMoveView extends RadioGroup {
         }
     };
 
+
     /**
      * 设置初始显示位置
      */
@@ -188,14 +194,14 @@ public class FreeMoveView extends RadioGroup {
                 + " bottomDistance " + bottomDistance
                 + " maxTopMargin " + maxTopMargin);
 
-
         MarginLayoutParams lp = (MarginLayoutParams) getLayoutParams();
         lp.leftMargin = maxLeftMargin;
         lp.topMargin = maxTopMargin;
-        setLayoutParams(lp);
         ObjectAnimator marginChange = ObjectAnimator.ofInt(new Wrapper(this), "leftMargin", maxLeftMargin, lp.leftMargin);
         marginChange.setDuration(100);
         marginChange.start();
+        currentLeft = lp.leftMargin;
+        currentTop = lp.topMargin;
     }
 
     /**

@@ -63,7 +63,17 @@
     </TabHost>
 
 
-    <com.longcheng.web.FreeMoveView
+    <!--<com.longcheng.web.FreeMoveView-->
+        <!--android:id="@+id/group"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="@dimen/menu_bottom_height"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="@dimen/dp10"-->
+        <!--app:autoBack="true"-->
+        <!--app:moveable="false">-->
+        <com.longcheng.web.FreeMoveView
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +82,6 @@
         android:padding="@dimen/dp10"
         app:autoBack="true"
         app:moveable="true">
-
         <Button
             android:id="@+id/iv_function"
             android:layout_width="30dp"
@@ -84,8 +93,8 @@
         android:id="@+id/layout_function"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom|right"
         android:layout_marginBottom="@dimen/menu_bottom_height"
+        android:gravity="bottom|right"
         android:orientation="vertical"
         android:padding="@dimen/dp10"
         android:visibility="gone">

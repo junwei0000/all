@@ -180,10 +180,12 @@ public class MainActivity extends BaseTabActivity {
                         isclick = false;
                         layout_function.setVisibility(View.VISIBLE);
                         group.setVisibility(View.INVISIBLE);
-                        if(group.currentLeft>0){
-                            layout_function.setGravity(Gravity.BOTTOM|Gravity.RIGHT);
-                        }else{
-                            layout_function.setGravity(Gravity.BOTTOM|Gravity.LEFT);
+                        if (ExampleApplication.modelType.equals(ExampleApplication.modelType_PHONE)) {
+                            if (group.currentLeft > 0) {
+                                layout_function.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
+                            } else {
+                                layout_function.setGravity(Gravity.BOTTOM | Gravity.LEFT);
+                            }
                         }
                         mHandler.sendEmptyMessageDelayed(FUNCTOIN, 3 * 1000);
                     }
@@ -248,16 +250,23 @@ public class MainActivity extends BaseTabActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        group.initShowArea();
         rootBottom = Integer.MIN_VALUE;
-        msetRefreshEnable = true;
+        firstMin = true;
+        firstcenter = true;
+        firstMax = true;
+//        ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
+//        Log.e("onSizeChanged", "onConfigurationChanged\n    " + newConfig.orientation);
+//        group.initShowArea();
     }
 
     /**
      * 键盘显示隐藏时刷新布局
      */
-    private boolean msetRefreshEnable = true;
+//    private boolean msetRefreshEnable = true;
     private int rootBottom = Integer.MIN_VALUE;
+    boolean firstMin = true;
+    boolean firstcenter = true;
+    boolean firstMax = true;
     private ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
         public void onGlobalLayout() {
@@ -266,19 +275,37 @@ public class MainActivity extends BaseTabActivity {
             // 进入Activity时会布局，第一次调用onGlobalLayout，先记录开始软键盘没有弹出时底部的位置
             if (rootBottom == Integer.MIN_VALUE) {
                 rootBottom = r.bottom;
+                Log.e("onSizeChanged", "Integer.MIN_VALUE    " + r.bottom + "  " + rootBottom);
                 return;
             }
-            Log.e("onSizeChanged", "rootBottom=" + rootBottom + "  ;r.bottom=" + r.bottom);
+            Log.e("onSizeChanged", "r.bottom < rootBottom    " + r.bottom + "  " + rootBottom + "  ");
             // adjustResize，软键盘弹出后高度会变小
             if (r.bottom < rootBottom) {
-                msetRefreshEnable = true;
-            } else {
-                if (msetRefreshEnable) {
+                if (firstMin) {
+                    Log.e("onSizeChanged", "r.bottom < rootBottom    " + r.bottom);
                     group.initShowArea();
-                    msetRefreshEnable = false;
+                    firstMin = false;
                 }
+                firstcenter = true;
+                firstMax = true;
+            } else if (r.bottom > rootBottom) {
+                if (firstMax) {
+                    Log.e("onSizeChanged", "r.bottom > rootBottom    " + r.bottom);
+                    group.initShowArea();
+                    firstMax = false;
+                    rootBottom = r.bottom;//防止转动屏幕导致无法刷新
+                }
+                firstMin = true;
+                firstcenter = true;
+            } else {
+                if (firstcenter) {
+                    Log.e("onSizeChanged", "ViewTreeObserver     " + r.bottom);
+                    group.initShowArea();
+                    firstcenter = false;
+                }
+                firstMin = true;
+                firstMax = true;
             }
-
         }
     };
 

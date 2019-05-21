@@ -17,6 +17,9 @@ public class ExampleApplication extends MultiDexApplication {
     public static ExampleApplication exampleApplication;
     private static Context context;
 
+    public static String modelType_PHONE = "modelType_PHONE";
+    public static String modelType_TV = "modelType_TV";
+    public static String modelType = modelType_TV;
 
     @Override
     public void onCreate() {
@@ -24,9 +27,15 @@ public class ExampleApplication extends MultiDexApplication {
         exampleApplication = this;
         context = getApplicationContext();
         setCrash();
+        setModelType();
     }
 
-
+    /**
+     * modelType_TV  ;  modelType_PHONE
+     */
+    private void setModelType() {
+        modelType = modelType_PHONE;
+    }
 
 
     public static Context getContext() {

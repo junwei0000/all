@@ -1,5 +1,6 @@
 package com.longcheng.web;
 
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -70,7 +71,7 @@ public abstract class BaseTabActivity extends TabActivity implements View.OnClic
      * 上下文
      **/
     public Context mContext = this;
-
+    public Activity mActivity = this;
     private ActivityManager activityManager;
     private Unbinder bind;
 

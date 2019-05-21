@@ -12,6 +12,8 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.longcheng.web.ExampleApplication;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +72,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 
     private String MobileUserAgent = "appasdyf/android"; //手机头识别码 伪装User-Agent
     private String MobileUserAgenttv = "appasdyf/androidtv"; //tv识别码 伪装User-Agent
+
     private void init() {
         this.setVerticalScrollBarEnabled(false);
         this.setHorizontalScrollBarEnabled(false);
@@ -80,11 +83,11 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         this.getSettings().setUseWideViewPort(true);
         this.getSettings().setLoadWithOverviewMode(true);
         // 伪装User-Agent
-//        String webviewUa = this.getSettings().getUserAgentString();
-//        if (webviewUa.indexOf(MobileUserAgent) == -1) {
-        this.getSettings().setUserAgentString(MobileUserAgent);
-//        this.getSettings().setUserAgentString(MobileUserAgenttv);
-//        }
+        if (ExampleApplication.modelType.equals(ExampleApplication.modelType_PHONE)) {
+            this.getSettings().setUserAgentString(MobileUserAgent);
+        } else {
+            this.getSettings().setUserAgentString(MobileUserAgenttv);
+        }
         /**
          * webview js 点击事件失效 localStorage  缓存问题
          */
