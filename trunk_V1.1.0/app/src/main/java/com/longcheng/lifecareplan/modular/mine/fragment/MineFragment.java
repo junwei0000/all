@@ -28,12 +28,14 @@ import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.PerfectInfoDialog;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.UpdatePwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.mine.absolutelyclear.activity.AbsolutelyclearAct;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.activity.AWordOfGoldAct;
@@ -1057,8 +1059,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      */
     public void showCrediterCashDialog() {
         if (CrediterCashDialog == null) {
-            CrediterCashDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mycenter_creditercash);// 创建Dialog并设置样式主题
-            CrediterCashDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            CrediterCashDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+            CrediterCashDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = CrediterCashDialog.getWindow();
             window.setGravity(Gravity.CENTER);
             CrediterCashDialog.show();
@@ -1066,10 +1068,11 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = CrediterCashDialog.getWindow().getAttributes(); //获取对话框当前的参数值
             p.width = d.getWidth() * 3 / 4;
-            p.height = (int) (p.width * 1.28);
             CrediterCashDialog.getWindow().setAttributes(p); //设置生效
+            ImageView fram_bg = (ImageView) CrediterCashDialog.findViewById(R.id.fram_bg);
+            fram_bg.setBackgroundResource(R.mipmap.my_credite_bg);
+            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.316)));
             LinearLayout layout_cancel = (LinearLayout) CrediterCashDialog.findViewById(R.id.layout_cancel);
-            TextView btn_tixian = (TextView) CrediterCashDialog.findViewById(R.id.btn_tixian);
 
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1077,10 +1080,10 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     CrediterCashDialog.dismiss();
                 }
             });
-            btn_tixian.setOnClickListener(new View.OnClickListener() {
+            fram_bg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CrediterCashDialog.dismiss();
+                    CrediterCashDialog.dismiss();/**/
                     Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
