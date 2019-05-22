@@ -338,7 +338,7 @@ public class ConfigUtils {
      * @param context
      */
     public void closeSoftInput(Activity context) {
-        if (context != null)
+        if (context != null && context.getCurrentFocus() != null && context.getCurrentFocus().getWindowToken() != null)
             ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
                     context.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }

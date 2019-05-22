@@ -517,9 +517,9 @@ public class BaoZhangActitvty extends WebAct {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         unregisterReceiver(mReceiver);
         life_repay_id = "0";
+        super.onDestroy();
     }
 
     @Override

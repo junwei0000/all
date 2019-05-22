@@ -159,6 +159,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
         return R.layout.fragment_exchange;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void initView(View view) {
         ScrowUtil.ScrollViewConfigAll(exchange_sv);
@@ -166,64 +167,6 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
         notDateCont.setText("找不到搜索的内容噢~");
         notDateBtn.setVisibility(View.GONE);
         notDateImg.setBackgroundResource(R.mipmap.not_searched_img);
-        getList(1);
-        mPresent.getJieQiList(user_id);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (BottomMenuActivity.position == BottomMenuActivity.tab_position_exchange && !toDetailBackStatus) {
-            initLoad(solar_terms, solar_terms_name);
-        }
-    }
-
-    /**
-     * 跳转详情回来不刷新
-     */
-    boolean toDetailBackStatus = false;
-
-    public void initLoad(int solar_terms_id, String solar_terms_name_) {
-        if (solar_terms_id != solar_terms && !solar_terms_name.equals(solar_terms_name_)) {
-            solar_terms = solar_terms_id;
-            solar_terms_name = solar_terms_name_;
-        }
-        exchangeTvSelectjieqi.setText(solar_terms_name);
-        getList(1);
-        mPresent.getJieQiList(user_id);
-    }
-
-    private void setFocuse() {
-        if (page == 1) {
-            exchange_sv.post(
-                    new Runnable() {
-                        public void run() {
-                            /**
-                             * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
-                             */
-                            ScrollView scrollview = exchange_sv.getRefreshableView();
-                            scrollview.smoothScrollTo(0, 0);
-                        }
-                    });
-        }
-    }
-
-    /**
-     * http://test.t.asdyf.com/api/v1_1_0/shop/index?user_id=942&token=d3ac1d359e1d2720647
-     * 28971545170d4&category=32&time_sort=0&price_sort=2&hot_sort=0&solar_terms=7&search=
-     *
-     * @param page
-     */
-    private void getList(int page) {
-        layout_categorys.setVisibility(View.GONE);
-        user_id = UserUtils.getUserId(mContext);
-        mPresent.getGoodsList(user_id, category, time_sort, price_sort,
-                hot_sort, solar_terms, searchCont, page, pageSize);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void doBusiness(Context mContext) {
         layout_page.getBackground().setAlpha(90);
         tv_topline.getBackground().setAlpha(90);
         exchange_layout_select.setOnClickListener(this);
@@ -293,7 +236,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             public void afterTextChanged(Editable s) {
             }
         });
-        ScrollView mScrollView = exchange_sv.getRefreshableView();
+        ScrollView mScrollView = (ScrollView) exchange_sv.getRefreshableView();
         mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -313,6 +256,64 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                 }
             }
         });
+        getList(1);
+        mPresent.getJieQiList(user_id);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (BottomMenuActivity.position == BottomMenuActivity.tab_position_exchange && !toDetailBackStatus) {
+            initLoad(solar_terms, solar_terms_name);
+        }
+    }
+
+    /**
+     * 跳转详情回来不刷新
+     */
+    boolean toDetailBackStatus = false;
+
+    public void initLoad(int solar_terms_id, String solar_terms_name_) {
+        if (solar_terms_id != solar_terms && !solar_terms_name.equals(solar_terms_name_)) {
+            solar_terms = solar_terms_id;
+            solar_terms_name = solar_terms_name_;
+        }
+        exchangeTvSelectjieqi.setText(solar_terms_name);
+        getList(1);
+        mPresent.getJieQiList(user_id);
+    }
+
+    private void setFocuse() {
+        if (page == 1) {
+            exchange_sv.post(
+                    new Runnable() {
+                        public void run() {
+                            /**
+                             * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
+                             */
+                            ScrollView scrollview = exchange_sv.getRefreshableView();
+                            scrollview.smoothScrollTo(0, 0);
+                        }
+                    });
+        }
+    }
+
+    /**
+     * http://test.t.asdyf.com/api/v1_1_0/shop/index?user_id=942&token=d3ac1d359e1d2720647
+     * 28971545170d4&category=32&time_sort=0&price_sort=2&hot_sort=0&solar_terms=7&search=
+     *
+     * @param page
+     */
+    private void getList(int page) {
+        layout_categorys.setVisibility(View.GONE);
+        user_id = UserUtils.getUserId(mContext);
+        mPresent.getGoodsList(user_id, category, time_sort, price_sort,
+                hot_sort, solar_terms, searchCont, page, pageSize);
+    }
+
+    @Override
+    public void doBusiness(Context mContext) {
+
     }
 
     @Override
@@ -463,11 +464,15 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                     mGoodsAllList.clear();
                     mAdapter = null;
                     showNoMoreData(false);
-                    layout_categorys.setVisibility(View.GONE);
-                    if (size == 0) {
-                        layout_page.setVisibility(View.GONE);
-                    } else {
-                        layout_page.setVisibility(View.VISIBLE);
+                    if (layout_categorys != null) {
+                        layout_categorys.setVisibility(View.GONE);
+                    }
+                    if (layout_page != null) {
+                        if (size == 0) {
+                            layout_page.setVisibility(View.GONE);
+                        } else {
+                            layout_page.setVisibility(View.VISIBLE);
+                        }
                     }
                     tv_showScrollPage.setText("1");
                     tv_allPage.setText("" + allPage);

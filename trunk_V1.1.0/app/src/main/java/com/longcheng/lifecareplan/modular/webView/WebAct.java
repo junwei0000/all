@@ -123,7 +123,9 @@ public abstract class WebAct extends BaseActivity {
 
     public void loadUrl(String url) {
         this.url = url;
-        sewtCookie(url);
+        if (!TextUtils.isEmpty(url)) {
+            sewtCookie(url);
+        }
         // 打开页面，也可以支持网络url
         mBridgeWebView.loadUrl(url);
     }

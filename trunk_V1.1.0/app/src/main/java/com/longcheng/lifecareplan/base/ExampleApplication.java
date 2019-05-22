@@ -22,6 +22,7 @@ import com.longcheng.lifecareplan.utils.CustomCrashHandler;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.UnCeHandler;
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
@@ -71,7 +72,7 @@ public class ExampleApplication extends MultiDexApplication {
 
     private void initToken() {
         token = ConfigUtils.getINSTANCE().getDeviceId(this);
-        setStrictModePermission();
+//        setStrictModePermission();
     }
 
     /**

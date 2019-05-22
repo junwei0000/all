@@ -195,7 +195,8 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Camera camera = CameraManager.get().getCamera();
-        setCameraDisplayOrientation(this, 0, camera);
+        if (camera != null)
+            setCameraDisplayOrientation(this, 0, camera);
     }
 
     public static void setCameraDisplayOrientation(Activity activity,

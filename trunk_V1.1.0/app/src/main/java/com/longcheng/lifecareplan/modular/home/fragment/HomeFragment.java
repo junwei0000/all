@@ -199,6 +199,24 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void initView(View view) {
+        pagetopLayoutLeft.setOnClickListener(this);
+        pagetopLayoutRigth.setOnClickListener(this);
+        mainhealthLayoutMore.setOnClickListener(this);
+        mainhotpushLayoutMore.setOnClickListener(this);
+        mainactionLayoutMore.setOnClickListener(this);
+        int width = DensityUtil.screenWith(mContext);
+        int height = (int) (width * 0.454);
+        homedediVpTop.setLayoutParams(new FrameLayout.LayoutParams(width, height));
+        pagetopLayoutRigth.setFocusable(true);
+        pagetopLayoutRigth.setFocusableInTouchMode(true);
+        pagetopLayoutRigth.requestFocus();
+        showChache(false);
+        try {
+            String d = CleanMessageUtil.getTotalCacheSize(mContext);
+            Log.e("CleanMessageUtil", d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         pagetopIvRigth.setBackgroundResource(R.mipmap.homepage_scan_icon);
         pagetopIvRigth.setVisibility(View.VISIBLE);
         pageTopTvName.setText(getString(R.string.main_title));
@@ -305,25 +323,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void doBusiness(Context mContext) {
-        pagetopLayoutLeft.setOnClickListener(this);
-        pagetopLayoutRigth.setOnClickListener(this);
-        mainhealthLayoutMore.setOnClickListener(this);
-        mainhotpushLayoutMore.setOnClickListener(this);
-        mainactionLayoutMore.setOnClickListener(this);
-        int width = DensityUtil.screenWith(mContext);
-        int height = (int) (width * 0.454);
-        homedediVpTop.setLayoutParams(new FrameLayout.LayoutParams(width, height));
-        pagetopLayoutRigth.setFocusable(true);
-        pagetopLayoutRigth.setFocusableInTouchMode(true);
-        pagetopLayoutRigth.requestFocus();
-        showChache(false);
-//        reLoadData();
-        try {
-            String d = CleanMessageUtil.getTotalCacheSize(mContext);
-            Log.e("CleanMessageUtil", d);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 

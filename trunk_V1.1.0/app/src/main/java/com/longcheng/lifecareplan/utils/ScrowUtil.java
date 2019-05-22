@@ -25,14 +25,15 @@ public class ScrowUtil {
      * 上拉下拉
      */
     public static void ScrollViewConfigAll(PullToRefreshScrollView mScrollView, boolean flag) {
-        mScrollView.setMode(PullToRefreshBase.Mode.BOTH);
-        mScrollView.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
-        mScrollView.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
-        mScrollView.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+        if (mScrollView != null) {
+            mScrollView.setMode(PullToRefreshBase.Mode.BOTH);
+            mScrollView.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mScrollView.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mScrollView.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
 
-        mScrollView.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
-        mScrollView.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
-        mScrollView.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+            mScrollView.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mScrollView.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mScrollView.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
 //        if (flag) {
 //            final ScrollView refreshableView = mScrollView.getRefreshableView();
 //            refreshableView.post(new Runnable() {
@@ -43,6 +44,7 @@ public class ScrowUtil {
 //            });
 //            refreshableView.smoothScrollTo(0, 20);//ScrollView
 //        }
+        }
     }
 
     /**
@@ -83,14 +85,15 @@ public class ScrowUtil {
      * 仅有下拉
      */
     public static void ScrollViewDownConfig(PullToRefreshScrollView mScrollView) {
-        mScrollView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
-        mScrollView.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
-        mScrollView.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
-        mScrollView.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+        if (mScrollView != null) {
+            mScrollView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+            mScrollView.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mScrollView.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mScrollView.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
 
-        mScrollView.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
-        mScrollView.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
-        mScrollView.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+            mScrollView.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mScrollView.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mScrollView.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
 
 //        final ScrollView refreshableView = mScrollView.getRefreshableView();
 //        refreshableView.post(new Runnable() {
@@ -100,6 +103,7 @@ public class ScrowUtil {
 //            }
 //        });
 //        refreshableView.smoothScrollTo(0, 20);//ScrollView
+        }
     }
 
     /**
@@ -142,14 +146,16 @@ public class ScrowUtil {
      * @author MarkShuai
      */
     public static void listViewConfigAll(PullToRefreshListView mlistview) {
-        mlistview.setMode(PullToRefreshBase.Mode.BOTH);
-        mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+        if (mlistview != null) {
+            mlistview.setMode(PullToRefreshBase.Mode.BOTH);
+            mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
 
-        mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+        }
     }
 
     /**
@@ -158,14 +164,16 @@ public class ScrowUtil {
      * @param mlistview
      */
     public static void listViewNotConfig(PullToRefreshListView mlistview) {
-        mlistview.setMode(PullToRefreshBase.Mode.DISABLED);
-        mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+        if (mlistview != null) {
+            mlistview.setMode(PullToRefreshBase.Mode.DISABLED);
+            mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
 
-        mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+        }
     }
 
     /**
@@ -174,14 +182,16 @@ public class ScrowUtil {
      * @param mlistview
      */
     public static void listViewUpConfig(PullToRefreshListView mlistview) {
-        mlistview.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
-        mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+        if (mlistview != null) {
+            mlistview.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+            mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
 
-        mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+        }
     }
 
     /**
@@ -190,13 +200,15 @@ public class ScrowUtil {
      * @param mlistview
      */
     public static void listViewDownConfig(PullToRefreshListView mlistview) {
-        mlistview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
-        mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
-        mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+        if (mlistview != null) {
+            mlistview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+            mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
 
-        mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
-        mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+        }
     }
 }

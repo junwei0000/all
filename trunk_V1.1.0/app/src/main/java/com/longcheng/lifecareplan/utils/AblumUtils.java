@@ -23,6 +23,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.Display;
 import android.view.Gravity;
@@ -112,7 +113,6 @@ public class AblumUtils {
     private static String file_name;
     public static File tempFile;
     public static String mkdirsName = "longcheng";
-    private Uri pictrueuri;
     File cacheDir;
     Uri mUriPath;
 
@@ -141,8 +141,8 @@ public class AblumUtils {
             if (!cacheDir.exists()) {
                 cacheDir.mkdirs();
             }
-            pictrueuri = Uri.fromFile(new File(cacheDir, file_name));
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, pictrueuri);
+            mUriPath = Uri.fromFile(new File(cacheDir, file_name));
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, mUriPath);
         }
         mContext.startActivityForResult(intent, RESULTCAMERA);
     }
@@ -172,8 +172,8 @@ public class AblumUtils {
         intent.putExtra("outputX", 200);
         intent.putExtra("outputY", 200);
         // 图片格式
-        intent.putExtra("outputFormat", "JPEG");
-        intent.putExtra("return-data", true);// true:不返回uri，false：返回uri
+//        intent.putExtra("outputFormat", "JPEG");
+//        intent.putExtra("return-data", true);// true:不返回uri，false：返回uri
 //        mContext.startActivityForResult(intent, RESULTCROP);
 
 
@@ -254,7 +254,7 @@ public class AblumUtils {
 
         } else if (requestCode == RESULTCAMERA && resultCode == Activity.RESULT_OK) {
             if (hasSdcard()) {
-                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, pictrueuri));
+                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mUriPath));
                 File cacheDir = new File(Environment.getExternalStorageDirectory(), mkdirsName);
                 if (!cacheDir.exists()) {
                     cacheDir.mkdirs();
@@ -271,7 +271,14 @@ public class AblumUtils {
                  * **************************修改1***关于小米手机问题***************************************
                  */
                 Bitmap bitmap = BitmapFactory.decodeStream(mContext.getContentResolver().openInputStream(mUriPath));
-//                Bitmap bitmap = data.getParcelableExtra("data");
+                if (bitmap == null) {
+//                    bitmap = data.getParcelableExtra("data");
+                    String picturePath = FilePathResolver.getPath(mContext, mUriPath);
+                    if (TextUtils.isEmpty(picturePath)) {
+                        picturePath = tempFile.getPath();
+                    }
+                    bitmap = BitmapFactory.decodeFile(picturePath);
+                }
                 Message msgMessage = new Message();
                 msgMessage.obj = bitmap;
                 msgMessage.what = mHandlerId;

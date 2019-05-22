@@ -397,8 +397,8 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         unregisterReceiver(mReceiver);
+        super.onDestroy();
     }
 
     @Override

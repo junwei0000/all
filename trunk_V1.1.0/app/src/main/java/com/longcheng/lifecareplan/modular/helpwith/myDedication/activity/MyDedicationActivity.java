@@ -118,7 +118,7 @@ public class MyDedicationActivity extends BaseListActivity<MyDedicationContract.
         helpListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (helpAllList != null && helpAllList.size() > 0) {
+                if (helpAllList != null && helpAllList.size() > 0&&(position - 1)<helpAllList.size()) {
                     Intent intent = new Intent(mContext, MyDedicationDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("h_user_id", helpAllList.get(position - 1).getReceive_user_id());

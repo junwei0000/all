@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="5dp" />
 
-    <com.github.lzyzsd.jsbridge.BridgeWebView
+    <com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView
         android:id="@+id/js_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

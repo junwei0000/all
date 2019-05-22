@@ -228,9 +228,11 @@ public class UserInfoActivity extends BaseActivityMVP<UserInfoContract.View, Use
                 String year = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "yyyy");
                 String month = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "MM");
                 String day = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "dd");
-                String yinliDate = new LunarCalendarUtils().getLunarDateYYYY(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
-                String yinliDateShow = new LunarCalendarUtils().getLunarDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
-                userinfoTvBirthday.setText(birthday + "\n" + yinliDateShow);
+                if (!TextUtils.isEmpty(year) && !TextUtils.isEmpty(month) && !TextUtils.isEmpty(day)) {
+                    String yinliDate = new LunarCalendarUtils().getLunarDateYYYY(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
+                    String yinliDateShow = new LunarCalendarUtils().getLunarDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
+                    userinfoTvBirthday.setText(birthday + "\n" + yinliDateShow);
+                }
             }
         } catch (Exception e) {
             birthday = "0000-00-00";

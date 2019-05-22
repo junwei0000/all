@@ -252,7 +252,7 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
         helpListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (helpAllList != null && helpAllList.size() > 0) {
+                if (helpAllList != null && helpAllList.size() > 0&&(position - 1)<helpAllList.size()) {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Intent intent = new Intent(mContext, DetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

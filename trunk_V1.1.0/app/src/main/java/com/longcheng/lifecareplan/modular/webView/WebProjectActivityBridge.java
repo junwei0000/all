@@ -39,7 +39,6 @@ import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebViewClient;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 import com.longcheng.lifecareplan.widget.jswebview.browse.DefaultHandler;
 import com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar;
-import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 

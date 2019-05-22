@@ -763,7 +763,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      */
     public void signInGetInfo(String clickHetInfo_) {
         this.clickHetInfoStatus = clickHetInfo_;
-        mPresent.checkUserInfo(user_id);
+        user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
+        if (mPresent != null)
+            mPresent.checkUserInfo(user_id);
     }
 
     @Override

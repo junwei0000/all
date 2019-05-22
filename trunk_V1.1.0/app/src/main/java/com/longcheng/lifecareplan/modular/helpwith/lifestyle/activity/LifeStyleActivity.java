@@ -239,7 +239,7 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
         helpListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (helpAllList != null && helpAllList.size() > 0) {
+                if (helpAllList != null && helpAllList.size() > 0&&(position - 1)<helpAllList.size()) {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

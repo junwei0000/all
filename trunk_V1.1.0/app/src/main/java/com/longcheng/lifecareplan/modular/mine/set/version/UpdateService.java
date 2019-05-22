@@ -60,9 +60,12 @@ public class UpdateService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String url = intent.getStringExtra("url");
-        if (!TextUtils.isEmpty(url)) {
-            ToastUtils.showToast("正在下载更新中...");
+        String url;
+        if (intent != null) {
+            url = intent.getStringExtra("url");
+            if (!TextUtils.isEmpty(url)) {
+                ToastUtils.showToast("正在下载更新中...");
+            }
         }
         if (!states && intent != null) {
             nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

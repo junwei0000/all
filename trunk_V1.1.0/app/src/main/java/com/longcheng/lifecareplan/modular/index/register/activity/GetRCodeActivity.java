@@ -167,10 +167,10 @@ public class GetRCodeActivity extends BaseActivityMVP<RegisterContract.View, Reg
                 msg.arg1 = count;
                 msg.obj = nowTime;
                 mHandler.sendMessage(msg);
+                msg = null;
                 if (count <= 0) {
                     this.cancel();
                 }
-                msg = null;
             }
         };
         new Timer().schedule(timerTask, 0, 1000);
@@ -188,15 +188,18 @@ public class GetRCodeActivity extends BaseActivityMVP<RegisterContract.View, Reg
                     daojishi();
                     break;
                 case Daojishiover:
-                    if (msg.arg1 < 10) {
-                        phonetypeTvGetcode.setText("0" + msg.arg1 + getString(R.string.tv_codeunit));
-                    } else {
-                        phonetypeTvGetcode.setText(msg.arg1 + getString(R.string.tv_codeunit));
-                    }
-                    if (msg.arg1 <= 0) {
-                        phonetypeTvGetcode.setTextColor(getResources().getColor(R.color.blue));
-                        phonetypeTvGetcode.setEnabled(true);
-                        phonetypeTvGetcode.setText(getString(R.string.code_get));
+                    int count_ = msg.arg1;
+                    if (phonetypeTvGetcode != null) {
+                        if (count_ < 10) {
+                            phonetypeTvGetcode.setText("0" + count_ + getString(R.string.tv_codeunit));
+                        } else {
+                            phonetypeTvGetcode.setText(count_ + getString(R.string.tv_codeunit));
+                        }
+                        if (count_ <= 0) {
+                            phonetypeTvGetcode.setTextColor(getResources().getColor(R.color.blue));
+                            phonetypeTvGetcode.setEnabled(true);
+                            phonetypeTvGetcode.setText(getString(R.string.code_get));
+                        }
                     }
                     break;
                 default:

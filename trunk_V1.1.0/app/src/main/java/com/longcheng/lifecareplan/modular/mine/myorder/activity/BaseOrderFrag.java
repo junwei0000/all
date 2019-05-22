@@ -108,7 +108,7 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
         dateListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (mAllList != null && mAllList.size() > 0) {
+                if (mAllList != null && mAllList.size() > 0&&(position - 1)<mAllList.size()) {
                     Intent intent = new Intent(mContext, OrderDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("order_id", mAllList.get(position - 1).getOrder_id());

@@ -102,8 +102,8 @@ public class UserLoginBack403Utils {
             myexit_text_off.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    zhuXiao();
                     selectDialog.dismiss();
+                    zhuXiao();
                     selectDialog = null;
                 }
             });
@@ -111,8 +111,8 @@ public class UserLoginBack403Utils {
 
                 @Override
                 public void onClick(View v) {
-                    zhuXiao();
                     selectDialog.dismiss();
+                    zhuXiao();
                     selectDialog = null;
                 }
             });
