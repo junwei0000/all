@@ -63,31 +63,30 @@
     </TabHost>
 
 
-    <!--<com.longcheng.web.FreeMoveView-->
+    <LinearLayout
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="@dimen/dp80"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10">
+        <!--<com.longcheng.web.FreeMoveView-->
         <!--android:id="@+id/group"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom|right"-->
         <!--android:layout_marginBottom="@dimen/menu_bottom_height"-->
         <!--android:orientation="vertical"-->
         <!--android:padding="@dimen/dp10"-->
         <!--app:autoBack="true"-->
-        <!--app:moveable="false">-->
-        <com.longcheng.web.FreeMoveView
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/menu_bottom_height"
-        android:orientation="vertical"
-        android:padding="@dimen/dp10"
-        app:autoBack="true"
-        app:moveable="true">
+        <!--app:moveable="true">-->
         <Button
             android:id="@+id/iv_function"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@mipmap/function" />
-    </com.longcheng.web.FreeMoveView>
+        <!--</com.longcheng.web.FreeMoveView>-->
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_function"

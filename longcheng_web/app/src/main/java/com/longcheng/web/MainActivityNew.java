@@ -8,35 +8,24 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
-import android.widget.Toast;
-
-import com.longcheng.web.adapter.TabPageAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 
-public class MainActivity extends BaseTabActivity {
+public class MainActivityNew extends BaseTabActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -62,7 +51,7 @@ public class MainActivity extends BaseTabActivity {
     Button iv_show;
 
     @BindView(R.id.group)
-    LinearLayout group;
+    FreeMoveView group;
 
     @BindView(R.id.mFrameLayout)
     FrameLayout mFrameLayout;
@@ -94,11 +83,6 @@ public class MainActivity extends BaseTabActivity {
             case R.id.iv_refresh:
                 setRefresh();
                 mHandler.sendEmptyMessage(FUNCTOIN);
-                break;
-            case R.id.iv_function:
-                layout_function.setVisibility(View.VISIBLE);
-                group.setVisibility(View.INVISIBLE);
-                mHandler.sendEmptyMessageDelayed(FUNCTOIN, 3 * 1000);
                 break;
             default:
                 break;
@@ -135,6 +119,7 @@ public class MainActivity extends BaseTabActivity {
         }
     }
 
+
     @Override
     public View bindView() {
         return null;
@@ -159,10 +144,47 @@ public class MainActivity extends BaseTabActivity {
     public void setListener() {
         iv_show.setOnClickListener(this);
         iv_refresh.setOnClickListener(this);
-        iv_function.setOnClickListener(this);
-        iv_function.setAlpha(0.5f);
+        iv_function.setOnTouchListener(onTouchListener);
+        mFrameLayout.getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayoutListener);
     }
 
+    View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    isclick = false;//当按下的时候设置isclick为false，具体原因看后边的讲解
+                    startTime = System.currentTimeMillis();
+                    System.out.println("执行顺序down");
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    isclick = true;//当按钮被移动的时候设置isclick为true
+                    break;
+                case MotionEvent.ACTION_UP:
+                    endTime = System.currentTimeMillis();
+                    //当从点击到弹起小于半秒的时候,则判断为点击,如果超过则不响应点击事件
+                    if ((endTime - startTime) > 0.1 * 1000L) {
+                        isclick = true;
+                    } else {
+                        isclick = false;
+                        layout_function.setVisibility(View.VISIBLE);
+                        group.setVisibility(View.INVISIBLE);
+                        if (ExampleApplication.modelType.equals(ExampleApplication.modelType_PHONE)) {
+                            if (group.currentLeft > 0) {
+                                layout_function.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
+                            } else {
+                                layout_function.setGravity(Gravity.BOTTOM | Gravity.LEFT);
+                            }
+                        }
+                        mHandler.sendEmptyMessageDelayed(FUNCTOIN, 3 * 1000);
+                    }
+                    System.out.println("执行顺序up");
+                    break;
+                default:
+            }
+            return isclick;
+        }
+    };
     private static final int FUNCTOIN = 1;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
@@ -206,5 +228,84 @@ public class MainActivity extends BaseTabActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume()");
+    }
+
+
+    /**
+     * 转屏时刷新布局
+     *
+     * @param newConfig
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        rootBottom = Integer.MIN_VALUE;
+        firstMin = true;
+        firstcenter = true;
+        firstMax = true;
+//        ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
+//        Log.e("onSizeChanged", "onConfigurationChanged\n    " + newConfig.orientation);
+//        group.initShowArea();
+    }
+
+    /**
+     * 键盘显示隐藏时刷新布局
+     */
+//    private boolean msetRefreshEnable = true;
+    private int rootBottom = Integer.MIN_VALUE;
+    boolean firstMin = true;
+    boolean firstcenter = true;
+    boolean firstMax = true;
+    private ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            Rect r = new Rect();
+            mFrameLayout.getGlobalVisibleRect(r);
+            // 进入Activity时会布局，第一次调用onGlobalLayout，先记录开始软键盘没有弹出时底部的位置
+            if (rootBottom == Integer.MIN_VALUE) {
+                rootBottom = r.bottom;
+                Log.e("onSizeChanged", "Integer.MIN_VALUE    " + r.bottom + "  " + rootBottom);
+                return;
+            }
+            Log.e("onSizeChanged", "r.bottom < rootBottom    " + r.bottom + "  " + rootBottom + "  ");
+            // adjustResize，软键盘弹出后高度会变小
+            if (r.bottom < rootBottom) {
+                if (firstMin) {
+                    Log.e("onSizeChanged", "r.bottom < rootBottom    " + r.bottom);
+                    group.initShowArea();
+                    firstMin = false;
+                }
+                firstcenter = true;
+                firstMax = true;
+            } else if (r.bottom > rootBottom) {
+                if (firstMax) {
+                    Log.e("onSizeChanged", "r.bottom > rootBottom    " + r.bottom);
+                    group.initShowArea();
+                    firstMax = false;
+                    rootBottom = r.bottom;//防止转动屏幕导致无法刷新
+                }
+                firstMin = true;
+                firstcenter = true;
+            } else {
+                if (firstcenter) {
+                    Log.e("onSizeChanged", "ViewTreeObserver     " + r.bottom);
+                    group.initShowArea();
+                    firstcenter = false;
+                }
+                firstMin = true;
+                firstMax = true;
+            }
+        }
+    };
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    protected void onDestroy() {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN) {
+            mFrameLayout.getViewTreeObserver().removeGlobalOnLayoutListener(mOnGlobalLayoutListener);
+        } else {
+            mFrameLayout.getViewTreeObserver().removeOnGlobalLayoutListener(mOnGlobalLayoutListener);
+        }
+        super.onDestroy();
     }
 }
