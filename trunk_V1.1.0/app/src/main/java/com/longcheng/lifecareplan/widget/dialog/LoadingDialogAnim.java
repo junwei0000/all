@@ -61,7 +61,8 @@ public class LoadingDialogAnim extends Dialog {
         lp.width = (int) (display.getWidth() * 0.7);
         Window window = getWindow();
         window.setAttributes(lp);
-        window.getDecorView().getBackground().setAlpha(0);
+        if (window.getDecorView() != null)
+            window.getDecorView().getBackground().setAlpha(0);
     }
 
     /**

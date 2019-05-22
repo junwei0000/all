@@ -156,7 +156,6 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
                 if (count <= 0) {
                     this.cancel();
                 }
-                msg = null;
             }
         };
         new Timer().schedule(timerTask, 0, 1000);
@@ -174,15 +173,17 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
                     daojishi();
                     break;
                 case Daojishiover:
-                    if (msg.arg1 < 10) {
-                        phonetypeTvGetcode.setText("0" + msg.arg1 + getString(R.string.tv_codeunit));
-                    } else {
-                        phonetypeTvGetcode.setText(msg.arg1 + getString(R.string.tv_codeunit));
-                    }
-                    if (msg.arg1 <= 0) {
-                        phonetypeTvGetcode.setTextColor(getResources().getColor(R.color.blue));
-                        phonetypeTvGetcode.setEnabled(true);
-                        phonetypeTvGetcode.setText(getString(R.string.code_get));
+                    if (phonetypeTvGetcode != null) {
+                        if (msg.arg1 < 10) {
+                            phonetypeTvGetcode.setText("0" + msg.arg1 + getString(R.string.tv_codeunit));
+                        } else {
+                            phonetypeTvGetcode.setText(msg.arg1 + getString(R.string.tv_codeunit));
+                        }
+                        if (msg.arg1 <= 0) {
+                            phonetypeTvGetcode.setTextColor(getResources().getColor(R.color.blue));
+                            phonetypeTvGetcode.setEnabled(true);
+                            phonetypeTvGetcode.setText(getString(R.string.code_get));
+                        }
                     }
                     break;
                 default:
