@@ -46,6 +46,7 @@ import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
 import java.util.ArrayList;
@@ -313,7 +314,6 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
             Search = "";
             helpEtSearch.setText(Search);
         }
-        user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         getList(1);
     }
 
@@ -325,6 +325,7 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
         } else {
             progressxu = progress;
         }
+        user_id = UserUtils.getUserId(mContext);
         mPresent.setListViewData(user_id,
                 timexu, Search, h_user_id, progressxu, status, help_status, page, pageSize);
     }

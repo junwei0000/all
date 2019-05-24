@@ -55,6 +55,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
 import java.util.ArrayList;
@@ -302,7 +303,7 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.e("tag", "onNewINtent执行了");
+        Log.e("Observable", "onNewINtent执行了");
         setIntent(intent);
         getData(intent);
     }
@@ -326,7 +327,9 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
             Search = "";
             helpEtSearch.setText(Search);
         }
-        user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
+        user_id = UserUtils.getUserId(mContext);
+        Log.e("Observable", "user_id=" + user_id + " ;id= " +
+                id  );
         mPresent.setActionList(user_id);
         getList(1);
     }
@@ -339,6 +342,7 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
         } else {
             progressxu = progress;
         }
+        user_id = UserUtils.getUserId(mContext);
         mPresent.setListViewData(user_id,
                 timexu, Search, h_user_id, progressxu, status, help_status, goods_id, page, pageSize);
     }

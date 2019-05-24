@@ -294,11 +294,11 @@ public class GlideDownLoadImage {
     }
 
     public void loadCircleImageRoleGoods(Context mContext, String url, ImageView view, int dp) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.mall_icon_thedefault)
                 .error(R.mipmap.mall_icon_thedefault)
-                .bitmapTransform(new GlideRoundTransform(mContext, dp))
+                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext(), dp))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
