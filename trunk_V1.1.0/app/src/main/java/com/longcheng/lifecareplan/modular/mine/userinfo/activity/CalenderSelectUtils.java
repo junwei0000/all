@@ -81,15 +81,15 @@ public class CalenderSelectUtils {
         int month_c = Integer.parseInt(selectdate_.split("-")[1]);
         int day_c = Integer.parseInt(selectdate_.split("-")[2]);
 
-        if (year_c - 1901 < yearvalues.length) {
+        if ((year_c - 1901 >= 0) && (year_c - 1901 < yearvalues.length)) {
             yearindex = year_c - 1901;
         }
 
-        if (month_c - 1 < monthvalues.length) {
+        if ((month_c > 0) && (month_c - 1 < monthvalues.length)) {
             monthindex = month_c - 1;
         }
         getDay();
-        if (day_c - 1 < dayvalues.length) {
+        if ((month_c > 0) && (day_c - 1 < dayvalues.length)) {
             dayindex = day_c - 1;
         }
     }

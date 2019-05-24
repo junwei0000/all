@@ -27,6 +27,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import com.longcheng.lifecareplan.utils.DensityUtil;
+
 import java.io.IOException;
 
 /**
@@ -219,25 +221,37 @@ public final class CameraManager {
      * @return The rectangle to draw on screen in window coordinates.
      */
     public Rect getFramingRect() {
-        Point screenResolution = configManager.getScreenResolution();
+        Point screenResolution = null;
+        if (configManager != null) {
+            screenResolution = configManager.getScreenResolution();
+        }
+        int x_;
+        int y_;
+        if (screenResolution != null) {
+            x_ = screenResolution.x;
+            y_ = screenResolution.y;
+        } else {
+            x_ = DensityUtil.screenWith(getContext());
+            y_ = DensityUtil.screenHigh(getContext());
+        }
         if (framingRect == null) {
             if (camera == null) {
                 return null;
             }
-            int width = screenResolution.x * 3 / 4;
+            int width = x_ * 3 / 4;
             if (width < MIN_FRAME_WIDTH) {
                 width = MIN_FRAME_WIDTH;
             } else if (width > MAX_FRAME_WIDTH) {
                 width = MAX_FRAME_WIDTH;
             }
-            int height = screenResolution.y * 3 / 4;
+            int height = y_ * 3 / 4;
             if (height < MIN_FRAME_HEIGHT) {
                 height = MIN_FRAME_HEIGHT;
             } else if (height > MAX_FRAME_HEIGHT) {
                 height = MAX_FRAME_HEIGHT;
             }
-            int leftOffset = (screenResolution.x - width) / 2;
-            int topOffset = (screenResolution.y - height) / 2;
+            int leftOffset = (x_ - width) / 2;
+            int topOffset = (y_ - height) / 2;
             framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
             Log.d(TAG, "Calculated framing rect: " + framingRect);
         }

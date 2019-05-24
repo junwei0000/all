@@ -98,6 +98,11 @@ public class BaoZhangActitvty extends WebAct {
      */
     public static int SHARETYPE = 1000;
 
+    /**
+     * 是否可以分享
+     */
+    boolean shareStatus = false;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -109,7 +114,7 @@ public class BaoZhangActitvty extends WebAct {
                 if (mShareUtils == null) {
                     mShareUtils = new ShareUtils(mActivity);
                 }
-                if (!TextUtils.isEmpty(knp_shareurl)) {
+                if (shareStatus && !TextUtils.isEmpty(knp_shareurl)) {
                     mShareUtils.setShare(knp_sharedesc, knp_sharePic, knp_shareurl, knp_sharetitle);
                 }
                 break;
@@ -155,7 +160,9 @@ public class BaoZhangActitvty extends WebAct {
                     if (pagetopIvRigth != null) {
                         if (!TextUtils.isEmpty(url) && url.contains("/home/life/repayinfo")) {
                             pagetopIvRigth.setVisibility(View.VISIBLE);
+                            shareStatus = true;
                         } else {
+                            shareStatus = false;
                             pagetopIvRigth.setVisibility(View.GONE);
                         }
                     }

@@ -128,10 +128,10 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
         initDataBefore();
         //调用初始化控件的方法
         initView(mContextView);
-        initDataAfter();
         mPresent.fetch();
         //设置监听
         setListener();
+        initDataAfter();
     }
 
     /**

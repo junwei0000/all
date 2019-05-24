@@ -195,8 +195,11 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Camera camera = CameraManager.get().getCamera();
-        if (camera != null)
+        if (camera != null) {
             setCameraDisplayOrientation(this, 0, camera);
+        } else {
+            ToastUtils.showToast("请在设置开启相机权限");
+        }
     }
 
     public static void setCameraDisplayOrientation(Activity activity,
@@ -229,7 +232,8 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
         } else {  // back-facing
             result = (info.orientation - degrees + 360) % 360;
         }
-        camera.setDisplayOrientation(result);
+        if (camera != null)
+            camera.setDisplayOrientation(result);
     }
 
     @Override

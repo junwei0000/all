@@ -236,26 +236,28 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             public void afterTextChanged(Editable s) {
             }
         });
-        ScrollView mScrollView = (ScrollView) exchange_sv.getRefreshableView();
-        mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        ScrollView mScrollView = exchange_sv.scrollView;
+        if (mScrollView != null) {
+            mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
 
-                if (mGoodsAllList != null && mGoodsAllList.size() > 0 && exchangeListview != null) {
-                    View view = exchangeListview.getChildAt(0);
-                    if (view == null || tv_showScrollPage == null) {
-                        return;
+                    if (mGoodsAllList != null && mGoodsAllList.size() > 0 && exchangeListview != null) {
+                        View view = exchangeListview.getChildAt(0);
+                        if (view == null || tv_showScrollPage == null) {
+                            return;
+                        }
+                        int itemHeight = view.getMeasuredHeight();
+                        int showScrollPage = oldScrollY / (itemHeight * (pageSize / 2));
+                        showScrollPage = showScrollPage + 1;
+                        if (showScrollPage > allPage) {
+                            showScrollPage = allPage;
+                        }
+                        tv_showScrollPage.setText("" + showScrollPage);
                     }
-                    int itemHeight = view.getMeasuredHeight();
-                    int showScrollPage = oldScrollY / (itemHeight * (pageSize / 2));
-                    showScrollPage = showScrollPage + 1;
-                    if (showScrollPage > allPage) {
-                        showScrollPage = allPage;
-                    }
-                    tv_showScrollPage.setText("" + showScrollPage);
                 }
-            }
-        });
+            });
+        }
         getList(1);
         mPresent.getJieQiList(user_id);
     }
@@ -291,8 +293,11 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                             /**
                              * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
                              */
-                            ScrollView scrollview = exchange_sv.getRefreshableView();
-                            scrollview.smoothScrollTo(0, 0);
+                            if (exchange_sv != null) {
+                                ScrollView scrollview = exchange_sv.scrollView;
+                                if (scrollview != null)
+                                    scrollview.smoothScrollTo(0, 0);
+                            }
                         }
                     });
         }

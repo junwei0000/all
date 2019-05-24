@@ -97,10 +97,17 @@ public class CalendarActivity extends BaseActivity {
         calendarView.init(mHandler, update);
         Intent intent = getIntent();
         showDate = intent.getStringExtra("showDate");
-        Log.e(TAG, "showDate=" + showDate);
+        Log.e("shoeDateView", "showDate=" + showDate);
         if (!TextUtils.isEmpty(showDate) && !showDate.equals("0000-00-00")) {
-            showDate = DatesUtils.getInstance().getDateGeShi(showDate, "yyyy-MM-dd", "yyyy-M-dd");
-            calendarView.setSelectDate(showDate);
+            int year = Integer.parseInt(showDate.split("-")[0]);
+            int month = Integer.parseInt(showDate.split("-")[1]);
+            int day = Integer.parseInt(showDate.split("-")[2]);
+            if (year > 1900 && month > 0 && day > 0) {
+                showDate = DatesUtils.getInstance().getDateGeShi(showDate, "yyyy-MM-dd", "yyyy-M-dd");
+                calendarView.setSelectDate(showDate);
+            } else {
+                showDate = DatesUtils.getInstance().getNowTime("yyyy-M-dd");
+            }
         } else {
             showDate = DatesUtils.getInstance().getNowTime("yyyy-M-dd");
         }

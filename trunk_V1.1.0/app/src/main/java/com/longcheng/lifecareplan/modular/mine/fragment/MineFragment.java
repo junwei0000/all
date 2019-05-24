@@ -1289,6 +1289,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     }
 
     private void setLoadData(GetHomeInfoBean mGetHomeInfoBean) {
+        if (usercenterTvDoctor == null) {
+            return;
+        }
         data = mGetHomeInfoBean;
         int isDoctorIdentity = mGetHomeInfoBean.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
         int isVolunteerIdentity = mGetHomeInfoBean.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
