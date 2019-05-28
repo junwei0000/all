@@ -885,12 +885,13 @@ public interface ApiService {
                                          @Field("pay_money") String pay_money,
                                          @Field("volunteer_debt_item_id") String volunteer_debt_item_id,
                                          @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "Intelligentize/lifePayOrder")
     Observable<PayWXDataBean> RechargePay(@Field("user_id") String user_id,
-                                         @Field("payment_channel") String payment_channel,
-                                         @Field("price") String pay_money,
-                                         @Field("token") String token);
+                                          @Field("payment_channel") String payment_channel,
+                                          @Field("price") String pay_money,
+                                          @Field("token") String token);
 
     //********************商城*************************************************************************
     @GET(Config.VERSION + "shop/index")

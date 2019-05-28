@@ -122,7 +122,7 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
         helpListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (helpAllList != null && helpAllList.size() > 0&&(position - 1)<helpAllList.size()) {
+                if (helpAllList != null && helpAllList.size() > 0 && (position - 1) < helpAllList.size()) {
                     Log.e("Observable", "position=" + position);
                     int help_type = helpAllList.get(position - 1).getHelp_type();
                     if (help_type == 1) {

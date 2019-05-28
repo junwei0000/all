@@ -240,7 +240,7 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
         helpListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (helpAllList != null && helpAllList.size() > 0&&(position - 1)<helpAllList.size()) {
+                if (helpAllList != null && helpAllList.size() > 0 && (position - 1) < helpAllList.size()) {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -269,7 +269,7 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
         helpEtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(helpEtSearch.getText())) {
+                if (!TextUtils.isEmpty(user_id) && TextUtils.isEmpty(helpEtSearch.getText())) {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Search = helpEtSearch.getText().toString();
                     h_user_id = "0";

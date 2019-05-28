@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.NotServiceActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -65,6 +66,7 @@ public class UserLoginBack403Utils {
     }
 
     public void zhuXiao() {
+        BottomMenuActivity.updatedialogstatus = false;
         MySharedPreferences.getInstance().saveIsLogout(true);
         SharedPreferencesHelper.clear(ExampleApplication.getContext());
         ActivityManager.getScreenManager().popAllActivityOnlyMain();
@@ -84,6 +86,11 @@ public class UserLoginBack403Utils {
     MyDialog selectDialog;
 
     public void showDialogPromptReLogin(Activity mActivity) {
+        Intent intents = new Intent();
+        intents.setAction(ConstantManager.MAINMENU_ACTION);
+        intents.putExtra("type", ConstantManager.MAIN_ACTION_UpdateVerDisAllDialog);
+        LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+
         if (selectDialog == null || (selectDialog != null && !selectDialog.isShowing())) {
             selectDialog = new MyDialog(mActivity, R.style.dialog,
                     R.layout.dialog_logout);

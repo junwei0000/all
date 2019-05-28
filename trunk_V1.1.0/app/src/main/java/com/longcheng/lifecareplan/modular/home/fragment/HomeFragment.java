@@ -177,7 +177,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 是否有未讀消息
      */
     public void haveNotReadMsg() {
-        if(pagetopIvLeft!=null){
+        if (pagetopIvLeft != null) {
             pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_notinfo_icon);
             String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
             if (loginStatus.equals(ConstantManager.loginStatus)) {

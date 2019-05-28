@@ -233,7 +233,7 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
      * 展示红包的动画（晃动）
      */
     private void showRedEvelope() {
-        if(llRedEnvelope_beforeOpen!=null){
+        if (llRedEnvelope_beforeOpen != null) {
             llRedEnvelope_beforeOpen.setVisibility(View.VISIBLE);
             frl_redevelopeDetail.setVisibility(View.INVISIBLE);
             RotateAnimation ra = new RotateAnimation(6f, -6f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);

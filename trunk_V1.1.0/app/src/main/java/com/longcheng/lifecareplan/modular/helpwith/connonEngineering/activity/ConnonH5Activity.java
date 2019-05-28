@@ -86,6 +86,10 @@ public class ConnonH5Activity extends WebAct {
     private List<DetailItemBean> blessings_list;
     private String one_order_id;
     private String msg_id;
+    /**
+     * 是否可以分享
+     */
+    boolean shareStatus = false;
 
     @Override
     public void onClick(View v) {
@@ -98,7 +102,7 @@ public class ConnonH5Activity extends WebAct {
                 if (mShareUtils == null) {
                     mShareUtils = new ShareUtils(mActivity);
                 }
-                if (!TextUtils.isEmpty(knp_shareurl)) {
+                if (shareStatus && !TextUtils.isEmpty(knp_shareurl)) {
                     mShareUtils.setShare(knp_sharedesc, knp_sharePic, knp_shareurl, knp_sharetitle);
                 }
                 break;
@@ -145,8 +149,10 @@ public class ConnonH5Activity extends WebAct {
                     if (pagetopIvRigth != null) {
                         if (!TextUtils.isEmpty(url) && url.contains("/knp/info")) {
                             pagetopIvRigth.setVisibility(View.VISIBLE);
+                            shareStatus = true;
                         } else {
                             pagetopIvRigth.setVisibility(View.GONE);
+                            shareStatus = false;
                         }
                     }
                     if (!knp_msg_id.equals("0"))

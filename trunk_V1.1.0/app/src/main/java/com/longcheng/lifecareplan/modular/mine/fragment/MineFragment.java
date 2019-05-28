@@ -600,7 +600,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 if (isVolunteerCreditor == 0) {
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1") && star_level > 0) {
                         if (isDirectorOrTeamLeader == 0 || (isDirectorOrTeamLeader == 1 && CurrentStartLevel >= 6)) {
-                            intent = new Intent(mContext, VolunteerH5Activity.class);
+                            intent = new Intent(mContext, BaoZhangActitvty.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             intent.putExtra("html_url", "" + data.getDebtwithdrawUrl());
                             startActivity(intent);
@@ -612,7 +612,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                         ToastUtils.showToast("成为CHO并连续30天达到一星级以上才可提现");
                     }
                 } else {//债权人 可以直接进入提现
-                    intent = new Intent(mContext, VolunteerH5Activity.class);
+                    intent = new Intent(mContext, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getDebtwithdrawUrl());
                     startActivity(intent);

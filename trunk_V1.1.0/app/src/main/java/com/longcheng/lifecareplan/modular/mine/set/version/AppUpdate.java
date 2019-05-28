@@ -152,6 +152,9 @@ public class AppUpdate {
     MyDialog OpenNotificationDialog;
 
     private void showOpenNotificationWindow() {
+        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
+            return;
+        }
         if (OpenNotificationDialog == null) {
             OpenNotificationDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
             OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog

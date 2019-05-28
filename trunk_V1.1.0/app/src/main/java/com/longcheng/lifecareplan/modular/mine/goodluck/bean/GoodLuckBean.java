@@ -13,7 +13,7 @@ public class GoodLuckBean implements Serializable {
     private String mutual_help_red_packet_id;
     private int type;
     private String money_type;
-    private double red_packet_money;
+    private String red_packet_money = "0";
 
     private int red_packet_status;
     private String pay_status;
@@ -138,11 +138,11 @@ public class GoodLuckBean implements Serializable {
         this.money_type = money_type;
     }
 
-    public double getRed_packet_money() {
+    public String getRed_packet_money() {
         return red_packet_money;
     }
 
-    public void setRed_packet_money(double red_packet_money) {
+    public void setRed_packet_money(String red_packet_money) {
         this.red_packet_money = red_packet_money;
     }
 

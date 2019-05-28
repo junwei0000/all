@@ -89,7 +89,7 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
     GoodLuckAdapter mHomeHotPushAdapter;
     List<GoodLuckBean> helpAllList = new ArrayList<>();
     private int count;
-    private String money = "0", skb = "0", totalAbility = "0";
+    private String money = "0", skb = "0", ability = "0";
 
     @Override
     public void onClick(View v) {
@@ -194,7 +194,7 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
                 count = mEnergyAfterBean.getCount();
                 money = mEnergyAfterBean.getMoney();
                 skb = mEnergyAfterBean.getSkb();
-                totalAbility = mEnergyAfterBean.getAbility();
+                ability = mEnergyAfterBean.getAbility();
                 showBottomView();
                 List<GoodLuckBean> starList = mEnergyAfterBean.getSolar_terms_endorsement_star();
                 List<GoodLuckBean> helpList = mEnergyAfterBean.getList();
@@ -238,7 +238,7 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
         tv_summoney.setText(Html.fromHtml(showmoney));
         String showskb = "已拆寿康宝<font color=\"#ff0000\">" + skb + "</font>个";
         tv_sumskb.setText(Html.fromHtml(showskb));
-        String showability = "已拆生命能量<font color=\"#ff0000\">" + totalAbility + "</font>";
+        String showability = "已拆生命能量<font color=\"#ff0000\">" + ability + "</font>";
         tv_sumability.setText(Html.fromHtml(showability));
 
     }
@@ -355,10 +355,15 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
             if (helpAllList != null && helpAllList.size() > 0 && helpAllList.size() >= position && position >= 1) {
                 helpAllList.get(position - 1).setRed_packet_status(1);//红包状态: 0 未领取 , 1 已领取
                 int type = helpAllList.get(position - 1).getType();
+                String redmoney = helpAllList.get(position - 1).getRed_packet_money();
+                ;
+                //红包类型 1:money, 2:skb,
                 if (type == 1) {
-                    money += helpAllList.get(position - 1).getRed_packet_money();
+                    money = PriceUtils.getInstance().gteAddSumPrice(money, redmoney);
+                } else if (type == 3) {
+                    ability = PriceUtils.getInstance().gteAddSumPrice(ability, redmoney);
                 } else {
-                    skb += helpAllList.get(position - 1).getRed_packet_money();
+                    skb = PriceUtils.getInstance().gteAddSumPrice(skb, redmoney);
                 }
                 showBottomView();
             }

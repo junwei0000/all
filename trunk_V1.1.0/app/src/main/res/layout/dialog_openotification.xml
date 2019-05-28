@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="“设置”-“通知”-“CHO”开启"
+            android:text="“设置”-“通知”-“互祝”开启"
             android:textColor="@color/text_noclick_color"
             android:textSize="@dimen/text_zhu_size" />
 

@@ -25,6 +25,7 @@ import com.longcheng.lifecareplan.modular.index.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.index.register.activity.RegisterActivity;
+import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.modular.mine.starinstruction.StarInstructionAct;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.push.PushClient;
@@ -118,10 +119,10 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
 
     /**
-     * 当前登录类型, 是否快捷登录
+     * 当前登录类型, loginAount  loginFast    loginWX
      */
+    String loginStus = "loginAount";
     boolean phoneLoginStus = false;
-
     /**
      * 是否显示密码
      */
@@ -219,10 +220,12 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 break;
             case R.id.login_btn_phone:
+                loginStus = "loginFast";
                 phoneLoginStus = true;
                 setLoginStusView();
                 break;
             case R.id.login_btn_account:
+                loginStus = "loginAount";
                 phoneLoginStus = false;
                 setLoginStusView();
                 break;
@@ -267,6 +270,7 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
                 }
                 break;
             case R.id.loginthird_iv_wechat:
+                loginStus = "loginWX";
                 weiXinLogin(v);
                 break;
             case R.id.loginthird_iv_qq:
@@ -397,6 +401,12 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
         if (status.equals("200")) {
             LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
             mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
+        } else if (status.equals("401")) {
+            String phoneNum1 = phonetypeEtPhone.getText().toString().trim();
+            Intent intents = new Intent(mActivity, GetLogCodeActivity.class);
+            intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intents.putExtra("phone", "" + phoneNum1);
+            mActivity.startActivity(intents);
         } else {
             ToastUtils.showToast(responseBean.getMsg());
         }

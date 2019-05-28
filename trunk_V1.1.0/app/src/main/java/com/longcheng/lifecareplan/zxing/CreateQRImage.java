@@ -12,6 +12,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -40,6 +42,8 @@ public class CreateQRImage {
             if (url == null || "".equals(url) || url.length() < 1) {
                 return;
             }
+            QR_WIDTH = DensityUtil.dip2px(ExampleApplication.getContext(), 400);
+            QR_HEIGHT = DensityUtil.dip2px(ExampleApplication.getContext(), 400);
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
             //图像数据转换，使用了矩阵转换

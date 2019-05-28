@@ -217,7 +217,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     public void dismissDialog() {
     }
 
-    DetailAfterBean mOrderItemBean=new DetailAfterBean();
+    DetailAfterBean mOrderItemBean = new DetailAfterBean();
 
     @Override
     public void ListSuccess(DetailDataBean responseBean) {

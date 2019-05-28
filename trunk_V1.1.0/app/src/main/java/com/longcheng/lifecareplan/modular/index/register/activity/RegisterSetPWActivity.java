@@ -67,8 +67,6 @@ public class RegisterSetPWActivity extends BaseActivityMVP<RegisterContract.View
         if (status.equals("400")) {
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status.equals("200")) {
-            LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
-            mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
             // 发布事件
             new Thread("posting") {
                 @Override
@@ -76,6 +74,8 @@ public class RegisterSetPWActivity extends BaseActivityMVP<RegisterContract.View
                     EventBus.getDefault().post(new MessageEvent("register"));
                 }
             }.start();
+            LoginAfterBean mLoginInfo = (LoginAfterBean) responseBean.getData();
+            mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
         } else {
             ToastUtils.showToast(responseBean.getMsg());
         }

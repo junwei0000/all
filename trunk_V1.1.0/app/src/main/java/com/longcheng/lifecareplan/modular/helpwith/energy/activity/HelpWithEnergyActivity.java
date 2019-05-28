@@ -253,7 +253,7 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
         helpListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (helpAllList != null && helpAllList.size() > 0&&(position - 1)<helpAllList.size()) {
+                if (helpAllList != null && helpAllList.size() > 0 && (position - 1) < helpAllList.size()) {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Intent intent = new Intent(mContext, DetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -282,7 +282,7 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
         helpEtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(helpEtSearch.getText())) {
+                if (!TextUtils.isEmpty(user_id) && TextUtils.isEmpty(helpEtSearch.getText())) {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Search = helpEtSearch.getText().toString();
                     h_user_id = "0";
@@ -328,8 +328,7 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
             helpEtSearch.setText(Search);
         }
         user_id = UserUtils.getUserId(mContext);
-        Log.e("Observable", "user_id=" + user_id + " ;id= " +
-                id  );
+        Log.e("Observable", "user_id=" + user_id + " ;id= " + id);
         mPresent.setActionList(user_id);
         getList(1);
     }
