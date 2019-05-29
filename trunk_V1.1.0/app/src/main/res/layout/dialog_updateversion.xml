@@ -26,6 +26,7 @@
 
         <TextView
             android:id="@+id/tv_cont"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
             android:layout_marginLeft="@dimen/dp20"
             android:layout_marginRight="@dimen/dp20"
             android:layout_width="match_parent"
