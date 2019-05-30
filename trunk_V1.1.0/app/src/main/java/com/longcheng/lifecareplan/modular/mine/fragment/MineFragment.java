@@ -598,18 +598,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.mycenter_tv_withdraw://提现
                 int isVolunteerCreditor = data.getIsVolunteerCreditor();
                 if (isVolunteerCreditor == 0) {
-                    if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1") && star_level > 0) {
-                        if (isDirectorOrTeamLeader == 0 || (isDirectorOrTeamLeader == 1 && CurrentStartLevel >= 6)) {
-                            intent = new Intent(mContext, BaoZhangActitvty.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("html_url", "" + data.getDebtwithdrawUrl());
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                        } else {
-                            ToastUtils.showToast("大队长及主任达到六星级才可提现");
-                        }
+                    if (isDirectorOrTeamLeader == 0 || (isDirectorOrTeamLeader == 1 && CurrentStartLevel >= 6)) {
+                        intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + data.getDebtwithdrawUrl());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     } else {
-                        ToastUtils.showToast("成为CHO并连续30天达到一星级以上才可提现");
+                        ToastUtils.showToast("大队长及主任达到六星级才可提现");
                     }
                 } else {//债权人 可以直接进入提现
                     intent = new Intent(mContext, BaoZhangActitvty.class);

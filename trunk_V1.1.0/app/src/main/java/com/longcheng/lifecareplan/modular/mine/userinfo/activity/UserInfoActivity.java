@@ -26,12 +26,11 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.UserSetBean;
 import com.longcheng.lifecareplan.utils.AblumUtils;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.CircleImageView;
-import com.nanchen.calendarview.LunarCalendarUtils;
+import com.nanchen.calendarview.LunarSolarConverter;
 
 import java.util.ArrayList;
 
@@ -229,8 +228,7 @@ public class UserInfoActivity extends BaseActivityMVP<UserInfoContract.View, Use
                 int month = Integer.parseInt(birthday.split("-")[1]);
                 int day = Integer.parseInt(birthday.split("-")[2]);
                 if (year > 1900 && month > 0 && day > 0) {
-                    String yinliDate = new LunarCalendarUtils().getLunarDateYYYY(year, month, day, false);
-                    String yinliDateShow = new LunarCalendarUtils().getLunarDate(year, month, day, false);
+                    String yinliDateShow = new LunarSolarConverter().LunarBlockLetter(birthday);
                     userinfoTvBirthday.setText(birthday + "\n" + yinliDateShow);
                 } else {
                     birthday = "";
@@ -239,7 +237,6 @@ public class UserInfoActivity extends BaseActivityMVP<UserInfoContract.View, Use
         } catch (Exception e) {
             birthday = "";
         }
-
     }
 
     @Override

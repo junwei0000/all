@@ -128,9 +128,11 @@ public class MyCalendarView extends LinearLayout implements OnClickListener {
     }
 
     /**
-     * 修改：设置选择的日期
+     * 修改：设置选择的日期,初始化jumpYear jumpMonth
      */
     public void setSelectDate(String selectdate_) {
+        jumpYear = 0;
+        jumpMonth = 0;
         year_c = Integer.parseInt(selectdate_.split("-")[0]);
         month_c = Integer.parseInt(selectdate_.split("-")[1]);
         day_c = Integer.parseInt(selectdate_.split("-")[2]);
@@ -152,6 +154,7 @@ public class MyCalendarView extends LinearLayout implements OnClickListener {
     private void enterNextMonth(int gvFlag) {
         addGridView(); // 添加一个gridView
         jumpMonth++; // 下一个月
+        Log.e("enterNextMonth", "jumpYear==" + jumpYear + "    jumpMonth==" + jumpMonth);
         calV = new CalendarAdapter(mContext, this.getResources(), jumpMonth,
                 jumpYear, year_c, month_c, day_c);
         gridView.setAdapter(calV);
@@ -175,6 +178,7 @@ public class MyCalendarView extends LinearLayout implements OnClickListener {
         addGridView(); // 添加一个gridView
         jumpMonth--; // 上一个月
 
+        Log.e("enterNextMonth", "jumpYear==" + jumpYear + "    jumpMonth==" + jumpMonth);
         calV = new CalendarAdapter(mContext, this.getResources(), jumpMonth,
                 jumpYear, year_c, month_c, day_c);
         gridView.setAdapter(calV);
@@ -207,7 +211,7 @@ public class MyCalendarView extends LinearLayout implements OnClickListener {
          * 修改： 回调
          */
         if (mHandler != null) {
-            String  showdate=textDate.toString();
+            String showdate = textDate.toString();
             Message message = new Message();
             message.what = mHandlerID;
             message.obj = showdate;

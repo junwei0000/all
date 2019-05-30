@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.helpwith.autohelp.activity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,26 +26,16 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ValueSelec
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.bean.AutoHelpAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.bean.AutoHelpDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.bean.AutoHelpItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
-import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
-import com.nanchen.calendarview.LunarCalendarUtils;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 智能互祝

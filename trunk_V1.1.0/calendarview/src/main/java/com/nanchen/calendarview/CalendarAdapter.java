@@ -42,7 +42,6 @@ public class CalendarAdapter extends BaseAdapter {
     private String showYear = ""; // 用于在头部显示的年份
     private String showMonth = ""; // 用于在头部显示的月份
     private String animalsYear = "";
-    private String leapMonth = ""; // 闰哪一个月
     private String cyclical = ""; // 天干地支
     // 系统当前时间
     private String sysDate = "";
@@ -224,8 +223,6 @@ public class CalendarAdapter extends BaseAdapter {
                     setShowMonth(String.valueOf(month));
                 }
                 setAnimalsYear(lc.animalsYear(year));
-                setLeapMonth(lc.leapMonth == 0 ? "" : String
-                        .valueOf(lc.leapMonth));
                 setCyclical(lc.cyclical(year));
             } else { // 下一个月
                 lunarDay = lc.getLunarDate(year, month + 1, j, false);
@@ -236,9 +233,9 @@ public class CalendarAdapter extends BaseAdapter {
 
         String abc = "";
         for (int i = 0; i < dayNumber.length; i++) {
-            abc = abc + dayNumber[i] + ":";
+            abc = abc + dayNumber[i] + "/";
         }
-        Log.d("DAYNUMBER", abc);
+        Log.d("getChinaDayString", abc);
 
     }
 
@@ -298,13 +295,6 @@ public class CalendarAdapter extends BaseAdapter {
         this.animalsYear = animalsYear;
     }
 
-    public String getLeapMonth() {
-        return leapMonth;
-    }
-
-    public void setLeapMonth(String leapMonth) {
-        this.leapMonth = leapMonth;
-    }
 
     public String getCyclical() {
         return cyclical;

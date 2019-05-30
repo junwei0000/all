@@ -32,10 +32,9 @@ import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
-import com.nanchen.calendarview.LunarCalendarUtils;
+import com.nanchen.calendarview.LunarSolarConverter;
 
 import java.util.List;
 
@@ -294,23 +293,15 @@ public class AddFamilyActivity extends BaseActivityMVP<MyContract.View, MyPresen
         return false;
     }
 
-    private void shoeDateView() {
-        if (!TextUtils.isEmpty(birthday)) {
-            String year = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "yyyy");
-            String month = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "MM");
-            String day = DatesUtils.getInstance().getDateGeShi(birthday, "yyyy-MM-dd", "dd");
-            String yinliDate = new LunarCalendarUtils().getLunarDateYYYY(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
-            String yinliDateShow = new LunarCalendarUtils().getLunarDate(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), false);
-            addTvDate.setText(birthday + "\n" + yinliDateShow);
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
             if (resultCode == ConstantManager.USERINFO_FORRESULT_DATE) {
                 birthday = data.getStringExtra("birthday");
-                shoeDateView();
+                if (!TextUtils.isEmpty(birthday)) {
+                    String yinliDateShow = new LunarSolarConverter().LunarBlockLetter(birthday);
+                    addTvDate.setText(birthday + "\n" + yinliDateShow);
+                }
             }
         } catch (Exception e) {
         }
