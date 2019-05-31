@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -56,12 +57,13 @@ public class LoadingDialogAnim extends Dialog {
     private void setParams() {
         this.setCanceledOnTouchOutside(false);
         WindowManager windowManager = getWindow().getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        WindowManager.LayoutParams lp = this.getWindow().getAttributes();
+//        Display display = windowManager.getDefaultDisplay();
+//        WindowManager.LayoutParams lp = this.getWindow().getAttributes();
         // Dialog宽度
-        lp.width = (int) (display.getWidth() * 0.7);
+//        lp.width = (int) (display.getWidth() * 0.7);
         Window window = getWindow();
-        window.setAttributes(lp);
+//        window.setAttributes(lp);
+        window.setGravity(Gravity.CENTER);
         if (window.getDecorView() != null)
             window.getDecorView().getBackground().setAlpha(0);
     }
@@ -95,12 +97,17 @@ public class LoadingDialogAnim extends Dialog {
                     return;
                 }
                 loadDialog = new LoadingDialogAnim(context);
-                animationIV.setImageResource(R.drawable.animation_loading);
-                animationDrawable = (AnimationDrawable) animationIV.getDrawable();
-                animationDrawable.start();
+                animationIV.setBackgroundResource(R.drawable.animation_loading);
+                animationDrawable = (AnimationDrawable) animationIV.getBackground();
+                animationIV.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        animationDrawable.start();
+                    }
+                });
                 loadDialog.show();
             }
-        }, 0);//秒后执行Runnable中的run方法
+        }, 0);
 
     }
 
@@ -144,7 +151,7 @@ public class LoadingDialogAnim extends Dialog {
                     loadDialog = null;
                 }
             }
-        }, 100);//秒后执行Runnable中的run方法
+        }, 500);//秒后执行Runnable中的run方法
 
     }
 }
