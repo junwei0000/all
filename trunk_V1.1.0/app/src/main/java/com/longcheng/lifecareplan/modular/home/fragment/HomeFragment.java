@@ -512,7 +512,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     int showLayerIndex = 0;
 
     private void setLoadData(HomeAfterBean mHomeAfterBean) {
-        if (mHomeAfterBean != null) {
+        if (mHomeAfterBean != null && maintopTvStartday != null) {
             layer = mHomeAfterBean.getLayer();
             if (layer != null && layer.size() > 0) {
                 showCononDialog();

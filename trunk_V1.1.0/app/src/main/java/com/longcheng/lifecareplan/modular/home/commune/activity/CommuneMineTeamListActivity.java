@@ -24,6 +24,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditThumbDataBean;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.List;
 
@@ -138,11 +139,12 @@ public class CommuneMineTeamListActivity extends BaseListActivity<CommuneContrac
 
     @Override
     public void showDialog() {
-
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
 

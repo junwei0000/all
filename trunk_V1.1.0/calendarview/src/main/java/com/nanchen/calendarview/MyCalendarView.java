@@ -154,7 +154,9 @@ public class MyCalendarView extends LinearLayout implements OnClickListener {
     private void enterNextMonth(int gvFlag) {
         addGridView(); // 添加一个gridView
         jumpMonth++; // 下一个月
-        Log.e("enterNextMonth", "jumpYear==" + jumpYear + "    jumpMonth==" + jumpMonth);
+        Log.e("enterNextMonth", "jumpYear==" + jumpYear + "    jumpMonth==" + jumpMonth
+                + "    year_c==" + year_c + "    month_c==" + month_c
+                + "    day_c==" + day_c);
         calV = new CalendarAdapter(mContext, this.getResources(), jumpMonth,
                 jumpYear, year_c, month_c, day_c);
         gridView.setAdapter(calV);
@@ -178,7 +180,9 @@ public class MyCalendarView extends LinearLayout implements OnClickListener {
         addGridView(); // 添加一个gridView
         jumpMonth--; // 上一个月
 
-        Log.e("enterNextMonth", "jumpYear==" + jumpYear + "    jumpMonth==" + jumpMonth);
+        Log.e("enterNextMonth", "jumpYear==" + jumpYear + "    jumpMonth==" + jumpMonth
+                + "    year_c==" + year_c + "    month_c==" + month_c
+                + "    day_c==" + day_c);
         calV = new CalendarAdapter(mContext, this.getResources(), jumpMonth,
                 jumpYear, year_c, month_c, day_c);
         gridView.setAdapter(calV);

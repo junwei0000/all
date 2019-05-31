@@ -217,7 +217,9 @@ public class LunarCalendar {
 //        setLunarMonth(chineseNumber[month - 1] + "月"); // 设置对应的阴历月份
 //        day = offset + 1;
 
-
+        /**
+         * 防止在一月或12月中同时出现跨年的时间
+         */
         if (month_log == 0) {
             year_log = year_log - 1;
             month_log = 12;

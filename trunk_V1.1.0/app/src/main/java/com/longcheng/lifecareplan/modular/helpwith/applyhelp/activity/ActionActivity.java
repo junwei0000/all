@@ -43,6 +43,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -141,10 +142,12 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
 
     @Override
     public void showDialog() {
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     List<ActionItemBean> mList;

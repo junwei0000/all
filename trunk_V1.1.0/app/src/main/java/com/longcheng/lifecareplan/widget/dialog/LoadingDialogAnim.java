@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Handler;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
@@ -82,54 +83,68 @@ public class LoadingDialogAnim extends Dialog {
      * @param cancelable boolean, true is can't dimiss，false is can dimiss
      */
     private static void show(Context context, String message, boolean cancelable) {
-        if (context instanceof Activity) {
-            if (((Activity) context).isFinishing()) {
-                return;
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (context instanceof Activity) {
+                    if (((Activity) context).isFinishing()) {
+                        return;
+                    }
+                }
+                if (loadDialog != null && loadDialog.isShowing()) {
+                    return;
+                }
+                loadDialog = new LoadingDialogAnim(context);
+                animationIV.setImageResource(R.drawable.animation_loading);
+                animationDrawable = (AnimationDrawable) animationIV.getDrawable();
+                animationDrawable.start();
+                loadDialog.show();
             }
-        }
-        if (loadDialog != null && loadDialog.isShowing()) {
-            return;
-        }
-        loadDialog = new LoadingDialogAnim(context);
-        animationIV.setImageResource(R.drawable.animation_loading);
-        animationDrawable = (AnimationDrawable) animationIV.getDrawable();
-        animationDrawable.start();
-        loadDialog.show();
+        }, 0);//秒后执行Runnable中的run方法
+
     }
+
+    static Handler handler = new Handler();
 
     /**
      * dismiss the dialog
      */
     public static void dismiss(Context context) {
-        try {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
 
-            if (animationDrawable != null) {
-                animationDrawable.stop();
-            }
-
-            if (context instanceof Activity) {
-                if (((Activity) context).isFinishing()) {
-                    loadDialog = null;
-                    return;
-                }
-            }
-
-            if (loadDialog != null && loadDialog.isShowing()) {
-                Context loadContext = loadDialog.getContext();
-                if (loadContext != null && loadContext instanceof Activity) {
-                    if (((Activity) loadContext).isFinishing()) {
-                        loadDialog = null;
-                        return;
+                    if (animationDrawable != null) {
+                        animationDrawable.stop();
                     }
 
-                }
+                    if (context instanceof Activity) {
+                        if (((Activity) context).isFinishing()) {
+                            loadDialog = null;
+                            return;
+                        }
+                    }
 
-                loadDialog.dismiss();
-                loadDialog = null;
+                    if (loadDialog != null && loadDialog.isShowing()) {
+                        Context loadContext = loadDialog.getContext();
+                        if (loadContext != null && loadContext instanceof Activity) {
+                            if (((Activity) loadContext).isFinishing()) {
+                                loadDialog = null;
+                                return;
+                            }
+
+                        }
+
+                        loadDialog.dismiss();
+                        loadDialog = null;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    loadDialog = null;
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            loadDialog = null;
-        }
+        }, 100);//秒后执行Runnable中的run方法
+
     }
 }

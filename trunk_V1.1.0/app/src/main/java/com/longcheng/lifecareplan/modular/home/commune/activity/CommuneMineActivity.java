@@ -43,6 +43,7 @@ import com.longcheng.lifecareplan.utils.like.GoodImgView;
 import com.longcheng.lifecareplan.utils.like.GoodView;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.List;
 
@@ -293,11 +294,12 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
 
     @Override
     public void showDialog() {
-
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override

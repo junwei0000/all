@@ -47,6 +47,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
 import java.util.ArrayList;
@@ -229,11 +230,13 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
         helpListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(1);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(page + 1);
             }
         });
@@ -336,13 +339,18 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
         return new LifeStylePresenterImp<>(mContext, this);
     }
 
+    boolean refreshStatus = false;
+
     @Override
     public void showDialog() {
-
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        refreshStatus = false;
+        LoadingDialogAnim.dismiss(mContext);
     }
 
 

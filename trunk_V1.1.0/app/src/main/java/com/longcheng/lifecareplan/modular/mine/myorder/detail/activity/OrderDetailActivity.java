@@ -48,6 +48,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.List;
 
@@ -211,10 +212,12 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
 
     @Override
     public void showDialog() {
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     DetailAfterBean mOrderItemBean = new DetailAfterBean();

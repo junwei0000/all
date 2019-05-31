@@ -171,10 +171,12 @@ public class RelationshipAccountAct extends BaseActivityMVP<RelationshipContract
 
     @Override
     public void showDialog() {
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     private String getHtmlContent(String color, String content) {

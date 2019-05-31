@@ -74,23 +74,23 @@ public class ProgressBarWebView extends LinearLayout {
         }
 
         mWebView.setWebChromeClient(new CustomWebChromeClient(mProgressBar));
-        WebSettings webviewSettings = mWebView.getSettings();
-        /**
-         * ************************标注：设置webview 字体，防止使用手机字体 导致数据显示变型***************************
-         */
-        webviewSettings.setTextSize(WebSettings.TextSize.NORMAL);
-        // 判断系统版本是不是5.0或之上
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //让系统不屏蔽混合内容和第三方Cookie
-            CookieManager.getInstance().setAcceptThirdPartyCookies(mWebView, true);
-            webviewSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
-        // 不支持缩放
-        webviewSettings.setSupportZoom(false);
-
-        // 自适应屏幕大小
-        webviewSettings.setUseWideViewPort(true);
-        webviewSettings.setLoadWithOverviewMode(true);
+//        WebSettings webviewSettings = mWebView.getSettings();
+//        /**
+//         * ************************标注：设置webview 字体，防止使用手机字体 导致数据显示变型***************************
+//         */
+//        webviewSettings.setTextSize(WebSettings.TextSize.NORMAL);
+//        // 判断系统版本是不是5.0或之上
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            //让系统不屏蔽混合内容和第三方Cookie
+//            CookieManager.getInstance().setAcceptThirdPartyCookies(mWebView, true);
+//            webviewSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+//        }
+//        // 不支持缩放
+//        webviewSettings.setSupportZoom(false);
+//
+//        // 自适应屏幕大小
+//        webviewSettings.setUseWideViewPort(true);
+//        webviewSettings.setLoadWithOverviewMode(true);
         mWebView.setOnLongClickListener(new OnLongClickListener() {
 
             @Override

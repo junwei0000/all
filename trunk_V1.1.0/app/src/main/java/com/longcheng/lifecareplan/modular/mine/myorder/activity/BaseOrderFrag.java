@@ -38,6 +38,7 @@ import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.view.FooterNoMoreData;
 
 import java.util.ArrayList;
@@ -97,11 +98,13 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(1);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(page + 1);
             }
         });
@@ -154,15 +157,20 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
         return new MyOrderPresenterImp<>(this);
     }
 
+    boolean refreshStatus = false;
+
     @Override
     public void showDialog() {
-
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-
+        refreshStatus = false;
+        LoadingDialogAnim.dismiss(mContext);
     }
+
 
     @Override
     public void ListSuccess(OrderListDataBean responseBean, int back_page) {

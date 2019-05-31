@@ -875,7 +875,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
     public void initUserInfo() {
         showInfoView();
-        if (!TextUtils.isEmpty(user_id)) {
+        if (!TextUtils.isEmpty(user_id) && mPresent != null) {
             mPresent.getUserHomeInfo(user_id);
         }
         Log.e("initUserInfo", "user_id=" + user_id + " \nis_cho= " + is_cho);

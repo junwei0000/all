@@ -54,6 +54,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesU
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.MyScrollView;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 
 import java.util.HashMap;
@@ -324,10 +325,12 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
 
     @Override
     public void showDialog() {
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override

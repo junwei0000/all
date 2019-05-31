@@ -154,15 +154,18 @@ public class GetFPWCodeActivity extends BaseActivityMVP<ForgetPWContract.View, F
                     daojishi();
                     break;
                 case Daojishiover:
-                    if (msg.arg1 < 10) {
-                        phonetypeTvGetcode.setText("0" + msg.arg1 + getString(R.string.tv_codeunit));
-                    } else {
-                        phonetypeTvGetcode.setText(msg.arg1 + getString(R.string.tv_codeunit));
-                    }
-                    if (msg.arg1 <= 0) {
-                        phonetypeTvGetcode.setTextColor(getResources().getColor(R.color.blue));
-                        phonetypeTvGetcode.setEnabled(true);
-                        phonetypeTvGetcode.setText(getString(R.string.code_get));
+                    if (phonetypeTvGetcode != null) {
+                        int arg1 = msg.arg1;
+                        if (arg1 < 10) {
+                            phonetypeTvGetcode.setText("0" + arg1 + getString(R.string.tv_codeunit));
+                        } else {
+                            phonetypeTvGetcode.setText(arg1 + getString(R.string.tv_codeunit));
+                        }
+                        if (arg1 <= 0) {
+                            phonetypeTvGetcode.setTextColor(getResources().getColor(R.color.blue));
+                            phonetypeTvGetcode.setEnabled(true);
+                            phonetypeTvGetcode.setText(getString(R.string.code_get));
+                        }
                     }
                     break;
                 default:

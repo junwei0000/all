@@ -16,6 +16,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetUserSETDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
 
@@ -89,12 +90,12 @@ public class SendIdeaActivity extends BaseActivityMVP<UserInfoContract.View, Use
 
     @Override
     public void showDialog() {
-
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override

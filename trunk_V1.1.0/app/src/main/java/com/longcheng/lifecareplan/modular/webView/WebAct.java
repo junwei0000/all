@@ -62,6 +62,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
+import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebViewClient;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 import com.longcheng.lifecareplan.widget.jswebview.browse.JsWeb.CustomWebViewClient;
 import com.umeng.socialize.UMAuthListener;
@@ -602,10 +603,25 @@ public abstract class WebAct extends BaseActivity {
     /**
      * _______________________________end_____________________________
      */
+
     /**
      * ***********************上传图片*************************
      */
     private void updateWebPic() {
+        mBridgeWebView.setWebViewClient(new BridgeWebViewClient(mBridgeWebView){
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                LoadingDialogAnim.show(mContext);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                LoadingDialogAnim.dismiss(mContext);
+            }
+        });
+
         mBridgeWebView.setWebChromeClient(new WebChromeClient() {
             // 配置权限（同样在WebChromeClient中实现）
             @Override
@@ -614,6 +630,7 @@ public abstract class WebAct extends BaseActivity {
                 callback.invoke(origin, true, false);
                 super.onGeolocationPermissionsShowPrompt(origin, callback);
             }
+
 
             // For Android 5.0+
             @Override

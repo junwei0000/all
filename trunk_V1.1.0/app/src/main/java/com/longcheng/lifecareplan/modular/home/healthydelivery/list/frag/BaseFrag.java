@@ -30,6 +30,7 @@ import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -99,12 +100,18 @@ public abstract class BaseFrag extends BaseListFrag<HealthyDeliveryContract.View
         return new HealthyDeliveryImp<>(getActivity(), this);
     }
 
+    boolean refreshStatus = false;
+
     @Override
     public void showDialog() {
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        refreshStatus = false;
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override
@@ -167,11 +174,13 @@ public abstract class BaseFrag extends BaseListFrag<HealthyDeliveryContract.View
         ptrView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 refresh(0);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 refresh(pageIndex);
             }
         });

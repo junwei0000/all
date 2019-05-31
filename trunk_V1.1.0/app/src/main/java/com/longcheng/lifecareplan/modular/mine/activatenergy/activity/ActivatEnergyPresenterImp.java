@@ -43,7 +43,7 @@ public class ActivatEnergyPresenterImp<T> extends ActivatEnergyContract.Presente
      * @author MarkShuai
      */
     public void getRechargeInfo(String user_id) {
-//        mView.showDialog();
+        mView.showDialog();
         Observable<GetEnergyListDataBean> observable = Api.getInstance().service.getRechargeInfo(user_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

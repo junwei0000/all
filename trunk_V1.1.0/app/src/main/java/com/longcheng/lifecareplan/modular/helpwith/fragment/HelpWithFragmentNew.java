@@ -186,6 +186,9 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     }
 
     private void showCont() {
+        if (helpWithGvtop == null) {
+            return;
+        }
         List<HelpWithInfo> mList = new ArrayList();
         mList.add(new HelpWithInfo("生命能量互祝", "申请", R.mipmap.wisheach_icon_energy, ""));
         mList.add(new HelpWithInfo("生活方式互祝", "申请", R.mipmap.wisheach_icon_life, ""));

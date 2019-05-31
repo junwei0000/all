@@ -52,6 +52,7 @@ import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
@@ -315,11 +316,14 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
 
     @Override
     public void showDialog() {
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
+
 
     @Override
     public void DetailSuccess(LifeStyleDetailDataBean responseBean) {
