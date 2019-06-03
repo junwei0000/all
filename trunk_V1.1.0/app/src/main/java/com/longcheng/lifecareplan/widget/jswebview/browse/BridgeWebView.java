@@ -87,7 +87,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         this.getSettings().setAppCacheEnabled(true);
         String appCachePath = getContext().getCacheDir().getAbsolutePath();
         this.getSettings().setAppCachePath(appCachePath);
-        this.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT); // 设置 缓存模式
+        this.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE); // 设置 缓存模式
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
