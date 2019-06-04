@@ -882,6 +882,7 @@ public interface ApiService {
     @POST(Config.VERSION + "life/openAutomationHelp")
     Observable<PayWXDataBean> VoluntePay(@Field("user_id") String user_id,
                                          @Field("payment_channel") String payment_channel,
+                                         @Field("type") String type,
                                          @Field("pay_money") String pay_money,
                                          @Field("volunteer_debt_item_id") String volunteer_debt_item_id,
                                          @Field("token") String token);

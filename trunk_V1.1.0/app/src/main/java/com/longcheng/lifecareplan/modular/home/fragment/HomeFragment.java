@@ -189,11 +189,15 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
     }
 
+    AppUpdate appUpdate;
+
     /**
      *
      */
     public void reLoadData() {
-        AppUpdate appUpdate = new AppUpdate(getActivity());
+        if (appUpdate == null) {
+            appUpdate = new AppUpdate(getActivity());
+        }
         appUpdate.startUpdateAsy("Home");
         haveNotReadMsg();
         mPresent.setListViewData();

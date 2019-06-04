@@ -52,9 +52,15 @@ import io.reactivex.schedulers.Schedulers;
 public class AppUpdate {
     private Activity context;
     private MyDialog selectDialog;
-    boolean dialogstatus = false;
+    /**
+     * 是否已经显示更新弹层
+     */
+    private boolean dialogstatus = false;
 
-    boolean loadDataStatus = false;
+    /**
+     * 数据正在加载中
+     */
+    private boolean loadDataStatus = false;
 
     public AppUpdate(Activity context) {
         this.context = context;
@@ -144,7 +150,14 @@ public class AppUpdate {
             boolean isOpened = manager.areNotificationsEnabled();
             Log.e("getIsOpenNotification", "isOpened=" + isOpened);
             if (!isOpened) {
+                Intent intents = new Intent();
+                intents.setAction(ConstantManager.MAINMENU_ACTION);
+                intents.putExtra("type", ConstantManager.MAIN_ACTION_UpdateVerDisAllDialog);
+                LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+
                 showOpenNotificationWindow();
+            } else {
+                BottomMenuActivity.updatedialogstatus = false;
             }
         }
     }

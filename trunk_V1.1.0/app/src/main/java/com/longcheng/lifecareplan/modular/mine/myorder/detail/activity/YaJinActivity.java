@@ -189,11 +189,16 @@ public class YaJinActivity extends BaseActivity {
         tvName.setText("" + mDetailAfterBean.getUser_name());
         tvMoney.setText("" + mDetailAfterBean.getDeposit_str());
         activatTvAccount.setText(getString(R.string.mark_money) + asset);
+        /**
+         * 押金类型  1CHO  2坐堂医 3志愿者
+         */
         int deposit_type = mDetailAfterBean.getDeposit_type();
         if (deposit_type == 1) {
             tv_type.setText("CHO");
-        } else {
+        } else if (deposit_type == 2) {
             tv_type.setText("坐堂医");
+        } else if (deposit_type == 3) {
+            tv_type.setText("志愿者");
         }
 
     }
@@ -233,7 +238,8 @@ public class YaJinActivity extends BaseActivity {
                             ToastUtils.showToast(responseBean.getMsg());
                         } else if (status.equals("200")) {
                             PayWXAfterBean payWeChatBean = responseBean.getData();
-                            if (payWay.equals("asset")) {
+                            if (deposit == 0 || payWay.equals("asset")) {
+                                ToastUtils.showToast(responseBean.getMsg());
                                 jihuoSuccess();
                             } else if (payWay.equals("wxpay")) {
                                 PayUtils.getWeChatPayHtml(mContext, payWeChatBean);

@@ -400,8 +400,12 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
                             /**
                              * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
                              */
-                            ScrollView scrollview = mainSv.getRefreshableView();
-                            scrollview.smoothScrollTo(0, 0);
+                            if (mainSv != null) {
+                                ScrollView scrollview = mainSv.getRefreshableView();
+                                if (scrollview != null)
+                                    scrollview.smoothScrollTo(0, 0);
+                            }
+
                         }
                     });
         }

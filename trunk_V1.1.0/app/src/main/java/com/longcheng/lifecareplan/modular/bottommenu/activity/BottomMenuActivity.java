@@ -260,7 +260,7 @@ public class BottomMenuActivity extends BaseActivity {
     }
 
     /**
-     * 是否显示版本更新提示弹层
+     * 是否显示版本更新提示/通知弹层
      */
     public static boolean updatedialogstatus = false;
 

@@ -201,6 +201,7 @@ public class BaoZhangActitvty extends WebAct {
                         JSONObject jsonObject = new JSONObject(data);
                         Voluntepay_money = jsonObject.optString("money", "365");
                         volunteer_debt_item_id = jsonObject.optString("volunteer_debt_item_id", "0");
+                        type = jsonObject.optString("type", "1");//1单个  2批量
                     } else {
                         Voluntepay_money = data;
                     }
@@ -216,7 +217,9 @@ public class BaoZhangActitvty extends WebAct {
 
 
     }
-
+/**
+ * _____________________志愿者_________________________________
+ */
     /**
      * 微信回调类型
      */
@@ -224,11 +227,11 @@ public class BaoZhangActitvty extends WebAct {
 
     String Voluntepay_money = "";
 
-    String volunteer_debt_item_id = "0";
+    String volunteer_debt_item_id = "0", type = "1";
 
     private void VoluntePay(String payment_channel, String pay_money, String volunteer_debt_item_id) {
         Observable<PayWXDataBean> observable = Api.getInstance().service.VoluntePay(UserUtils.getUserId(mContext),
-                payment_channel, pay_money, volunteer_debt_item_id, ExampleApplication.token);
+                payment_channel, type, pay_money, volunteer_debt_item_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
@@ -267,6 +270,9 @@ public class BaoZhangActitvty extends WebAct {
                 });
     }
 
+    /**
+     * 志愿者-支付完刷新页面
+     */
     private void volunterPaySuccuess() {
         mBridgeWebView.callHandler("Life_pay365SuccessBack", "", new CallBackFunction() {
             @Override
@@ -277,7 +283,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * ____________________________________________________________
+     * _____________________end_________________________________
      */
 
     public static final int BLESSING = 22;
@@ -300,8 +306,8 @@ public class BaoZhangActitvty extends WebAct {
                     break;
                 case VolunterSelectPay:
                     bundle = msg.getData();
-                    String payTypes = bundle.getString("payType");
-                    VoluntePay(payTypes, Voluntepay_money, volunteer_debt_item_id);
+                    String payment_channel = bundle.getString("payType");
+                    VoluntePay(payment_channel, Voluntepay_money, volunteer_debt_item_id);
                     break;
                 case sendLifeDetailShareNum:
                     sendLifeDetailShareNum();
@@ -311,7 +317,7 @@ public class BaoZhangActitvty extends WebAct {
     };
 
     /**
-     * 生活保障 互祝支付
+     * 生活保障---详情互祝支付
      *
      * @param user_id
      * @param help_comment_content
@@ -366,7 +372,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 支付成功跳转红包页
+     * 生活保障---支付成功跳转红包页
      */
     private void lifeSkipSuccess() {
         mBridgeWebView.callHandler("Life_paySuccessBack", "" + life_order_id, new CallBackFunction() {
@@ -378,7 +384,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 刷新生活保障详情页
+     * 生活保障---刷新生活保障详情页
      */
     private void lifeDetailRefresh() {
         mBridgeWebView.callHandler("Life_DetailRefresh", "" + life_order_id, new CallBackFunction() {
@@ -390,7 +396,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 获取生活保障详情数据
+     * 生活保障---获取生活保障详情数据
      *
      * @param life_repay_id
      */
@@ -432,7 +438,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 生活保障互祝-转发-保存次数
+     * 生活保障---互祝分享转发保存次数
      */
     public void sendLifeDetailShareNum() {
         Observable<ResponseBean> observable = Api.getInstance().service.sendLifeDetailShareNum(UserUtils.getUserId(mContext), life_repay_id,
