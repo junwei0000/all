@@ -59,7 +59,7 @@ public class VolunterDialogUtils {
         this.context = context;
     }
 
-    public void showPopupWindow(String money) {
+    public void showPopupWindow(String money,String cont) {
         if (selectDialog == null) {
             selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_doctor_pay);// 创建Dialog并设置样式主题
             selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
@@ -83,6 +83,7 @@ public class VolunterDialogUtils {
             tv_zfbtitle = (TextView) selectDialog.findViewById(R.id.tv_zfbtitle);
 
             btn_helpsure = (TextView) selectDialog.findViewById(R.id.btn_helpsure);
+            btn_helpsure.setText(cont);
             layout_cancel.setOnClickListener(dialogClick);
             btn_helpsure.setOnClickListener(dialogClick);
             detailhelp_relat_wx.setOnClickListener(dialogClick);

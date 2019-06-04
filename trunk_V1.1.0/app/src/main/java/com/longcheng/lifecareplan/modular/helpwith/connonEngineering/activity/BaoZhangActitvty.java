@@ -211,7 +211,7 @@ public class BaoZhangActitvty extends WebAct {
                 if (mVolunterDialogUtils == null) {
                     mVolunterDialogUtils = new VolunterDialogUtils(mActivity, mHandler, VolunterSelectPay);
                 }
-                mVolunterDialogUtils.showPopupWindow(Voluntepay_money);
+                mVolunterDialogUtils.showPopupWindow(Voluntepay_money, "立即开启");
             }
         });
 

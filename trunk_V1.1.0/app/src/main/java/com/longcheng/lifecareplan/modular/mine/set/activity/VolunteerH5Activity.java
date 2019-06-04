@@ -104,7 +104,7 @@ public class VolunteerH5Activity extends WebAct {
                 if (mVolunterDialogUtils == null) {
                     mVolunterDialogUtils = new VolunterDialogUtils(mActivity, mHandler, VolunterSelectPay);
                 }
-                mVolunterDialogUtils.showPopupWindow(data);
+                mVolunterDialogUtils.showPopupWindow(data, "立即支付");
             }
         });
     }
