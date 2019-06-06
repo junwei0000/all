@@ -31,11 +31,7 @@ public abstract class CustomWebViewClient extends BridgeWebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Log.e("onPageHeaders", "url=" + url);
-        if (url.contains("tel:")) {
-            Log.e("onPageHeaders", "tel=" + url);
-            DensityUtil.getPhoneToKey(mContext, url);
-            return true;
-        } else if (onPageHeaders(url) != null) {
+        if (onPageHeaders(url) != null) {
             view.loadUrl(url, onPageHeaders(url));
         }
         return super.shouldOverrideUrlLoading(view, url);

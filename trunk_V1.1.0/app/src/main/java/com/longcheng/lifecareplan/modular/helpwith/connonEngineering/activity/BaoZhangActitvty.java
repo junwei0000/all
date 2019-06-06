@@ -87,7 +87,7 @@ public class BaoZhangActitvty extends WebAct {
     private String life_id;
     private List<DetailItemBean> blessings_list;
     private VolunterDialogUtils mVolunterDialogUtils;
-
+    private VolunterDialogUtils mChangeLFDialogUtils;
     String life_order_id = "";
     /**
      * 生活保障详情id
@@ -190,7 +190,7 @@ public class BaoZhangActitvty extends WebAct {
             }
         });
 
-        //志愿者互祝---显示祝福弹层
+        //志愿者互祝---开启债务支付单个 批量
         mBridgeWebView.registerHandler("Life_PayMoney", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -215,17 +215,126 @@ public class BaoZhangActitvty extends WebAct {
             }
         });
 
+        //志愿者互祝---变更雷锋号支付
+        mBridgeWebView.registerHandler("Life_PayChangeLeiFeng", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "Life_PayChangeLeiFeng=" + data);
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    ChangLFMoney = jsonObject.optString("price", "100");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                weixinPayBackType = "ChangeLeiFengPay";
+                if (mChangeLFDialogUtils == null) {
+                    mChangeLFDialogUtils = new VolunterDialogUtils(mActivity, mHandler, ChangeLeiFengPay);
+                }
+                mChangeLFDialogUtils.showPopupWindow(ChangLFMoney, "立即变更");
+            }
+        });
+    }
 
+    public static final int BLESSING = 22;
+    public static final int VolunterSelectPay = 33;
+    public static final int sendLifeDetailShareNum = 44;
+    public static final int ChangeLeiFengPay = 55;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        Bundle bundle;
+
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case BLESSING:
+                    bundle = msg.getData();
+                    String help_comment_content = bundle.getString("help_comment_content");
+                    String payType = bundle.getString("payType");
+                    int selectmoney = bundle.getInt("selectmoney");
+                    int help_number = bundle.getInt("help_number");
+                    Log.e("lifepayHelp", "help_number=" + help_number);
+                    lifepayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
+                    break;
+                case VolunterSelectPay:
+                    bundle = msg.getData();
+                    String payment_channel = bundle.getString("payType");
+                    VoluntePay(payment_channel, Voluntepay_money, volunteer_debt_item_id);
+                    break;
+                case ChangeLeiFengPay:
+                    bundle = msg.getData();
+                    String paymentchannel = bundle.getString("payType");
+                    ChangeLeiFengPay(paymentchannel, ChangLFMoney);
+                    break;
+                case sendLifeDetailShareNum:
+                    sendLifeDetailShareNum();
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 志愿者-变更雷锋号支付
+     */
+    private void ChangeLeiFengPay(String payment_channel, String price) {
+        Observable<PayWXDataBean> observable = Api.getInstance().service.ChangeLeiFengPay(UserUtils.getUserId(mContext),
+                payment_channel, price, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        String status = responseBean.getStatus();
+                        if (status.equals("400")) {
+                            ToastUtils.showToast(responseBean.getMsg());
+                        } else if (status.equals("200")) {
+                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                            if (payment_channel.equals("1")) {
+                                Log.e(TAG, payWeChatBean.toString());
+                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                            } else if (payment_channel.equals("2")) {
+                                String payInfo = payWeChatBean.getPayInfo();
+                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                    @Override
+                                    public void onSuccess() {
+                                        ChangeLeiFengSuccuess();
+                                    }
+
+                                    @Override
+                                    public void onFailure(String error) {
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastUtils.showToast(R.string.net_tishi);
+                        Log.e("Observable", "" + throwable.toString());
+                    }
+                });
+    }
+
+    /**
+     * 志愿者-变更雷锋号支付完刷新页面
+     */
+    private void ChangeLeiFengSuccuess() {
+        mBridgeWebView.callHandler("Life_ChangeLeiFengBack", "", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
     }
 /**
- * _____________________志愿者_________________________________
+ * _____________________志愿者_开启债务支付________________________________
  */
     /**
      * 微信回调类型
      */
     String weixinPayBackType = "";
 
-    String Voluntepay_money = "";
+    String Voluntepay_money = "", ChangLFMoney = "";
 
     String volunteer_debt_item_id = "0", type = "1";
 
@@ -271,7 +380,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 志愿者-支付完刷新页面
+     * 志愿者-开启债务支付完刷新页面
      */
     private void volunterPaySuccuess() {
         mBridgeWebView.callHandler("Life_pay365SuccessBack", "", new CallBackFunction() {
@@ -286,35 +395,6 @@ public class BaoZhangActitvty extends WebAct {
      * _____________________end_________________________________
      */
 
-    public static final int BLESSING = 22;
-    public static final int VolunterSelectPay = 33;
-    public static final int sendLifeDetailShareNum = 44;
-    @SuppressLint("HandlerLeak")
-    Handler mHandler = new Handler() {
-        Bundle bundle;
-
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case BLESSING:
-                    bundle = msg.getData();
-                    String help_comment_content = bundle.getString("help_comment_content");
-                    String payType = bundle.getString("payType");
-                    int selectmoney = bundle.getInt("selectmoney");
-                    int help_number = bundle.getInt("help_number");
-                    Log.e("lifepayHelp", "help_number=" + help_number);
-                    lifepayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
-                    break;
-                case VolunterSelectPay:
-                    bundle = msg.getData();
-                    String payment_channel = bundle.getString("payType");
-                    VoluntePay(payment_channel, Voluntepay_money, volunteer_debt_item_id);
-                    break;
-                case sendLifeDetailShareNum:
-                    sendLifeDetailShareNum();
-                    break;
-            }
-        }
-    };
 
     /**
      * 生活保障---详情互祝支付
@@ -491,6 +571,8 @@ public class BaoZhangActitvty extends WebAct {
                     lifeSkipSuccess();
                 } else if (weixinPayBackType.equals("VoluntePay")) {
                     volunterPaySuccuess();
+                } else if (weixinPayBackType.equals("ChangeLeiFengPay")) {
+                    ChangeLeiFengSuccuess();
                 }
             } else if (Code == WXPayEntryActivity.PAY_FAILE) {
                 ToastUtils.showToast("支付失败");
@@ -502,13 +584,6 @@ public class BaoZhangActitvty extends WebAct {
         }
     };
 
-    private void back() {
-        if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
-            mBridgeWebView.goBack();
-        } else {
-            doFinish();
-        }
-    }
 
     /**
      * 重写onkeydown 用于监听返回键

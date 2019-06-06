@@ -888,6 +888,13 @@ public interface ApiService {
                                          @Field("token") String token);
 
     @FormUrlEncoded
+    @POST(Config.VERSION + "life/ajaxLeifengChange")
+    Observable<PayWXDataBean> ChangeLeiFengPay(@Field("user_id") String user_id,
+                                               @Field("payment_channel") String payment_channel,
+                                               @Field("price") String price,
+                                               @Field("token") String token);
+
+    @FormUrlEncoded
     @POST(Config.VERSION + "Intelligentize/lifePayOrder")
     Observable<PayWXDataBean> RechargePay(@Field("user_id") String user_id,
                                           @Field("payment_channel") String payment_channel,

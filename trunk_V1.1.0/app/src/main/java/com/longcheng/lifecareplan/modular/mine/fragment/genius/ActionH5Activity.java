@@ -309,13 +309,6 @@ public class ActionH5Activity extends WebAct {
         }
     };
 
-    private void back() {
-        if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
-            mBridgeWebView.goBack();
-        } else {
-            doFinish();
-        }
-    }
 
     /**
      * 重写onkeydown 用于监听返回键

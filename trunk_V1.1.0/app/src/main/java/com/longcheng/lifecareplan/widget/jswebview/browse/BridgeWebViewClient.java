@@ -9,6 +9,7 @@ import android.webkit.WebViewClient;
 
 
 import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -33,7 +34,7 @@ public class BridgeWebViewClient extends WebViewClient {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        Log.e("URLDecoder", "url=" + url);
+        Log.e("URLDecoder", "super  url=" + url);
         if (url.contains("tel:")) {
             Log.e("onPageHeaders", "tel=" + url);
             DensityUtil.getPhoneToKey(webView.getContext(), url);
@@ -45,6 +46,7 @@ public class BridgeWebViewClient extends WebViewClient {
             webView.flushMessageQueue();
             return true;
         } else {
+            LoadingDialogAnim.show(webView.getContext());
             return super.shouldOverrideUrlLoading(view, url);
         }
     }

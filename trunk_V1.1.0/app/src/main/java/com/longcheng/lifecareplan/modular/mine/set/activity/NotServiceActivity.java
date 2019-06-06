@@ -133,7 +133,7 @@ public class NotServiceActivity extends WebAct {
         }).start();//这个start()方法不要忘记了
     }
 
-    private void back() {
+    public void back() {
         if (!notService) {
             doFinish();
         } else {

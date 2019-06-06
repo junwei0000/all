@@ -17,8 +17,11 @@ import android.webkit.CookieSyncManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -61,6 +64,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesH
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
+import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeUtil;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebViewClient;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
@@ -72,6 +76,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -89,6 +95,19 @@ public abstract class WebAct extends BaseActivity {
     public TextView pageTopTvName;
     @BindView(R.id.webView)
     public BridgeWebView mBridgeWebView;
+
+    @BindView(R.id.layout_notdate)
+    LinearLayout llNodata;
+    @BindView(R.id.not_date_img)
+    ImageView ivNodata;
+    @BindView(R.id.not_date_cont)
+    TextView tvNoDataContent;
+    @BindView(R.id.not_date_cont_title)
+    TextView tvNoDataTitle;
+    @BindView(R.id.not_date_btn)
+    TextView btnNoData;
+
+
     private ValueCallback<Uri> mUploadMessage;
     private ValueCallback<Uri[]> mUploadCallbackAboveL;
 
@@ -600,25 +619,66 @@ public abstract class WebAct extends BaseActivity {
             }
         });
     }
+
     /**
      * _______________________________end_____________________________
      */
+    boolean showErr = false;
+
+    private void showNoDataView(boolean flag) {
+        if (mBridgeWebView == null) {
+            return;
+        }
+        Log.e("showChache", "showNoDataView=" + flag);
+        int showNodata = flag ? View.VISIBLE : View.GONE;
+        int showData = flag ? View.GONE : View.VISIBLE;
+        mBridgeWebView.setVisibility(showData);
+        llNodata.setVisibility(showNodata);
+        tvNoDataContent.setVisibility(showNodata);
+        tvNoDataTitle.setVisibility(showNodata);
+        btnNoData.setVisibility(showNodata);
+        ivNodata.setVisibility(showNodata);
+        ivNodata.setBackgroundResource(R.mipmap.my_network_icon);
+        tvNoDataContent.setText("请刷新或检查网络");
+        tvNoDataTitle.setText("网络加载失败");
+        btnNoData.setText("刷新");
+        btnNoData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showErr = false;
+                mBridgeWebView.reload();
+            }
+        });
+    }
 
     /**
      * ***********************上传图片*************************
      */
     private void updateWebPic() {
-        mBridgeWebView.setWebViewClient(new BridgeWebViewClient(mBridgeWebView){
+        mBridgeWebView.setWebViewClient(new BridgeWebViewClient(mBridgeWebView) {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
                 LoadingDialogAnim.show(mContext);
+                Log.e("URLDecoder", "onPageStarted  =" + url);
+                super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
                 LoadingDialogAnim.dismiss(mContext);
+                if (!showErr) {
+                    showNoDataView(false);
+                }
+                Log.e("URLDecoder", "onPageFinished url=" + url);
+                super.onPageFinished(view, url);
+            }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                Log.e("URLDecoder", "onReceivedError errorCode=" + errorCode);
+                showErr = true;
+                showNoDataView(showErr);
+                super.onReceivedError(view, errorCode, description, failingUrl);
             }
         });
 
@@ -778,5 +838,14 @@ public abstract class WebAct extends BaseActivity {
         }
     }
 
+    public void back() {
+        if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
+            // 返回上一页面
+//            mBridgeWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+            mBridgeWebView.goBack();
+        } else {
+            doFinish();
+        }
+    }
 
 }
