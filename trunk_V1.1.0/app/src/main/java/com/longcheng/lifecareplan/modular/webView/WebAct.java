@@ -59,16 +59,15 @@ import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.LocationUtils;
 import com.longcheng.lifecareplan.utils.SaveImageUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideCircleTransform;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
-import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeUtil;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebViewClient;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
-import com.longcheng.lifecareplan.widget.jswebview.browse.JsWeb.CustomWebViewClient;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
@@ -76,8 +75,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -838,11 +835,17 @@ public abstract class WebAct extends BaseActivity {
         }
     }
 
+    /**
+     * 点击返回的时间间隔
+     */
+    private long clickBackTime = 0;
+
     public void back() {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
-            // 返回上一页面
-//            mBridgeWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-            mBridgeWebView.goBack();
+            if ((System.currentTimeMillis() - clickBackTime) > 1500) {
+                clickBackTime = System.currentTimeMillis();
+                mBridgeWebView.goBack();
+            }
         } else {
             doFinish();
         }
