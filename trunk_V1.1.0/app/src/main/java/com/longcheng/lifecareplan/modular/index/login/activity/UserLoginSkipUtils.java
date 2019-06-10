@@ -4,6 +4,7 @@ package com.longcheng.lifecareplan.modular.index.login.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
@@ -16,6 +17,7 @@ import com.longcheng.lifecareplan.modular.index.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -89,7 +91,21 @@ public class UserLoginSkipUtils {
             MySharedPreferences.getInstance().saveIsLogout(false);
             boolean isFirstIn = MySharedPreferences.getInstance().getIsLogout();
             Log.e("initUserInfo", "skipToPage   isFirstIn =" + isFirstIn);
-            skipToPage();
+
+            if (TextUtils.isEmpty(phone)) {
+                intents = new Intent(mActivity, LoginThirdSetPwActivity.class);
+                intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intents.putExtra("skiptostatus", "WXLogin");
+                mActivity.startActivity(intents);
+
+                Intent intents_ = new Intent();
+                intents_.setAction(ConstantManager.MAINMENU_ACTION);
+                intents_.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);
+                LocalBroadcastManager.getInstance(mActivity).sendBroadcast(intents_);
+                mActivity.finish();
+            } else {
+                skipToPage();
+            }
         }
     }
 

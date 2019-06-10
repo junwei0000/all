@@ -55,6 +55,7 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
     @BindView(R.id.btn_commit)
     TextView btnCommit;
     private String phone;
+    String skiptostatus = "";
 
     @Override
     public void showDialog() {
@@ -81,8 +82,13 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
         setOrChangeTranslucentColor(toolbar, null);
     }
 
+
     @Override
     public void initDataAfter() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            skiptostatus = intent.getStringExtra("WXLogin");
+        }
 
     }
 
@@ -209,9 +215,11 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
                 UserLoginSkipUtils mUserLoginSkipUtils = new UserLoginSkipUtils(this);
                 mUserLoginSkipUtils.getLoginInfo(mLoginInfo);
             }
-            Intent intent = new Intent();
-            intent.putExtra("phone", phone);
-            setResult(ConstantManager.USERINFO_FORRESULT_PHONE, intent);
+            if (!TextUtils.isEmpty(skiptostatus) && skiptostatus.equals("UserInfo")) {
+                Intent intent = new Intent();
+                intent.putExtra("phone", phone);
+                setResult(ConstantManager.USERINFO_FORRESULT_PHONE, intent);
+            }
             doFinish();
         }
     }

@@ -114,6 +114,7 @@ public class UserInfoActivity extends BaseActivityMVP<UserInfoContract.View, Use
                 if (TextUtils.isEmpty(phone)) {
                     intent = new Intent(mContext, LoginThirdSetPwActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("skiptostatus", "UserInfo");
                     startActivityForResult(intent, ConstantManager.USERINFO_FORRESULT_PHONE);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, this);
                 }
