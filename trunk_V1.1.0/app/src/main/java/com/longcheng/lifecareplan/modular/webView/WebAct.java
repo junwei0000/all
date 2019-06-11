@@ -16,7 +16,9 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
+import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
+import android.webkit.WebHistoryItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -840,10 +842,16 @@ public abstract class WebAct extends BaseActivity {
      */
     private long clickBackTime = 0;
 
+
+    /**
+     * 防止连续点击返回键
+     */
     public void back() {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
             if ((System.currentTimeMillis() - clickBackTime) > 1500) {
                 clickBackTime = System.currentTimeMillis();
+                Log.e("URLDecoder", "goBack--------");
+                LoadingDialogAnim.show(mContext);
                 mBridgeWebView.goBack();
             }
         } else {

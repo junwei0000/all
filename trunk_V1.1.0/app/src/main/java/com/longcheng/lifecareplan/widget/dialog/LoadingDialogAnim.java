@@ -5,13 +5,16 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 
 /**
  * 作者：MarkMingShuai
@@ -78,6 +81,19 @@ public class LoadingDialogAnim extends Dialog {
     }
 
     /**
+     * 设置加载中弹层显示时不让点击物理返回键
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Log.e("URLDecoder", "LoadingDialogAnim.onKeyDown--------------" + LoadingDialogAnim.showStatus());
+        return true;
+    }
+
+    /**
      * show the dialog
      *
      * @param context    Context
@@ -109,6 +125,14 @@ public class LoadingDialogAnim extends Dialog {
             }
         }, 0);
 
+    }
+
+    public static boolean showStatus() {
+        if (loadDialog != null && loadDialog.isShowing()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     static Handler handler = new Handler();
@@ -151,7 +175,7 @@ public class LoadingDialogAnim extends Dialog {
                     loadDialog = null;
                 }
             }
-        }, 500);//秒后执行Runnable中的run方法
+        }, 1500);//秒后执行Runnable中的run方法
 
     }
 }
