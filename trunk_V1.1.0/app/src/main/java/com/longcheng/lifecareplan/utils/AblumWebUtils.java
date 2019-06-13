@@ -79,7 +79,7 @@ public class AblumWebUtils {
     public void onAddAblumClick() {
         if (selectDialog == null) {
             selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_ablum);// 创建Dialog并设置样式主题
-            selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectDialog.getWindow();
             window.setGravity(Gravity.BOTTOM);
             window.setWindowAnimations(R.style.showBottomDialog);

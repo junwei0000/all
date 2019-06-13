@@ -13,6 +13,8 @@ import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -41,11 +43,15 @@ public class BridgeWebViewClient extends WebViewClient {
             return true;
         } else if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
             webView.handlerReturnData(url);
+            LoadingDialogAnim.dismiss(webView.getContext());
             return true;
         } else if (url.startsWith(BridgeUtil.YY_OVERRIDE_SCHEMA)) { //
             webView.flushMessageQueue();
             return true;
         } else {
+            if (url.contains("t.asdyf.com")) {
+                webView.addUrlPageBackListItem(url);
+            }
             LoadingDialogAnim.show(webView.getContext());
             return super.shouldOverrideUrlLoading(view, url);
         }

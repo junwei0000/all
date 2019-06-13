@@ -603,7 +603,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
     public void setDelDialog(String order_id) {
         if (selectDialog == null) {
             selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_delfamily);// 创建Dialog并设置样式主题
-            selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectDialog.getWindow();
             window.setGravity(Gravity.CENTER);
             selectDialog.show();

@@ -51,7 +51,7 @@ public class ValueSelectUtils {
     public void showDialog(String[] hours_, String title) {
         if (selectShengxDialog == null) {
             selectShengxDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_action_shengxiao);// 创建Dialog并设置样式主题
-            selectShengxDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            selectShengxDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectShengxDialog.getWindow();
             window.setGravity(Gravity.BOTTOM);
             window.setWindowAnimations(R.style.showBottomDialog);

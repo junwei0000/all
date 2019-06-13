@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
@@ -36,6 +37,15 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
     BridgeHandler defaultHandler = new DefaultHandler();
 
     private List<Message> startupMessage = new ArrayList<Message>();
+    private long uniqueId = 0;
+    /**
+     * 记录加载的H5页面顺序，返回时用
+     */
+    public List<String> urlPageBackList = new ArrayList<String>();
+    /**
+     * 临时存储有效的路径
+     */
+    private List<String> urlPageBackList__ = new ArrayList<String>();
 
     public List<Message> getStartupMessage() {
         return startupMessage;
@@ -45,7 +55,6 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         this.startupMessage = startupMessage;
     }
 
-    private long uniqueId = 0;
 
     public BridgeWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -60,6 +69,36 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
     public BridgeWebView(Context context) {
         super(context);
         init();
+    }
+
+//    /**
+//     * 是否正在返回操作
+//     */
+//    public boolean clickPageBacking = false;
+//    public String clickPageBackUrl = "";
+
+    /**
+     * 添加h5页面集合
+     *
+     * @param url
+     */
+    public void addUrlPageBackListItem(String url) {
+        if (urlPageBackList.contains(url)) {
+            int dex = urlPageBackList.indexOf(url);
+            if (dex < urlPageBackList.size()) {
+                urlPageBackList__.clear();
+                for (int dex_ = 0; dex_ <= dex; dex_++) {
+                    urlPageBackList__.add(urlPageBackList.get(dex_));
+                }
+                urlPageBackList.clear();
+                urlPageBackList.addAll(urlPageBackList__);
+            }
+        } else {
+            urlPageBackList.add(url);
+        }
+        Log.e("goBack", "url=" + url);
+        Log.e("goBack", "urlPageBackList=\n" + urlPageBackList.toString());
+        Log.e("goBack", "********************************************************************************");
     }
 
     /**

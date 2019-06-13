@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.modular.webView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,9 +9,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -145,19 +149,22 @@ public abstract class WebAct extends BaseActivity {
     public void loadUrl(String url) {
         this.url = url;
         if (!TextUtils.isEmpty(url)) {
+            mBridgeWebView.addUrlPageBackListItem(url);
             sewtCookie(url);
         }
         // 打开页面，也可以支持网络url
         mBridgeWebView.loadUrl(url);
     }
 
+    /**
+     * 缓存  Cookie
+     */
     private void sewtCookie(String url) {
-        /**
-         * 缓存  Cookie
-         */
+        //设置网络请求cookie
+        CookieSyncManager.createInstance(this);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
-        cookieManager.removeAllCookie();
+//        cookieManager.removeAllCookie();//移除
         String name = UserUtils.getUserName(mContext);
         String phone = UserUtils.getUserPhone(mContext);
         String userId = UserUtils.getUserId(mContext);
@@ -172,7 +179,11 @@ public abstract class WebAct extends BaseActivity {
         cookieManager.setCookie(url, "APP_type_pay_source=2" + Config.WEB_DOMAIN);//安卓source=2
         Log.e("aaa", "name : " + name + " , " + phone + " , userId : " + userId + avatar + " , token : " + token);
         cookieManager.getCookie(url);
-        CookieSyncManager.getInstance().sync();
+        if (Build.VERSION.SDK_INT < 21) {
+            CookieSyncManager.getInstance().sync();
+        } else {
+            CookieManager.getInstance().flush();
+        }
     }
 
     @Override
@@ -833,6 +844,7 @@ public abstract class WebAct extends BaseActivity {
     public void onDestroy() {
         super.onDestroy();
         if (mBridgeWebView != null) {
+            mBridgeWebView.urlPageBackList.clear();
             mBridgeWebView.destroy();
         }
     }
@@ -849,14 +861,27 @@ public abstract class WebAct extends BaseActivity {
     public void back() {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
             if ((System.currentTimeMillis() - clickBackTime) > 1500) {
+                Log.e("goBack", "goBack--------" + mBridgeWebView.getUrl());
                 clickBackTime = System.currentTimeMillis();
-                Log.e("URLDecoder", "goBack--------");
                 LoadingDialogAnim.show(mContext);
-                mBridgeWebView.goBack();
+                mHandler.sendEmptyMessage(GOBACKPAGE);
             }
         } else {
             doFinish();
         }
     }
+
+    public static final int GOBACKPAGE = -1;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case GOBACKPAGE://防止同时操作主线程阻塞
+                    mBridgeWebView.goBack();
+                    break;
+
+            }
+        }
+    };
 
 }

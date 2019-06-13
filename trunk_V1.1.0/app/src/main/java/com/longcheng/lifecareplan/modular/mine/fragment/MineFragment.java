@@ -959,6 +959,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (CrediterCashDialog != null && CrediterCashDialog.isShowing()) {
             CrediterCashDialog.dismiss();
         }
+        if (LifeBasicCashDialog != null && LifeBasicCashDialog.isShowing()) {
+            LifeBasicCashDialog.dismiss();
+        }
     }
 
     /**
@@ -974,35 +977,60 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             return;
         }
         //坐堂医支付成功弹层  1
-        if (showDoctorDialogStatus || (toDoctorDialog != null && toDoctorDialog.isShowing())) {
+        if (showDoctorDialogStatus) {
             showDoctorDialogStatus = false;
             showDoctorDialog();
             return;
-        }
-        if (chatuserStarLevelId == 0) {
+        } else {
             //防止等级弹层提示后，黑屏后重新打开刷新没关闭问题
             if (toDoctorDialog != null && toDoctorDialog.isShowing()) {
                 toDoctorDialog.dismiss();
             }
+        }
+        //等级提示  2
+        if (chatuserStarLevelId > 0) {
+            showLevelDialog();
+            return;
+        } else {
             if (LevelDialog != null && LevelDialog.isShowing()) {
                 LevelDialog.dismiss();
             }
-            //志愿者首关联债权人页弹层  3
-            if (data.getIsDisplayCrediterCash() > 0 || CrediterCashDialog != null && CrediterCashDialog.isShowing()) {
-                showCrediterCashDialog();
-                return;
+        }
+        //基础保障未提现  3
+        if (data.getIsLifeBasicApplyCash() > 0) {
+            showLifeBasicCashDialog();
+            return;
+        } else {
+            if (LifeBasicCashDialog != null && LifeBasicCashDialog.isShowing()) {
+                LifeBasicCashDialog.dismiss();
             }
-            //天才行动 4
-            if (data.getIs_commonweal_activity() > 0) {
-                showActionDialog();
-                return;
+        }
+        //志愿者关联债权人提现  4
+        if (data.getIsDisplayCrediterCash() > 0) {
+            showCrediterCashDialog();
+            return;
+        } else {
+            if (CrediterCashDialog != null && CrediterCashDialog.isShowing()) {
+                CrediterCashDialog.dismiss();
             }
-            //红包 5
+        }
+        //天才行动 5
+        if (data.getIs_commonweal_activity() > 0) {
+            showActionDialog();
+            return;
+        } else {
+            if (actionDialog != null && actionDialog.isShowing()) {
+                actionDialog.dismiss();
+            }
+        }
+        //红包 6
+        if (isUnopenedRedPackage > 0) {
             showRedBaoDialog();
             return;
         } else {
-            //等级提示  2
-            showLevelDialog();
+            if (redBaoDialog != null && redBaoDialog.isShowing()) {
+                redBaoDialog.dismiss();
+            }
         }
     }
 
@@ -1012,7 +1040,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         mPresent.doStarLevelRemind(user_id);
         if (LevelDialog == null) {
             LevelDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_centerlevel);// 创建Dialog并设置样式主题
-            LevelDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            LevelDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = LevelDialog.getWindow();
             window.setGravity(Gravity.CENTER);
             LevelDialog.show();
@@ -1048,10 +1076,54 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
     }
 
+    MyDialog LifeBasicCashDialog;
+
+    /**
+     * 基础保障未提现弹层
+     */
+    public void showLifeBasicCashDialog() {
+        if (LifeBasicCashDialog == null) {
+            LifeBasicCashDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+            LifeBasicCashDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = LifeBasicCashDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            LifeBasicCashDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = LifeBasicCashDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4;
+            LifeBasicCashDialog.getWindow().setAttributes(p); //设置生效
+            ImageView fram_bg = (ImageView) LifeBasicCashDialog.findViewById(R.id.fram_bg);
+            fram_bg.setBackgroundResource(R.mipmap.my_lifebasiccash_bg);
+            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.316)));
+            LinearLayout layout_cancel = (LinearLayout) LifeBasicCashDialog.findViewById(R.id.layout_cancel);
+
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LifeBasicCashDialog.dismiss();
+                }
+            });
+            fram_bg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LifeBasicCashDialog.dismiss();/**/
+                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + data.getLifeBasicApplyCashUrl());
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+            });
+        } else {
+            LifeBasicCashDialog.show();
+        }
+    }
+
     MyDialog CrediterCashDialog;
 
     /**
-     * 提现债务提示弹层
+     * 债务未提现提示弹层
      */
     public void showCrediterCashDialog() {
         if (CrediterCashDialog == null) {
@@ -1104,7 +1176,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
         if (actionDialog == null) {
             actionDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mine_action);// 创建Dialog并设置样式主题
-            actionDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            actionDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = actionDialog.getWindow();
             window.setGravity(Gravity.CENTER);
             actionDialog.show();
@@ -1147,16 +1219,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 红包弹层
      */
     public void showRedBaoDialog() {
-        if (isUnopenedRedPackage == 0) {
-            if (redBaoDialog != null && redBaoDialog.isShowing()) {
-                redBaoDialog.dismiss();
-            }
-            return;
-        }
-        //用户首页是否有等级弹窗 0不显示；1显示
         if (redBaoDialog == null) {
             redBaoDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_centeropenredbao);// 创建Dialog并设置样式主题
-            redBaoDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            redBaoDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = redBaoDialog.getWindow();
             window.setGravity(Gravity.CENTER);
             redBaoDialog.show();
@@ -1174,12 +1239,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             int bmpW = BitmapFactory.decodeResource(getResources(), R.mipmap.my_goodluckto_popupwindow).getWidth();// 获取图片宽度
             layout_cancel.setPadding(0, 0, (d.getWidth() - bmpW) / 2, 0);
             iv_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    redBaoDialog.dismiss();
-                }
-            });
-            relat_redbao.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     redBaoDialog.dismiss();

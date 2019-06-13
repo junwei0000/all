@@ -178,20 +178,30 @@ public class BaoZhangActitvty extends WebAct {
                         if (!TextUtils.isEmpty(url) && url.contains("/home/life/repayinfo")) {
                             pagetopIvRigth.setVisibility(View.VISIBLE);
                             shareStatus = true;
-                            shareBackType = "lifeDetailPay";
+                            shareBackType = "lifeDetail";
                         } else if (!TextUtils.isEmpty(url) && url.contains("/lifebasic/info")) {
                             pagetopIvRigth.setVisibility(View.VISIBLE);
                             shareStatus = true;
-                            shareBackType = "LifeBasicDetailPay";
+                            shareBackType = "LifeBasicDetail";
                         } else {
+                            //非详情页、和自己的详情不让分享
+                            shareBackType = "";
                             shareStatus = false;
                             pagetopIvRigth.setVisibility(View.GONE);
                         }
                     }
+                    String route = jsonObject.optString("route", "");
+                    if (!TextUtils.isEmpty(route)) {//自己的详情判断
+                        if (route.equals("life_basic_info")) {
+                            shareBackType = "LifeBasicDetail";
+                        } else if (route.equals("life_info")) {
+                            shareBackType = "lifeDetail";
+                        }
+                    }
                     if (!life_repay_id.equals("0")) {
-                        if (!TextUtils.isEmpty(url) && url.contains("/home/life/repayinfo")) {
+                        if (shareBackType.equals("lifeDetail")) {
                             getLifeDetail(life_repay_id);
-                        } else if (!TextUtils.isEmpty(url) && url.contains("/lifebasic/info")) {
+                        } else if (shareBackType.equals("LifeBasicDetail")) {
                             getLifeBasicDetail(life_repay_id);
                         }
                     }
@@ -768,10 +778,10 @@ public class BaoZhangActitvty extends WebAct {
      */
     public void sendLifeDetailShareNum() {
         Observable<ResponseBean> observable = null;
-        if (shareBackType.equals("lifeDetailPay")) {
+        if (shareBackType.equals("lifeDetail")) {
             observable = Api.getInstance().service.sendLifeDetailShareNum(UserUtils.getUserId(mContext), life_repay_id,
                     ExampleApplication.token);
-        } else if (shareBackType.equals("LifeBasicDetailPay")) {
+        } else if (shareBackType.equals("LifeBasicDetail")) {
             observable = Api.getInstance().service.sendLifeBasicDetailShareNum(UserUtils.getUserId(mContext), life_repay_id,
                     ExampleApplication.token);
         }
