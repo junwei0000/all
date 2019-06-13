@@ -240,6 +240,7 @@
         android:textColorHint="@color/login_hint_color"
         android:textSize="@dimen/text_zhu_size" />
     <TextView
+        android:id="@+id/tv_tishi"
         android:paddingTop="@dimen/padd_topbottom"
         style="@style/view_paddlefgtright"
         android:layout_width="match_parent"

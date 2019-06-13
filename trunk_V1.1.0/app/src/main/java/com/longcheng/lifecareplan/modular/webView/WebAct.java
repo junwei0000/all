@@ -413,7 +413,7 @@ public abstract class WebAct extends BaseActivity {
                 startActivity(intent);
             }
         });
-        //康农工程-跳转信息完善页
+        //康农工程、申请生活保障列表-跳转信息完善页
         mBridgeWebView.registerHandler("knp_skiptoperfectuserinfo", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {

@@ -809,10 +809,20 @@ public interface ApiService {
                                                       @Query("life_repay_id") String life_repay_id,
                                                       @Query("token") String token);
 
+    @GET(Config.VERSION + "Lifebasic/info")
+    Observable<EnergyDetailDataBean> getLifeBasicDetail(@Query("user_id") String user_id,
+                                                        @Query("life_basic_id") String life_basic_id,
+                                                        @Query("token") String token);
+
     @GET(Config.VERSION + "life/addForward")
     Observable<ResponseBean> sendLifeDetailShareNum(@Query("user_id") String user_id,
                                                     @Query("life_repay_id") String life_repay_id,
                                                     @Query("token") String token);
+
+    @GET(Config.VERSION + "lifebasic/addForward")
+    Observable<ResponseBean> sendLifeBasicDetailShareNum(@Query("user_id") String user_id,
+                                                         @Query("life_basic_id") String life_basic_id,
+                                                         @Query("token") String token);
 
     @GET(Config.VERSION + "commonweal/info")
     Observable<EnergyDetailDataBean> getCommonwealMsgDetail(@Query("user_id") String user_id,
@@ -842,6 +852,17 @@ public interface ApiService {
                                               @Field("money") int money,
                                               @Field("help_number") int help_number,
                                               @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "lifebasic/helpPay")
+    Observable<PayWXDataBean> LifeBasicDetailPay(@Field("user_id") String user_id,
+                                                 @Field("help_comment_content") String help_comment_content,
+                                                 @Field("payment_channel") String payment_channel,
+                                                 @Field("life_basic_id") String life_basic_id,
+                                                 @Field("money") int money,
+                                                 @Field("help_number") int help_number,
+                                                 @Field("pay_source") String pay_source,
+                                                 @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Commonweal/pay")
@@ -893,6 +914,14 @@ public interface ApiService {
                                                @Field("payment_channel") String payment_channel,
                                                @Field("price") String price,
                                                @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "lifebasic/ajaxSaveApply")
+    Observable<PayWXDataBean> LifeBasicApplyPay(@Field("user_id") String user_id,
+                                                @Field("des_content") String des_content,
+                                                @Field("payment_channel") String payment_channel,
+                                                @Field("pay_source") String pay_source,
+                                                @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Intelligentize/lifePayOrder")

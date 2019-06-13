@@ -39,7 +39,7 @@ public class DetailAfterBean {
     private String knp_sharePic;
     @SerializedName("desc")
     private String knp_sharedesc;
-    @SerializedName("mutual_help_money_default")
+    @SerializedName(value = "mutual_help_money_default", alternate = {"life_basic_money_default"})
     private DetailItemBean knp_helpmoneydefault;
     @SerializedName("blessings_list")
     private List<DetailItemBean> knp_blessings_list;
@@ -49,7 +49,7 @@ public class DetailAfterBean {
     private DetailItemBean current_jieqi;
 
     //金额
-    @SerializedName(value = "mutual_help_money_all", alternate = {"life_money_all"})
+    @SerializedName(value = "mutual_help_money_all", alternate = {"life_money_all", "life_basic_money_all"})
     private List<DetailItemBean> mutual_help_money_all;
     @SerializedName("user_info")
     private DetailItemBean user_info;

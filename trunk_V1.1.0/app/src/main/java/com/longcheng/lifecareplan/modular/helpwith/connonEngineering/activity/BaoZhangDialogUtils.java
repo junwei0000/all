@@ -122,11 +122,16 @@ public class BaoZhangDialogUtils {
             detailhelp_relat_zfb = (RelativeLayout) selectDialog.findViewById(R.id.detailhelp_relat_zfb);
             detailhelp_iv_zfbselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_zfbselect);
             tv_zfbtitle = (TextView) selectDialog.findViewById(R.id.tv_zfbtitle);
-
             tv_jian = (LongClickButton) selectDialog.findViewById(R.id.tv_jian);
             tv_num = (TextView) selectDialog.findViewById(R.id.tv_num);
             tv_add = (LongClickButton) selectDialog.findViewById(R.id.tv_add);
             btn_helpsure = (TextView) selectDialog.findViewById(R.id.btn_helpsure);
+            TextView tv_tishi = (TextView) selectDialog.findViewById(R.id.tv_tishi);
+            if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {
+                tv_tishi.setVisibility(View.GONE);
+            } else {
+                tv_tishi.setVisibility(View.VISIBLE);
+            }
             layout_cancel.setOnClickListener(dialogClick);
             tv_jian.setOnClickListener(dialogClick);
             tv_add.setOnClickListener(dialogClick);
