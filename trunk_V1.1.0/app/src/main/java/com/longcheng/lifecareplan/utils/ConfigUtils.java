@@ -169,9 +169,9 @@ public class ConfigUtils {
     }
 
     /**
-     * 功能说明：获取版本号
+     * 功能说明：获取版本号'1.8.0'
      */
-    public String getVerCode(Context context) {
+    public String getVersionName(Context context) {
         String verName = null;
         try {
             verName = context.getPackageManager().getPackageInfo("com.longcheng.lifecareplan", 0).versionName;
@@ -180,7 +180,18 @@ public class ConfigUtils {
         }
         return verName;
     }
-
+    /**
+     * 功能说明：获取版本号180
+     */
+    public int getVersionCode(Context context) {
+        int vercode = 0;
+        try {
+            vercode = context.getPackageManager().getPackageInfo("com.longcheng.lifecareplan", 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return vercode;
+    }
     /**
      * 获取测试 sha1
      *

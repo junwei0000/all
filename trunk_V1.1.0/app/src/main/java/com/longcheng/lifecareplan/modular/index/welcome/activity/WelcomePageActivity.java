@@ -107,7 +107,7 @@ public class WelcomePageActivity extends BaseActivityMVP<WelcomeContract.View, W
     }
 
     private String getServerVerCode() {
-        String appVersion = ConfigUtils.getINSTANCE().getVerCode(mContext);
+        String appVersion = ConfigUtils.getINSTANCE().getVersionName(mContext);
         if (!TextUtils.isEmpty(appVersion) && appVersion.contains(".")) {
             Log.e("appVersion", "appVersion=" + appVersion);
             appVersion = appVersion.replace(".", "_");

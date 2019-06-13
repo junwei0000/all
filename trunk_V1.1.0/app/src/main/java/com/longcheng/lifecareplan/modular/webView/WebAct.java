@@ -170,6 +170,7 @@ public abstract class WebAct extends BaseActivity {
         String userId = UserUtils.getUserId(mContext);
         String avatar = UserUtils.getUserAvatar(mContext);
         String token = UserUtils.getWXToken(mContext);
+        int vercode = ConfigUtils.getINSTANCE().getVersionCode(mContext);
         cookieManager.setCookie(url, "phone_user_name=" + name + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "phone_user_phone=" + phone + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "phone_user_id=" + userId + Config.WEB_DOMAIN);
@@ -177,7 +178,8 @@ public abstract class WebAct extends BaseActivity {
         cookieManager.setCookie(url, "phone_user_token=" + token + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "isApp_Storage=1" + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "APP_type_pay_source=2" + Config.WEB_DOMAIN);//安卓source=2
-        Log.e("aaa", "name : " + name + " , " + phone + " , userId : " + userId + avatar + " , token : " + token);
+        cookieManager.setCookie(url, "versionCode=" + vercode + Config.WEB_DOMAIN);
+        Log.e("aaa", "getCookie : " + cookieManager.getCookie(url));
         cookieManager.getCookie(url);
         if (Build.VERSION.SDK_INT < 21) {
             CookieSyncManager.getInstance().sync();
@@ -668,17 +670,14 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.setWebViewClient(new BridgeWebViewClient(mBridgeWebView) {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                LoadingDialogAnim.show(mContext);
+                mHandler.sendEmptyMessage(SHOWDIALOG);
                 Log.e("URLDecoder", "onPageStarted  =" + url);
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                LoadingDialogAnim.dismiss(mContext);
-                if (!showErr) {
-                    showNoDataView(false);
-                }
+                mHandler.sendEmptyMessage(DISMISSDIALOG);
                 Log.e("URLDecoder", "onPageFinished url=" + url);
                 super.onPageFinished(view, url);
             }
@@ -872,6 +871,8 @@ public abstract class WebAct extends BaseActivity {
     }
 
     public static final int GOBACKPAGE = -1;
+    public static final int SHOWDIALOG = -2;
+    public static final int DISMISSDIALOG = -3;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -879,7 +880,15 @@ public abstract class WebAct extends BaseActivity {
                 case GOBACKPAGE://防止同时操作主线程阻塞
                     mBridgeWebView.goBack();
                     break;
-
+                case SHOWDIALOG:
+                    LoadingDialogAnim.show(mContext);
+                    break;
+                case DISMISSDIALOG:
+                    LoadingDialogAnim.dismiss(mContext);
+                    if (!showErr) {
+                        showNoDataView(false);
+                    }
+                    break;
             }
         }
     };

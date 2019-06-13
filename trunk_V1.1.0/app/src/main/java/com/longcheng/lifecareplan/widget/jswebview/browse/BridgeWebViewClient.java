@@ -1,7 +1,9 @@
 package com.longcheng.lifecareplan.widget.jswebview.browse;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
+import android.os.Handler;
 import android.util.Log;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
@@ -29,6 +31,22 @@ public class BridgeWebViewClient extends WebViewClient {
         this.webView = webView;
     }
 
+    public static final int SHOWDIALOG = -2;
+    public static final int DISMISSDIALOG = -3;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case SHOWDIALOG:
+                    LoadingDialogAnim.show(webView.getContext());
+                    break;
+                case DISMISSDIALOG:
+                    LoadingDialogAnim.dismiss(webView.getContext());
+                    break;
+            }
+        }
+    };
+
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         try {
@@ -43,16 +61,16 @@ public class BridgeWebViewClient extends WebViewClient {
             return true;
         } else if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
             webView.handlerReturnData(url);
-            LoadingDialogAnim.dismiss(webView.getContext());
+            mHandler.sendEmptyMessage(DISMISSDIALOG);
             return true;
         } else if (url.startsWith(BridgeUtil.YY_OVERRIDE_SCHEMA)) { //
             webView.flushMessageQueue();
             return true;
         } else {
+            mHandler.sendEmptyMessage(SHOWDIALOG);
             if (url.contains("t.asdyf.com")) {
                 webView.addUrlPageBackListItem(url);
             }
-            LoadingDialogAnim.show(webView.getContext());
             return super.shouldOverrideUrlLoading(view, url);
         }
     }

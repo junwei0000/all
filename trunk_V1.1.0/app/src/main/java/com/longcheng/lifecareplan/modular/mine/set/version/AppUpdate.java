@@ -72,7 +72,7 @@ public class AppUpdate {
      * @param updateDirection
      */
     public void startUpdateAsy(String updateDirection) {
-        String verName = ConfigUtils.getINSTANCE().getVerCode(context);
+        String verName = ConfigUtils.getINSTANCE().getVersionName(context);
         if (!TextUtils.isEmpty(verName) && !loadDataStatus && !dialogstatus) {
             loadDataStatus = true;
             getServerVerCode(verName, updateDirection);
