@@ -106,6 +106,9 @@ public class LoadingDialogAnim extends Dialog {
             public void run() {
                 if (context instanceof Activity) {
                     if (((Activity) context).isFinishing()) {
+                        if(loadDialog!=null){
+                            loadDialog.dismiss();
+                        }
                         return;
                     }
                 }
@@ -148,11 +151,16 @@ public class LoadingDialogAnim extends Dialog {
 
                     if (animationDrawable != null) {
                         animationDrawable.stop();
+                        if(loadDialog!=null){
+                            loadDialog.dismiss();
+                        }
                     }
 
                     if (context instanceof Activity) {
                         if (((Activity) context).isFinishing()) {
-                            loadDialog = null;
+                            if(loadDialog!=null){
+                                loadDialog.dismiss();
+                            }
                             return;
                         }
                     }
@@ -161,21 +169,22 @@ public class LoadingDialogAnim extends Dialog {
                         Context loadContext = loadDialog.getContext();
                         if (loadContext != null && loadContext instanceof Activity) {
                             if (((Activity) loadContext).isFinishing()) {
-                                loadDialog = null;
+                                loadDialog.dismiss();
                                 return;
                             }
 
                         }
 
                         loadDialog.dismiss();
-                        loadDialog = null;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    loadDialog = null;
+                    if(loadDialog!=null){
+                        loadDialog.dismiss();
+                    }
                 }
             }
-        }, 1200);//秒后执行Runnable中的run方法
+        }, 1500);//秒后执行Runnable中的run方法
 
     }
 }

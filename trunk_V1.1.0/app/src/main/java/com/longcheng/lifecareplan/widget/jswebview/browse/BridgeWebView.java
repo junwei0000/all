@@ -46,6 +46,15 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
      * 临时存储有效的路径
      */
     private List<String> urlPageBackList__ = new ArrayList<String>();
+    /**
+     * 上一个页面的索引
+     */
+    public int beforepageIndex = -1;
+
+    /**
+     * 是否正在返回操作
+     */
+    public boolean clickPageBacking = false;
 
     public List<Message> getStartupMessage() {
         return startupMessage;
@@ -71,11 +80,6 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         init();
     }
 
-//    /**
-//     * 是否正在返回操作
-//     */
-//    public boolean clickPageBacking = false;
-//    public String clickPageBackUrl = "";
 
     /**
      * 添加h5页面集合
@@ -83,6 +87,12 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
      * @param url
      */
     public void addUrlPageBackListItem(String url) {
+        if (clickPageBacking) {//返回
+            clickPageBacking = false;
+        } else {//跳转页面初始化页面索引
+            beforepageIndex = -1;
+        }
+
         if (urlPageBackList.contains(url)) {
             int dex = urlPageBackList.indexOf(url);
             if (dex < urlPageBackList.size()) {

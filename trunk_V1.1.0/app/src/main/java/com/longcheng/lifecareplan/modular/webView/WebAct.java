@@ -144,10 +144,10 @@ public abstract class WebAct extends BaseActivity {
 
     }
 
-    String url;
+    String baseurl;
 
     public void loadUrl(String url) {
-        this.url = url;
+        this.baseurl = url;
         if (!TextUtils.isEmpty(url)) {
             mBridgeWebView.addUrlPageBackListItem(url);
             sewtCookie(url);
@@ -853,26 +853,50 @@ public abstract class WebAct extends BaseActivity {
      */
     private long clickBackTime = 0;
 
+    private long clickBackMainTime = 0;
+
 
     /**
      * 防止连续点击返回键
      */
     public void back() {
-        if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
+        if (mBridgeWebView != null && mBridgeWebView.canGoBack() && mBridgeWebView.urlPageBackList.size() > 1) {
+            //如果连续点击两次直接返回首页面
+            if ((System.currentTimeMillis() - clickBackMainTime) > 400) {
+                clickBackMainTime = System.currentTimeMillis();
+            } else {
+                LoadingDialogAnim.show(mContext);
+                mBridgeWebView.loadUrl(baseurl);
+            }
+
+
             if ((System.currentTimeMillis() - clickBackTime) > 1500) {
-                Log.e("goBack", "goBack--------" + mBridgeWebView.getUrl());
                 clickBackTime = System.currentTimeMillis();
                 LoadingDialogAnim.show(mContext);
-                mHandler.sendEmptyMessage(GOBACKPAGE);
+                String url = mBridgeWebView.getUrl();
+                int index = 0;
+                if (mBridgeWebView.urlPageBackList.contains(url)) {
+                    index = mBridgeWebView.urlPageBackList.indexOf(url);
+                }
+                Log.e("goBack", "goBack------index==" + index + "  beforepageIndex==" + mBridgeWebView.beforepageIndex);
+                mBridgeWebView.clickPageBacking = true;
+                if (index == mBridgeWebView.beforepageIndex) {//相同的页面无法返回时，回到首页
+                    mBridgeWebView.loadUrl(baseurl);
+                } else {
+                    mHandler.sendEmptyMessage(GOBACKPAGE);
+                }
+                mBridgeWebView.beforepageIndex = index;
+
             }
+
         } else {
             doFinish();
         }
     }
 
-    public static final int GOBACKPAGE = -1;
-    public static final int SHOWDIALOG = -2;
-    public static final int DISMISSDIALOG = -3;
+    private static final int GOBACKPAGE = -1;
+    private static final int SHOWDIALOG = -2;
+    private static final int DISMISSDIALOG = -3;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {

@@ -31,8 +31,8 @@ public class BridgeWebViewClient extends WebViewClient {
         this.webView = webView;
     }
 
-    public static final int SHOWDIALOG = -2;
-    public static final int DISMISSDIALOG = -3;
+    private static final int SHOWDIALOG = -2;
+    private static final int DISMISSDIALOG = -3;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
