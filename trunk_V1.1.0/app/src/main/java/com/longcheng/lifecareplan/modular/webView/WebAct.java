@@ -853,23 +853,11 @@ public abstract class WebAct extends BaseActivity {
      */
     private long clickBackTime = 0;
 
-    private long clickBackMainTime = 0;
-
-
     /**
      * 防止连续点击返回键
      */
     public void back() {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack() && mBridgeWebView.urlPageBackList.size() > 1) {
-            //如果连续点击两次直接返回首页面
-            if ((System.currentTimeMillis() - clickBackMainTime) > 400) {
-                clickBackMainTime = System.currentTimeMillis();
-            } else {
-                LoadingDialogAnim.show(mContext);
-                mBridgeWebView.loadUrl(baseurl);
-            }
-
-
             if ((System.currentTimeMillis() - clickBackTime) > 1500) {
                 clickBackTime = System.currentTimeMillis();
                 LoadingDialogAnim.show(mContext);
