@@ -136,7 +136,6 @@ public class ReceiveH5Activity extends WebAct {
         Log.e("Observable", "" + ExampleApplication.token);
         //商家收款地址
         Observable<PayWXDataBean> observable = null;
-
         if (PaymentStatus.equals("ReceiptPayment")) {
             try {
                 JSONObject jsonObject = new JSONObject(data);
@@ -164,11 +163,13 @@ public class ReceiveH5Activity extends WebAct {
             }
         }
 
+        showDialog();
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -201,6 +202,7 @@ public class ReceiveH5Activity extends WebAct {
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }

@@ -12,30 +12,22 @@ import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
-import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionlHelpDialogUtils;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.pay.PayCallBack;
 import com.longcheng.lifecareplan.utils.pay.PayUtils;
 import com.longcheng.lifecareplan.utils.pay.PayWXAfterBean;
@@ -45,9 +37,6 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
-import com.umeng.socialize.UMAuthListener;
-import com.umeng.socialize.UmengTool;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -361,10 +350,13 @@ public class BaoZhangActitvty extends WebAct {
         }
     };
 
+
+
     /**
      * 志愿者互祝---申请基础保障支付
      */
     private void LifeBasicApplyPay(String des_content, String payment_channel) {
+        showDialog();
         String pay_source = "2";//1：微信 2：安卓 3：ios
         Observable<PayWXDataBean> observable = Api.getInstance().service.LifeBasicApplyPay(UserUtils.getUserId(mContext),
                 des_content, payment_channel, pay_source, ExampleApplication.token);
@@ -373,6 +365,7 @@ public class BaoZhangActitvty extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -402,9 +395,11 @@ public class BaoZhangActitvty extends WebAct {
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }
+
 
     /**
      * 志愿者互祝----申请基础保障支付回调
@@ -422,6 +417,7 @@ public class BaoZhangActitvty extends WebAct {
      * 志愿者互祝---变更雷锋号支付
      */
     private void ChangeLeiFengPay(String payment_channel, String price) {
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.ChangeLeiFengPay(UserUtils.getUserId(mContext),
                 payment_channel, price, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -429,6 +425,7 @@ public class BaoZhangActitvty extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -458,6 +455,7 @@ public class BaoZhangActitvty extends WebAct {
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }
@@ -486,6 +484,7 @@ public class BaoZhangActitvty extends WebAct {
      * @param volunteer_debt_item_id
      */
     private void VoluntePay(String payment_channel, String pay_money, String volunteer_debt_item_id) {
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.VoluntePay(UserUtils.getUserId(mContext),
                 payment_channel, type, pay_money, volunteer_debt_item_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -493,6 +492,7 @@ public class BaoZhangActitvty extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        showDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -522,6 +522,7 @@ public class BaoZhangActitvty extends WebAct {
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        showDialog();
                     }
                 });
     }
@@ -553,7 +554,7 @@ public class BaoZhangActitvty extends WebAct {
      * @param money
      */
     public void LifeBasicDetailPay(String user_id, String help_comment_content, String pay_way, String life_basic_id, int money, int help_number) {
-        Log.e("Observable", "" + ExampleApplication.token);
+        showDialog();
         String pay_source = "2";//1：微信 2：安卓 3：ios
         Observable<PayWXDataBean> observable = Api.getInstance().service.LifeBasicDetailPay(user_id,
                 help_comment_content, pay_way, life_basic_id, money, help_number, pay_source, ExampleApplication.token);
@@ -562,6 +563,7 @@ public class BaoZhangActitvty extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -590,9 +592,9 @@ public class BaoZhangActitvty extends WebAct {
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-//                        mView.ListError();
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }
@@ -621,6 +623,7 @@ public class BaoZhangActitvty extends WebAct {
      */
     public void lifepayHelp(String user_id, String help_comment_content, String pay_way, String life_id, int money, int help_number) {
         Log.e("Observable", "" + ExampleApplication.token);
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.BaoZhangPayHelp(user_id,
                 help_comment_content, pay_way, life_id, money, help_number, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -628,6 +631,7 @@ public class BaoZhangActitvty extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -661,6 +665,7 @@ public class BaoZhangActitvty extends WebAct {
 //                        mView.ListError();
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }

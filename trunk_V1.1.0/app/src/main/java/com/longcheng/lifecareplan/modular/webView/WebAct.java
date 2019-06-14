@@ -677,9 +677,9 @@ public abstract class WebAct extends BaseActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                mHandler.sendEmptyMessage(DISMISSDIALOG);
-                Log.e("URLDecoder", "onPageFinished url=" + url);
                 super.onPageFinished(view, url);
+                Log.e("URLDecoder", "onPageFinished url=" + url);
+                mHandler.sendEmptyMessage(DISMISSDIALOG);
             }
 
             @Override
@@ -860,23 +860,10 @@ public abstract class WebAct extends BaseActivity {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack() && mBridgeWebView.urlPageBackList.size() > 1) {
             if ((System.currentTimeMillis() - clickBackTime) > 1500) {
                 clickBackTime = System.currentTimeMillis();
-                LoadingDialogAnim.show(mContext);
-                String url = mBridgeWebView.getUrl();
-                int index = 0;
-                if (mBridgeWebView.urlPageBackList.contains(url)) {
-                    index = mBridgeWebView.urlPageBackList.indexOf(url);
-                }
-                Log.e("goBack", "goBack------index==" + index + "  beforepageIndex==" + mBridgeWebView.beforepageIndex);
-                mBridgeWebView.clickPageBacking = true;
-                if (index == mBridgeWebView.beforepageIndex) {//相同的页面无法返回时，回到首页
-                    mBridgeWebView.loadUrl(baseurl);
-                } else {
-                    mHandler.sendEmptyMessage(GOBACKPAGE);
-                }
-                mBridgeWebView.beforepageIndex = index;
-
+                showDialog();
+                //防止同时操作主线程阻塞
+                mHandler.sendEmptyMessage(GOBACKPAGE);
             }
-
         } else {
             doFinish();
         }
@@ -889,14 +876,33 @@ public abstract class WebAct extends BaseActivity {
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case GOBACKPAGE://防止同时操作主线程阻塞
-                    mBridgeWebView.goBack();
+                case GOBACKPAGE:
+                    //---------------------webview关于返回错乱----修改.1-----------------------------------------------
+                    String url = mBridgeWebView.getUrl();
+                    int index = -1;
+                    if (mBridgeWebView.urlPageBackList.contains(url)) {
+                        index = mBridgeWebView.urlPageBackList.indexOf(url);
+                    }
+                    Log.e("goBack", "urlPageBackList=\n" + mBridgeWebView.urlPageBackList.toString());
+                    Log.e("goBack", "goBack------index==" + index + "  beforepageIndex==" + mBridgeWebView.beforepageIndex + " mBridgeWebView.getUrl= " + mBridgeWebView.getUrl());
+                    mBridgeWebView.clickPageBacking = true;
+                    if (index > 0) {
+                        if (index == mBridgeWebView.beforepageIndex) {//相同的页面无法返回时，回到首页
+                            mBridgeWebView.loadUrl(baseurl);
+                        } else {
+                            mBridgeWebView.goBack();
+                        }
+                    } else {//等于0或-1堆栈错乱 关闭页面
+                        doFinish();
+                    }
+                    mBridgeWebView.beforepageIndex = index;
+                    //------------------------------------------------------------------------
                     break;
                 case SHOWDIALOG:
-                    LoadingDialogAnim.show(mContext);
+                    showDialog();
                     break;
                 case DISMISSDIALOG:
-                    LoadingDialogAnim.dismiss(mContext);
+                    dismissDialog();
                     if (!showErr) {
                         showNoDataView(false);
                     }
@@ -905,4 +911,11 @@ public abstract class WebAct extends BaseActivity {
         }
     };
 
+    public void showDialog() {
+        LoadingDialogAnim.show(mContext);
+    }
+
+    public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
+    }
 }

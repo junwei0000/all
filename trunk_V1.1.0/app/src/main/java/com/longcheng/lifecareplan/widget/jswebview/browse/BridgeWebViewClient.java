@@ -68,9 +68,11 @@ public class BridgeWebViewClient extends WebViewClient {
             return true;
         } else {
             mHandler.sendEmptyMessage(SHOWDIALOG);
+            //---------------------webview关于返回错乱----修改.1-----------------------------------------------
             if (url.contains("t.asdyf.com")) {
                 webView.addUrlPageBackListItem(url);
             }
+            //-----------------------------------------------------------------------
             return super.shouldOverrideUrlLoading(view, url);
         }
     }
@@ -83,12 +85,9 @@ public class BridgeWebViewClient extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-
         if (BridgeWebView.toLoadJs != null) {
             BridgeUtil.webViewLoadLocalJs(view, BridgeWebView.toLoadJs);
         }
-
-        //
         if (webView.getStartupMessage() != null) {
             for (Message m : webView.getStartupMessage()) {
                 webView.dispatchMessage(m);

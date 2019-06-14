@@ -35,6 +35,7 @@ import com.longcheng.lifecareplan.utils.pay.PayUtils;
 import com.longcheng.lifecareplan.utils.pay.PayWXAfterBean;
 import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
 import butterknife.BindView;
@@ -153,10 +154,19 @@ public class YaJinActivity extends BaseActivity {
         getYaJinPayInfo();
     }
 
+    public void showDialog() {
+        LoadingDialogAnim.show(mContext);
+    }
+
+    public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
+    }
+
     /**
      * 获取支付信息
      */
     public void getYaJinPayInfo() {
+        showDialog();
         Observable<DetailDataBean> observable = Api.getInstance().service.getYaJinPayInfo(UserUtils.getUserId(mContext),
                 order_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -164,6 +174,7 @@ public class YaJinActivity extends BaseActivity {
                 .subscribe(new io.reactivex.functions.Consumer<DetailDataBean>() {
                     @Override
                     public void accept(DetailDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -176,6 +187,7 @@ public class YaJinActivity extends BaseActivity {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
+                        dismissDialog();
                     }
                 });
     }
@@ -227,12 +239,14 @@ public class YaJinActivity extends BaseActivity {
 
 
     public void yaJinPay(String user_id) {
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.yaJinPay(user_id, order_id, deposit, payWay, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -263,6 +277,7 @@ public class YaJinActivity extends BaseActivity {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
+                        dismissDialog();
                     }
                 });
 

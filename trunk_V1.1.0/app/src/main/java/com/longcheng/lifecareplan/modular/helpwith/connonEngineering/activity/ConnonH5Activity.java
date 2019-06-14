@@ -207,6 +207,7 @@ public class ConnonH5Activity extends WebAct {
      */
     public void payHelp(String user_id, String help_comment_content, String pay_way, String msg_id, int money) {
         Log.e("Observable", "" + ExampleApplication.token);
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.KNPPayHelp(user_id,
                 help_comment_content, pay_way, msg_id, money, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -214,7 +215,7 @@ public class ConnonH5Activity extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
-//                        mView.PayHelpSuccess(responseBean);
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -245,9 +246,9 @@ public class ConnonH5Activity extends WebAct {
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-//                        mView.ListError();
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }

@@ -38,23 +38,6 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 
     private List<Message> startupMessage = new ArrayList<Message>();
     private long uniqueId = 0;
-    /**
-     * 记录加载的H5页面顺序，返回时用
-     */
-    public List<String> urlPageBackList = new ArrayList<String>();
-    /**
-     * 临时存储有效的路径
-     */
-    private List<String> urlPageBackList__ = new ArrayList<String>();
-    /**
-     * 上一个页面的索引
-     */
-    public int beforepageIndex = -1;
-
-    /**
-     * 是否正在返回操作
-     */
-    public boolean clickPageBacking = false;
 
     public List<Message> getStartupMessage() {
         return startupMessage;
@@ -79,7 +62,24 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         super(context);
         init();
     }
+    //-----------------------webview关于返回错乱--修改.1-----------------------------------------------
+    /**
+     * 记录加载的H5页面顺序，返回时用
+     */
+    public List<String> urlPageBackList = new ArrayList<String>();
+    /**
+     * 临时存储有效的路径
+     */
+    private List<String> urlPageBackList__ = new ArrayList<String>();
+    /**
+     * 上一个页面的索引
+     */
+    public int beforepageIndex = -1;
 
+    /**
+     * 是否正在返回操作
+     */
+    public boolean clickPageBacking = false;
 
     /**
      * 添加h5页面集合
@@ -92,7 +92,6 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         } else {//跳转页面初始化页面索引
             beforepageIndex = -1;
         }
-
         if (urlPageBackList.contains(url)) {
             int dex = urlPageBackList.indexOf(url);
             if (dex < urlPageBackList.size()) {
@@ -107,9 +106,10 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
             urlPageBackList.add(url);
         }
         Log.e("goBack", "url=" + url);
-        Log.e("goBack", "urlPageBackList=\n" + urlPageBackList.toString());
+//        Log.e("goBack", "urlPageBackList=\n" + urlPageBackList.toString());
         Log.e("goBack", "********************************************************************************");
     }
+    //--------------------------------------------------------------------
 
     /**
      * @param handler default handler,handle messages send by js without assigned handler name,

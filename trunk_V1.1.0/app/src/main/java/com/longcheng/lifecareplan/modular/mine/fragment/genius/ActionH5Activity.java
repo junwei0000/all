@@ -179,6 +179,7 @@ public class ActionH5Activity extends WebAct {
      */
     public void payHelp(String user_id, String commonweal_activity_id, String pay_way, String msg_id, int money) {
         Log.e("Observable", "" + ExampleApplication.token);
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.GenuisPayHelp(user_id, user_id,
                 commonweal_activity_id, pay_way, msg_id, money, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -186,6 +187,7 @@ public class ActionH5Activity extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -219,6 +221,7 @@ public class ActionH5Activity extends WebAct {
 //                        mView.ListError();
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }

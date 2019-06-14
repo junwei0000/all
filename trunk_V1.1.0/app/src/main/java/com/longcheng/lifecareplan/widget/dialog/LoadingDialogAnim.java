@@ -106,9 +106,6 @@ public class LoadingDialogAnim extends Dialog {
             public void run() {
                 if (context instanceof Activity) {
                     if (((Activity) context).isFinishing()) {
-                        if(loadDialog!=null){
-                            loadDialog.dismiss();
-                        }
                         return;
                     }
                 }

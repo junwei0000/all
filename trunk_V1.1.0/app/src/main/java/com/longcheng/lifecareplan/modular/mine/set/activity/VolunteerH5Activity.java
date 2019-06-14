@@ -131,6 +131,7 @@ public class VolunteerH5Activity extends WebAct {
     };
 
     private void doctorPay(String payment_channel) {
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.doctorPay(UserUtils.getUserId(mContext),
                 payment_channel, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -138,6 +139,7 @@ public class VolunteerH5Activity extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -167,6 +169,7 @@ public class VolunteerH5Activity extends WebAct {
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }

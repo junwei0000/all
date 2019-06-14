@@ -108,6 +108,7 @@ public class AutoHelpH5Activity extends WebAct {
     }
 
     private void RechargePay(String payment_channel, String pay_money) {
+        showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.RechargePay(UserUtils.getUserId(mContext),
                 payment_channel, pay_money, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
@@ -115,6 +116,7 @@ public class AutoHelpH5Activity extends WebAct {
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                             ToastUtils.showToast(responseBean.getMsg());
@@ -144,6 +146,7 @@ public class AutoHelpH5Activity extends WebAct {
                     public void accept(Throwable throwable) throws Exception {
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
                     }
                 });
     }
