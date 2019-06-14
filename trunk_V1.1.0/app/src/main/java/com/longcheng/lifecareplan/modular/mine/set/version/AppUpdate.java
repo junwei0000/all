@@ -168,43 +168,39 @@ public class AppUpdate {
         if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
             return;
         }
-        if (OpenNotificationDialog == null) {
-            OpenNotificationDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
-            OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = OpenNotificationDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            OpenNotificationDialog.show();
-            WindowManager m = context.getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = OpenNotificationDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
-            OpenNotificationDialog.getWindow().setAttributes(p); //设置生效
+        OpenNotificationDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
+        OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+        Window window = OpenNotificationDialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+        OpenNotificationDialog.show();
+        WindowManager m = context.getWindowManager();
+        Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+        WindowManager.LayoutParams p = OpenNotificationDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+        p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
+        OpenNotificationDialog.getWindow().setAttributes(p); //设置生效
 
-            LinearLayout layout_cancel = (LinearLayout) OpenNotificationDialog.findViewById(R.id.layout_cancel);
-            TextView btn_ok = (TextView) OpenNotificationDialog.findViewById(R.id.btn_ok);
-            layout_cancel.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    OpenNotificationDialog.dismiss();
-                }
-            });
-            btn_ok.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    OpenNotificationDialog.dismiss();
-                    String pkg = context.getApplicationContext().getPackageName();
-                    // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
-                    Intent intent = new Intent();
-                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    Uri uri = Uri.fromParts("package", pkg, null);
-                    intent.setData(uri);
-                    context.startActivity(intent);
-                }
-            });
+        LinearLayout layout_cancel = (LinearLayout) OpenNotificationDialog.findViewById(R.id.layout_cancel);
+        TextView btn_ok = (TextView) OpenNotificationDialog.findViewById(R.id.btn_ok);
+        layout_cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenNotificationDialog.dismiss();
+            }
+        });
+        btn_ok.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenNotificationDialog.dismiss();
+                String pkg = context.getApplicationContext().getPackageName();
+                // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", pkg, null);
+                intent.setData(uri);
+                context.startActivity(intent);
+            }
+        });
 
-        } else {
-            OpenNotificationDialog.show();
-        }
     }
 
     /**

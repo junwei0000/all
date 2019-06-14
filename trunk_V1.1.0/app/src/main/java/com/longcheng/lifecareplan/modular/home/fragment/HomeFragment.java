@@ -540,9 +540,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             }
             chacheMap(mHomeAfterBean);
             showNoDataView(false);
-            maintopTvStartday.setText(mHomeAfterBean.getRunDay());
-            maintopTvHelpnum.setText(mHomeAfterBean.getHz_people());
-            maintopTvLifeenergy.setText(mHomeAfterBean.getHz_ability_sum());
+            if (maintopTvStartday != null) {
+                maintopTvStartday.setText(mHomeAfterBean.getRunDay());
+                maintopTvHelpnum.setText(mHomeAfterBean.getHz_people());
+                maintopTvLifeenergy.setText(mHomeAfterBean.getHz_ability_sum());
+            }
             List<HomeItemBean> Banners = mHomeAfterBean.getBanners();
             if (Banners != null) {
                 shoeZZJieQi(Banners);

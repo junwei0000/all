@@ -221,7 +221,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //还原数据
-                if (TextUtils.isEmpty(exchangeEtSearch.getText())) {
+                if (exchangeEtSearch != null && TextUtils.isEmpty(exchangeEtSearch.getText().toString())) {
                     searchCont = exchangeEtSearch.getText().toString();
                     ConfigUtils.getINSTANCE().closeSoftInput(getActivity());
                     getList(1);

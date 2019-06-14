@@ -318,7 +318,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
 
     @Override
     public void ListError() {
-
+        ToastUtils.showToast(R.string.net_tishi);
     }
 
     @Override

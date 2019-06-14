@@ -67,7 +67,7 @@ public class LoadingDialogAnim extends Dialog {
         Window window = getWindow();
 //        window.setAttributes(lp);
         window.setGravity(Gravity.CENTER);
-        if (window.getDecorView() != null)
+        if (window.getDecorView() != null && window.getDecorView().getBackground() != null)
             window.getDecorView().getBackground().setAlpha(0);
     }
 
@@ -148,14 +148,14 @@ public class LoadingDialogAnim extends Dialog {
 
                     if (animationDrawable != null) {
                         animationDrawable.stop();
-                        if(loadDialog!=null){
+                        if (loadDialog != null) {
                             loadDialog.dismiss();
                         }
                     }
 
                     if (context instanceof Activity) {
                         if (((Activity) context).isFinishing()) {
-                            if(loadDialog!=null){
+                            if (loadDialog != null) {
                                 loadDialog.dismiss();
                             }
                             return;
@@ -176,7 +176,7 @@ public class LoadingDialogAnim extends Dialog {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    if(loadDialog!=null){
+                    if (loadDialog != null) {
                         loadDialog.dismiss();
                     }
                 }

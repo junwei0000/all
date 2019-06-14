@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.modular.mine.myorder.tanksgiving.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -105,7 +106,8 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
         dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (rankingsAll != null && rankingsAll.size() > 0) {
+                Log.e("ResponseBody", "onItemClick==" + position);
+                if (rankingsAll != null && rankingsAll.size() > 0 && position < rankingsAll.size()) {
                     if (type == 2) {
                         Intent intent = new Intent(mContext, HelpWithEnergyActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

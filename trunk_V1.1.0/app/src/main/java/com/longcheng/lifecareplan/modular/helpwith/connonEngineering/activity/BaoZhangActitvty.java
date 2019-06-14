@@ -351,7 +351,6 @@ public class BaoZhangActitvty extends WebAct {
     };
 
 
-
     /**
      * 志愿者互祝---申请基础保障支付
      */
@@ -633,9 +632,7 @@ public class BaoZhangActitvty extends WebAct {
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
                         String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
+                        if (status.equals("200")) {
                             PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
                             life_order_id = payWeChatBean.getOne_order_id();
                             if (pay_way.equals("1")) {
@@ -657,12 +654,13 @@ public class BaoZhangActitvty extends WebAct {
                             } else {
                                 lifeSkipSuccess();
                             }
+                        } else {
+                            ToastUtils.showToast(responseBean.getMsg());
                         }
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-//                        mView.ListError();
                         ToastUtils.showToast(R.string.net_tishi);
                         Log.e("Observable", "" + throwable.toString());
                         dismissDialog();

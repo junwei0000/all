@@ -126,6 +126,9 @@ public class AWordOfGoldAct extends BaseActivityMVP<AWordOfGoldContract.View, AW
     }
 
     private void showNoDataView(boolean flag) {
+        if (flContent != null) {
+            return;
+        }
         int showNodata = flag ? View.VISIBLE : View.GONE;
         int showData = flag ? View.GONE : View.VISIBLE;
         flContent.setVisibility(showData);

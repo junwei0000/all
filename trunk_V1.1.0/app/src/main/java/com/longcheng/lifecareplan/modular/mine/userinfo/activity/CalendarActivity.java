@@ -131,8 +131,10 @@ public class CalendarActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case update:
-                    String date = (String) msg.obj;
-                    pageTopTvName.setText(date);
+                    if (pageTopTvName != null) {
+                        String date = (String) msg.obj;
+                        pageTopTvName.setText(date + "");
+                    }
                     break;
                 case SELECTDATE:
                     String year = msg.getData().getString("year");
