@@ -207,6 +207,9 @@ public class ConnonH5Activity extends WebAct {
      */
     public void payHelp(String user_id, String help_comment_content, String pay_way, String msg_id, int money) {
         Log.e("Observable", "" + ExampleApplication.token);
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.KNPPayHelp(user_id,
                 help_comment_content, pay_way, msg_id, money, ExampleApplication.token);

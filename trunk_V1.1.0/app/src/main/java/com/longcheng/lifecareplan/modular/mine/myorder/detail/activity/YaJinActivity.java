@@ -239,6 +239,9 @@ public class YaJinActivity extends BaseActivity {
 
 
     public void yaJinPay(String user_id) {
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.yaJinPay(user_id, order_id, deposit, payWay, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())

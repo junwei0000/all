@@ -71,16 +71,17 @@ public class BaoZhangActitvty extends WebAct {
 
 
     private ShareUtils mShareUtils;
-    private List<DetailItemBean> blessings_list;
+
     private VolunterDialogUtils mVolunterDialogUtils;
     private VolunterDialogUtils mChangeLFDialogUtils;
     private BaoZhangDialogUtils mLifeBasicPayDialogUtils;
     private BaoZhangDialogUtils mDetailHelpDialogUtils;
 
-    List<DetailItemBean> mutual_help_money_all;
+    private List<DetailItemBean> blessings_list;
+    private List<DetailItemBean> mutual_help_money_all;
     private String knp_sharetitle, knp_shareurl, knp_sharePic, knp_sharedesc;
     private String life_id;
-    String life_order_id = "";
+    private String life_order_id = "";
     /**
      * 生活保障详情id
      */
@@ -103,11 +104,11 @@ public class BaoZhangActitvty extends WebAct {
     /**
      * 微信支付类型回调类型
      */
-    String weixinPayBackType = "";
+    private String weixinPayBackType = "";
 
-    String Voluntepay_money = "", ChangLFMoney = "";
+    private String Voluntepay_money = "", ChangLFMoney = "";
 
-    String volunteer_debt_item_id = "0", type = "1";
+    private String volunteer_debt_item_id = "0", type = "1";
 
     @Override
     public void onClick(View v) {
@@ -294,12 +295,12 @@ public class BaoZhangActitvty extends WebAct {
         });
     }
 
-    public static final int BLESSING = 22;
-    public static final int VolunterSelectPay = 33;
-    public static final int sendLifeDetailShareNum = 44;
-    public static final int ChangeLeiFengPay = 55;
+    private static final int BLESSING = 22;
+    private static final int VolunterSelectPay = 33;
+    private static final int sendLifeDetailShareNum = 44;
+    private static final int ChangeLeiFengPay = 55;
     public static final int LifeBasicAppPayment = 66;
-    public static final int sendLifeBasicDetailShareNum = 77;
+    private static final int sendLifeBasicDetailShareNum = 77;
 
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
@@ -317,7 +318,6 @@ public class BaoZhangActitvty extends WebAct {
                     payType = bundle.getString("payType");
                     selectmoney = bundle.getInt("selectmoney");
                     help_number = bundle.getInt("help_number");
-                    Log.e("lifepayHelp", "help_number=" + help_number);
                     lifepayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
                     break;
                 case LifeBasicAppPayment:
@@ -326,18 +326,17 @@ public class BaoZhangActitvty extends WebAct {
                     payType = bundle.getString("payType");
                     selectmoney = bundle.getInt("selectmoney");
                     help_number = bundle.getInt("help_number");
-                    Log.e("lifepayHelp", "help_number=" + help_number);
                     LifeBasicDetailPay(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
                     break;
                 case VolunterSelectPay:
                     bundle = msg.getData();
-                    String payment_channel = bundle.getString("payType");
-                    VoluntePay(payment_channel, Voluntepay_money, volunteer_debt_item_id);
+                    payType = bundle.getString("payType");
+                    VoluntePay(payType, Voluntepay_money, volunteer_debt_item_id);
                     break;
                 case ChangeLeiFengPay:
                     bundle = msg.getData();
-                    String paymentchannel = bundle.getString("payType");
-                    ChangeLeiFengPay(paymentchannel, ChangLFMoney);
+                    payType = bundle.getString("payType");
+                    ChangeLeiFengPay(payType, ChangLFMoney);
                     break;
                 case sendLifeDetailShareNum:
                     sendLifeDetailShareNum();
@@ -355,6 +354,9 @@ public class BaoZhangActitvty extends WebAct {
      * 志愿者互祝---申请基础保障支付
      */
     private void LifeBasicApplyPay(String des_content, String payment_channel) {
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         String pay_source = "2";//1：微信 2：安卓 3：ios
         Observable<PayWXDataBean> observable = Api.getInstance().service.LifeBasicApplyPay(UserUtils.getUserId(mContext),
@@ -416,6 +418,9 @@ public class BaoZhangActitvty extends WebAct {
      * 志愿者互祝---变更雷锋号支付
      */
     private void ChangeLeiFengPay(String payment_channel, String price) {
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.ChangeLeiFengPay(UserUtils.getUserId(mContext),
                 payment_channel, price, ExampleApplication.token);
@@ -483,6 +488,9 @@ public class BaoZhangActitvty extends WebAct {
      * @param volunteer_debt_item_id
      */
     private void VoluntePay(String payment_channel, String pay_money, String volunteer_debt_item_id) {
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.VoluntePay(UserUtils.getUserId(mContext),
                 payment_channel, type, pay_money, volunteer_debt_item_id, ExampleApplication.token);
@@ -553,6 +561,9 @@ public class BaoZhangActitvty extends WebAct {
      * @param money
      */
     public void LifeBasicDetailPay(String user_id, String help_comment_content, String pay_way, String life_basic_id, int money, int help_number) {
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         String pay_source = "2";//1：微信 2：安卓 3：ios
         Observable<PayWXDataBean> observable = Api.getInstance().service.LifeBasicDetailPay(user_id,
@@ -622,6 +633,9 @@ public class BaoZhangActitvty extends WebAct {
      */
     public void lifepayHelp(String user_id, String help_comment_content, String pay_way, String life_id, int money, int help_number) {
         Log.e("Observable", "" + ExampleApplication.token);
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.BaoZhangPayHelp(user_id,
                 help_comment_content, pay_way, life_id, money, help_number, ExampleApplication.token);

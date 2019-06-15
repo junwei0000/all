@@ -913,9 +913,11 @@ public abstract class WebAct extends BaseActivity {
 
     public void showDialog() {
         LoadingDialogAnim.show(mContext);
+        RequestDataStatus = true;
     }
 
     public void dismissDialog() {
         LoadingDialogAnim.dismiss(mContext);
+        RequestDataStatus = false;
     }
 }

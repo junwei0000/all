@@ -39,8 +39,6 @@ import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
 import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -178,7 +176,9 @@ public class ActionH5Activity extends WebAct {
      * @param money
      */
     public void payHelp(String user_id, String commonweal_activity_id, String pay_way, String msg_id, int money) {
-        Log.e("Observable", "" + ExampleApplication.token);
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.GenuisPayHelp(user_id, user_id,
                 commonweal_activity_id, pay_way, msg_id, money, ExampleApplication.token);

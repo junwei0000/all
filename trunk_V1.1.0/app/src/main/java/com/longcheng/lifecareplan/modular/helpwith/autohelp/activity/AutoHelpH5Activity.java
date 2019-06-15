@@ -108,6 +108,9 @@ public class AutoHelpH5Activity extends WebAct {
     }
 
     private void RechargePay(String payment_channel, String pay_money) {
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.RechargePay(UserUtils.getUserId(mContext),
                 payment_channel, pay_money, ExampleApplication.token);

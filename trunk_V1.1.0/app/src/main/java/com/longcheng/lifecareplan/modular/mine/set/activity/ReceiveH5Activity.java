@@ -133,6 +133,10 @@ public class ReceiveH5Activity extends WebAct {
      * @param data
      */
     public void Payment(String data) {
+        if (RequestDataStatus) {
+            return;
+        }
+        showDialog();
         Log.e("Observable", "" + ExampleApplication.token);
         //商家收款地址
         Observable<PayWXDataBean> observable = null;
@@ -162,8 +166,6 @@ public class ReceiveH5Activity extends WebAct {
                 e.printStackTrace();
             }
         }
-
-        showDialog();
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {

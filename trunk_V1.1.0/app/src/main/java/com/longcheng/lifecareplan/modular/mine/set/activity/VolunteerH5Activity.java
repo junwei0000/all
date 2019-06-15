@@ -10,29 +10,20 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.VolunterDialogUtils;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnvelopeKnpActivity;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.pay.PayCallBack;
 import com.longcheng.lifecareplan.utils.pay.PayUtils;
 import com.longcheng.lifecareplan.utils.pay.PayWXAfterBean;
@@ -46,8 +37,6 @@ import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty.VolunterSelectPay;
 
 /**
  * 坐堂医
@@ -109,7 +98,7 @@ public class VolunteerH5Activity extends WebAct {
         });
     }
 
-    public static final int VolunterSelectPay = 33;
+    private static final int VolunterSelectPay = 33;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         Bundle bundle;
@@ -131,6 +120,9 @@ public class VolunteerH5Activity extends WebAct {
     };
 
     private void doctorPay(String payment_channel) {
+        if (RequestDataStatus) {
+            return;
+        }
         showDialog();
         Observable<PayWXDataBean> observable = Api.getInstance().service.doctorPay(UserUtils.getUserId(mContext),
                 payment_channel, ExampleApplication.token);

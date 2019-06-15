@@ -13,7 +13,7 @@ public class Config {
      * 基础URL
      */
     public static final String VERSION = "v1_8_0/";
-//    public static final String BASE_URL = "https://t.asdyf.com/api/";//正式
+    //    public static final String BASE_URL = "https://t.asdyf.com/api/";//正式
 //    public static final String WEB_DOMAIN = ";domain=t.asdyf.com;path=/";
 //    public static final String BASE_HEAD_URL = "https://t.asdyf.com/";
     //************测试地址***************

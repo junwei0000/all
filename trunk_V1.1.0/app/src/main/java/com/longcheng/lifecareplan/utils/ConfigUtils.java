@@ -180,6 +180,7 @@ public class ConfigUtils {
         }
         return verName;
     }
+
     /**
      * 功能说明：获取版本号180
      */
@@ -192,6 +193,7 @@ public class ConfigUtils {
         }
         return vercode;
     }
+
     /**
      * 获取测试 sha1
      *

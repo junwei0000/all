@@ -44,10 +44,8 @@ public class ConstantManager {
 
     public static String getWeChatAppId() {
         if (!TextUtils.isEmpty(WeChatAppType) && WeChatAppType.equals(WECHATAPPIDBaoZhang)) {
-            Log.e("ResponseBody", "getWeChatAppId  =" + WECHATAPPIDBaoZhang);
             return WECHATAPPIDBaoZhang;
         } else {
-            Log.e("ResponseBody", "getWeChatAppId  =" + WECHATAPPID);
             return WECHATAPPID;
         }
     }

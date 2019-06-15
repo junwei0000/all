@@ -76,6 +76,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
     private ActivityManager activityManager;
     private Unbinder bind;
 
+    /**
+     * 请求接口数据状态
+     */
+    public boolean RequestDataStatus = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,6 +235,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         activityManager.popActivity(this);
         //butterknife 解绑
         bind.unbind();
+        RequestDataStatus = false;
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
 

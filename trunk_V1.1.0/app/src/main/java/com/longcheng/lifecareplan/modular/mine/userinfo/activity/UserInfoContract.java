@@ -3,12 +3,9 @@ package com.longcheng.lifecareplan.modular.mine.userinfo.activity;
 import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
-import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditThumbDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetUserSETDataBean;
-import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 
 /**
  * 作者：MarkShuai
