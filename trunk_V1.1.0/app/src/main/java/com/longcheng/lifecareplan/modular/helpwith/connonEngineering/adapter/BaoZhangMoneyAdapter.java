@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 
@@ -29,11 +30,19 @@ public class BaoZhangMoneyAdapter extends BaseAdapter {
     int is_applying_help;
     int mutual_help_money;
     boolean selectDefaultStatus = false;
-
+    int mHandlerID;
     public BaoZhangMoneyAdapter(Context context, List<DetailItemBean> list) {
         super();
         this.context = context;
         this.list = list;
+    }
+
+    public int getmHandlerID() {
+        return mHandlerID;
+    }
+
+    public void setmHandlerID(int mHandlerID) {
+        this.mHandlerID = mHandlerID;
     }
 
     public int getSelectMonetPostion() {
@@ -111,7 +120,11 @@ public class BaoZhangMoneyAdapter extends BaseAdapter {
         mHolder.item_tv_money.setText("" + money_);
         if (selectMonetPostion == position && selectDefaultStatus) {//默认
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.white));
-            mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_login);
+            if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障用绿色
+                mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_lv);
+            } else {
+                mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_login);
+            }
         } else {
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.text_contents_color));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_skbgray);

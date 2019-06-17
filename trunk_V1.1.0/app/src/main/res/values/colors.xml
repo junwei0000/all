@@ -2,7 +2,7 @@
 <resources>
     <color name="yellow">#ffff00</color>
     <color name="mediumseagreen">#3cb371</color>
-
+    <color name="lv">#09a308</color>
     <color name="transparent">#00000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="QRcode_color">#65A8DF</color>

@@ -127,10 +127,12 @@ public class BaoZhangDialogUtils {
             tv_add = (LongClickButton) selectDialog.findViewById(R.id.tv_add);
             btn_helpsure = (TextView) selectDialog.findViewById(R.id.btn_helpsure);
             TextView tv_tishi = (TextView) selectDialog.findViewById(R.id.tv_tishi);
-            if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {
+            if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障用绿色
                 tv_tishi.setVisibility(View.GONE);
+                btn_helpsure.setBackgroundResource(R.color.lv);
             } else {
                 tv_tishi.setVisibility(View.VISIBLE);
+                btn_helpsure.setBackgroundResource(R.color.red);
             }
             layout_cancel.setOnClickListener(dialogClick);
             tv_jian.setOnClickListener(dialogClick);
@@ -167,6 +169,7 @@ public class BaoZhangDialogUtils {
         num = 1;
         tv_num.setText("" + num);
         setBless();
+        selectPayTypeView();
         setapplingDefault();
         setGVMoney();
     }
@@ -240,8 +243,10 @@ public class BaoZhangDialogUtils {
             mMoneyAdapter = new BaoZhangMoneyAdapter(context, mutual_help_money_all);
             mMoneyAdapter.setSelectMonetPostion(selectMonetPostion);
             mMoneyAdapter.setSelectDefaultStatus(true);
+            mMoneyAdapter.setmHandlerID(mHandlerID);
             detailhelp_gv_money.setAdapter(mMoneyAdapter);
         } else {
+            mMoneyAdapter.setmHandlerID(mHandlerID);
             mMoneyAdapter.setSelectDefaultStatus(true);
             mMoneyAdapter.setSelectMonetPostion(selectMonetPostion);
             mMoneyAdapter.setList(mutual_help_money_all);
@@ -268,17 +273,34 @@ public class BaoZhangDialogUtils {
         detailhelp_iv_zfbselect.setVisibility(View.GONE);
         detailhelp_relat_zfb.setBackgroundResource(R.drawable.corners_bg_black);
 
-
-        if (payType.equals("1")) {
-            detailhelp_tv_wxselecttitle.setTextColor(context.getResources().getColor(R.color.red));
-            detailhelp_iv_wxselect.setVisibility(View.VISIBLE);
-            detailhelp_relat_wx.setBackgroundResource(R.drawable.corners_bg_redbian);
-            detailhelp_relat_wx.setPadding(0, 0, 0, 0);
-        } else if (payType.equals("2")) {
-            tv_zfbtitle.setTextColor(context.getResources().getColor(R.color.red));
-            detailhelp_iv_zfbselect.setVisibility(View.VISIBLE);
-            detailhelp_relat_zfb.setBackgroundResource(R.drawable.corners_bg_redbian);
-            detailhelp_relat_zfb.setPadding(0, 0, 0, 0);
+        if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障用绿色
+            detailhelp_iv_wxselect.setBackgroundResource(R.mipmap.pay_selcet_icon_lv);
+            detailhelp_iv_zfbselect.setBackgroundResource(R.mipmap.pay_selcet_icon_lv);
+            if (payType.equals("1")) {
+                detailhelp_tv_wxselecttitle.setTextColor(context.getResources().getColor(R.color.lv));
+                detailhelp_iv_wxselect.setVisibility(View.VISIBLE);
+                detailhelp_relat_wx.setBackgroundResource(R.drawable.corners_bg_lvbian);
+                detailhelp_relat_wx.setPadding(0, 0, 0, 0);
+            } else if (payType.equals("2")) {
+                tv_zfbtitle.setTextColor(context.getResources().getColor(R.color.lv));
+                detailhelp_iv_zfbselect.setVisibility(View.VISIBLE);
+                detailhelp_relat_zfb.setBackgroundResource(R.drawable.corners_bg_lvbian);
+                detailhelp_relat_zfb.setPadding(0, 0, 0, 0);
+            }
+        } else {
+            detailhelp_iv_wxselect.setBackgroundResource(R.mipmap.pay_selcet_icon_red);
+            detailhelp_iv_zfbselect.setBackgroundResource(R.mipmap.pay_selcet_icon_red);
+            if (payType.equals("1")) {
+                detailhelp_tv_wxselecttitle.setTextColor(context.getResources().getColor(R.color.red));
+                detailhelp_iv_wxselect.setVisibility(View.VISIBLE);
+                detailhelp_relat_wx.setBackgroundResource(R.drawable.corners_bg_redbian);
+                detailhelp_relat_wx.setPadding(0, 0, 0, 0);
+            } else if (payType.equals("2")) {
+                tv_zfbtitle.setTextColor(context.getResources().getColor(R.color.red));
+                detailhelp_iv_zfbselect.setVisibility(View.VISIBLE);
+                detailhelp_relat_zfb.setBackgroundResource(R.drawable.corners_bg_redbian);
+                detailhelp_relat_zfb.setPadding(0, 0, 0, 0);
+            }
         }
     }
 
