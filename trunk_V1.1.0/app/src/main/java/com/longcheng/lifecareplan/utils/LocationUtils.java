@@ -79,7 +79,7 @@ public class LocationUtils {
         if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
-            Log.e("getLngAndLat", "" + location.toString());
+            Log.e("getLngAndLat", +latitude + "  " + longitude);
         }
         return new double[]{latitude, longitude};
     }

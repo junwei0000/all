@@ -214,6 +214,9 @@ public interface ApiService {
     //********************首页**************************
     @GET(Config.VERSION + "index/index")
     Observable<HomeDataBean> getHomeList(@Query("user_id") String user_id,
+                                         @Query("phone_user_latitude") double phone_user_latitude,
+                                         @Query("phone_user_longitude") double phone_user_longitude,
+                                         @Query("phone_user_address") String phone_user_address,
                                          @Query("token") String token);
 
     @GET(Config.VERSION + "help/index")
@@ -921,6 +924,7 @@ public interface ApiService {
                                                 @Field("des_content") String des_content,
                                                 @Field("payment_channel") String payment_channel,
                                                 @Field("pay_source") String pay_source,
+                                                @Field("__app_pay_token__") String __app_pay_token__,
                                                 @Field("token") String token);
 
     @FormUrlEncoded

@@ -13,7 +13,12 @@ import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
+import com.longcheng.lifecareplan.utils.LocationUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -43,11 +48,21 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
 
     }
 
+    LocationUtils mLocationUtils;
+
     /**
      */
     public void setListViewData() {
+        if (mLocationUtils == null) {
+            mLocationUtils = new LocationUtils();
+        }
+        double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
+        double phone_user_latitude = mLngAndLat[0];
+        double phone_user_longitude = mLngAndLat[1];
+        String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
         String user_id = UserUtils.getUserId(mContext);
-        Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, ExampleApplication.token);
+        Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, phone_user_latitude,
+                phone_user_longitude, phone_user_address, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<HomeDataBean>() {
