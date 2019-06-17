@@ -22,6 +22,7 @@ import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.EngryRecordActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailDataBean;
@@ -250,29 +251,32 @@ public class YaJinActivity extends BaseActivity {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = responseBean.getData();
-                            if (deposit == 0 || payWay.equals("asset")) {
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
                                 ToastUtils.showToast(responseBean.getMsg());
-                                jihuoSuccess();
-                            } else if (payWay.equals("wxpay")) {
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (payWay.equals("alipay")) {
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        jihuoSuccess();
-                                    }
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = responseBean.getData();
+                                if (deposit == 0 || payWay.equals("asset")) {
+                                    ToastUtils.showToast(responseBean.getMsg());
+                                    jihuoSuccess();
+                                } else if (payWay.equals("wxpay")) {
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payWay.equals("alipay")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            jihuoSuccess();
+                                        }
 
-                                    @Override
-                                    public void onFailure(String error) {
+                                        @Override
+                                        public void onFailure(String error) {
 
-                                    }
-                                });
+                                        }
+                                    });
+                                }
                             }
                         }
                     }

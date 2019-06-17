@@ -549,11 +549,11 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
 
 
     MyDialog selectDialog;
-    String need_help_number;
+    String need_help_number = "";
     /**
      * 任务ID
      */
-    String redirectMsgId;
+    String redirectMsgId = "";
     TextView tv_cont1, tv_cont2, tv_cont3, btn_ok;
 
     /**
@@ -588,17 +588,17 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                 @Override
                 public void onClick(View v) {
                     Intent intent;
-                    if (!need_help_number.equals("0")) {
+                    if (!TextUtils.isEmpty(need_help_number) && !need_help_number.equals("0")) {
                         //申请成功后做任务跳转msgid   0：跳转到列表页   非0：跳转到行动详情页
-                        if (redirectMsgId.equals("0")) {
-                            intent = new Intent(mContext, HelpWithEnergyActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                        } else {
+                        if (!TextUtils.isEmpty(redirectMsgId) && !redirectMsgId.equals("0")) {
                             intent = new Intent(mContext, DetailActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             intent.putExtra("msg_id", redirectMsgId);
+                            startActivity(intent);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                        } else {
+                            intent = new Intent(mContext, HelpWithEnergyActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                         }

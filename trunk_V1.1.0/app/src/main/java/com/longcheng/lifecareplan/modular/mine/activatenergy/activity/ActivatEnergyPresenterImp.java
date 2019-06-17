@@ -79,7 +79,9 @@ public class ActivatEnergyPresenterImp<T> extends ActivatEnergyContract.Presente
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.GetPayWXSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+                            mView.GetPayWXSuccess(responseBean);
+                        }
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

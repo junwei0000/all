@@ -175,7 +175,8 @@ public class LifeStyleDetailPresenterImp<T> extends LifeStyleDetailContract.Pres
                     @Override
                     public void accept(SKBPayDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.PayHelpSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.PayHelpSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

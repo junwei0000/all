@@ -151,7 +151,8 @@ public class DetailPresenterImp<T> extends DetailContract.Presenter<DetailContra
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.PayHelpSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.PayHelpSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

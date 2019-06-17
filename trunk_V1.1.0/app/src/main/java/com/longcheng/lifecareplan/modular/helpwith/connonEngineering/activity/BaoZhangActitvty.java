@@ -25,6 +25,7 @@ import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -367,27 +368,30 @@ public class BaoZhangActitvty extends WebAct {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                            if (payment_channel.equals("1")) {
-                                Log.e(TAG, payWeChatBean.toString());
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (payment_channel.equals("2")) {
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        LifeBasicApplyPaySuccuess();
-                                    }
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
 
-                                    @Override
-                                    public void onFailure(String error) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                if (payment_channel.equals("1")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payment_channel.equals("2")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            LifeBasicApplyPaySuccuess();
+                                        }
 
-                                    }
-                                });
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
@@ -430,27 +434,30 @@ public class BaoZhangActitvty extends WebAct {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                            if (payment_channel.equals("1")) {
-                                Log.e(TAG, payWeChatBean.toString());
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (payment_channel.equals("2")) {
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        ChangeLeiFengSuccuess();
-                                    }
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
 
-                                    @Override
-                                    public void onFailure(String error) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                if (payment_channel.equals("1")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payment_channel.equals("2")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            ChangeLeiFengSuccuess();
+                                        }
 
-                                    }
-                                });
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
@@ -500,27 +507,30 @@ public class BaoZhangActitvty extends WebAct {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         showDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                            if (payment_channel.equals("1")) {
-                                Log.e(TAG, payWeChatBean.toString());
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (payment_channel.equals("2")) {
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        volunterPaySuccuess();
-                                    }
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
 
-                                    @Override
-                                    public void onFailure(String error) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                if (payment_channel.equals("1")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payment_channel.equals("2")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            volunterPaySuccuess();
+                                        }
 
-                                    }
-                                });
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
@@ -574,28 +584,31 @@ public class BaoZhangActitvty extends WebAct {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                            life_order_id = payWeChatBean.getOne_order_id();
-                            if (pay_way.equals("1")) {
-                                Log.e(TAG, payWeChatBean.toString());
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (pay_way.equals("2")) {
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        LifeBasicDetailPaySuccess();
-                                    }
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
 
-                                    @Override
-                                    public void onFailure(String error) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                life_order_id = payWeChatBean.getOne_order_id();
+                                if (pay_way.equals("1")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (pay_way.equals("2")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            LifeBasicDetailPaySuccess();
+                                        }
 
-                                    }
-                                });
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
@@ -645,31 +658,33 @@ public class BaoZhangActitvty extends WebAct {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                            life_order_id = payWeChatBean.getOne_order_id();
-                            if (pay_way.equals("1")) {
-                                Log.e(TAG, payWeChatBean.toString());
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (pay_way.equals("2")) {
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        lifeSkipSuccess();
-                                    }
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                life_order_id = payWeChatBean.getOne_order_id();
+                                if (pay_way.equals("1")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (pay_way.equals("2")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            lifeSkipSuccess();
+                                        }
 
-                                    @Override
-                                    public void onFailure(String error) {
+                                        @Override
+                                        public void onFailure(String error) {
 
-                                    }
-                                });
+                                        }
+                                    });
+                                } else {
+                                    lifeSkipSuccess();
+                                }
                             } else {
-                                lifeSkipSuccess();
+                                ToastUtils.showToast(responseBean.getMsg());
                             }
-                        } else {
-                            ToastUtils.showToast(responseBean.getMsg());
                         }
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

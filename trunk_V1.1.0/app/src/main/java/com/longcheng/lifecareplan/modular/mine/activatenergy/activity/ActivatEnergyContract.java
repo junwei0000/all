@@ -3,7 +3,6 @@ package com.longcheng.lifecareplan.modular.mine.activatenergy.activity;
 import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
-import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.GetEnergyListDataBean;
 import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 

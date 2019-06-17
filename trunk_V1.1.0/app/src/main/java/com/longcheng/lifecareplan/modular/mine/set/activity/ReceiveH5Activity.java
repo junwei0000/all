@@ -17,6 +17,7 @@ import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnvelopeKnpActivity;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -172,30 +173,33 @@ public class ReceiveH5Activity extends WebAct {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                            one_order_id = payWeChatBean.getOne_order_id();
-                            if (payment_channel.equals("3")) {//weixin
-                                Log.e(TAG, payWeChatBean.toString());
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (payment_channel.equals("4")) {//zhifubao
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        PaySuccess(WXPayEntryActivity.PAY_SUCCESS);
-                                    }
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
 
-                                    @Override
-                                    public void onFailure(String error) {
-                                        PaySuccess(WXPayEntryActivity.PAY_FAILE);
-                                    }
-                                });
-                            } else {
-                                PaySuccess(WXPayEntryActivity.PAY_SUCCESS);
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                one_order_id = payWeChatBean.getOne_order_id();
+                                if (payment_channel.equals("3")) {//weixin
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payment_channel.equals("4")) {//zhifubao
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            PaySuccess(WXPayEntryActivity.PAY_SUCCESS);
+                                        }
+
+                                        @Override
+                                        public void onFailure(String error) {
+                                            PaySuccess(WXPayEntryActivity.PAY_FAILE);
+                                        }
+                                    });
+                                } else {
+                                    PaySuccess(WXPayEntryActivity.PAY_SUCCESS);
+                                }
                             }
                         }
                     }

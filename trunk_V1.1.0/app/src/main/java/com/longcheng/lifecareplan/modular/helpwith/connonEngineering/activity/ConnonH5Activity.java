@@ -29,6 +29,7 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.ReplyEd
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.phosphor.RedirectDataBean;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -219,30 +220,32 @@ public class ConnonH5Activity extends WebAct {
                     @Override
                     public void accept(PayWXDataBean responseBean) throws Exception {
                         dismissDialog();
-                        String status = responseBean.getStatus();
-                        if (status.equals("400")) {
-                            ToastUtils.showToast(responseBean.getMsg());
-                        } else if (status.equals("200")) {
-                            PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                            one_order_id = payWeChatBean.getOne_order_id();
-                            if (pay_way.equals("wxpay")) {
-                                Log.e(TAG, payWeChatBean.toString());
-                                PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-                            } else if (pay_way.equals("alipay")) {
-                                String payInfo = payWeChatBean.getPayInfo();
-                                PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
-                                    @Override
-                                    public void onSuccess() {
-                                        helpSkipSuccess();
-                                    }
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                one_order_id = payWeChatBean.getOne_order_id();
+                                if (pay_way.equals("wxpay")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (pay_way.equals("alipay")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            helpSkipSuccess();
+                                        }
 
-                                    @Override
-                                    public void onFailure(String error) {
+                                        @Override
+                                        public void onFailure(String error) {
 
-                                    }
-                                });
-                            } else {
-                                helpSkipSuccess();
+                                        }
+                                    });
+                                } else {
+                                    helpSkipSuccess();
+                                }
                             }
                         }
                     }
