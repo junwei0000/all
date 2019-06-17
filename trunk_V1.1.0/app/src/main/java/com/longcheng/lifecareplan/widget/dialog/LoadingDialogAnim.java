@@ -41,9 +41,11 @@ public class LoadingDialogAnim extends Dialog {
     private static ImageView animationIV;
     private static AnimationDrawable animationDrawable;//动画
 
+    Context context;
 
     public LoadingDialogAnim(Context context) {
         super(context);
+        this.context = context;
         this.getContext().setTheme(android.R.style.Theme_DeviceDefault_Dialog_NoActionBar_MinWidth);
         setContentView(R.layout.dialog_loading);
         animationIV = (ImageView) findViewById(R.id.animationIV);
@@ -89,9 +91,17 @@ public class LoadingDialogAnim extends Dialog {
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.e("URLDecoder", "LoadingDialogAnim.onKeyDown--------------" + LoadingDialogAnim.showStatus());
+        //----------------修改.1--- 防止无法返回，设置连续点两下就关闭页面-------------
+        if ((System.currentTimeMillis() - clickBackTime) > 400) {
+            clickBackTime = System.currentTimeMillis();
+        } else {
+            if (context != null)
+                ((Activity) context).finish();
+        }
         return true;
     }
+
+    private long clickBackTime = 0;
 
     /**
      * show the dialog
@@ -145,11 +155,11 @@ public class LoadingDialogAnim extends Dialog {
             @Override
             public void run() {
                 try {
-
                     if (animationDrawable != null) {
                         animationDrawable.stop();
                         if (loadDialog != null) {
                             loadDialog.dismiss();
+                            loadDialog = null;
                         }
                     }
 
@@ -157,6 +167,7 @@ public class LoadingDialogAnim extends Dialog {
                         if (((Activity) context).isFinishing()) {
                             if (loadDialog != null) {
                                 loadDialog.dismiss();
+                                loadDialog = null;
                             }
                             return;
                         }
@@ -167,17 +178,19 @@ public class LoadingDialogAnim extends Dialog {
                         if (loadContext != null && loadContext instanceof Activity) {
                             if (((Activity) loadContext).isFinishing()) {
                                 loadDialog.dismiss();
+                                loadDialog = null;
                                 return;
                             }
 
                         }
-
                         loadDialog.dismiss();
+                        loadDialog = null;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                     if (loadDialog != null) {
                         loadDialog.dismiss();
+                        loadDialog = null;
                     }
                 }
             }

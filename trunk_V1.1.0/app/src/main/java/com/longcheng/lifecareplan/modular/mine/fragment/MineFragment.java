@@ -316,17 +316,6 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         layout_creditor.setOnClickListener(this);
         layout_functionstatus.setOnClickListener(this);
         layout_commissioner.setOnClickListener(this);
-
-        mycenterTvName.setFocusable(true);
-        mycenterTvName.setFocusableInTouchMode(true);
-        mycenterTvName.requestFocus();
-        setFunctionType();
-        showFunctionGVData();
-        initUserInfo();
-    }
-
-    @Override
-    public void doBusiness(Context mContext) {
         gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -345,6 +334,17 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 }
             }
         });
+        mycenterTvName.setFocusable(true);
+        mycenterTvName.setFocusableInTouchMode(true);
+        mycenterTvName.requestFocus();
+        setFunctionType();
+        showFunctionGVData();
+        initUserInfo();
+    }
+
+    @Override
+    public void doBusiness(Context mContext) {
+
     }
 
     /**
