@@ -46,15 +46,15 @@ public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
         return Orientation.VERTICAL;
     }
 
-    public ScrollView scrollView;
+    public MyScrollView scrollView;
 
     @Override
     protected ScrollView createRefreshableView(Context context, AttributeSet attrs) {
-        if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-            scrollView = new InternalScrollViewSDK9(context, attrs);
-        } else {
-            scrollView = new ScrollView(context, attrs);
-        }
+//        if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
+//            scrollView = new InternalScrollViewSDK9(context, attrs);
+//        } else {
+        scrollView = new MyScrollView(context, attrs);
+//        }
 
         scrollView.setId(R.id.scrollview);
         return scrollView;
@@ -104,6 +104,41 @@ public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
                 scrollRange = Math.max(0, child.getHeight() - (getHeight() - getPaddingBottom() - getPaddingTop()));
             }
             return scrollRange;
+        }
+    }
+
+    /**
+     * 解决低版本SDK  java.lang.NoClassDefFoundError
+     * ---------------------修改  低版本SDK，可以覆写ScrollView中的onScrollChange方法实现监听。----------
+     */
+    public static class MyScrollView extends ScrollView {
+        private ScrollViewListener scrollViewListener = null;
+
+        public MyScrollView(Context paramContext) {
+            super(paramContext);
+        }
+
+        public MyScrollView(Context paramContext, AttributeSet paramAttributeSet) {
+            super(paramContext, paramAttributeSet);
+        }
+
+        public MyScrollView(Context paramContext, AttributeSet paramAttributeSet, int paramInt) {
+            super(paramContext, paramAttributeSet, paramInt);
+        }
+
+        protected void onScrollChanged(int paramInt1, int paramInt2, int paramInt3, int paramInt4) {
+            super.onScrollChanged(paramInt1, paramInt2, paramInt3, paramInt4);
+            if (this.scrollViewListener != null)
+                this.scrollViewListener.onScrollChanged(this, paramInt1, paramInt2, paramInt3, paramInt4);
+        }
+
+        public void setScrollViewListener(ScrollViewListener paramScrollViewListener) {
+            this.scrollViewListener = paramScrollViewListener;
+        }
+
+        public static abstract interface ScrollViewListener {
+            public abstract void onScrollChanged(MyScrollView paramMyScrollView, int paramInt1, int paramInt2,
+                                                 int paramInt3, int paramInt4);
         }
     }
 }

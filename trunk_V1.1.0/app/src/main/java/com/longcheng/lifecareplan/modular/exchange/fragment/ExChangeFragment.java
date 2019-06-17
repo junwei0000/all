@@ -236,12 +236,11 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             public void afterTextChanged(Editable s) {
             }
         });
-        ScrollView mScrollView = exchange_sv.scrollView;
+        PullToRefreshScrollView.MyScrollView mScrollView = exchange_sv.scrollView;
         if (mScrollView != null) {
-            mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            mScrollView.setScrollViewListener(new PullToRefreshScrollView.MyScrollView.ScrollViewListener() {
                 @Override
-                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
+                public void onScrollChanged(PullToRefreshScrollView.MyScrollView paramMyScrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                     if (mGoodsAllList != null && mGoodsAllList.size() > 0 && exchangeListview != null) {
                         View view = exchangeListview.getChildAt(0);
                         if (view == null || tv_showScrollPage == null) {
