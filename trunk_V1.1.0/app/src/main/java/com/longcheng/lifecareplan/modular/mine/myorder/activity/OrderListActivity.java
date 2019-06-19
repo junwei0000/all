@@ -195,7 +195,7 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
         });
         userorderVPager.setAdapter(tabPageAdapter);
         selectPage();
-        userorderVPager.setOffscreenPageLimit(5);
+        userorderVPager.setOffscreenPageLimit(2);
         userorderVPager.addOnPageChangeListener(this);
     }
 

@@ -415,7 +415,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
                 addAddress();
             }
             if (mOrderItemBean.getIs_show_pre_delivery() == 1 && mOrderItemBean.getType() != 4) {
-                jioaYaJin(order_id);
+                jioaYaJin(order_id, mOrderItemBean.getType());
             }
         } else if (bottom_status == 10) {
             Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
@@ -431,10 +431,11 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
     /**
      * 交押金
      */
-    private void jioaYaJin(String order_id) {
+    private void jioaYaJin(String order_id, int type) {
         Intent intent = new Intent(context, YaJinActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("order_id", "" + order_id);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 

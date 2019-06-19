@@ -57,7 +57,6 @@ public class YaJinActivity extends BaseActivity {
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
 
-    public String order_id;
     @BindView(R.id.iv_head)
     ImageView ivHead;
     @BindView(R.id.tv_name)
@@ -89,6 +88,11 @@ public class YaJinActivity extends BaseActivity {
     @BindView(R.id.tv_type)
     TextView tv_type;
 
+    /**
+     * 订单类型	1商城订单 2 生命能量订单 3 生活方式互祝订单 4 康农
+     */
+    int type;
+    public String order_id;
     String asset;
     int deposit;
     /**
@@ -152,6 +156,7 @@ public class YaJinActivity extends BaseActivity {
     public void initDataAfter() {
         Intent intent = getIntent();
         order_id = intent.getStringExtra("order_id");
+        type = intent.getIntExtra("type", 0);
         getYaJinPayInfo();
     }
 
@@ -168,8 +173,16 @@ public class YaJinActivity extends BaseActivity {
      */
     public void getYaJinPayInfo() {
         showDialog();
-        Observable<DetailDataBean> observable = Api.getInstance().service.getYaJinPayInfo(UserUtils.getUserId(mContext),
-                order_id, ExampleApplication.token);
+        Observable<DetailDataBean> observable;
+        if (type == 3) {
+            activatRelatAccount.setVisibility(View.GONE);
+            observable = Api.getInstance().service.getYaJinLifeStylePayInfo(UserUtils.getUserId(mContext),
+                    order_id, ExampleApplication.token);
+        } else {
+            activatRelatAccount.setVisibility(View.VISIBLE);
+            observable = Api.getInstance().service.getYaJinPayInfo(UserUtils.getUserId(mContext),
+                    order_id, ExampleApplication.token);
+        }
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<DetailDataBean>() {
@@ -244,7 +257,14 @@ public class YaJinActivity extends BaseActivity {
             return;
         }
         showDialog();
-        Observable<PayWXDataBean> observable = Api.getInstance().service.yaJinPay(user_id, order_id, deposit, payWay, ExampleApplication.token);
+        Observable<PayWXDataBean> observable;
+        if (type == 3) {
+            String pay_source = "2";
+            observable = Api.getInstance().service.yaJinPayLifeStyle(user_id, order_id, deposit, payWay, pay_source, ExampleApplication.token);
+        } else {
+            observable = Api.getInstance().service.yaJinPay(user_id, order_id, deposit, payWay, ExampleApplication.token);
+        }
+
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {

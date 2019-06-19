@@ -111,7 +111,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
 
     private String user_id, order_id;
     /**
-     * 1商城订单 2 生命能量订单 3 生活方式互祝订单
+     * //订单类型	1商城订单 2 生命能量订单 3 生活方式互祝订单 4 康农
      */
     private int type;
     private String goods_info_url;
@@ -701,6 +701,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         Intent intent = new Intent(mContext, YaJinActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("order_id", "" + order_id);
+        intent.putExtra("type", type);
         mContext.startActivity(intent);
     }
 

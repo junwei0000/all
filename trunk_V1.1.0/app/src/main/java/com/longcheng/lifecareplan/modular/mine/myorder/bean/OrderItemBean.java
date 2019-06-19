@@ -30,7 +30,7 @@ public class OrderItemBean implements Serializable {
     private String help_goods_id;
     private String order_status;
     private String shipping_status;
-    private int type;//订单类型	1商城订单 2 生命能量订单 3 生活方式互祝订单
+    private int type;//订单类型	1商城订单 2 生命能量订单 3 生活方式互祝订单 4 康农
     private String order_sn;
     private String date;
     private int is_show_perfect_info;

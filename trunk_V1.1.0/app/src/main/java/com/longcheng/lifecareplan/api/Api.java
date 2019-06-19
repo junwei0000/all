@@ -24,7 +24,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -96,7 +99,22 @@ public class Api {
         Log.e("Api", "Api-----------");
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.connectTimeout(30, TimeUnit.SECONDS);
-        httpClient.dns(new ApiDns());//自定义okhttp中dns解析 防止https第一次请求过慢
+        /**
+         * 自定义okhttp中dns解析 防止https第一次请求过慢
+         */
+        httpClient.dns(new ApiDns());
+        /**
+         * 在这里获取到request 请求参数
+         */
+        httpClient.networkInterceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                Response response = chain.proceed(request);
+                Log.e("ResponseBody", "request == " + request.toString() + "  【】   " + response.toString());
+                return response;
+            }
+        });
 
         OkHttpClient client = httpClient.build();
         //启用Log日志

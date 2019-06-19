@@ -367,6 +367,15 @@ public interface ApiService {
                                        @Field("payWay") String payWay,
                                        @Field("token") String token);
 
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Paydeposit/paydoHp")
+    Observable<PayWXDataBean> yaJinPayLifeStyle(@Field("user_id") String user_id,
+                                                @Field("order_id") String order_id,
+                                                @Field("money") int money,
+                                                @Field("payWay") String payWay,
+                                                @Field("pay_source") String pay_source,
+                                                @Field("token") String token);
+
     //********************个人中心*************************
     @GET(Config.VERSION + "help/getRedirectMsgId")
     Observable<RedirectDataBean> getRedirectMsgId(@Query("user_id") String user_id,
@@ -836,6 +845,11 @@ public interface ApiService {
     Observable<DetailDataBean> getYaJinPayInfo(@Query("user_id") String user_id,
                                                @Query("order_id") String order_id,
                                                @Query("token") String token);
+
+    @GET(Config.VERSION + "paydeposit/helpgoods")
+    Observable<DetailDataBean> getYaJinLifeStylePayInfo(@Query("user_id") String user_id,
+                                                        @Query("order_id") String order_id,
+                                                        @Query("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "knp/pay")

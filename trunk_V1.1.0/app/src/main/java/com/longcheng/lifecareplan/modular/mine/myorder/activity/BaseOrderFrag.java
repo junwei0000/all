@@ -137,7 +137,6 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
 //    }
 
     private void getList(int page) {
-        Log.e("checkLoadOver", "" + page);
         mPresent.getOrderList(user_id, getType(), page, pageSize);
     }
 
@@ -189,7 +188,7 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
                     mAllList.clear();
                     mAdapter = null;
                     showNoMoreData(false, dateListview.getRefreshableView());
-                }
+                }Log.e("checkLoadOver","pageSize="+pageSize+"  size="+size+"  page="+page+"  getType()="+getType());
                 if (size > 0) {
                     mAllList.addAll(mList);
                 }

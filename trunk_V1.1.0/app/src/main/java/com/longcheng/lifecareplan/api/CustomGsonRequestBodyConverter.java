@@ -39,7 +39,6 @@ final class CustomGsonRequestBodyConverter<T> implements Converter<T, RequestBod
         Buffer buffer = new Buffer();
         Writer writer = new OutputStreamWriter(buffer.outputStream(), UTF_8);
         JsonWriter jsonWriter = gson.newJsonWriter(writer);
-        Log.e("RequestBody", "RequestBody == " + jsonWriter + "     " + writer);
         adapter.write(jsonWriter, value);
         jsonWriter.close();
         return RequestBody.create(MEDIA_TYPE, buffer.readByteString());

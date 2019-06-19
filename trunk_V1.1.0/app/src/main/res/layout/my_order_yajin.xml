@@ -37,9 +37,9 @@
                 android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="bottom|center_horizontal"
                 android:background="@mipmap/my_dingdan_icon"
+                android:gravity="center"
                 android:text="CHO"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_min_size" />
@@ -68,9 +68,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mark_money"
-                android:visibility="gone"
                 android:textColor="@color/text_biaoTi_color"
-                android:textSize="@dimen/text_tishi_size" />
+                android:textSize="@dimen/text_tishi_size"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_money"
@@ -159,11 +159,60 @@
                     android:background="@mipmap/pay_selcet_icon_red" />
             </RelativeLayout>
 
+
+            <RelativeLayout
+                android:id="@+id/detailhelp_relat_zfb"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp50"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_black"
+                android:padding="0dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
+                        android:background="@mipmap/wisheachdetails_pay_paytreasure" />
+
+                    <TextView
+                        android:id="@+id/tv_zfbtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="支付宝"
+                        android:textColor="@color/text_contents_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/detailhelp_iv_zfbselect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@mipmap/pay_selcet_icon_red"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <RelativeLayout
                 android:id="@+id/activat_relat_account"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp50"
-                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
                 android:layout_weight="1"
                 android:background="@drawable/corners_bg_black"
                 android:padding="0dp">
@@ -195,55 +244,6 @@
 
                 <ImageView
                     android:id="@+id/activat_iv_accountselect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@mipmap/pay_selcet_icon_red"
-                    android:visibility="gone" />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/view_paddlefgtright"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/detailhelp_relat_zfb"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp50"
-                android:layout_marginRight="@dimen/dp8"
-                android:layout_weight="1"
-                android:background="@drawable/corners_bg_black"
-                android:padding="0dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/padd_imgtextleftright"
-                        android:background="@mipmap/wisheachdetails_pay_paytreasure" />
-
-                    <TextView
-                        android:id="@+id/tv_zfbtitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="支付宝"
-                        android:textColor="@color/text_contents_color"
-                        android:textSize="@dimen/text_zhu_size" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/detailhelp_iv_zfbselect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
