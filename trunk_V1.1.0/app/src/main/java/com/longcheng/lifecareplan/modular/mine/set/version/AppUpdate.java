@@ -137,7 +137,6 @@ public class AppUpdate {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.e("Observable", "" + throwable.toString());
-                        getIsOpenNotification(updateDirection);
                     }
                 });
         return null;
@@ -249,14 +248,19 @@ public class AppUpdate {
         tv_cont.setText(description);
         tv_update.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
-                Intent updateIntent = new Intent(context, UpdateService.class);
-                updateIntent.putExtra("url", url);
-                context.startService(updateIntent);
-                if (level.equals("1")) {
-                    // 必须更新
-                } else {
-                    selectDialog.dismiss();
+                try {
+                    Intent updateIntent = new Intent(context, UpdateService.class);
+                    updateIntent.putExtra("url", url);
+                    context.startService(updateIntent);
+                    if (level.equals("1")) {
+                        // 必须更新
+                    } else {
+                        selectDialog.dismiss();
+                    }
+                } catch (Exception e) {
+
                 }
+
             }
         });
         tv_xicai.setOnClickListener(new OnClickListener() {

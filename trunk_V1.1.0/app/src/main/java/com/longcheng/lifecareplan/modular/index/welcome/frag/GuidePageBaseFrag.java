@@ -65,6 +65,7 @@ public abstract class GuidePageBaseFrag extends RxFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
+        if (unbinder != null)
+            unbinder.unbind();
     }
 }

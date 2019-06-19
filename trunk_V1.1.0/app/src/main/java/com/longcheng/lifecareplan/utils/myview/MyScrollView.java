@@ -24,10 +24,10 @@ public class MyScrollView extends ScrollView {
         super(paramContext, paramAttributeSet, paramInt);
     }
 
-    protected void onScrollChanged(int paramInt1, int paramInt2, int paramInt3, int paramInt4) {
-        super.onScrollChanged(paramInt1, paramInt2, paramInt3, paramInt4);
+    protected void onScrollChanged(int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        super.onScrollChanged(scrollX, scrollY, oldScrollX, oldScrollY);
         if (this.scrollViewListener != null)
-            this.scrollViewListener.onScrollChanged(this, paramInt1, paramInt2, paramInt3, paramInt4);
+            this.scrollViewListener.onScrollChanged(this, scrollX, scrollY, oldScrollX, oldScrollY);
     }
 
     public void setScrollViewListener(ScrollViewListener paramScrollViewListener) {
@@ -35,7 +35,6 @@ public class MyScrollView extends ScrollView {
     }
 
     public static abstract interface ScrollViewListener {
-        public abstract void onScrollChanged(MyScrollView paramMyScrollView, int paramInt1, int paramInt2,
-                                             int paramInt3, int paramInt4);
+        public abstract void onScrollChanged(MyScrollView paramMyScrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY);
     }
 }

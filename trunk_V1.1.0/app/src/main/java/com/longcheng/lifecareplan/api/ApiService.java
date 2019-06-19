@@ -970,7 +970,7 @@ public interface ApiService {
                                                        @Query("shop_goods_id") String shop_goods_id,
                                                        @Query("token") String token);
 
-    @GET(Config.VERSION + "/shop/guessYouLike")
+    @GET(Config.VERSION + "shop/guessYouLike")
     Observable<ShopCartDataBean> getTuiJianList(@Query("user_id") String user_id,
                                                 @Query("token") String token);
 

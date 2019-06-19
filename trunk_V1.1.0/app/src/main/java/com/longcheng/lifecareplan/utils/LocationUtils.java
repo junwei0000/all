@@ -6,19 +6,13 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 
-import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,6 +51,9 @@ public class LocationUtils {
     public double[] getLngAndLatWithNetwork(Context context) {
         double latitude = 0.0;
         double longitude = 0.0;
+        if (!getNetWorkStatus(context)) {
+            return new double[]{latitude, longitude};
+        }
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, new LocationListener() {
             @Override
@@ -82,6 +79,25 @@ public class LocationUtils {
             Log.e("getLngAndLat", +latitude + "  " + longitude);
         }
         return new double[]{latitude, longitude};
+    }
+
+    /**
+     * 获取网络状态 TRUE 有网
+     *
+     * @param context
+     * @return
+     */
+    public boolean getNetWorkStatus(Context context) {
+        boolean status = false;
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        boolean isWifiConn = networkInfo.isConnected();
+        networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        boolean isMobileConn = networkInfo.isConnected();
+        if (isMobileConn || isWifiConn) {
+            status = true;
+        }
+        return status;
     }
 
     /**

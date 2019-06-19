@@ -882,6 +882,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     }
 
     private void showInfoView() {
+        if (mycenterTvName == null) {
+            return;
+        }
         String avatar = (String) SharedPreferencesHelper.get(mContext, "avatar", "");
         is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
         String phone = (String) SharedPreferencesHelper.get(mContext, "phone", "");

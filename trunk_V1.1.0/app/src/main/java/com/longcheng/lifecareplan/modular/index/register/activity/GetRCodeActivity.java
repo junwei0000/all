@@ -183,7 +183,9 @@ public class GetRCodeActivity extends BaseActivityMVP<RegisterContract.View, Reg
             super.handleMessage(msg);
             switch (msg.what) {
                 case Daojishistart:
-                    phonetypeTvGetcode.setEnabled(false);
+                    if (phonetypeTvGetcode != null) {
+                        phonetypeTvGetcode.setEnabled(false);
+                    }
                     count = 60;
                     daojishi();
                     break;

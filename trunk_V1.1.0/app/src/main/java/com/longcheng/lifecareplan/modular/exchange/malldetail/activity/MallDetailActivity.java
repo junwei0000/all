@@ -241,9 +241,9 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
         frame_shopcart.setOnClickListener(this);
         tvAddShoppingCart.setOnClickListener(this);
         tv_tohelp.setOnClickListener(this);
-        exchangedetailSv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        exchangedetailSv.setScrollViewListener(new MyScrollView.ScrollViewListener() {
             @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+            public void onScrollChanged(MyScrollView paramMyScrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 if (oldScrollY > 10) {
                     tv_backtop.setVisibility(View.VISIBLE);
                 } else {
