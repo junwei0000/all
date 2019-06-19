@@ -31,6 +31,7 @@ public class BaoZhangMoneyAdapter extends BaseAdapter {
     int mutual_help_money;
     boolean selectDefaultStatus = false;
     int mHandlerID;
+
     public BaoZhangMoneyAdapter(Context context, List<DetailItemBean> list) {
         super();
         this.context = context;
