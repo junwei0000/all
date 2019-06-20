@@ -513,7 +513,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 0 不显示康农弹层;1 显示
      */
     List<HomeItemBean> layer;
-    int showLayerIndex = 0;
+    int showLayerIndex = -1;
 
     private void setLoadData(HomeAfterBean mHomeAfterBean) {
         if (mHomeAfterBean != null && maintopTvStartday != null) {
