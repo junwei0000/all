@@ -83,7 +83,6 @@ public class VolunterDialogUtils {
             tv_zfbtitle = (TextView) selectDialog.findViewById(R.id.tv_zfbtitle);
 
             btn_helpsure = (TextView) selectDialog.findViewById(R.id.btn_helpsure);
-            btn_helpsure.setText(cont);
             layout_cancel.setOnClickListener(dialogClick);
             btn_helpsure.setOnClickListener(dialogClick);
             detailhelp_relat_wx.setOnClickListener(dialogClick);
@@ -92,6 +91,7 @@ public class VolunterDialogUtils {
             selectDialog.show();
         }
         tv_money.setText("" + money);
+        btn_helpsure.setText(cont);
     }
 
     View.OnClickListener dialogClick = new View.OnClickListener() {

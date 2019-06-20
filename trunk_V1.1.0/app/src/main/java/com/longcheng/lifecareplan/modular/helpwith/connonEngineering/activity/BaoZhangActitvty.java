@@ -248,7 +248,7 @@ public class BaoZhangActitvty extends WebAct {
             @Override
             public void handler(String data, CallBackFunction function) {
                 weixinPayBackType = "GiveactivityApplyPay";
-                Log.e("registerHandler", "data=" + data);
+                Log.e("registerHandler", "GiveactivityApply_applyPay =" + data);
                 try {
                     JSONObject jsonObject = new JSONObject(data);
                     Givemoney = jsonObject.optString("money", "");
