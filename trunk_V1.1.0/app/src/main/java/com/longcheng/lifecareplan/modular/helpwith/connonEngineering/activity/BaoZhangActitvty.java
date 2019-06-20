@@ -77,6 +77,8 @@ public class BaoZhangActitvty extends WebAct {
     private VolunterDialogUtils mChangeLFDialogUtils;
     private BaoZhangDialogUtils mLifeBasicPayDialogUtils;
     private BaoZhangDialogUtils mDetailHelpDialogUtils;
+    private VolunterDialogUtils mGiveactivityDialogUtils;
+
 
     private List<DetailItemBean> blessings_list;
     private List<DetailItemBean> mutual_help_money_all;
@@ -110,6 +112,7 @@ public class BaoZhangActitvty extends WebAct {
     private String Voluntepay_money = "", ChangLFMoney = "";
 
     private String volunteer_debt_item_id = "0", type = "1";
+    String Givemoney = "", Giveaddress_id = "", __app_pay_token__ = "";
 
     @Override
     public void onClick(View v) {
@@ -174,6 +177,10 @@ public class BaoZhangActitvty extends WebAct {
                             pagetopIvRigth.setVisibility(View.VISIBLE);
                             shareStatus = true;
                             shareBackType = "LifeBasicDetail";
+                        } else if (!TextUtils.isEmpty(url) && url.contains("/giveactivity/index")) {
+                            pagetopIvRigth.setVisibility(View.VISIBLE);
+                            shareStatus = true;
+                            shareBackType = "GiveactivityApply";
                         } else {
                             //非详情页、和自己的详情不让分享
                             shareBackType = "";
@@ -194,6 +201,8 @@ public class BaoZhangActitvty extends WebAct {
                             getLifeDetail(life_repay_id);
                         } else if (shareBackType.equals("LifeBasicDetail")) {
                             getLifeBasicDetail(life_repay_id);
+                        } else if (shareBackType.equals("GiveactivityApply")) {
+                            getGiveactivityInfo();
                         }
                     }
 
@@ -232,6 +241,26 @@ public class BaoZhangActitvty extends WebAct {
                     mLifeBasicPayDialogUtils.initData(blessings_list, mutual_help_money_all);
                     mLifeBasicPayDialogUtils.showPopupWindow();
                 }
+            }
+        });
+        //首页--饮品免费领（邮费支付）---显示支付弹层
+        mBridgeWebView.registerHandler("GiveactivityApply_applyPay", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                weixinPayBackType = "GiveactivityApplyPay";
+                Log.e("registerHandler", "data=" + data);
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    Givemoney = jsonObject.optString("money", "");
+                    Giveaddress_id = jsonObject.optString("address_id", "");
+                    __app_pay_token__ = jsonObject.optString("__app_pay_token__", "");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (mGiveactivityDialogUtils == null) {
+                    mGiveactivityDialogUtils = new VolunterDialogUtils(mActivity, mHandler, GiveactivityApplyPay);
+                }
+                mGiveactivityDialogUtils.showPopupWindow(Givemoney, "立即支付");
             }
         });
         //志愿者互祝---开启债务支付单个 批量
@@ -303,7 +332,7 @@ public class BaoZhangActitvty extends WebAct {
     private static final int ChangeLeiFengPay = 55;
     public static final int LifeBasicAppPayment = 66;
     private static final int sendLifeBasicDetailShareNum = 77;
-
+    private static final int GiveactivityApplyPay = 88;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         Bundle bundle;
@@ -340,6 +369,11 @@ public class BaoZhangActitvty extends WebAct {
                     payType = bundle.getString("payType");
                     ChangeLeiFengPay(payType, ChangLFMoney);
                     break;
+                case GiveactivityApplyPay:
+                    bundle = msg.getData();
+                    payType = bundle.getString("payType");
+                    GiveactivityApplyPay(payType);
+                    break;
                 case sendLifeDetailShareNum:
                     sendLifeDetailShareNum();
                     break;
@@ -351,6 +385,71 @@ public class BaoZhangActitvty extends WebAct {
         }
     };
 
+    /**
+     * 首页--饮品免费领（邮费支付）
+     */
+    private void GiveactivityApplyPay(String payment_channel) {
+        if (RequestDataStatus) {
+            return;
+        }
+        showDialog();
+        String pay_source = "2";
+        Observable<PayWXDataBean> observable = Api.getInstance().service.GiveactivityApplyPay(UserUtils.getUserId(mContext),
+                payment_channel, pay_source, Giveaddress_id, Givemoney, __app_pay_token__, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                if (payment_channel.equals("1")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payment_channel.equals("2")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            GiveactivityPaySuccuess();
+                                        }
+
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastUtils.showToast(R.string.net_tishi);
+                        Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
+                    }
+                });
+    }
+
+    /**
+     * 首页--饮品免费领（邮费支付） 完刷新页面
+     */
+    private void GiveactivityPaySuccuess() {
+        mBridgeWebView.callHandler("GiveactivityApply_applyPaySucBack", "", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
 
     /**
      * 志愿者互祝---申请基础保障支付
@@ -807,6 +906,45 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
+     * 首页---志愿者赠送商品活动分享API
+     */
+    public void getGiveactivityInfo() {
+        Observable<EnergyDetailDataBean> observable = Api.getInstance().service.getGiveactivityInfo(UserUtils.getUserId(mContext),
+                ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<EnergyDetailDataBean>() {
+                    @Override
+                    public void accept(EnergyDetailDataBean responseBean) throws Exception {
+                        String status = responseBean.getStatus();
+                        if (status.equals("400")) {
+                        } else if (status.equals("200")) {
+                            DetailAfterBean mDetailAfterBean = (DetailAfterBean) responseBean.getData();
+                            if (mDetailAfterBean != null) {
+                                knp_sharetitle = mDetailAfterBean.getKnp_sharetitle();
+                                knp_shareurl = mDetailAfterBean.getKnp_shareurl();
+                                knp_sharePic = mDetailAfterBean.getKnp_sharePic();
+                                knp_sharedesc = mDetailAfterBean.getKnp_sharedesc();
+                                blessings_list = mDetailAfterBean.getKnp_blessings_list();
+                                mutual_help_money_all = mDetailAfterBean.getMutual_help_money_all();
+                                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
+                                } else {
+                                    mutual_help_money_all = new ArrayList<>();
+                                }
+                                Log.e("ResponseBody", "____________________" + mutual_help_money_all.size());
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e("ResponseBody", "____________________" + throwable.toString());
+                    }
+                });
+
+    }
+
+    /**
      * 生活保障详情---互祝分享转发保存次数
      */
     public void sendLifeDetailShareNum() {
@@ -873,6 +1011,8 @@ public class BaoZhangActitvty extends WebAct {
                     LifeBasicApplyPaySuccuess();
                 } else if (weixinPayBackType.equals("LifeBasicDetailPay")) {
                     LifeBasicDetailPaySuccess();
+                } else if (weixinPayBackType.equals("GiveactivityApplyPay")) {
+                    GiveactivityPaySuccuess();
                 }
 
             } else if (Code == WXPayEntryActivity.PAY_FAILE) {

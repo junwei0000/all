@@ -472,16 +472,16 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                                 intent.putExtra("kn_url", "" + url);
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                            } else if (!TextUtils.isEmpty(url) && url.contains("life/index")) {
-                                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                intent.putExtra("html_url", "" + url);
-                                startActivity(intent);
-                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {
                                 Intent intent = new Intent(mContext, ActionH5Activity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 intent.putExtra("kn_url", "" + url);
+                                startActivity(intent);
+                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                            } else {
+                                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.putExtra("html_url", "" + url);
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             }

@@ -162,10 +162,11 @@ public class ShareHelper {
                 intent2.setAction(ConstantManager.BroadcastReceiver_KNP_ACTION);
                 if (BaoZhangActitvty.shareBackType.equals("lifeDetail")) {
                     intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE_lifeDetailPay);
+                    activity.sendBroadcast(intent2);
                 } else if (BaoZhangActitvty.shareBackType.equals("LifeBasicDetail")) {
                     intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE_LifeBasicDetailPay);
+                    activity.sendBroadcast(intent2);
                 }
-                activity.sendBroadcast(intent2);
                 Log.e("ResponseBody", "分享成功=BaoZhangActitvty.life_repay_id=" + BaoZhangActitvty.life_repay_id);
             }
         }

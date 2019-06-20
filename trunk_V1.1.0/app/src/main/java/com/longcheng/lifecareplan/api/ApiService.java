@@ -826,6 +826,10 @@ public interface ApiService {
                                                         @Query("life_basic_id") String life_basic_id,
                                                         @Query("token") String token);
 
+    @GET(Config.VERSION + "Giveactivity/index")
+    Observable<EnergyDetailDataBean> getGiveactivityInfo(@Query("user_id") String user_id,
+                                                         @Query("token") String token);
+
     @GET(Config.VERSION + "life/addForward")
     Observable<ResponseBean> sendLifeDetailShareNum(@Query("user_id") String user_id,
                                                     @Query("life_repay_id") String life_repay_id,
@@ -931,6 +935,16 @@ public interface ApiService {
                                                @Field("payment_channel") String payment_channel,
                                                @Field("price") String price,
                                                @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "giveactivity/doApply")
+    Observable<PayWXDataBean> GiveactivityApplyPay(@Field("user_id") String user_id,
+                                                   @Field("payment_channel") String payment_channel,
+                                                   @Field("pay_source") String pay_source,
+                                                   @Field("address_id") String address_id,
+                                                   @Field("money") String money,
+                                                   @Field("__app_pay_token__") String __app_pay_token__,
+                                                   @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "lifebasic/ajaxSaveApply")
