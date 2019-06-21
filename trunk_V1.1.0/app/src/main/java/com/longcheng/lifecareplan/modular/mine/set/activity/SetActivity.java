@@ -71,8 +71,8 @@ public class SetActivity extends BaseActivity {
                 doFinish();
                 break;
             case R.id.set_relay_updateapp:
-                AppUpdate appUpdate = new AppUpdate(this);
-                appUpdate.startUpdateAsy("");
+                AppUpdate appUpdate = new AppUpdate();
+                appUpdate.startUpdateAsy(this, "");
                 break;
             case R.id.set_relay_about:
                 intent = new Intent(mContext, AboutActivity.class);

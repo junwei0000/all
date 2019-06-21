@@ -241,7 +241,7 @@ public class BottomMenuActivity extends BaseActivity {
         if (position == tab_position_home) {
             ((HomeFragment) fragmentList.get(position)).showCononDialog();
         } else {
-            ((HomeFragment) fragmentList.get(tab_position_home)).dismissCononDialog();
+            ((HomeFragment) fragmentList.get(tab_position_home)).dismissAllDialog();
         }
         if (position == tab_position_helpwith) {
             ((HelpWithFragmentNew) fragmentList.get(position)).initInfo();
@@ -269,7 +269,7 @@ public class BottomMenuActivity extends BaseActivity {
      */
     private void UpdatVerDisAllDialog() {
         updatedialogstatus = true;
-        ((HomeFragment) fragmentList.get(tab_position_home)).dismissCononDialog();
+        ((HomeFragment) fragmentList.get(tab_position_home)).dismissAllDialog();
         ((MineFragment) fragmentList.get(tab_position_mine)).dismissAllDialog();
     }
 

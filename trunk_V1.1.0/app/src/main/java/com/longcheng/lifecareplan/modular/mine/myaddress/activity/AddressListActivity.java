@@ -233,6 +233,7 @@ public class AddressListActivity extends BaseActivityMVP<AddressContract.View, A
                     intent.putExtra("mobile", mList.get(position).getMobile());
                     intent.putExtra("is_default", mList.get(position).getIs_default());
 
+                    Log.e("ResponseBody",""+mList.get(position).toString());
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     break;

@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -120,34 +121,56 @@ public class AddressEditActivity extends BaseActivityMVP<AddressContract.View, A
         btnSave.setOnClickListener(this);
         item_tv_moren.setOnClickListener(this);
         addCbCheck.setOnClickListener(this);
-        addEtName.addTextChangedListener(mTextWatcher);
-        addEtPhone.addTextChangedListener(mTextWatcher);
-        addEtAddress.addTextChangedListener(mTextWatcher);
+        addEtName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                consignee = addEtName.getText().toString().trim();
+                setBtnBg();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        addEtPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mobile = addEtPhone.getText().toString().trim();
+                setBtnBg();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        addEtAddress.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                address = addEtAddress.getText().toString().trim();
+                setBtnBg();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(addEtName, 20);
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(addEtPhone, 20);
         ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(addEtAddress, 100);
     }
 
-    TextWatcher mTextWatcher = new TextWatcher() {
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            consignee = addEtName.getText().toString().trim();
-            mobile = addEtPhone.getText().toString().trim();
-            address = addEtAddress.getText().toString().trim();
-            setBtnBg();
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
     AddressSelectUtils mAddressSelectUtils;
 
     @Override
@@ -163,17 +186,18 @@ public class AddressEditActivity extends BaseActivityMVP<AddressContract.View, A
         mobile = intent.getStringExtra("mobile");
         is_default = intent.getStringExtra("is_default");
         area = AddressSelectUtils.initData(mContext, province, city, district);
-        setBtnBg();
-        mAddressSelectUtils = new AddressSelectUtils(mActivity, mHandler, SELECTADDRESS);
         addEtName.setText(consignee);
-        addEtPhone.setText(mobile);
-        addEtAddress.setText(address);
+        addEtPhone.setText("" + mobile);
         addTvShiqu.setText(area);
+        addEtAddress.setText(address);
         if (is_default.equals("1")) {
             addCbCheck.setBackgroundResource(R.mipmap.check_true_red);
         } else {
             addCbCheck.setBackgroundResource(R.mipmap.check_false);
         }
+        Log.e("ResponseBody", "mobile=" + mobile + "  address=" + address);
+        setBtnBg();
+        mAddressSelectUtils = new AddressSelectUtils(mActivity, mHandler, SELECTADDRESS);
     }
 
 

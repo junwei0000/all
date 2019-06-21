@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.TextUtils;
@@ -33,6 +36,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.autolayout.utils.L;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
+import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
@@ -62,6 +66,7 @@ import com.longcheng.lifecareplan.modular.mine.set.activity.NotServiceActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
 import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.CleanMessageUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -196,11 +201,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     public void reLoadData() {
         if (appUpdate == null) {
-            appUpdate = new AppUpdate(getActivity());
+            appUpdate = new AppUpdate();
         }
-        appUpdate.startUpdateAsy("Home");
-        haveNotReadMsg();
-        mPresent.setListViewData();
+        appUpdate.startUpdateAsy(getActivity(), "Home");
+        if (mPresent != null) {
+            haveNotReadMsg();
+            mPresent.setListViewData();
+        }
     }
 
     @Override
@@ -329,6 +336,63 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void doBusiness(Context mContext) {
+        getIsOpenNotification();
+    }
+
+    /**
+     * 首页 是否开启通知
+     */
+    private void getIsOpenNotification() {
+        NotificationManagerCompat manager = NotificationManagerCompat.from(mContext);
+        boolean isOpened = manager.areNotificationsEnabled();
+        Log.e("getIsOpenNotification", "isOpened=" + isOpened);
+        if (!isOpened) {
+            showOpenNotificationWindow();
+        }
+    }
+
+    MyDialog OpenNotificationDialog;
+
+    private void showOpenNotificationWindow() {
+        if (CononDialog != null && CononDialog.isShowing()) {
+            CononDialog.dismiss();
+        }
+        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
+            return;
+        }
+        OpenNotificationDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
+        OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+        Window window = OpenNotificationDialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+        OpenNotificationDialog.show();
+        WindowManager m = getActivity().getWindowManager();
+        Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+        WindowManager.LayoutParams p = OpenNotificationDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+        p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
+        OpenNotificationDialog.getWindow().setAttributes(p); //设置生效
+
+        LinearLayout layout_cancel = (LinearLayout) OpenNotificationDialog.findViewById(R.id.layout_cancel);
+        TextView btn_ok = (TextView) OpenNotificationDialog.findViewById(R.id.btn_ok);
+        layout_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reLoadData();
+                OpenNotificationDialog.dismiss();
+            }
+        });
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenNotificationDialog.dismiss();
+                String pkg = mContext.getApplicationContext().getPackageName();
+                // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", pkg, null);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -411,9 +475,12 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     MyDialog CononDialog;
 
-    public void dismissCononDialog() {
+    public void dismissAllDialog() {
         if (CononDialog != null && CononDialog.isShowing()) {
             CononDialog.dismiss();
+        }
+        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
+            OpenNotificationDialog.dismiss();
         }
     }
 
@@ -425,7 +492,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public void showCononDialog() {
         if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home
                 || BottomMenuActivity.updatedialogstatus) {
-            dismissCononDialog();
+            dismissAllDialog();
+            return;
+        }
+        //显示通知弹层时不显示互祝
+        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
             return;
         }
         if (CononDialog != null && CononDialog.isShowing()) {
@@ -945,7 +1016,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (vp != null && vp.isFlipping()) {
             vp.stopFlipping();
         }
-        dismissCononDialog();
+        dismissAllDialog();
         Log.e("super.onResume", "onPause");
     }
 

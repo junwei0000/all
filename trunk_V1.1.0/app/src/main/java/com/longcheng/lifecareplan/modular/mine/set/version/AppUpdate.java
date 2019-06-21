@@ -62,16 +62,14 @@ public class AppUpdate {
      */
     private boolean loadDataStatus = false;
 
-    public AppUpdate(Activity context) {
-        this.context = context;
-    }
 
     /**
      * 方法说明：启动异步任务
      *
      * @param updateDirection
      */
-    public void startUpdateAsy(String updateDirection) {
+    public void startUpdateAsy(Activity context, String updateDirection) {
+        this.context = context;
         String verName = ConfigUtils.getINSTANCE().getVersionName(context);
         if (!TextUtils.isEmpty(verName) && !loadDataStatus && !dialogstatus) {
             loadDataStatus = true;
@@ -131,76 +129,17 @@ public class AppUpdate {
                                 }
                             }
                         }
-                        getIsOpenNotification(updateDirection);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.e("Observable", "" + throwable.toString());
+                        loadDataStatus = false;
                     }
                 });
         return null;
     }
 
-    private void getIsOpenNotification(String updateDirection) {
-        //首页 是否开启通知
-        if (!TextUtils.isEmpty(updateDirection) && level.equals("0")) {
-            NotificationManagerCompat manager = NotificationManagerCompat.from(context);
-            boolean isOpened = manager.areNotificationsEnabled();
-            Log.e("getIsOpenNotification", "isOpened=" + isOpened);
-            if (!isOpened) {
-                Intent intents = new Intent();
-                intents.setAction(ConstantManager.MAINMENU_ACTION);
-                intents.putExtra("type", ConstantManager.MAIN_ACTION_UpdateVerDisAllDialog);
-                LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
-
-                showOpenNotificationWindow();
-            } else {
-                BottomMenuActivity.updatedialogstatus = false;
-            }
-        }
-    }
-
-    MyDialog OpenNotificationDialog;
-
-    private void showOpenNotificationWindow() {
-        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
-            return;
-        }
-        OpenNotificationDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
-        OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-        Window window = OpenNotificationDialog.getWindow();
-        window.setGravity(Gravity.CENTER);
-        OpenNotificationDialog.show();
-        WindowManager m = context.getWindowManager();
-        Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-        WindowManager.LayoutParams p = OpenNotificationDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-        p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
-        OpenNotificationDialog.getWindow().setAttributes(p); //设置生效
-
-        LinearLayout layout_cancel = (LinearLayout) OpenNotificationDialog.findViewById(R.id.layout_cancel);
-        TextView btn_ok = (TextView) OpenNotificationDialog.findViewById(R.id.btn_ok);
-        layout_cancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenNotificationDialog.dismiss();
-            }
-        });
-        btn_ok.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenNotificationDialog.dismiss();
-                String pkg = context.getApplicationContext().getPackageName();
-                // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", pkg, null);
-                intent.setData(uri);
-                context.startActivity(intent);
-            }
-        });
-
-    }
 
     /**
      * 方法说明：更新对话框提示 后台更新

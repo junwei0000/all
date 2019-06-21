@@ -134,4 +134,22 @@ public class AddressItemBean implements Serializable {
     public void setIs_gift(String is_gift) {
         this.is_gift = is_gift;
     }
+
+    @Override
+    public String toString() {
+        return "AddressItemBean{" +
+                "address_id='" + address_id + '\'' +
+                ", user_id='" + user_id + '\'' +
+                ", consignee='" + consignee + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", twon='" + twon + '\'' +
+                ", address='" + address + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", is_default='" + is_default + '\'' +
+                ", is_gift='" + is_gift + '\'' +
+                ", position=" + position +
+                '}';
+    }
 }

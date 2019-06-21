@@ -172,7 +172,10 @@ public class ConfigUtils {
      * 功能说明：获取版本号'1.8.0'
      */
     public String getVersionName(Context context) {
-        String verName = null;
+        String verName = "";
+        if (context == null) {
+            return verName;
+        }
         try {
             verName = context.getPackageManager().getPackageInfo("com.longcheng.lifecareplan", 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
