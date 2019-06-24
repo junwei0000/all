@@ -130,6 +130,25 @@ public class GetHomeInfoBean implements Serializable {
     private int isLifeBasicApplyCash;//是否有未提现的基础保障提现 0：不弹 1：弹
     private String lifeBasicApplyCashUrl;//基础保障列表提现地址
 
+    private int displayLifeBasic;//是否有基础保障 0：不弹 1：弹
+    private String displayLifeBasicUrl;//基础保障地址
+
+    public int getDisplayLifeBasic() {
+        return displayLifeBasic;
+    }
+
+    public void setDisplayLifeBasic(int displayLifeBasic) {
+        this.displayLifeBasic = displayLifeBasic;
+    }
+
+    public String getDisplayLifeBasicUrl() {
+        return displayLifeBasicUrl;
+    }
+
+    public void setDisplayLifeBasicUrl(String displayLifeBasicUrl) {
+        this.displayLifeBasicUrl = displayLifeBasicUrl;
+    }
+
     public int getIsLifeBasicApplyCash() {
         return isLifeBasicApplyCash;
     }

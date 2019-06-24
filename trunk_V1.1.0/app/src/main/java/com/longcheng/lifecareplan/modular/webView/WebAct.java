@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.webView;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -23,6 +24,8 @@ import android.webkit.ValueCallback;
 import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
 import android.webkit.WebHistoryItem;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -148,12 +151,12 @@ public abstract class WebAct extends BaseActivity {
 
     public void loadUrl(String url) {
         this.baseurl = url;
-        if (!TextUtils.isEmpty(url)) {
-            mBridgeWebView.addUrlPageBackListItem(url);
-            sewtCookie(url);
+        if (!TextUtils.isEmpty(baseurl)) {
+            mBridgeWebView.addUrlPageBackListItem(baseurl);
+            sewtCookie(baseurl);
         }
         // 打开页面，也可以支持网络url
-        mBridgeWebView.loadUrl(url);
+        mBridgeWebView.loadUrl(baseurl);
     }
 
     /**
@@ -682,6 +685,20 @@ public abstract class WebAct extends BaseActivity {
                 mHandler.sendEmptyMessage(DISMISSDIALOG);
             }
 
+            //Android6.0以上404或者500处理
+            @TargetApi(android.os.Build.VERSION_CODES.M)
+            @Override
+            public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+                super.onReceivedHttpError(view, request, errorResponse);
+                int statusCode = errorResponse.getStatusCode();
+                if (404 == statusCode || 500 == statusCode) {
+                    view.loadUrl("about:blank");// 避免出现默认的错误界面
+                    showErr = true;
+                    showNoDataView(showErr);
+                }
+            }
+
+            //Android6.0以上断网和链接超时处理
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 Log.e("URLDecoder", "onReceivedError errorCode=" + errorCode);

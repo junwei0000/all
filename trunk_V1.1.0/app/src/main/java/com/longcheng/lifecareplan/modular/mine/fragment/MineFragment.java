@@ -965,6 +965,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (LifeBasicCashDialog != null && LifeBasicCashDialog.isShowing()) {
             LifeBasicCashDialog.dismiss();
         }
+        if (LifeBasicDialog != null && LifeBasicDialog.isShowing()) {
+            LifeBasicDialog.dismiss();
+        }
     }
 
     /**
@@ -999,7 +1002,17 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 LevelDialog.dismiss();
             }
         }
-        //基础保障未提现  3
+        //基础保障  3
+        if (data.getDisplayLifeBasic() > 0) {
+            showLifeBasiDialog();
+            return;
+        } else {
+            if (LifeBasicDialog != null && LifeBasicDialog.isShowing()) {
+                LifeBasicDialog.dismiss();
+            }
+        }
+
+        //基础保障未提现  4
         if (data.getIsLifeBasicApplyCash() > 0) {
             showLifeBasicCashDialog();
             return;
@@ -1008,7 +1021,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 LifeBasicCashDialog.dismiss();
             }
         }
-        //志愿者关联债权人提现  4
+        //志愿者关联债权人提现  5
         if (data.getIsDisplayCrediterCash() > 0) {
             showCrediterCashDialog();
             return;
@@ -1017,7 +1030,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 CrediterCashDialog.dismiss();
             }
         }
-        //天才行动 5
+        //天才行动 6
         if (data.getIs_commonweal_activity() > 0) {
             showActionDialog();
             return;
@@ -1026,7 +1039,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 actionDialog.dismiss();
             }
         }
-        //红包 6
+        //红包 7
         if (isUnopenedRedPackage > 0) {
             showRedBaoDialog();
             return;
@@ -1076,6 +1089,50 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             tv_cont.setText("恭喜您成为" + CurrentStartLevel + "星CHO~");
             LevelDialog.show();
+        }
+    }
+
+    MyDialog LifeBasicDialog;
+
+    /**
+     * 基础保障弹层
+     */
+    public void showLifeBasiDialog() {
+        if (LifeBasicDialog == null) {
+            LifeBasicDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+            LifeBasicDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = LifeBasicDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            LifeBasicDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = LifeBasicDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4;
+            LifeBasicDialog.getWindow().setAttributes(p); //设置生效
+            ImageView fram_bg = (ImageView) LifeBasicDialog.findViewById(R.id.fram_bg);
+            fram_bg.setBackgroundResource(R.mipmap.my_basic_bj);
+            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.423)));
+            LinearLayout layout_cancel = (LinearLayout) LifeBasicDialog.findViewById(R.id.layout_cancel);
+
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LifeBasicDialog.dismiss();
+                }
+            });
+            fram_bg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LifeBasicDialog.dismiss();/**/
+                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + data.getDisplayLifeBasicUrl());
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+            });
+        } else {
+            LifeBasicDialog.show();
         }
     }
 
