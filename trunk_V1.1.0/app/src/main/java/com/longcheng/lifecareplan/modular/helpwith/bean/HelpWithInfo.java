@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class HelpWithInfo implements Serializable {
     private String name;
     private String name2;
+    private int textColorId;
     private int bgColorId;
     private int imgId;
     private String skipurl;
@@ -18,11 +19,20 @@ public class HelpWithInfo implements Serializable {
         this.imgId = imgId;
     }
 
-    public HelpWithInfo(String name, String name2, int bgColorId, String skipurl) {
+    public HelpWithInfo(String name, String name2, int textColorId, int bgColorId, String skipurl) {
         this.name = name;
         this.name2 = name2;
+        this.textColorId = textColorId;
         this.bgColorId = bgColorId;
         this.skipurl = skipurl;
+    }
+
+    public int getTextColorId() {
+        return textColorId;
+    }
+
+    public void setTextColorId(int textColorId) {
+        this.textColorId = textColorId;
     }
 
     public String getSkipurl() {

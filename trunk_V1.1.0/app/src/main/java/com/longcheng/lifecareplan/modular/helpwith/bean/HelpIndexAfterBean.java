@@ -35,6 +35,16 @@ public class HelpIndexAfterBean {
     private String myGratitudeUrl;
     @SerializedName("lifeUrl")
     private String lifeUrl;
+    @SerializedName("lifeUrlWorld")
+    private String lifeUrlWorld;
+
+    public String getLifeUrlWorld() {
+        return lifeUrlWorld;
+    }
+
+    public void setLifeUrlWorld(String lifeUrlWorld) {
+        this.lifeUrlWorld = lifeUrlWorld;
+    }
 
     public String getLifeUrl() {
         return lifeUrl;

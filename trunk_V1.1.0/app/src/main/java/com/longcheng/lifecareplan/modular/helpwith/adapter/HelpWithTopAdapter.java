@@ -17,6 +17,7 @@ import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
+import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpWithInfo;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
@@ -63,6 +64,7 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
         HelpWithInfo mHelpWithInfo = list.get(position);
         String cont = mHelpWithInfo.getName2();
         mHolder.item_tv_cont.setText(mHelpWithInfo.getName());
+        mHolder.item_tv_cont.setTextColor(context.getResources().getColor(mHelpWithInfo.getTextColorId()));
         mHolder.item_tv_cont2.setText(cont);
         GlideDownLoadImage.getInstance().loadCircleImageRole(mHelpWithInfo.getBgColorId(), mHolder.item_iv_applyselect, 0);
         GlideDownLoadImage.getInstance().loadCircleImageRole(mHelpWithInfo.getBgColorId(), mHolder.item_iv_select, 0);
@@ -102,8 +104,8 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     context.startActivity(intent);
                 } else if (position == 2) {
-                    //生活保障互祝
-                    intent = new Intent(context, BaoZhangActitvty.class);
+                    //智能互祝
+                    intent = new Intent(context, AutoHelpH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + list.get(position).getSkipurl());
                     context.startActivity(intent);
@@ -112,6 +114,18 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
                     intent = new Intent(context, ConnonH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("kn_url", "" + list.get(position).getSkipurl());
+                    context.startActivity(intent);
+                } else if (position == 4) {
+                    //生活保障互祝
+                    intent = new Intent(context, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + list.get(position).getSkipurl());
+                    context.startActivity(intent);
+                } else if (position == 5) {
+                    //天下无债
+                    intent = new Intent(context, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + list.get(position).getSkipurl());
                     context.startActivity(intent);
                 }
             }
