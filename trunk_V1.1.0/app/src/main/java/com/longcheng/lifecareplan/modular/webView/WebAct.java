@@ -4,41 +4,27 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
-import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
-import android.webkit.WebHistoryItem;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ActivityManager;
@@ -48,7 +34,6 @@ import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
@@ -68,9 +53,6 @@ import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.LocationUtils;
 import com.longcheng.lifecareplan.utils.SaveImageUtils;
-import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.glide.GlideCircleTransform;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeHandler;
@@ -248,9 +230,9 @@ public abstract class WebAct extends BaseActivity {
                 if (!data.contains("http")) {
                     data = Config.BASE_HEAD_URL + data;
                 }
-                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("kn_url", "" + data);
+                intent.putExtra("html_url", "" + data);
                 startActivity(intent);
             }
         });
@@ -258,9 +240,9 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.registerHandler("knp_indexBack", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("kn_url", "" + HomeFragment.kn_url);
+                intent.putExtra("html_url", "" + HomeFragment.kn_url);
                 startActivity(intent);
             }
         });
@@ -397,9 +379,9 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.registerHandler("toDoctor_connonList", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("kn_url", "" + HomeFragment.kn_url);
+                intent.putExtra("html_url", "" + HomeFragment.kn_url);
                 startActivity(intent);
             }
         });

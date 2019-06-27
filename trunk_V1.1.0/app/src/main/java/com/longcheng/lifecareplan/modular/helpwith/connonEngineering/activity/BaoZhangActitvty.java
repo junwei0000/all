@@ -22,11 +22,14 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
+import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
+import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnvelopeKnpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.pay.PayCallBack;
@@ -72,7 +75,7 @@ public class BaoZhangActitvty extends WebAct {
 
 
     private ShareUtils mShareUtils;
-
+    private DetailHelpDialogUtils mknpDetailHelpDialogUtils;
     private VolunterDialogUtils mVolunterDialogUtils;
     private VolunterDialogUtils mChangeLFDialogUtils;
     private BaoZhangDialogUtils mLifeBasicPayDialogUtils;
@@ -83,8 +86,10 @@ public class BaoZhangActitvty extends WebAct {
     private List<DetailItemBean> blessings_list;
     private List<DetailItemBean> mutual_help_money_all;
     private String knp_sharetitle, knp_shareurl, knp_sharePic, knp_sharedesc;
-    private String life_id;
-    private String life_order_id = "";
+    private String life_id, msg_id;
+    private String one_order_id = "";
+    private int mutual_help_money;
+    private DetailItemBean userInfo;
     /**
      * 生活保障详情id
      */
@@ -94,6 +99,7 @@ public class BaoZhangActitvty extends WebAct {
      */
     public static int SHARETYPE_lifeDetailPay = 1000;
     public static int SHARETYPE_LifeBasicDetailPay = 1001;
+    public static int SHARETYPE_KNPDetailPay = 1002;
     /**
      * 是否可以分享
      */
@@ -155,11 +161,9 @@ public class BaoZhangActitvty extends WebAct {
     @Override
     public void initDataAfter() {
         super.initDataAfter();
-        String title = getIntent().getStringExtra("title");
-        pageTopTvName.setText(title);
         String url = getIntent().getStringExtra("html_url");
         loadUrl(url);
-        //生活保障详情--获取分享 knp_msg_id
+        //详情--获取分享 knp_msg_id
         mBridgeWebView.registerHandler("knp_getKnpMsgId", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -169,17 +173,15 @@ public class BaoZhangActitvty extends WebAct {
                     String url = jsonObject.optString("url", "");
                     life_repay_id = jsonObject.optString("knp_msg_id", "0");
                     if (pagetopIvRigth != null) {
-                        if (!TextUtils.isEmpty(url) && url.contains("/home/life/repayinfo")) {
-                            pagetopIvRigth.setVisibility(View.VISIBLE);
-                            shareStatus = true;
+                        pagetopIvRigth.setVisibility(View.VISIBLE);
+                        shareStatus = true;
+                        if (!TextUtils.isEmpty(url) && url.contains("/knp/info")) {
+                            shareBackType = "knpDetail";
+                        } else if (!TextUtils.isEmpty(url) && url.contains("/home/life/repayinfo")) {
                             shareBackType = "lifeDetail";
                         } else if (!TextUtils.isEmpty(url) && url.contains("/lifebasic/info")) {
-                            pagetopIvRigth.setVisibility(View.VISIBLE);
-                            shareStatus = true;
                             shareBackType = "LifeBasicDetail";
                         } else if (!TextUtils.isEmpty(url) && url.contains("/giveactivity/index")) {
-                            pagetopIvRigth.setVisibility(View.VISIBLE);
-                            shareStatus = true;
                             shareBackType = "GiveactivityApply";
                         } else {
                             //非详情页、和自己的详情不让分享
@@ -194,10 +196,14 @@ public class BaoZhangActitvty extends WebAct {
                             shareBackType = "LifeBasicDetail";
                         } else if (route.equals("life_info")) {
                             shareBackType = "lifeDetail";
+                        } else if (route.equals("knp_info")) {
+                            shareBackType = "knpDetail";
                         }
                     }
                     if (!life_repay_id.equals("0")) {
-                        if (shareBackType.equals("lifeDetail")) {
+                        if (shareBackType.equals("knpDetail")) {
+                            getKNPMsgDetail(life_repay_id);
+                        } else if (shareBackType.equals("lifeDetail")) {
                             getLifeDetail(life_repay_id);
                         } else if (shareBackType.equals("LifeBasicDetail")) {
                             getLifeBasicDetail(life_repay_id);
@@ -211,6 +217,22 @@ public class BaoZhangActitvty extends WebAct {
                 }
             }
         });
+        //康农详情----显示祝福弹层
+        mBridgeWebView.registerHandler("knp_showHelpDialog", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                msg_id = data;
+                weixinPayBackType = "knpDetailPay";
+                Log.e("registerHandler", "data=" + data);
+                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
+                    if (mknpDetailHelpDialogUtils == null) {
+                        mknpDetailHelpDialogUtils = new DetailHelpDialogUtils(mActivity, mHandler, KNPBLESS);
+                    }
+                    mknpDetailHelpDialogUtils.initData(userInfo, blessings_list, 0, mutual_help_money, mutual_help_money_all);
+                    mknpDetailHelpDialogUtils.showPopupWindow();
+                }
+            }
+        });
         //生活保障详情--显示祝福支付
         mBridgeWebView.registerHandler("Life_AppPayment", new BridgeHandler() {
             @Override
@@ -220,7 +242,7 @@ public class BaoZhangActitvty extends WebAct {
                 Log.e("registerHandler", "data=" + data);
                 if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
                     if (mDetailHelpDialogUtils == null) {
-                        mDetailHelpDialogUtils = new BaoZhangDialogUtils(mActivity, mHandler, BLESSING);
+                        mDetailHelpDialogUtils = new BaoZhangDialogUtils(mActivity, mHandler, LIFEBLESSING);
                     }
                     mDetailHelpDialogUtils.initData(blessings_list, mutual_help_money_all);
                     mDetailHelpDialogUtils.showPopupWindow();
@@ -326,13 +348,18 @@ public class BaoZhangActitvty extends WebAct {
         });
     }
 
-    private static final int BLESSING = 22;
+    public static final int knpPaySuccessBack = 11;
+    public static final int knpPaySucRreDetail = 12;
+    private static final int KNPBLESS = 20;
+    private static final int LIFEBLESSING = 22;
     private static final int VolunterSelectPay = 33;
     private static final int sendLifeDetailShareNum = 44;
     private static final int ChangeLeiFengPay = 55;
     public static final int LifeBasicAppPayment = 66;
     private static final int sendLifeBasicDetailShareNum = 77;
+    private static final int sendKNPDetailShareNum = 78;
     private static final int GiveactivityApplyPay = 88;
+
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         Bundle bundle;
@@ -343,13 +370,20 @@ public class BaoZhangActitvty extends WebAct {
 
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case BLESSING:
+                case KNPBLESS:
+                    bundle = msg.getData();
+                    help_comment_content = bundle.getString("help_comment_content");
+                    payType = bundle.getString("payType");
+                    selectmoney = bundle.getInt("selectmoney");
+                    knpPayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, msg_id, selectmoney);
+                    break;
+                case LIFEBLESSING:
                     bundle = msg.getData();
                     help_comment_content = bundle.getString("help_comment_content");
                     payType = bundle.getString("payType");
                     selectmoney = bundle.getInt("selectmoney");
                     help_number = bundle.getInt("help_number");
-                    lifepayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
+                    lifePayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
                     break;
                 case LifeBasicAppPayment:
                     bundle = msg.getData();
@@ -380,10 +414,125 @@ public class BaoZhangActitvty extends WebAct {
                 case sendLifeBasicDetailShareNum:
                     sendLifeDetailShareNum();
                     break;
+                case sendKNPDetailShareNum:
+                    sendLifeDetailShareNum();
+                    break;
+
 
             }
         }
     };
+    //--------------------------------------------------------------------------------------------------------
+
+    /**
+     * 康农详情--互祝支付
+     *
+     * @param user_id
+     * @param help_comment_content
+     * @param pay_way
+     * @param msg_id
+     * @param money
+     */
+    public void knpPayHelp(String user_id, String help_comment_content, String pay_way, String msg_id, int money) {
+        Log.e("Observable", "" + ExampleApplication.token);
+        if (RequestDataStatus) {
+            return;
+        }
+        showDialog();
+        Observable<PayWXDataBean> observable = Api.getInstance().service.KNPPayHelp(user_id,
+                help_comment_content, pay_way, msg_id, money, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                one_order_id = payWeChatBean.getOne_order_id();
+                                if (pay_way.equals("wxpay")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (pay_way.equals("alipay")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            knpPayHelpSkipSuccess();
+                                        }
+
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                } else {
+                                    knpPayHelpSkipSuccess();
+                                }
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastUtils.showToast(R.string.net_tishi);
+                        Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
+                    }
+                });
+    }
+
+    /**
+     * 跳转红包页
+     */
+    private void knpPayHelpSkipSuccess() {
+        Intent intent = new Intent(mActivity, RedEnvelopeKnpActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("one_order_id", one_order_id);
+        startActivity(intent);
+        ConfigUtils.getINSTANCE().setPageLoginIntentAnim(intent, mActivity);
+    }
+
+    /**
+     * 康农工程-----刷新康农详情页返回列表
+     */
+    private void knpPaySuccessBack() {
+        mBridgeWebView.callHandler("knp_paySuccessBack", "", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    /**
+     * 康农工程-----刷新康农详情页
+     */
+    private void knpPaySucRreDetail() {
+        mBridgeWebView.callHandler("knp_paySucRreDetail", "", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    /**
+     * 康农工程---分享成功刷新生活保障详情页
+     */
+    private void knpDetailShareRefresh() {
+        mBridgeWebView.callHandler("knp_DetailRefresh", "" + one_order_id, new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+    //--------------------------------------------------------------------------------------------------------
 
     /**
      * 首页--饮品免费领（邮费支付）
@@ -450,6 +599,7 @@ public class BaoZhangActitvty extends WebAct {
             }
         });
     }
+//--------------------------------------------------------------------------------------------------------
 
     /**
      * 志愿者互祝---申请基础保障支付
@@ -656,9 +806,7 @@ public class BaoZhangActitvty extends WebAct {
         });
     }
 
-    /**
-     * _____________________end_________________________________
-     */
+    //--------------------------------------------------------------------------------------------------------
 
 
     /**
@@ -691,7 +839,7 @@ public class BaoZhangActitvty extends WebAct {
                                 ToastUtils.showToast(responseBean.getMsg());
                             } else if (status.equals("200")) {
                                 PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                                life_order_id = payWeChatBean.getOne_order_id();
+                                one_order_id = payWeChatBean.getOne_order_id();
                                 if (pay_way.equals("1")) {
                                     Log.e(TAG, payWeChatBean.toString());
                                     PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
@@ -726,14 +874,14 @@ public class BaoZhangActitvty extends WebAct {
      * 志愿者互祝--基础保障详情支付成功跳转红包页
      */
     private void LifeBasicDetailPaySuccess() {
-        mBridgeWebView.callHandler("LifeBasic_paySuccessBack", "" + life_order_id, new CallBackFunction() {
+        mBridgeWebView.callHandler("LifeBasic_paySuccessBack", "" + one_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
             }
         });
     }
-
+//--------------------------------------------------------------------------------------------------------
 
     /**
      * 生活保障---详情互祝支付
@@ -744,7 +892,7 @@ public class BaoZhangActitvty extends WebAct {
      * @param life_id
      * @param money
      */
-    public void lifepayHelp(String user_id, String help_comment_content, String pay_way, String life_id, int money, int help_number) {
+    public void lifePayHelp(String user_id, String help_comment_content, String pay_way, String life_id, int money, int help_number) {
         Log.e("Observable", "" + ExampleApplication.token);
         if (RequestDataStatus) {
             return;
@@ -762,7 +910,7 @@ public class BaoZhangActitvty extends WebAct {
                             String status = responseBean.getStatus();
                             if (status.equals("200")) {
                                 PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                                life_order_id = payWeChatBean.getOne_order_id();
+                                one_order_id = payWeChatBean.getOne_order_id();
                                 if (pay_way.equals("1")) {
                                     Log.e(TAG, payWeChatBean.toString());
                                     PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
@@ -801,7 +949,7 @@ public class BaoZhangActitvty extends WebAct {
      * 生活保障---支付成功跳转红包页
      */
     private void lifeSkipSuccess() {
-        mBridgeWebView.callHandler("Life_paySuccessBack", "" + life_order_id, new CallBackFunction() {
+        mBridgeWebView.callHandler("Life_paySuccessBack", "" + one_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
@@ -813,12 +961,57 @@ public class BaoZhangActitvty extends WebAct {
      * 生活保障/基础保障---分享成功刷新生活保障详情页
      */
     private void lifeDetailShareRefresh() {
-        mBridgeWebView.callHandler("Life_DetailRefresh", "" + life_order_id, new CallBackFunction() {
+        mBridgeWebView.callHandler("Life_DetailRefresh", "" + one_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
             }
         });
+    }
+//--------------------------------------------------------------------------------------------------------
+
+    /**
+     * 获取康农详情数据
+     *
+     * @param knp_msg_id
+     */
+    public void getKNPMsgDetail(String knp_msg_id) {
+        Observable<EnergyDetailDataBean> observable = Api.getInstance().service.getKNPMsgDetail(UserUtils.getUserId(mContext), knp_msg_id,
+                ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<EnergyDetailDataBean>() {
+                    @Override
+                    public void accept(EnergyDetailDataBean responseBean) throws Exception {
+                        String status = responseBean.getStatus();
+                        if (status.equals("400")) {
+                        } else if (status.equals("200")) {
+                            //http://test.t.asdyf.com/api/v1_0_0/help/lj_payment?id=1350&user_id=942&token=7e3ddf48a199421e37d17b57c7d66a1c
+                            DetailAfterBean mDetailAfterBean = (DetailAfterBean) responseBean.getData();
+                            if (mDetailAfterBean != null) {
+                                knp_sharetitle = mDetailAfterBean.getKnp_sharetitle();
+                                knp_shareurl = mDetailAfterBean.getKnp_shareurl();
+                                knp_sharePic = mDetailAfterBean.getKnp_sharePic();
+                                knp_sharedesc = mDetailAfterBean.getKnp_sharedesc();
+                                blessings_list = mDetailAfterBean.getKnp_blessings_list();
+                                DetailItemBean knp_helpmoneydefault = mDetailAfterBean.getKnp_helpmoneydefault();
+                                mutual_help_money = knp_helpmoneydefault.getMoney();
+                                userInfo = mDetailAfterBean.getUser_info();
+                                mutual_help_money_all = mDetailAfterBean.getMutual_help_money_all();
+                                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
+                                } else {
+                                    mutual_help_money_all = new ArrayList<>();
+                                }
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+//                        qiMingSkipHelp("0");
+                    }
+                });
+
     }
 
     /**
@@ -898,7 +1091,6 @@ public class BaoZhangActitvty extends WebAct {
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-//                        qiMingSkipHelp("0");
                         Log.e("ResponseBody", "____________________" + throwable.toString());
                     }
                 });
@@ -955,6 +1147,9 @@ public class BaoZhangActitvty extends WebAct {
         } else if (shareBackType.equals("LifeBasicDetail")) {
             observable = Api.getInstance().service.sendLifeBasicDetailShareNum(UserUtils.getUserId(mContext), life_repay_id,
                     ExampleApplication.token);
+        } else if (shareBackType.equals("knpDetail")) {
+            observable = Api.getInstance().service.sendKNPDetailShareNum(UserUtils.getUserId(mContext), life_repay_id,
+                    ExampleApplication.token);
         }
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -964,7 +1159,12 @@ public class BaoZhangActitvty extends WebAct {
                         String status = responseBean.getStatus();
                         if (status.equals("400")) {
                         } else if (status.equals("200")) {
-                            lifeDetailShareRefresh();
+                            if (shareBackType.equals("knpDetail")) {
+                                knpDetailShareRefresh();
+                            } else {
+                                lifeDetailShareRefresh();
+                            }
+
                         }
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
@@ -1001,7 +1201,9 @@ public class BaoZhangActitvty extends WebAct {
         public void onReceive(Context context, Intent intent) {
             int Code = intent.getIntExtra("errCode", 100);
             if (Code == WXPayEntryActivity.PAY_SUCCESS) {
-                if (weixinPayBackType.equals("lifeDetailPay")) {
+                if (weixinPayBackType.equals("knpDetailPay")) {
+                    knpPayHelpSkipSuccess();
+                } else if (weixinPayBackType.equals("lifeDetailPay")) {
                     lifeSkipSuccess();
                 } else if (weixinPayBackType.equals("VoluntePay")) {
                     volunterPaySuccuess();
@@ -1023,6 +1225,12 @@ public class BaoZhangActitvty extends WebAct {
                 mHandler.sendEmptyMessage(sendLifeDetailShareNum);
             } else if (Code == BaoZhangActitvty.SHARETYPE_LifeBasicDetailPay) {
                 mHandler.sendEmptyMessage(sendLifeBasicDetailShareNum);
+            } else if (Code == BaoZhangActitvty.SHARETYPE_KNPDetailPay) {
+                mHandler.sendEmptyMessage(sendKNPDetailShareNum);
+            } else if (Code == knpPaySuccessBack) {
+                knpPaySuccessBack();
+            } else if (Code == knpPaySucRreDetail) {
+                knpPaySucRreDetail();
             }
         }
     };

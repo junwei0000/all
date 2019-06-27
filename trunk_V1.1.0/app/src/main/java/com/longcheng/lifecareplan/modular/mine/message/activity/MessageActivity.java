@@ -15,11 +15,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseListActivity;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
-import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.message.adapter.MessageAdapter;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageAfterBean;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageItemBean;
@@ -132,9 +130,9 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     } else if (help_type == 3) {
-                        Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("kn_url", "" + helpAllList.get(position - 1).getInfo_url());
+                        intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     }

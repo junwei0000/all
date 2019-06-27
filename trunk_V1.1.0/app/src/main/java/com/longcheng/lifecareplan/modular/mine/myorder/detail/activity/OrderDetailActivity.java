@@ -22,9 +22,8 @@ import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetai
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.SkipHelpUtils;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
@@ -32,7 +31,6 @@ import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity.L
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
-import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressAddActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailDataBean;
@@ -49,8 +47,6 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -143,9 +139,9 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     }
                 } else if (type == 4) {//康农工程互祝详情
-                    Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("kn_url", "" + mOrderItemBean.getKnp_info_url());
+                    intent.putExtra("html_url", "" + mOrderItemBean.getKnp_info_url());
                     startActivity(intent);
                 } else {//商品详情
                     if (type == 3) {

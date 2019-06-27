@@ -20,12 +20,9 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpA
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpWithInfo;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
-import com.longcheng.lifecareplan.utils.CommonUtilImage;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
@@ -111,9 +108,9 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
                     context.startActivity(intent);
                 } else if (position == 3) {
                     //康农工程互祝
-                    intent = new Intent(context, ConnonH5Activity.class);
+                    intent = new Intent(context, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("kn_url", "" + list.get(position).getSkipurl());
+                    intent.putExtra("html_url", "" + list.get(position).getSkipurl());
                     context.startActivity(intent);
                 } else if (position == 4) {
                     //生活保障互祝

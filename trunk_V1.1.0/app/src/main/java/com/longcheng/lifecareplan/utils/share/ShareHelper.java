@@ -160,7 +160,10 @@ public class ShareHelper {
             if (!TextUtils.isEmpty(BaoZhangActitvty.life_repay_id) && !BaoZhangActitvty.life_repay_id.equals("0")) {
                 Intent intent2 = new Intent();
                 intent2.setAction(ConstantManager.BroadcastReceiver_KNP_ACTION);
-                if (BaoZhangActitvty.shareBackType.equals("lifeDetail")) {
+                if (BaoZhangActitvty.shareBackType.equals("knpDetail")) {
+                    intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE_KNPDetailPay);
+                    activity.sendBroadcast(intent2);
+                }else if (BaoZhangActitvty.shareBackType.equals("lifeDetail")) {
                     intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE_lifeDetailPay);
                     activity.sendBroadcast(intent2);
                 } else if (BaoZhangActitvty.shareBackType.equals("LifeBasicDetail")) {

@@ -1,13 +1,9 @@
 package com.longcheng.lifecareplan.modular.mine.activatenergy.activity;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,8 +17,6 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.adapter.MoneyAdapter;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.EnergyAfterBean;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.EnergyItemBean;
@@ -44,7 +38,6 @@ import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 激活能量

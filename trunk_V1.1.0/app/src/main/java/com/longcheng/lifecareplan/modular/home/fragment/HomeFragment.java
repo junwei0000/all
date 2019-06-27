@@ -1,13 +1,8 @@
 package com.longcheng.lifecareplan.modular.home.fragment;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.Settings;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
@@ -18,14 +13,12 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -33,14 +26,11 @@ import android.widget.ViewFlipper;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.autolayout.utils.L;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
-import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.home.adapter.ActionAdapter;
@@ -62,11 +52,7 @@ import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtil
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
-import com.longcheng.lifecareplan.modular.mine.set.activity.NotServiceActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
-import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
-import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.CleanMessageUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -88,8 +74,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * 作者：MarkShuai
@@ -296,9 +280,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                         }
                     } else if (sort == 2) {
                         if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
-                            intent = new Intent(mContext, ConnonH5Activity.class);
+                            intent = new Intent(mContext, BaoZhangActitvty.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("kn_url", "" + kn_url);
+                            intent.putExtra("html_url", "" + kn_url);
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
@@ -538,9 +522,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                         if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
                             String url = layer.get(showLayerIndex).getHref();
                             if (!TextUtils.isEmpty(url) && url.contains("knp/index")) {
-                                Intent intent = new Intent(mContext, ConnonH5Activity.class);
+                                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                intent.putExtra("kn_url", "" + url);
+                                intent.putExtra("html_url", "" + url);
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {

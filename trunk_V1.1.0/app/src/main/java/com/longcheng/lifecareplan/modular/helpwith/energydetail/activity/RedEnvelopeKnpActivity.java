@@ -21,7 +21,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.SkipHelpUtils;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.ConnonH5Activity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.PayAfterBean;
@@ -37,8 +37,6 @@ import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
-import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
-import com.longcheng.lifecareplan.widget.jswebview.browse.CallBackFunction;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
 import butterknife.BindView;
@@ -224,7 +222,7 @@ public class RedEnvelopeKnpActivity extends BaseActivityMVP<RedEvelopeContract.V
             //康农工程-----支付成功返回上一页
             Intent intent = new Intent();
             intent.setAction(ConstantManager.BroadcastReceiver_KNP_ACTION);
-            intent.putExtra("errCode", ConnonH5Activity.knpPaySuccessBack);
+            intent.putExtra("errCode", BaoZhangActitvty.knpPaySuccessBack);
             sendBroadcast(intent);//发送普通广播
         } else if (!TextUtils.isEmpty(backToPrePage) && backToPrePage.equals("2")) {
             Intent intent = new Intent(mActivity, ApplyHelpActivity.class);
@@ -242,7 +240,7 @@ public class RedEnvelopeKnpActivity extends BaseActivityMVP<RedEvelopeContract.V
         //康农工程-----刷新康农详情页
         Intent intent = new Intent();
         intent.setAction(ConstantManager.BroadcastReceiver_KNP_ACTION);
-        intent.putExtra("errCode", ConnonH5Activity.knpPaySucRreDetail);
+        intent.putExtra("errCode", BaoZhangActitvty.knpPaySucRreDetail);
         sendBroadcast(intent);
     }
 

@@ -840,6 +840,11 @@ public interface ApiService {
                                                          @Query("life_basic_id") String life_basic_id,
                                                          @Query("token") String token);
 
+    @GET(Config.VERSION + "knp/addForward")
+    Observable<ResponseBean> sendKNPDetailShareNum(@Query("user_id") String user_id,
+                                                   @Query("knp_msg_id") String knp_msg_id,
+                                                   @Query("token") String token);
+
     @GET(Config.VERSION + "commonweal/info")
     Observable<EnergyDetailDataBean> getCommonwealMsgDetail(@Query("user_id") String user_id,
                                                             @Query("commonweal_activity_id") String commonweal_activity_id,
