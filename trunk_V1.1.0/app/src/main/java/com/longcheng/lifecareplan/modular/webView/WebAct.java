@@ -652,6 +652,42 @@ public abstract class WebAct extends BaseActivity {
      * ***********************上传图片*************************
      */
     private void updateWebPic() {
+        mBridgeWebView.setWebChromeClient(new WebChromeClient() {
+            // 配置权限（同样在WebChromeClient中实现）
+            @Override
+            public void onGeolocationPermissionsShowPrompt(String origin,
+                                                           GeolocationPermissions.Callback callback) {
+                callback.invoke(origin, true, false);
+                super.onGeolocationPermissionsShowPrompt(origin, callback);
+            }
+
+
+            // For Android 5.0+
+            @Override
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+                mUploadCallbackAboveL = filePathCallback;
+                choseSinglePic();
+                return true;
+            }
+            // For Android 3.0+
+
+            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+                mUploadMessage = uploadMsg;
+                choseSinglePic();
+            }
+            //3.0--版本
+
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
+                mUploadMessage = uploadMsg;
+                choseSinglePic();
+            }
+            // For Android 4.1
+
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
+                mUploadMessage = uploadMsg;
+                choseSinglePic();
+            }
+        });
         mBridgeWebView.setWebViewClient(new BridgeWebViewClient(mBridgeWebView) {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -687,43 +723,6 @@ public abstract class WebAct extends BaseActivity {
                 showErr = true;
                 showNoDataView(showErr);
                 super.onReceivedError(view, errorCode, description, failingUrl);
-            }
-        });
-
-        mBridgeWebView.setWebChromeClient(new WebChromeClient() {
-            // 配置权限（同样在WebChromeClient中实现）
-            @Override
-            public void onGeolocationPermissionsShowPrompt(String origin,
-                                                           GeolocationPermissions.Callback callback) {
-                callback.invoke(origin, true, false);
-                super.onGeolocationPermissionsShowPrompt(origin, callback);
-            }
-
-
-            // For Android 5.0+
-            @Override
-            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                mUploadCallbackAboveL = filePathCallback;
-                choseSinglePic();
-                return true;
-            }
-            // For Android 3.0+
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
-                mUploadMessage = uploadMsg;
-                choseSinglePic();
-            }
-            //3.0--版本
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
-                mUploadMessage = uploadMsg;
-                choseSinglePic();
-            }
-            // For Android 4.1
-
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
-                mUploadMessage = uploadMsg;
-                choseSinglePic();
             }
         });
     }

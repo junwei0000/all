@@ -78,6 +78,8 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     ImageView itemIvGoodthumb;
     @BindView(R.id.item_tv_goodname)
     TextView itemTvGoodname;
+    @BindView(R.id.item_tv_guigename)
+    TextView item_tv_guigename;
     @BindView(R.id.item_iv_goodtypeimg)
     ImageView itemIvGoodtypeimg;
     @BindView(R.id.item_tv_goodnum)
@@ -522,6 +524,13 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         String price = mOrderItemBean.getPrice();
         tvGoodtype.setText(mOrderItemBean.getType_name());
         itemTvGoodname.setText(mOrderItemBean.getGoods_x_name());
+        String guigeName = mOrderItemBean.getShop_goods_price_name();
+        item_tv_guigename.setText(guigeName);
+        if (!TextUtils.isEmpty(guigeName)) {
+            item_tv_guigename.setVisibility(View.VISIBLE);
+        } else {
+            item_tv_guigename.setVisibility(View.GONE);
+        }
         if (type == 2 || type == 4) {
             GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, mOrderItemBean.getImage(), itemIvGoodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(mContext, 80);

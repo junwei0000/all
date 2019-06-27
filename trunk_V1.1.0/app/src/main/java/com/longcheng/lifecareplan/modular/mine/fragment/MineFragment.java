@@ -1240,12 +1240,11 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = actionDialog.getWindow().getAttributes(); //获取对话框当前的参数值
             p.width = d.getWidth() * 3 / 4;
-            p.height = (int) (p.width * 1.28);
             actionDialog.getWindow().setAttributes(p); //设置生效
-            FrameLayout fram_bg = (FrameLayout) actionDialog.findViewById(R.id.fram_bg);
+            ImageView fram_bg = (ImageView) actionDialog.findViewById(R.id.fram_bg);
             fram_bg.setBackgroundResource(R.mipmap.my_action_icon);
+            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.423)));
             LinearLayout layout_cancel = (LinearLayout) actionDialog.findViewById(R.id.layout_cancel);
-            TextView btn_upgrade = (TextView) actionDialog.findViewById(R.id.btn_upgrade);
 
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1253,7 +1252,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     actionDialog.dismiss();
                 }
             });
-            btn_upgrade.setOnClickListener(new View.OnClickListener() {
+            fram_bg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     actionDialog.dismiss();

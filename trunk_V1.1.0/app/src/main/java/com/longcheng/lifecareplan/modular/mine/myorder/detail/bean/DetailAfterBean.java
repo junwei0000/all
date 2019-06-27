@@ -17,6 +17,7 @@ public class DetailAfterBean implements Serializable {
     private String type_name;
     private String goods_x_name;
     private String shop_goods_price_id;
+    private String shop_goods_price_name;
     private String image;
     private String price;
     private int goods_id;
@@ -54,6 +55,14 @@ public class DetailAfterBean implements Serializable {
     private int deposit_type;//2 坐堂医; 1 cho
     private int deposit;
     private String deposit_str;
+
+    public String getShop_goods_price_name() {
+        return shop_goods_price_name;
+    }
+
+    public void setShop_goods_price_name(String shop_goods_price_name) {
+        this.shop_goods_price_name = shop_goods_price_name;
+    }
 
     public String getAvatar() {
         return avatar;
