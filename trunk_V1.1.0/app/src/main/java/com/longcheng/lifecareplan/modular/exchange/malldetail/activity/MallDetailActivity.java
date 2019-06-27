@@ -181,7 +181,12 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                     showConnonDialog();
                     break;
                 }
-                setAddShoppingCartMap();
+                skipApplyHelp = false;
+                if (goodsGuiGeList != null && goodsGuiGeList.size() > 1) {
+                    showGuiGeDialog();
+                } else {
+                    skipActivity();
+                }
                 break;
             case R.id.tv_tohelp:
                 //只针对志愿者判断
@@ -197,13 +202,31 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                     showNotOverDialog();
                     break;
                 }
-                Intent intents = new Intent(mContext, LifeStyleApplyHelpActivity.class);
-                intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intents.putExtra("goods_id", "" + shop_goods_id);
-                intents.putExtra("shop_goods_price_id", "" + shop_goods_price_id);
-                startActivity(intents);
-                ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
+                skipApplyHelp = true;
+                if (goodsGuiGeList != null && goodsGuiGeList.size() > 1) {
+                    showGuiGeDialog();
+                } else {
+                    skipActivity();
+                }
                 break;
+        }
+    }
+
+    boolean skipApplyHelp = false;
+
+    /**
+     * 跳转申请或加入购物车
+     */
+    private void skipActivity() {
+        if (skipApplyHelp) {
+            Intent intents = new Intent(mContext, LifeStyleApplyHelpActivity.class);
+            intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intents.putExtra("goods_id", "" + shop_goods_id);
+            intents.putExtra("shop_goods_price_id", "" + shop_goods_price_id);
+            startActivity(intents);
+            ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
+        } else {
+            setAddShoppingCartMap();
         }
     }
 
@@ -523,6 +546,71 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
 
         }
     };
+
+    MyDialog guigeDialog;
+    TextView btn_helpsure;
+    MyGridView guigegv;
+
+    /**
+     * 规格弹层
+     */
+    public void showGuiGeDialog() {
+        if (guigeDialog == null) {
+            guigeDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_malldetail_guige);// 创建Dialog并设置样式主题
+            guigeDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = guigeDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            guigeDialog.show();
+            WindowManager m = getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = guigeDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth(); //宽度设置为屏幕
+            guigeDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) guigeDialog.findViewById(R.id.layout_cancel);
+            guigegv = (MyGridView) guigeDialog.findViewById(R.id.guige_gv);
+            btn_helpsure = (TextView) guigeDialog.findViewById(R.id.btn_helpsure);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    guigeDialog.dismiss();
+                }
+            });
+            btn_helpsure.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    guigeDialog.dismiss();
+                    skipActivity();
+                }
+            });
+        } else {
+            guigeDialog.show();
+        }
+        if (skipApplyHelp) {
+            btn_helpsure.setText("确认申请");
+        } else {
+            btn_helpsure.setText("确认加入");
+        }
+        if (goodsGuiGeList != null && goodsGuiGeList.size() > 1) {
+            shop_goods_price_id = goodsGuiGeList.get(guigeSelectPosition).getShop_goods_price_id();
+            if (mGuiGeDetailAdapter == null) {
+                mGuiGeDetailAdapter = new GuiGeDetailAdapter(mContext, goodsGuiGeList);
+            }
+            mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
+            guigegv.setAdapter(mGuiGeDetailAdapter);
+            guigegv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    guigeSelectPosition = position;
+                    shop_goods_price_id = goodsGuiGeList.get(guigeSelectPosition).getShop_goods_price_id();
+                    mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
+                    mGuiGeDetailAdapter.notifyDataSetChanged();
+                    tvSkb.setText(goodsGuiGeList.get(guigeSelectPosition).getSkb_price());
+                }
+            });
+        }
+    }
+
+
     MyDialog levelDialog;
     TextView tv_xingji;
 
