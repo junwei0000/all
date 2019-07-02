@@ -29,13 +29,13 @@ allprojects {
 }
 
 ext {
-    versionCode = 186
-    versionName = '1.8.6'
+    versionCode = 189
+    versionName = '1.8.9'
 
     compileSdkVersion = 26
+    buildToolsVersion = '27.0.1'
     minSdkVersion = 16
     targetSdkVersion = 22
-    buildToolsVersion = '27.0.1'
 
     appcompatVersion = '26.+'
     junitVersion = '4.12'
