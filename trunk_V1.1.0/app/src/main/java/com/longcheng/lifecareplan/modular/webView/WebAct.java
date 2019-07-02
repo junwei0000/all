@@ -709,7 +709,9 @@ public abstract class WebAct extends BaseActivity {
             public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
                 super.onReceivedHttpError(view, request, errorResponse);
                 int statusCode = errorResponse.getStatusCode();
-                if (404 == statusCode || 500 == statusCode) {
+                Log.e("URLDecoder", "onReceivedHttpError statusCode=" + statusCode);
+                //404 图片问题
+                if (500 == statusCode) {
                     view.loadUrl("about:blank");// 避免出现默认的错误界面
                     showErr = true;
                     showNoDataView(showErr);
