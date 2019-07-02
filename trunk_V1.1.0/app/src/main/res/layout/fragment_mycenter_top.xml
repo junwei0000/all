@@ -57,7 +57,7 @@
                     android:paddingRight="@dimen/dp3"
                     android:paddingTop="@dimen/dp1"
                     android:singleLine="true"
-                    android:text="fgxfgf"
+                    android:visibility="gone"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_zhu_size" />
             </LinearLayout>
