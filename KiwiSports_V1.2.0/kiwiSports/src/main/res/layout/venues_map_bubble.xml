@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/useraccount_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+ <TextView
+     android:id="@+id/tv_bubble"
+     android:layout_width="25dp"
+     android:layout_height="25dp"
+     android:textColor="@color/white"
+     android:textSize="8sp"
+     android:gravity="center"
+     android:background="@drawable/track_num_bg"/>
+
+</LinearLayout>

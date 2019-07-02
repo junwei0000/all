@@ -1,0 +1,123 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From KiwiSports_V1.0.2:
+* proguard-project.txt
+From MPChartLib:
+* .gitignore
+* build.gradle
+* ic_launcher-web.png
+* pom.xml
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:21.0.3
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In MPChartLib:
+* AndroidManifest.xml => mPChartLib\src\main\AndroidManifest.xml
+* lint.xml => mPChartLib\lint.xml
+* res\ => mPChartLib\src\main\res\
+* src\ => mPChartLib\src\main\java\
+In KiwiSports_V1.0.2:
+* AndroidManifest.xml => kiwiSports_V102\src\main\AndroidManifest.xml
+* assets\ => kiwiSports_V102\src\main\assets\
+* libs\AMap_Location_V3.8.0_20180201.jar => kiwiSports_V102\libs\AMap_Location_V3.8.0_20180201.jar
+* libs\AMap_Services_V2.3.1.jar => kiwiSports_V102\libs\AMap_Services_V2.3.1.jar
+* libs\Android_3DMap_V2.4.0.jar => kiwiSports_V102\libs\Android_3DMap_V2.4.0.jar
+* libs\Android_Navi_V1.1.1.jar => kiwiSports_V102\libs\Android_Navi_V1.1.1.jar
+* libs\armeabi\libAMapSDK_MAP_v6_1_0.so => kiwiSports_V102\src\main\jniLibs\armeabi\libAMapSDK_MAP_v6_1_0.so
+* libs\armeabi\libAMapSDK_NAVI_v6_0_1.so => kiwiSports_V102\src\main\jniLibs\armeabi\libAMapSDK_NAVI_v6_0_1.so
+* libs\armeabi\libamapv304.so => kiwiSports_V102\src\main\jniLibs\armeabi\libamapv304.so
+* libs\armeabi\libamapv304ex.so => kiwiSports_V102\src\main\jniLibs\armeabi\libamapv304ex.so
+* libs\armeabi\libARM_ARCH.so => kiwiSports_V102\src\main\jniLibs\armeabi\libARM_ARCH.so
+* libs\armeabi\libCNPackage.so => kiwiSports_V102\src\main\jniLibs\armeabi\libCNPackage.so
+* libs\armeabi\libentryexpro.so => kiwiSports_V102\src\main\jniLibs\armeabi\libentryexpro.so
+* libs\armeabi\libentryexstd.so => kiwiSports_V102\src\main\jniLibs\armeabi\libentryexstd.so
+* libs\armeabi\libgnustl_shared.so => kiwiSports_V102\src\main\jniLibs\armeabi\libgnustl_shared.so
+* libs\armeabi\libjpush174.so => kiwiSports_V102\src\main\jniLibs\armeabi\libjpush174.so
+* libs\armeabi\libmsc.so => kiwiSports_V102\src\main\jniLibs\armeabi\libmsc.so
+* libs\armeabi\libRongIMLib.so => kiwiSports_V102\src\main\jniLibs\armeabi\libRongIMLib.so
+* libs\armeabi\librtbt800.so => kiwiSports_V102\src\main\jniLibs\armeabi\librtbt800.so
+* libs\armeabi\libsophix.so => kiwiSports_V102\src\main\jniLibs\armeabi\libsophix.so
+* libs\armeabi\libtbt.so => kiwiSports_V102\src\main\jniLibs\armeabi\libtbt.so
+* libs\armeabi\libuptsmaddon.so => kiwiSports_V102\src\main\jniLibs\armeabi\libuptsmaddon.so
+* libs\armeabi\libwtbt800.so => kiwiSports_V102\src\main\jniLibs\armeabi\libwtbt800.so
+* libs\armeabi\libztcodec2.so => kiwiSports_V102\src\main\jniLibs\armeabi\libztcodec2.so
+* libs\galaxy_mini.jar => kiwiSports_V102\libs\galaxy_mini.jar
+* libs\httpclient-4.3.5.jar => kiwiSports_V102\libs\httpclient-4.3.5.jar
+* libs\httpcore-4.3.2.jar => kiwiSports_V102\libs\httpcore-4.3.2.jar
+* libs\httpmime-4.3.5.jar => kiwiSports_V102\libs\httpmime-4.3.5.jar
+* libs\jpush-sdk-release1.7.4.jar => kiwiSports_V102\libs\jpush-sdk-release1.7.4.jar
+* libs\libammsdk.jar => kiwiSports_V102\libs\libammsdk.jar
+* libs\Msc.jar => kiwiSports_V102\libs\Msc.jar
+* libs\SocialSDK_WeiXin_2.jar => kiwiSports_V102\libs\SocialSDK_WeiXin_2.jar
+* libs\umeng_social_sdk.jar => kiwiSports_V102\libs\umeng_social_sdk.jar
+* libs\universal-image-loader-1.9.3-SNAPSHOT.jar => kiwiSports_V102\libs\universal-image-loader-1.9.3-SNAPSHOT.jar
+* libs\Volley.jar => kiwiSports_V102\libs\Volley.jar
+* libs\x86\libAMapSDK_MAP_v6_1_0.so => kiwiSports_V102\src\main\jniLibs\x86\libAMapSDK_MAP_v6_1_0.so
+* libs\x86\libAMapSDK_NAVI_v6_0_1.so => kiwiSports_V102\src\main\jniLibs\x86\libAMapSDK_NAVI_v6_0_1.so
+* libs\x86\libamapv304.so => kiwiSports_V102\src\main\jniLibs\x86\libamapv304.so
+* libs\x86\libamapv304ex.so => kiwiSports_V102\src\main\jniLibs\x86\libamapv304ex.so
+* libs\x86\libARM_ARCH.so => kiwiSports_V102\src\main\jniLibs\x86\libARM_ARCH.so
+* libs\x86\libCNPackage.so => kiwiSports_V102\src\main\jniLibs\x86\libCNPackage.so
+* libs\x86\libentryexpro.so => kiwiSports_V102\src\main\jniLibs\x86\libentryexpro.so
+* libs\x86\libentryexstd.so => kiwiSports_V102\src\main\jniLibs\x86\libentryexstd.so
+* libs\x86\libgnustl_shared.so => kiwiSports_V102\src\main\jniLibs\x86\libgnustl_shared.so
+* libs\x86\libjpush174.so => kiwiSports_V102\src\main\jniLibs\x86\libjpush174.so
+* libs\x86\libmsc.so => kiwiSports_V102\src\main\jniLibs\x86\libmsc.so
+* libs\x86\libRongIMLib.so => kiwiSports_V102\src\main\jniLibs\x86\libRongIMLib.so
+* libs\x86\librtbt800.so => kiwiSports_V102\src\main\jniLibs\x86\librtbt800.so
+* libs\x86\libsophix.so => kiwiSports_V102\src\main\jniLibs\x86\libsophix.so
+* libs\x86\libtbt.so => kiwiSports_V102\src\main\jniLibs\x86\libtbt.so
+* libs\x86\libuptsmaddon.so => kiwiSports_V102\src\main\jniLibs\x86\libuptsmaddon.so
+* libs\x86\libwtbt800.so => kiwiSports_V102\src\main\jniLibs\x86\libwtbt800.so
+* libs\x86\libztcodec2.so => kiwiSports_V102\src\main\jniLibs\x86\libztcodec2.so
+* libs\xUtils-2.6.14.jar => kiwiSports_V102\libs\xUtils-2.6.14.jar
+* res\ => kiwiSports_V102\src\main\res\
+* src\ => kiwiSports_V102\src\main\java\
+* src\com\KiwiSports\control\locationService\ILocationHelperServiceAIDL.aidl => kiwiSports_V102\src\main\aidl\com\KiwiSports\control\locationService\ILocationHelperServiceAIDL.aidl
+* src\com\KiwiSports\control\locationService\ILocationServiceAIDL.aidl => kiwiSports_V102\src\main\aidl\com\KiwiSports\control\locationService\ILocationServiceAIDL.aidl
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

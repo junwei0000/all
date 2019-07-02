@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<!-- 首页菜单字体颜色 -->
+	<color name="main_business_tab_bgcolor">#0E63A7</color>
+	<color name="main_business_tab_bgevencolor">#053F8D</color>
+	<color name="main_business_tab_edgecolor">#073068</color>
+	<color name="main_business_tab_presscolor">#093C81</color>
+	
+	<color name="red">#f3315e</color>
+	<color name="ranktop_gray">#dedee3</color>
+	<color name="ranktop_yellow">#ffd429</color>
+	<color name="ranktop_dian">#c99b69</color>
+	<color name="gray_bg">#F2F2F2</color>
+	<!-- 首页底部菜单背景颜色 -->
+	<color name="main_tab_page_bg">#28282e</color>
+	<color name="main_page_bg">#33333e</color>
+	<color name="page_bg">#F0F0F0</color>
+	<color name="linebg">#e2e2e2</color>
+	<!-- 白色 -->
+	<color name="white">#FFFFFF</color>
+	<color name="white_light">#5A5A66</color>
+	<!-- 透明颜色 -->
+	<color name="transparent">#00000000</color>
+	<!-- 蓝色 -->
+	<color name="blue">#3EA1Df</color>
+	<color name="black">#000000</color>
+	<!-- 青色 -->
+	<color name="ching">#68BD91</color>
+	<!-- 浅蓝色 -->
+	<color name="blue_light">#B6E2FA</color>
+	<!-- 灰色竖杠 -->
+	<color name="gray_stadiumlist_line">#E6E6E6</color>
+	<!-- 标题颜色 -->
+	<color name="text_contents_color">#333333</color>
+	<!-- 可点击的小标题颜色 -->
+	<color name="text_click_color">#5a5a66</color>
+	<!-- hint颜色 -->
+	<color name="text_hint_color">#cccccc</color>
+	<!-- 验证码不可点击的颜色 -->
+	<color name="text_noclick_color">#9B9B9B</color>
+
+	<color name="chart_run_color">#68BD91</color>
+
+	<color name="recordstatics_1_color">#f3315e</color>
+	<color name="recordstatics_2_color">#ffab27</color>
+	<color name="recordstatics_3_color">#43c08d</color>
+	<color name="recordstatics_4_color">#818297</color>
+
+	<color name="records_toprili_color">#f4f5f9</color>
+	<color name="recordsdetail_fast_color">#3fcf74</color>
+	<color name="recordsdetail_slow_color">#f3325e</color>
+</resources>

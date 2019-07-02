@@ -102,6 +102,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     CircleImageView mycenterIvHead;
     @BindView(R.id.mycenter_tv_name)
     TextView mycenterTvName;
+    @BindView(R.id.mycenter_tv_jieeqi)
+    TextView mycenter_tv_jieeqi;
     @BindView(R.id.mycenter_tv_stars)
     TextView mycenterTvStars;
     @BindView(R.id.mycenter_tv_starsTiShi)
@@ -933,6 +935,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             if (ability.equals("-1") && CurrentStartLevel == 9) {
                 mycenter_tv_starsTiShi.setText("您就是最强王者！");
             }
+            String jieqi = mGetHomeInfoBean.getJieqi_branch_name();
+            if (TextUtils.isEmpty(jieqi)) {
+                mycenter_tv_jieeqi.setVisibility(View.GONE);
+            } else {
+                mycenter_tv_jieeqi.setVisibility(View.VISIBLE);
+            }
+            mycenter_tv_jieeqi.setText(jieqi);
             mycenterTvStars.setText(getString(R.string.xingJi) + CurrentStartLevel);
             mycenter_iv_stars.setVisibility(View.VISIBLE);
         }

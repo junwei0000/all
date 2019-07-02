@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom">
+
+        <!-- map -->
+
+        <FrameLayout
+            android:id="@+id/layout_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            >
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/mMapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.2"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/map_iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/map_back_img" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/corners_bg_blackxingji"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/map_time_img" />
+
+                <TextView
+                    android:id="@+id/map_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:layout_marginRight="@dimen/padd_leftright"
+                    android:gravity="center_vertical"
+                    android:text="2018-02-24 10:10"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
+            <!---->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+                <LinearLayout
+                    android:paddingBottom="@dimen/padd_topbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/padd_leftright"
+                    android:layout_marginLeft="@dimen/padd_leftright"
+                    android:layout_marginRight="@dimen/padd_leftright"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/map_bg"
+                    android:orientation="vertical">
+                    <!--top-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="90dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/map_remain_img" />
+
+                        <TextView
+                            android:id="@+id/map_tv_remain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                            android:gravity="center_vertical"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_contents_size" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingRight="20dp"
+                            android:paddingTop="20dp">
+
+                            <ImageView
+                                android:id="@+id/map_iv_sporticon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/mainstart_run_img" />
+
+                            <TextView
+                                android:id="@+id/map_tv_sporttype"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                                android:gravity="center_vertical"
+                                android:text="跑步"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_zhu_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--bottom-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_marginTop="28dp"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/map_tv_distance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.00"
+                            android:textColor="@color/white"
+                            android:textSize="30sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="2dp"
+                            android:text="km"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_contents_size" />
+
+                        <TextView
+                            android:id="@+id/map_tv_rundate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:paddingLeft="2dp"
+                            android:text="00:00:00"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_pagetop_size" />
+                    </LinearLayout>
+                    <!--line-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="2dp">
+
+                        <TextView
+                            android:id="@+id/line_tv_zuo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:paddingRight="@dimen/padd_imgtextleftright"
+                            android:text="慢"
+                            android:textColor="@color/recordsdetail_slow_color"
+                            android:textSize="@dimen/text_zhu_size" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/line_tv_you"
+                            android:layout_toRightOf="@+id/line_tv_zuo"
+                            android:background="@drawable/map_line_img" />
+
+                        <TextView
+                            android:id="@+id/line_tv_you"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:paddingLeft="@dimen/padd_imgtextleftright"
+                            android:text="快"
+                            android:textColor="@color/recordsdetail_fast_color"
+                            android:textSize="@dimen/text_zhu_size" />
+                    </RelativeLayout>
+                    <!--配速-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/map_tv_slowps"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_contents_size" />
+
+                                <TextView
+                                    android:id="@+id/map_tv_slowpstitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="最慢配速"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_zhu_size" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/map_tv_averageps"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/map_tv_averagepstitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="平均配速"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_zhu_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/map_tv_fastps"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_contents_size" />
+
+                                <TextView
+                                    android:id="@+id/map_tv_fastpstitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="最快配速"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_zhu_size" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- -->
+                </LinearLayout>
+
+
+                <!--头像-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/corners_circular_white" />
+
+                        <com.KiwiSports.utils.CircleImageView
+                            android:id="@+id/map_iv_head"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="3dp"
+                            android:contentDescription="@string/contentDescription" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/map_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/relat_thumb"
+                        android:layout_marginTop="@dimen/padd_imgtextleftright"
+                        android:text="名字"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+            </RelativeLayout>
+        </FrameLayout>
+        <!-- date -->
+        <LinearLayout
+            android:id="@+id/layout_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/main_tab_page_bg"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/date_layout_back"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/back_m"
+                        android:contentDescription="@string/contentDescription" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp">
+
+                    <TextView
+                        android:id="@+id/date_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="跑步"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_pagetop_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:layout_weight="1" >
+                    <TextView
+                        android:id="@+id/date_tv_you"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="@dimen/padd_leftright"
+                        android:singleLine="true"
+                        android:text="详情"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:orientation="vertical">
+                <com.KiwiSports.utils.MyScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@color/main_tab_page_bg"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/date_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="总距离"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_zhu_size" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="bottom"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/date_tv_distance"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0.00"
+                                    android:textColor="@color/white"
+                                    android:textSize="30sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="2dp"
+                                    android:text="km"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_contents_size" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/padd_imgtextleftright"
+                                android:text="时间"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_zhu_size" />
+
+                            <TextView
+                                android:id="@+id/date_tv_rundate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="00:00:00"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_pagetop_size" />
+
+                        </LinearLayout>
+
+                        <com.KiwiSports.utils.MyGridView
+                            android:paddingLeft="20dp"
+                            android:id="@+id/date_property"
+                            style="@style/padd_topbottom"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/main_tab_page_bg"
+                            android:cacheColorHint="@color/transparent"
+                            android:divider="@null"
+                            android:fadeScrollbars="true"
+                            android:fadingEdge="none"
+                            android:gravity="left"
+                            android:horizontalSpacing="10dp"
+                            android:listSelector="@drawable/list_notselector"
+                            android:numColumns="3"
+                            android:overScrollMode="never"
+                            android:scrollbars="none"
+                            android:verticalSpacing="10dp"  />
+
+                        <com.KiwiSports.utils.MyListView
+                            android:id="@+id/listView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            style="@style/padd"
+                            android:divider="@null"
+                            android:listSelector="@drawable/list_notselector"
+                            android:overScrollMode="never"
+                            android:scrollbars="none" />
+                        <!--<com.KiwiSports.utils.MyListView-->
+                            <!--android:id="@+id/listView"-->
+                            <!--android:layout_marginLeft="10dp"-->
+                            <!--android:layout_marginRight="10dp"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:divider="@null"-->
+                            <!--android:dividerHeight="@dimen/padd_leftright"-->
+                            <!--android:listSelector="@drawable/list_notselector"-->
+                            <!--android:overScrollMode="never"-->
+                            <!--android:scrollbars="none" />-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/menu_height"
+                            android:background="@color/white"
+                            />
+                    </LinearLayout>
+                </com.KiwiSports.utils.MyScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- bottom -->
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/menu_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_tab_page_bg"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_map"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:paddingLeft="40dp"
+                android:text="@string/record_map"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_mapline"
+                android:layout_width="20dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/ching" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:paddingRight="40dp"
+                android:text="@string/record_date"
+                android:textColor="@color/white_light"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_dateline"
+                android:layout_width="20dp"
+                android:layout_height="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/ching" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

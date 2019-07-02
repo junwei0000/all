@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/list_date"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:cacheColorHint="@color/white"
+            android:divider="@null"
+            android:fadeScrollbars="true"
+            android:fadingEdge="none"
+            android:listSelector="@drawable/list_notselector"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/menu_height"
+            android:layout_gravity="bottom"
+            android:background="@color/main_tab_page_bg"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_today"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:paddingLeft="40dp"
+                    android:text="@string/venues_rank_today"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/tv_todayline"
+                    android:layout_width="20dp"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/ching" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_all"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:paddingRight="40dp"
+                    android:text="@string/venues_rank_all"
+                    android:textColor="@color/white_light"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                     android:id="@+id/tv_allline"
+                    android:layout_width="20dp"
+                    android:layout_height="5dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/ching" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

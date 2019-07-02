@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg">
+
+        <ImageView
+            android:id="@+id/item_thumb"
+            android:layout_margin="2dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:alpha="0.3"
+        android:background="@color/black"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" />
+</FrameLayout>

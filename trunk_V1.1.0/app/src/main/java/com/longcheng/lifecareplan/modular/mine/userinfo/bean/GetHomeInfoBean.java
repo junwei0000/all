@@ -133,6 +133,16 @@ public class GetHomeInfoBean implements Serializable {
     private int displayLifeBasic;//是否有基础保障 0：不弹 1：弹
     private String displayLifeBasicUrl;//基础保障地址
 
+    private String jieqi_branch_name;
+
+    public String getJieqi_branch_name() {
+        return jieqi_branch_name;
+    }
+
+    public void setJieqi_branch_name(String jieqi_branch_name) {
+        this.jieqi_branch_name = jieqi_branch_name;
+    }
+
     public int getDisplayLifeBasic() {
         return displayLifeBasic;
     }

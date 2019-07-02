@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_pull_to_refresh_header_horizontal.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\layout\\pull_to_refresh_header_horizontal.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim_slide_in_from_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_in_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_indicator_arrow.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_default_ptr_flip.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_indicator_arrow.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_indicator_bg_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable\\indicator_bg_bottom.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_default_ptr_flip.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim_slide_out_to_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_out_to_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_pull_to_refresh_header_vertical.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\layout\\pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_loading_1.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\loading_1.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim_slide_in_from_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_in_from_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_indicator_arrow.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_default_ptr_flip.png.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_indicator_bg_top.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\drawable\\indicator_bg_top.xml"
+    },
+    {
+        "merged": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim_slide_out_to_bottom.xml.flat",
+        "source": "E:\\kiwi_git\\studio\\KiwiSports_V1.2.0\\pulltorefreshlibrary\\build\\intermediates\\packaged_res\\debug\\anim\\slide_out_to_bottom.xml"
+    }
+]

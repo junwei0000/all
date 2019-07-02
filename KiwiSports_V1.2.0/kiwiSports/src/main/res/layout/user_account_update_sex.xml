@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianju"
+            android:background="@color/white"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                style="@style/padd_lefgtright"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/useraccount_sex_tv_male"
+                    style="@style/padd_topbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/useraccount_sex_tv_male"
+                    android:textColor="@color/text_contents_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <ImageView
+                    android:id="@+id/useraccount_sex_iv_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/sex_checked_img" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padd_leftright" >
+
+                <include layout="@layout/line" />
+            </LinearLayout>
+
+            <RelativeLayout
+                style="@style/padd_lefgtright"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/useraccount_sex_tv_famale"
+                    style="@style/padd_topbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/useraccount_sex_tv_famale"
+                    android:textColor="@color/text_contents_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <ImageView
+                    android:id="@+id/useraccount_sex_iv_famale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/sex_checked_img" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

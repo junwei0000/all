@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.KiwiSports.utils.CornerView
+        android:id="@+id/calendar_relat"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_margin="2dp">
+        <TextView
+            android:id="@+id/calendar_item_tv_day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/text_contents_color"
+            android:textSize="9sp" />
+    </com.KiwiSports.utils.CornerView>
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/KiwiSports_V1.2.0.iml" filepath="$PROJECT_DIR$/KiwiSports_V1.2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kiwiSports/kiwiSports.iml" filepath="$PROJECT_DIR$/kiwiSports/kiwiSports.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mPChartLib/mPChartLib.iml" filepath="$PROJECT_DIR$/mPChartLib/mPChartLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulltorefreshlibrary/pulltorefreshlibrary.iml" filepath="$PROJECT_DIR$/pulltorefreshlibrary/pulltorefreshlibrary.iml" />
+    </modules>
+  </component>
+</project>

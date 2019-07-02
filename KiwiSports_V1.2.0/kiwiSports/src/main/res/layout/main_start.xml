@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_page_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/page_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="1dp"
+                    android:text="地图"
+                    android:textColor="@color/ching"
+                    android:textSize="@dimen/text_pagetop_size" />
+
+                <TextView
+                    android:id="@+id/tv_mapline"
+                    android:layout_width="38dp"
+                    android:layout_height="2dp"
+                    android:background="@color/ching" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="1dp"
+                    android:text="列表"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pagetop_size" />
+
+                <TextView
+                    android:id="@+id/tv_listline"
+                    android:layout_width="38dp"
+                    android:layout_height="2dp"
+                    android:background="@color/ching"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pagetop_layoutv_you"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:id="@+id/pagetop_iv_you"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mainstart_run_img"
+                android:contentDescription="@string/contentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/frame_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/mMapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clickable="true" />
+
+            <FrameLayout
+                android:id="@+id/fragment_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.2"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/map_iv_mylocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="25dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/map_iv_mylocation"
+                android:contentDescription="@string/contentDescription" />
+            <!-- 通话 -->
+            <LinearLayout
+                android:id="@+id/layout_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.KiwiSports.utils.CircleImageView
+                    android:id="@+id/map_iv_selectablum"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/user_default_icon"
+                    android:contentDescription="@string/contentDescription" />
+
+                <ImageView
+                    android:id="@+id/map_iv_selectcollect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/notcollectimg"
+                    android:contentDescription="@string/contentDescription" />
+
+                <ImageView
+                    android:id="@+id/map_iv_selectchat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/talkicon"
+                    android:contentDescription="@string/contentDescription" />
+            </LinearLayout>
+            <!-- 按钮 -->
+
+            <LinearLayout
+                android:id="@+id/layout_start"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/date_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/start"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_distancetitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正在记录"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_contents_size"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:singleLine="true"
+                    android:text="0.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pagetop_size"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+        </FrameLayout>
+        <!--  -->
+        <FrameLayout
+            android:id="@+id/frame_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <com.KiwiSports.utils.PullDownListView
+                android:id="@+id/refreshable_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ListView
+                    android:id="@+id/list_date"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:cacheColorHint="@color/white"
+                    android:divider="@null"
+                    android:dividerHeight="@dimen/jianju"
+                    android:fadeScrollbars="true"
+                    android:fadingEdge="none"
+                    android:listSelector="@drawable/list_notselector"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+            </com.KiwiSports.utils.PullDownListView>
+
+            <include layout="@layout/not_date" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

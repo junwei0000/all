@@ -1,6 +1,7 @@
 KiwiSports/bin/
 KiwiSports/gen/
 KiwiSports_V1.0.2/KiwiSports/build/
+KiwiSports_V1.2.0/KiwiSports/build/
 *.iml
 .gradle
 /local.properties

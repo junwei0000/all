@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="updatebar_height">62dp</dimen>
+    <dimen name="menu_height">55dp</dimen>
+    <dimen name="updatebar_padding">10dp</dimen>
+
+    
+    <dimen name="text_pagetop_size">18dp</dimen>
+    <dimen name="text_biaoti_size">16dp</dimen>
+    <dimen name="text_contents_size">15dp</dimen>
+    <dimen name="text_zhu_size">13dp</dimen>
+    <dimen name="text_min_size">11dp</dimen>
+    <!-- 上下间距 -->
+    <dimen name="jianju">12dp</dimen>
+     <!-- 左右之间padd -->
+    <dimen name="padd_leftright">12dp</dimen>
+     <!-- 上下之间padd -->
+    <dimen name="padd_topbottom">12dp</dimen>
+    <!-- 图标之间的间距 -->
+    <dimen name="padd_imgtextleftright">5dp</dimen>
+    <dimen name="sp30">25dp</dimen>
+    <dimen name="sp25">24dp</dimen>
+    <dimen name="sp40">40dp</dimen>
+    <dimen name="dp30">30dp</dimen>
+    <dimen name="dp20">20dp</dimen>
+    <dimen name="dp15">15dp</dimen>
+    <dimen name="dp10">10dp</dimen>
+</resources>

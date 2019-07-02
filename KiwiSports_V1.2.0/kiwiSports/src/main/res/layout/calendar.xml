@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_marginTop="@dimen/padd_topbottom"
+        style="@style/padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2018年02月"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/sp25" />
+
+    <include
+        layout="@layout/calendar_weekdays_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padd_topbottom"/>
+
+    <com.KiwiSports.control.calendar.CalendarGridView
+        android:id="@+id/calendar_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:cacheColorHint="@color/white"
+        android:divider="@null"
+        android:fadeScrollbars="true"
+        android:fadingEdge="none"
+        android:listSelector="@drawable/list_notselector"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:numColumns="7" />
+
+</LinearLayout>

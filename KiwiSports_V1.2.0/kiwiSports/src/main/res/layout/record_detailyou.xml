@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10" >
+
+        <ListView
+            android:id="@+id/list_date"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@color/white"
+            android:divider="@null"
+            android:fadeScrollbars="true"
+            android:fadingEdge="none"
+            android:listSelector="@drawable/list_notselector"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+        <LinearLayout
+            android:id="@+id/not_date"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/not_date_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/record_notdate_img"
+                android:contentDescription="@string/contentDescription"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="@string/record_notdate"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

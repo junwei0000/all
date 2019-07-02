@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f5fb"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+
+    <com.KiwiSports.utils.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layout_date"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="vertical">
+
+            <com.KiwiSports.utils.MyListView
+                android:id="@+id/gv_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@color/white"
+                android:divider="@null"
+                android:fadeScrollbars="true"
+                android:fadingEdge="none"
+                android:listSelector="@drawable/list_notselector"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                />
+
+        </LinearLayout>
+    </com.KiwiSports.utils.MyScrollView>
+</LinearLayout>

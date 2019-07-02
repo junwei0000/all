@@ -1,0 +1,37 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:1-20:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:1-20:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:1-20:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:1-20:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:1-20:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:1-20:12
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:1-20:12
+	package
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:3:5-43
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+uses-sdk
+ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:7:5-9:41
+	android:targetSdkVersion
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:9:9-38
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml:8:9-34
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml
+		INJECTED from E:\kiwi_git\studio\KiwiSports_V1.2.0\mPChartLib\src\main\AndroidManifest.xml

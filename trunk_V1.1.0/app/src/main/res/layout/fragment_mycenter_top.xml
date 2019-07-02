@@ -28,17 +28,39 @@
             android:orientation="vertical"
             android:paddingLeft="@dimen/padd_leftright">
 
-            <TextView
-                android:id="@+id/mycenter_tv_name"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/padd_imgtextleftright"
-                android:ellipsize="end"
-                android:maxEms="8"
-                android:maxLines="1"
-                android:text="姓名"
-                android:textColor="@color/text_biaoTi_color"
-                android:textSize="@dimen/text_pageTop_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mycenter_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxEms="5"
+                    android:maxLines="1"
+                    android:text="姓名"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <TextView
+                    android:id="@+id/mycenter_tv_jieeqi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:background="@drawable/corners_bg_redfen"
+                    android:paddingBottom="@dimen/dp1"
+                    android:paddingLeft="@dimen/dp3"
+                    android:paddingRight="@dimen/dp3"
+                    android:paddingTop="@dimen/dp1"
+                    android:singleLine="true"
+                    android:text="fgxfgf"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/mycenter_relat_stars"
