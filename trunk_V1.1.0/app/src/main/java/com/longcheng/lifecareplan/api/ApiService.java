@@ -317,6 +317,10 @@ public interface ApiService {
                                            @Field("action_safety_id") String action_safety_id,
                                            @Field("extend_info") String extend_info,
                                            @Field("wealth_qiming_user_id") String qiming_user_id,
+                                           @Field("life_ad_main") String life_ad_main,
+                                           @Field("life_ad_minor")  String life_ad_minor,
+                                           @Field("life_repay_id")  String life_repay_id,
+                                           @Field("life_comment_id")  String life_comment_id,
                                            @Field("token") String token);
 
     @FormUrlEncoded

@@ -116,7 +116,7 @@ public class ActionDetailActivity extends BaseActivityMVP<ApplyHelpContract.View
 
     private void applyHelp(String action_safety_id, String extend_info) {
         Intent intent = new Intent(mContext, ApplyHelpActivity.class);
-        intent.putExtra("skipType", ConstantManager.skipType_OPENREDACTION);
+        intent.putExtra("skiptype", ConstantManager.skipType_OPENREDACTION);
         intent.putExtra("action_id", mActionItemBean.getAction_id());
         intent.putExtra("actionname", mActionItemBean.getName2());
         intent.putExtra("activity_id", mActionItemBean.getActivity_id());

@@ -517,9 +517,9 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
                         e.printStackTrace();
                     }
                     Intent intent;
-                    if (skipType.equals(ConstantManager.skipType_OPENRED)) {
+                    if (skiptype.equals(ConstantManager.skipType_OPENRED)) {
                         intent = new Intent(mContext, ApplyHelpActivity.class);
-                        intent.putExtra("skipType", ConstantManager.skipType_OPENREDACTION);
+                        intent.putExtra("skiptype", ConstantManager.skipType_OPENREDACTION);
                         intent.putExtra("action_id", mList.get(position).getId());
                         intent.putExtra("actionname", mList.get(position).getName2());
                         intent.putExtra("activity_id", mList.get(position).getActivity_id());
@@ -557,7 +557,7 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
     ValueSelectUtils mValueSelectUtils;
 
     //***************************************************************************
-    String skipType = "", action_goods_id = "";
+    String skiptype = "", action_goods_id = "";
 
     /**
      * 红包跳转过来显示行动
@@ -565,8 +565,8 @@ public class ActionActivity extends BaseActivityMVP<ApplyHelpContract.View, Appl
     private void showRedSkipData() {
         Intent intent = getIntent();
         if (intent != null) {
-            skipType = intent.getExtras().getString("skipType", "");
-            if (skipType.equals(ConstantManager.skipType_OPENRED)) {
+            skiptype = intent.getExtras().getString("skiptype", "");
+            if (skiptype.equals(ConstantManager.skipType_OPENRED)) {
                 action_goods_id = intent.getExtras().getString("action_goods_id", "");
                 for (int i = 0; i < mList.size(); i++) {
                     if (action_goods_id.equals(mList.get(i).getId())) {

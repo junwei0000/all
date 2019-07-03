@@ -103,7 +103,7 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
                 Intent intent = new Intent(mContext, AddressListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("receive_user_id", user_id);
-                intent.putExtra("skipType", "SubmitOrderActivity");
+                intent.putExtra("skiptype", "SubmitOrderActivity");
                 startActivityForResult(intent, ConstantManager.APPLYHELP_FORRESULT_ADDRESS);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 break;

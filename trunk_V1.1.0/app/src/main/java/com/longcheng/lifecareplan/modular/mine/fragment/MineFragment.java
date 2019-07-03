@@ -618,7 +618,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent = new Intent(mContext, AddressListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("receive_user_id", user_id);
-                intent.putExtra("skipType", "MineFragment");
+                intent.putExtra("skiptype", "MineFragment");
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -985,6 +985,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (!loginStatus.equals(ConstantManager.loginStatus)
                 || BottomMenuActivity.position != BottomMenuActivity.tab_position_mine
                 || BottomMenuActivity.updatedialogstatus) {
+            dismissAllDialog();
             return;
         }
         //坐堂医支付成功弹层  1

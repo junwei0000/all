@@ -223,11 +223,16 @@ public class ApplyHelpPresenterImp<T> extends ApplyHelpContract.Presenter<ApplyH
                             String describe,
                             String action_safety_id,
                             String extend_info,
-                            String qiming_user_id) {
+                            String qiming_user_id,
+                            String life_ad_main,
+                            String life_ad_minor,
+                            String life_repay_id,
+                            String life_comment_id) {
         Log.e("applyAction", "qiming_user_id=" + qiming_user_id);
         mView.showDialog();
         Observable<ActionDataBean> observable = Api.getInstance().service.applyAction(user_id, action_id,
-                receive_user_id, address_id, describe, action_safety_id, extend_info, qiming_user_id, ExampleApplication.token);
+                receive_user_id, address_id, describe, action_safety_id, extend_info,
+                qiming_user_id, life_ad_main, life_ad_minor, life_repay_id, life_comment_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<ActionDataBean>() {

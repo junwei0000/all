@@ -22,6 +22,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnvelopeKnpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfterBean;
@@ -341,6 +342,32 @@ public class BaoZhangActitvty extends WebAct {
                     String __app_pay_token__ = jsonObject.optString("__app_pay_token__", "");
                     weixinPayBackType = "LifeBasicApplyPay";
                     LifeBasicApplyPay(des_content, payment_channel, __app_pay_token__);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        //天下无债---广告行动申请
+        mBridgeWebView.registerHandler("LifeRepayInfo_GG", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "LifeRepayInfo_GG=" + data);
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    String action_id = jsonObject.optString("action_id", "0");
+                    String life_ad_main = jsonObject.optString("life_ad_main", "0");
+                    String life_ad_minor = jsonObject.optString("life_ad_minor", "0");
+                    String life_repay_id = jsonObject.optString("life_repay_id", "0");
+                    String life_comment_id = jsonObject.optString("life_comment_id", "0");
+                    Intent intent = new Intent(mContext, ApplyHelpActivity.class);
+                    intent.putExtra("life_ad_main", "" + life_ad_main);
+                    intent.putExtra("life_ad_minor", "" + life_ad_minor);
+                    intent.putExtra("life_repay_id", "" + life_repay_id);
+                    intent.putExtra("life_comment_id", "" + life_comment_id);
+                    intent.putExtra("action_goods_id", "" + action_id);
+                    intent.putExtra("skiptype", ConstantManager.skipType_LifeRepayInfo_GG);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    mContext.startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

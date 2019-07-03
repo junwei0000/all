@@ -34,7 +34,7 @@ public class SkipHelpUtils {
             intent = new Intent(mContext, ApplyHelpActivity.class);
         }
         intent.putExtra("action_goods_id", "" + action_goods_id);
-        intent.putExtra("skipType", ConstantManager.skipType_OPENRED);
+        intent.putExtra("skiptype", ConstantManager.skipType_OPENRED);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         mContext.startActivity(intent);
     }

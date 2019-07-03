@@ -712,7 +712,6 @@ public abstract class WebAct extends BaseActivity {
                 Log.e("URLDecoder", "onReceivedHttpError statusCode=" + statusCode);
                 //404 图片问题
                 if (500 == statusCode) {
-                    view.loadUrl("about:blank");// 避免出现默认的错误界面
                     showErr = true;
                     showNoDataView(showErr);
                 }
@@ -777,7 +776,7 @@ public abstract class WebAct extends BaseActivity {
         Intent intent = new Intent(mContext, ApplyHelpActivity.class);
         intent.putExtra("action_goods_id", "" + action_goods_id);
         intent.putExtra("qiming_user_id", "" + qiming_user_id);
-        intent.putExtra("skipType", ConstantManager.skipType_OPENRED);
+        intent.putExtra("skiptype", ConstantManager.skipType_OPENRED);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

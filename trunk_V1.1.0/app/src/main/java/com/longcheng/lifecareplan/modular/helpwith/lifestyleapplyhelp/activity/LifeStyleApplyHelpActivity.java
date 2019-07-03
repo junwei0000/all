@@ -161,7 +161,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                     intent = new Intent(mContext, AddressListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("receive_user_id", peopleid);
-                    intent.putExtra("skipType", "LifeStyleApplyHelpActivity");
+                    intent.putExtra("skiptype", "LifeStyleApplyHelpActivity");
                     startActivityForResult(intent, ConstantManager.APPLYHELP_FORRESULT_ADDRESS);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 } else {

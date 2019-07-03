@@ -61,7 +61,7 @@ public class WebProjectActivity extends BaseActivity {
 
     private String webViewUrl = "";
     private static final int WEB_REQUEST_CODE = 0;
-    private String skipType;
+    private String skiptype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class WebProjectActivity extends BaseActivity {
     private void getIntentData() {
         Intent intent = getIntent();
         String name = intent.getExtras().getString("name", "");
-        skipType = intent.getExtras().getString("skipType", "");
+        skiptype = intent.getExtras().getString("skiptype", "");
         if ("recharge".equals(name)) {
             webViewUrl = "http://t.asdyf.com/home/testc/recharge";
         } else if ("activation".equals(name)) {
@@ -110,7 +110,7 @@ public class WebProjectActivity extends BaseActivity {
         } else if ("asd".equals(name)) {
             webViewUrl = "http://t.asdyf.com/";
         }
-        if (skipType.equals(ConstantManager.skipType_OPENRED)) {
+        if (skiptype.equals(ConstantManager.skipType_OPENRED)) {
             webViewUrl = intent.getExtras().getString("skipurl", "");
         }
     }
@@ -364,7 +364,7 @@ public class WebProjectActivity extends BaseActivity {
                 // 返回上一页面
                 return true;
             } else {
-                if (skipType.equals(ConstantManager.skipType_OPENRED)) {
+                if (skiptype.equals(ConstantManager.skipType_OPENRED)) {
                     Intent intent = new Intent(mActivity, HelpWithEnergyActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);

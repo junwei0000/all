@@ -140,10 +140,14 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                 doFinish();
                 break;
             case R.id.relat_action:
-                intent = new Intent(mContext, ActionActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivityForResult(intent, ConstantManager.APPLYHELP_FORRESULT_ACTION);
-                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                //从天下无债广告跳转时不让选择行动
+                if (!TextUtils.isEmpty(skiptype) && skiptype.equals(ConstantManager.skipType_LifeRepayInfo_GG)) {
+                } else {
+                    intent = new Intent(mContext, ActionActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivityForResult(intent, ConstantManager.APPLYHELP_FORRESULT_ACTION);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                }
                 break;
             case R.id.relat_people:
                 if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
@@ -160,7 +164,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                     intent = new Intent(mContext, AddressListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("receive_user_id", peopleid);
-                    intent.putExtra("skipType", "LifeStyleApplyHelpActivity");
+                    intent.putExtra("skiptype", "LifeStyleApplyHelpActivity");
                     startActivityForResult(intent, ConstantManager.APPLYHELP_FORRESULT_ADDRESS);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 } else {
@@ -183,7 +187,8 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                 if (!showNotCHODialog()) {
                     if (btnClickStatus) {
                         mPresent.applyAction(user_id, action_id,
-                                peopleid, address_id, describe, action_safety_id, extend_info, qiming_user_id);
+                                peopleid, address_id, describe, action_safety_id, extend_info,
+                                qiming_user_id, life_ad_main, life_ad_minor, life_repay_id, life_comment_id);
                     }
                 }
                 break;
@@ -237,7 +242,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        showRedSkipData(intent);
+        showSkipData(intent);
     }
 
     @Override
@@ -245,14 +250,13 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         pageTopTvName.setText("申请互祝");
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         mPresent.getNeedHelpNumberTask(user_id);
-        skiptype = getIntent().getStringExtra("skiptype");
         showPeople();
         setBtnBg();
-        showRedSkipData(getIntent());
+        showSkipData(getIntent());
     }
 
     private void showPeople() {
-        if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
+        if (getIntent() != null && getIntent().getExtras() != null && !TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
             peopleid = getIntent().getStringExtra("other_user_id");
             mPresent.getOtherUserInfo(user_id, peopleid);
         } else {
@@ -689,23 +693,37 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         mPresent.getNeedHelpNumberTask(user_id);
     }
 
-    String action_goods_id = "";
+    private String action_goods_id = "";
+    private String life_ad_main, life_ad_minor, life_repay_id, life_comment_id;
 
     /**
-     * 红包跳转过来显示行动
+     * 跳转过来显示行动
      */
-    private void showRedSkipData(Intent intent) {
+    private void showSkipData(Intent intent) {
+        qiming_user_id = "0";
+        life_ad_main = "0";
+        life_ad_minor = "0";
+        life_repay_id = "0";
+        life_comment_id = "0";
         if (intent != null && intent.getExtras() != null) {
-            qiming_user_id = "0";
-            String skipType = intent.getExtras().getString("skipType", "");
-            if (skipType.equals(ConstantManager.skipType_OPENRED)) {
+            skiptype = intent.getExtras().getString("skiptype", "");
+            if (skiptype.equals(ConstantManager.skipType_OPENRED)) {
                 action_goods_id = intent.getExtras().getString("action_goods_id", "");
                 qiming_user_id = intent.getExtras().getString("qiming_user_id", "");
                 mPresent.getActionList(user_id);
-            } else if (skipType.equals(ConstantManager.skipType_OPENREDACTION)) {
+            } else if (skiptype.equals(ConstantManager.skipType_OPENREDACTION)) {
                 actionListBackData(intent);
+            } else if (skiptype.equals(ConstantManager.skipType_LifeRepayInfo_GG)) {
+                action_goods_id = intent.getExtras().getString("action_goods_id", "");
+                life_ad_main = intent.getExtras().getString("life_ad_main", "0");
+                life_ad_minor = intent.getExtras().getString("life_ad_minor", "0");
+                life_repay_id = intent.getExtras().getString("life_repay_id", "0");
+                life_comment_id = intent.getExtras().getString("life_comment_id", "0");
+                mPresent.getActionList(user_id);
             }
         }
+        Log.e("showSkipData", "skiptype=" + skiptype + "  ;life_ad_main=" + life_ad_main
+                + "  ;life_ad_minor=" + life_ad_minor + "  ;life_repay_id=" + life_repay_id + "  ;life_comment_id=" + life_comment_id);
     }
 
     private void actionListBackData(Intent data) {

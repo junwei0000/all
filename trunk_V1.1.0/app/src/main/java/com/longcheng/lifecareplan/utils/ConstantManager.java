@@ -130,6 +130,10 @@ public class ConstantManager {
      */
     public static final String skipType_OPENRED = "OPENRED";
     /**
+     * 天下无债广告行动申请
+     */
+    public static final String skipType_LifeRepayInfo_GG = "LifeRepayInfo_GG";
+    /**
      * 开红包跳转行动列表选择能量配-返回申请互祝页面
      */
     public static final String skipType_OPENREDACTION = "ACTIONPEI";

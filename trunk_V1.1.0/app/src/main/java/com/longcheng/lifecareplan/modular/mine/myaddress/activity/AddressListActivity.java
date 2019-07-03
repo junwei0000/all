@@ -60,7 +60,7 @@ public class AddressListActivity extends BaseActivityMVP<AddressContract.View, A
     TextView btnAdd;
     private String user_id;
     private String receive_user_id;
-    private String skipType;
+    private String skiptype;
     /**
      * 是否可以编辑和删除地址 0：否 1：是 （当接福人是自己或者自己家人的时候课编辑）
      */
@@ -103,8 +103,8 @@ public class AddressListActivity extends BaseActivityMVP<AddressContract.View, A
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         Intent intent = getIntent();
         receive_user_id = intent.getStringExtra("receive_user_id");
-        skipType = intent.getStringExtra("skipType");
-        if (!TextUtils.isEmpty(skipType) && skipType.equals("MineFragment")) {
+        skiptype = intent.getStringExtra("skiptype");
+        if (!TextUtils.isEmpty(skiptype) && skiptype.equals("MineFragment")) {
             pageTopTvName.setText("地址管理");
         } else {
             pageTopTvName.setText("选择地址");
@@ -119,7 +119,7 @@ public class AddressListActivity extends BaseActivityMVP<AddressContract.View, A
         dateListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (!TextUtils.isEmpty(skipType) && !skipType.equals("MineFragment")) {
+                if (!TextUtils.isEmpty(skiptype) && !skiptype.equals("MineFragment")) {
 
                     if (mList != null && mList.size() > 0) {
                         AddressItemBean mAddressBean = mList.get(position);
@@ -233,7 +233,7 @@ public class AddressListActivity extends BaseActivityMVP<AddressContract.View, A
                     intent.putExtra("mobile", mList.get(position).getMobile());
                     intent.putExtra("is_default", mList.get(position).getIs_default());
 
-                    Log.e("ResponseBody",""+mList.get(position).toString());
+                    Log.e("ResponseBody", "" + mList.get(position).toString());
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     break;
