@@ -256,7 +256,10 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     }
 
     private void showPeople() {
-        if (getIntent() != null && getIntent().getExtras() != null && !TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            skiptype = getIntent().getExtras().getString("skiptype");
+        }
+        if (!TextUtils.isEmpty(skiptype) && skiptype.equals("Doctor_applyHelp")) {
             peopleid = getIntent().getStringExtra("other_user_id");
             mPresent.getOtherUserInfo(user_id, peopleid);
         } else {
