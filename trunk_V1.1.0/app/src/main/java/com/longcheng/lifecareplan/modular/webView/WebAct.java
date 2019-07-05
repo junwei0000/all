@@ -246,6 +246,19 @@ public abstract class WebAct extends BaseActivity {
                 startActivity(intent);
             }
         });
+        //坐堂医-去互祝跳转康农列表带参数
+        mBridgeWebView.registerHandler("DoctorGo_KNP", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                if (!data.contains("http")) {
+                    data = Config.BASE_HEAD_URL + data;
+                }
+                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data);
+                startActivity(intent);
+            }
+        });
         //每日签到-跳转兑换首页
         mBridgeWebView.registerHandler("signIn_skiptoexchange", new BridgeHandler() {
             @Override
