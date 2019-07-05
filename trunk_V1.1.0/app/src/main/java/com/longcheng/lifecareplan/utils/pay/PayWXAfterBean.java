@@ -130,7 +130,6 @@ public class PayWXAfterBean {
         return "SKBPayAfterBean{" +
                 "prepayid='" + prepayid + '\'' +
                 ", appid='" + appid + '\'' +
-                ", user_id='" + user_id + '\'' +
                 '}';
     }
 }

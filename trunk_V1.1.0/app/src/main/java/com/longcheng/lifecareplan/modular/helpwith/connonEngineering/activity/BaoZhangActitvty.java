@@ -1227,6 +1227,7 @@ public class BaoZhangActitvty extends WebAct {
         @Override
         public void onReceive(Context context, Intent intent) {
             int Code = intent.getIntExtra("errCode", 100);
+            Log.e("registerHandler","weixinPayBackType="+weixinPayBackType+"  "+one_order_id);
             if (Code == WXPayEntryActivity.PAY_SUCCESS) {
                 if (weixinPayBackType.equals("knpDetailPay")) {
                     knpPayHelpSkipSuccess();

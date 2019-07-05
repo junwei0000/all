@@ -141,6 +141,7 @@ public class VolunteerH5Activity extends WebAct {
                             } else if (status.equals("200")) {
                                 PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
                                 if (payment_channel.equals("wxpay")) {
+                                    volunteerWXPayStatus = true;
                                     Log.e(TAG, payWeChatBean.toString());
                                     PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
                                 } else if (payment_channel.equals("alipay")) {
@@ -212,6 +213,10 @@ public class VolunteerH5Activity extends WebAct {
     }
 
     /**
+     * 是否调取支付
+     */
+    boolean volunteerWXPayStatus = false;
+    /**
      * 微信支付回调广播
      */
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -219,7 +224,10 @@ public class VolunteerH5Activity extends WebAct {
         public void onReceive(Context context, Intent intent) {
             int errCode = intent.getIntExtra("errCode", 100);
             if (errCode == WXPayEntryActivity.PAY_SUCCESS) {
-                helpSkipSuccess();
+                if (volunteerWXPayStatus) {
+                    volunteerWXPayStatus = false;
+                    helpSkipSuccess();
+                }
             } else if (errCode == WXPayEntryActivity.PAY_FAILE) {
                 ToastUtils.showToast("支付失败");
             } else if (errCode == WXPayEntryActivity.PAY_CANCLE) {
