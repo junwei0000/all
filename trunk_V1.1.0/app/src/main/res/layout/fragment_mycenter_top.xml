@@ -20,7 +20,7 @@
             android:layout_marginBottom="30dp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:layout_toRightOf="@+id/mycenter_iv_head"
@@ -29,7 +29,7 @@
             android:paddingLeft="@dimen/padd_leftright">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/padd_imgtextleftright"
                 android:gravity="center_vertical"
@@ -102,11 +102,11 @@
 
                 <LinearLayout
                     android:id="@+id/mycenter_relat_shenfen"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone" />
+                    android:visibility="invisible" />
             </FrameLayout>
 
             <TextView

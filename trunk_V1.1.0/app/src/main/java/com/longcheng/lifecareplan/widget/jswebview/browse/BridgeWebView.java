@@ -120,53 +120,36 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         this.defaultHandler = handler;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void init() {
+        WebSettings webviewSettings = this.getSettings();
         this.setVerticalScrollBarEnabled(false);
         this.setHorizontalScrollBarEnabled(false);
-        this.getSettings().setJavaScriptEnabled(true);
+        webviewSettings.setJavaScriptEnabled(true);
         /**
          * webview js 点击事件失效 localStorage  缓存问题
          */
-        this.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webviewSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         this.requestFocus();
-        this.getSettings().setAllowFileAccess(true);
-        this.getSettings().setDatabaseEnabled(true);
-        this.getSettings().setDomStorageEnabled(true);//打开本地缓存提供JS调用,至关重要
-        this.getSettings().setGeolocationEnabled(true);
+        webviewSettings.setAllowFileAccess(true);
+        webviewSettings.setDatabaseEnabled(true);
+        webviewSettings.setDomStorageEnabled(true);//打开本地缓存提供JS调用,至关重要
+        webviewSettings.setGeolocationEnabled(true);
         String dbPath = getContext().getApplicationContext().getDir("database", Context.MODE_PRIVATE).getPath();
-        this.getSettings().setDatabasePath(dbPath);
-        this.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);// 实现8倍缓存
-        this.getSettings().setAppCacheEnabled(true);
+        webviewSettings.setDatabasePath(dbPath);
+        webviewSettings.setAppCacheMaxSize(1024 * 1024 * 8);// 实现8倍缓存
+        webviewSettings.setAppCacheEnabled(true);
         String appCaceDir = getContext().getApplicationContext().getDir("cache", Context.MODE_PRIVATE).getPath();
-        this.getSettings().setAppCachePath(appCaceDir);
-        this.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT); // 设置 缓存模式
+        webviewSettings.setAppCachePath(appCaceDir);
+        webviewSettings.setCacheMode(WebSettings.LOAD_DEFAULT); // 设置 缓存模式
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
         //-----------------------------------------------
         this.setWebViewClient(generateBridgeWebViewClient());
-        // 关键性代码，这里要给webview添加这行代码，才可以点击之后正常播放音频。记录一下。
-        this.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        initSet();
-    }
-
-    /**
-     * @param toLoadedJsUrl 要注入的js http地址
-     * @param handler       默认的handler,负责处理js端没有指定handlerName的消息,若js端有指定handlerName,
-     *                      则由native端注册的指定处理
-     */
-    public void initContext(String toLoadedJsUrl, BridgeHandler handler) {
-        if (toLoadedJsUrl != null) {
-            this.toLoadJs = toLoadedJsUrl;
+        //Api Level 17 关键性代码，这里要给webview添加这行代码，才可以点击之后正常播放音频。记录一下。
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            webviewSettings.setMediaPlaybackRequiresUserGesture(false);
         }
-        if (handler != null) {
-            this.defaultHandler = handler;
-        }
-    }
-
-    private void initSet() {
-        WebSettings webviewSettings = this.getSettings();
         /**
          * ************************标注：设置webview 字体，防止使用手机字体 导致数据显示变型***************************
          */
