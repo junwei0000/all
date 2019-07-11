@@ -57,43 +57,57 @@
                     android:paddingRight="@dimen/dp3"
                     android:paddingTop="@dimen/dp1"
                     android:singleLine="true"
-                    android:visibility="gone"
                     android:textColor="@color/red"
-                    android:textSize="@dimen/text_zhu_size" />
+                    android:textSize="@dimen/text_zhu_size"
+                    android:visibility="gone" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/mycenter_relat_stars"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/corners_bg_blackxingji"
-                android:gravity="center_vertical"
-                android:padding="2dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/mycenter_iv_stars"
-                    android:layout_width="@dimen/dp20"
-                    android:layout_height="@dimen/dp20"
-                    android:background="@mipmap/usercenter_star_icon" />
-
-                <TextView
-                    android:id="@+id/mycenter_tv_stars"
+                <LinearLayout
+                    android:id="@+id/mycenter_relat_stars"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
-                    android:paddingBottom="@dimen/img_setTextcenter"
-                    android:text="成为CHO"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_zhu_size" />
+                    android:background="@drawable/corners_bg_blackxingji"
+                    android:gravity="center_vertical"
+                    android:padding="2dp"
+                    android:visibility="invisible">
 
-                <ImageView
-                    android:id="@+id/mycenter_iv_starsarrow"
+                    <ImageView
+                        android:id="@+id/mycenter_iv_stars"
+                        android:layout_width="@dimen/dp20"
+                        android:layout_height="@dimen/dp20"
+                        android:background="@mipmap/usercenter_star_icon" />
+
+                    <TextView
+                        android:id="@+id/mycenter_tv_stars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:paddingBottom="@dimen/img_setTextcenter"
+                        android:text="成为CHO"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <ImageView
+                        android:id="@+id/mycenter_iv_starsarrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:layout_marginRight="@dimen/padd_leftright"
+                        android:background="@mipmap/usercenter_arrowright_img" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mycenter_relat_shenfen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
-                    android:layout_marginRight="@dimen/padd_leftright"
-                    android:background="@mipmap/usercenter_arrowright_img" />
-            </LinearLayout>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/mycenter_tv_starsTiShi"

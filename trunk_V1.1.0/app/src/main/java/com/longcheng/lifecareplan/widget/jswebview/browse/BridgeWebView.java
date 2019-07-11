@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -119,6 +120,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         this.defaultHandler = handler;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void init() {
         this.setVerticalScrollBarEnabled(false);
         this.setHorizontalScrollBarEnabled(false);
@@ -144,6 +146,8 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         }
         //-----------------------------------------------
         this.setWebViewClient(generateBridgeWebViewClient());
+        // 关键性代码，这里要给webview添加这行代码，才可以点击之后正常播放音频。记录一下。
+        this.getSettings().setMediaPlaybackRequiresUserGesture(false);
         initSet();
     }
 

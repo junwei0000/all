@@ -63,6 +63,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
@@ -114,6 +115,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     ImageView mycenterIvStarsarrow;
     @BindView(R.id.mycenter_relat_stars)
     LinearLayout mycenterRelatStars;
+    @BindView(R.id.mycenter_relat_shenfen)
+    LinearLayout mycenter_relat_shenfen;
     @BindView(R.id.mycenter_layout_humanity)
     LinearLayout mycenterLayoutHumanity;
     @BindView(R.id.mycentertop_tv_awakeskb)
@@ -303,6 +306,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         usercenterRelaygoodluck.setOnClickListener(this);
         mycenterLayoutJieqisignin.setOnClickListener(this);
         mycenterRelatStars.setOnClickListener(this);
+        mycenter_relat_shenfen.setOnClickListener(this);
         mycenterLayoutsmallpusher.setOnClickListener(this);
         usercenter_layout_rebirth.setOnClickListener(this);
         usercenter_relay_changeinviter.setOnClickListener(this);
@@ -715,7 +719,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
-            case R.id.mycenter_relat_stars://星级布局
+            case R.id.mycenter_relat_shenfen://星级布局
                 if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                     if (!TextUtils.isEmpty(star_level_illustrate_url)) {
                         intent = new Intent(mContext, StarInstructionAct.class);
@@ -724,6 +728,10 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     }
+                }
+                break;
+            case R.id.mycenter_relat_stars://成为cho
+                if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                 } else {
                     intent = new Intent(mContext, UserInfoActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -889,10 +897,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         String user_name = (String) SharedPreferencesHelper.get(mContext, "user_name", "");
         //1:是  ；0：不是
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
+            mycenterRelatStars.setVisibility(View.GONE);
+            mycenter_relat_shenfen.setVisibility(View.VISIBLE);
         } else {
             mycenterTvStars.setText(getString(R.string.becomeCHO));
             mycenter_tv_starsTiShi.setText(getString(R.string.becomeCHO_tishi));
             mycenter_iv_stars.setVisibility(View.GONE);
+            mycenterRelatStars.setVisibility(View.VISIBLE);
+            mycenter_relat_shenfen.setVisibility(View.GONE);
         }
         mycenterTvName.setText(user_name);
         String jieqi = HomeFragment.jieqi_name;
@@ -941,8 +953,24 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 mycenter_tv_jieeqi.setVisibility(View.VISIBLE);
             }
             mycenter_tv_jieeqi.setText(jieqi);
-            mycenterTvStars.setText(getString(R.string.xingJi) + CurrentStartLevel);
-            mycenter_iv_stars.setVisibility(View.VISIBLE);
+//            mycenterTvStars.setText(getString(R.string.xingJi) + CurrentStartLevel);
+            mycenterRelatStars.setVisibility(View.GONE);
+            mycenter_relat_shenfen.setVisibility(View.VISIBLE);
+            mycenter_relat_shenfen.removeAllViews();
+            ArrayList<GetHomeInfoBean> user_identity_imgs = mGetHomeInfoBean.getUser_identity_imgs();
+            if (user_identity_imgs != null && user_identity_imgs.size() > 0) {
+                for (GetHomeInfoBean info : user_identity_imgs) {
+                    LinearLayout linearLayout = new LinearLayout(mContext);
+                    ImageView imageView = new ImageView(mContext);
+                    int dit = DensityUtil.dip2px(mContext, 18);
+                    int jian = DensityUtil.dip2px(mContext, 3);
+                    linearLayout.setPadding(0, 2, jian, 2);
+                    imageView.setLayoutParams(new LinearLayout.LayoutParams(dit, dit));
+                    GlideDownLoadImage.getInstance().loadCircleImageCommune(mContext, info.getImage(), imageView);
+                    linearLayout.addView(imageView);
+                    mycenter_relat_shenfen.addView(linearLayout);
+                }
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * 作者：jun on
@@ -134,6 +135,25 @@ public class GetHomeInfoBean implements Serializable {
     private String displayLifeBasicUrl;//基础保障地址
 
     private String jieqi_branch_name;
+
+    private ArrayList<GetHomeInfoBean> user_identity_imgs;//身份
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public ArrayList<GetHomeInfoBean> getUser_identity_imgs() {
+        return user_identity_imgs;
+    }
+
+    public void setUser_identity_imgs(ArrayList<GetHomeInfoBean> user_identity_imgs) {
+        this.user_identity_imgs = user_identity_imgs;
+    }
 
     public String getJieqi_branch_name() {
         return jieqi_branch_name;

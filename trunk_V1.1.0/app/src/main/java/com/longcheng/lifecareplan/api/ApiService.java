@@ -318,9 +318,9 @@ public interface ApiService {
                                            @Field("extend_info") String extend_info,
                                            @Field("wealth_qiming_user_id") String qiming_user_id,
                                            @Field("life_ad_main") String life_ad_main,
-                                           @Field("life_ad_minor")  String life_ad_minor,
-                                           @Field("life_repay_id")  String life_repay_id,
-                                           @Field("life_comment_id")  String life_comment_id,
+                                           @Field("life_ad_minor") String life_ad_minor,
+                                           @Field("life_repay_id") String life_repay_id,
+                                           @Field("life_comment_id") String life_comment_id,
                                            @Field("token") String token);
 
     @FormUrlEncoded
@@ -820,6 +820,11 @@ public interface ApiService {
                                                      @Query("knp_msg_id") String knp_msg_id,
                                                      @Query("token") String token);
 
+    @GET(Config.VERSION + "knpteam/roominfo")
+    Observable<EnergyDetailDataBean> getKnpTeamRoomDetail(@Query("user_id") String user_id,
+                                                          @Query("knp_team_room_id") String knp_team_room_id,
+                                                          @Query("token") String token);
+
     @GET(Config.VERSION + "life/repayInfo")
     Observable<EnergyDetailDataBean> getBaoZMsgDetail(@Query("user_id") String user_id,
                                                       @Query("life_repay_id") String life_repay_id,
@@ -922,6 +927,12 @@ public interface ApiService {
                                           @Field("pay_check_code") String pay_check_code,
                                           @Field("current_time") String current_time,
                                           @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Commonpay/index")
+    Observable<PayWXDataBean> allNewPay(@Field("user_id") String user_id,
+                                        @Field("json_datas") String json_datas,
+                                        @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Doctor/createOrder")
