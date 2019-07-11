@@ -940,19 +940,19 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             cont = ability + "</font>个生命能量啦！";
         }
+        String jieqi = mGetHomeInfoBean.getJieqi_branch_name();
+        mycenter_tv_jieeqi.setText(jieqi);
+        if (TextUtils.isEmpty(jieqi)) {
+            mycenter_tv_jieeqi.setVisibility(View.GONE);
+        } else {
+            mycenter_tv_jieeqi.setVisibility(View.VISIBLE);
+        }
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
             String showT = "亲，升到<font color=\"#ff443b\">" + nextStartLevel + "</font>星只需送出<font color=\"#ff443b\">" + cont;
             mycenter_tv_starsTiShi.setText(Html.fromHtml(showT));
             if (ability.equals("-1") && CurrentStartLevel == 9) {
                 mycenter_tv_starsTiShi.setText("您就是最强王者！");
             }
-            String jieqi = mGetHomeInfoBean.getJieqi_branch_name();
-            if (TextUtils.isEmpty(jieqi)) {
-                mycenter_tv_jieeqi.setVisibility(View.GONE);
-            } else {
-                mycenter_tv_jieeqi.setVisibility(View.VISIBLE);
-            }
-            mycenter_tv_jieeqi.setText(jieqi);
 //            mycenterTvStars.setText(getString(R.string.xingJi) + CurrentStartLevel);
             mycenterRelatStars.setVisibility(View.GONE);
             mycenter_relat_shenfen.setVisibility(View.VISIBLE);
