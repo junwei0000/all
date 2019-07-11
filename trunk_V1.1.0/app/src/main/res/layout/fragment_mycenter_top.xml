@@ -73,7 +73,7 @@
                     android:background="@drawable/corners_bg_blackxingji"
                     android:gravity="center_vertical"
                     android:padding="2dp"
-                    android:visibility="invisible">
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/mycenter_iv_stars"
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
             </FrameLayout>
 
             <TextView
