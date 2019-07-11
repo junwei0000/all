@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
+import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
@@ -29,7 +30,9 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfter
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
+import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
+import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -82,7 +85,7 @@ public class BaoZhangActitvty extends WebAct {
     private BaoZhangDialogUtils mLifeBasicPayDialogUtils;
     private BaoZhangDialogUtils mDetailHelpDialogUtils;
     private VolunterDialogUtils mGiveactivityDialogUtils;
-
+    private VolunterDialogUtils mDoctorDialogUtils;
 
     private List<DetailItemBean> blessings_list;
     private List<DetailItemBean> mutual_help_money_all;
@@ -160,10 +163,20 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.e("Observable", "onNewINtent执行了");
+        setIntent(intent);
+        String url = getIntent().getStringExtra("html_url");
+        loadUrl(url);
+    }
+
+    @Override
     public void initDataAfter() {
         super.initDataAfter();
         String url = getIntent().getStringExtra("html_url");
         loadUrl(url);
+        firstComIn = false;
         //详情--获取分享 knp_msg_id
         mBridgeWebView.registerHandler("knp_getKnpMsgId", new BridgeHandler() {
             @Override
@@ -216,6 +229,17 @@ public class BaoZhangActitvty extends WebAct {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        //坐堂医-----押金支付
+        mBridgeWebView.registerHandler("toVolunDoctor_pay", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                weixinPayBackType = "DoctorPay";
+                if (mDoctorDialogUtils == null) {
+                    mDoctorDialogUtils = new VolunterDialogUtils(mActivity, mHandler, DoctorSelectPay);
+                }
+                mDoctorDialogUtils.showPopupWindow(data, "立即支付");
             }
         });
         //康农详情----显示祝福弹层
@@ -380,6 +404,7 @@ public class BaoZhangActitvty extends WebAct {
     private static final int KNPBLESS = 20;
     private static final int LIFEBLESSING = 22;
     private static final int VolunterSelectPay = 33;
+    private static final int DoctorSelectPay = 34;
     private static final int sendLifeDetailShareNum = 44;
     private static final int ChangeLeiFengPay = 55;
     public static final int LifeBasicAppPayment = 66;
@@ -425,6 +450,16 @@ public class BaoZhangActitvty extends WebAct {
                     payType = bundle.getString("payType");
                     VoluntePay(payType, Voluntepay_money, volunteer_debt_item_id);
                     break;
+                case DoctorSelectPay:
+                    bundle = msg.getData();
+                    String payTypes = bundle.getString("payType");
+                    if (payTypes.equals("1")) {
+                        payTypes = "wxpay";
+                    } else if (payTypes.equals("2")) {
+                        payTypes = "alipay";
+                    }
+                    doctorPay(payTypes);
+                    break;
                 case ChangeLeiFengPay:
                     bundle = msg.getData();
                     payType = bundle.getString("payType");
@@ -449,6 +484,89 @@ public class BaoZhangActitvty extends WebAct {
             }
         }
     };
+
+    /**
+     * 坐堂医-----押金支付
+     *
+     * @param payment_channel
+     */
+    private void doctorPay(String payment_channel) {
+        if (RequestDataStatus) {
+            return;
+        }
+        showDialog();
+        Observable<PayWXDataBean> observable = Api.getInstance().service.doctorPay(UserUtils.getUserId(mContext),
+                payment_channel, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                if (payment_channel.equals("wxpay")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payment_channel.equals("alipay")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            doctorPaySuccess();
+                                        }
+
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastUtils.showToast(R.string.net_tishi);
+                        Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
+                    }
+                });
+    }
+
+    /**
+     * 坐堂医-----押金支付成功回调
+     */
+    private void doctorPaySuccess() {
+        MineFragment.showDoctorDialogStatus = true;
+        Intent intents = new Intent();
+        intents.setAction(ConstantManager.MAINMENU_ACTION);
+        intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_CENTER);
+        LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+        ActivityManager.getScreenManager().popAllActivityOnlyMain();
+    }
+
+    boolean firstComIn = true;
+
+    /**
+     * 成为坐堂医--回来刷新任务完成进度
+     */
+    private void setDoctorPageBackRefresh() {
+        if (!firstComIn) {
+            mBridgeWebView.callHandler("doctor_taskReload", "", new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
+
+                }
+            });
+        }
+    }
     //--------------------------------------------------------------------------------------------------------
 
     /**
@@ -1204,6 +1322,12 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setDoctorPageBackRefresh();
+    }
+
+    @Override
     public void onDestroy() {
         unregisterReceiver(mReceiver);
         life_repay_id = "0";
@@ -1227,7 +1351,7 @@ public class BaoZhangActitvty extends WebAct {
         @Override
         public void onReceive(Context context, Intent intent) {
             int Code = intent.getIntExtra("errCode", 100);
-            Log.e("registerHandler","weixinPayBackType="+weixinPayBackType+"  "+one_order_id);
+            Log.e("registerHandler", "weixinPayBackType=" + weixinPayBackType + "  " + one_order_id);
             if (Code == WXPayEntryActivity.PAY_SUCCESS) {
                 if (weixinPayBackType.equals("knpDetailPay")) {
                     knpPayHelpSkipSuccess();
@@ -1243,6 +1367,8 @@ public class BaoZhangActitvty extends WebAct {
                     LifeBasicDetailPaySuccess();
                 } else if (weixinPayBackType.equals("GiveactivityApplyPay")) {
                     GiveactivityPaySuccuess();
+                } else if (weixinPayBackType.equals("DoctorPay")) {
+                    doctorPaySuccess();
                 }
 
             } else if (Code == WXPayEntryActivity.PAY_FAILE) {

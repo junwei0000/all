@@ -38,9 +38,9 @@ import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.DetailAfterBe
 import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.GoodsDetailDataBean;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.activity.ShopCartActivity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity.LifeStyleApplyHelpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
-import com.longcheng.lifecareplan.modular.mine.set.activity.VolunteerH5Activity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -723,7 +723,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
 
                     String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-                        Intent intent = new Intent(mContext, VolunteerH5Activity.class);
+                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", become_volunteer_url);
                         startActivity(intent);

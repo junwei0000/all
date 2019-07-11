@@ -55,7 +55,6 @@ import com.longcheng.lifecareplan.modular.mine.relationship.activity.Relationshi
 import com.longcheng.lifecareplan.modular.mine.rewardcenters.activity.RewardCentersActivity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.ReceiveH5Activity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.SetActivity;
-import com.longcheng.lifecareplan.modular.mine.set.activity.VolunteerH5Activity;
 import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
 import com.longcheng.lifecareplan.modular.mine.starinstruction.StarInstructionAct;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
@@ -479,7 +478,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_volunteerlist://志愿者申请列表
-                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartymember_url());
                 startActivity(intent);
@@ -493,7 +492,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_partygroup://党小组审批
-                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartyGroupLeaderUrl());
                 startActivity(intent);
@@ -525,7 +524,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 if (isDoctorIdentity == 0) {
                     String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-                        intent = new Intent(mContext, VolunteerH5Activity.class);
+                        intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + data.getBecome_doctor_url());
                         startActivity(intent);
@@ -534,7 +533,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                         showNotCHODialog();
                     }
                 } else {
-                    intent = new Intent(mContext, VolunteerH5Activity.class);
+                    intent = new Intent(mContext, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getAlready_doctor_url());
                     startActivity(intent);
@@ -542,14 +541,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 }
                 break;
             case R.id.layout_jiuzhen://就诊记录
-                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPatient_record_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_commissioner://我是特派员
-                intent = new Intent(mContext, VolunteerH5Activity.class);
+                intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getCommissioner_url());
                 startActivity(intent);
