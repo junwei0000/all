@@ -665,6 +665,14 @@ public abstract class WebAct extends BaseActivity {
      * ***********************上传图片*************************
      */
     private void updateWebPic() {
+        //开启长按复制粘贴
+        mBridgeWebView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                //如果想要屏蔽只需要返回ture 即可
+                return false;
+            }
+        });
         mBridgeWebView.setWebChromeClient(new WebChromeClient() {
             // 配置权限（同样在WebChromeClient中实现）
             @Override
