@@ -322,6 +322,7 @@ public interface ApiService {
                                            @Field("life_ad_minor") String life_ad_minor,
                                            @Field("life_repay_id") String life_repay_id,
                                            @Field("life_comment_id") String life_comment_id,
+                                           @Field("goods_specs_id") int goods_specs_id,
                                            @Field("token") String token);
 
     @FormUrlEncoded

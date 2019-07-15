@@ -539,7 +539,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             int height = DensityUtil.dip2px(mContext, 50);
             itemIvGoodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
             itemIvGoodtypeimg.setBackgroundResource(R.mipmap.activat_icon);
-            itemTvGoodnum.setText("生命能量:" + price);
+            itemTvGoodnum.setText("生命能量：" + price);
             itemTvGoodnum.setTextColor(mContext.getResources().getColor(R.color.mediumseagreen));
         } else {
             GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(mContext, mOrderItemBean.getImage(), itemIvGoodthumb, ConstantManager.image_angle);

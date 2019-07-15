@@ -560,6 +560,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             guigeDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = guigeDialog.getWindow();
             window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.showBottomDialog);
             guigeDialog.show();
             WindowManager m = getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高

@@ -17,6 +17,7 @@ import com.longcheng.lifecareplan.modular.mine.myorder.ordertracking.bean.TrankL
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.List;
 
@@ -91,10 +92,12 @@ public class TrankActivity extends BaseActivityMVP<TrankContract.View, TrankPres
 
     @Override
     public void showDialog() {
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override

@@ -296,14 +296,14 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             int height = DensityUtil.dip2px(context, 50);
             mHolder.item_iv_goodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
             mHolder.item_iv_goodtypeimg.setBackgroundResource(R.mipmap.activat_icon);
-            mHolder.item_tv_goodnum.setText("生命能量:" + price);
+            mHolder.item_tv_goodnum.setText("生命能量：" + price);
             mHolder.item_tv_goodnum.setTextColor(context.getResources().getColor(R.color.mediumseagreen));
         } else {
             GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mOrderItemBean.getImage(), mHolder.item_iv_goodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(context, 65);
             mHolder.item_iv_goodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, width));
             mHolder.item_iv_goodtypeimg.setBackgroundResource(R.mipmap.activat_skb_icon);
-            mHolder.item_tv_goodnum.setText("寿康宝:" + price);
+            mHolder.item_tv_goodnum.setText("寿康宝：" + price);
             mHolder.item_tv_goodnum.setTextColor(context.getResources().getColor(R.color.cyanblue));
         }
     }

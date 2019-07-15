@@ -15,6 +15,16 @@ public class ExplainAfterBean {
     private String isJoinActivity;
     @SerializedName("manifesto")
     private List<String> manifesto;
+    @SerializedName("goods_specses")
+    private List<ExplainItemBean> goods_specses;
+
+    public List<ExplainItemBean> getGoods_specses() {
+        return goods_specses;
+    }
+
+    public void setGoods_specses(List<ExplainItemBean> goods_specses) {
+        this.goods_specses = goods_specses;
+    }
 
     public String getIsJoinActivity() {
         return isJoinActivity;

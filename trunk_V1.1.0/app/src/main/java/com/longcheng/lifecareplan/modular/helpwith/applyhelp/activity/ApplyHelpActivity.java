@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,11 +26,14 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.modular.exchange.malldetail.adapter.GuiGeDetailAdapter;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.adapter.GuiGeAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.OtherUserInfoDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
@@ -55,6 +59,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
@@ -93,6 +98,10 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     TextView tv_addressname;
     @BindView(R.id.relat_address)
     LinearLayout relatAddress;
+    @BindView(R.id.tv_guige)
+    TextView tv_guige;
+    @BindView(R.id.relat_guige)
+    LinearLayout relat_guige;
     @BindView(R.id.tv_explaintitle)
     TextView tv_explaintitle;
     @BindView(R.id.tv_explain)
@@ -118,7 +127,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
     private String address_id;
     private String action_safety_id;
     private String extend_info = "";
-    ;
+    List<ExplainItemBean> goods_specses;
     private String mutual_help_apply_id;
     private String qiming_user_id = "0";
 
@@ -183,18 +192,25 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                     ToastUtils.showToast("请选择互祝行动");
                 }
                 break;
+            case R.id.relat_guige:
+                showGuiGeDialog();
+                break;
             case R.id.btn_save:
                 if (!showNotCHODialog()) {
                     if (btnClickStatus) {
                         mPresent.applyAction(user_id, action_id,
                                 peopleid, address_id, describe, action_safety_id, extend_info,
-                                qiming_user_id, life_ad_main, life_ad_minor, life_repay_id, life_comment_id);
+                                qiming_user_id, life_ad_main, life_ad_minor, life_repay_id,
+                                life_comment_id, goods_specs_id);
                     }
                 }
                 break;
         }
     }
 
+    /**
+     * 申请按钮是否可点击
+     */
     boolean btnClickStatus = false;
 
     private void setBtnBg() {
@@ -203,8 +219,17 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         if (!TextUtils.isEmpty(action_id) && !TextUtils.isEmpty(peopleid) &&
                 !TextUtils.isEmpty(describe)) {
             if (actiontype == 2 || (!TextUtils.isEmpty(address_id) && actiontype != 2)) {
-                btnClickStatus = true;
-                btnSave.setBackgroundResource(R.drawable.corners_bg_helpbtn);
+                if (haveGuiGe) {
+                    if (goods_specs_id > 0) {
+                        btnClickStatus = true;
+                        btnSave.setBackgroundResource(R.drawable.corners_bg_helpbtn);
+                    } else {
+                        btnSave.setBackgroundResource(R.drawable.corners_bg_logingray);
+                    }
+                } else {
+                    btnClickStatus = true;
+                    btnSave.setBackgroundResource(R.drawable.corners_bg_helpbtn);
+                }
             } else {
                 btnSave.setBackgroundResource(R.drawable.corners_bg_logingray);
             }
@@ -233,6 +258,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         pagetopLayoutLeft.setOnClickListener(this);
         relatAction.setOnClickListener(this);
         relatPeople.setOnClickListener(this);
+        relat_guige.setOnClickListener(this);
         relatAddress.setOnClickListener(this);
         relatExplain.setOnClickListener(this);
         btnSave.setOnClickListener(this);
@@ -454,6 +480,11 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         }
     }
 
+    /**
+     * 是否有规格
+     */
+    boolean haveGuiGe = false;
+
     @Override
     public void ExplainListSuccess(ExplainDataBean responseBean) {
         String status = responseBean.getStatus();
@@ -462,6 +493,17 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         } else if (status.equals("200")) {
             ExplainAfterBean mPeopleAfterBean = responseBean.getData();
             if (mPeopleAfterBean != null) {
+                goods_specses = mPeopleAfterBean.getGoods_specses();
+                goods_specs_id = 0;
+                guigeSelectPosition = -1;
+                tv_guige.setText("");
+                if (goods_specses != null && goods_specses.size() > 0) {
+                    haveGuiGe = true;
+                    relat_guige.setVisibility(View.VISIBLE);
+                } else {
+                    haveGuiGe = false;
+                    relat_guige.setVisibility(View.GONE);
+                }
                 List<String> mList = mPeopleAfterBean.getManifesto();
                 if (mList != null && mList.size() > 0) {
                     int random = ConfigUtils.getINSTANCE().setRandom(mList.size() - 1);
@@ -476,8 +518,8 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                         tv_explaintitle.setTextColor(getResources().getColor(R.color.red));
                         tvExplain.setTextColor(getResources().getColor(R.color.red));
                     }
-                    setBtnBg();
                 }
+                setBtnBg();
             }
 
         }
@@ -554,6 +596,68 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
 
     }
 
+    MyDialog guigeDialog;
+    TextView btn_helpsure;
+    MyGridView guigegv;
+    GuiGeAdapter mGuiGeDetailAdapter;
+    int guigeSelectPosition = -1;
+    int goods_specs_id;
+    Handler handler = new Handler();
+
+    /**
+     * 规格弹层
+     */
+    public void showGuiGeDialog() {
+        if (guigeDialog == null) {
+            guigeDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_malldetail_guige);// 创建Dialog并设置样式主题
+            guigeDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = guigeDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.showBottomDialog);
+            guigeDialog.show();
+            WindowManager m = getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = guigeDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth(); //宽度设置为屏幕
+            guigeDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) guigeDialog.findViewById(R.id.layout_cancel);
+            guigegv = (MyGridView) guigeDialog.findViewById(R.id.guige_gv);
+            btn_helpsure = (TextView) guigeDialog.findViewById(R.id.btn_helpsure);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    guigeDialog.dismiss();
+                }
+            });
+        } else {
+            guigeDialog.show();
+        }
+        btn_helpsure.setVisibility(View.GONE);
+        if (haveGuiGe) {
+            if (mGuiGeDetailAdapter == null) {
+                mGuiGeDetailAdapter = new GuiGeAdapter(mContext, goods_specses);
+            }
+            mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
+            guigegv.setAdapter(mGuiGeDetailAdapter);
+            guigegv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    guigeSelectPosition = position;
+                    goods_specs_id = goods_specses.get(guigeSelectPosition).getGoods_specs_id();
+                    mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
+                    mGuiGeDetailAdapter.notifyDataSetChanged();
+                    tv_guige.setText(goods_specses.get(guigeSelectPosition).getGoods_specs_name());
+                    setBtnBg();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            guigeDialog.dismiss();
+                        }
+                    }, 100);
+                }
+            });
+        }
+    }
 
     MyDialog selectDialog;
     String need_help_number = "";

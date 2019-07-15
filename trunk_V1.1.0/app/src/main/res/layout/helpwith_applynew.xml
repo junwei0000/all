@@ -205,7 +205,56 @@
                             android:background="@mipmap/user_default_icon" />
                     </LinearLayout>
                 </RelativeLayout>
+                <!--规格 -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/relat_guige"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/jianJu"
+                    android:background="@drawable/corners_bg_write"
+                    android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/jianJu"
+                            android:layout_marginLeft="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp15"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:text="选择规格"
+                            android:textColor="@color/text_biaoTi_color"
+                            android:textSize="@dimen/text_max_size" />
+
+                        <TextView
+                            android:id="@+id/tv_guige"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/engrylistItem_iconHeight"
+                            android:layout_marginBottom="@dimen/dp15"
+                            android:ellipsize="end"
+                            android:hint="点击选择规格"
+                            android:maxLines="2"
+                            android:paddingLeft="@dimen/dp15"
+                            android:paddingRight="@dimen/padd_imgtextleftright"
+                            android:textColor="@color/text_noclick_color"
+                            android:textColorHint="@color/login_hint_color"
+                            android:textSize="@dimen/text_contents_size" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        android:layout_marginRight="@dimen/dp20"
+                        android:background="@mipmap/guige_bj_icon" />
+                </LinearLayout>
                 <!-- 地址 -->
                 <LinearLayout
                     android:id="@+id/relat_address"
