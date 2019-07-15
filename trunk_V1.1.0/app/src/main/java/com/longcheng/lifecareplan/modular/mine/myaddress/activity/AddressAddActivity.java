@@ -22,6 +22,7 @@ import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
@@ -60,7 +61,7 @@ public class AddressAddActivity extends BaseActivityMVP<AddressContract.View, Ad
     @BindView(R.id.btn_save)
     TextView btnSave;
 
-    String province, city, district;
+    String province, city, district, order_id;
     String receive_user_id, consignee, area, address, mobile;
     private String user_id, is_default = "0";//是否默认 0：否 1：是
 
@@ -89,7 +90,7 @@ public class AddressAddActivity extends BaseActivityMVP<AddressContract.View, Ad
                 address = addEtAddress.getText().toString().trim();
                 if (!TextUtils.isEmpty(consignee) && !TextUtils.isEmpty(address) &&
                         !TextUtils.isEmpty(mobile) && !TextUtils.isEmpty(area)) {
-                    mPresent.addAddress(user_id, receive_user_id, consignee, province, city, district, address, mobile, is_default);
+                    mPresent.addAddress(user_id, order_id, receive_user_id, consignee, province, city, district, address, mobile, is_default);
                 }
                 break;
         }
@@ -153,6 +154,7 @@ public class AddressAddActivity extends BaseActivityMVP<AddressContract.View, Ad
     public void initDataAfter() {
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         Intent intent = getIntent();
+        order_id = intent.getExtras().getString("order_id", "0");
         receive_user_id = intent.getStringExtra("receive_user_id");
         setBtnBg();
         mAddressSelectUtils = new AddressSelectUtils(mActivity, mHandler, SELECTADDRESS);
@@ -219,8 +221,16 @@ public class AddressAddActivity extends BaseActivityMVP<AddressContract.View, Ad
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status.equals("200")) {
             ToastUtils.showToast("添加成功");
+            sendBroadcastsRefreshList();
             doFinish();
         }
+    }
+
+    private void sendBroadcastsRefreshList() {
+        Intent intent = new Intent();
+        intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
+        intent.putExtra("type", "EDIT");
+        sendBroadcast(intent);//发送普通广播
     }
 
     @Override

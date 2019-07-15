@@ -167,8 +167,10 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
         } else if (bottom_status == 3) {//
             if (is_show_perfect_info == 0 && is_show_consignee_info == 0 && is_show_help_info == 0) {
-                mHolder.item_tv_left.setText("感恩录");
-                mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                if (type != 1) {
+                    mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                    mHolder.item_tv_left.setText("感恩录");
+                }
             } else {
                 if (is_show_help_info == 1) {
                     mHolder.item_tv_left.setText("送祝福");
@@ -403,7 +405,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             if (is_show_perfect_info == 0 && is_show_consignee_info == 0 && is_show_help_info == 0) {
             } else {
                 if (is_show_consignee_info == 1) {
-                    addAddress();
+                    addAddress(order_id);
                 }
             }
         } else if (bottom_status == 4) {
@@ -412,7 +414,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             ApplyAgain(mOrderItemBean.getAction_status(), mOrderItemBean.getType(), mOrderItemBean.getAction_id(), mOrderItemBean.getGoods_id(), mOrderItemBean.getShop_goods_price_id());
         } else if (bottom_status == 7) {
             if (is_show_consignee_info == 1) {
-                addAddress();
+                addAddress(order_id);
             }
             if (mOrderItemBean.getIs_show_pre_delivery() == 1 && mOrderItemBean.getType() != 4) {
                 jioaYaJin(order_id, mOrderItemBean.getType());
@@ -591,10 +593,11 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
     /**
      * 收货地址");//跳转添加地址页面（。。。。返回逻辑待定）
      */
-    private void addAddress() {
+    private void addAddress(String order_id) {
         Log.e("btnClick", "收货地址");
         Intent intent = new Intent(context, AddressAddActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("order_id", order_id);
         intent.putExtra("receive_user_id", UserUtils.getUserId(context));
         context.startActivity(intent);
     }

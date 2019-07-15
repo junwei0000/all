@@ -408,8 +408,10 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             detailTvRight.setBackgroundColor(getResources().getColor(R.color.blue));
         } else if (bottom_status == 3) {//
             if (is_show_perfect_info == 0 && is_show_consignee_info == 0 && is_show_help_info == 0) {
-                detailTvLeft.setText("感恩录");
-                detailTvLeft.setVisibility(View.VISIBLE);
+                if (type != 1) {
+                    detailTvLeft.setText("感恩录");
+                    detailTvLeft.setVisibility(View.VISIBLE);
+                }
             } else {
                 if (is_show_help_info == 1) {
                     detailTvLeft.setText("送祝福");
@@ -865,6 +867,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         Log.e("btnClick", "收货地址");
         Intent intent = new Intent(mContext, AddressAddActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("order_id", order_id);
         intent.putExtra("receive_user_id", UserUtils.getUserId(mContext));
         mContext.startActivity(intent);
     }
@@ -909,6 +912,8 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             selectDialog.show();
         }
     }
+
+
 
     /**
      * 重写onkeydown 用于监听返回键

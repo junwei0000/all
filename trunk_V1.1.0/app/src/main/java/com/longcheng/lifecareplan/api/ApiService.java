@@ -297,6 +297,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "useraddress/addAddress")
     Observable<AddressListDataBean> addAddress(@Field("user_id") String user_id,
+                                               @Field("order_id") String order_id,
                                                @Field("receive_user_id") String receive_user_id,
                                                @Field("consignee") String consignee,
                                                @Field("province") String province,

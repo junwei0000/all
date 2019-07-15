@@ -68,10 +68,10 @@ public class AddressPresenterImp<T> extends AddressContract.Presenter<AddressCon
      * @time 2017/12/8 17:56
      * @author MarkShuai
      */
-    public void addAddress(String user_id, String receive_user_id, String consignee, String province,
+    public void addAddress(String user_id, String order_id,String receive_user_id, String consignee, String province,
                            String city, String district, String address, String mobile, String is_default) {
         mView.showDialog();
-        Observable<AddressListDataBean> observable = Api.getInstance().service.addAddress(user_id, receive_user_id, consignee, province, city, district, address, mobile, is_default, ExampleApplication.token);
+        Observable<AddressListDataBean> observable = Api.getInstance().service.addAddress(user_id,order_id, receive_user_id, consignee, province, city, district, address, mobile, is_default, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<AddressListDataBean>() {
