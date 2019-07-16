@@ -634,9 +634,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         }
         btn_helpsure.setVisibility(View.GONE);
         if (haveGuiGe) {
-            if (mGuiGeDetailAdapter == null) {
-                mGuiGeDetailAdapter = new GuiGeAdapter(mContext, goods_specses);
-            }
+            mGuiGeDetailAdapter = new GuiGeAdapter(mContext, goods_specses);
             mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
             guigegv.setAdapter(mGuiGeDetailAdapter);
             guigegv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
