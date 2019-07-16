@@ -15,11 +15,13 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,6 +56,7 @@ import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBea
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.CalendarActivity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.Utils;
@@ -598,7 +601,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
 
     MyDialog guigeDialog;
     TextView btn_helpsure;
-    MyGridView guigegv;
+    GridView guigegv;
     GuiGeAdapter mGuiGeDetailAdapter;
     int guigeSelectPosition = -1;
     int goods_specs_id;
@@ -621,7 +624,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             p.width = d.getWidth(); //宽度设置为屏幕
             guigeDialog.getWindow().setAttributes(p); //设置生效
             LinearLayout layout_cancel = (LinearLayout) guigeDialog.findViewById(R.id.layout_cancel);
-            guigegv = (MyGridView) guigeDialog.findViewById(R.id.guige_gv);
+            guigegv = (GridView) guigeDialog.findViewById(R.id.guige_gv);
             btn_helpsure = (TextView) guigeDialog.findViewById(R.id.btn_helpsure);
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -634,6 +637,12 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         }
         btn_helpsure.setVisibility(View.GONE);
         if (haveGuiGe) {
+            if (goods_specses.size() > 10) {
+                int heigth = DensityUtil.screenHigh(mContext) * 3 / 5;
+                guigegv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heigth));
+            } else {
+                guigegv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            }
             mGuiGeDetailAdapter = new GuiGeAdapter(mContext, goods_specses);
             mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
             guigegv.setAdapter(mGuiGeDetailAdapter);

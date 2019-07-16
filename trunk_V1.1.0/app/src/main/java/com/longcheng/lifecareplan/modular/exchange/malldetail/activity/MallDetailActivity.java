@@ -22,6 +22,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -549,7 +550,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
 
     MyDialog guigeDialog;
     TextView btn_helpsure;
-    MyGridView guigegv;
+    GridView guigegv;
 
     /**
      * 规格弹层
@@ -568,7 +569,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             p.width = d.getWidth(); //宽度设置为屏幕
             guigeDialog.getWindow().setAttributes(p); //设置生效
             LinearLayout layout_cancel = (LinearLayout) guigeDialog.findViewById(R.id.layout_cancel);
-            guigegv = (MyGridView) guigeDialog.findViewById(R.id.guige_gv);
+            guigegv = (GridView) guigeDialog.findViewById(R.id.guige_gv);
             btn_helpsure = (TextView) guigeDialog.findViewById(R.id.btn_helpsure);
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -592,6 +593,12 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             btn_helpsure.setText("确认加入");
         }
         if (goodsGuiGeList != null && goodsGuiGeList.size() > 1) {
+            if (goodsGuiGeList.size() > 10) {
+                int heigth = DensityUtil.screenHigh(mContext) * 3 / 5;
+                guigegv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heigth));
+            } else {
+                guigegv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            }
             shop_goods_price_id = goodsGuiGeList.get(guigeSelectPosition).getShop_goods_price_id();
             if (mGuiGeDetailAdapter == null) {
                 mGuiGeDetailAdapter = new GuiGeDetailAdapter(mContext, goodsGuiGeList);

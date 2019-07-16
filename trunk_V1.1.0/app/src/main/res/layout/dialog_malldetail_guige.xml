@@ -42,7 +42,7 @@
         </LinearLayout>
     </FrameLayout>
 
-    <com.longcheng.lifecareplan.utils.myview.MyGridView
+    <GridView
         android:id="@+id/guige_gv"
         style="@style/view_padd"
         android:layout_width="match_parent"
@@ -63,7 +63,6 @@
     <TextView
         android:id="@+id/btn_helpsure"
         style="@style/btn"
-        android:layout_alignParentBottom="true"
         android:background="@color/red"
         android:text="确认申请" />
 
