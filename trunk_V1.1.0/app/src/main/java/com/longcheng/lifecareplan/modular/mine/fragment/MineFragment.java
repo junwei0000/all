@@ -1044,26 +1044,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 LifeBasicDialog.dismiss();
             }
         }
-
-        //基础保障未提现  4
-        if (data.getIsLifeBasicApplyCash() > 0) {
-            showLifeBasicCashDialog();
-            return;
-        } else {
-            if (LifeBasicCashDialog != null && LifeBasicCashDialog.isShowing()) {
-                LifeBasicCashDialog.dismiss();
-            }
-        }
-        //志愿者关联债权人提现  5
-        if (data.getIsDisplayCrediterCash() > 0) {
-            showCrediterCashDialog();
-            return;
-        } else {
-            if (CrediterCashDialog != null && CrediterCashDialog.isShowing()) {
-                CrediterCashDialog.dismiss();
-            }
-        }
-        //天才行动 6
+        //天才行动 4
         if (data.getIs_commonweal_activity() > 0) {
             showActionDialog();
             return;
@@ -1072,6 +1053,25 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 actionDialog.dismiss();
             }
         }
+        //基础保障未提现  5
+        if (data.getIsLifeBasicApplyCash() > 0) {
+            showLifeBasicCashDialog();
+            return;
+        } else {
+            if (LifeBasicCashDialog != null && LifeBasicCashDialog.isShowing()) {
+                LifeBasicCashDialog.dismiss();
+            }
+        }
+        //志愿者关联债权人提现  6
+        if (data.getIsDisplayCrediterCash() > 0) {
+            showCrediterCashDialog();
+            return;
+        } else {
+            if (CrediterCashDialog != null && CrediterCashDialog.isShowing()) {
+                CrediterCashDialog.dismiss();
+            }
+        }
+
         //红包 7
         if (isUnopenedRedPackage > 0) {
             showRedBaoDialog();
