@@ -139,6 +139,26 @@ public class GetHomeInfoBean implements Serializable {
     private ArrayList<GetHomeInfoBean> user_identity_imgs;//身份
     private String image;
 
+
+    private int displayLifeAdReward;//是否展示广告收益 0：没有 1：有
+    private String displayLifeAdRewardUrl;//广告首页地址
+
+    public int getDisplayLifeAdReward() {
+        return displayLifeAdReward;
+    }
+
+    public void setDisplayLifeAdReward(int displayLifeAdReward) {
+        this.displayLifeAdReward = displayLifeAdReward;
+    }
+
+    public String getDisplayLifeAdRewardUrl() {
+        return displayLifeAdRewardUrl;
+    }
+
+    public void setDisplayLifeAdRewardUrl(String displayLifeAdRewardUrl) {
+        this.displayLifeAdRewardUrl = displayLifeAdRewardUrl;
+    }
+
     public String getImage() {
         return image;
     }

@@ -244,6 +244,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.layout_commissioner)
     LinearLayout layout_commissioner;
 
+    @BindView(R.id.layout_publicize)
+    LinearLayout layout_publicize;
 
     private String is_cho;
     private String user_id;
@@ -317,6 +319,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         layout_creditor.setOnClickListener(this);
         layout_functionstatus.setOnClickListener(this);
         layout_commissioner.setOnClickListener(this);
+        layout_publicize.setOnClickListener(this);
         gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -392,13 +395,11 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         FunctionGVlist1.add(new FunctionGVItemBean(Doname, R.id.usercenter_relay_doctor, R.mipmap.my_doctor_icon));
 
         int isCommissionerIdentity = data.getIsCommissionerIdentity();
-        if (isCommissionerIdentity == 0) {
-        } else {
+        if (isCommissionerIdentity != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("我是特派员", R.id.layout_commissioner, R.mipmap.my_commissioner_icon));
         }
         int hasDiagnosticRecord = data.getHasDiagnosticRecord();
-        if (hasDiagnosticRecord == 0) {
-        } else {
+        if (hasDiagnosticRecord != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("就诊记录", R.id.layout_jiuzhen, R.mipmap.my_treatment_icon));
         }
         FunctionGVlist1.add(new FunctionGVItemBean("我的恩人", R.id.usercenter_relay_myenren, R.mipmap.my_benefactor_icon));
@@ -409,20 +410,22 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             FunctionGVlist1.add(new FunctionGVItemBean("启明星", R.id.usercenter_relay_myStar, R.mipmap.my_star_icon));
         }
         int isPartyGroupLeader = data.getIsPartyGroupLeader();
-        if (isPartyGroupLeader == 0) {
-        } else {
+        if (isPartyGroupLeader != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("党小组审批", R.id.layout_partygroup, R.mipmap.my_thegroupleader_icon));
         }
         int isPartymember = data.getIsPartymember();
-        if (isPartymember == 0) {
-        } else {
+        if (isPartymember != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("志愿者列表", R.id.layout_volunteerlist, R.mipmap.my_volunteers_icon));
         }
         int isVolunteerCreditor = data.getIsVolunteerCreditor();
-        if (isVolunteerCreditor == 0) {
-        } else {
+        if (isVolunteerCreditor != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("债权人", R.id.layout_creditor, R.mipmap.my_debt_icon));
         }
+        int displayLifeAdReward = data.getDisplayLifeAdReward();
+        if (displayLifeAdReward != 0) {
+            FunctionGVlist1.add(new FunctionGVItemBean("广告收益", R.id.layout_publicize, R.mipmap.my_ad_icon));
+        }
+
         FunctionAdapter mFunctionAdapter1 = new FunctionAdapter(mContext, FunctionGVlist1);
         gongnengn_gv1.setAdapter(mFunctionAdapter1);
 
@@ -431,14 +434,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         FunctionGVlist2.add(new FunctionGVItemBean("地址管理", R.id.usercenter_relay_address, R.mipmap.usercenter_address_icon));
         FunctionGVlist2.add(new FunctionGVItemBean("修改密码", R.id.usercenter_relay_updatepw, R.mipmap.usercenter_updatepw_icon));
         int is_show_invitation = data.getIs_show_invitation();
-        if (is_show_invitation == 1) {
+        if (is_show_invitation != 0) {
             FunctionGVlist2.add(new FunctionGVItemBean("变更邀请人", R.id.usercenter_relay_changeinviter, R.mipmap.my_change_icon));
         }
-
         //是否显示复活卡  0：不显示  1：显示
         int isResetCard = data.getIsResetCard();
-        if (isResetCard == 0) {
-        } else {
+        if (isResetCard != 0) {
             FunctionGVlist2.add(new FunctionGVItemBean("重生卡", R.id.usercenter_layout_rebirth, R.mipmap.my_rebirth_icon));
         }
         FunctionAdapter mFunctionAdapter2 = new FunctionAdapter(mContext, FunctionGVlist2);
@@ -485,6 +486,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent = new Intent(mContext, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartymember_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+
+            case R.id.layout_publicize://广告收益
+                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getDisplayLifeAdRewardUrl());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -1484,7 +1493,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             layout_creditor.setVisibility(View.VISIBLE);
         }
-
+        int displayLifeAdReward = data.getDisplayLifeAdReward();
+        if (displayLifeAdReward == 0) {
+            layout_publicize.setVisibility(View.GONE);
+        } else {
+            layout_publicize.setVisibility(View.VISIBLE);
+        }
         about_me_url = mGetHomeInfoBean.getAbout_me_url();
         isDirectorOrTeamLeader = mGetHomeInfoBean.getIsDirectorOrTeamLeader();
         isUnopenedRedPackage = mGetHomeInfoBean.getIsUnopenedRedPackage();
