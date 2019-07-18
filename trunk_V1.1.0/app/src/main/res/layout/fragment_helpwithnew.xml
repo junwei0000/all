@@ -101,7 +101,7 @@
                 android:fadeScrollbars="false"
                 android:fadingEdge="none"
                 android:gravity="center"
-                android:horizontalSpacing="@dimen/padd_leftright"
+                android:horizontalSpacing="@dimen/dp8"
                 android:numColumns="5"
                 android:paddingBottom="@dimen/dp20"
                 android:paddingTop="@dimen/dp20"

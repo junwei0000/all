@@ -6,252 +6,268 @@
     android:gravity="bottom|center_horizontal"
     android:orientation="vertical">
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
-            style="@style/view_padd"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/white"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    style="@style/view_padd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择奉献金额"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_contents_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/detailhelp_tv_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="（元）"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_cancel"
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/padd_topbottom">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/dialog_city_cancel" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <com.longcheng.lifecareplan.utils.myview.MyGridView
+                android:id="@+id/detailhelp_gv_money"
+                style="@style/view_marginlefgtright"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/transparent"
+                android:cacheColorHint="@color/transparent"
+                android:divider="@null"
+                android:fadeScrollbars="true"
+                android:fadingEdge="none"
+                android:focusable="false"
+                android:gravity="left"
+                android:horizontalSpacing="@dimen/dp10"
+                android:listSelector="@drawable/list_notselector"
+                android:numColumns="3"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/dp10" />
 
             <TextView
-                android:layout_width="wrap_content"
+                style="@style/view_margin"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="选择奉献金额"
+                android:text="选择奉献倍数"
                 android:textColor="@color/text_biaoTi_color"
                 android:textSize="@dimen/text_contents_size"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.longcheng.lifecareplan.utils.myview.LongClickButton
+                    android:id="@+id/tv_jian"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_black"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp8"
+                    android:paddingTop="@dimen/dp8"
+                    android:text="—"
+                    android:textColor="@color/text_healthcontents_color"
+                    android:textSize="@dimen/text_max_size" />
+
+                <TextView
+                    android:id="@+id/tv_num"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:layout_marginRight="@dimen/padd_imgtextleftright"
+                    android:layout_weight="4"
+                    android:background="@drawable/corners_bg_black"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/text_healthcontents_color"
+                    android:textSize="@dimen/text_max_size" />
+
+                <com.longcheng.lifecareplan.utils.myview.LongClickButton
+                    android:id="@+id/tv_add"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_black"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/text_healthcontents_color"
+                    android:textSize="@dimen/text_dp25_size" />
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/detailhelp_tv_money"
-                android:layout_width="wrap_content"
+                style="@style/view_margin"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="（元）"
+                android:text="选择支付方式"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
+            <!---->
+            <LinearLayout
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/detailhelp_relat_wx"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp43"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_redbian"
+                    android:padding="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/padd_imgtextleftright"
+                            android:background="@mipmap/paywx_icon" />
+
+                        <TextView
+                            android:id="@+id/detailhelp_tv_wxselecttitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="微信"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_dp12_size" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/detailhelp_iv_wxselect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@mipmap/pay_selcet_icon_red" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/detailhelp_relat_zfb"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp43"
+                    android:layout_marginLeft="@dimen/padd_leftright"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_black"
+                    android:padding="0dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/padd_imgtextleftright"
+                            android:background="@mipmap/wisheachdetails_pay_paytreasure" />
+
+                        <TextView
+                            android:id="@+id/tv_zfbtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="支付宝"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_zhu_size" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/detailhelp_iv_zfbselect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@mipmap/pay_selcet_icon_red"
+                        android:visibility="gone" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/view_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="祝福感言"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/detailhelp_et_content"
+                style="@style/view_marginlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+                android:background="@drawable/corners_bg_black"
+                android:hint="送一句祝福：永远幸福安康"
+                android:paddingLeft="@dimen/padd_leftright"
+                android:paddingRight="@dimen/padd_leftright"
                 android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_contents_size" />
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_zhu_size" />
 
+            <TextView
+                android:id="@+id/tv_tishi"
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padd_topbottom"
+                android:text="您的爱心善款将用于消除志愿者债务。消除一笔债，健康两家人！"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_min_size" />
+
+            <TextView
+                android:id="@+id/btn_helpsure"
+                style="@style/btn"
+                android:background="@color/red"
+                android:text="立即祝福" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_cancel"
-            style="@style/view_paddlefgtright"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:gravity="center_horizontal"
-            android:paddingTop="@dimen/padd_topbottom">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/dialog_city_cancel" />
-        </LinearLayout>
-    </FrameLayout>
-
-    <com.longcheng.lifecareplan.utils.myview.MyGridView
-        android:id="@+id/detailhelp_gv_money"
-        style="@style/view_marginlefgtright"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/transparent"
-        android:cacheColorHint="@color/transparent"
-        android:divider="@null"
-        android:fadeScrollbars="true"
-        android:fadingEdge="none"
-        android:focusable="false"
-        android:gravity="left"
-        android:horizontalSpacing="@dimen/dp10"
-        android:listSelector="@drawable/list_notselector"
-        android:numColumns="3"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        android:verticalSpacing="@dimen/dp10" />
-
-    <TextView
-        style="@style/view_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="选择奉献倍数"
-        android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_contents_size"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        style="@style/view_paddlefgtright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.longcheng.lifecareplan.utils.myview.LongClickButton
-            android:id="@+id/tv_jian"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/corners_bg_black"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dp8"
-            android:paddingTop="@dimen/dp8"
-            android:text="—"
-            android:textColor="@color/text_healthcontents_color"
-            android:textSize="@dimen/text_max_size" />
-
-        <TextView
-            android:id="@+id/tv_num"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/padd_imgtextleftright"
-            android:layout_marginRight="@dimen/padd_imgtextleftright"
-            android:layout_weight="4"
-            android:background="@drawable/corners_bg_black"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="@color/text_healthcontents_color"
-            android:textSize="@dimen/text_max_size" />
-
-        <com.longcheng.lifecareplan.utils.myview.LongClickButton
-            android:id="@+id/tv_add"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/corners_bg_black"
-            android:gravity="center"
-            android:text="+"
-            android:textColor="@color/text_healthcontents_color"
-            android:textSize="@dimen/text_dp25_size" />
-    </LinearLayout>
-
-    <TextView
-        style="@style/view_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="选择支付方式"
-        android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_contents_size"
-        android:textStyle="bold" />
-    <!---->
-    <LinearLayout
-        style="@style/view_paddlefgtright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:id="@+id/detailhelp_relat_wx"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp43"
-            android:layout_weight="1"
-            android:background="@drawable/corners_bg_redbian"
-            android:padding="0dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padd_imgtextleftright"
-                    android:background="@mipmap/paywx_icon" />
-
-                <TextView
-                    android:id="@+id/detailhelp_tv_wxselecttitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="微信"
-                    android:textColor="@color/text_contents_color"
-                    android:textSize="@dimen/text_dp12_size" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/detailhelp_iv_wxselect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:background="@mipmap/pay_selcet_icon_red" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/detailhelp_relat_zfb"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp43"
-            android:layout_marginLeft="@dimen/padd_leftright"
-            android:layout_weight="1"
-            android:background="@drawable/corners_bg_black"
-            android:padding="0dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padd_imgtextleftright"
-                    android:background="@mipmap/wisheachdetails_pay_paytreasure" />
-
-                <TextView
-                    android:id="@+id/tv_zfbtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="支付宝"
-                    android:textColor="@color/text_contents_color"
-                    android:textSize="@dimen/text_zhu_size" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/detailhelp_iv_zfbselect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:background="@mipmap/pay_selcet_icon_red"
-                android:visibility="gone" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <TextView
-        style="@style/view_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="祝福感言"
-        android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_contents_size"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/detailhelp_et_content"
-        style="@style/view_marginlefgtright"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60"
-        android:background="@drawable/corners_bg_black"
-        android:hint="送一句祝福：永远幸福安康"
-        android:paddingLeft="@dimen/padd_leftright"
-        android:paddingRight="@dimen/padd_leftright"
-        android:textColor="@color/text_noclick_color"
-        android:textColorHint="@color/login_hint_color"
-        android:textSize="@dimen/text_zhu_size" />
-    <TextView
-        android:id="@+id/tv_tishi"
-        android:paddingTop="@dimen/padd_topbottom"
-        style="@style/view_paddlefgtright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/text_noclick_color"
-        android:textSize="@dimen/text_min_size"
-        android:text="您的爱心善款将用于消除志愿者债务。消除一笔债，健康两家人！" />
-    <TextView
-        android:id="@+id/btn_helpsure"
-        style="@style/btn"
-        android:background="@color/red"
-        android:text="立即祝福" />
-
+    </ScrollView>
 </LinearLayout>

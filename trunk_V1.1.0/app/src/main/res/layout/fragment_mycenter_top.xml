@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:maxEms="5"
+                    android:maxEms="4"
                     android:maxLines="1"
                     android:text="姓名"
                     android:textColor="@color/text_biaoTi_color"
@@ -181,6 +181,7 @@
                 android:id="@+id/mycentertop_tv_awakeskb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="0"
                 android:textColor="@color/text_biaoTi_color"
                 android:textSize="@dimen/text_biaoTi_size" />
@@ -189,6 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
                 android:text="唤醒寿康宝"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />
@@ -207,6 +209,7 @@
                 android:id="@+id/mycentertop_tv_sleepskb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="0"
                 android:textColor="@color/text_biaoTi_color"
                 android:textSize="@dimen/text_biaoTi_size" />
@@ -215,6 +218,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
                 android:text="沉睡寿康宝"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />
@@ -233,6 +237,7 @@
                 android:id="@+id/mycentertop_tv_sleeplifeenergy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="0"
                 android:textColor="@color/text_biaoTi_color"
                 android:textSize="@dimen/text_biaoTi_size" />
@@ -241,6 +246,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
                 android:text="沉睡生命能量"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />
@@ -259,6 +265,7 @@
                 android:id="@+id/mycentertop_tv_lifeenergy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:text="0"
                 android:textColor="@color/text_biaoTi_color"
                 android:textSize="@dimen/text_biaoTi_size" />
@@ -267,6 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padd_imgtextleftright"
+                android:singleLine="true"
                 android:text="生命能量"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />

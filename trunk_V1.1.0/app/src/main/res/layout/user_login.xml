@@ -18,7 +18,7 @@
             android:id="@+id/login_tv_tilte"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp30"
+            android:layout_marginBottom="@dimen/dp20"
             android:gravity="center"
             android:text="@string/login_account"
             android:textColor="@color/text_biaoTi_color"
@@ -279,7 +279,7 @@
             </RelativeLayout>
 
             <LinearLayout
-                style="@style/view_paddtopbottom"
+                android:layout_marginTop="@dimen/padd_topbottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">

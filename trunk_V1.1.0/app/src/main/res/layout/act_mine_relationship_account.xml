@@ -27,107 +27,113 @@
             android:layout_gravity="bottom|right"
             android:src="@mipmap/my_human_underthe2" />
 
-        <FrameLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="60dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
-            android:background="@color/white">
+            android:scrollbars="none">
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|top"
-                android:layout_marginRight="45dp"
-                android:layout_marginTop="45dp"
-                android:src="@mipmap/my_human_paper" />
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="50dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="15dp"
-                android:orientation="vertical">
+                android:background="@color/white">
 
-                <TextView
-                    android:id="@+id/tvname"
-                    android:layout_width="match_parent"
+
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|top"
+                    android:layout_marginRight="45dp"
                     android:layout_marginTop="45dp"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
+                    android:src="@mipmap/my_human_paper" />
 
-                <TextView
-                    android:id="@+id/tvdatecreate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:layout_marginTop="24dp"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
 
-                <TextView
-                    android:id="@+id/tvdatecho"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvdays"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
+                    <TextView
+                        android:id="@+id/tvname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="45dp"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
 
-                <TextView
-                    android:id="@+id/tvhelpnum"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
+                    <TextView
+                        android:id="@+id/tvdatecreate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:layout_marginTop="24dp"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
 
-                <TextView
-                    android:id="@+id/tvenergy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
+                    <TextView
+                        android:id="@+id/tvdatecho"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
 
-                <TextView
-                    android:id="@+id/tvdatebehelp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
+                    <TextView
+                        android:id="@+id/tvdays"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
 
-                <TextView
-                    android:id="@+id/tvhelpmenum"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
+                    <TextView
+                        android:id="@+id/tvhelpnum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
 
-                <TextView
-                    android:id="@+id/tvhelpmeenergy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padd_leftright"
-                    android:paddingTop="@dimen/jianJu"
-                    android:textSize="@dimen/text_biaoTi_size" />
-            </LinearLayout>
-        </FrameLayout>
+                    <TextView
+                        android:id="@+id/tvenergy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/tvdatebehelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/tvhelpmenum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/tvhelpmeenergy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:paddingTop="@dimen/jianJu"
+                        android:textSize="@dimen/text_biaoTi_size" />
+                </LinearLayout>
+            </FrameLayout>
+        </ScrollView>
 
         <ImageView
             android:layout_width="wrap_content"

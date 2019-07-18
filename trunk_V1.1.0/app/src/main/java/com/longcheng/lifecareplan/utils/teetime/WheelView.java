@@ -185,8 +185,11 @@ public class WheelView extends View {
             TEXT_SIZE = 35;
         } else if (dm.widthPixels >= 1000) {
             TEXT_SIZE = 50;
-        } else {
+        } else if (dm.widthPixels > 400 && dm.widthPixels < 700) {
             TEXT_SIZE = 25;
+        } else {
+            TEXT_SIZE = 15;
+            ADDITIONAL_ITEM_HEIGHT = 35;
         }
         gestureDetector = new GestureDetector(context, gestureListener);
         gestureDetector.setIsLongpressEnabled(false);

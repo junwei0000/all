@@ -107,7 +107,7 @@ public class DetailMoneyAdapter extends BaseAdapter {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        int width = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 100);
+        int width = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 80);
         DetailItemBean mEnergyItemBean = list.get(position);
         mHolder.item_layout_money.setLayoutParams(new LinearLayout.LayoutParams(width / 3, width / 3));
         GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mEnergyItemBean.getImage(), mHolder.item_tv_moneyimg, 0);

@@ -13,130 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/mainmenu_layout_invitefriends"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:scaleType="centerCrop"-->
-                    <!--android:src="@mipmap/main_invitefriends_icon" />-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="@dimen/padd_imgtextleftright"-->
-                    <!--android:text="邀请亲友"-->
-                    <!--android:textColor="@color/text_contents_color"-->
-                    <!--android:textSize="@dimen/text_zhu_size" />-->
-            <!--</LinearLayout>-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/mainmenu_layout_participatehelp"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@mipmap/main_participatehelp_icon" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="@dimen/padd_imgtextleftright"-->
-                <!--android:text="参与互祝"-->
-                <!--android:textColor="@color/text_contents_color"-->
-                <!--android:textSize="@dimen/text_zhu_size" />-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/mainmenu_layout_entercommune"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@mipmap/main_entercommune_icon" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="@dimen/padd_imgtextleftright"-->
-                <!--android:text="进入公社"-->
-                <!--android:textColor="@color/text_contents_color"-->
-                <!--android:textSize="@dimen/text_zhu_size" />-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/mainmenu_layout_connon"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@mipmap/main_entercommune_icon" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="@dimen/padd_imgtextleftright"-->
-                <!--android:text="激活能量"-->
-                <!--android:textColor="@color/text_contents_color"-->
-                <!--android:textSize="@dimen/text_zhu_size" />-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/mainmenu_layout_signin"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@mipmap/main_activationenergy_icon" />-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="@dimen/padd_imgtextleftright"-->
-                    <!--android:text="每日签到"-->
-                    <!--android:textColor="@color/text_contents_color"-->
-                    <!--android:textSize="@dimen/text_zhu_size" />-->
-            <!--</LinearLayout>-->
-        <!--</LinearLayout>-->
         <com.longcheng.lifecareplan.utils.myview.MyGridView
             android:id="@+id/gv_icon"
             android:layout_width="match_parent"
@@ -144,13 +20,13 @@
             android:background="@color/white"
             android:cacheColorHint="@color/page_bg"
             android:divider="@null"
-            android:focusable="false"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
-            android:horizontalSpacing="@dimen/padd_leftright"
-            android:verticalSpacing="@dimen/padd_leftright"
+            android:focusable="false"
+            android:horizontalSpacing="@dimen/dp8"
             android:numColumns="5"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:verticalSpacing="@dimen/padd_leftright" />
     </LinearLayout>
 
     <include layout="@layout/line" />

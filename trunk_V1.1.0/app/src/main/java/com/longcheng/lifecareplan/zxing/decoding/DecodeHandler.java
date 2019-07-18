@@ -71,6 +71,9 @@ final class DecodeHandler extends Handler {
      * @param height The height of the preview frame.
      */
     private void decode(byte[] data, int width, int height) {
+        if (data == null) {
+            return;
+        }
         long start = System.currentTimeMillis();
         Result rawResult = null;
 
