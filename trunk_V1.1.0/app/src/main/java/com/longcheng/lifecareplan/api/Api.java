@@ -99,6 +99,7 @@ public class Api {
         Log.e("Api", "Api-----------");
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.connectTimeout(30, TimeUnit.SECONDS);
+        httpClient.readTimeout(30, TimeUnit.SECONDS);
         /**
          * 自定义okhttp中dns解析 防止https第一次请求过慢
          */
