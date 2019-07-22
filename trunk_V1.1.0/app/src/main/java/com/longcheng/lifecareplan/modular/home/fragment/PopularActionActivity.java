@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
+import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.home.adapter.ActionAdapter;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
+import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 
@@ -121,6 +123,11 @@ public class PopularActionActivity extends BaseActivityMVP<HomeContract.View, Ho
             ActionAdapter mActionListAdapter = new ActionAdapter(mContext, mList);
             action_lv.setAdapter(mActionListAdapter);
         }
+    }
+
+    @Override
+    public void QuickTeamUrlSuccess(QuickTeamDataBean mHomeDataBean) {
+
     }
 
 

@@ -7,9 +7,11 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
+import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
@@ -104,5 +106,23 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
 
     }
 
+    public void getQuickTeamUrl() {
+        Observable<QuickTeamDataBean> observable = Api.getInstance().service.getQuickTeamUrl(UserUtils.getUserId(mContext),ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<QuickTeamDataBean>() {
+                    @Override
+                    public void accept(QuickTeamDataBean responseBean) throws Exception {
+                        view.QuickTeamUrlSuccess(responseBean);
+                        Log.e("Observable", "" + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        view.ListError();
+                        Log.e("Observable", "" + throwable.toString());
+                    }
+                });
 
+    }
 }

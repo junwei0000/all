@@ -37,6 +37,7 @@ import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.RelationListDat
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.rank.bean.RankListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
+import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneDataBean;
 import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneListDataBean;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.bean.HealthyDeliveryResultBean;
@@ -226,7 +227,9 @@ public interface ApiService {
     @GET(Config.VERSION + "index/actionList")
     Observable<PoActionListDataBean> getReMenActioin();
 
-
+    @GET(Config.VERSION + "knpteam/ajaxReciveDedicationHigh")
+    Observable<QuickTeamDataBean> getQuickTeamUrl(@Query("user_id") String user_id,
+                                                  @Query("token") String token);
     //********************申请互祝***************************
     @FormUrlEncoded
     @POST(Config.VERSION + "help/needHelpNumberTask")

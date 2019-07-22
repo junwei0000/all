@@ -30,6 +30,8 @@ import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
+import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexAfterBean;
+import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
@@ -43,6 +45,7 @@ import com.longcheng.lifecareplan.modular.home.bean.HomeAfterBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
+import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneJoinListActivity;
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneMineActivity;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
@@ -309,7 +312,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                         }
                     } else if (sort == 5) {
                         if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
-                            ((MineFragment) BottomMenuActivity.fragmentList.get(BottomMenuActivity.tab_position_mine)).signInGetInfo("signIn");
+//                            ((MineFragment) BottomMenuActivity.fragmentList.get(BottomMenuActivity.tab_position_mine)).signInGetInfo("signIn");
+                            mPresent.getQuickTeamUrl();
                         }
                     }
                 }
@@ -644,6 +648,21 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     @Override
     public void ActionListSuccess(PoActionListDataBean mHomeDataBean) {
 
+    }
+
+    @Override
+    public void QuickTeamUrlSuccess(QuickTeamDataBean responseBean) {
+        String status_ = responseBean.getStatus();
+        if (status_.equals("400")) {
+            ToastUtils.showToast(responseBean.getMsg());
+        } else if (status_.equals("200")) {
+            String url = responseBean.getData();
+            Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("html_url", "" + url);
+            startActivity(intent);
+            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+        }
     }
 
     /**

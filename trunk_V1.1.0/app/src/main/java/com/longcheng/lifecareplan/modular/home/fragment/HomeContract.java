@@ -9,9 +9,11 @@ import android.widget.LinearLayout;
 import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
+import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
+import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.modular.index.welcome.bean.WelcomeBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 
@@ -31,6 +33,7 @@ public interface HomeContract {
 
         void ActionListSuccess(PoActionListDataBean mHomeDataBean);
 
+        void QuickTeamUrlSuccess(QuickTeamDataBean mHomeDataBean);
 
         void ListError();
     }
