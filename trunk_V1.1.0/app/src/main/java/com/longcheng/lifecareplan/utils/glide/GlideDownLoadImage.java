@@ -1,10 +1,6 @@
 package com.longcheng.lifecareplan.utils.glide;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +19,6 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
  * <p>
  * 类的意图：Glide加载图片工具类
  */
-
 public class GlideDownLoadImage {
 
     private static final String TAG = "ImageLoader";
@@ -41,7 +36,7 @@ public class GlideDownLoadImage {
      * @Data 2017-9-5 11:10
      */
     public void loadImage(Context mContext, int resId, ImageView view) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(resId)
                 .placeholder(R.mipmap.moren_new)
                 .error(R.mipmap.moren_new)
@@ -75,11 +70,11 @@ public class GlideDownLoadImage {
      * @Data 2017-9-5 11:18
      */
     public void loadCircleImage(Context mContext, int resId, ImageView view) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(resId)
                 .placeholder(R.mipmap.user_default_icon)
                 .error(R.mipmap.user_default_icon)
-                .bitmapTransform(new GlideCircleTransform(mContext))
+                .bitmapTransform(new GlideCircleTransform(ExampleApplication.getContext()))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
@@ -93,8 +88,8 @@ public class GlideDownLoadImage {
      * @auhtor MarkMingShuai
      * @Data 2017-9-5 11:18
      */
-    public void loadCircleHeadImage(Context m, int resId, ImageView view) {
-        Glide.with(m)
+    public void loadCircleHeadImage(Context mContext, int resId, ImageView view) {
+        Glide.with(ExampleApplication.getContext())
                 .load(resId)
                 .placeholder(R.mipmap.user_default_icon)
                 .error(R.mipmap.user_default_icon)
@@ -111,8 +106,8 @@ public class GlideDownLoadImage {
      * @auhtor MarkMingShuai
      * @Data 2017-9-5 11:18
      */
-    public void loadCircleHeadImage(Context m, String url, ImageView view) {
-        Glide.with(m)
+    public void loadCircleHeadImage(Context mContext, String url, ImageView view) {
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.user_default_icon)
                 .error(R.mipmap.user_default_icon)
@@ -130,8 +125,8 @@ public class GlideDownLoadImage {
      * @auhtor MarkMingShuai
      * @Data 2017-9-5 11:18
      */
-    public void loadCircleHeadImageCenter(Context m, String url, ImageView view) {
-        Glide.with(m)
+    public void loadCircleHeadImageCenter(Context mContext, String url, ImageView view) {
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.user_default_icon)
                 .error(R.mipmap.user_default_icon)
@@ -166,37 +161,37 @@ public class GlideDownLoadImage {
     }
 
     /**
-     * @param mComtext
+     * @param mContext
      * @param url
      * @param view
      * @name 加载网络圆图
      * @auhtor MarkMingShuai
      * @Data 2017-9-5 11:18
      */
-    public void loadCircleImage(Context mComtext, String url, ImageView view) {
-        Glide.with(mComtext)
+    public void loadCircleImage(Context mContext, String url, ImageView view) {
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.user_default_icon)
                 .error(R.mipmap.user_default_icon)
-                .bitmapTransform(new GlideCircleTransform(mComtext))
+                .bitmapTransform(new GlideCircleTransform(ExampleApplication.getContext()))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
 
     /**
-     * @param mComtext
+     * @param mContext
      * @param url
      * @param view
      * @name 加载网络圆图
      * @auhtor MarkMingShuai
      * @Data 2017-9-5 11:18
      */
-    public void loadCircleImageCommune(Context mComtext, String url, ImageView view) {
-        Glide.with(mComtext)
+    public void loadCircleImageCommune(Context mContext, String url, ImageView view) {
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.icon_commune_round)
                 .error(R.mipmap.icon_commune_round)
-                .bitmapTransform(new GlideCircleTransform(mComtext))
+                .bitmapTransform(new GlideCircleTransform(ExampleApplication.getContext()))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
@@ -211,11 +206,11 @@ public class GlideDownLoadImage {
      * @Data 2017-9-5 11:18
      */
     public void loadCircleImageCommune(Context mContext, String url, ImageView view, int dp) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.icon_commune)
                 .error(R.mipmap.icon_commune)
-                .bitmapTransform(new GlideRoundTransform(mContext, dp))
+                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext(), dp))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
@@ -228,11 +223,11 @@ public class GlideDownLoadImage {
      * @param view
      */
     public void loadCircleImageHelpIndex(Context mContext, String url, ImageView view) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.wisheach_icon_yushui)
                 .error(R.mipmap.wisheach_icon_yushui)
-                .bitmapTransform(new GlideRoundTransform(mContext))
+                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext()))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
@@ -247,11 +242,11 @@ public class GlideDownLoadImage {
      * @Data 2017-9-5 11:18
      */
     public void loadCircleImageRole(Context mContext, int resId, ImageView view, int dp) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(resId)
                 .placeholder(R.mipmap.moren_new)
                 .error(R.mipmap.moren_new)
-                .bitmapTransform(new GlideRoundTransform(mContext, dp))
+                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext(), dp))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
@@ -284,11 +279,11 @@ public class GlideDownLoadImage {
      * @Data 2017-9-5 11:18
      */
     public void loadCircleImageRole(Context mContext, String url, ImageView view, int dp) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.moren_new)
                 .error(R.mipmap.moren_new)
-                .bitmapTransform(new GlideRoundTransform(mContext, dp))
+                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext(), dp))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
@@ -304,11 +299,11 @@ public class GlideDownLoadImage {
     }
 
     public void loadCircleImageRoleGoodsDetail(Context mContext, String url, ImageView view, int dp) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.mall_icon_thedefault2)
                 .error(R.mipmap.mall_icon_thedefault2)
-                .bitmapTransform(new GlideRoundTransform(mContext, dp))
+                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext(), dp))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
@@ -323,11 +318,11 @@ public class GlideDownLoadImage {
      * @Data 2017-9-5 11:18
      */
     public void loadCircleImageRoleREf(Context mContext, String url, ImageView view, int dp) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.moren_new)
                 .error(R.mipmap.moren_new)
-                .bitmapTransform(new GlideRoundTransform(mContext, dp))
+                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext(), dp))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(new SimpleTarget<GlideDrawable>() {
                     @Override
@@ -348,7 +343,7 @@ public class GlideDownLoadImage {
      * @Data 2017-9-5 11:18
      */
     public void loadCircleImageRoleREf(Context mContext, String url, ImageView view) {
-        Glide.with(mContext)
+        Glide.with(ExampleApplication.getContext())
                 .load(url)
                 .placeholder(R.mipmap.moren_new)
                 .error(R.mipmap.moren_new)

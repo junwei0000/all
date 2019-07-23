@@ -309,7 +309,9 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
      * @param page
      */
     private void getList(int page) {
-        layout_categorys.setVisibility(View.GONE);
+        if(layout_categorys!=null){
+            layout_categorys.setVisibility(View.GONE);
+        }
         user_id = UserUtils.getUserId(mContext);
         mPresent.getGoodsList(user_id, category, time_sort, price_sort,
                 hot_sort, solar_terms, searchCont, page, pageSize);

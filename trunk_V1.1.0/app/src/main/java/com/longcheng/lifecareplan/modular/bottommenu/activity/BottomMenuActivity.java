@@ -28,6 +28,7 @@ import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.ShortcutUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.MyViewPager;
