@@ -18,6 +18,16 @@ public class JieQiAfterBean {
     private List<JieQiItemBean> solar;
     @SerializedName("categorys")
     private List<JieQiItemBean> categorys;
+    @SerializedName("layer")
+    private List<JieQiItemBean> layer;
+
+    public List<JieQiItemBean> getLayer() {
+        return layer;
+    }
+
+    public void setLayer(List<JieQiItemBean> layer) {
+        this.layer = layer;
+    }
 
     public JieQiItemBean getCurrent_solar() {
         return current_solar;

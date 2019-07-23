@@ -230,6 +230,7 @@ public interface ApiService {
     @GET(Config.VERSION + "knpteam/ajaxReciveDedicationHigh")
     Observable<QuickTeamDataBean> getQuickTeamUrl(@Query("user_id") String user_id,
                                                   @Query("token") String token);
+
     //********************申请互祝***************************
     @FormUrlEncoded
     @POST(Config.VERSION + "help/needHelpNumberTask")
@@ -974,10 +975,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "lifebasic/ajaxSaveApply")
     Observable<PayWXDataBean> LifeBasicApplyPay(@Field("user_id") String user_id,
-                                                @Field("des_content") String des_content,
-                                                @Field("payment_channel") String payment_channel,
-                                                @Field("pay_source") String pay_source,
-                                                @Field("__app_pay_token__") String __app_pay_token__,
+                                                @Field("json_datas") String json_datas,
                                                 @Field("token") String token);
 
     @FormUrlEncoded

@@ -43,10 +43,15 @@ import com.longcheng.lifecareplan.modular.exchange.bean.JieQiListDataBean;
 import com.longcheng.lifecareplan.modular.exchange.bean.MallGoodsListDataBean;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetailActivity;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.activity.ShopCartActivity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
+import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
@@ -309,7 +314,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
      * @param page
      */
     private void getList(int page) {
-        if(layout_categorys!=null){
+        if (layout_categorys != null) {
             layout_categorys.setVisibility(View.GONE);
         }
         user_id = UserUtils.getUserId(mContext);
@@ -522,6 +527,12 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                     current_solar_en = current_solar.getCurrent_solar_en();
                     current_solar_cn = current_solar.getCurrent_solar_cn();
                 }
+
+                List<JieQiItemBean> layer = mJieQiAfterBean.getLayer();
+                if (layer != null && layer.size() > 0) {
+                    JieQiItemBean mJieQiItemBean = layer.get(0);
+                    showCononDialog(mJieQiItemBean.getHref(), mJieQiItemBean.getImg());
+                }
             }
         }
     }
@@ -530,6 +541,70 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
     public void ListError() {
         RefreshComplete();
         checkLoadOver(0);
+    }
+
+    MyDialog YinLiaoDialog;
+    ImageView fram_bg;
+
+    public void dismissAllDialog() {
+        if (YinLiaoDialog != null && YinLiaoDialog.isShowing()) {
+            YinLiaoDialog.dismiss();
+        }
+    }
+
+    /**
+     * 是否显示康农弹层
+     */
+    public void showCononDialog(String url, String img) {
+        if (BottomMenuActivity.position != BottomMenuActivity.tab_position_exchange
+                || BottomMenuActivity.updatedialogstatus) {
+            dismissAllDialog();
+            return;
+        }
+        if (YinLiaoDialog != null && YinLiaoDialog.isShowing()) {
+            return;
+        }
+        try {
+            if (YinLiaoDialog == null) {
+                YinLiaoDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+                YinLiaoDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = YinLiaoDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                YinLiaoDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = YinLiaoDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                YinLiaoDialog.getWindow().setAttributes(p); //设置生效
+                fram_bg = (ImageView) YinLiaoDialog.findViewById(R.id.fram_bg);
+                fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.433)));
+                LinearLayout layout_cancel = (LinearLayout) YinLiaoDialog.findViewById(R.id.layout_cancel);
+
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        YinLiaoDialog.dismiss();
+                    }
+                });
+                fram_bg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        YinLiaoDialog.dismiss();/**/
+                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + url);
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
+                });
+            } else {
+                YinLiaoDialog.show();
+            }
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, img, fram_bg, 0);
+
+        } catch (Exception e) {
+
+        }
     }
 
     private void checkLoadOver(int size) {

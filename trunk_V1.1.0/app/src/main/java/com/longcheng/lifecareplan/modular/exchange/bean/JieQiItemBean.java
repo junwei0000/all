@@ -26,6 +26,24 @@ public class JieQiItemBean implements Serializable {
     @SerializedName("child")
     private List<JieQiItemBean> child;
 
+    private String img;
+    private String href;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
 
     public JieQiItemBean(String name, int cid) {
         this.name = name;

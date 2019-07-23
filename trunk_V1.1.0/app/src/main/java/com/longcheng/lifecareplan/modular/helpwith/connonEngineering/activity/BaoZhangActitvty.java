@@ -365,11 +365,9 @@ public class BaoZhangActitvty extends WebAct {
                 Log.e("registerHandler", "Life_PayChangeLeiFeng=" + data);
                 try {
                     JSONObject jsonObject = new JSONObject(data);
-                    String des_content = jsonObject.optString("des_content", "");
                     String payment_channel = jsonObject.optString("payment_channel", "");
-                    String __app_pay_token__ = jsonObject.optString("__app_pay_token__", "");
                     weixinPayBackType = "LifeBasicApplyPay";
-                    LifeBasicApplyPay(des_content, payment_channel, __app_pay_token__);
+                    LifeBasicApplyPay(data, payment_channel);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -835,14 +833,13 @@ public class BaoZhangActitvty extends WebAct {
     /**
      * 志愿者互祝---申请基础保障支付
      */
-    private void LifeBasicApplyPay(String des_content, String payment_channel, String __app_pay_token__) {
+    private void LifeBasicApplyPay(String json_datas, String payment_channel) {
         if (RequestDataStatus) {
             return;
         }
         showDialog();
-        String pay_source = "2";//1：微信 2：安卓 3：ios
         Observable<PayWXDataBean> observable = Api.getInstance().service.LifeBasicApplyPay(UserUtils.getUserId(mContext),
-                des_content, payment_channel, pay_source, __app_pay_token__, ExampleApplication.token);
+                json_datas, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
