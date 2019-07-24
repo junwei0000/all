@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.modular.home.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
@@ -28,6 +29,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
+import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexAfterBean;
@@ -56,6 +59,7 @@ import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
+import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.CleanMessageUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -194,6 +198,38 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (mPresent != null) {
             haveNotReadMsg();
             mPresent.setListViewData();
+        }
+    }
+
+    private void setDaTing() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
+                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
+                    startActivity(intent);
+                    isFirstComIn = 2;
+                } else {
+                    isFirstComIn = 1;
+                }
+            }
+        }, 0);
+    }
+
+    /**
+     * 第一次跳转登录页面，返回设置
+     */
+    private void setNoLoginBack() {
+        String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
+        if (isFirstComIn == 1) {//标记第一次未登录跳转快速组队页
+            if (!loginStatus.equals(ConstantManager.loginStatus)) {
+                isFirstComIn = 2;//未登录不再显示跳转
+            } else {//登录初始化0显示跳转
+                isFirstComIn = 0;
+            }
         }
     }
 
@@ -461,7 +497,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         RefreshComplete();
     }
 
-    MyDialog CononDialog;
 
     public void dismissAllDialog() {
         if (CononDialog != null && CononDialog.isShowing()) {
@@ -472,14 +507,28 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
     }
 
+    MyDialog CononDialog;
     ImageView fram_bg;
+
+    /**
+     * 0初始化 ； 1 跳转登录返回（未登录返回不再显示）；2 跳转快速组队页
+     */
+    public int isFirstComIn = 0;
 
     /**
      * 是否显示康农弹层
      */
     public void showCononDialog() {
-        if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home
-                || BottomMenuActivity.updatedialogstatus) {
+        if (BottomMenuActivity.updatedialogstatus) {
+            dismissAllDialog();
+            return;
+        }
+        if (isFirstComIn == 0) {
+            dismissAllDialog();
+            setDaTing();
+            return;
+        }
+        if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home) {
             dismissAllDialog();
             return;
         }
@@ -948,6 +997,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
     }
 
+    boolean FirstComIn = true;
+
     /**
      * scrollBy()直接设置滚动条到该位置 scrollTo()
      * 是直接指定滚动条的位置，会有一个滑动效果, 但是由于这个动作不是单纯关于 ScrollView 而已,
@@ -999,7 +1050,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         });
     }
 
-    boolean FirstComIn = true;
 
     @Override
     public void onResume() {
@@ -1007,10 +1057,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (vp != null && !vp.isFlipping()) {
             vp.startFlipping();
         }
-        Log.e("ResponseBody", "onResume " + FirstComIn);
-//        if (!FirstComIn) {
+        setNoLoginBack();
         reLoadData();
-//        }
     }
 
     @Override

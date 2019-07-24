@@ -250,6 +250,7 @@ public class BottomMenuActivity extends BaseActivity {
         if (position == tab_position_exchange) {
             ((ExChangeFragment) fragmentList.get(position)).initLoad(solar_terms_id, solar_terms_name);
         } else {
+            ((ExChangeFragment) fragmentList.get(tab_position_exchange)).dismissAllDialog();
             solar_terms_name = "24节气";
             solar_terms_id = 0;
         }
@@ -271,6 +272,7 @@ public class BottomMenuActivity extends BaseActivity {
     private void UpdatVerDisAllDialog() {
         updatedialogstatus = true;
         ((HomeFragment) fragmentList.get(tab_position_home)).dismissAllDialog();
+        ((ExChangeFragment) fragmentList.get(tab_position_exchange)).dismissAllDialog();
         ((MineFragment) fragmentList.get(tab_position_mine)).dismissAllDialog();
     }
 
@@ -339,6 +341,7 @@ public class BottomMenuActivity extends BaseActivity {
             selectPage(tab_position_home);
         } else {
 //            exit();
+            ((HomeFragment) fragmentList.get(tab_position_home)).isFirstComIn = 0;
             ActivityManager.getScreenManager().backHome(mActivity);
         }
     }
