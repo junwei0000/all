@@ -550,9 +550,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 CononDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
                 Window window = CononDialog.getWindow();
                 window.setGravity(Gravity.CENTER);
-
-                showD();
-
+                CononDialog.show();
                 WindowManager m = getActivity().getWindowManager();
                 Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
                 WindowManager.LayoutParams p = CononDialog.getWindow().getAttributes(); //获取对话框当前的参数值
@@ -599,7 +597,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     }
                 });
             } else {
-                showD();
+                CononDialog.show();
             }
             String img = layer.get(showLayerIndex).getImg();
             GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, img, fram_bg, 0);
@@ -609,12 +607,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
     }
 
-    private void showD() {
-        int mActivitySize = ActivityManager.getScreenManager().getActivityStackSize();
-        if (mActivitySize == 1) {
-            CononDialog.show();
-        }
-    }
 
     HashMap<String, HomeAfterBean> HomeAfterDataMap = new HashMap<>();
     /**

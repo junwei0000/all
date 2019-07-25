@@ -30,6 +30,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DatesUtils;
+import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
@@ -124,10 +125,40 @@ public class AddFamilyActivity extends BaseActivityMVP<MyContract.View, MyPresen
                     mPresent.addOrEditFamily(user_id,
                             "0", user_name, birthday, pid, cid, aid, phone, call_user, relationship);
                 }
+//                TestAdd();
                 break;
         }
     }
 
+    private void TestAdd() {
+        String[] xing = {"段", "杨", "张", "吴", "李", "刘", "武", "齐"};
+        String[] ming = {"鸿", "辰", "运", "宇", "朗", "平", "鹏", "淼", "明", "皓", "栋", "昂"};
+        String[] ming3 = {"运", "龙", "珹", "振", "高", "景", "鑫", "昌", "炫", "昆", "曜", "文"};
+        for (int i = 0; i < 15; i++) {
+            Handler handler = new Handler();
+            int finalI = i;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+//                    phone = "175000000" + (50 + finalI);
+                    phone = "183100000" + (15 + finalI);
+                    int random = ConfigUtils.getINSTANCE().setRandom(xing.length);
+                    int randomming = ConfigUtils.getINSTANCE().setRandom(ming.length);
+                    int randomming3 = ConfigUtils.getINSTANCE().setRandom(ming3.length);
+                    user_name = xing[random] + ming[randomming] + ming3[randomming3];
+                    birthday = "2019-09-08";
+                    pid = "330000";
+                    cid = "330100";
+                    aid = "330102";
+                    call_user = "其他";
+                    relationship = "10";
+                    mPresent.addOrEditFamily(user_id,
+                            "0", user_name, birthday, pid, cid, aid, phone, call_user, relationship);
+                }
+            }, 0);
+
+        }
+    }
 
     @Override
     public View bindView() {
