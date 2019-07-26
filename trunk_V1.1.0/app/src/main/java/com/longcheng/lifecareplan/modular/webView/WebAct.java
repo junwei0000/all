@@ -878,7 +878,7 @@ public abstract class WebAct extends BaseActivity {
      */
     public void back() {
         if (mBridgeWebView != null && mBridgeWebView.canGoBack() && mBridgeWebView.urlPageBackList.size() > 1) {
-            if ((System.currentTimeMillis() - clickBackTime) > 1000) {
+            if ((System.currentTimeMillis() - clickBackTime) > 500) {
                 clickBackTime = System.currentTimeMillis();
                 showDialog();
                 //防止同时操作主线程阻塞

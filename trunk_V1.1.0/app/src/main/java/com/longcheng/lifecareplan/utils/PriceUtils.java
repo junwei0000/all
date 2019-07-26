@@ -12,6 +12,11 @@ import java.text.DecimalFormat;
  * @author zoc
  */
 public class PriceUtils {
+
+    /**
+     * 是否在后台
+     */
+    public boolean mbackgroundStatus;
     private static PriceUtils mUtils;
 
     public synchronized static PriceUtils getInstance() {

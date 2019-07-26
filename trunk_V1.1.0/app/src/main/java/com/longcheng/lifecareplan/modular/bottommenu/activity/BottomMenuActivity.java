@@ -28,6 +28,7 @@ import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ShortcutUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.Utils;
@@ -341,6 +342,7 @@ public class BottomMenuActivity extends BaseActivity {
             selectPage(tab_position_home);
         } else {
 //            exit();
+            PriceUtils.getInstance().mbackgroundStatus = true;
             ((HomeFragment) fragmentList.get(tab_position_home)).isFirstComIn = 0;
             ActivityManager.getScreenManager().backHome(mActivity);
         }

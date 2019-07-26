@@ -65,6 +65,7 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ListUtils;
+import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
@@ -231,6 +232,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 isFirstComIn = 0;
             }
         }
+        PriceUtils.getInstance().mbackgroundStatus = false;
     }
 
     @Override
@@ -519,7 +521,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 是否显示康农弹层
      */
     public void showCononDialog() {
-        if (BottomMenuActivity.updatedialogstatus) {
+        if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
             dismissAllDialog();
             return;
         }
