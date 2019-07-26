@@ -130,6 +130,24 @@
                     android:visibility="invisible">
 
                     <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_jieqi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:text="大暑红包"
+                            android:textColor="@color/hongbaoget_bg"
+                            android:textSize="@dimen/text_dp25_size"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/layout_red"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -168,11 +186,14 @@
                             android:id="@+id/iv_represent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@mipmap/guige_bj_icon"
                             android:maxHeight="@dimen/dp60"
                             android:scaleType="fitXY"
                             android:visibility="visible" />
                     </FrameLayout>
+
                 </FrameLayout>
+
 
             </FrameLayout>
 

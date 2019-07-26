@@ -21,6 +21,7 @@ import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.SkipHelpUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.mine.goodluck.bean.GoodLuckListDataBean;
 import com.longcheng.lifecareplan.modular.mine.phosphor.PhosphorAct;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -44,6 +45,8 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
     ImageView ivSpokesMan;
     @BindView(R.id.tv_partner_name)
     TextView tvName;
+    @BindView(R.id.tv_jieqi)
+    TextView tv_jieqi;
     @BindView(R.id.tv_partner)
     TextView tvCont;
     //打开红包前的红包内容
@@ -193,6 +196,7 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
      */
     private void openRedEvelope(OpenRedAfterBean data) {
         startRed = true;
+        tv_jieqi.setText(HomeFragment.jieqi_name + "红包");
         int type = data.getType();
         tvRedDetail.setText(data.getRed_packet_money());
         //红包类型 1:money, 2:skb,

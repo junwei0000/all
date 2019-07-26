@@ -285,6 +285,14 @@ public class BaoZhangActitvty extends WebAct {
                 life_id = data;
                 weixinPayBackType = "LifeBasicDetailPay";
                 Log.e("registerHandler", "data=" + data);
+//                JSONObject jsonObject = null;
+//                try {
+//                    jsonObject = new JSONObject(data);
+//                    life_id = jsonObject.optString("life_basic_id", "0");
+//                    help_type = jsonObject.optString("help_type", "0");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
                 if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
                     if (mLifeBasicPayDialogUtils == null) {
                         mLifeBasicPayDialogUtils = new BaoZhangDialogUtils(mActivity, mHandler, LifeBasicAppPayment);
