@@ -88,7 +88,7 @@
 
             <com.longcheng.lifecareplan.utils.myview.SupplierEditText
                 android:id="@+id/phonetype_et_pw"
-                style="@style/view_margintopbottom"
+                style="@style/view_paddtopbottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

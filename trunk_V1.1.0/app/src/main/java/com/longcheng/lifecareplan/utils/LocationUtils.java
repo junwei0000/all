@@ -55,6 +55,9 @@ public class LocationUtils {
             return new double[]{latitude, longitude};
         }
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager == null) {
+            return new double[]{latitude, longitude};
+        }
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, new LocationListener() {
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -113,7 +116,7 @@ public class LocationUtils {
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude,
                     longitude, 1);
-            if (addresses.size() > 0) {
+            if (addresses != null && addresses.size() > 0) {
                 Address address = addresses.get(0);
                 Log.e("getLngAndLat", "" + address.getAddressLine(0));
                 return address.getAddressLine(0);

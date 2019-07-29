@@ -341,13 +341,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         mycenterTvName.setFocusable(true);
         mycenterTvName.setFocusableInTouchMode(true);
         mycenterTvName.requestFocus();
+        initContext();
         setFunctionType();
         showFunctionGVData();
         initUserInfo();
     }
 
     @Override
-    public void doBusiness(Context mContext) {
+    public void doBusiness(Context mActivity) {
 
     }
 
@@ -426,7 +427,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             FunctionGVlist1.add(new FunctionGVItemBean("广告收益", R.id.layout_publicize, R.mipmap.my_ad_icon));
         }
 
-        FunctionAdapter mFunctionAdapter1 = new FunctionAdapter(mContext, FunctionGVlist1);
+        FunctionAdapter mFunctionAdapter1 = new FunctionAdapter(mActivity, FunctionGVlist1);
         gongnengn_gv1.setAdapter(mFunctionAdapter1);
 
 
@@ -442,7 +443,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (isResetCard != 0) {
             FunctionGVlist2.add(new FunctionGVItemBean("重生卡", R.id.usercenter_layout_rebirth, R.mipmap.my_rebirth_icon));
         }
-        FunctionAdapter mFunctionAdapter2 = new FunctionAdapter(mContext, FunctionGVlist2);
+        FunctionAdapter mFunctionAdapter2 = new FunctionAdapter(mActivity, FunctionGVlist2);
         gongnengn_gv2.setAdapter(mFunctionAdapter2);
     }
 
@@ -459,7 +460,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         Intent intent;
         switch (viewId) {
             case R.id.pagetop_layout_rigth://设置
-                intent = new Intent(mContext, SetActivity.class);
+                intent = new Intent(mActivity, SetActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("about_me_url", "" + about_me_url);
                 startActivity(intent);
@@ -476,14 +477,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 break;
 
             case R.id.usercenter_relay_receiving://收付款
-                intent = new Intent(mContext, ReceiveH5Activity.class);
+                intent = new Intent(mActivity, ReceiveH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getReceiptCodeUrl());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_volunteerlist://志愿者申请列表
-                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartymember_url());
                 startActivity(intent);
@@ -491,21 +492,21 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 break;
 
             case R.id.layout_publicize://广告收益
-                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getDisplayLifeAdRewardUrl());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_creditor://债权人
-                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_partygroup://党小组审批
-                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartyGroupLeaderUrl());
                 startActivity(intent);
@@ -514,9 +515,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.usercenter_relay_volunteer://志愿者
                 int isVolunteerIdentity = data.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
                 if (isVolunteerIdentity == 0) {
-                    String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+                    String is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-                        intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent = new Intent(mActivity, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + data.getBecome_volunteer_url());
                         startActivity(intent);
@@ -525,7 +526,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                         showNotCHODialog();
                     }
                 } else {
-                    intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getAlready_volunteer_url());
                     startActivity(intent);
@@ -535,9 +536,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.usercenter_relay_doctor://坐堂医
                 int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
                 if (isDoctorIdentity == 0) {
-                    String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+                    String is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-                        intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent = new Intent(mActivity, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + data.getBecome_doctor_url());
                         startActivity(intent);
@@ -546,7 +547,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                         showNotCHODialog();
                     }
                 } else {
-                    intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getAlready_doctor_url());
                     startActivity(intent);
@@ -554,14 +555,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 }
                 break;
             case R.id.layout_jiuzhen://就诊记录
-                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPatient_record_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.layout_commissioner://我是特派员
-                intent = new Intent(mContext, BaoZhangActitvty.class);
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getCommissioner_url());
                 startActivity(intent);
@@ -572,12 +573,15 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ToastUtils.showToast("程序猿正在攻坚中…");
                 break;
             case R.id.mycenter_iv_head://用户信息
-                intent = new Intent(mContext, UserInfoActivity.class);
+                intent = new Intent(mActivity, UserInfoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_allowancearrow://津贴
+                if (mycenterIvMoneyarrow == null) {
+                    break;
+                }
                 if (mAllowanceLayoutShow) {
                     mAllowanceLayoutShow = false;
                     mycenterIvMoneyarrow.setBackgroundResource(R.mipmap.jintie_arrow_right);
@@ -597,7 +601,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.mycenter_layout_allowance:
                 break;
             case R.id.mycenter_layout_humanity://人情账
-                intent = new Intent(mContext, RelationshipAccountAct.class);
+                intent = new Intent(mActivity, RelationshipAccountAct.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -609,7 +613,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 int isVolunteerCreditor = data.getIsVolunteerCreditor();
                 if (isVolunteerCreditor == 0) {
                     if (isDirectorOrTeamLeader == 0 || (isDirectorOrTeamLeader == 1 && CurrentStartLevel >= 6)) {
-                        intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent = new Intent(mActivity, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + data.getDebtwithdrawUrl());
                         startActivity(intent);
@@ -618,7 +622,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                         ToastUtils.showToast("大队长及主任达到六星级才可提现");
                     }
                 } else {//债权人 可以直接进入提现
-                    intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getDebtwithdrawUrl());
                     startActivity(intent);
@@ -627,7 +631,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
                 break;
             case R.id.usercenter_relay_address://地址管理
-                intent = new Intent(mContext, AddressListActivity.class);
+                intent = new Intent(mActivity, AddressListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("receive_user_id", user_id);
                 intent.putExtra("skiptype", "MineFragment");
@@ -635,32 +639,32 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_activatenergy://激活能量
-                intent = new Intent(mContext, ActivatEnergyActivity.class);
+                intent = new Intent(mActivity, ActivatEnergyActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
 
             case R.id.usercenter_relay_myorder://订单
-                intent = new Intent(mContext, OrderListActivity.class);
+                intent = new Intent(mActivity, OrderListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.usercenter_relay_appexplanation://一目了然
-                intent = new Intent(mContext, AbsolutelyclearAct.class);
+                intent = new Intent(mActivity, AbsolutelyclearAct.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_tv_bill://账单
-                intent = new Intent(mContext, BillActivity.class);
+                intent = new Intent(mActivity, BillActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.usercenter_relay_updatepw://修改密码
-                intent = new Intent(mContext, UpdatePwActivity.class);
+                intent = new Intent(mActivity, UpdatePwActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -669,27 +673,27 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 signInGetInfo("AWordOfGold");
                 break;
             case R.id.usercenter_relay_myenren://恩人
-                intent = new Intent(mContext, MyGraH5Activity.class);
+                intent = new Intent(mActivity, MyGraH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + HelpWithFragmentNew.myGratitudeUrl);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_reward://奖励中心
-                intent = new Intent(mContext, RewardCentersActivity.class);
+                intent = new Intent(mActivity, RewardCentersActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.mycenter_layout_invitationrecord://邀请记录
-                intent = new Intent(mContext, InvitationAct.class);
+                intent = new Intent(mActivity, InvitationAct.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.usercenter_relay_myStar://启明星
                 if (data != null && data.issQimingSponsorUser() && !TextUtils.isEmpty(data.getQimingSponsorUserUrl())) {
-                    intent = new Intent(mContext, PhosphorAct.class);
+                    intent = new Intent(mActivity, PhosphorAct.class);
                     intent.putExtra("starturl", data.getQimingSponsorUserUrl());
                     intent.putExtra("action_goods_id", "" + qimingaction_goods_id);
                     intent.putExtra("qiming_user_id", "" + user_id);
@@ -699,31 +703,31 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 }
                 break;
             case R.id.ll_mycenter_sleepskb:
-                intent = new Intent(mContext, SleepSkbActivity.class);
+                intent = new Intent(mActivity, SleepSkbActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.ll_mycenter_wakeskb:
-                intent = new Intent(mContext, WakeSkbActivity.class);
+                intent = new Intent(mActivity, WakeSkbActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.ll_mycenter_sleepennergy:
-                intent = new Intent(mContext, SleepEngryActivity.class);
+                intent = new Intent(mActivity, SleepEngryActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.ll_mycenter_ennergy://激活记录
-                intent = new Intent(mContext, EngryRecordActivity.class);
+                intent = new Intent(mActivity, EngryRecordActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.usercenter_relay_goodluck://好运来
-                intent = new Intent(mContext, GoodLuckActivity.class);
+                intent = new Intent(mActivity, GoodLuckActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -731,7 +735,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.mycenter_relat_shenfen://星级布局
                 if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                     if (!TextUtils.isEmpty(star_level_illustrate_url)) {
-                        intent = new Intent(mContext, StarInstructionAct.class);
+                        intent = new Intent(mActivity, StarInstructionAct.class);
                         intent.putExtra("starturl", "" + star_level_illustrate_url);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
@@ -742,20 +746,20 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.mycenter_relat_stars://成为cho
                 if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                 } else {
-                    intent = new Intent(mContext, UserInfoActivity.class);
+                    intent = new Intent(mActivity, UserInfoActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
             case R.id.usercenter_layout_rebirth://重生卡
-                intent = new Intent(mContext, RebirthActivity.class);
+                intent = new Intent(mActivity, RebirthActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.usercenter_relay_changeinviter://变更邀请人
-                intent = new Intent(mContext, ChangeInviterActivity.class);
+                intent = new Intent(mActivity, ChangeInviterActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -775,7 +779,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      */
     public void signInGetInfo(String clickHetInfo_) {
         this.clickHetInfoStatus = clickHetInfo_;
-        user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
+        user_id = (String) SharedPreferencesHelper.get(mActivity, "user_id", "");
         if (mPresent != null)
             mPresent.checkUserInfo(user_id);
     }
@@ -803,10 +807,10 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * @param oldUserPerfectInfoStatus_ 老用户是否完善信息
      */
     private void signinstatus(boolean oldUserPerfectInfoStatus_) {
-        is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+        is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
             if (oldUserPerfectInfoStatus_) {
-                Intent intent = new Intent(mContext, SignInH5Activity.class);
+                Intent intent = new Intent(mActivity, SignInH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -827,8 +831,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private void AWordOfGoldStatus(boolean oldUserPerfectInfoStatus) {
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
             if (oldUserPerfectInfoStatus) {
-                Intent intent = new Intent(mContext, AWordOfGoldAct.class);
-                intent.putExtra("otherId", UserUtils.getUserId(mContext));
+                Intent intent = new Intent(mActivity, AWordOfGoldAct.class);
+                intent.putExtra("otherId", UserUtils.getUserId(mActivity));
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -852,7 +856,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SkipEDIT:
-                    Intent intent = new Intent(mContext, UserInfoActivity.class);
+                    Intent intent = new Intent(mActivity, UserInfoActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -899,11 +903,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (mycenterTvName == null) {
             return;
         }
-        String avatar = (String) SharedPreferencesHelper.get(mContext, "avatar", "");
-        is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
-        String phone = (String) SharedPreferencesHelper.get(mContext, "phone", "");
-        user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
-        String user_name = (String) SharedPreferencesHelper.get(mContext, "user_name", "");
+        initContext();
+        String avatar = (String) SharedPreferencesHelper.get(mActivity, "avatar", "");
+        is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
+        String phone = (String) SharedPreferencesHelper.get(mActivity, "phone", "");
+        user_id = (String) SharedPreferencesHelper.get(mActivity, "user_id", "");
+        String user_name = (String) SharedPreferencesHelper.get(mActivity, "user_name", "");
         //1:是  ；0：不是
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
             mycenterRelatStars.setVisibility(View.GONE);
@@ -921,24 +926,24 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             jieqi = "";
         }
         tv_jieqiname.setText(jieqi + "小推手");
-        GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mContext, avatar, mycenterIvHead);
-        GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, data.getJieqi_pic(), mycenter_iv_jieqi);
+        GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mActivity, avatar, mycenterIvHead);
+        GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mActivity, data.getJieqi_pic(), mycenter_iv_jieqi);
         showFunctionGVData();
     }
 
     private void saveNewInfo(GetHomeInfoBean mGetHomeInfoBean) {
-        SharedPreferencesHelper.put(mContext, "user_name", mGetHomeInfoBean.getUser_name());
-        SharedPreferencesHelper.put(mContext, "avatar", mGetHomeInfoBean.getAvatar());
-        SharedPreferencesHelper.put(mContext, "star_level", "" + CurrentStartLevel);
-        SharedPreferencesHelper.put(mContext, "is_cho", is_cho);
-        SharedPreferencesHelper.put(mContext, "birthday", mGetHomeInfoBean.getBirthday());
-        SharedPreferencesHelper.put(mContext, "lunar_calendar_birthday", "" + mGetHomeInfoBean.getLunar_calendar_birthday());
-        SharedPreferencesHelper.put(mContext, "political_status", "" + mGetHomeInfoBean.getPolitical_status());
-        SharedPreferencesHelper.put(mContext, "is_military_service", "" + mGetHomeInfoBean.getIs_military_service());
-        SharedPreferencesHelper.put(mContext, "pid", "" + mGetHomeInfoBean.getPid());
-        SharedPreferencesHelper.put(mContext, "cid", "" + mGetHomeInfoBean.getCid());
-        SharedPreferencesHelper.put(mContext, "aid", "" + mGetHomeInfoBean.getAid());
-        SharedPreferencesHelper.put(mContext, "area", "" + mGetHomeInfoBean.getArea());
+        SharedPreferencesHelper.put(mActivity, "user_name", mGetHomeInfoBean.getUser_name());
+        SharedPreferencesHelper.put(mActivity, "avatar", mGetHomeInfoBean.getAvatar());
+        SharedPreferencesHelper.put(mActivity, "star_level", "" + CurrentStartLevel);
+        SharedPreferencesHelper.put(mActivity, "is_cho", is_cho);
+        SharedPreferencesHelper.put(mActivity, "birthday", mGetHomeInfoBean.getBirthday());
+        SharedPreferencesHelper.put(mActivity, "lunar_calendar_birthday", "" + mGetHomeInfoBean.getLunar_calendar_birthday());
+        SharedPreferencesHelper.put(mActivity, "political_status", "" + mGetHomeInfoBean.getPolitical_status());
+        SharedPreferencesHelper.put(mActivity, "is_military_service", "" + mGetHomeInfoBean.getIs_military_service());
+        SharedPreferencesHelper.put(mActivity, "pid", "" + mGetHomeInfoBean.getPid());
+        SharedPreferencesHelper.put(mActivity, "cid", "" + mGetHomeInfoBean.getCid());
+        SharedPreferencesHelper.put(mActivity, "aid", "" + mGetHomeInfoBean.getAid());
+        SharedPreferencesHelper.put(mActivity, "area", "" + mGetHomeInfoBean.getArea());
 
         String ability = mGetHomeInfoBean.getDisparity();
         String is_show = mGetHomeInfoBean.getIs_show();//ability生命能量 number次数
@@ -969,13 +974,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             ArrayList<GetHomeInfoBean> user_identity_imgs = mGetHomeInfoBean.getUser_identity_imgs();
             if (user_identity_imgs != null && user_identity_imgs.size() > 0) {
                 for (GetHomeInfoBean info : user_identity_imgs) {
-                    LinearLayout linearLayout = new LinearLayout(mContext);
-                    ImageView imageView = new ImageView(mContext);
-                    int dit = DensityUtil.dip2px(mContext, 18);
-                    int jian = DensityUtil.dip2px(mContext, 3);
+                    LinearLayout linearLayout = new LinearLayout(mActivity);
+                    ImageView imageView = new ImageView(mActivity);
+                    int dit = DensityUtil.dip2px(mActivity, 18);
+                    int jian = DensityUtil.dip2px(mActivity, 3);
                     linearLayout.setPadding(0, 2, jian, 2);
                     imageView.setLayoutParams(new LinearLayout.LayoutParams(dit, dit));
-                    GlideDownLoadImage.getInstance().loadCircleImageCommune(mContext, info.getImage(), imageView);
+                    GlideDownLoadImage.getInstance().loadCircleImageCommune(mActivity, info.getImage(), imageView);
                     linearLayout.addView(imageView);
                     mycenter_relat_shenfen.addView(linearLayout);
                 }
@@ -1017,7 +1022,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     public static boolean showDoctorDialogStatus = false;
 
     private void showAllDialog() {
-        String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
+        String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
         if (!loginStatus.equals(ConstantManager.loginStatus)
                 || BottomMenuActivity.position != BottomMenuActivity.tab_position_mine
                 || BottomMenuActivity.updatedialogstatus) {
@@ -1097,7 +1102,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         //每次升星级都提示并传给后台已读
         mPresent.doStarLevelRemind(user_id);
         if (LevelDialog == null) {
-            LevelDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_centerlevel);// 创建Dialog并设置样式主题
+            LevelDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_centerlevel);// 创建Dialog并设置样式主题
             LevelDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = LevelDialog.getWindow();
             window.setGravity(Gravity.CENTER);
@@ -1121,7 +1126,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 @Override
                 public void onClick(View v) {
                     LevelDialog.dismiss();
-                    Intent intent = new Intent(mContext, StarInstructionAct.class);
+                    Intent intent = new Intent(mActivity, StarInstructionAct.class);
                     intent.putExtra("starturl", star_level_illustrate_url);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
@@ -1166,7 +1171,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 @Override
                 public void onClick(View v) {
                     LifeBasicDialog.dismiss();/**/
-                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getDisplayLifeBasicUrl());
                     startActivity(intent);
@@ -1210,7 +1215,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 @Override
                 public void onClick(View v) {
                     LifeBasicCashDialog.dismiss();/**/
-                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getLifeBasicApplyCashUrl());
                     startActivity(intent);
@@ -1254,7 +1259,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 @Override
                 public void onClick(View v) {
                     CrediterCashDialog.dismiss();/**/
-                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
                     startActivity(intent);
@@ -1272,12 +1277,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 天才行动弹层
      */
     public void showActionDialog() {
-        String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
+        String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
         if (BottomMenuActivity.position != BottomMenuActivity.tab_position_mine || !loginStatus.equals(ConstantManager.loginStatus)) {
             return;
         }
         if (actionDialog == null) {
-            actionDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mine_action);// 创建Dialog并设置样式主题
+            actionDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mine_action);// 创建Dialog并设置样式主题
             actionDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = actionDialog.getWindow();
             window.setGravity(Gravity.CENTER);
@@ -1302,7 +1307,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 @Override
                 public void onClick(View v) {
                     actionDialog.dismiss();
-                    Intent intent = new Intent(mContext, ActionH5Activity.class);
+                    Intent intent = new Intent(mActivity, ActionH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("kn_url", "" + data.getCommonweal_activity_url());
                     startActivity(intent);
@@ -1321,7 +1326,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      */
     public void showRedBaoDialog() {
         if (redBaoDialog == null) {
-            redBaoDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_centeropenredbao);// 创建Dialog并设置样式主题
+            redBaoDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_centeropenredbao);// 创建Dialog并设置样式主题
             redBaoDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = redBaoDialog.getWindow();
             window.setGravity(Gravity.CENTER);
@@ -1349,7 +1354,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 @Override
                 public void onClick(View v) {
                     redBaoDialog.dismiss();
-                    Intent intent = new Intent(mContext, GoodLuckActivity.class);
+                    Intent intent = new Intent(mActivity, GoodLuckActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -1367,7 +1372,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      */
     public void showNotCHODialog() {
         if (notCHODialog == null) {
-            notCHODialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mycenter_notcho);// 创建Dialog并设置样式主题
+            notCHODialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mycenter_notcho);// 创建Dialog并设置样式主题
             notCHODialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = notCHODialog.getWindow();
             window.setGravity(Gravity.CENTER);
@@ -1405,7 +1410,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      */
     public void showDoctorDialog() {
         if (toDoctorDialog == null) {
-            toDoctorDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mycenter_todoctor);// 创建Dialog并设置样式主题
+            toDoctorDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mycenter_todoctor);// 创建Dialog并设置样式主题
             toDoctorDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = toDoctorDialog.getWindow();
             window.setGravity(Gravity.CENTER);
@@ -1549,7 +1554,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             dividerStar.setVisibility(View.GONE);
             usercenterRelayMyStar.setVisibility(View.GONE);
         }
-        UserUtils.saveWXToken(mContext, mGetHomeInfoBean.getWxToken());
+        UserUtils.saveWXToken(mActivity, mGetHomeInfoBean.getWxToken());
         showAllDialog();
     }
 

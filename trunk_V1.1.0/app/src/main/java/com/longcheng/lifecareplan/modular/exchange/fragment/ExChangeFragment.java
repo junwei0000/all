@@ -198,7 +198,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                 if (mGoodsAllList != null && mGoodsAllList.size() > 0) {
                     toDetailBackStatus = true;
                     ConfigUtils.getINSTANCE().closeSoftInput(getActivity());
-                    Intent intent = new Intent(mContext, MallDetailActivity.class);
+                    Intent intent = new Intent(mActivity, MallDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("shop_goods_id", mGoodsAllList.get(position).getShop_goods_id());
                     startActivity(intent);
@@ -317,13 +317,14 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
         if (layout_categorys != null) {
             layout_categorys.setVisibility(View.GONE);
         }
-        user_id = UserUtils.getUserId(mContext);
+        initContext();
+        user_id = UserUtils.getUserId(mActivity);
         mPresent.getGoodsList(user_id, category, time_sort, price_sort,
                 hot_sort, solar_terms, searchCont, page, pageSize);
     }
 
     @Override
-    public void doBusiness(Context mContext) {
+    public void doBusiness(Context mActivity) {
 
     }
 
@@ -348,7 +349,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                 break;
             case R.id.exchange_layout_shopping:
                 layout_categorys.setVisibility(View.GONE);
-                Intent intent = new Intent(mContext, ShopCartActivity.class);
+                Intent intent = new Intent(mActivity, ShopCartActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -492,7 +493,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                     mGoodsAllList.addAll(mGoodsList);
                 }
                 if (mAdapter == null) {
-                    mAdapter = new GoodsListAdapter(mContext, mGoodsList);
+                    mAdapter = new GoodsListAdapter(mActivity, mGoodsList);
                     exchangeListview.setAdapter(mAdapter);
                 } else {
                     mAdapter.reloadListView(mGoodsList, false);
@@ -590,7 +591,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                     @Override
                     public void onClick(View v) {
                         YinLiaoDialog.dismiss();/**/
-                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + url);
                         startActivity(intent);
@@ -600,7 +601,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             } else {
                 YinLiaoDialog.show();
             }
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, img, fram_bg, 0);
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, img, fram_bg, 0);
 
         } catch (Exception e) {
 
@@ -643,11 +644,11 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
     List<JieQiItemBean> ChildList;
 
     private void slectCategorys() {
-        CategorysLAdapter mCategorysLAdapter = new CategorysLAdapter(mContext, CategorysList, selectPoistion);
+        CategorysLAdapter mCategorysLAdapter = new CategorysLAdapter(mActivity, CategorysList, selectPoistion);
         categorys_listview.setAdapter(mCategorysLAdapter);
 
         ChildList = CategorysList.get(selectPoistion).getChild();
-        CategorysGAdapter mCategorysGAdapter = new CategorysGAdapter(mContext, ChildList, selectCatGCid);
+        CategorysGAdapter mCategorysGAdapter = new CategorysGAdapter(mActivity, ChildList, selectCatGCid);
         categorys_gv.setAdapter(mCategorysGAdapter);
 
         categorys_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -714,7 +715,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
 
     private void showJieQiPopupWindow() {
         if (selectDialog == null) {
-            selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_mallgoods_jieqi);// 创建Dialog并设置样式主题
+            selectDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mallgoods_jieqi);// 创建Dialog并设置样式主题
             selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectDialog.getWindow();
             window.setGravity(Gravity.RIGHT);
@@ -729,7 +730,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             GridView jieqi_gv = (GridView) selectDialog.findViewById(R.id.jieqi_gv);
             TextView tv_currentjieqi = (TextView) selectDialog.findViewById(R.id.tv_currentjieqi);
             tv_currentjieqi.setText("当前节气：" + current_solar_cn);
-            JieQiAdapter mJieQiAdapter = new JieQiAdapter(mContext, jieQiList, current_solar_en);
+            JieQiAdapter mJieQiAdapter = new JieQiAdapter(mActivity, jieQiList, current_solar_en);
             jieqi_gv.setAdapter(mJieQiAdapter);
             jieqi_gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

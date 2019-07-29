@@ -902,6 +902,7 @@ public interface ApiService {
                                                  @Field("life_basic_id") String life_basic_id,
                                                  @Field("money") int money,
                                                  @Field("help_number") int help_number,
+                                                 @Field("is_share_help") String is_share_help,
                                                  @Field("pay_source") String pay_source,
                                                  @Field("token") String token);
 

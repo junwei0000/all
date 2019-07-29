@@ -90,7 +90,7 @@ public class BaoZhangActitvty extends WebAct {
     private List<DetailItemBean> blessings_list;
     private List<DetailItemBean> mutual_help_money_all;
     private String knp_sharetitle, knp_shareurl, knp_sharePic, knp_sharedesc;
-    private String life_id, msg_id;
+    private String life_id, is_share_help, msg_id;
     private String one_order_id = "";
     private int mutual_help_money;
     private DetailItemBean userInfo;
@@ -282,17 +282,16 @@ public class BaoZhangActitvty extends WebAct {
         mBridgeWebView.registerHandler("LifeBasic_AppPayment", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                life_id = data;
                 weixinPayBackType = "LifeBasicDetailPay";
                 Log.e("registerHandler", "data=" + data);
-//                JSONObject jsonObject = null;
-//                try {
-//                    jsonObject = new JSONObject(data);
-//                    life_id = jsonObject.optString("life_basic_id", "0");
-//                    help_type = jsonObject.optString("help_type", "0");
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(data);
+                    life_id = jsonObject.optString("life_basic_id", "0");
+                    is_share_help = jsonObject.optString("is_share_help", "0");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
                     if (mLifeBasicPayDialogUtils == null) {
                         mLifeBasicPayDialogUtils = new BaoZhangDialogUtils(mActivity, mHandler, LifeBasicAppPayment);
@@ -468,7 +467,7 @@ public class BaoZhangActitvty extends WebAct {
                     payType = bundle.getString("payType");
                     selectmoney = bundle.getInt("selectmoney");
                     help_number = bundle.getInt("help_number");
-                    LifeBasicDetailPay(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
+                    LifeBasicDetailPay(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number, is_share_help);
                     break;
                 case VolunterSelectPay:
                     bundle = msg.getData();
@@ -1054,14 +1053,16 @@ public class BaoZhangActitvty extends WebAct {
      * @param life_basic_id
      * @param money
      */
-    public void LifeBasicDetailPay(String user_id, String help_comment_content, String pay_way, String life_basic_id, int money, int help_number) {
+    public void LifeBasicDetailPay(String user_id, String help_comment_content,
+                                   String pay_way, String life_basic_id, int money,
+                                   int help_number, String is_share_help) {
         if (RequestDataStatus) {
             return;
         }
         showDialog();
         String pay_source = "2";//1：微信 2：安卓 3：ios
         Observable<PayWXDataBean> observable = Api.getInstance().service.LifeBasicDetailPay(user_id,
-                help_comment_content, pay_way, life_basic_id, money, help_number, pay_source, ExampleApplication.token);
+                help_comment_content, pay_way, life_basic_id, money, help_number, is_share_help, pay_source, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {

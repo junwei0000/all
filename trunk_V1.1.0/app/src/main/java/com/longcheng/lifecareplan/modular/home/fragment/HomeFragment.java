@@ -176,9 +176,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public void haveNotReadMsg() {
         if (pagetopIvLeft != null) {
             pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_notinfo_icon);
-            String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
+            String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
             if (loginStatus.equals(ConstantManager.loginStatus)) {
-                boolean haveNotReadMsg = (boolean) SharedPreferencesHelper.get(mContext, "haveNotReadMsgStatus", false);
+                boolean haveNotReadMsg = (boolean) SharedPreferencesHelper.get(mActivity, "haveNotReadMsgStatus", false);
                 if (haveNotReadMsg) {
                     pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);
                 }
@@ -195,7 +195,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (appUpdate == null) {
             appUpdate = new AppUpdate();
         }
-        appUpdate.startUpdateAsy(getActivity(), "Home");
+        appUpdate.startUpdateAsy(mActivity, "Home");
         if (mPresent != null) {
             haveNotReadMsg();
             mPresent.setListViewData();
@@ -207,24 +207,28 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
-                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
-                    startActivity(intent);
-                    isFirstComIn = 2;
-                } else {
-                    isFirstComIn = 1;
+                if (isAdded()) {
+                    if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
+                        startActivity(intent);
+                        isFirstComIn = 2;
+                    } else {
+                        isFirstComIn = 1;
+                    }
                 }
             }
         }, 0);
     }
 
+
     /**
      * 第一次跳转登录页面，返回设置
      */
     private void setNoLoginBack() {
-        String loginStatus = (String) SharedPreferencesHelper.get(mContext, "loginStatus", "");
+        initContext();
+        String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
         if (isFirstComIn == 1) {//标记第一次未登录跳转快速组队页
             if (!loginStatus.equals(ConstantManager.loginStatus)) {
                 isFirstComIn = 2;//未登录不再显示跳转
@@ -237,12 +241,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void initView(View view) {
+        initContext();
         pagetopLayoutLeft.setOnClickListener(this);
         pagetopLayoutRigth.setOnClickListener(this);
         mainhealthLayoutMore.setOnClickListener(this);
         mainhotpushLayoutMore.setOnClickListener(this);
         mainactionLayoutMore.setOnClickListener(this);
-        int width = DensityUtil.screenWith(mContext);
+        int width = DensityUtil.screenWith(mActivity);
         int height = (int) (width * 0.454);
         homedediVpTop.setLayoutParams(new FrameLayout.LayoutParams(width, height));
         pagetopLayoutRigth.setFocusable(true);
@@ -250,7 +255,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         pagetopLayoutRigth.requestFocus();
         showChache(false);
         try {
-            String d = CleanMessageUtil.getTotalCacheSize(mContext);
+            String d = CleanMessageUtil.getTotalCacheSize(mActivity);
             Log.e("CleanMessageUtil", d);
         } catch (Exception e) {
             e.printStackTrace();
@@ -272,9 +277,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (msg != null && msg.size() > 0) {
-                    SharedPreferencesHelper.put(mContext, "msg_id", msg.get(position).getId());
-                    if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToEnergyDetail)) {
-                        Intent intent = new Intent(mContext, DetailActivity.class);
+                    SharedPreferencesHelper.put(mActivity, "msg_id", msg.get(position).getId());
+                    if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToEnergyDetail)) {
+                        Intent intent = new Intent(mActivity, DetailActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("msg_id", msg.get(position).getId());
                         startActivity(intent);
@@ -287,8 +292,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (actions != null && actions.size() > 0) {
-                    if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
-                        Intent intent = new Intent(mContext, ActionDetailActivity.class);
+                    if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                        Intent intent = new Intent(mActivity, ActionDetailActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("goods_id", actions.get(position).getGoods_id());
                         startActivity(intent);
@@ -304,52 +309,52 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     int sort = icons.get(position).getSort();
                     Intent intent;
                     if (sort == 1) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
                             //绑定手机号才能邀请亲友
-                            String phone = UserUtils.getUserPhone(mContext);
+                            String phone = UserUtils.getUserPhone(mActivity);
                             if (TextUtils.isEmpty(phone)) {
-                                intent = new Intent(mContext, LoginThirdSetPwActivity.class);
+                                intent = new Intent(mActivity, LoginThirdSetPwActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 startActivityForResult(intent, ConstantManager.USERINFO_FORRESULT_PHONE);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             } else {
-                                intent = new Intent(mContext, InviteFriendsActivity.class);
+                                intent = new Intent(mActivity, InviteFriendsActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             }
                         }
                     } else if (sort == 2) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
-                            intent = new Intent(mContext, BaoZhangActitvty.class);
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                            intent = new Intent(mActivity, BaoZhangActitvty.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             intent.putExtra("html_url", "" + kn_url);
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
                     } else if (sort == 3) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToCommuneJoinList)) {
-                            boolean haveCommune = (boolean) SharedPreferencesHelper.get(mContext, "haveCommune", false);
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToCommuneJoinList)) {
+                            boolean haveCommune = (boolean) SharedPreferencesHelper.get(mActivity, "haveCommune", false);
                             if (haveCommune) {
-                                intent = new Intent(mContext, CommuneMineActivity.class);
+                                intent = new Intent(mActivity, CommuneMineActivity.class);
                             } else {
-                                intent = new Intent(mContext, CommuneJoinListActivity.class);
+                                intent = new Intent(mActivity, CommuneJoinListActivity.class);
                             }
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
                     } else if (sort == 4) {
-                        SharedPreferencesHelper.put(mContext, "skiptype", "HomeFragment");
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHelpWithEnergy)) {
-                            intent = new Intent(mContext, HelpWithEnergyActivity.class);
+                        SharedPreferencesHelper.put(mActivity, "skiptype", "HomeFragment");
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHelpWithEnergy)) {
+                            intent = new Intent(mActivity, HelpWithEnergyActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             intent.putExtra("skiptype", "HomeFragment");
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
                     } else if (sort == 5) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
 //                            ((MineFragment) BottomMenuActivity.fragmentList.get(BottomMenuActivity.tab_position_mine)).signInGetInfo("signIn");
                             mPresent.getQuickTeamUrl();
                         }
@@ -361,7 +366,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
 
     @Override
-    public void doBusiness(Context mContext) {
+    public void doBusiness(Context mActivity) {
         getIsOpenNotification();
     }
 
@@ -369,7 +374,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 首页 是否开启通知
      */
     private void getIsOpenNotification() {
-        NotificationManagerCompat manager = NotificationManagerCompat.from(mContext);
+        NotificationManagerCompat manager = NotificationManagerCompat.from(mActivity);
         boolean isOpened = manager.areNotificationsEnabled();
         Log.e("getIsOpenNotification", "isOpened=" + isOpened);
         if (!isOpened) {
@@ -386,7 +391,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
             return;
         }
-        OpenNotificationDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
+        OpenNotificationDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
         OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
         Window window = OpenNotificationDialog.getWindow();
         window.setGravity(Gravity.CENTER);
@@ -410,7 +415,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             @Override
             public void onClick(View v) {
                 OpenNotificationDialog.dismiss();
-                String pkg = mContext.getApplicationContext().getPackageName();
+                String pkg = mActivity.getApplicationContext().getPackageName();
                 // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -427,33 +432,33 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         Intent intent;
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
-                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToMessage)) {
-                    intent = new Intent(mContext, MessageActivity.class);
+                if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToMessage)) {
+                    intent = new Intent(mActivity, MessageActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
             case R.id.pagetop_layout_rigth:
-                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
-                    intent = new Intent(mContext, MipcaCaptureActivity.class);
+                if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                    intent = new Intent(mActivity, MipcaCaptureActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
             case R.id.mainaction_layout_more://热门行动
-                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
-                    intent = new Intent(mContext, PopularActionActivity.class);
+                if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                    intent = new Intent(mActivity, PopularActionActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
             case R.id.mainhotpush_layout_more://热推互祝
-                SharedPreferencesHelper.put(mContext, "skiptype", "HomeFragment");
-                if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHelpWithEnergy)) {
-                    intent = new Intent(mContext, HelpWithEnergyActivity.class);
+                SharedPreferencesHelper.put(mActivity, "skiptype", "HomeFragment");
+                if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHelpWithEnergy)) {
+                    intent = new Intent(mActivity, HelpWithEnergyActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("skiptype", "HomeFragment");
                     startActivity(intent);
@@ -461,7 +466,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 }
                 break;
             case R.id.mainhealth_layout_more:// 健康速递 查看更多
-                intent = new Intent(mContext, HealthyDeliveryAct.class);
+                intent = new Intent(mActivity, HealthyDeliveryAct.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -474,7 +479,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     protected HomePresenterImp<HomeContract.View> createPresent() {
-        return new HomePresenterImp<>(mContext, this);
+        return new HomePresenterImp<>(mActivity, this);
     }
 
 
@@ -572,22 +577,22 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     @Override
                     public void onClick(View v) {
                         CononDialog.dismiss();/**/
-                        if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToHome)) {
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
                             String url = layer.get(showLayerIndex).getHref();
                             if (!TextUtils.isEmpty(url) && url.contains("knp/index")) {
-                                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                                Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 intent.putExtra("html_url", "" + url);
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {
-                                Intent intent = new Intent(mContext, ActionH5Activity.class);
+                                Intent intent = new Intent(mActivity, ActionH5Activity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 intent.putExtra("kn_url", "" + url);
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             } else {
-                                Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                                Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 intent.putExtra("html_url", "" + url);
                                 startActivity(intent);
@@ -602,7 +607,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 CononDialog.show();
             }
             String img = layer.get(showLayerIndex).getImg();
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, img, fram_bg, 0);
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, img, fram_bg, 0);
 
         } catch (Exception e) {
 
@@ -625,19 +630,19 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             }
             kn_url = mHomeAfterBean.getKn_url();
             String sign_url = mHomeAfterBean.getSign_url();
-            SharedPreferencesHelper.put(mContext, "sign_url", "" + sign_url);
+            SharedPreferencesHelper.put(mActivity, "sign_url", "" + sign_url);
             String invite_user_url = mHomeAfterBean.getInvite_user_url();
-            SharedPreferencesHelper.put(mContext, "invite_user_url", "" + invite_user_url);
+            SharedPreferencesHelper.put(mActivity, "invite_user_url", "" + invite_user_url);
             HomeItemBean UserInfo = mHomeAfterBean.getUserInfo();
             if (UserInfo != null) {
                 int group_id = UserInfo.getGroup_id();
                 int team_id = UserInfo.getTeam_id();
-                SharedPreferencesHelper.put(mContext, "group_id", group_id);
-                SharedPreferencesHelper.put(mContext, "team_id", team_id);
+                SharedPreferencesHelper.put(mActivity, "group_id", group_id);
+                SharedPreferencesHelper.put(mActivity, "team_id", team_id);
                 if (group_id == 0 || team_id == 0) {
-                    SharedPreferencesHelper.put(mContext, "haveCommune", false);
+                    SharedPreferencesHelper.put(mActivity, "haveCommune", false);
                 } else {
-                    SharedPreferencesHelper.put(mContext, "haveCommune", true);
+                    SharedPreferencesHelper.put(mActivity, "haveCommune", true);
                 }
             }
             chacheMap(mHomeAfterBean);
@@ -700,7 +705,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status_.equals("200")) {
             String url = responseBean.getData();
-            Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+            Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("html_url", "" + url);
             startActivity(intent);
@@ -755,11 +760,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     private void shoeZZJieQi(List<HomeItemBean> BannersList) {
 
-        TopAdapter adapter = new TopAdapter(mContext, BannersList);
+        TopAdapter adapter = new TopAdapter(mActivity, BannersList);
         homedediVpTop.setAdapter(adapter);
         List<ImageView> imgList = new ArrayList<>();
         for (int i = 0; i < BannersList.size(); i++) {
-            ImageView img = new ImageView(mContext); // 现在空
+            ImageView img = new ImageView(mActivity); // 现在空
             img.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
             if (i == selectTopPosition) {
                 img.setImageResource(R.drawable.corners_oval_red);
@@ -783,9 +788,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     private void fillView(List<String> topmsg) {
         vp.removeAllViews();
         for (int i = 0; i < topmsg.size(); i++) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.text_item2, null);
+            View view = LayoutInflater.from(mActivity).inflate(R.layout.text_item2, null);
             TextView textView = view.findViewById(R.id.tv_cont);
-            textView.setTextColor(mContext.getResources().getColor(R.color.text_contents_color));
+            textView.setTextColor(mActivity.getResources().getColor(R.color.text_contents_color));
             textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setText(Html.fromHtml(topmsg.get(i)));
@@ -798,13 +803,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         //开始滚动
         vp.startFlipping();
         //出入动画
-        vp.setOutAnimation(mContext, R.anim.push_bottom_outvp);
-        vp.setInAnimation(mContext, R.anim.push_bottom_in);
+        vp.setOutAnimation(mActivity, R.anim.push_bottom_outvp);
+        vp.setInAnimation(mActivity, R.anim.push_bottom_in);
     }
 
     private void showIcon(List<HomeItemBean> iconList) {
         if (iconList != null && iconList.size() > 0) {
-            IconAdapter mIconAdapter = new IconAdapter(mContext, iconList);
+            IconAdapter mIconAdapter = new IconAdapter(mActivity, iconList);
             gv_icon.setAdapter(mIconAdapter);
         }
     }
@@ -819,7 +824,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         homedediVpHealth.setAdapter(adapter);
         List<ImageView> imgList = new ArrayList<>();
         for (int i = 0; i < newpuList.size(); i++) {
-            ImageView img = new ImageView(mContext); // 现在空
+            ImageView img = new ImageView(mActivity); // 现在空
             img.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
             if (i == selectHealthPosition) {
                 img.setImageResource(R.drawable.corners_oval_red);
@@ -852,7 +857,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     private void showDedicationAdapter(List<HomeItemBean> list) {
         selectDedicationPosition = 0;
-        DedicationAdapter adapter = new DedicationAdapter(mContext, list);
+        DedicationAdapter adapter = new DedicationAdapter(mActivity, list);
         homedediVpDedication.setAdapter(adapter);
 
 
@@ -866,7 +871,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public void initLineLayoutDao(List<HomeItemBean> list) {
         List<ImageView> imgList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            ImageView img = new ImageView(mContext); // 现在空
+            ImageView img = new ImageView(mActivity); // 现在空
             img.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
             if (i == selectDedicationPosition) {
                 img.setImageResource(R.drawable.corners_oval_red);
@@ -970,7 +975,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     private void setHotAtion(List<HomeItemBean> actions) {
         if (mActionAdapter == null) {
-            mActionAdapter = new ActionAdapter(mContext, actions);
+            mActionAdapter = new ActionAdapter(mActivity, actions);
             gv_Action.setAdapter(mActionAdapter);
         } else {
             mActionAdapter.refreshListView(actions);
@@ -984,7 +989,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     private void setHotPushHelp(List<HomeItemBean> msg) {
         if (mHomeHotPushAdapter == null) {
-            mHomeHotPushAdapter = new HomeHotPushAdapter(mContext, msg);
+            mHomeHotPushAdapter = new HomeHotPushAdapter(mActivity, msg);
             mainhotpushLv.setAdapter(mHomeHotPushAdapter);
         } else {
             mHomeHotPushAdapter.refreshListView(msg);

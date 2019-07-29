@@ -103,7 +103,9 @@ public class ActionlHelpDialogUtils {
             Window window = selectDialog.getWindow();
             window.setGravity(Gravity.BOTTOM);
             window.setWindowAnimations(R.style.showBottomDialog);
-            selectDialog.show();
+            if (context != null && context instanceof Activity) {
+                selectDialog.show();
+            }
             WindowManager m = context.getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值

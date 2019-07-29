@@ -119,42 +119,42 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                 Intent intent;
                 if (position == 0) {
                     //我的恩人
-                    intent = new Intent(mContext, MyGraH5Activity.class);
+                    intent = new Intent(mActivity, MyGraH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + myGratitudeUrl);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 } else if (position == 1) {
                     //我的奉献
-                    intent = new Intent(mContext, MyDeH5Activity.class);
+                    intent = new Intent(mActivity, MyDeH5Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + myDedicationUrl);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 } else if (position == 2) {
                     //激活能量
-                    intent = new Intent(mContext, ActivatEnergyActivity.class);
+                    intent = new Intent(mActivity, ActivatEnergyActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 } else if (position == 3) {
                     //我的家人
-                    intent = new Intent(mContext, MyFamilyActivity.class);
+                    intent = new Intent(mActivity, MyFamilyActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 } else if (position == 4) {
                     //1:是  ；0：不是
-                    String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+                    String is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
                         //人情账
-                        intent = new Intent(mContext, RelationshipAccountAct.class);
+                        intent = new Intent(mActivity, RelationshipAccountAct.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     } else {
                         //成为CHO
-                        intent = new Intent(mContext, UserInfoActivity.class);
+                        intent = new Intent(mActivity, UserInfoActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -166,7 +166,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     }
 
     @Override
-    public void doBusiness(Context mContext) {
+    public void doBusiness(Context mActivity) {
         initInfo();
     }
 
@@ -180,8 +180,9 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     List<String> solarTermsEnsImg;
 
     public void initInfo() {
+        initContext();
         showCont();
-        mPresent.getHelpInfo(UserUtils.getUserId(mContext));
+        mPresent.getHelpInfo(UserUtils.getUserId(mActivity));
     }
 
     private void showCont() {
@@ -195,7 +196,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         mList.add(new HelpWithInfo("天下无癌", "", R.color.white, R.mipmap.wisheach_icon_kangno, HomeFragment.kn_url));
         mList.add(new HelpWithInfo("生活保障互祝", "", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrl));
         mList.add(new HelpWithInfo("天下无债", "", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrlWorld));
-        HelpWithTopAdapter mHelpWithTopAdapter = new HelpWithTopAdapter(mContext, mList, solarTermsEnsImg);
+        HelpWithTopAdapter mHelpWithTopAdapter = new HelpWithTopAdapter(mActivity, mList, solarTermsEnsImg);
         helpWithGvtop.setAdapter(mHelpWithTopAdapter);
 
         List<HelpWithInfo> mBottomList = new ArrayList();
@@ -204,7 +205,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         mBottomList.add(new HelpWithInfo("激活能量", R.mipmap.wisheach_icon_theactivation));
         mBottomList.add(new HelpWithInfo("我的家人", R.mipmap.wisheach_icon_family));
         //1:是  ；0：不是
-        String is_cho = (String) SharedPreferencesHelper.get(mContext, "is_cho", "");
+        String is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
             layoutGolf.setVisibility(View.VISIBLE);
             mBottomList.add(new HelpWithInfo("人情账", R.mipmap.wisheach_icon_love));
@@ -212,7 +213,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             layoutGolf.setVisibility(View.INVISIBLE);
             mBottomList.add(new HelpWithInfo("成为CHO", R.mipmap.wisheach_icon_cho));
         }
-        HelpWithBottomAdapter mHelpWithBottomAdapter = new HelpWithBottomAdapter(mContext, mBottomList, myBlessHelpCount, blessMeHelpCount);
+        HelpWithBottomAdapter mHelpWithBottomAdapter = new HelpWithBottomAdapter(mActivity, mBottomList, myBlessHelpCount, blessMeHelpCount);
         helpWithGvbottom.setAdapter(mHelpWithBottomAdapter);
         helpWithGvbottom.setNumColumns(5);
     }
@@ -223,8 +224,8 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         Intent intent;
         switch (v.getId()) {
             case R.id.layout_golf:
-                intent = new Intent(mContext, AWordOfGoldAct.class);
-                intent.putExtra("otherId", UserUtils.getUserId(mContext));
+                intent = new Intent(mActivity, AWordOfGoldAct.class);
+                intent.putExtra("otherId", UserUtils.getUserId(mActivity));
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -237,7 +238,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                     LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
                     ActivityManager.getScreenManager().popAllActivityOnlyMain();
                 } else {
-                    intent = new Intent(mContext, UserInfoActivity.class);
+                    intent = new Intent(mActivity, UserInfoActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
@@ -277,7 +278,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
 //            if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 5) {
 //                int imgwidth = (int) ((layout_autohelp.getMeasuredHeight() - 10) * 1.68);
 //                iv_autohelpimg.setLayoutParams(new LinearLayout.LayoutParams(imgwidth, layout_autohelp.getMeasuredHeight() - 10));
-//                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, solarTermsEnsImg.get(4), iv_autohelpimg);
+//                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mActivity, solarTermsEnsImg.get(4), iv_autohelpimg);
 //            }
 
             myBlessHelpCount = mHelpIndexAfterBean.getMyBlessHelpCount();
@@ -302,10 +303,10 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             tvShowcont.setText(shoevon);
 
             if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 7) {
-                int width = (int) (DensityUtil.screenWith(mContext) * 2.7 / 7);
+                int width = (int) (DensityUtil.screenWith(mActivity) * 2.7 / 7);
                 int imghei = (int) (width * 0.6);
                 iv_tohelpimg.setLayoutParams(new LinearLayout.LayoutParams(width, imghei));
-                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mContext, solarTermsEnsImg.get(6), iv_tohelpimg);
+                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mActivity, solarTermsEnsImg.get(6), iv_tohelpimg);
             }
         }
     }

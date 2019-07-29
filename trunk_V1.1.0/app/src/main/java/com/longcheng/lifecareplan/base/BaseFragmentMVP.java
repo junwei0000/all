@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 
 import com.bumptech.glide.Glide;
+import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
@@ -32,6 +34,7 @@ public abstract class BaseFragmentMVP<V, T extends BasePresent<V>> extends RxFra
     protected final String TAG = this.getClass().getSimpleName();
     private View mContextView = null;
     protected Context mContext = null;
+    protected Activity mActivity = null;
     //
     private Unbinder unbinder;
 
@@ -39,12 +42,17 @@ public abstract class BaseFragmentMVP<V, T extends BasePresent<V>> extends RxFra
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
+        mActivity=getActivity();
         //创建Presenter层
         mPresent = createPresent();
         //做绑定
         mPresent.attachView((V) this);
     }
-
+    public void initContext(){
+        if (mActivity == null) {
+            mActivity = BottomMenuActivity.mMenuContext;
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (mContextView != null) {
