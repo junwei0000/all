@@ -551,6 +551,9 @@ public class BaoZhangActitvty extends WebAct {
                                         }
                                     });
                                 }
+                            } else {
+                                ToastUtils.showToast(responseBean.getMsg());
+                                allNewPayRefresh(status);
                             }
                         }
                     }
@@ -569,6 +572,20 @@ public class BaoZhangActitvty extends WebAct {
      */
     private void allNewPaySuccess() {
         mBridgeWebView.callHandler("allNewPay_SucBack", "" + one_order_id, new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    /**
+     * 康农工程创建房间---刷新页面 401
+     *
+     * @param status
+     */
+    private void allNewPayRefresh(String status) {
+        mBridgeWebView.callHandler("allNewPay_refreshPage", "" + status, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
