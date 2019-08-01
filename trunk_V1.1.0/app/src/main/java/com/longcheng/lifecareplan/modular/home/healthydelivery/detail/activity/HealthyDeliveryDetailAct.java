@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 
 import butterknife.BindView;
@@ -73,6 +74,16 @@ public class HealthyDeliveryDetailAct extends WebAct {
         loadUrl(url);
     }
 
+    /**
+     * 防止连续点击返回键
+     */
+    public void back() {
+        if (mBridgeWebView != null && mBridgeWebView.canGoBack()) {
+            mBridgeWebView.goBack();
+        } else {
+            doFinish();
+        }
+    }
 
     /**
      * 重写onkeydown 用于监听返回键
