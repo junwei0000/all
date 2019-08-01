@@ -131,17 +131,17 @@ public class AddFamilyActivity extends BaseActivityMVP<MyContract.View, MyPresen
     }
 
     private void TestAdd() {
-        String[] xing = {"段", "杨", "张", "吴", "李", "刘", "武", "齐"};
-        String[] ming = {"鸿", "辰", "运", "宇", "朗", "平", "鹏", "淼", "明", "皓", "栋", "昂"};
-        String[] ming3 = {"运", "龙", "珹", "振", "高", "景", "鑫", "昌", "炫", "昆", "曜", "文"};
-        for (int i = 0; i < 15; i++) {
+        String[] xing = {"段", "杨", "张", "吴", "李", "刘", "武", "齐","高","陈","何","贺","郑"};
+        String[] ming = {"鸿", "辰", "运", "宇", "朗", "平", "鹏", "淼", "明", "皓", "栋", "昂","","芳","文"};
+        String[] ming3 = {"运", "龙", "珹", "振", "高", "景", "鑫", "昌", "炫", "昆", "曜", "文","","芳"};
+        for (int i = 0; i < 20; i++) {
             Handler handler = new Handler();
             int finalI = i;
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-//                    phone = "175000000" + (50 + finalI);
-                    phone = "183100000" + (15 + finalI);
+                    phone = "175000000" + (50 + finalI);
+//                    phone = "183100000" + (15 + finalI);
                     int random = ConfigUtils.getINSTANCE().setRandom(xing.length);
                     int randomming = ConfigUtils.getINSTANCE().setRandom(ming.length);
                     int randomming3 = ConfigUtils.getINSTANCE().setRandom(ming3.length);
