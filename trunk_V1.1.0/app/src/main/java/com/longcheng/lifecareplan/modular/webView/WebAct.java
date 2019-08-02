@@ -19,6 +19,7 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -719,6 +720,7 @@ public abstract class WebAct extends BaseActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                mBridgeWebView.setLoadPicEnd(view);
                 super.onPageFinished(view, url);
                 Log.e("URLDecoder", "onPageFinished url=" + url);
                 mHandler.sendEmptyMessage(DISMISSDIALOG);

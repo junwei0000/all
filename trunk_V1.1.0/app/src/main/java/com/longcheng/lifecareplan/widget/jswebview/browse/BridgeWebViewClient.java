@@ -6,6 +6,7 @@ import android.net.http.SslError;
 import android.os.Handler;
 import android.util.Log;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -54,6 +55,7 @@ public class BridgeWebViewClient extends WebViewClient {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+       webView.setLoadPicInit(view);
         Log.e("URLDecoder", "super  url=" + url);
         if (url.contains("tel:")) {
             Log.e("onPageHeaders", "tel=" + url);

@@ -110,6 +110,27 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 //        Log.e("goBack", "urlPageBackList=\n" + urlPageBackList.toString());
         Log.e("goBack", "********************************************************************************");
     }
+
+    /**
+     * 设置图片缓存本地 初始化加载设置
+     *
+     * @param view
+     */
+    public void setLoadPicInit(WebView view) {
+//        view.getSettings().setBlockNetworkImage(true);
+//        view.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+    }
+
+    /**
+     * 设置图片缓存本地 加载结束设置
+     *
+     * @param view
+     */
+
+    public void setLoadPicEnd(WebView view) {
+//        view.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//        view.getSettings().setBlockNetworkImage(false);
+    }
     //--------------------------------------------------------------------
 
     /**

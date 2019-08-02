@@ -27,8 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/padd_imgtextleftright"
-                android:text="现金余额(元)"
-                android:textColor="@color/text_noclick_color"
+                android:text="我的钱包(元)"
+                android:textColor="@color/red"
                 android:textSize="@dimen/text_zhu_size" />
 
             <TextView
@@ -84,7 +84,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="激活能量"
-            android:textColor="@color/blue"
+            android:textColor="@color/red"
             android:textSize="@dimen/text_contents_size" />
     </LinearLayout>
 
