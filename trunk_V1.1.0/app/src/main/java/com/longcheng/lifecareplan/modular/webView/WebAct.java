@@ -720,7 +720,7 @@ public abstract class WebAct extends BaseActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                mBridgeWebView.setLoadPicEnd(view);
+                setLoadPicEnd(view);
                 super.onPageFinished(view, url);
                 Log.e("URLDecoder", "onPageFinished url=" + url);
                 mHandler.sendEmptyMessage(DISMISSDIALOG);
@@ -750,7 +750,16 @@ public abstract class WebAct extends BaseActivity {
             }
         });
     }
+    /**
+     * 设置webview图片缓存本地----加载结束设置
+     *
+     * @param view
+     */
 
+    public void setLoadPicEnd(WebView view) {
+        view.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        view.getSettings().setBlockNetworkImage(false);
+    }
     AblumWebUtils mAblumPicUtils;
 
     private void choseSinglePic() {

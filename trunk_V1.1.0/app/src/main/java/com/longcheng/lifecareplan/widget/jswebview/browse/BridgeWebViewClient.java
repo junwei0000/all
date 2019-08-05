@@ -55,7 +55,7 @@ public class BridgeWebViewClient extends WebViewClient {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-       webView.setLoadPicInit(view);
+        setLoadPicInit(view);
         Log.e("URLDecoder", "super  url=" + url);
         if (url.contains("tel:")) {
             Log.e("onPageHeaders", "tel=" + url);
@@ -77,6 +77,16 @@ public class BridgeWebViewClient extends WebViewClient {
             //-----------------------------------------------------------------------
             return super.shouldOverrideUrlLoading(view, url);
         }
+    }
+
+    /**
+     * 设置webview图片缓存本地----初始化加载设置
+     *
+     * @param view
+     */
+    public void setLoadPicInit(WebView view) {
+        view.getSettings().setBlockNetworkImage(true);
+        view.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
     }
 
     @Override
