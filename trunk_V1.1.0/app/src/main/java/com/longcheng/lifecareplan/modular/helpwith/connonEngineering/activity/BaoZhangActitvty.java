@@ -94,7 +94,7 @@ public class BaoZhangActitvty extends WebAct {
     private String one_order_id = "";
     private int mutual_help_money;
     private DetailItemBean userInfo;
-    private String asset_debt = "0";
+    private String asset_debt;
     /**
      * 生活保障详情id
      */
@@ -894,6 +894,9 @@ public class BaoZhangActitvty extends WebAct {
 
                                         }
                                     });
+                                } else {
+                                    LifeBasicApplyPaySuccuess();
+                                    ToastUtils.showToast(responseBean.getMsg());
                                 }
                             }
                         }
@@ -960,6 +963,9 @@ public class BaoZhangActitvty extends WebAct {
 
                                         }
                                     });
+                                }else{
+                                    ChangeLeiFengSuccuess();
+                                    ToastUtils.showToast(responseBean.getMsg());
                                 }
                             }
                         }
@@ -1033,6 +1039,9 @@ public class BaoZhangActitvty extends WebAct {
 
                                         }
                                     });
+                                }else{
+                                    volunterPaySuccuess();
+                                    ToastUtils.showToast(responseBean.getMsg());
                                 }
                             }
                         }

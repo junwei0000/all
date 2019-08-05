@@ -66,7 +66,7 @@ public class BaoZhangDialogUtils {
 
     private List<DetailItemBean> blessings_list;
     private String blessings;
-    private String asset_debt = "0";
+    private String asset_debt;
 
     public BaoZhangDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
@@ -174,6 +174,13 @@ public class BaoZhangDialogUtils {
             }, 50);
         } else {
             selectDialog.show();
+        }
+        if (TextUtils.isEmpty(asset_debt)) {
+            payType = "1";
+            detailhelp_relat_account.setVisibility(View.GONE);
+        } else {
+            payType = "4";
+            detailhelp_relat_account.setVisibility(View.VISIBLE);
         }
         num = 1;
         tv_num.setText("" + num);
