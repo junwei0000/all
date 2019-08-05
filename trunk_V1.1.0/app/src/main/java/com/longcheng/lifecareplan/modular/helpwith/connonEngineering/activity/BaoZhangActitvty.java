@@ -94,6 +94,7 @@ public class BaoZhangActitvty extends WebAct {
     private String one_order_id = "";
     private int mutual_help_money;
     private DetailItemBean userInfo;
+    private String asset_debt = "0";
     /**
      * 生活保障详情id
      */
@@ -273,7 +274,7 @@ public class BaoZhangActitvty extends WebAct {
                     if (mDetailHelpDialogUtils == null) {
                         mDetailHelpDialogUtils = new BaoZhangDialogUtils(mActivity, mHandler, LIFEBLESSING);
                     }
-                    mDetailHelpDialogUtils.initData(blessings_list, mutual_help_money_all);
+                    mDetailHelpDialogUtils.initData(blessings_list, mutual_help_money_all, asset_debt);
                     mDetailHelpDialogUtils.showPopupWindow();
                 }
             }
@@ -296,7 +297,7 @@ public class BaoZhangActitvty extends WebAct {
                     if (mLifeBasicPayDialogUtils == null) {
                         mLifeBasicPayDialogUtils = new BaoZhangDialogUtils(mActivity, mHandler, LifeBasicAppPayment);
                     }
-                    mLifeBasicPayDialogUtils.initData(blessings_list, mutual_help_money_all);
+                    mLifeBasicPayDialogUtils.initData(blessings_list, mutual_help_money_all, asset_debt);
                     mLifeBasicPayDialogUtils.showPopupWindow();
                 }
             }
@@ -1089,9 +1090,7 @@ public class BaoZhangActitvty extends WebAct {
                         if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
 
                             String status = responseBean.getStatus();
-                            if (status.equals("400")) {
-                                ToastUtils.showToast(responseBean.getMsg());
-                            } else if (status.equals("200")) {
+                            if (status.equals("200")) {
                                 PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
                                 one_order_id = payWeChatBean.getOne_order_id();
                                 if (pay_way.equals("1")) {
@@ -1110,7 +1109,12 @@ public class BaoZhangActitvty extends WebAct {
 
                                         }
                                     });
+                                } else {
+                                    LifeBasicDetailPaySuccess();
+                                    ToastUtils.showToast(responseBean.getMsg());
                                 }
+                            } else {
+                                ToastUtils.showToast(responseBean.getMsg());
                             }
                         }
                     }
@@ -1183,6 +1187,7 @@ public class BaoZhangActitvty extends WebAct {
                                     });
                                 } else {
                                     lifeSkipSuccess();
+                                    ToastUtils.showToast(responseBean.getMsg());
                                 }
                             } else {
                                 ToastUtils.showToast(responseBean.getMsg());
@@ -1331,6 +1336,7 @@ public class BaoZhangActitvty extends WebAct {
                                 } else {
                                     mutual_help_money_all = new ArrayList<>();
                                 }
+                                asset_debt = mDetailAfterBean.getUser_info().getAsset_debt();
                                 Log.e("ResponseBody", "____________________" + mutual_help_money_all.size());
                             }
                         }
@@ -1373,6 +1379,7 @@ public class BaoZhangActitvty extends WebAct {
                                 } else {
                                     mutual_help_money_all = new ArrayList<>();
                                 }
+                                asset_debt = mDetailAfterBean.getUser_info().getAsset_debt();
                                 Log.e("ResponseBody", "____________________" + mutual_help_money_all.size());
                             }
                         }

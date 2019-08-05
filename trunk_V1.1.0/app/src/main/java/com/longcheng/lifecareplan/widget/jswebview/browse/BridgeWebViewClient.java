@@ -85,8 +85,8 @@ public class BridgeWebViewClient extends WebViewClient {
      * @param view
      */
     public void setLoadPicInit(WebView view) {
-        view.getSettings().setBlockNetworkImage(true);
-        view.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        view.getSettings().setBlockNetworkImage(true);
+//        view.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
     }
 
     @Override

@@ -757,8 +757,8 @@ public abstract class WebAct extends BaseActivity {
      */
 
     public void setLoadPicEnd(WebView view) {
-        view.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        view.getSettings().setBlockNetworkImage(false);
+//        view.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//        view.getSettings().setBlockNetworkImage(false);
     }
     AblumWebUtils mAblumPicUtils;
 

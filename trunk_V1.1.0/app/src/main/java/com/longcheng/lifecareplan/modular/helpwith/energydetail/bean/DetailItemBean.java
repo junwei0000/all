@@ -129,6 +129,17 @@ public class DetailItemBean implements Serializable {
     private int is_default;
     @SerializedName("valid")
     private String valid;
+    @SerializedName("asset_debt")
+    private String asset_debt;
+
+
+    public String getAsset_debt() {
+        return asset_debt;
+    }
+
+    public void setAsset_debt(String asset_debt) {
+        this.asset_debt = asset_debt;
+    }
 
     public String getGoods_h5() {
         return goods_h5;

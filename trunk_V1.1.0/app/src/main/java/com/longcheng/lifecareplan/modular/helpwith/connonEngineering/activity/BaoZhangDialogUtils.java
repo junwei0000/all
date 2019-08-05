@@ -41,30 +41,32 @@ import java.util.List;
  */
 
 public class BaoZhangDialogUtils {
-    MyDialog selectDialog;
-    MyGridView detailhelp_gv_money;
 
-    RelativeLayout detailhelp_relat_wx, detailhelp_relat_zfb;
-    ImageView detailhelp_iv_wxselect, detailhelp_iv_zfbselect;
-
-    Handler mHandler;
-    int mHandlerID;
-    /**
-     * 支付方式互祝类型 asset (现金支付)， ability(生命能量支付)， wxpay(微信支付)
-     */
-    String payType = "1";
-    int selectmoney;
-    int num = 1;
-    BaoZhangMoneyAdapter mMoneyAdapter;
-    Activity context;
-    List<DetailItemBean> mutual_help_money_all;
+    private RelativeLayout detailhelp_relat_account, detailhelp_relat_wx, detailhelp_relat_zfb;
+    private ImageView detailhelp_iv_accountselect, detailhelp_iv_wxselect, detailhelp_iv_zfbselect;
     private TextView btn_helpsure;
-    private TextView detailhelp_tv_wxselecttitle, tv_num;
+    private TextView detailhelp_tv_accounttitle, detailhelp_tv_account, detailhelp_tv_wxselecttitle, tv_num;
     private TextView tv_zfbtitle;
-    List<DetailItemBean> blessings_list;
-    String blessings;
     private EditText detailhelp_et_content;
     private LongClickButton tv_jian, tv_add;
+
+    private MyDialog selectDialog;
+    private MyGridView detailhelp_gv_money;
+    private Handler mHandler;
+    private int mHandlerID;
+    /**
+     * 支付方式互祝类型 4 (现金支付)， ability(生命能量支付)， 1(微信支付)  2(支付宝)
+     */
+    private String payType = "4";
+    private int selectmoney;
+    private int num = 1;
+    private BaoZhangMoneyAdapter mMoneyAdapter;
+    private Activity context;
+    private List<DetailItemBean> mutual_help_money_all;
+
+    private List<DetailItemBean> blessings_list;
+    private String blessings;
+    private String asset_debt = "0";
 
     public BaoZhangDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
@@ -73,9 +75,10 @@ public class BaoZhangDialogUtils {
     }
 
 
-    public void initData(List<DetailItemBean> blessings_list, List<DetailItemBean> mutual_help_money_all) {
+    public void initData(List<DetailItemBean> blessings_list, List<DetailItemBean> mutual_help_money_all, String asset_debt) {
         this.mutual_help_money_all = mutual_help_money_all;
         this.blessings_list = blessings_list;
+        this.asset_debt = asset_debt;
     }
 
     private void setBless() {
@@ -116,6 +119,11 @@ public class BaoZhangDialogUtils {
             LinearLayout layout_cancel = (LinearLayout) selectDialog.findViewById(R.id.layout_cancel);
             detailhelp_gv_money = (MyGridView) selectDialog.findViewById(R.id.detailhelp_gv_money);
             detailhelp_et_content = (EditText) selectDialog.findViewById(R.id.detailhelp_et_content);
+
+            detailhelp_relat_account = (RelativeLayout) selectDialog.findViewById(R.id.detailhelp_relat_account);
+            detailhelp_iv_accountselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_accountselect);
+            detailhelp_tv_account = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_account);
+            detailhelp_tv_accounttitle = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_accounttitle);
             detailhelp_relat_wx = (RelativeLayout) selectDialog.findViewById(R.id.detailhelp_relat_wx);
             detailhelp_iv_wxselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_wxselect);
             detailhelp_tv_wxselecttitle = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_wxselecttitle);
@@ -138,6 +146,7 @@ public class BaoZhangDialogUtils {
             tv_jian.setOnClickListener(dialogClick);
             tv_add.setOnClickListener(dialogClick);
             btn_helpsure.setOnClickListener(dialogClick);
+            detailhelp_relat_account.setOnClickListener(dialogClick);
             detailhelp_relat_wx.setOnClickListener(dialogClick);
             detailhelp_relat_zfb.setOnClickListener(dialogClick);
             ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(detailhelp_et_content, 100);
@@ -168,6 +177,7 @@ public class BaoZhangDialogUtils {
         }
         num = 1;
         tv_num.setText("" + num);
+        detailhelp_tv_account.setText(context.getResources().getString(R.string.mark_money) + asset_debt);
         setBless();
         selectPayTypeView();
         setapplingDefault();
@@ -215,19 +225,27 @@ public class BaoZhangDialogUtils {
                 payType = "2";
                 selectPayTypeView();
                 break;
+            case R.id.detailhelp_relat_account:
+                payType = "4";
+                selectPayTypeView();
+                break;
             case R.id.btn_helpsure://立即互祝
-                selectDialog.dismiss();
-                Message message = new Message();
-                message.what = mHandlerID;
-                Bundle bundle = new Bundle();
-                bundle.putString("payType", payType);
-                bundle.putInt("selectmoney", selectmoney);
-                bundle.putInt("help_number", num);
-                String help_comment_content = detailhelp_et_content.getText().toString().trim();
-                bundle.putString("help_comment_content", help_comment_content);
-                message.setData(bundle);
-                mHandler.sendMessage(message);
-                message = null;
+                if (payType.equals("4") && (Double.valueOf(selectmoney * num) > Double.valueOf(asset_debt))) {
+                    ToastUtils.showToast("您的钱包余额不足");
+                } else {
+                    selectDialog.dismiss();
+                    Message message = new Message();
+                    message.what = mHandlerID;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("payType", payType);
+                    bundle.putInt("selectmoney", selectmoney);
+                    bundle.putInt("help_number", num);
+                    String help_comment_content = detailhelp_et_content.getText().toString().trim();
+                    bundle.putString("help_comment_content", help_comment_content);
+                    message.setData(bundle);
+                    mHandler.sendMessage(message);
+                    message = null;
+                }
                 break;
             default:
 
@@ -265,6 +283,10 @@ public class BaoZhangDialogUtils {
 
 
     private void selectPayTypeView() {
+        detailhelp_tv_account.setTextColor(context.getResources().getColor(R.color.text_contents_color));
+        detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
+        detailhelp_iv_accountselect.setVisibility(View.GONE);
+        detailhelp_relat_account.setBackgroundResource(R.drawable.corners_bg_black);
 
         detailhelp_tv_wxselecttitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
         tv_zfbtitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
@@ -276,6 +298,7 @@ public class BaoZhangDialogUtils {
         if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障用绿色
             detailhelp_iv_wxselect.setBackgroundResource(R.mipmap.pay_selcet_icon_lv);
             detailhelp_iv_zfbselect.setBackgroundResource(R.mipmap.pay_selcet_icon_lv);
+            detailhelp_iv_accountselect.setBackgroundResource(R.mipmap.pay_selcet_icon_lv);
             if (payType.equals("1")) {
                 detailhelp_tv_wxselecttitle.setTextColor(context.getResources().getColor(R.color.lv));
                 detailhelp_iv_wxselect.setVisibility(View.VISIBLE);
@@ -286,8 +309,15 @@ public class BaoZhangDialogUtils {
                 detailhelp_iv_zfbselect.setVisibility(View.VISIBLE);
                 detailhelp_relat_zfb.setBackgroundResource(R.drawable.corners_bg_lvbian);
                 detailhelp_relat_zfb.setPadding(0, 0, 0, 0);
+            } else if (payType.equals("4")) {
+                detailhelp_tv_account.setTextColor(context.getResources().getColor(R.color.lv));
+                detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.lv));
+                detailhelp_iv_accountselect.setVisibility(View.VISIBLE);
+                detailhelp_relat_account.setBackgroundResource(R.drawable.corners_bg_lvbian);
+                detailhelp_relat_account.setPadding(0, 0, 0, 0);
             }
         } else {
+            detailhelp_iv_accountselect.setBackgroundResource(R.mipmap.pay_selcet_icon_red);
             detailhelp_iv_wxselect.setBackgroundResource(R.mipmap.pay_selcet_icon_red);
             detailhelp_iv_zfbselect.setBackgroundResource(R.mipmap.pay_selcet_icon_red);
             if (payType.equals("1")) {
@@ -300,6 +330,12 @@ public class BaoZhangDialogUtils {
                 detailhelp_iv_zfbselect.setVisibility(View.VISIBLE);
                 detailhelp_relat_zfb.setBackgroundResource(R.drawable.corners_bg_redbian);
                 detailhelp_relat_zfb.setPadding(0, 0, 0, 0);
+            } else if (payType.equals("4")) {
+                detailhelp_tv_account.setTextColor(context.getResources().getColor(R.color.red));
+                detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.red));
+                detailhelp_iv_accountselect.setVisibility(View.VISIBLE);
+                detailhelp_relat_account.setBackgroundResource(R.drawable.corners_bg_redbian);
+                detailhelp_relat_account.setPadding(0, 0, 0, 0);
             }
         }
     }
