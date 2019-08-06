@@ -79,6 +79,9 @@ public class BaoZhangDialogUtils {
         this.mutual_help_money_all = mutual_help_money_all;
         this.blessings_list = blessings_list;
         this.asset_debt = asset_debt;
+        if (TextUtils.isEmpty(asset_debt)) {
+            this.asset_debt = "0";
+        }
     }
 
     private void setBless() {
@@ -175,12 +178,10 @@ public class BaoZhangDialogUtils {
         } else {
             selectDialog.show();
         }
-        if (TextUtils.isEmpty(asset_debt)) {
+        if (TextUtils.isEmpty(asset_debt) || (!TextUtils.isEmpty(asset_debt)) && asset_debt.equals("0")) {
             payType = "1";
-            detailhelp_relat_account.setVisibility(View.GONE);
         } else {
             payType = "4";
-            detailhelp_relat_account.setVisibility(View.VISIBLE);
         }
         num = 1;
         tv_num.setText("" + num);
