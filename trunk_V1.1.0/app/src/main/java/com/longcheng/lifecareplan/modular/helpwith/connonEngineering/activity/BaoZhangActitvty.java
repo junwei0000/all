@@ -260,6 +260,8 @@ public class BaoZhangActitvty extends WebAct {
                     }
                     mknpDetailHelpDialogUtils.initData(userInfo, blessings_list, 0, mutual_help_money, mutual_help_money_all);
                     mknpDetailHelpDialogUtils.showPopupWindow();
+                } else {
+                    ToastUtils.showToast(R.string.net_tishi);
                 }
             }
         });
@@ -276,6 +278,8 @@ public class BaoZhangActitvty extends WebAct {
                     }
                     mDetailHelpDialogUtils.initData(blessings_list, mutual_help_money_all, asset_debt);
                     mDetailHelpDialogUtils.showPopupWindow();
+                } else {
+                    ToastUtils.showToast(R.string.net_tishi);
                 }
             }
         });
@@ -299,6 +303,8 @@ public class BaoZhangActitvty extends WebAct {
                     }
                     mLifeBasicPayDialogUtils.initData(blessings_list, mutual_help_money_all, asset_debt);
                     mLifeBasicPayDialogUtils.showPopupWindow();
+                }else {
+                    ToastUtils.showToast(R.string.net_tishi);
                 }
             }
         });
@@ -963,7 +969,7 @@ public class BaoZhangActitvty extends WebAct {
 
                                         }
                                     });
-                                }else{
+                                } else {
                                     ChangeLeiFengSuccuess();
                                     ToastUtils.showToast(responseBean.getMsg());
                                 }
@@ -1039,7 +1045,7 @@ public class BaoZhangActitvty extends WebAct {
 
                                         }
                                     });
-                                }else{
+                                } else {
                                     volunterPaySuccuess();
                                     ToastUtils.showToast(responseBean.getMsg());
                                 }
