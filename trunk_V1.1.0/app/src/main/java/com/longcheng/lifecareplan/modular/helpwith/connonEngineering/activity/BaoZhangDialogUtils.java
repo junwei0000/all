@@ -192,12 +192,70 @@ public class BaoZhangDialogUtils {
         setGVMoney();
     }
 
-    View.OnClickListener dialogClick = new View.OnClickListener() {
+    private View.OnClickListener dialogClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             processClick(v.getId());
         }
     };
+    private MyDialog AssetDialog;
+    private TextView tv_asset, text_off, text_sure;
+
+    /**
+     * 余额支付显示弹层提示
+     */
+    public void showDialogAsset(String help_comment_content,
+                                String pay_way, int money,
+                                int help_number, Handler mAssetHandler, int mAssetHandlerID) {
+        if (AssetDialog == null) {
+            AssetDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_baozhangasset);// 创建Dialog并设置样式主题
+            AssetDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = AssetDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            AssetDialog.show();
+            WindowManager m = context.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = AssetDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            AssetDialog.getWindow().setAttributes(p); //设置生效
+
+            tv_asset = (TextView) AssetDialog.findViewById(R.id.tv_asset);
+            text_off = (TextView) AssetDialog.findViewById(R.id.text_off);
+            text_sure = (TextView) AssetDialog.findViewById(R.id.text_sure);
+        } else {
+            AssetDialog.show();
+        }
+        tv_asset.setText("" + (money * help_number));
+        if (mAssetHandlerID == BaoZhangActitvty.LifeBasicAppPaymentAsset) {//基础保障用绿色
+            text_off.setBackgroundResource(R.drawable.corners_bg_lvbian);
+            text_sure.setBackgroundResource(R.drawable.corners_bg_lv);
+        } else {
+            text_off.setBackgroundResource(R.drawable.corners_bg_redbian);
+            text_sure.setBackgroundResource(R.drawable.corners_bg_red);
+        }
+        text_off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AssetDialog.dismiss();
+            }
+        });
+        text_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AssetDialog.dismiss();
+                Message message = new Message();
+                message.what = mAssetHandlerID;
+                Bundle bundle = new Bundle();
+                bundle.putString("payType", pay_way);
+                bundle.putInt("selectmoney", money);
+                bundle.putInt("help_number", help_number);
+                bundle.putString("help_comment_content", help_comment_content);
+                message.setData(bundle);
+                mAssetHandler.sendMessage(message);
+                message = null;
+            }
+        });
+    }
 
     /**
      * 处理事件
@@ -261,7 +319,7 @@ public class BaoZhangDialogUtils {
         }
     }
 
-    int selectMonetPostion;
+    private int selectMonetPostion;
 
     private void setGVMoney() {
         selectmoney = mutual_help_money_all.get(selectMonetPostion).getMoney();

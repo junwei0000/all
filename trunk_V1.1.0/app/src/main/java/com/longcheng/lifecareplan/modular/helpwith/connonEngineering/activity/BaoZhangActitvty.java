@@ -303,7 +303,7 @@ public class BaoZhangActitvty extends WebAct {
                     }
                     mLifeBasicPayDialogUtils.initData(blessings_list, mutual_help_money_all, asset_debt);
                     mLifeBasicPayDialogUtils.showPopupWindow();
-                }else {
+                } else {
                     ToastUtils.showToast(R.string.net_tishi);
                 }
             }
@@ -434,11 +434,13 @@ public class BaoZhangActitvty extends WebAct {
     public static final int knpPaySucRreDetail = 12;
     private static final int KNPBLESS = 20;
     private static final int LIFEBLESSING = 22;
+    private static final int LIFEBLESSINGAsset = 23;
     private static final int VolunterSelectPay = 33;
     private static final int DoctorSelectPay = 34;
     private static final int sendLifeDetailShareNum = 44;
     private static final int ChangeLeiFengPay = 55;
     public static final int LifeBasicAppPayment = 66;
+    public static final int LifeBasicAppPaymentAsset = 67;
     private static final int sendLifeBasicDetailShareNum = 77;
     private static final int sendKNPDetailShareNum = 78;
     private static final int GiveactivityApplyPay = 88;
@@ -466,9 +468,33 @@ public class BaoZhangActitvty extends WebAct {
                     payType = bundle.getString("payType");
                     selectmoney = bundle.getInt("selectmoney");
                     help_number = bundle.getInt("help_number");
+                    if (!TextUtils.isEmpty(payType) && payType.equals("4")) {
+                        mDetailHelpDialogUtils.showDialogAsset(help_comment_content, payType, selectmoney, help_number, mHandler, LIFEBLESSINGAsset);
+                    } else {
+                        lifePayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
+                    }
+                    break;
+                case LIFEBLESSINGAsset:
+                    bundle = msg.getData();
+                    help_comment_content = bundle.getString("help_comment_content");
+                    payType = bundle.getString("payType");
+                    selectmoney = bundle.getInt("selectmoney");
+                    help_number = bundle.getInt("help_number");
                     lifePayHelp(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number);
                     break;
                 case LifeBasicAppPayment:
+                    bundle = msg.getData();
+                    help_comment_content = bundle.getString("help_comment_content");
+                    payType = bundle.getString("payType");
+                    selectmoney = bundle.getInt("selectmoney");
+                    help_number = bundle.getInt("help_number");
+                    if (!TextUtils.isEmpty(payType) && payType.equals("4")) {
+                        mLifeBasicPayDialogUtils.showDialogAsset(help_comment_content, payType, selectmoney, help_number, mHandler, LifeBasicAppPaymentAsset);
+                    } else {
+                        LifeBasicDetailPay(UserUtils.getUserId(mContext), help_comment_content, payType, life_id, selectmoney, help_number, is_share_help);
+                    }
+                    break;
+                case LifeBasicAppPaymentAsset:
                     bundle = msg.getData();
                     help_comment_content = bundle.getString("help_comment_content");
                     payType = bundle.getString("payType");
