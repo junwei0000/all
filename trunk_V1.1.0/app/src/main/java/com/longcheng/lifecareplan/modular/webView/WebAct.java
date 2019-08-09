@@ -45,6 +45,7 @@ import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwAc
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.activity.AWordOfGoldAct;
+import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.modular.mine.phosphor.RedirectDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
@@ -527,6 +528,15 @@ public abstract class WebAct extends BaseActivity {
                         .showDialogPromptReLogin(mActivity);
             }
         });
+        //我的手机卷-完善收货地址跳转订单列表
+        mBridgeWebView.registerHandler("cardOrderList_come", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(mContext, OrderListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
         //收付款-选择套餐-申请跳转商品详情
         mBridgeWebView.registerHandler("CodePay_ToShopInfo", new BridgeHandler() {
             @Override
@@ -750,6 +760,7 @@ public abstract class WebAct extends BaseActivity {
             }
         });
     }
+
     /**
      * 设置webview图片缓存本地----加载结束设置
      *
@@ -760,6 +771,7 @@ public abstract class WebAct extends BaseActivity {
 //        view.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 //        view.getSettings().setBlockNetworkImage(false);
     }
+
     AblumWebUtils mAblumPicUtils;
 
     private void choseSinglePic() {
