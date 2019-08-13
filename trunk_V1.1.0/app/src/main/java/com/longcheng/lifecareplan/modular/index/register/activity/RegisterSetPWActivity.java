@@ -83,7 +83,7 @@ public class RegisterSetPWActivity extends BaseActivityMVP<RegisterContract.View
 
     @Override
     public void loginFail() {
-
+        ToastUtils.showToast(R.string.net_tishi);
     }
 
     @Override

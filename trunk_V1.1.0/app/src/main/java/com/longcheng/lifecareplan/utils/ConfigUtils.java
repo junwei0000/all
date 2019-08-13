@@ -16,6 +16,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -31,8 +35,13 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 
 import java.io.InputStream;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
@@ -152,6 +161,56 @@ public class ConfigUtils {
         }
 
         return deviceId;
+    }
+
+    /**
+     * Android动态获取当前手机IP地址
+     *
+     * @param context
+     * @return
+     */
+    public String getIPAddress(Context context) {
+        NetworkInfo info = ((ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        if (info != null && info.isConnected()) {
+            if (info.getType() == ConnectivityManager.TYPE_MOBILE) {//当前使用2G/3G/4G网络
+                try {
+                    //Enumeration<NetworkInterface> en=NetworkInterface.getNetworkInterfaces();
+                    for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+                        NetworkInterface intf = en.nextElement();
+                        for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                            InetAddress inetAddress = enumIpAddr.nextElement();
+                            if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                                return inetAddress.getHostAddress();
+                            }
+                        }
+                    }
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                }
+            } else if (info.getType() == ConnectivityManager.TYPE_WIFI) {//当前使用无线网络
+                WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                String ipAddress = intIP2StringIP(wifiInfo.getIpAddress());//得到IPV4地址
+                return ipAddress;
+            }
+        } else {
+            //当前无网络连接,请在设置中打开网络
+        }
+        return null;
+    }
+
+    /**
+     * 将得到的int类型的IP转换为String类型
+     *
+     * @param ip
+     * @return
+     */
+    private String intIP2StringIP(int ip) {
+        return (ip & 0xFF) + "." +
+                ((ip >> 8) & 0xFF) + "." +
+                ((ip >> 16) & 0xFF) + "." +
+                (ip >> 24 & 0xFF);
     }
 
     private String getUUID(Context context) {

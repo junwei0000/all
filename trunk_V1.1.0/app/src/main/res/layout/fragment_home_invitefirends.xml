@@ -31,7 +31,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -101,15 +101,17 @@
 
                 <LinearLayout
                     android:id="@+id/layout_qrbg"
-                    style="@style/view_padd"
+                    style="@style/view_paddlefgtright"
+                    android:paddingBottom="@dimen/dp8"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:background="@mipmap/homepage_bai_background"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
                     <TextView
+                        android:layout_marginTop="@dimen/padd_topbottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="健康互祝公社"
@@ -155,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="@dimen/dp10"
+                        android:layout_marginBottom="@dimen/dp3"
                         android:paddingTop="@dimen/dp3"
                         android:text="邀请亲友加入健康互祝公社"
                         android:textColor="@color/text_noclick_color"

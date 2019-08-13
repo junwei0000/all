@@ -110,6 +110,7 @@ public class RegisterPresenterImp<T> extends RegisterContract.Presenter<Register
                     public void accept(Throwable throwable) throws Exception {
                         mView.dismissDialog();
                         mView.loginFail();
+                        Log.e("Observable",throwable.toString());
                     }
                 });
     }
