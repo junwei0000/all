@@ -47,6 +47,7 @@ import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -106,6 +107,13 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
     LinearLayout layout_jieqi;
     @BindView(R.id.jieqi_gv)
     MyGridView jieqi_gv;
+
+    @BindView(R.id.layout_merchant)
+    LinearLayout layout_merchant;
+    @BindView(R.id.iv_merchanticon)
+    ImageView iv_merchanticon;
+    @BindView(R.id.tv_merchantname)
+    TextView tv_merchantname;
 
     @BindView(R.id.layout_guige)
     LinearLayout layout_guige;
@@ -437,6 +445,16 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             tvName.setText(GoodsInfo.getName());
             tvSkb.setText(GoodsInfo.getSkb_price());
             tvShopnum.setText("已兑换" + GoodsInfo.getSale_number() + "件");
+
+            String merchantName = mDetailAfterBean.getMerchantName();
+            String merchantLogo = mDetailAfterBean.getMerchantLogo();
+            if (!TextUtils.isEmpty(merchantName) || !TextUtils.isEmpty(merchantLogo)) {
+                layout_merchant.setVisibility(View.VISIBLE);
+            } else {
+                layout_merchant.setVisibility(View.GONE);
+            }
+            tv_merchantname.setText("" + merchantName);
+            GlideDownLoadImage.getInstance().loadCircleImageCommune(mContext, merchantLogo, iv_merchanticon);
 
             String cont = GoodsInfo.getContent();
             if (!TextUtils.isEmpty(cont)) {

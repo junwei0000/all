@@ -38,6 +38,27 @@ public class DetailAfterBean {
     @SerializedName("volunteerApplyUrl")
     private String become_volunteer_url;
 
+    @SerializedName("merchantName")
+    private String merchantName;
+    @SerializedName("merchantLogo")
+    private String merchantLogo;
+
+    public String getMerchantName() {
+        return merchantName;
+    }
+
+    public void setMerchantName(String merchantName) {
+        this.merchantName = merchantName;
+    }
+
+    public String getMerchantLogo() {
+        return merchantLogo;
+    }
+
+    public void setMerchantLogo(String merchantLogo) {
+        this.merchantLogo = merchantLogo;
+    }
+
     public int getApplyHelpMinStarlevel() {
         return applyHelpMinStarlevel;
     }

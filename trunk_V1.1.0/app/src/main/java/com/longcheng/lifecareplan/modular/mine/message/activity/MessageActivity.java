@@ -18,6 +18,7 @@ import com.longcheng.lifecareplan.base.BaseListActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.message.adapter.MessageAdapter;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageAfterBean;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageItemBean;
@@ -129,7 +130,13 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
                         intent.putExtra("msg_id", helpAllList.get(position - 1).getHelp_action_id());
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                    } else if (help_type == 3) {
+                    } else if (help_type == 2) {
+                        Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("help_goods_id", helpAllList.get(position - 1).getHelp_action_id());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    }else if (help_type == 3) {
                         Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());
