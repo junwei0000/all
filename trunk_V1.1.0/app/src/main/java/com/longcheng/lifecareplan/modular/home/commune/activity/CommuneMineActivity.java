@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -394,7 +395,7 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
                 } else {
                     tvGonggaotime.setVisibility(View.VISIBLE);
                 }
-                tvGonggaocont.setText(content);
+                tvGonggaocont.setText(Html.fromHtml(content));
             }
             checkRankType();
         }

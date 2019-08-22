@@ -33,6 +33,7 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
@@ -133,12 +134,12 @@ public class LoginActivity extends BaseActivityMVP<LoginContract.View, LoginPres
 
     @Override
     public void showDialog() {
-
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override

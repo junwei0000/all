@@ -23,6 +23,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesH
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,12 +60,12 @@ public class LoginThirdSetPwActivity extends BaseActivityMVP<LoginContract.View,
 
     @Override
     public void showDialog() {
-
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override

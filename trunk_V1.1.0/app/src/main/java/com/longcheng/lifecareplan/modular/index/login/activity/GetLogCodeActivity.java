@@ -25,6 +25,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,12 +53,12 @@ public class GetLogCodeActivity extends BaseActivityMVP<LoginContract.View, Logi
 
     @Override
     public void showDialog() {
-
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-
+        LoadingDialogAnim.dismiss(mContext);
     }
 
 

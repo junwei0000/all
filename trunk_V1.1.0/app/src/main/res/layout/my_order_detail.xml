@@ -191,6 +191,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
+                    android:textIsSelectable="true"
                     android:textColor="@color/text_noclick_color"
                     android:textSize="@dimen/text_zhu_size" />
             </LinearLayout>
