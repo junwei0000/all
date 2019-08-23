@@ -364,24 +364,23 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     @Override
     public void applyActionSuccess(LifeNeedDataBean responseBean) {
         String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            String mag = responseBean.getMsg();
-            Log.e("applyActionSuccess", "applyActionSuccess=" + mag);
-            ToastUtils.showToast(mag);
-        } else if (status.equals("200")) {
+        if (status.equals("200")) {
             LifeNeedItemBean mActionItemBean = responseBean.getData();
             if (mActionItemBean != null) {
                 need_help_number = mActionItemBean.getNeed_help_number();
                 redirectMsgId = mActionItemBean.getRedirectMsgId();
                 showPopupWindow();
             }
-
+        } else {
+            String mag = responseBean.getMsg();
+            Log.e("applyActionSuccess", "applyActionSuccess=" + mag);
+            ToastUtils.showToast(mag);
         }
     }
 
     @Override
     public void ListError() {
-
+        ToastUtils.showToast(R.string.net_tishi);
     }
 
 

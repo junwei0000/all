@@ -356,6 +356,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 设置常用功能显示类型
      */
     private void setFunctionType() {
+        if (tv_functionstatus == null) {
+            return;
+        }
         boolean MineFuunctiontypeList = MySharedPreferences.getInstance().getMineFuunctiontypeList();
         if (MineFuunctiontypeList) {
             tv_functionstatus.setText("宫格展示");

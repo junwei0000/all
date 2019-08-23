@@ -272,8 +272,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
      * 描述：退出程序
      */
     protected void exit() {
-        if ((System.currentTimeMillis() - exitTime) > 2000) {
-            ToastUtils.showToast("再按一次退出程序");
+        if ((System.currentTimeMillis() - exitTime) > 1500) {
+            ToastUtils.showToast("再按一次退出应用");
             exitTime = System.currentTimeMillis();
         } else {
             activityManager.popAllActivity();

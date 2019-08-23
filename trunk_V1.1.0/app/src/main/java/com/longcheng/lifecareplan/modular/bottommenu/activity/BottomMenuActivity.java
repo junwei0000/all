@@ -85,7 +85,8 @@ public class BottomMenuActivity extends BaseActivity {
     public static final int tab_position_exchange = 2;
     public static final int tab_position_mine = 3;
 
-    public static Activity mMenuContext ;
+    public static Activity mMenuContext;
+
     @Override
     public View bindView() {
         return null;
@@ -268,16 +269,20 @@ public class BottomMenuActivity extends BaseActivity {
      * 是否显示版本更新提示/通知弹层
      */
     public static boolean updatedialogstatus = false;
+
     /**
      * 弹出版本更新时，关闭两个页面的弹层
      */
     private void UpdatVerDisAllDialog() {
         updatedialogstatus = true;
+        DisAllDialog();
+    }
+
+    private void DisAllDialog() {
         ((HomeFragment) fragmentList.get(tab_position_home)).dismissAllDialog();
         ((ExChangeFragment) fragmentList.get(tab_position_exchange)).dismissAllDialog();
         ((MineFragment) fragmentList.get(tab_position_mine)).dismissAllDialog();
     }
-
 
     public void registerMessageReceiver() {
         mMessageReceiver = new MessageReceiver();
@@ -330,9 +335,15 @@ public class BottomMenuActivity extends BaseActivity {
     }
 
     @Override
+    protected void onStop() {
+        DisAllDialog();
+        super.onStop();
+    }
+    @Override
     protected void onDestroy() {
-        super.onDestroy();
+        DisAllDialog();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        super.onDestroy();
     }
 
     /**

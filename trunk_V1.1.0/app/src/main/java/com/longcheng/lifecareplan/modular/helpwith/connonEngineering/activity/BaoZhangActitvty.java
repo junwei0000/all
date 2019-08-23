@@ -1249,6 +1249,9 @@ public class BaoZhangActitvty extends WebAct {
      * 生活保障---支付成功跳转红包页
      */
     private void lifeSkipSuccess() {
+        if (mBridgeWebView == null) {
+            return;
+        }
         mBridgeWebView.callHandler("Life_paySuccessBack", "" + one_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {

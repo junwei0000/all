@@ -58,28 +58,32 @@ public class LocationUtils {
         if (locationManager == null) {
             return new double[]{latitude, longitude};
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, new LocationListener() {
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            } // Provider被enable时触发此函数，比如GPS被打开
+        if (locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER) && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 
-            @Override
-            public void onProviderEnabled(String provider) {
-            } // Provider被disable时触发此函数，比如GPS被关闭
 
-            @Override
-            public void onProviderDisabled(String provider) {
-            } //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, new LocationListener() {
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+                } // Provider被enable时触发此函数，比如GPS被打开
 
-            @Override
-            public void onLocationChanged(Location location) {
+                @Override
+                public void onProviderEnabled(String provider) {
+                } // Provider被disable时触发此函数，比如GPS被关闭
+
+                @Override
+                public void onProviderDisabled(String provider) {
+                } //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+
+                @Override
+                public void onLocationChanged(Location location) {
+                }
+            });
+            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (location != null) {
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+                Log.e("getLngAndLat", +latitude + "  " + longitude);
             }
-        });
-        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        if (location != null) {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-            Log.e("getLngAndLat", +latitude + "  " + longitude);
         }
         return new double[]{latitude, longitude};
     }
@@ -112,8 +116,11 @@ public class LocationUtils {
      * @return
      */
     public String getAddress(Context mContext, double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
         try {
+            Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
+            if (geocoder == null) {
+                return "";
+            }
             List<Address> addresses = geocoder.getFromLocation(latitude,
                     longitude, 1);
             if (addresses != null && addresses.size() > 0) {

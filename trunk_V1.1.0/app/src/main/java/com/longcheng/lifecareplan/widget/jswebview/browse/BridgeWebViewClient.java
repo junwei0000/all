@@ -51,6 +51,11 @@ public class BridgeWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         try {
+            /**
+             * % 在URL中是特殊字符，需要特殊转义一下，
+             解决办法：使用%25替换字符串中的%号
+             */
+            url = url.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
             url = URLDecoder.decode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

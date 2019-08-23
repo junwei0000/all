@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.modular.exchange.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -57,6 +58,8 @@ import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -211,7 +214,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {//搜索按键action
                     ConfigUtils.getINSTANCE().closeSoftInput(getActivity());
-                    searchCont = exchangeEtSearch.getText().toString();
+                    searchCont = v.getText().toString();
                     if (TextUtils.isEmpty(searchCont)) {
                         return true;
                     }
@@ -377,6 +380,9 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
      * 切换 ：时间、价格、人气 ；选中状态
      */
     private void initSelectView(String selectStatus) {
+        if (exchangeTvTime == null) {
+            return;
+        }
         int colorid = R.color.text_biaoTi_color;
         int mipmapid = R.mipmap.ic_arrow_gray;
         exchangeTvTime.setTextColor(getResources().getColor(colorid));
@@ -549,7 +555,9 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
 
     public void dismissAllDialog() {
         if (YinLiaoDialog != null && YinLiaoDialog.isShowing()) {
-            YinLiaoDialog.dismiss();
+            if (mActivity != null && mActivity.isFinishing()) {
+                YinLiaoDialog.dismiss();
+            }
         }
     }
 

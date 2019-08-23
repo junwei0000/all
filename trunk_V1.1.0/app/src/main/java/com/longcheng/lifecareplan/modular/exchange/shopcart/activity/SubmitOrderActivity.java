@@ -89,9 +89,9 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
     private Map<String, DetailItemBean> ShoppingCartMap = new HashMap<>();
     ArrayList<DetailItemBean> mCartList = new ArrayList();
     private String user_id;
-    private String address_id;
-    private String total_skb_price;
-    private String orders_datas;
+    private String address_id = "";
+    private String total_skb_price = "";
+    private String orders_datas = "";
 
     @Override
     public void onClick(View v) {
@@ -108,11 +108,8 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 break;
             case R.id.tv_submit:
-                if (!TextUtils.isEmpty(address_id) && !TextUtils.isEmpty(total_skb_price)
-                        && !TextUtils.isEmpty(orders_datas)) {
-                    Log.e("orders_datas", "" + orders_datas);
-                    mPresent.submitGoodsOrder(user_id, address_id, total_skb_price, orders_datas);
-                }
+                Log.e("orders_datas", "" + orders_datas);
+                mPresent.submitGoodsOrder(user_id, address_id, total_skb_price, orders_datas);
                 break;
         }
     }
@@ -276,15 +273,15 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
     @Override
     public void SubmitGoodsOrder(EditListDataBean responseBean) {
         String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
+        if (status.equals("200")) {
             ToastUtils.showToast(responseBean.getMsg());
             clearCheckCart();
             Intent intent = new Intent(mContext, SubmitSuccessActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
         }
     }
 

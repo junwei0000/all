@@ -597,6 +597,9 @@ public abstract class WebAct extends BaseActivity {
      * @param type 0:无  ； 1：有 ； -1：未安装微信
      */
     private void creditorBack(String type, String relation_str) {
+        if (mBridgeWebView == null) {
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("relation_str", relation_str);

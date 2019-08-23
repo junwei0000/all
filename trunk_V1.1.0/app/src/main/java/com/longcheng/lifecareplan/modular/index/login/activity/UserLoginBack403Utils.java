@@ -86,14 +86,16 @@ public class UserLoginBack403Utils {
     MyDialog selectDialog;
 
     public void showDialogPromptReLogin(Activity mActivity) {
+        if (mActivity != null && mActivity.isFinishing()) {
+            return;
+        }
+        if (selectDialog != null && selectDialog.isShowing()) {
+            return;
+        }
         Intent intents = new Intent();
         intents.setAction(ConstantManager.MAINMENU_ACTION);
         intents.putExtra("type", ConstantManager.MAIN_ACTION_UpdateVerDisAllDialog);
         LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
-
-        if (selectDialog != null && selectDialog.isShowing()) {
-            selectDialog.dismiss();
-        }
         selectDialog = new MyDialog(mActivity, R.style.dialog,
                 R.layout.dialog_logout);
         selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog

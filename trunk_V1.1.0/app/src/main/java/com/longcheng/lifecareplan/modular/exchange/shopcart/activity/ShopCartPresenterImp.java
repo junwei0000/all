@@ -52,7 +52,8 @@ public class ShopCartPresenterImp<T> extends ShopCartContract.Presenter<ShopCart
                     @Override
                     public void accept(EditListDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.SubmitGoodsOrder(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.SubmitGoodsOrder(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
