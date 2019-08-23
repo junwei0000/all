@@ -201,19 +201,18 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             mPresent.setListViewData();
         }
     }
-
+    Handler handler = new Handler();
     private void setDaTing() {
-        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (isAdded()) {
                     if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                        isFirstComIn = 2;
                         Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
                         startActivity(intent);
-                        isFirstComIn = 2;
                     } else {
                         isFirstComIn = 1;
                     }
@@ -355,7 +354,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                         }
                     } else if (sort == 5) {
                         if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
-//                            ((MineFragment) BottomMenuActivity.fragmentList.get(BottomMenuActivity.tab_position_mine)).signInGetInfo("signIn");
                             mPresent.getQuickTeamUrl();
                         }
                     }
