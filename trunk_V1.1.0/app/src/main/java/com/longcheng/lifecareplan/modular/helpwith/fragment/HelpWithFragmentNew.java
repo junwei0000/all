@@ -194,7 +194,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         mList.add(new HelpWithInfo("生活方式互祝", "申请", R.color.white, R.mipmap.wisheach_icon_life, ""));
         mList.add(new HelpWithInfo("智能互祝", "", R.color.white, R.mipmap.wisheach_icon_baoz, automationHelpUrl));
         mList.add(new HelpWithInfo("天下无癌", "", R.color.white, R.mipmap.wisheach_icon_kangno, HomeFragment.kn_url));
-        mList.add(new HelpWithInfo("生活保障互祝", "", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrl));
+        mList.add(new HelpWithInfo("生活保障互祝", "申请", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrl));
         mList.add(new HelpWithInfo("天下无债", "", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrlWorld));
         HelpWithTopAdapter mHelpWithTopAdapter = new HelpWithTopAdapter(mActivity, mList, solarTermsEnsImg);
         helpWithGvtop.setAdapter(mHelpWithTopAdapter);

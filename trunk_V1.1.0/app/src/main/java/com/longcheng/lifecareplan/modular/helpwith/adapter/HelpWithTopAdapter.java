@@ -145,6 +145,12 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
                     intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_EXCHANGE);
                     LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
                     ActivityManager.getScreenManager().popAllActivityOnlyMain();
+                } else if (position == 4) {
+                    //生活保障 申请互祝
+                    intent = new Intent(context, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + list.get(position).getSkipurl());
+                    context.startActivity(intent);
                 }
             }
         });

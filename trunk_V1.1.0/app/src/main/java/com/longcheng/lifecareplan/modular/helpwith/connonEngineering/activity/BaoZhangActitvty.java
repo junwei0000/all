@@ -910,6 +910,7 @@ public class BaoZhangActitvty extends WebAct {
                                 ToastUtils.showToast(responseBean.getMsg());
                             } else if (status.equals("200")) {
                                 PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                one_order_id=payWeChatBean.getOne_order_id();
                                 if (payment_channel.equals("1")) {
                                     Log.e(TAG, payWeChatBean.toString());
                                     PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
@@ -948,7 +949,7 @@ public class BaoZhangActitvty extends WebAct {
      * 志愿者互祝----申请基础保障支付回调
      */
     private void LifeBasicApplyPaySuccuess() {
-        mBridgeWebView.callHandler("LifeBasic_applyPaySucBack", "", new CallBackFunction() {
+        mBridgeWebView.callHandler("LifeBasic_applyPaySucBack", ""+one_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
