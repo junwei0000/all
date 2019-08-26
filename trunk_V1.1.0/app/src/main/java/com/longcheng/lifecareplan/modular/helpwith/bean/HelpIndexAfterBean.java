@@ -11,14 +11,10 @@ import java.util.List;
  */
 
 public class HelpIndexAfterBean {
-    @SerializedName("isStartAutoHelp")
-    private int isStartAutoHelp;
     @SerializedName("myBlessHelpCount")
     private String myBlessHelpCount;
     @SerializedName("blessMeHelpCount")
     private String blessMeHelpCount;
-    @SerializedName("autoHelpNumberTotal")
-    private String autoHelpNumberTotal;
 
     @SerializedName("solarTermsEnsImg")
     private List<String> solarTermsEnsImg;
@@ -37,6 +33,36 @@ public class HelpIndexAfterBean {
     private String lifeUrl;
     @SerializedName("lifeUrlWorld")
     private String lifeUrlWorld;
+    @SerializedName("lifeBasicApplyUrl")
+    private String lifeBasicApplyUrl;
+    @SerializedName("isVolunteer")
+    private int isVolunteer;
+    @SerializedName("become_volunteer_url")
+    private String become_volunteer_url;
+
+    public String getBecome_volunteer_url() {
+        return become_volunteer_url;
+    }
+
+    public void setBecome_volunteer_url(String become_volunteer_url) {
+        this.become_volunteer_url = become_volunteer_url;
+    }
+
+    public int getIsVolunteer() {
+        return isVolunteer;
+    }
+
+    public void setIsVolunteer(int isVolunteer) {
+        this.isVolunteer = isVolunteer;
+    }
+
+    public String getLifeBasicApplyUrl() {
+        return lifeBasicApplyUrl;
+    }
+
+    public void setLifeBasicApplyUrl(String lifeBasicApplyUrl) {
+        this.lifeBasicApplyUrl = lifeBasicApplyUrl;
+    }
 
     public String getLifeUrlWorld() {
         return lifeUrlWorld;
@@ -78,13 +104,6 @@ public class HelpIndexAfterBean {
         this.myGratitudeUrl = myGratitudeUrl;
     }
 
-    public int getIsStartAutoHelp() {
-        return isStartAutoHelp;
-    }
-
-    public void setIsStartAutoHelp(int isStartAutoHelp) {
-        this.isStartAutoHelp = isStartAutoHelp;
-    }
 
     public String getMyBlessHelpCount() {
         return myBlessHelpCount;
@@ -100,14 +119,6 @@ public class HelpIndexAfterBean {
 
     public void setBlessMeHelpCount(String blessMeHelpCount) {
         this.blessMeHelpCount = blessMeHelpCount;
-    }
-
-    public String getAutoHelpNumberTotal() {
-        return autoHelpNumberTotal;
-    }
-
-    public void setAutoHelpNumberTotal(String autoHelpNumberTotal) {
-        this.autoHelpNumberTotal = autoHelpNumberTotal;
     }
 
     public List<String> getSolarTermsEnsImg() {

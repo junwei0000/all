@@ -1,13 +1,20 @@
 package com.longcheng.lifecareplan.modular.helpwith.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +25,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.adapter.HelpWithBottomAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.adapter.HelpWithTopAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
@@ -37,6 +45,7 @@ import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.MyFamilyAct
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.activity.AWordOfGoldAct;
+import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.mine.relationship.activity.RelationshipAccountAct;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
@@ -45,6 +54,7 @@ import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.MyScrollView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -77,15 +87,6 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     @BindView(R.id.helpWith_sv)
     MyScrollView helpWithSv;
 
-//
-//    @BindView(R.id.layout_autohelp)
-//    RelativeLayout layout_autohelp;
-//    @BindView(R.id.iv_autohelpimg)
-//    ImageView iv_autohelpimg;
-//    @BindView(R.id.tv_autohelpNum)
-//    TextView tv_autohelpNum;
-
-
     @BindView(R.id.layout_golf)
     LinearLayout layoutGolf;
     @BindView(R.id.tv_showname)
@@ -100,7 +101,9 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     private String myBlessHelpCount = "0", blessMeHelpCount = "0";
     public static String automationHelpUrl, myDedicationUrl, myGratitudeUrl;
     private List<String> zangfus;
-    private String lifeUrl, lifeUrlWorld;
+    private String lifeUrl, lifeBasicApplyUrl, lifeUrlWorld, become_volunteer_url;
+
+    private int isVolunteer;
 
     @Override
     public int bindLayout() {
@@ -194,9 +197,10 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         mList.add(new HelpWithInfo("生活方式互祝", "申请", R.color.white, R.mipmap.wisheach_icon_life, ""));
         mList.add(new HelpWithInfo("智能互祝", "", R.color.white, R.mipmap.wisheach_icon_baoz, automationHelpUrl));
         mList.add(new HelpWithInfo("天下无癌", "", R.color.white, R.mipmap.wisheach_icon_kangno, HomeFragment.kn_url));
-        mList.add(new HelpWithInfo("生活保障互祝", "申请", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrl));
+        mList.add(new HelpWithInfo("生活保障互祝", "申请", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrl, lifeBasicApplyUrl));
         mList.add(new HelpWithInfo("天下无债", "", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrlWorld));
         HelpWithTopAdapter mHelpWithTopAdapter = new HelpWithTopAdapter(mActivity, mList, solarTermsEnsImg);
+        mHelpWithTopAdapter.initHandle(mHandler, lifeBasicApply);
         helpWithGvtop.setAdapter(mHelpWithTopAdapter);
 
         List<HelpWithInfo> mBottomList = new ArrayList();
@@ -218,6 +222,28 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         helpWithGvbottom.setNumColumns(5);
     }
 
+    private final int lifeBasicApply = 2;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case lifeBasicApply:
+                    if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
+                        if (isVolunteer == 0) {
+                            showVolunteerDialog();
+                        } else {
+                            Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("html_url", "" + lifeBasicApplyUrl);
+                            startActivity(intent);
+                        }
+                    } else {
+                        ((MineFragment) BottomMenuActivity.fragmentList.get(BottomMenuActivity.tab_position_mine)).showNotCHODialog();
+                    }
+                    break;
+            }
+        }
+    };
 
     @Override
     public void widgetClick(View v) {
@@ -249,6 +275,54 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         }
     }
 
+    MyDialog VolunteerDialog;
+
+    /**
+     * 康农成为志愿者
+     */
+    public void showVolunteerDialog() {
+        if (VolunteerDialog == null) {
+            VolunteerDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_malldetail_connon);// 创建Dialog并设置样式主题
+            VolunteerDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = VolunteerDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            VolunteerDialog.show();
+            WindowManager m = mActivity.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = VolunteerDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            VolunteerDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) VolunteerDialog.findViewById(R.id.layout_cancel);
+            TextView btn_gohelp = (TextView) VolunteerDialog.findViewById(R.id.btn_gohelp);
+            TextView btn_jihuo = (TextView) VolunteerDialog.findViewById(R.id.btn_jihuo);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    VolunteerDialog.dismiss();
+                }
+            });
+            btn_gohelp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    VolunteerDialog.dismiss();
+                }
+            });
+            btn_jihuo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", become_volunteer_url);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    VolunteerDialog.dismiss();
+                }
+            });
+        } else {
+            VolunteerDialog.show();
+        }
+    }
+
     @Override
     protected HelpWithPresenterImp<HelpWithContract.View> createPresent() {
         return new HelpWithPresenterImp<>(this);
@@ -265,21 +339,10 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             myGratitudeUrl = mHelpIndexAfterBean.getMyGratitudeUrl();
             lifeUrlWorld = mHelpIndexAfterBean.getLifeUrlWorld();
             lifeUrl = mHelpIndexAfterBean.getLifeUrl();
+            isVolunteer = mHelpIndexAfterBean.getIsVolunteer();
+            become_volunteer_url = mHelpIndexAfterBean.getBecome_volunteer_url();
+            lifeBasicApplyUrl = mHelpIndexAfterBean.getLifeBasicApplyUrl();
             solarTermsEnsImg = mHelpIndexAfterBean.getSolarTermsEnsImg();
-//            int isStartAutoHelp = mHelpIndexAfterBean.getIsStartAutoHelp();
-//            String open;
-//            if (isStartAutoHelp == 0) {//未开启智能互祝
-//                open = "未开启";
-//            } else {
-//                String autoHelpNumberTotal = mHelpIndexAfterBean.getAutoHelpNumberTotal();
-//                open = "今日帮您送出" + autoHelpNumberTotal + "次祝福";
-//            }
-//            tv_autohelpNum.setText(open);
-//            if (solarTermsEnsImg != null && solarTermsEnsImg.size() >= 5) {
-//                int imgwidth = (int) ((layout_autohelp.getMeasuredHeight() - 10) * 1.68);
-//                iv_autohelpimg.setLayoutParams(new LinearLayout.LayoutParams(imgwidth, layout_autohelp.getMeasuredHeight() - 10));
-//                GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mActivity, solarTermsEnsImg.get(4), iv_autohelpimg);
-//            }
 
             myBlessHelpCount = mHelpIndexAfterBean.getMyBlessHelpCount();
             blessMeHelpCount = mHelpIndexAfterBean.getBlessMeHelpCount();

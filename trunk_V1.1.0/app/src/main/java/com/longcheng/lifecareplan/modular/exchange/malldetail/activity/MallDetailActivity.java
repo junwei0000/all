@@ -726,7 +726,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             WindowManager m = getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = ConnonDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 4 / 5; //宽度设置为屏幕
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
             ConnonDialog.getWindow().setAttributes(p); //设置生效
             LinearLayout layout_cancel = (LinearLayout) ConnonDialog.findViewById(R.id.layout_cancel);
             TextView btn_gohelp = (TextView) ConnonDialog.findViewById(R.id.btn_gohelp);

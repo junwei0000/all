@@ -13,6 +13,7 @@ public class HelpWithInfo implements Serializable {
     private int bgColorId;
     private int imgId;
     private String skipurl;
+    private String applyurl;
 
     public HelpWithInfo(String name, int imgId) {
         this.name = name;
@@ -25,6 +26,23 @@ public class HelpWithInfo implements Serializable {
         this.textColorId = textColorId;
         this.bgColorId = bgColorId;
         this.skipurl = skipurl;
+    }
+
+    public HelpWithInfo(String name, String name2, int textColorId, int bgColorId, String skipurl, String applyurl) {
+        this.name = name;
+        this.name2 = name2;
+        this.textColorId = textColorId;
+        this.bgColorId = bgColorId;
+        this.skipurl = skipurl;
+        this.applyurl = applyurl;
+    }
+
+    public String getApplyurl() {
+        return applyurl;
+    }
+
+    public void setApplyurl(String applyurl) {
+        this.applyurl = applyurl;
     }
 
     public int getTextColorId() {

@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.modular.helpwith.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,10 +38,12 @@ import java.util.List;
  */
 
 public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
-    ViewHolder mHolder = null;
+    private ViewHolder mHolder = null;
 
-    Context context;
-    List<String> solarTermsEnsImg;
+    private Context context;
+    private List<String> solarTermsEnsImg;
+    private Handler mHandler;
+    private int mHandlerId;
 
     public HelpWithTopAdapter(Context context, List<HelpWithInfo> list, List<String> solarTermsEnsImg) {
         super(context, list);
@@ -48,6 +51,10 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
         this.solarTermsEnsImg = solarTermsEnsImg;
     }
 
+    public void initHandle(Handler mHandler,int mHandlerId){
+        this.mHandler = mHandler;
+        this.mHandlerId = mHandlerId;
+    }
 
     @Override
     public View getItemView(int position, View convertView, ViewGroup parent, List<HelpWithInfo> list, LayoutInflater inflater) {
@@ -147,10 +154,7 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
                     ActivityManager.getScreenManager().popAllActivityOnlyMain();
                 } else if (position == 4) {
                     //生活保障 申请互祝
-                    intent = new Intent(context, BaoZhangActitvty.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", "" + list.get(position).getSkipurl());
-                    context.startActivity(intent);
+                    mHandler.sendEmptyMessage(mHandlerId);
                 }
             }
         });
