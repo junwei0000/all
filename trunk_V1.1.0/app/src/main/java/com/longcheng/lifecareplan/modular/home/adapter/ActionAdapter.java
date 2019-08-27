@@ -50,7 +50,7 @@ public class ActionAdapter extends BaseAdapterHelper<HomeItemBean> {
             mHolder = (ViewHolder) convertView.getTag();
         }
         HomeItemBean mHelpItemBean = list.get(position);
-        GlideDownLoadImage.getInstance().loadCircleImageRole(context, mHelpItemBean.getImg(), mHolder.item_iv_img, ConstantManager.image_angle);
+        GlideDownLoadImage.getInstance().loadCircleImageRole(context, mHelpItemBean.getImg(), mHolder.item_iv_img, 0);
         mHolder.item_tv_name1.setText(mHelpItemBean.getName1());
         mHolder.item_tv_name2.setText(mHelpItemBean.getName2());
         mHolder.item_tv_num.setText(mHelpItemBean.getAbility_price() + "生命能量");

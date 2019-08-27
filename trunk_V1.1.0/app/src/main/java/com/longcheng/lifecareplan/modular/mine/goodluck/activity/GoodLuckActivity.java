@@ -42,6 +42,7 @@ import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,11 +137,13 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
         helpListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(1);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(page + 1);
             }
         });
@@ -162,25 +165,22 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
 
     @Override
     protected GoodLuckPresenterImp<GoodLuckContract.View> createPresent() {
-        return new GoodLuckPresenterImp<>(mContext, this);
+        return new GoodLuckPresenterImp<>(mActivity, this);
     }
+
+    boolean refreshStatus = false;
 
     @Override
     public void showDialog() {
-        showOpenLoadingDialog();
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                openLoadingDialogDismiss();
-            }
-        }, 500);//秒后执行Runnable中的run方法
+        refreshStatus = false;
+        LoadingDialogAnim.dismiss(mContext);
     }
-
 
     @Override
     public void ListSuccess(GoodLuckListDataBean responseBean, int backPage) {
@@ -270,30 +270,6 @@ public class GoodLuckActivity extends BaseListActivity<GoodLuckContract.View, Go
 
     }
 
-    MyDialog selectOpenLoadingDialog;
-
-    private void showOpenLoadingDialog() {
-        if (selectOpenLoadingDialog == null) {
-            selectOpenLoadingDialog = new MyDialog(this, R.style.dialog, R.layout.dialog_openredload);// 创建Dialog并设置样式主题
-            selectOpenLoadingDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = selectOpenLoadingDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            selectOpenLoadingDialog.show();
-            WindowManager m = getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = selectOpenLoadingDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
-            selectOpenLoadingDialog.getWindow().setAttributes(p); //设置生效
-        } else {
-            selectOpenLoadingDialog.show();
-        }
-    }
-
-    private void openLoadingDialogDismiss() {
-        if (selectOpenLoadingDialog != null && selectOpenLoadingDialog.isShowing()) {
-            selectOpenLoadingDialog.dismiss();
-        }
-    }
 
     MyDialog selectendDialog;
 

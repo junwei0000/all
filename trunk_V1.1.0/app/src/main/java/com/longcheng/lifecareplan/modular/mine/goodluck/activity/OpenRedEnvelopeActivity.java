@@ -179,7 +179,7 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
 
     @Override
     protected GoodLuckPresenterImp<GoodLuckContract.View> createPresent() {
-        return new GoodLuckPresenterImp<>(mContext, this);
+        return new GoodLuckPresenterImp<>(mActivity, this);
     }
 
     @Override

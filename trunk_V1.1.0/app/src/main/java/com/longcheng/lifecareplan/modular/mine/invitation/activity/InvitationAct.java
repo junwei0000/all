@@ -21,6 +21,7 @@ import com.longcheng.lifecareplan.utils.CommonUtil;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
 
@@ -59,12 +60,18 @@ public class InvitationAct extends BaseListActivity<InvitationContract.View, Inv
         return null;
     }
 
+    boolean refreshStatus = false;
+
     @Override
     public void showDialog() {
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        refreshStatus = false;
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override
@@ -106,11 +113,13 @@ public class InvitationAct extends BaseListActivity<InvitationContract.View, Inv
         ptrView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 refresh(0);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 refresh(pageIndex);
             }
         });

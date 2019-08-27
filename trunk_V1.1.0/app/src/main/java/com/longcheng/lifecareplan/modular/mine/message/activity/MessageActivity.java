@@ -29,6 +29,7 @@ import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.view.FooterNoMoreData;
 
 import java.util.ArrayList;
@@ -110,11 +111,13 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
         helpListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(1);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 getList(page + 1);
             }
         });
@@ -136,7 +139,7 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
                         intent.putExtra("help_goods_id", helpAllList.get(position - 1).getHelp_action_id());
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                    }else if (help_type == 3) {
+                    } else if (help_type == 3) {
                         Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());
@@ -168,12 +171,18 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
         return new MessagePresenterImp<>(mContext, this);
     }
 
+    boolean refreshStatus = false;
+
     @Override
     public void showDialog() {
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        refreshStatus = false;
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     private void RefreshComplete() {

@@ -19,6 +19,7 @@ import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,10 +98,12 @@ public class PopularActionActivity extends BaseActivityMVP<HomeContract.View, Ho
 
     @Override
     public void showDialog() {
+        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     List<HomeItemBean> mList;

@@ -18,6 +18,7 @@ import com.longcheng.lifecareplan.modular.mine.rewardcenters.bean.RewardCentersR
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
 
@@ -94,11 +95,13 @@ public class RewardCentersActivity extends BaseListActivity<RewardCentersContrac
         ptrView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 refresh(0);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                refreshStatus = true;
                 refresh(pageIndex);
             }
         });
@@ -120,13 +123,20 @@ public class RewardCentersActivity extends BaseListActivity<RewardCentersContrac
         return new RewardCentersImp<>(mContext, this);
     }
 
+    boolean refreshStatus = false;
+
     @Override
     public void showDialog() {
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        refreshStatus = false;
+        LoadingDialogAnim.dismiss(mContext);
     }
+
 
     @Override
     public void onSuccess(RewardCentersResultBean responseBean, int pageIndex_) {
