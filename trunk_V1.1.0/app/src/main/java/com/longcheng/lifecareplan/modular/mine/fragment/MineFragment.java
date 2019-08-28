@@ -224,7 +224,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     LinearLayout layout_partygroup;
     @BindView(R.id.layout_creditor)
     LinearLayout layout_creditor;
-
+    @BindView(R.id.usercenter_layout_tel)
+    LinearLayout usercenter_layout_tel;
     @BindView(R.id.layout_functionstatus)
     LinearLayout layout_functionstatus;
     @BindView(R.id.tv_functionstatus)
@@ -265,7 +266,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 是否是大队长或主任  0：不是 ；1 是
      */
     private int isDirectorOrTeamLeader;
-    private String about_me_url;
+    private String about_me_url, complaints_hotline;
     private String qimingaction_goods_id;
     boolean mAllowanceLayoutShow = false;
     PerfectInfoDialog mPerfectInfoDialog;
@@ -320,6 +321,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         layout_functionstatus.setOnClickListener(this);
         layout_commissioner.setOnClickListener(this);
         layout_publicize.setOnClickListener(this);
+        usercenter_layout_tel.setOnClickListener(this);
         gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -446,6 +448,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (isResetCard != 0) {
             FunctionGVlist2.add(new FunctionGVItemBean("重生卡", R.id.usercenter_layout_rebirth, R.mipmap.my_rebirth_icon));
         }
+        FunctionGVlist2.add(new FunctionGVItemBean("投诉电话", R.id.usercenter_layout_tel, R.mipmap.my_tel_icon));
         FunctionAdapter mFunctionAdapter2 = new FunctionAdapter(mActivity, FunctionGVlist2);
         gongnengn_gv2.setAdapter(mFunctionAdapter2);
     }
@@ -580,6 +583,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.usercenter_layout_tel:
+                onTelClick();
                 break;
             case R.id.mycenter_layout_allowancearrow://津贴
                 if (mycenterIvMoneyarrow == null) {
@@ -769,6 +775,50 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 break;
             default:
                 break;
+        }
+    }
+
+    MyDialog telDialog;
+    TextView tv_tel;
+
+    public void onTelClick() {
+        if (telDialog == null) {
+            telDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_tel);// 创建Dialog并设置样式主题
+            telDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = telDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.showBottomDialog);
+            telDialog.show();
+            WindowManager m = mActivity.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = telDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth(); //宽度设置为屏幕
+            telDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_tel = (LinearLayout) telDialog.findViewById(R.id.layout_tel);
+            TextView tv_cancel = (TextView) telDialog.findViewById(R.id.tv_cancel);
+            tv_tel = (TextView) telDialog.findViewById(R.id.tv_tel);
+
+            tv_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    telDialog.dismiss();
+                }
+            });
+            layout_tel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    telDialog.dismiss();
+                    DensityUtil.getPhoneToKey(mContext, complaints_hotline);
+                }
+            });
+        } else {
+            telDialog.show();
+        }
+        if (TextUtils.isEmpty(complaints_hotline)) {
+            complaints_hotline = "400-6124365";
+        }
+        if (tv_tel != null) {
+            tv_tel.setText(complaints_hotline);
         }
     }
 
@@ -1507,6 +1557,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             layout_publicize.setVisibility(View.VISIBLE);
         }
+        complaints_hotline = mGetHomeInfoBean.getComplaints_hotline();
         about_me_url = mGetHomeInfoBean.getAbout_me_url();
         isDirectorOrTeamLeader = mGetHomeInfoBean.getIsDirectorOrTeamLeader();
         isUnopenedRedPackage = mGetHomeInfoBean.getIsUnopenedRedPackage();
