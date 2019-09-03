@@ -287,7 +287,9 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             solar_terms = solar_terms_id;
             solar_terms_name = solar_terms_name_;
         }
-        exchangeTvSelectjieqi.setText(solar_terms_name);
+        if (exchangeTvSelectjieqi != null) {
+            exchangeTvSelectjieqi.setText(solar_terms_name);
+        }
         getList(1);
         mPresent.getJieQiList(user_id);
     }
@@ -339,15 +341,17 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                 break;
             case R.id.exchange_layout_select:
                 ConfigUtils.getINSTANCE().closeSoftInput(getActivity());
-                if (layout_categorys.getVisibility() == View.GONE) {
-                    if (CategorysList != null && CategorysList.size() > 0) {
-                        layout_categorys.setVisibility(View.VISIBLE);
-                        slectCategorys();
+                if (layout_categorys != null) {
+                    if (layout_categorys.getVisibility() == View.GONE) {
+                        if (CategorysList != null && CategorysList.size() > 0) {
+                            layout_categorys.setVisibility(View.VISIBLE);
+                            slectCategorys();
+                        } else {
+                            mPresent.getJieQiList(user_id);
+                        }
                     } else {
-                        mPresent.getJieQiList(user_id);
+                        layout_categorys.setVisibility(View.GONE);
                     }
-                } else {
-                    layout_categorys.setVisibility(View.GONE);
                 }
                 break;
             case R.id.exchange_layout_shopping:

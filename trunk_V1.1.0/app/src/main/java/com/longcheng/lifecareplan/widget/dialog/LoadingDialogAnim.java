@@ -123,19 +123,48 @@ public class LoadingDialogAnim extends Dialog {
                     return;
                 }
                 loadDialog = new LoadingDialogAnim(context);
-                animationIV.setBackgroundResource(R.drawable.animation_loading);
-                animationDrawable = (AnimationDrawable) animationIV.getBackground();
-                animationIV.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        animationDrawable.start();
-                    }
-                });
+//                animationIV.setBackgroundResource(R.drawable.animation_loading);
+//                animationDrawable = (AnimationDrawable) animationIV.getBackground();
+//                animationIV.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        animationDrawable.start();
+//                    }
+//                });
+                /**
+                 * 防止OOM异常崩溃的问题
+                 */
+                SceneAnimation anim = new SceneAnimation(animationIV, meetPics, 25);
                 loadDialog.show();
             }
         }, 0);
 
     }
+
+    private static int[] meetPics = new int[]{
+            R.mipmap.loading_1, R.mipmap.loading_2, R.mipmap.loading_3,
+            R.mipmap.loading_4, R.mipmap.loading_5, R.mipmap.loading_6,
+            R.mipmap.loading_7, R.mipmap.loading_8, R.mipmap.loading_9, R.mipmap.loading_10,
+            R.mipmap.loading_11, R.mipmap.loading_12, R.mipmap.loading_13,
+            R.mipmap.loading_14, R.mipmap.loading_15, R.mipmap.loading_16,
+            R.mipmap.loading_17, R.mipmap.loading_18, R.mipmap.loading_19, R.mipmap.loading_20,
+            R.mipmap.loading_21, R.mipmap.loading_22, R.mipmap.loading_23,
+            R.mipmap.loading_24, R.mipmap.loading_25, R.mipmap.loading_26,
+            R.mipmap.loading_27, R.mipmap.loading_28, R.mipmap.loading_29, R.mipmap.loading_30,
+            R.mipmap.loading_31, R.mipmap.loading_32, R.mipmap.loading_33,
+            R.mipmap.loading_34, R.mipmap.loading_35, R.mipmap.loading_36,
+            R.mipmap.loading_37, R.mipmap.loading_38, R.mipmap.loading_39, R.mipmap.loading_40,
+            R.mipmap.loading_41, R.mipmap.loading_42, R.mipmap.loading_43,
+            R.mipmap.loading_44, R.mipmap.loading_45, R.mipmap.loading_46,
+            R.mipmap.loading_47, R.mipmap.loading_48, R.mipmap.loading_49, R.mipmap.loading_50,
+            R.mipmap.loading_51, R.mipmap.loading_52, R.mipmap.loading_53,
+            R.mipmap.loading_54, R.mipmap.loading_55, R.mipmap.loading_56,
+            R.mipmap.loading_57, R.mipmap.loading_58, R.mipmap.loading_59, R.mipmap.loading_60,
+            R.mipmap.loading_61, R.mipmap.loading_62, R.mipmap.loading_63,
+            R.mipmap.loading_64, R.mipmap.loading_65, R.mipmap.loading_66,
+            R.mipmap.loading_67, R.mipmap.loading_68, R.mipmap.loading_69, R.mipmap.loading_70,
+            R.mipmap.loading_71,
+    };
 
     public static boolean showStatus() {
         if (loadDialog != null && loadDialog.isShowing()) {

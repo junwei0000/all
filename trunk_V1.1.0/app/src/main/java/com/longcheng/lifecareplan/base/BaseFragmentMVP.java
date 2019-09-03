@@ -42,17 +42,26 @@ public abstract class BaseFragmentMVP<V, T extends BasePresent<V>> extends RxFra
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-        mActivity=getActivity();
+        mActivity = getActivity();
         //创建Presenter层
         mPresent = createPresent();
         //做绑定
         mPresent.attachView((V) this);
     }
-    public void initContext(){
+
+    public void initContext() {
         if (mActivity == null) {
             mActivity = BottomMenuActivity.mMenuContext;
         }
     }
+
+    /**
+     * 解决java.lang.IllegalStateException: Bindings already cleared.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (mContextView != null) {
@@ -60,12 +69,14 @@ public abstract class BaseFragmentMVP<V, T extends BasePresent<V>> extends RxFra
             if (parent != null) {
                 parent.removeView(mContextView);
             }
-            return mContextView;
+        } else {
+            mContextView = inflater.inflate(bindLayout(), container, false);
         }
-        mContextView = inflater.inflate(bindLayout(), container, false);
         unbinder = ButterKnife.bind(this, mContextView);
         initView(mContextView);
         return mContextView;
+
+
     }
 
     @Override

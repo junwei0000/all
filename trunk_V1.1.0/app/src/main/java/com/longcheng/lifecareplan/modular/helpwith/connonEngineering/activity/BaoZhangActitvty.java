@@ -604,12 +604,14 @@ public class BaoZhangActitvty extends WebAct {
      * 康农工程创建房间---互祝支付
      */
     private void allNewPaySuccess() {
-        mBridgeWebView.callHandler("allNewPay_SucBack", "" + one_order_id, new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
+        if (mBridgeWebView != null) {
+            mBridgeWebView.callHandler("allNewPay_SucBack", "" + one_order_id, new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     /**
@@ -910,7 +912,7 @@ public class BaoZhangActitvty extends WebAct {
                                 ToastUtils.showToast(responseBean.getMsg());
                             } else if (status.equals("200")) {
                                 PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-                                one_order_id=payWeChatBean.getOne_order_id();
+                                one_order_id = payWeChatBean.getOne_order_id();
                                 if (payment_channel.equals("1")) {
                                     Log.e(TAG, payWeChatBean.toString());
                                     PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
@@ -949,7 +951,7 @@ public class BaoZhangActitvty extends WebAct {
      * 志愿者互祝----申请基础保障支付回调
      */
     private void LifeBasicApplyPaySuccuess() {
-        mBridgeWebView.callHandler("LifeBasic_applyPaySucBack", ""+one_order_id, new CallBackFunction() {
+        mBridgeWebView.callHandler("LifeBasic_applyPaySucBack", "" + one_order_id, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
