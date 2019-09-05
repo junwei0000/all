@@ -134,7 +134,7 @@ public class LoadingDialogAnim extends Dialog {
                 /**
                  * 防止OOM异常崩溃的问题
                  */
-                SceneAnimation anim = new SceneAnimation(animationIV, meetPics, 25);
+                SceneAnimation anim = new SceneAnimation(animationIV, meetPics, 20);
                 loadDialog.show();
             }
         }, 0);
@@ -223,7 +223,7 @@ public class LoadingDialogAnim extends Dialog {
                     }
                 }
             }
-        }, 300);//秒后执行Runnable中的run方法
+        }, 200);//秒后执行Runnable中的run方法
 
     }
 }
