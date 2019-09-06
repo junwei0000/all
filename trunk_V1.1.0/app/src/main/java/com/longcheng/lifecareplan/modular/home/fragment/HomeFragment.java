@@ -201,7 +201,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             mPresent.setListViewData();
         }
     }
+
     Handler handler = new Handler();
+
     private void setDaTing() {
         handler.postDelayed(new Runnable() {
             @Override
@@ -269,7 +271,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         main_sv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                reLoadData();
+                if (main_sv != null) {
+                    reLoadData();
+                }
             }
         });
         mainhotpushLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
