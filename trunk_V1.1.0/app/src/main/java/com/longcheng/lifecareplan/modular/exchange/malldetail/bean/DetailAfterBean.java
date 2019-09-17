@@ -43,6 +43,25 @@ public class DetailAfterBean {
     @SerializedName("merchantLogo")
     private String merchantLogo;
 
+    private int isCer;
+    private String certification_url;
+
+    public int getIsCer() {
+        return isCer;
+    }
+
+    public void setIsCer(int isCer) {
+        this.isCer = isCer;
+    }
+
+    public String getCertification_url() {
+        return certification_url;
+    }
+
+    public void setCertification_url(String certification_url) {
+        this.certification_url = certification_url;
+    }
+
     public String getMerchantName() {
         return merchantName;
     }

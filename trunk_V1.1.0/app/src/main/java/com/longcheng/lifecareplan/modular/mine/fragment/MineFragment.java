@@ -232,7 +232,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     TextView tv_functionstatus;
     @BindView(R.id.layout_gongnengnlist)
     LinearLayout layout_gongnengnlist;
-
+    @BindView(R.id.layout_auth)
+    LinearLayout layout_auth;
     @BindView(R.id.layout_gongnengngv)
     LinearLayout layout_gongnengngv;
     @BindView(R.id.gongnengn_gv1)
@@ -287,6 +288,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         pagetopLayoutLeft.setOnClickListener(this);
         pagetopLayoutRigth.setOnClickListener(this);
         mycenterIvHead.setOnClickListener(this);
+        layout_auth.setOnClickListener(this);
         mycenterTvWithdraw.setOnClickListener(this);
         usercenterRelayAddress.setOnClickListener(this);
         mycenterLayoutActivatenergy.setOnClickListener(this);
@@ -399,6 +401,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
         FunctionGVlist1.add(new FunctionGVItemBean(Voname, R.id.usercenter_relay_volunteer, R.mipmap.my_volunteersr_icon));
         FunctionGVlist1.add(new FunctionGVItemBean(Doname, R.id.usercenter_relay_doctor, R.mipmap.my_doctor_icon));
+        FunctionGVlist1.add(new FunctionGVItemBean("实名认证", R.id.layout_auth, R.mipmap.my_auth_icon));
 
         int isCommissionerIdentity = data.getIsCommissionerIdentity();
         if (isCommissionerIdentity != 0) {
@@ -538,6 +541,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
+                break;
+            case R.id.layout_auth://实名认证
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getCertification_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
             case R.id.usercenter_relay_doctor://坐堂医
                 int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是

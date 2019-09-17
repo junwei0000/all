@@ -143,6 +143,17 @@ public class GetHomeInfoBean implements Serializable {
     private int displayLifeAdReward;//是否展示广告收益 0：没有 1：有
     private String displayLifeAdRewardUrl;//广告首页地址
 
+
+    private String certification_url;//身份认证
+
+    public String getCertification_url() {
+        return certification_url;
+    }
+
+    public void setCertification_url(String certification_url) {
+        this.certification_url = certification_url;
+    }
+
     public String getComplaints_hotline() {
         return complaints_hotline;
     }

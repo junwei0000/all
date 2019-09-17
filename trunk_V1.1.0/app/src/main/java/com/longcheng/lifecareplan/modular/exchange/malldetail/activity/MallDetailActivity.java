@@ -158,6 +158,9 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
     private String identityIsAllowBuy;
     private String become_volunteer_url;
 
+    private int isCer;//isCer：0 需要实名 1：不需要
+    private String certification_url;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -190,6 +193,11 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                     showConnonDialog();
                     break;
                 }
+                if (isCer == 0) {
+                    showCertificatDialog();
+                    break;
+
+                }
                 skipApplyHelp = false;
                 if (goodsGuiGeList != null && goodsGuiGeList.size() > 1) {
                     showGuiGeDialog();
@@ -202,6 +210,11 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 if (!TextUtils.isEmpty(identityIsAllowBuy) && identityIsAllowBuy.equals("0")) {
                     showConnonDialog();
                     break;
+                }
+                if (isCer == 0) {
+                    showCertificatDialog();
+                    break;
+
                 }
                 if (userStarLevel < applyHelpMinStarlevel) {
                     showLevelDialog(applyHelpMinStarlevel);
@@ -381,6 +394,9 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 applyHelpMinStarlevel = mDetailAfterBean.getApplyHelpMinStarlevel();
                 isExistsHelpGoods = mDetailAfterBean.getIsExistsHelpGoods();
                 help_goods_id = mDetailAfterBean.getHelpGoodsId();
+
+                isCer = mDetailAfterBean.getIsCer();
+                certification_url = mDetailAfterBean.getCertification_url();
                 showInitData(mDetailAfterBean);
             }
         }
@@ -707,6 +723,44 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             });
         } else {
             notoverDialog.show();
+        }
+    }
+
+    MyDialog CertificatDialog;
+
+    private void showCertificatDialog() {
+        if (CertificatDialog == null) {
+            CertificatDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_malldetail_certificat);// 创建Dialog并设置样式主题
+            CertificatDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = CertificatDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            CertificatDialog.show();
+            WindowManager m = getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = CertificatDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            CertificatDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) CertificatDialog.findViewById(R.id.layout_cancel);
+            TextView btn_jihuo = (TextView) CertificatDialog.findViewById(R.id.btn_jihuo);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CertificatDialog.dismiss();
+                }
+            });
+            btn_jihuo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", certification_url);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    CertificatDialog.dismiss();
+                }
+            });
+        } else {
+            CertificatDialog.show();
         }
     }
 
