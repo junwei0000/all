@@ -234,6 +234,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     LinearLayout layout_gongnengnlist;
     @BindView(R.id.layout_auth)
     LinearLayout layout_auth;
+    @BindView(R.id.layout_pool)
+    LinearLayout layout_pool;
+
     @BindView(R.id.layout_gongnengngv)
     LinearLayout layout_gongnengngv;
     @BindView(R.id.gongnengn_gv1)
@@ -324,6 +327,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         layout_commissioner.setOnClickListener(this);
         layout_publicize.setOnClickListener(this);
         usercenter_layout_tel.setOnClickListener(this);
+        layout_pool.setOnClickListener(this);
         gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -384,7 +388,10 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private void showFunctionGVData() {
         FunctionGVlist1 = new ArrayList();
         FunctionGVlist2 = new ArrayList();
-
+        int is_alipay_pool_user = data.getIs_alipay_pool_user();
+        if (is_alipay_pool_user != 0) {
+            FunctionGVlist1.add(new FunctionGVItemBean("水库", R.id.layout_pool, R.mipmap.my_pool_icon));
+        }
         int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
         int isVolunteerIdentity = data.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
         String Voname = "";
@@ -518,6 +525,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPartyGroupLeaderUrl());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.layout_pool:
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getAlipay_pool_user_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -1528,6 +1542,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             usercenterTvVolunteer.setText("申请志愿者");
         } else {
             usercenterTvVolunteer.setText("我是志愿者");
+        }
+        int is_alipay_pool_user = data.getIs_alipay_pool_user();
+        if (is_alipay_pool_user != 0) {
+            layout_pool.setVisibility(View.VISIBLE);
+        } else {
+            layout_pool.setVisibility(View.GONE);
         }
         int isCommissionerIdentity = mGetHomeInfoBean.getIsCommissionerIdentity();
         if (isCommissionerIdentity == 0) {

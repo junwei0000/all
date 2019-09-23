@@ -146,6 +146,25 @@ public class GetHomeInfoBean implements Serializable {
 
     private String certification_url;//身份认证
 
+    private int is_alipay_pool_user;//是否显示水库 0：否 1：是
+    private String alipay_pool_user_url;//地址
+
+    public int getIs_alipay_pool_user() {
+        return is_alipay_pool_user;
+    }
+
+    public void setIs_alipay_pool_user(int is_alipay_pool_user) {
+        this.is_alipay_pool_user = is_alipay_pool_user;
+    }
+
+    public String getAlipay_pool_user_url() {
+        return alipay_pool_user_url;
+    }
+
+    public void setAlipay_pool_user_url(String alipay_pool_user_url) {
+        this.alipay_pool_user_url = alipay_pool_user_url;
+    }
+
     public String getCertification_url() {
         return certification_url;
     }
