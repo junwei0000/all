@@ -30,6 +30,7 @@ import com.longcheng.lifecareplan.modular.mine.myorder.adapter.OrderListAdapter;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderItemBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderListDataBean;
+import com.longcheng.lifecareplan.modular.mine.myorder.detail.activity.CertDialogUtils;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.activity.OrderDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -282,9 +283,30 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
                 case ConstantManager.ORDER_HANDLE_SendBlessingLifeStyle:
                     mPresent.getLifeNeedHelpNumberTaskSuccess(user_id, order_id + "");
                     break;
+                case ConstantManager.ORDER_HANDLE_TiXian:
+                    mPresent.careReceiveOrder(user_id, order_id);
+                    break;
             }
         }
     };
+    @Override
+    public void careReceiveOrderSuccess(EditDataBean responseBean) {
+        String status = responseBean.getStatus();
+        if (status.equals("400")) {
+            ToastUtils.showToast(responseBean.getMsg());
+        } else if (status.equals("200")) {
+            ToastUtils.showToast(responseBean.getMsg());
+            getList(1);
+        } else if (status.equals("410")) {
+
+            if (mCertDialogUtils == null) {
+                mCertDialogUtils = new CertDialogUtils(mActivity);
+            }
+            mCertDialogUtils.showCertificatDialog();
+        }
+    }
+
+    CertDialogUtils mCertDialogUtils;
     private int is_read = 1;//是否已读： 1 已读
     private int need_help_number = 1;//数量
     /**

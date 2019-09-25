@@ -42,6 +42,16 @@ public class OrderItemBean implements Serializable {
     private int top_status;
     private String top_title;
 
+    private int is_show_care;
+
+    public int getIs_show_care() {
+        return is_show_care;
+    }
+
+    public void setIs_show_care(int is_show_care) {
+        this.is_show_care = is_show_care;
+    }
+
     public int getProgress() {
         return progress;
     }

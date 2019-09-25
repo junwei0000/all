@@ -56,6 +56,16 @@ public class DetailAfterBean implements Serializable {
     private int deposit;
     private String deposit_str;
 
+    private int is_show_care;//1 显示提现
+
+    public int getIs_show_care() {
+        return is_show_care;
+    }
+
+    public void setIs_show_care(int is_show_care) {
+        this.is_show_care = is_show_care;
+    }
+
     public String getShop_goods_price_name() {
         return shop_goods_price_name;
     }

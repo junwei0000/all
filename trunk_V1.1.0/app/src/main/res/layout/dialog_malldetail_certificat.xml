@@ -43,6 +43,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_tishi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp30"
@@ -51,7 +52,18 @@
             android:text="您没有进行实名认证"
             android:textColor="@color/text_noclick_color"
             android:textSize="@dimen/text_dp12_size" />
-
+        <TextView
+            android:id="@+id/tv_tishi2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp30"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:text="唯有诚信可以长远"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_dp25_size" />
         <LinearLayout
             style="@style/view_paddlefgtright"
             android:layout_width="match_parent"

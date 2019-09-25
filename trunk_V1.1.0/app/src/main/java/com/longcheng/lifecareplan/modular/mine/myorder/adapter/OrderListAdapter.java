@@ -138,40 +138,78 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         mHolder.item_tv_center.setTextColor(context.getResources().getColor(R.color.text_contents_color));
         mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_black);
         mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.text_contents_color));
-        int bottom_status = mOrderItemBean.getBottom_status();
-        int is_show_perfect_info = mOrderItemBean.getIs_show_perfect_info();
-        int is_show_consignee_info = mOrderItemBean.getIs_show_consignee_info();
-        int is_show_help_info = mOrderItemBean.getIs_show_help_info();
-        int is_show_pre_delivery = mOrderItemBean.getIs_show_pre_delivery();
-        int type = mOrderItemBean.getType();
-        if (bottom_status == 0) {//申请状态 （显示取消行动 和 送祝福）
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setText("送出祝福");
-            mHolder.item_tv_right.setText("取消行动");
-        } else if (bottom_status == 1) {//1非商城订单已发货 （显示感恩录  查看物流 和 确认收货）
-            mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_left.setText("感恩录");
-            mHolder.item_tv_center.setText("查看物流");
-            mHolder.item_tv_right.setText("确认收货");
-            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
-            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
-        } else if (bottom_status == 2) {//商城订单已发货 （显示查看物流 和 确认收货）
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setText("查看物流");
-            mHolder.item_tv_right.setText("确认收货");
-            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
-            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
-        } else if (bottom_status == 3) {//
-            if (is_show_perfect_info == 0 && is_show_consignee_info == 0 && is_show_help_info == 0) {
-                if (type != 1) {
-                    mHolder.item_tv_left.setVisibility(View.VISIBLE);
-                    mHolder.item_tv_left.setText("感恩录");
+
+        int is_show_care = mOrderItemBean.getIs_show_care();
+        if (is_show_care == 0) {
+            int bottom_status = mOrderItemBean.getBottom_status();
+            int is_show_perfect_info = mOrderItemBean.getIs_show_perfect_info();
+            int is_show_consignee_info = mOrderItemBean.getIs_show_consignee_info();
+            int is_show_help_info = mOrderItemBean.getIs_show_help_info();
+            int is_show_pre_delivery = mOrderItemBean.getIs_show_pre_delivery();
+            int type = mOrderItemBean.getType();
+            if (bottom_status == 0) {//申请状态 （显示取消行动 和 送祝福）
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setText("送出祝福");
+                mHolder.item_tv_right.setText("取消行动");
+            } else if (bottom_status == 1) {//1非商城订单已发货 （显示感恩录  查看物流 和 确认收货）
+                mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_left.setText("感恩录");
+                mHolder.item_tv_center.setText("查看物流");
+                mHolder.item_tv_right.setText("确认收货");
+                mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+            } else if (bottom_status == 2) {//商城订单已发货 （显示查看物流 和 确认收货）
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setText("查看物流");
+                mHolder.item_tv_right.setText("确认收货");
+                mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+            } else if (bottom_status == 3) {//
+                if (is_show_perfect_info == 0 && is_show_consignee_info == 0 && is_show_help_info == 0) {
+                    if (type != 1) {
+                        mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                        mHolder.item_tv_left.setText("感恩录");
+                    }
+                } else {
+                    if (is_show_help_info == 1) {
+                        mHolder.item_tv_left.setText("送祝福");
+                        mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                    }
+                    if (is_show_perfect_info == 1) {
+                        mHolder.item_tv_center.setText("完善信息");
+                        mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                    }
+                    if (is_show_consignee_info == 1) {
+                        mHolder.item_tv_right.setText("收货地址");
+                        mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                    }
                 }
-            } else {
+            } else if (bottom_status == 4) {//商城已完成 （显示再次兑换  goods_id <= 10000 点击再次兑换 跳至商城首页 否则 详情 ）
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setText("再次兑换");
+                mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+            } else if (bottom_status == 5) {//生命能量已完成 （显示智能互祝  再次申请  感恩录）
+                mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_left.setText("智能互祝");
+                mHolder.item_tv_center.setText("感恩录");
+                mHolder.item_tv_right.setText("再次申请");
+                mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+            } else if (bottom_status == 6) {//生活方式已完成 （显示再次申请  感恩录）
+                mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_left.setText("感恩录");
+                mHolder.item_tv_center.setText("再次申请");
+                mHolder.item_tv_center.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_center.setTextColor(context.getResources().getColor(R.color.blue));
+            } else if (bottom_status == 7) {//进行中
                 if (is_show_help_info == 1) {
                     mHolder.item_tv_left.setText("送祝福");
                     mHolder.item_tv_left.setVisibility(View.VISIBLE);
@@ -184,99 +222,70 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
                     mHolder.item_tv_right.setText("收货地址");
                     mHolder.item_tv_right.setVisibility(View.VISIBLE);
                 }
+                //type 4康农工程不显示
+                if (is_show_pre_delivery == 1 && type != 4) {
+                    mHolder.item_tv_right.setText("支付押金");
+                    mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                }
+            } else if (bottom_status == 8) {//已取消订单或退订  或驳回 （不显示按钮）
+            } else if (bottom_status == -1) {
             }
-        } else if (bottom_status == 4) {//商城已完成 （显示再次兑换  goods_id <= 10000 点击再次兑换 跳至商城首页 否则 详情 ）
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setText("再次兑换");
-            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
-            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
-        } else if (bottom_status == 5) {//生命能量已完成 （显示智能互祝  再次申请  感恩录）
-            mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_left.setText("智能互祝");
-            mHolder.item_tv_center.setText("感恩录");
-            mHolder.item_tv_right.setText("再次申请");
-            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
-            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
-        } else if (bottom_status == 6) {//生活方式已完成 （显示再次申请  感恩录）
-            mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_left.setText("感恩录");
-            mHolder.item_tv_center.setText("再次申请");
-            mHolder.item_tv_center.setBackgroundResource(R.drawable.corners_bg_redbian);
-            mHolder.item_tv_center.setTextColor(context.getResources().getColor(R.color.blue));
-        } else if (bottom_status == 7) {//进行中
-            if (is_show_help_info == 1) {
-                mHolder.item_tv_left.setText("送祝福");
+            /**
+             * ***********************新增押金***********************
+             */
+            else if (bottom_status == 9) {//预发货单未发货行动未完成  （显示已付押金）
+                mHolder.item_tv_left.setText("已付押金");
+                mHolder.item_tv_left.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
                 mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            }
-            if (is_show_perfect_info == 1) {
-                mHolder.item_tv_center.setText("完善信息");
+                mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_write);
+            } else if (bottom_status == 10) {//预发货单未发货行动已完成 （显示感恩录，已付押金）
+                mHolder.item_tv_left.setText("已付押金");
+                mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_write);
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setText("感恩录");
+            } else if (bottom_status == 11) {//预发货单已发货行动未完成 （显示查看物流  ）
                 mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            }
-            if (is_show_consignee_info == 1) {
-                mHolder.item_tv_right.setText("收货地址");
+                mHolder.item_tv_center.setText("查看物流");
+            } else if (bottom_status == 12) {//预发货单已发货行动已完成 （显示查看物流  ，确认收货，感恩录）
+                mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
                 mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            }
-            //type 4康农工程不显示
-            if (is_show_pre_delivery == 1 && type != 4) {
-                mHolder.item_tv_right.setText("支付押金");
+                mHolder.item_tv_left.setText("感恩录");
+                mHolder.item_tv_center.setText("查看物流");
+                mHolder.item_tv_right.setText("确认收货");
+            } else if (bottom_status == 13) {//预发货单已收货行动未完成
+
+            } else if (bottom_status == 14) {//预发货单已收货行动已完成 （显示智能互祝  ，感恩录,再次申请）
+                mHolder.item_tv_left.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
                 mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_left.setText("智能互祝");
+                mHolder.item_tv_center.setText("感恩录");
+                mHolder.item_tv_right.setText("再次申请");
+                mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+            } else if (bottom_status == 15) {//康农工程订单已完成（不展示按钮）
+
+            } else if (bottom_status == 16) {//康农工程订单未发货（不展示按钮）
+
+            } else if (bottom_status == 17) {//康农工程订单已发货（显示查看物流  ，确认收货）
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setText("查看物流");
+                mHolder.item_tv_right.setText("确认收货");
+                mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
             }
-        } else if (bottom_status == 8) {//已取消订单或退订  或驳回 （不显示按钮）
-        } else if (bottom_status == -1) {
+            /**
+             * ***********************end*********************
+             */
+        }else{
+            mHolder.item_tv_left.setText("提现");
+            mHolder.item_tv_left.setVisibility(View.VISIBLE);
+            mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_redbian);
+            mHolder.item_tv_left.setTextColor(context.getResources().getColor(R.color.blue));
         }
-        /**
-         * ***********************新增押金***********************
-         */
-        else if (bottom_status == 9) {//预发货单未发货行动未完成  （显示已付押金）
-            mHolder.item_tv_left.setText("已付押金");
-            mHolder.item_tv_left.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-            mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_write);
-        } else if (bottom_status == 10) {//预发货单未发货行动已完成 （显示感恩录，已付押金）
-            mHolder.item_tv_left.setText("已付押金");
-            mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_write);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setText("感恩录");
-        } else if (bottom_status == 11) {//预发货单已发货行动未完成 （显示查看物流  ）
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setText("查看物流");
-        } else if (bottom_status == 12) {//预发货单已发货行动已完成 （显示查看物流  ，确认收货，感恩录）
-            mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_left.setText("感恩录");
-            mHolder.item_tv_center.setText("查看物流");
-            mHolder.item_tv_right.setText("确认收货");
-        } else if (bottom_status == 13) {//预发货单已收货行动未完成
-
-        } else if (bottom_status == 14) {//预发货单已收货行动已完成 （显示智能互祝  ，感恩录,再次申请）
-            mHolder.item_tv_left.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_left.setText("智能互祝");
-            mHolder.item_tv_center.setText("感恩录");
-            mHolder.item_tv_right.setText("再次申请");
-            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
-            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
-        } else if (bottom_status == 15) {//康农工程订单已完成（不展示按钮）
-
-        } else if (bottom_status == 16) {//康农工程订单未发货（不展示按钮）
-
-        } else if (bottom_status == 17) {//康农工程订单已发货（显示查看物流  ，确认收货）
-            mHolder.item_tv_center.setVisibility(View.VISIBLE);
-            mHolder.item_tv_right.setVisibility(View.VISIBLE);
-            mHolder.item_tv_center.setText("查看物流");
-            mHolder.item_tv_right.setText("确认收货");
-            mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
-            mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
-        }
-        /**
-         * ***********************end*********************
-         */
     }
 
     /**
@@ -328,31 +337,41 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
     };
 
     private void setLeftClickSkip(OrderItemBean mOrderItemBean) {
-        int bottom_status = mOrderItemBean.getBottom_status();
-        int is_show_perfect_info = mOrderItemBean.getIs_show_perfect_info();
-        int is_show_consignee_info = mOrderItemBean.getIs_show_consignee_info();
-        int is_show_help_info = mOrderItemBean.getIs_show_help_info();
-        String order_id = mOrderItemBean.getOrder_id();
-        if (bottom_status == 1 || bottom_status == 6) {
-            Thanksgiving(order_id, mOrderItemBean.getType());
-        } else if (bottom_status == 3) {
-            if (is_show_perfect_info == 0 && is_show_consignee_info == 0 && is_show_help_info == 0) {
+        int is_show_care = mOrderItemBean.getIs_show_care();
+        if (is_show_care == 0) {
+            int bottom_status = mOrderItemBean.getBottom_status();
+            int is_show_perfect_info = mOrderItemBean.getIs_show_perfect_info();
+            int is_show_consignee_info = mOrderItemBean.getIs_show_consignee_info();
+            int is_show_help_info = mOrderItemBean.getIs_show_help_info();
+            String order_id = mOrderItemBean.getOrder_id();
+            if (bottom_status == 1 || bottom_status == 6) {
                 Thanksgiving(order_id, mOrderItemBean.getType());
-            } else {
+            } else if (bottom_status == 3) {
+                if (is_show_perfect_info == 0 && is_show_consignee_info == 0 && is_show_help_info == 0) {
+                    Thanksgiving(order_id, mOrderItemBean.getType());
+                } else {
+                    if (is_show_help_info == 1) {
+                        SendBlessing(mOrderItemBean.getType(), mOrderItemBean.getGoods_id());
+                    }
+                }
+            } else if (bottom_status == 7) {
                 if (is_show_help_info == 1) {
                     SendBlessing(mOrderItemBean.getType(), mOrderItemBean.getGoods_id());
                 }
+            } else if (bottom_status == 5) {
+                mutualWish();
+            } else if (bottom_status == 12) {
+                Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
+            } else if (bottom_status == 14) {
+                mutualWish();
             }
-        } else if (bottom_status == 7) {
-            if (is_show_help_info == 1) {
-                SendBlessing(mOrderItemBean.getType(), mOrderItemBean.getGoods_id());
-            }
-        } else if (bottom_status == 5) {
-            mutualWish();
-        } else if (bottom_status == 12) {
-            Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
-        } else if (bottom_status == 14) {
-            mutualWish();
+        }else{
+            //提现
+            Message message = new Message();
+            message.what = ConstantManager.ORDER_HANDLE_TiXian;
+            message.obj = mOrderItemBean.getOrder_id();
+            mHandler.sendMessage(message);
+            message = null;
         }
     }
 

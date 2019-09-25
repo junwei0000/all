@@ -25,6 +25,8 @@ public interface DetailContract {
 
         void editSuccess(EditDataBean responseBean);
 
+        void careReceiveOrderSuccess(EditDataBean responseBean);
+
         void ListError();
     }
 

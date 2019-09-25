@@ -117,6 +117,36 @@ public class DetailPresenterImp<T> extends DetailContract.Presenter<DetailContra
     }
 
     /**
+     * 提现
+     *
+     * @param user_id
+     * @param order_id
+     */
+    public void careReceiveOrder(String user_id, String order_id) {
+        mView.showDialog();
+        Observable<EditDataBean> observable = Api.getInstance().service.careReceiveOrder(user_id, order_id, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
+                    @Override
+                    public void accept(EditDataBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.careReceiveOrderSuccess(responseBean);
+                        Log.e("Observable", "" + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        Log.e("Observable", "" + throwable.toString());
+                        mView.ListError();
+                    }
+                });
+
+    }
+
+    /**
      * 取消行动
      *
      * @param user_id
@@ -131,7 +161,8 @@ public class DetailPresenterImp<T> extends DetailContract.Presenter<DetailContra
                     @Override
                     public void accept(EditDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.editSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.editSuccess(responseBean);
                         Log.e("Observable", "" + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
@@ -160,7 +191,8 @@ public class DetailPresenterImp<T> extends DetailContract.Presenter<DetailContra
                     @Override
                     public void accept(EditDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.editSuccess(responseBean);
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.editSuccess(responseBean);
                         Log.e("Observable", "" + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

@@ -91,7 +91,7 @@ public class ConstantManager {
     public static final int ORDER_HANDLE_ConfirmReceipt = 2;
     public static final int ORDER_HANDLE_SendBlessing = 3;
     public static final int ORDER_HANDLE_SendBlessingLifeStyle = 4;
-
+    public static final int ORDER_HANDLE_TiXian = 5;
     //**************************************广播********************************************
     /**
      * 首页切换tab

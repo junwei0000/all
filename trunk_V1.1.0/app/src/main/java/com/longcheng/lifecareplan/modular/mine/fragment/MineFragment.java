@@ -275,6 +275,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     boolean mAllowanceLayoutShow = false;
     PerfectInfoDialog mPerfectInfoDialog;
 
+    public static String Certification_url="";
     @Override
     public int bindLayout() {
         return R.layout.fragment_mycenter;
@@ -559,7 +560,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.layout_auth://实名认证
                 intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", "" + data.getCertification_url());
+                intent.putExtra("html_url", "" + Certification_url);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -1528,6 +1529,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
     private void setLoadData(GetHomeInfoBean mGetHomeInfoBean) {
         data = mGetHomeInfoBean;
+        Certification_url=data.getCertification_url();
         if (usercenterTvDoctor == null) {
             return;
         }

@@ -10,8 +10,8 @@
         android:id="@+id/layout_pool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:visibility="gone">
 
 
         <RelativeLayout
@@ -51,6 +51,7 @@
                 android:layout_centerVertical="true"
                 android:background="@mipmap/usercenter_arrow_img" />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -719,6 +720,7 @@
         </RelativeLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layout_publicize"
         android:layout_width="match_parent"
@@ -773,6 +775,7 @@
         </RelativeLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/jianJu"
@@ -1031,11 +1034,12 @@
                 android:background="@mipmap/usercenter_arrow_img" />
         </RelativeLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/usercenter_layout_tel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1045,6 +1049,7 @@
 
             <include layout="@layout/line" />
         </LinearLayout>
+
         <RelativeLayout
             style="@style/view_paddlefgtright"
             android:layout_width="match_parent"

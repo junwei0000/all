@@ -26,6 +26,8 @@ public interface MyOrderContract {
 
         void editSuccess(EditDataBean responseBean);
 
+        void careReceiveOrderSuccess(EditDataBean responseBean);
+
         void ListError();
     }
 

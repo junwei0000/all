@@ -574,7 +574,11 @@ public interface ApiService {
     Observable<EditDataBean> cancelAction(@Field("user_id") String user_id,
                                           @Field("order_id") String order_id,
                                           @Field("token") String token);
-
+    @FormUrlEncoded
+    @POST(Config.VERSION + "order/careReceive")
+    Observable<EditDataBean> careReceiveOrder(@Field("user_id") String user_id,
+                                          @Field("order_id") String order_id,
+                                          @Field("token") String token);
     @FormUrlEncoded
     @POST(Config.VERSION + "order/confirmOrder")
     Observable<EditDataBean> confirmReceipt(@Field("user_id") String user_id,
