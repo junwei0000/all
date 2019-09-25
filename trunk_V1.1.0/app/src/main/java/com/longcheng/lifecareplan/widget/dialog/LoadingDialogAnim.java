@@ -223,7 +223,7 @@ public class LoadingDialogAnim extends Dialog {
                     }
                 }
             }
-        }, 800);//秒后执行Runnable中的run方法
+        }, 0);//秒后执行Runnable中的run方法
 
     }
 }

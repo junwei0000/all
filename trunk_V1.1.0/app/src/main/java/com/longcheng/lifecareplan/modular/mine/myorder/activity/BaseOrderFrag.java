@@ -262,7 +262,10 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status.equals("200")) {
             ToastUtils.showToast(responseBean.getMsg());
-            getList(1);
+            Intent intent = new Intent();
+            intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
+            intent.putExtra("type", "EDIT");
+            getActivity().sendBroadcast(intent);//发送普通广播
         }
     }
 

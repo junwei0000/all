@@ -204,7 +204,7 @@ public class HealthyDeliveryAct extends BaseActivity implements ViewPager.OnPage
             }
         });
         viewPager.setAdapter(tabPageAdapter);
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(5);
         viewPager.addOnPageChangeListener(this);
     }
 
