@@ -63,7 +63,7 @@
             android:textStyle="bold"
             android:text="唯有诚信可以长远"
             android:textColor="@color/red"
-            android:textSize="@dimen/text_dp25_size" />
+            android:textSize="@dimen/text_max_size" />
         <LinearLayout
             style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
