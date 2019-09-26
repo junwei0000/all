@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -178,8 +179,9 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
      * @time 2017/11/24 10:44
      * @author MarkShuai
      */
+    FragmentAdapter tabPageAdapter;
     private void setPageAdapter() {
-        FragmentAdapter tabPageAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
+          tabPageAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
         tabPageAdapter.setOnReloadListener(new FragmentAdapter.OnReloadListener() {
             @Override
             public void onReload() {
@@ -191,6 +193,7 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
                 list.add(new OveredFragment());
                 list.add(new YaJinFragment());
                 tabPageAdapter.setPagerItems(list);
+                Log.e("onReload","onReload");
             }
         });
         userorderVPager.setAdapter(tabPageAdapter);
@@ -278,8 +281,8 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
         @Override
         public void onReceive(final Context context, Intent intent) {
             String type = intent.getStringExtra("type");
-            if (type.equals("EDIT")) {
-                setPageAdapter();
+            if (type.equals("EDIT")&&tabPageAdapter!=null) {
+                tabPageAdapter.reLoad();
             }
         }
     };

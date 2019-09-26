@@ -34,10 +34,10 @@ public abstract class BaseListFrag<V, T extends BasePresent<V>> extends BaseFrag
      * @param lv 被移除footer的ListView
      */
     private void removeFooterView(ListView lv) {
-        Log.e("aaa", "removeFooterView----------------1   " + hasFooter + " , " + (lv == null) + " , " + (footerView == null));
+        Log.e("checkLoadOver", "removeFooterView----------------1   " + hasFooter + " , " + (lv == null) + " , " + (footerView == null));
         if (hasFooter && lv != null && footerView != null && lv.getFooterViewsCount() > 0) {
 //            hasFooter = lv.removeFooterView(footerView);
-            Log.e("aaa", "removeFooterView------------------------2   ");
+            Log.e("checkLoadOver", "removeFooterView------------------------2   ");
             hasFooter = false;
             lv.removeFooterView(footerView);
         }
@@ -49,10 +49,10 @@ public abstract class BaseListFrag<V, T extends BasePresent<V>> extends BaseFrag
      * @param lv 被添加footer的ListView
      */
     private void addFooterView(ListView lv) {
-        Log.e("aaa", "addFooterView--------------1   " + hasFooter + " , " + (lv == null) + " , " + (footerView == null));
+        Log.e("checkLoadOver", "addFooterView--------------1   " + hasFooter + " , " + (lv == null) + " , " + (footerView == null));
         if (!hasFooter && lv != null && footerView != null) {
             lv.addFooterView(footerView);
-            Log.e("aaa", "addFooterView-----------------2");
+            Log.e("checkLoadOver", "addFooterView-----------------2");
             hasFooter = true;
         }
     }

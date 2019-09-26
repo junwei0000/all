@@ -332,6 +332,7 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.registerHandler("Newspu_ReturnList", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "Newspu_ReturnList=" + data);
                 Intent intent = new Intent(mContext, HealthyDeliveryAct.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 if (TextUtils.isEmpty(data)) {
