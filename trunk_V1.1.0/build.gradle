@@ -29,8 +29,8 @@ allprojects {
 }
 
 ext {
-    versionCode = 220
-    versionName = '2.2.0'
+    versionCode = 221
+    versionName = '2.2.1'
 
     compileSdkVersion = 26
     buildToolsVersion = '27.0.1'

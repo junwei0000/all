@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -56,6 +57,7 @@ public class TopAdapter extends PagerAdapter {
         return view == object;
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         if (list.size() != 0) {
@@ -66,14 +68,17 @@ public class TopAdapter extends PagerAdapter {
             View view = mInflater.inflate(R.layout.bannertop_item_adapter, container, false);
             ImageView item_iv_pic = view.findViewById(R.id.item_iv_pic);
             TextView item_tv_jieqiday = view.findViewById(R.id.item_tv_jieqiday);
+            TextView item_tv_jieqidaytitle = view.findViewById(R.id.item_tv_jieqidaytitle);
+            TextView item_tv_jieqidaytitle3 = view.findViewById(R.id.item_tv_jieqidaytitle3);
+
             LinearLayout item_layout_type1 = view.findViewById(R.id.item_layout_type1);
             TextView item_tv_jieqititle = view.findViewById(R.id.item_tv_jieqititle);
+
             TextView item_tv_givehelp = view.findViewById(R.id.item_tv_givehelp);
             TextView item_tv_helpme = view.findViewById(R.id.item_tv_helpme);
 
             HomeItemBean item = list.get(position);
             GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, item.getPic(), item_iv_pic);
-            item_tv_jieqiday.setText(item.getDesc());
             item_tv_jieqititle.setText("越互祝越健康，" + item.getPre_jieqi_name() + "感恩您的祝福");
             String showT = "<font color=\"#ff4d5b\">" + item.getSponsor_help_number() +
                     "</font>次，生命能量<font color=\"#ff4d5b\">" + item.getSponsor_ability() + "</font>";
@@ -84,14 +89,28 @@ public class TopAdapter extends PagerAdapter {
             String color = item.getColor();
             if (!TextUtils.isEmpty(color)) {
                 item_tv_jieqiday.setTextColor(Color.parseColor(color));
+                item_tv_jieqidaytitle.setTextColor(Color.parseColor(color));
+                item_tv_jieqidaytitle3.setTextColor(Color.parseColor(color));
             }
             int type = item.getType();
             if (type == 1) {
                 item_layout_type1.setVisibility(View.VISIBLE);
                 item_tv_jieqiday.setVisibility(View.GONE);
-            } else {
+                item_tv_jieqidaytitle.setVisibility(View.GONE);
+                item_tv_jieqidaytitle3.setVisibility(View.GONE);
+            } else if (type == 2) {
                 item_layout_type1.setVisibility(View.GONE);
                 item_tv_jieqiday.setVisibility(View.VISIBLE);
+                item_tv_jieqidaytitle.setVisibility(View.VISIBLE);
+                item_tv_jieqiday.setText(item.getDesc());
+                item_tv_jieqidaytitle.setText("热烈庆祝中华人民共和国成立70周年");
+                item_tv_jieqidaytitle3.setVisibility(View.GONE);
+            } else {
+                item_layout_type1.setVisibility(View.GONE);
+                item_tv_jieqiday.setVisibility(View.GONE);
+                item_tv_jieqidaytitle.setVisibility(View.GONE);
+                item_tv_jieqidaytitle3.setText(item.getDesc());
+                item_tv_jieqidaytitle3.setVisibility(View.VISIBLE);
             }
 
 
