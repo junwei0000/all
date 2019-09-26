@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -314,11 +315,18 @@ public class YaJinActivity extends BaseActivity {
      * 刷新订单列表
      */
     private void jihuoSuccess() {
-        Intent intent = new Intent();
-        intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-        intent.putExtra("type", "EDIT");
-        sendBroadcast(intent);
         doFinish();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent();
+                intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
+                intent.putExtra("type", "EDIT");
+                sendBroadcast(intent);
+            }
+        }, 600);//秒后执行Runnable中的run方法
+
     }
 
     @Override
