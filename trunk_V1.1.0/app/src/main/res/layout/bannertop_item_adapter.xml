@@ -10,40 +10,16 @@
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/item_tv_jieqidaytitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/dp40"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="-2dp"
-        android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_zhu_size" />
-
-    <TextView
-        android:id="@+id/item_tv_jieqidaytitle3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/dp55"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="-2dp"
-        android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_zhu_size" />
-
-    <TextView
         android:id="@+id/item_tv_jieqiday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/dp15"
+        android:layout_marginBottom="@dimen/dp17"
         android:gravity="center"
         android:includeFontPadding="false"
         android:lineSpacingExtra="-2dp"
         android:textColor="@color/text_biaoTi_color"
-        android:textSize="@dimen/text_min_size" />
+        android:textSize="@dimen/text_zhu_size" />
 
     <LinearLayout
         android:id="@+id/item_layout_type1"

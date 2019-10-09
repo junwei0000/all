@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -282,7 +283,13 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
         public void onReceive(final Context context, Intent intent) {
             String type = intent.getStringExtra("type");
             if (type.equals("EDIT")&&tabPageAdapter!=null) {
-                tabPageAdapter.reLoad();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tabPageAdapter.reLoad();
+                    }
+                }, 200);//秒后执行Runnable中的run方法
             }
         }
     };

@@ -68,8 +68,6 @@ public class TopAdapter extends PagerAdapter {
             View view = mInflater.inflate(R.layout.bannertop_item_adapter, container, false);
             ImageView item_iv_pic = view.findViewById(R.id.item_iv_pic);
             TextView item_tv_jieqiday = view.findViewById(R.id.item_tv_jieqiday);
-            TextView item_tv_jieqidaytitle = view.findViewById(R.id.item_tv_jieqidaytitle);
-            TextView item_tv_jieqidaytitle3 = view.findViewById(R.id.item_tv_jieqidaytitle3);
 
             LinearLayout item_layout_type1 = view.findViewById(R.id.item_layout_type1);
             TextView item_tv_jieqititle = view.findViewById(R.id.item_tv_jieqititle);
@@ -89,30 +87,16 @@ public class TopAdapter extends PagerAdapter {
             String color = item.getColor();
             if (!TextUtils.isEmpty(color)) {
                 item_tv_jieqiday.setTextColor(Color.parseColor(color));
-                item_tv_jieqidaytitle.setTextColor(Color.parseColor(color));
-                item_tv_jieqidaytitle3.setTextColor(Color.parseColor(color));
             }
             int type = item.getType();
             if (type == 1) {
                 item_layout_type1.setVisibility(View.VISIBLE);
                 item_tv_jieqiday.setVisibility(View.GONE);
-                item_tv_jieqidaytitle.setVisibility(View.GONE);
-                item_tv_jieqidaytitle3.setVisibility(View.GONE);
-            } else if (type == 2) {
-                item_layout_type1.setVisibility(View.GONE);
-                item_tv_jieqiday.setVisibility(View.VISIBLE);
-                item_tv_jieqidaytitle.setVisibility(View.VISIBLE);
-                item_tv_jieqiday.setText(item.getDesc());
-                item_tv_jieqidaytitle.setText("热烈庆祝中华人民共和国成立70周年");
-                item_tv_jieqidaytitle3.setVisibility(View.GONE);
             } else {
                 item_layout_type1.setVisibility(View.GONE);
-                item_tv_jieqiday.setVisibility(View.GONE);
-                item_tv_jieqidaytitle.setVisibility(View.GONE);
-                item_tv_jieqidaytitle3.setText(item.getDesc());
-                item_tv_jieqidaytitle3.setVisibility(View.VISIBLE);
+                item_tv_jieqiday.setVisibility(View.VISIBLE);
             }
-
+            item_tv_jieqiday.setText(item.getDesc());
 
             container.addView(view);
             return view;
