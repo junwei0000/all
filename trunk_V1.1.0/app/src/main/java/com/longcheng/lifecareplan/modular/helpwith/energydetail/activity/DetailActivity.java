@@ -41,6 +41,7 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.PayDataBean
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.rank.activity.RankActivity;
 import com.longcheng.lifecareplan.modular.home.fragment.PoActionDetailH5Actitvty;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
+import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DatesUtils;
@@ -499,6 +500,7 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
         progress = msgInfo.getProgress();
         if (progress >= 100) {
             btnHelp.setVisibility(View.GONE);
+            sendBroadcastsRefreshOrderList();
         } else {
             btnHelp.setVisibility(View.VISIBLE);
         }
@@ -720,15 +722,14 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
      */
 
     private void helpSkipSuccess() {
-        sendBroadcastRefreshList();
-        sendBroadcastsRefreshOrderList();
         mPresent.getDetailData(user_id, id);
-
         Intent intent = new Intent(mActivity, RedEnvelopeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("one_order_id", one_order_id);
         startActivity(intent);
         ConfigUtils.getINSTANCE().setPageLoginIntentAnim(intent, mActivity);
+        sendBroadcastRefreshList();
+        sendBroadcastsRefreshOrderList();
     }
 
     /**
@@ -745,11 +746,8 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
      * 祝福完成后刷新订单列表
      */
     private void sendBroadcastsRefreshOrderList() {
-        if (is_applying_help > 0 || progress > 90) {
-            Intent intent = new Intent();
-            intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-            intent.putExtra("type", "EDIT");
-            sendBroadcast(intent);//发送普通广播
+        if (is_applying_help > 0 || progress > 95) {
+            OrderListActivity.editOrderStatus = true;
         }
     }
 

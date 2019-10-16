@@ -262,10 +262,7 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status.equals("200")) {
             ToastUtils.showToast(responseBean.getMsg());
-            Intent intent = new Intent();
-            intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-            intent.putExtra("type", "EDIT");
-            getActivity().sendBroadcast(intent);//发送普通广播
+            ((OrderListActivity) getActivity()).reLoadList();
         }
     }
 
@@ -292,6 +289,7 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
             }
         }
     };
+
     @Override
     public void careReceiveOrderSuccess(EditDataBean responseBean) {
         String status = responseBean.getStatus();

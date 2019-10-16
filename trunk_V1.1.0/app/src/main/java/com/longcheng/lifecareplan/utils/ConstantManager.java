@@ -138,10 +138,6 @@ public class ConstantManager {
      */
     public static final String skipType_OPENREDACTION = "ACTIONPEI";
     /**
-     * 订单
-     */
-    public static final String BroadcastReceiver_ORDER_ACTION = "BroadcastReceiver_ORDER_ACTION";
-    /**
      * 已登录
      */
     public static final String loginStatus = "logingOk";

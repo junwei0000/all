@@ -79,11 +79,12 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/mycenter_layout_activatenergy"
+            android:id="@+id/mycenter_tv_recharge"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="激活能量"
+            android:paddingRight="@dimen/dp8"
+            android:text="充值"
             android:textColor="@color/red"
             android:textSize="@dimen/text_contents_size" />
     </LinearLayout>
@@ -101,10 +102,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:visibility="gone"
             android:background="@color/cyanbluebg"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"

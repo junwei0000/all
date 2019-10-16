@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
+import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -227,10 +228,7 @@ public class AddressAddActivity extends BaseActivityMVP<AddressContract.View, Ad
     }
 
     private void sendBroadcastsRefreshList() {
-        Intent intent = new Intent();
-        intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-        intent.putExtra("type", "EDIT");
-        sendBroadcast(intent);//发送普通广播
+        OrderListActivity.editOrderStatus=true;
     }
 
     @Override

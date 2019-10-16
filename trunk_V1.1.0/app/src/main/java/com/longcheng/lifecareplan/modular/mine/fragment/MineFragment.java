@@ -139,7 +139,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.mycenter_tv_withdraw)
     TextView mycenterTvWithdraw;
     @BindView(R.id.mycenter_layout_activatenergy)
-    TextView mycenterLayoutActivatenergy;
+    LinearLayout mycenterLayoutActivatenergy;
     //
     @BindView(R.id.mycenter_tv_totalallowance)
     TextView mycenterTvTotalallowance;
@@ -214,8 +214,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.layout_jiuzhen)
     LinearLayout layoutJiuzhen;
 
-    @BindView(R.id.usercenter_relay_receiving)
-    LinearLayout usercenter_relay_receiving;
+    @BindView(R.id.mycenter_tv_recharge)
+    TextView mycenter_tv_recharge;
 
     @BindView(R.id.layout_volunteerlist)
     LinearLayout layout_volunteerlist;
@@ -275,7 +275,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     boolean mAllowanceLayoutShow = false;
     PerfectInfoDialog mPerfectInfoDialog;
 
-    public static String Certification_url="";
+    public static String Certification_url = "";
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_mycenter;
@@ -320,7 +321,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         usercenter_layout_rebirth.setOnClickListener(this);
         usercenter_relay_changeinviter.setOnClickListener(this);
         layoutJiuzhen.setOnClickListener(this);
-        usercenter_relay_receiving.setOnClickListener(this);
+        mycenter_tv_recharge.setOnClickListener(this);
         layout_volunteerlist.setOnClickListener(this);
         layout_partygroup.setOnClickListener(this);
         layout_creditor.setOnClickListener(this);
@@ -493,8 +494,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 setFunctionType();
                 break;
 
-            case R.id.usercenter_relay_receiving://收付款
-                intent = new Intent(mActivity, ReceiveH5Activity.class);
+            case R.id.mycenter_tv_recharge://充值
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getReceiptCodeUrl());
                 startActivity(intent);
@@ -1529,7 +1530,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
     private void setLoadData(GetHomeInfoBean mGetHomeInfoBean) {
         data = mGetHomeInfoBean;
-        Certification_url=data.getCertification_url();
+        Certification_url = data.getCertification_url();
         if (usercenterTvDoctor == null) {
             return;
         }

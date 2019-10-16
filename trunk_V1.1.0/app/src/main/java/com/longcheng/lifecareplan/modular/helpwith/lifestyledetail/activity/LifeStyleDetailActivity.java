@@ -40,6 +40,7 @@ import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.SKBPayAf
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.SKBPayDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.lifestylerank.activity.LifeRankActivity;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
+import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.activity.XiaJiaActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -61,7 +62,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.longcheng.lifecareplan.R2.attr.progress;
 
 /**
  * 生活方式互祝-详情
@@ -500,6 +500,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         progress = help_goodsInfo.getProgress();
         if (progress >= 100) {
             btnHelp.setVisibility(View.GONE);
+            sendBroadcastsRefreshOrderList();
         } else {
             btnHelp.setVisibility(View.VISIBLE);
         }
@@ -744,10 +745,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
      */
     private void sendBroadcastsRefreshOrderList() {
         if (is_applying_help > 0 || progress > 90) {
-            Intent intent = new Intent();
-            intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-            intent.putExtra("type", "EDIT");
-            sendBroadcast(intent);//发送普通广播
+            OrderListActivity.editOrderStatus=true;
         }
     }
 

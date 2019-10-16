@@ -32,6 +32,7 @@ import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeN
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressAddActivity;
+import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailDataBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.ordertracking.activity.TrankActivity;
@@ -367,10 +368,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     CertDialogUtils mCertDialogUtils;
 
     private void sendBroadcastsRefreshList() {
-        Intent intent = new Intent();
-        intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-        intent.putExtra("type", "EDIT");
-        sendBroadcast(intent);//发送普通广播
+        OrderListActivity.editOrderStatus=true;
     }
 
     /**

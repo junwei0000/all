@@ -181,8 +181,9 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
      * @author MarkShuai
      */
     FragmentAdapter tabPageAdapter;
+
     private void setPageAdapter() {
-          tabPageAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
+        tabPageAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
         tabPageAdapter.setOnReloadListener(new FragmentAdapter.OnReloadListener() {
             @Override
             public void onReload() {
@@ -194,7 +195,7 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
                 list.add(new OveredFragment());
                 list.add(new YaJinFragment());
                 tabPageAdapter.setPagerItems(list);
-                Log.e("onReload","onReload");
+                Log.e("onReload", "onReload");
             }
         });
         userorderVPager.setAdapter(tabPageAdapter);
@@ -249,6 +250,24 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
 
     }
 
+    /**
+     * 是否有编辑订单处理
+     */
+    public static boolean editOrderStatus = false;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (editOrderStatus) {
+            editOrderStatus = false;
+            reLoadList();
+        }
+    }
+
+    public void reLoadList() {
+        if (tabPageAdapter != null)
+            tabPageAdapter.reLoad();
+    }
 
     /**
      * 重写onkeydown 用于监听返回键
@@ -259,38 +278,4 @@ public class OrderListActivity extends BaseActivity implements ViewPager.OnPageC
         }
         return false;
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(dynamicReceiver);
-    }
-
-    // -----------------add cancel 收藏-------------------------------
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // 动态注册广播
-        filter = new IntentFilter();
-        filter.addAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-        filter.setPriority(Integer.MAX_VALUE);
-        registerReceiver(dynamicReceiver, filter);
-    }
-
-    IntentFilter filter;
-    private BroadcastReceiver dynamicReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(final Context context, Intent intent) {
-            String type = intent.getStringExtra("type");
-            if (type.equals("EDIT")&&tabPageAdapter!=null) {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        tabPageAdapter.reLoad();
-                    }
-                }, 200);//秒后执行Runnable中的run方法
-            }
-        }
-    };
 }

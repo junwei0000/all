@@ -25,6 +25,7 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.EngryRecordActivity;
+import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -315,17 +316,8 @@ public class YaJinActivity extends BaseActivity {
      * 刷新订单列表
      */
     private void jihuoSuccess() {
+        OrderListActivity.editOrderStatus = true;
         doFinish();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent();
-                intent.setAction(ConstantManager.BroadcastReceiver_ORDER_ACTION);
-                intent.putExtra("type", "EDIT");
-                sendBroadcast(intent);
-            }
-        }, 600);//秒后执行Runnable中的run方法
 
     }
 
