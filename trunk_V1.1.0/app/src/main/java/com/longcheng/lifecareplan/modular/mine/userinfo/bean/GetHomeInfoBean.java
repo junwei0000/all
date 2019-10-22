@@ -104,6 +104,7 @@ public class GetHomeInfoBean implements Serializable {
 
     private String receiptCodeUrl;//收付款
     private int is_show_payment_received;//是否有收付款 0没有；1 有
+    private String userasset_recharge_url;//充值
 
     private String jieqi_pic;
 
@@ -148,6 +149,14 @@ public class GetHomeInfoBean implements Serializable {
 
     private int is_alipay_pool_user;//是否显示水库 0：否 1：是
     private String alipay_pool_user_url;//地址
+
+    public String getUserasset_recharge_url() {
+        return userasset_recharge_url;
+    }
+
+    public void setUserasset_recharge_url(String userasset_recharge_url) {
+        this.userasset_recharge_url = userasset_recharge_url;
+    }
 
     public int getIs_alipay_pool_user() {
         return is_alipay_pool_user;

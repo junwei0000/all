@@ -63,7 +63,7 @@ import io.reactivex.schedulers.Schedulers;
  * 生活保障/志愿者
  * Created by Burning on 2018/9/11.
  */
-
+@SuppressLint("CheckResult")
 public class BaoZhangActitvty extends WebAct {
 
     @BindView(R.id.toolbar)
@@ -892,6 +892,7 @@ public class BaoZhangActitvty extends WebAct {
     /**
      * 志愿者互祝---申请基础保障支付
      */
+
     private void LifeBasicApplyPay(String json_datas, String payment_channel) {
         if (RequestDataStatus) {
             return;
@@ -908,9 +909,7 @@ public class BaoZhangActitvty extends WebAct {
                         if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
 
                             String status = responseBean.getStatus();
-                            if (status.equals("400")) {
-                                ToastUtils.showToast(responseBean.getMsg());
-                            } else if (status.equals("200")) {
+                            if (status.equals("200")) {
                                 PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
                                 one_order_id = payWeChatBean.getOne_order_id();
                                 if (payment_channel.equals("1")) {
@@ -933,6 +932,8 @@ public class BaoZhangActitvty extends WebAct {
                                     LifeBasicApplyPaySuccuess();
                                     ToastUtils.showToast(responseBean.getMsg());
                                 }
+                            } else {
+                                ToastUtils.showToast(responseBean.getMsg());
                             }
                         }
                     }

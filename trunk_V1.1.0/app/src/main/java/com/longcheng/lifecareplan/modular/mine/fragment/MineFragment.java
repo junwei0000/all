@@ -497,7 +497,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.mycenter_tv_recharge://充值
                 intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", "" + data.getReceiptCodeUrl());
+                intent.putExtra("html_url", "" + data.getUserasset_recharge_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
