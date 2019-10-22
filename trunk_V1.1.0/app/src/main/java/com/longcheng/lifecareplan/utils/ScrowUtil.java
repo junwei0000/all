@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
@@ -200,6 +201,44 @@ public class ScrowUtil {
      * @param mlistview
      */
     public static void listViewDownConfig(PullToRefreshListView mlistview) {
+        if (mlistview != null) {
+            mlistview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+            mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+
+            mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+        }
+    }
+
+
+    /**
+     * @param
+     * @name 上拉下拉
+     * @time 2017/11/24 16:26
+     * @author MarkShuai
+     */
+    public static void gridViewConfigAll(PullToRefreshGridView mlistview) {
+        if (mlistview != null) {
+            mlistview.setMode(PullToRefreshBase.Mode.BOTH);
+            mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
+
+            mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+        }
+    }
+
+    /**
+     * 仅有下拉刷新
+     *
+     * @param mlistview
+     */
+    public static void gridViewDownConfig(PullToRefreshGridView mlistview) {
         if (mlistview != null) {
             mlistview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
             mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);

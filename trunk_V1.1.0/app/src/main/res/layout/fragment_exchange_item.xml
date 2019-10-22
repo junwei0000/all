@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/padd_imgtextleftright"
-    android:paddingTop="@dimen/dp10">
+    android:paddingTop="@dimen/dp10"
+    android:paddingBottom="@dimen/padd_imgtextleftright">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginTop="@dimen/padd_imgtextleftright">
+        android:layout_marginTop="@dimen/dp2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,8 +87,8 @@
             android:id="@+id/item_tv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:paddingBottom="@dimen/dp2"
             android:singleLine="true"
             android:text="已兑换0件"

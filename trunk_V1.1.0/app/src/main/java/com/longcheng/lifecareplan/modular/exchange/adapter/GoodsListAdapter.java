@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.exchange.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +34,10 @@ import java.util.List;
 public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
     ViewHolder mHolder = null;
     Context context;
-    ProgressUtils mProgressUtils;
 
     public GoodsListAdapter(Context context, List<GoodsItemBean> list) {
         super(context, list);
         this.context = context;
-        mProgressUtils = new ProgressUtils(context);
     }
 
     @Override
@@ -52,7 +51,6 @@ public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
             mHolder = (ViewHolder) convertView.getTag();
         }
         GoodsItemBean mHelpItemBean = list.get(position);
-
         mHolder.item_tv_name1.setText(mHelpItemBean.getName());
         mHolder.item_tv_skb.setText(mHelpItemBean.getSkb_price());
         mHolder.item_tv_num.setText("已兑换" + mHelpItemBean.getSale_number() + "件");
