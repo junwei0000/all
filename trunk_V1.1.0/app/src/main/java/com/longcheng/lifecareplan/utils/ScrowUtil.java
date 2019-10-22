@@ -213,7 +213,23 @@ public class ScrowUtil {
         }
     }
 
+    /**
+     * 禁用
+     *
+     * @param mlistview
+     */
+    public static void gridViewNotConfig(PullToRefreshGridView mlistview) {
+        if (mlistview != null) {
+            mlistview.setMode(PullToRefreshBase.Mode.DISABLED);
+            mlistview.getLoadingLayoutProxy(true, false).setPullLabel(ConstantManager.PullDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setRefreshingLabel(ConstantManager.RefreshingDownLabel);
+            mlistview.getLoadingLayoutProxy(true, false).setReleaseLabel(ConstantManager.ReleaseDownLabel);
 
+            mlistview.getLoadingLayoutProxy(false, true).setPullLabel(ConstantManager.PullUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setRefreshingLabel(ConstantManager.RefreshingUpLabel);
+            mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
+        }
+    }
     /**
      * @param
      * @name 上拉下拉
