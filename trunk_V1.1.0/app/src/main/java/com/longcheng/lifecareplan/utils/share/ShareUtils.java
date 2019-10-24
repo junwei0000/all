@@ -61,7 +61,7 @@ public class ShareUtils {
         } else {
             selectDialog.show();
         }
-        ConstantManager.WeChatAppType = "";
+        ConstantManager.setWeChatAppId(ConstantManager.WECHATAPPID);
     }
 
     View.OnClickListener mClickListener = new View.OnClickListener() {

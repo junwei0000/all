@@ -254,11 +254,7 @@ public class PayUtils {
         /**
          * 每次调起时判断一下 支付商户类别
          */
-        if (payWeChatBean.getAppid().equals(ConstantManager.WECHATAPPIDBaoZhang)) {
-            ConstantManager.WeChatAppType = ConstantManager.WECHATAPPIDBaoZhang;
-        } else {
-            ConstantManager.WeChatAppType = "";
-        }
+        ConstantManager.setWeChatAppId(payWeChatBean.getAppid());
         IWXAPI wxapi = WXAPIFactory.createWXAPI(context, null);
         wxapi.registerApp(ConstantManager.getWeChatAppId());
         wxapi.sendReq(req);

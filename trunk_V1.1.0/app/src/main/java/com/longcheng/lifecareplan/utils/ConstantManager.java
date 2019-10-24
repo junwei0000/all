@@ -40,14 +40,14 @@ public class ConstantManager {
     /**
      * 默认渠道
      */
-    public static String WeChatAppType = "";
+    public static String WeChatAppId = WECHATAPPID;
+
+    public static void setWeChatAppId(String WeChatAppId_) {
+        WeChatAppId = WeChatAppId_;
+    }
 
     public static String getWeChatAppId() {
-        if (!TextUtils.isEmpty(WeChatAppType) && WeChatAppType.equals(WECHATAPPIDBaoZhang)) {
-            return WECHATAPPIDBaoZhang;
-        } else {
-            return WECHATAPPID;
-        }
+        return WeChatAppId;
     }
 
 
