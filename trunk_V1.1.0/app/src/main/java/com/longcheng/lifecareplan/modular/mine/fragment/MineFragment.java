@@ -164,6 +164,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.mycenter_layout_smallpusher)
     RelativeLayout mycenterLayoutsmallpusher;
 
+
+    @BindView(R.id.mycenter_layout_myka)
+    LinearLayout mycenter_layout_myka;
     @BindView(R.id.mycenter_layout_reward)
     LinearLayout mycenterLayoutreward;
     @BindView(R.id.mycenter_layout_invitationrecord)
@@ -294,6 +297,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         pagetopLayoutRigth.setOnClickListener(this);
         mycenterIvHead.setOnClickListener(this);
         layout_auth.setOnClickListener(this);
+        mycenter_layout_myka.setOnClickListener(this);
         mycenterTvWithdraw.setOnClickListener(this);
         usercenterRelayAddress.setOnClickListener(this);
         mycenterLayoutActivatenergy.setOnClickListener(this);
@@ -411,7 +415,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         FunctionGVlist1.add(new FunctionGVItemBean(Voname, R.id.usercenter_relay_volunteer, R.mipmap.my_volunteersr_icon));
         FunctionGVlist1.add(new FunctionGVItemBean(Doname, R.id.usercenter_relay_doctor, R.mipmap.my_doctor_icon));
         FunctionGVlist1.add(new FunctionGVItemBean("实名认证", R.id.layout_auth, R.mipmap.my_auth_icon));
-
+        FunctionGVlist1.add(new FunctionGVItemBean("奖励中心", R.id.mycenter_layout_reward, R.mipmap.homepage_icon_jianglizhongxin));
         int isCommissionerIdentity = data.getIsCommissionerIdentity();
         if (isCommissionerIdentity != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("我是特派员", R.id.layout_commissioner, R.mipmap.my_commissioner_icon));
@@ -562,6 +566,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + Certification_url);
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.mycenter_layout_myka://我的卡包
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getMyka_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
@@ -1081,6 +1092,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (actionDialog != null && actionDialog.isShowing()) {
             actionDialog.dismiss();
         }
+        if (myKaDialog != null && myKaDialog.isShowing()) {
+            myKaDialog.dismiss();
+        }
         if (redBaoDialog != null && redBaoDialog.isShowing()) {
             redBaoDialog.dismiss();
         }
@@ -1128,7 +1142,16 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 LevelDialog.dismiss();
             }
         }
-        //基础保障  3
+        //我的卡包  3
+        if (data.getIs_myka() > 0) {
+            showMyKaDialog();
+            return;
+        } else {
+            if (myKaDialog != null && myKaDialog.isShowing()) {
+                myKaDialog.dismiss();
+            }
+        }
+        //基础保障  4
         if (data.getDisplayLifeBasic() > 0) {
             showLifeBasiDialog();
             return;
@@ -1137,7 +1160,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 LifeBasicDialog.dismiss();
             }
         }
-        //天才行动 4
+        //天才行动 5
         if (data.getIs_commonweal_activity() > 0) {
             showActionDialog();
             return;
@@ -1146,7 +1169,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 actionDialog.dismiss();
             }
         }
-        //基础保障未提现  5
+        //基础保障未提现  6
         if (data.getIsLifeBasicApplyCash() > 0) {
             showLifeBasicCashDialog();
             return;
@@ -1155,7 +1178,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 LifeBasicCashDialog.dismiss();
             }
         }
-        //志愿者关联债权人提现  6
+        //志愿者关联债权人提现  7
         if (data.getIsDisplayCrediterCash() > 0) {
             showCrediterCashDialog();
             return;
@@ -1165,7 +1188,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             }
         }
 
-        //红包 7
+        //红包 8
         if (isUnopenedRedPackage > 0) {
             showRedBaoDialog();
             return;
@@ -1259,6 +1282,48 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             });
         } else {
             LifeBasicDialog.show();
+        }
+    }
+
+    MyDialog myKaDialog;
+
+    /**
+     * 基础保障弹层
+     */
+    public void showMyKaDialog() {
+        if (myKaDialog == null) {
+            myKaDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_myka);// 创建Dialog并设置样式主题
+            myKaDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = myKaDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            myKaDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = myKaDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4;
+            myKaDialog.getWindow().setAttributes(p); //设置生效
+            TextView btn_jihuo = (TextView) myKaDialog.findViewById(R.id.btn_jihuo);
+            LinearLayout layout_cancel = (LinearLayout) myKaDialog.findViewById(R.id.layout_cancel);
+
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myKaDialog.dismiss();
+                }
+            });
+            btn_jihuo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myKaDialog.dismiss();/**/
+                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + data.getMyka_url());
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+            });
+        } else {
+            myKaDialog.show();
         }
     }
 

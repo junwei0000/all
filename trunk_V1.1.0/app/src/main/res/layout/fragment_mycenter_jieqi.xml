@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/mycenter_layout_reward"
+        android:id="@+id/mycenter_layout_myka"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -41,13 +41,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/homepage_icon_wisheach" />
+            android:background="@mipmap/homepage_icon_card" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padd_imgtextleftright"
-            android:text="奖励中心"
+            android:text="我的卡包"
             android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_zhu_size" />
     </LinearLayout>

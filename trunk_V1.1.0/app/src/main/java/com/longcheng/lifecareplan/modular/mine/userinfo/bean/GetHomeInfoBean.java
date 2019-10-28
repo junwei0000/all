@@ -150,6 +150,28 @@ public class GetHomeInfoBean implements Serializable {
     private int is_alipay_pool_user;//是否显示水库 0：否 1：是
     private String alipay_pool_user_url;//地址
 
+
+    @SerializedName("is_knp_team_bind_card")
+    private int is_myka;//是否有卡 0：否 1：是
+    @SerializedName("knp_team_bind_card_url")
+    private String myka_url;//我的卡包地址
+
+    public int getIs_myka() {
+        return is_myka;
+    }
+
+    public void setIs_myka(int is_myka) {
+        this.is_myka = is_myka;
+    }
+
+    public String getMyka_url() {
+        return myka_url;
+    }
+
+    public void setMyka_url(String myka_url) {
+        this.myka_url = myka_url;
+    }
+
     public String getUserasset_recharge_url() {
         return userasset_recharge_url;
     }
