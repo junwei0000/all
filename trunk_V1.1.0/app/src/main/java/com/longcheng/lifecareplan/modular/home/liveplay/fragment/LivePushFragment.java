@@ -181,7 +181,7 @@ public class LivePushFragment extends Fragment implements Runnable {
         mCamera.setOnClickListener(onClickListener);
         mSnapshot.setOnClickListener(onClickListener);
         mPushButton.setOnClickListener(onClickListener);
-        mOperaButton.setOnClickListener(onClickListener);
+//        mOperaButton.setOnClickListener(onClickListener);
         if (mMixMain) {
             mCamera.setVisibility(View.GONE);
         }

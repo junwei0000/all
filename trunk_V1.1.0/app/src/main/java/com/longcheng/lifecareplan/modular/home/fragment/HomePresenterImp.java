@@ -1,28 +1,16 @@
 package com.longcheng.lifecareplan.modular.home.fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.LocationUtils;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -58,12 +46,13 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
         if (mLocationUtils == null) {
             mLocationUtils = new LocationUtils();
         }
+        int version_code = ConfigUtils.getINSTANCE().getVersionCode(mContext);
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         double phone_user_latitude = mLngAndLat[0];
         double phone_user_longitude = mLngAndLat[1];
         String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
         String user_id = UserUtils.getUserId(mContext);
-        Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, phone_user_latitude,
+        Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, version_code,phone_user_latitude,
                 phone_user_longitude, phone_user_address, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

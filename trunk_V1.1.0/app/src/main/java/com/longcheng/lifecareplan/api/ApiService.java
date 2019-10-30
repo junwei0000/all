@@ -215,6 +215,7 @@ public interface ApiService {
     //********************首页**************************
     @GET(Config.VERSION + "index/index")
     Observable<HomeDataBean> getHomeList(@Query("user_id") String user_id,
+                                         @Query("version_code") int version_code,
                                          @Query("phone_user_latitude") double phone_user_latitude,
                                          @Query("phone_user_longitude") double phone_user_longitude,
                                          @Query("phone_user_address") String phone_user_address,
@@ -574,11 +575,13 @@ public interface ApiService {
     Observable<EditDataBean> cancelAction(@Field("user_id") String user_id,
                                           @Field("order_id") String order_id,
                                           @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "order/careReceive")
     Observable<EditDataBean> careReceiveOrder(@Field("user_id") String user_id,
-                                          @Field("order_id") String order_id,
-                                          @Field("token") String token);
+                                              @Field("order_id") String order_id,
+                                              @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "order/confirmOrder")
     Observable<EditDataBean> confirmReceipt(@Field("user_id") String user_id,
