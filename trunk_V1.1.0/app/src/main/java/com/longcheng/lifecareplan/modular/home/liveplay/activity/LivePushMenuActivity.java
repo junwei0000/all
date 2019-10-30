@@ -97,8 +97,7 @@ public class LivePushMenuActivity extends BaseActivityMVP<LivePushContract.View,
     public void setListener() {
         pagetopLayoutLeft.setOnClickListener(this);
         layout_live_push.setOnClickListener(this);
-        SurfaceHolder surfaceHolder = mSurfaceView.getHolder();
-        surfaceHolder.addCallback(new MyCallBack());
+        mSurfaceView.getHolder().addCallback(new MyCallBack());
         Intent intent = getIntent();
         int IsLiveBroadcast = intent.getIntExtra("IsLiveBroadcast", 0);
         if (IsLiveBroadcast == 0) {
@@ -107,6 +106,12 @@ public class LivePushMenuActivity extends BaseActivityMVP<LivePushContract.View,
             layout_live_push.setVisibility(View.VISIBLE);
         }
         mPresent.getLivePlay();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("MyCallBack", "onResume");
     }
 
     @Override
@@ -174,16 +179,19 @@ public class LivePushMenuActivity extends BaseActivityMVP<LivePushContract.View,
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
             Log.d("MyCallBack", "surfaceDestroyed");
-            if (null != mPlayer) {
-                stopPlay();
-                mPlayer = null;
-            }
+            //防止退到后台重置问题
+//            stopPlay();
+//            if (mSurfaceView != null) {
+//                mSurfaceView.setVisibility(View.GONE);
+//                layout_notlive.setVisibility(View.VISIBLE);
+//            }
         }
     }
 
     AliVcMediaPlayer mPlayer;
 
     private void initPlay() {
+        stopPlay();
         //创建播放器的实例
         mPlayer = new AliVcMediaPlayer(this, mSurfaceView);
         if (mPlayer != null) {
@@ -213,6 +221,7 @@ public class LivePushMenuActivity extends BaseActivityMVP<LivePushContract.View,
         mPlayer.setCompletedListener(new MediaPlayer.MediaPlayerCompletedListener() {
             @Override
             public void onCompleted() {
+                Log.i("MyCallBack", "onCompleted");
                 //视频正常播放完成时触发
                 if (mSurfaceView != null) {
                     mSurfaceView.setVisibility(View.GONE);
@@ -226,16 +235,15 @@ public class LivePushMenuActivity extends BaseActivityMVP<LivePushContract.View,
      * 播放视频
      */
     private void startPlay() {
-        if (mPlayer == null) {
-            initPlay();
-        }
+
+        initPlay();
     }
 
     /**
      * 停止播放  (其他的，暂停等功能自己可以定义方法实现)
      */
     private void stopPlay() {
-        if (mPlayer.isPlaying()) {
+        if (mPlayer != null) {
             mPlayer.stop();
             mPlayer.destroy();
             mPlayer = null;
@@ -263,6 +271,7 @@ public class LivePushMenuActivity extends BaseActivityMVP<LivePushContract.View,
     }
 
     private void back() {
+        stopPlay();
         doFinish();
     }
 

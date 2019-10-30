@@ -5,8 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Window;
@@ -14,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 
 /**
  * 作者：MarkMingShuai
