@@ -668,11 +668,6 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (CategorysList != null && CategorysList.size() > 0) {
                     if (position == 0) {
-                        //选择“全部”有一个显示效果
-                        selectPoistion = 0;
-                        mCategorysLAdapter.setSelectPoistion(selectPoistion);
-                        mCategorysLAdapter.notifyDataSetChanged();
-
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -686,7 +681,12 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                                 getList(1);
                                 layout_categorys.setVisibility(View.GONE);
                             }
-                        }, 100);//秒后执行Runnable中的run方法
+                        }, 100);//秒后执行Runnable中的run方法                  //选择“全部”有一个显示效果
+                        selectPoistion = 0;
+                        mCategorysLAdapter.setSelectPoistion(selectPoistion);
+                        mCategorysLAdapter.notifyDataSetChanged();
+
+
                     } else {
                         selectPoistion = position;
                         mCategorysLAdapter.setSelectPoistion(selectPoistion);

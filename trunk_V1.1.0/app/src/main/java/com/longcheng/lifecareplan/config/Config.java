@@ -5,6 +5,9 @@ package com.longcheng.lifecareplan.config;
  */
 
 public class Config {
+
+    public static final String LIVE_BASE_URL = " https://dock.lihan.ltd/dock/classic/";
+
     /**
      * 网络请求超时时间毫秒
      */
@@ -13,11 +16,11 @@ public class Config {
      * 基础URL
      */
     public static final String VERSION = "v1_8_0/";
-    public static final String BASE_URL = "https://t.asdyf.com/api/";//正式
-    public static final String WEB_DOMAIN = ";domain=t.asdyf.com;path=/";
-    public static final String BASE_HEAD_URL = "https://t.asdyf.com/";
+//    public static final String BASE_URL = "https://t.asdyf.com/api/";//正式
+//    public static final String WEB_DOMAIN = ";domain=t.asdyf.com;path=/";
+//    public static final String BASE_HEAD_URL = "https://t.asdyf.com/";
     //************测试地址***************
-//    public static final String BASE_URL = "http://test.t.asdyf.com/api/";//测试
-//    public static final String WEB_DOMAIN = ";domain=test.t.asdyf.com;path=/";
-//    public static final String BASE_HEAD_URL = "http://test.t.asdyf.com/";
+    public static final String BASE_URL = "http://test.t.asdyf.com/api/";//测试
+    public static final String WEB_DOMAIN = ";domain=test.t.asdyf.com;path=/";
+    public static final String BASE_HEAD_URL = "http://test.t.asdyf.com/";
 }

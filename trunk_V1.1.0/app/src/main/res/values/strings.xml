@@ -160,4 +160,24 @@
     <string name="ranking_day_ability_help_num">互祝人数：%d</string>
     <string name="ranking_love_leader_help_num">参与次数：%d</string>
     <string name="ranking_help_energy">互祝能量：%d</string>
+
+
+    <string name="dialog_title">错误提示</string>
+    <string name="ok">确定</string>
+    <string name="reconnect">重连</string>
+    <string name="sdk_error">SDK错误：</string>
+    <string name="send_message">发送消息</string>
+    <string name="reconnect_success">重连成功</string>
+    <string name="senddata_timeout">发送数据超时</string>
+    <string name="restart_success">重启成功</string>
+    <string name="reconnect_start">重连开始</string>
+    <string name="reconnect_fail">重连失败</string>
+    <string name="connect_fail">连接失败</string>
+    <string name="network_poor">网络差，请退出或者重连</string>
+    <string name="network_recovery">网络恢复</string>
+    <string name="adjust_fps">调整帧率</string>
+    <string name="pause_button">离开</string>
+    <string name="resume_button">恢复</string>
+    <string name="start_button">开始直播</string>
+    <string name="stop_button">暂停直播</string>
 </resources>

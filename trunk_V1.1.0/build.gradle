@@ -4,6 +4,10 @@ buildscript {
     repositories {
         jcenter()
         google()
+        mavenCentral()
+        maven() {
+            url 'https://maven.aliyun.com/repository/releases'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -25,16 +29,23 @@ allprojects {
             url 'http://developer.huawei.com/repo/'
         }
         maven { url "https://jitpack.io" }
+        mavenCentral()
+        maven() {
+            url 'https://maven.aliyun.com/repository/releases'
+        }
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 
 ext {
-    versionCode = 224
-    versionName = '2.2.4'
+    versionCode = 225
+    versionName = '2.2.5'
 
     compileSdkVersion = 26
     buildToolsVersion = '27.0.1'
-    minSdkVersion = 16
+    minSdkVersion = 18
     targetSdkVersion = 22
 
     appcompatVersion = '26.+'

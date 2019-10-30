@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.api;
 
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -54,10 +55,18 @@ final class CustomGsonResponseBodyConverter<T> implements Converter<ResponseBody
     public T convert(ResponseBody value) throws IOException {
         String response = value.string();
         JsonElement jsonElement = jsonParser.parse(response);
-        String status = jsonElement.getAsJsonObject().get("status").getAsString();
-        String msg = jsonElement.getAsJsonObject().get("msg").getAsString();
+        JsonElement status_ = jsonElement.getAsJsonObject().get("status");
+        String status = "";
+        if (status_ != null) {
+            status = status_.getAsString();
+        }
+        JsonElement msg_ = jsonElement.getAsJsonObject().get("msg");
+        String msg = "";
+        if (msg_ != null) {
+            msg = msg_.getAsString();
+        }
         Log.e("ResponseBody", "status=" + status + "  ;value==" + jsonElement.getAsJsonObject().toString());
-        if (!status.equals("200")) {
+        if (!TextUtils.isEmpty(status) && !status.equals("200")) {
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("status", status);

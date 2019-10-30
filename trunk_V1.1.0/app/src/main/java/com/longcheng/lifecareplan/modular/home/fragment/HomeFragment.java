@@ -27,14 +27,10 @@ import android.widget.ViewFlipper;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
-import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexAfterBean;
-import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
@@ -53,13 +49,12 @@ import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneJoinListA
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneMineActivity;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
 import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFriendsActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushMenuActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
-import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
-import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.CleanMessageUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -165,6 +160,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public static String jieqi_name = "";
     public static String kn_url = "";
 
+    private int IsLiveBroadcast;
     @Override
     public int bindLayout() {
         return R.layout.fragment_home;
@@ -357,9 +353,15 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
                     } else if (sort == 5) {
-                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
-                            mPresent.getQuickTeamUrl();
-                        }
+//                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+//                            mPresent.getQuickTeamUrl();
+//
+                        //直播
+                        intent = new Intent(mActivity, LivePushMenuActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("IsLiveBroadcast", IsLiveBroadcast);
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     }
                 }
             }
@@ -637,6 +639,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             SharedPreferencesHelper.put(mActivity, "invite_user_url", "" + invite_user_url);
             HomeItemBean UserInfo = mHomeAfterBean.getUserInfo();
             if (UserInfo != null) {
+                IsLiveBroadcast= UserInfo.getIsLiveBroadcast();
                 int group_id = UserInfo.getGroup_id();
                 int team_id = UserInfo.getTeam_id();
                 SharedPreferencesHelper.put(mActivity, "group_id", group_id);

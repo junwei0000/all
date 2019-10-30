@@ -1,28 +1,23 @@
 package com.longcheng.lifecareplan.base;
 
-import android.Manifest;
-import android.app.Application;
 import android.app.Notification;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
-import android.view.Window;
 
+import com.alivc.player.AliVcMediaPlayer;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.push.PushClient;
 import com.longcheng.lifecareplan.push.listener.IBasePushReceiverListener;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.CustomCrashHandler;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.UnCeHandler;
 import com.umeng.commonsdk.UMConfigure;
-import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
@@ -66,6 +61,9 @@ public class ExampleApplication extends MultiDexApplication {
         setStyleCustom();
         initPush();
         pushListener();
+
+        //初始化播放器（只需调用一次即可，建议在application中初始化）
+        AliVcMediaPlayer.init(getApplicationContext());
     }
 
     public static String token;

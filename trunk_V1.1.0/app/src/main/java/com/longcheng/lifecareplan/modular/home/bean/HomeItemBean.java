@@ -1,7 +1,5 @@
 package com.longcheng.lifecareplan.modular.home.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -80,6 +78,16 @@ public class HomeItemBean implements Serializable {
 
 
     private String href;
+
+    private int isLiveBroadcast;//是否有直播权限
+
+    public int getIsLiveBroadcast() {
+        return isLiveBroadcast;
+    }
+
+    public void setIsLiveBroadcast(int isLiveBroadcast) {
+        this.isLiveBroadcast = isLiveBroadcast;
+    }
 
     public String getAdd_time() {
         return add_time;

@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/activity_tool" />
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SurfaceView
+            android:id="@+id/play_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layout_notlive"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp80"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_quexing_zhibo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="暂无视频直播，敬请期待"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_pageTop_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_live_push"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp80"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/dp20"
+            android:background="@mipmap/live_ov_bg"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp2"
+                android:text="开启\n直播"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pageTop_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

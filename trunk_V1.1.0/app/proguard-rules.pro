@@ -6,6 +6,12 @@
 -verbose
 
 # 不被混淆的
+# 直播
+-keep class com.alibaba.livecloud.** { *;}
+-keep class com.alivc.** { *;}
+-keep class com.aliyun.clientinforeport.**{*;}
+-dontwarn com.alivc.player.**
+
 -keep public class * extends android.app.Fragment
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
