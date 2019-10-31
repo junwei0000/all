@@ -75,9 +75,14 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
 
     public void pUsePhoneLogin(String phoneNum, String code) {
         mView.showDialog();
-        String token = ExampleApplication.token;
+        double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
+        double phone_user_latitude = mLngAndLat[0];
+        double phone_user_longitude = mLngAndLat[1];
+        String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
+        String ip = ConfigUtils.getINSTANCE().getIPAddress(mContext);
         Observable<LoginDataBean> observable = Api.getInstance().service.userPhoneLogin(phoneNum, code,
-                ExampleApplication.token);
+                ip, phone_user_latitude,
+                phone_user_longitude, phone_user_address, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<LoginDataBean>() {

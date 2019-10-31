@@ -147,6 +147,10 @@ public interface ApiService {
     @GET(Config.VERSION + "login/quick")
     Observable<LoginDataBean> userPhoneLogin(@Query("phone") String phone,
                                              @Query("code") String code,
+                                             @Query("login_ip") String login_ip,
+                                             @Query("lat") double phone_user_latitude,
+                                             @Query("lon") double phone_user_longitude,
+                                             @Query("login_address") String phone_user_address,
                                              @Query("token") String token);
 
     @FormUrlEncoded
