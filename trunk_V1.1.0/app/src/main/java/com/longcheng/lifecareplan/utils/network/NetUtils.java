@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.utils;
+package com.longcheng.lifecareplan.utils.network;
 
 import android.content.Context;
 import android.location.LocationManager;
@@ -6,7 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
-public class NetWorkUtils {
+public class NetUtils {
 
     /**
      * 判断是否有网络连接

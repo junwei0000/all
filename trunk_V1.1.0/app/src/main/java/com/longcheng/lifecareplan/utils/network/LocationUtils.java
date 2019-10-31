@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.utils;
+package com.longcheng.lifecareplan.utils.network;
 
 import android.content.Context;
 import android.location.Address;

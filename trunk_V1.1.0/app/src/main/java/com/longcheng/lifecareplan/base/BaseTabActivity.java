@@ -1,12 +1,10 @@
 package com.longcheng.lifecareplan.base;
 
-import android.annotation.SuppressLint;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +13,7 @@ import android.view.WindowManager;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.MPermissionUtils;
+import com.longcheng.lifecareplan.utils.Permission.MPermissionUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 

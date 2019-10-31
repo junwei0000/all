@@ -42,7 +42,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.home.liveplay.fragment.LivePushFragment;
 import com.longcheng.lifecareplan.modular.home.liveplay.fragment.PushDiagramStatsFragment;
 import com.longcheng.lifecareplan.modular.home.liveplay.fragment.PushTextStatsFragment;
-import com.longcheng.lifecareplan.utils.NetWorkUtils;
+import com.longcheng.lifecareplan.utils.network.NetUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -222,7 +222,7 @@ public class LivePushActivity extends AppCompatActivity {
         initViewPager();
         mScaleDetector = new ScaleGestureDetector(getApplicationContext(), mScaleGestureDetector);
         mDetector = new GestureDetector(getApplicationContext(), mGestureDetector);
-        mNetWork = NetWorkUtils.getAPNType(this);
+        mNetWork = NetUtils.getAPNType(this);
 //        IntentFilter filter = new IntentFilter();
 //        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
 //        registerReceiver(mChangedReceiver, filter);
@@ -630,8 +630,8 @@ public class LivePushActivity extends AppCompatActivity {
 
             if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
 
-                if (mNetWork != NetWorkUtils.getAPNType(context)) {
-                    mNetWork = NetWorkUtils.getAPNType(context);
+                if (mNetWork != NetUtils.getAPNType(context)) {
+                    mNetWork = NetUtils.getAPNType(context);
                     if (mAlivcLivePusher != null) {
                         if (mAlivcLivePusher.isPushing()) {
                             try {

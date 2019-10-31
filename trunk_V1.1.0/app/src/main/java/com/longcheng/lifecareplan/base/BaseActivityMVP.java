@@ -6,17 +6,15 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.bean.MessageEvent;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.MPermissionUtils;
+import com.longcheng.lifecareplan.utils.Permission.MPermissionUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;

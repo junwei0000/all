@@ -10,7 +10,7 @@ import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.LocationUtils;
+import com.longcheng.lifecareplan.utils.network.LocationUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

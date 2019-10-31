@@ -11,15 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.MPermissionUtils;
+import com.longcheng.lifecareplan.utils.Permission.MPermissionUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.socialize.UmengTool;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

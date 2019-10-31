@@ -9,7 +9,7 @@ import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.LocationUtils;
+import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import io.reactivex.Observable;

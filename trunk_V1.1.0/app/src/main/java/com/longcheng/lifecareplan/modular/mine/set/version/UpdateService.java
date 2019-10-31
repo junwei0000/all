@@ -1,19 +1,21 @@
 package com.longcheng.lifecareplan.modular.mine.set.version;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
-
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -23,7 +25,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -184,7 +185,11 @@ public class UpdateService extends Service {
      * @param file
      * @param context
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void Instanll(File file, Context context) {
+        //Android8.0安装应用需要打开未\n知来源权限，请去设置中开启权限
+        boolean b = context.getPackageManager().canRequestPackageInstalls();
+        String[] mPermissionList = new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES};
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(android.content.Intent.ACTION_VIEW);
