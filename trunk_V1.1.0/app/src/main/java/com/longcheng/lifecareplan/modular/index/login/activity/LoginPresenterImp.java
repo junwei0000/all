@@ -5,12 +5,12 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.api.Api;
-import com.longcheng.lifecareplan.api.ServerException;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.LocationUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -71,12 +71,13 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
                 });
     }
 
+    LocationUtils mLocationUtils;
+
     public void pUsePhoneLogin(String phoneNum, String code) {
         mView.showDialog();
         String token = ExampleApplication.token;
-        Log.e("Observable", phoneNum + "   " + code + "  " + token);
-
-        Observable<LoginDataBean> observable = Api.getInstance().service.userPhoneLogin(phoneNum, code, ExampleApplication.token);
+        Observable<LoginDataBean> observable = Api.getInstance().service.userPhoneLogin(phoneNum, code,
+                ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<LoginDataBean>() {
@@ -98,9 +99,19 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
         if (!TextUtils.isEmpty(pw)) {
             pw = ConfigUtils.getINSTANCE().MD5(pw);
         }
+        if (mLocationUtils == null) {
+            mLocationUtils = new LocationUtils();
+        }
+        double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
+        double phone_user_latitude = mLngAndLat[0];
+        double phone_user_longitude = mLngAndLat[1];
+        String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
+        String ip = ConfigUtils.getINSTANCE().getIPAddress(mContext);
         String token = ExampleApplication.token;
-        Log.e("Observable", phoneNum + "   " + pw + "  " + token);
-        Observable<LoginDataBean> observable = Api.getInstance().service.userAccountLogin(phoneNum, pw, token);
+        Log.e("Observable", phoneNum + "   " + pw + "  " + ip);
+        Observable<LoginDataBean> observable = Api.getInstance().service.userAccountLogin(phoneNum, pw,
+                ip, phone_user_latitude,
+                phone_user_longitude, phone_user_address, token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<LoginDataBean>() {

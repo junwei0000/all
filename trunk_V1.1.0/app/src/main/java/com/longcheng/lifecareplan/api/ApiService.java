@@ -97,7 +97,13 @@ public interface ApiService {
     //********************用户登录，个人信息***************************
     @FormUrlEncoded
     @POST(Config.VERSION + "login/account")
-    Observable<LoginDataBean> userAccountLogin(@Field("phone") String phone, @Field("password") String password, @Field("token") String token);
+    Observable<LoginDataBean> userAccountLogin(@Field("phone") String phone,
+                                               @Field("password") String password,
+                                               @Field("login_ip") String login_ip,
+                                               @Field("lat") double phone_user_latitude,
+                                               @Field("lon") double phone_user_longitude,
+                                               @Field("login_address") String phone_user_address,
+                                               @Field("token") String token);
 
     @GET(Config.VERSION + "login/account")
     Observable<LoginDataBean> userAccountLoginGet(@Query("phone") String phone, @Query("password") String password, @Query("token") String token);
@@ -139,7 +145,9 @@ public interface ApiService {
     Observable<SendCodeBean> cashSendCode(@Query("user_id") String user_id, @Query("phone") String phone, @Query("token") String token);
 
     @GET(Config.VERSION + "login/quick")
-    Observable<LoginDataBean> userPhoneLogin(@Query("phone") String phone, @Query("code") String code, @Query("token") String token);
+    Observable<LoginDataBean> userPhoneLogin(@Query("phone") String phone,
+                                             @Query("code") String code,
+                                             @Query("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "user/bindPhone")
