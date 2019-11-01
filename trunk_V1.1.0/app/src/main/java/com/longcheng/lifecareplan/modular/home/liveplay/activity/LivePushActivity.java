@@ -8,7 +8,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.net.ConnectivityManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -28,20 +27,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.alivc.component.custom.AlivcLivePushCustomDetect;
-import com.alivc.component.custom.AlivcLivePushCustomFilter;
-import com.alivc.live.detect.TaoFaceFilter;
-import com.alivc.live.filter.TaoBeautyFilter;
 import com.alivc.live.pusher.AlivcLivePushConfig;
-import com.alivc.live.pusher.AlivcLivePushStatsInfo;
 import com.alivc.live.pusher.AlivcLivePusher;
 import com.alivc.live.pusher.AlivcPreviewOrientationEnum;
-import com.alivc.live.pusher.LogUtil;
 import com.alivc.live.pusher.SurfaceStatus;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.home.liveplay.fragment.LivePushFragment;
-import com.longcheng.lifecareplan.modular.home.liveplay.fragment.PushDiagramStatsFragment;
-import com.longcheng.lifecareplan.modular.home.liveplay.fragment.PushTextStatsFragment;
 import com.longcheng.lifecareplan.utils.network.NetUtils;
 
 import java.io.File;
@@ -59,10 +50,8 @@ import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LAND
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_PORTRAIT;
 
 public class LivePushActivity extends AppCompatActivity {
-    private static final String TAG = "LivePushActivity";
     private static final int FLING_MIN_DISTANCE = 50;
     private static final int FLING_MIN_VELOCITY = 0;
-    private final long REFRESH_INTERVAL = 1000;
     private static final String URL_KEY = "url_key";
     private static final String ASYNC_KEY = "async_key";
     private static final String AUDIO_ONLY_KEY = "audio_only_key";
@@ -86,8 +75,6 @@ public class LivePushActivity extends AppCompatActivity {
     private GestureDetector mDetector;
     private ScaleGestureDetector mScaleDetector;
     private LivePushFragment mLivePushFragment;
-    private PushTextStatsFragment mPushTextStatsFragment;
-    private PushDiagramStatsFragment mPushDiagramStatsFragment;
     private AlivcLivePushConfig mAlivcLivePushConfig;
 
     private AlivcLivePusher mAlivcLivePusher = null;
@@ -99,24 +86,17 @@ public class LivePushActivity extends AppCompatActivity {
     private int mOrientation = ORIENTATION_PORTRAIT.ordinal();
 
     private SurfaceStatus mSurfaceStatus = SurfaceStatus.UNINITED;
-    //    private Handler mHandler = new Handler();
     private boolean isPause = false;
 
     private int mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
     private boolean mFlash = false;
     private boolean mMixExtern = false;
     private boolean mMixMain = false;
-    AlivcLivePushStatsInfo alivcLivePushStatsInfo = null;
-    TaoBeautyFilter taoBeautyFilter;
-
-    TaoFaceFilter taoFaceFilter;
 
     private String mAuthTime = "";
     private String mPrivacyKey = "";
 
-    //    private ConnectivityChangedReceiver mChangedReceiver = new ConnectivityChangedReceiver();
     private boolean videoThreadOn = false;
-    private boolean audioThreadOn = false;
 
     private int mNetWork = 0;
 
@@ -147,85 +127,18 @@ public class LivePushActivity extends AppCompatActivity {
             mAlivcLivePusher.init(getApplicationContext(), mAlivcLivePushConfig);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            showDialog(this, e.getMessage());
         } catch (IllegalStateException e) {
             e.printStackTrace();
-            showDialog(this, e.getMessage());
         }
-
-        mAlivcLivePusher.setCustomDetect(new AlivcLivePushCustomDetect() {
-            @Override
-            public void customDetectCreate() {
-                taoFaceFilter = new TaoFaceFilter(getApplicationContext());
-                taoFaceFilter.customDetectCreate();
-            }
-
-            @Override
-            public long customDetectProcess(long data, int width, int height, int rotation, int format, long extra) {
-                if (taoFaceFilter != null) {
-                    return taoFaceFilter.customDetectProcess(data, width, height, rotation, format, extra);
-                }
-                return 0;
-            }
-
-            @Override
-            public void customDetectDestroy() {
-                if (taoFaceFilter != null) {
-                    taoFaceFilter.customDetectDestroy();
-                }
-            }
-        });
-        mAlivcLivePusher.setCustomFilter(new AlivcLivePushCustomFilter() {
-            @Override
-            public void customFilterCreate() {
-                taoBeautyFilter = new TaoBeautyFilter();
-                taoBeautyFilter.customFilterCreate();
-            }
-
-            @Override
-            public void customFilterUpdateParam(float fSkinSmooth, float fWhiten, float fWholeFacePink, float fThinFaceHorizontal, float fCheekPink, float fShortenFaceVertical, float fBigEye) {
-                if (taoBeautyFilter != null) {
-                    taoBeautyFilter.customFilterUpdateParam(fSkinSmooth, fWhiten, fWholeFacePink, fThinFaceHorizontal, fCheekPink, fShortenFaceVertical, fBigEye);
-                }
-            }
-
-            @Override
-            public void customFilterSwitch(boolean on) {
-                if (taoBeautyFilter != null) {
-                    taoBeautyFilter.customFilterSwitch(on);
-                }
-            }
-
-            @Override
-            public int customFilterProcess(int inputTexture, int textureWidth, int textureHeight, long extra) {
-                if (taoBeautyFilter != null) {
-                    return taoBeautyFilter.customFilterProcess(inputTexture, textureWidth, textureHeight, extra);
-                }
-                return inputTexture;
-            }
-
-            @Override
-            public void customFilterDestroy() {
-                if (taoBeautyFilter != null) {
-                    taoBeautyFilter.customFilterDestroy();
-                }
-                taoBeautyFilter = null;
-            }
-        });
 
         mLivePushFragment = new LivePushFragment().newInstance(mPushUrl, mAsync, mAudioOnly, mVideoOnly, mCameraId, mFlash, mAlivcLivePushConfig.getQualityMode().getQualityMode(), mAuthTime, mPrivacyKey, mMixExtern, mMixMain);
         mLivePushFragment.setAlivcLivePusher(mAlivcLivePusher);
         mLivePushFragment.setStateListener(mStateListener);
-        mPushTextStatsFragment = new PushTextStatsFragment();
-        mPushDiagramStatsFragment = new PushDiagramStatsFragment();
 
         initViewPager();
         mScaleDetector = new ScaleGestureDetector(getApplicationContext(), mScaleGestureDetector);
         mDetector = new GestureDetector(getApplicationContext(), mGestureDetector);
         mNetWork = NetUtils.getAPNType(this);
-//        IntentFilter filter = new IntentFilter();
-//        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-//        registerReceiver(mChangedReceiver, filter);
     }
 
     public void initView() {
@@ -235,46 +148,21 @@ public class LivePushActivity extends AppCompatActivity {
 
     private void initViewPager() {
         mViewPager = (ViewPager) findViewById(R.id.tv_pager);
-//        mFragmentList.add(mPushTextStatsFragment);
         mFragmentList.add(mLivePushFragment);
-//        mFragmentList.add(mPushDiagramStatsFragment);
         mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mFragmentAdapter);
-//        mViewPager.setCurrentItem(1);
         mViewPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-//                if(((ViewPager)view).getCurrentItem() == 1) {
                 if (motionEvent.getPointerCount() >= 2 && mScaleDetector != null) {
                     mScaleDetector.onTouchEvent(motionEvent);
                 } else if (motionEvent.getPointerCount() == 1 && mDetector != null) {
                     mDetector.onTouchEvent(motionEvent);
                 }
-//                }
                 return false;
             }
         });
 
-//        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(final int arg0) {
-//                if(arg0 == 1) {
-//                    mHandler.removeCallbacks(mRunnable);
-//                } else {
-//                    mHandler.post(mRunnable);
-//                }
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
     }
 
     private void setOrientation(int orientation) {
@@ -457,9 +345,6 @@ public class LivePushActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-//        if(mViewPager.getCurrentItem() != 1) {
-//            mHandler.post(mRunnable);
-//        }
     }
 
     @Override
@@ -474,15 +359,11 @@ public class LivePushActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-//        if(mHandler != null) {
-//            mHandler.removeCallbacks(mRunnable);
-//        }
     }
 
     @Override
     protected void onDestroy() {
         videoThreadOn = false;
-        audioThreadOn = false;
         if (mAlivcLivePusher != null) {
             try {
                 mAlivcLivePusher.destroy();
@@ -490,11 +371,6 @@ public class LivePushActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-//        if(mHandler != null) {
-//            mHandler.removeCallbacks(mRunnable);
-//            mHandler = null;
-//        }
-//        unregisterReceiver(mChangedReceiver);
         mFragmentList = null;
         mPreviewView = null;
         mViewPager = null;
@@ -502,14 +378,8 @@ public class LivePushActivity extends AppCompatActivity {
         mDetector = null;
         mScaleDetector = null;
         mLivePushFragment = null;
-        mPushTextStatsFragment = null;
-        mPushDiagramStatsFragment = null;
         mAlivcLivePushConfig = null;
-
         mAlivcLivePusher = null;
-
-//        mHandler = null;
-        alivcLivePushStatsInfo = null;
         super.onDestroy();
     }
 
@@ -569,49 +439,6 @@ public class LivePushActivity extends AppCompatActivity {
     public SurfaceView getPreviewView() {
         return this.mPreviewView;
     }
-
-    private void showDialog(Context context, String message) {
-//        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-//        dialog.setTitle(getString(R.string.dialog_title));
-//        dialog.setMessage(message);
-//        dialog.setNegativeButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                finish();
-//            }
-//        });
-//        dialog.show();
-    }
-
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            LogUtil.d(TAG, "====== mRunnable run ======");
-
-            new AsyncTask<AlivcLivePushStatsInfo, Void, AlivcLivePushStatsInfo>() {
-                @Override
-                protected AlivcLivePushStatsInfo doInBackground(AlivcLivePushStatsInfo... alivcLivePushStatsInfos) {
-                    try {
-                        alivcLivePushStatsInfo = mAlivcLivePusher.getLivePushStatsInfo();
-                    } catch (IllegalStateException e) {
-
-                    }
-                    return alivcLivePushStatsInfo;
-                }
-
-                @Override
-                protected void onPostExecute(AlivcLivePushStatsInfo alivcLivePushStatsInfo) {
-                    super.onPostExecute(alivcLivePushStatsInfo);
-                    if (mPushTextStatsFragment != null && mViewPager.getCurrentItem() == 0) {
-                        mPushTextStatsFragment.updateValue(alivcLivePushStatsInfo);
-                    } else if (mPushDiagramStatsFragment != null && mViewPager.getCurrentItem() == 2) {
-                        mPushDiagramStatsFragment.updateValue(alivcLivePushStatsInfo);
-                    }
-//                    mHandler.postDelayed(mRunnable, REFRESH_INTERVAL);
-                }
-            }.execute();
-        }
-    };
 
     public interface PauseState {
         void updatePause(boolean state);
@@ -699,10 +526,6 @@ public class LivePushActivity extends AppCompatActivity {
 
     private void stopYUV() {
         videoThreadOn = false;
-    }
-
-    private void stopPcm() {
-        audioThreadOn = false;
     }
 
 
