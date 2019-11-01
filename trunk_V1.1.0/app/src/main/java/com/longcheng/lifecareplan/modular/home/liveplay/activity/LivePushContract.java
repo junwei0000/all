@@ -15,7 +15,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 public interface LivePushContract {
     interface View extends BaseView<Presenter> {
         void BackPushSuccess(LivePushDataInfo responseBean);
-        void BackPlaySuccess(LivePushDataInfo responseBean);
+        void BackPlayListSuccess(LivePushDataInfo responseBean);
         void Error();
     }
 

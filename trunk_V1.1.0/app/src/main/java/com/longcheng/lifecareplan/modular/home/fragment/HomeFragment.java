@@ -49,7 +49,7 @@ import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneJoinListA
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneMineActivity;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
 import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFriendsActivity;
-import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushMenuActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePlayListActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
@@ -357,7 +357,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 //                            mPresent.getQuickTeamUrl();
 //
                         //直播
-                        intent = new Intent(mActivity, LivePushMenuActivity.class);
+                        intent = new Intent(mActivity, LivePlayListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("IsLiveBroadcast", IsLiveBroadcast);
                         startActivity(intent);

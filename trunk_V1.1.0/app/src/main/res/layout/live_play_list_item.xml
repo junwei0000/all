@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_padd"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <com.longcheng.lifecareplan.utils.myview.CircleImageView
+        android:id="@+id/item_iv_thumb"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
+        android:background="@mipmap/user_default_icon"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/jianJu">
+
+
+        <TextView
+            android:id="@+id/item_tv_playstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="直播中：极速大牛"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_tishi_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dp2">
+
+            <TextView
+                android:id="@+id/item_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="小鱼儿"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/item_tv_jieqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/corners_bg_redfen"
+                android:paddingLeft="@dimen/dp4"
+                android:paddingTop="@dimen/dp1"
+                android:paddingRight="@dimen/dp4"
+                android:paddingBottom="@dimen/dp1"
+                android:singleLine="true"
+                android:text="白鹭"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp2"
+            android:singleLine="true"
+            android:text="直播时间：2019-02-12 12:11:11"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+</LinearLayout>
