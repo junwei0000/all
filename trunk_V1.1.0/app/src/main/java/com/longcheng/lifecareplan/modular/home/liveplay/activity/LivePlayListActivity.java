@@ -154,12 +154,12 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     public void BackPushSuccess(LivePushDataInfo responseBean) {
         Pushurl = responseBean.getPushurl();
         String playTile = "";
-        String live_name="";
+        String live_name = "";
         if (playList != null) {
             for (LivePlayItemInfo livePlayItemInfo : playList) {
                 if (uid.equals(livePlayItemInfo.getUid())) {
                     playTile = livePlayItemInfo.getPlayTile();
-                    live_name=livePlayItemInfo.getName();
+                    live_name = livePlayItemInfo.getName();
                     break;
                 }
             }
@@ -168,7 +168,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             LivePushActivity.startActivity(this, mAlivcLivePushConfig, Pushurl,
                     mAsyncValue, mAudioOnlyPush, mVideoOnlyPush, mOrientationEnum,
                     mCameraId, isFlash, mAuthTimeStr, mPrivacyKeyStr, mMixStream,
-                    mAlivcLivePushConfig.isExternMainStream(), playTile,live_name);
+                    mAlivcLivePushConfig.isExternMainStream(), playTile, live_name);
         }
     }
 
@@ -183,11 +183,9 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     public void BackPlayListSuccess(LivePushDataInfo responseBean) {
         playList = responseBean.getPlayList();
         String time = DatesUtils.getInstance().getNowTime("yyyy-MM-dd HH:mm:ss");
-        if (playList == null) {
-            playList = new ArrayList<>();
-            playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
-            playList.add(new LivePlayItemInfo("134", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云莉雅", HomeFragment.jieqi_name, time));
-        }
+        playList = new ArrayList<>();
+        playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
+        playList.add(new LivePlayItemInfo("128767", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云莉雅", HomeFragment.jieqi_name, time));
         PlayListAdapter mAdapter = new PlayListAdapter(mContext, playList);
         playView.setAdapter(mAdapter);
         playView.setVisibility(View.VISIBLE);
