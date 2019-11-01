@@ -161,6 +161,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public static String kn_url = "";
 
     private int IsLiveBroadcast;
+
     @Override
     public int bindLayout() {
         return R.layout.fragment_home;
@@ -353,15 +354,15 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
                     } else if (sort == 5) {
-//                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
 //                            mPresent.getQuickTeamUrl();
-//
-                        //直播
-                        intent = new Intent(mActivity, LivePlayListActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("IsLiveBroadcast", IsLiveBroadcast);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                            //直播
+                            intent = new Intent(mActivity, LivePlayListActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("IsLiveBroadcast", IsLiveBroadcast);
+                            startActivity(intent);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                        }
                     }
                 }
             }
@@ -639,7 +640,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             SharedPreferencesHelper.put(mActivity, "invite_user_url", "" + invite_user_url);
             HomeItemBean UserInfo = mHomeAfterBean.getUserInfo();
             if (UserInfo != null) {
-                IsLiveBroadcast= UserInfo.getIsLiveBroadcast();
+                IsLiveBroadcast = UserInfo.getIsLiveBroadcast();
                 int group_id = UserInfo.getGroup_id();
                 int team_id = UserInfo.getTeam_id();
                 SharedPreferencesHelper.put(mActivity, "group_id", group_id);

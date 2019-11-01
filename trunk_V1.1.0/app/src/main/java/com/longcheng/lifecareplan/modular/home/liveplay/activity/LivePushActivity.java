@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,18 +12,22 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alivc.live.pusher.AlivcLivePushConfig;
@@ -32,6 +37,12 @@ import com.alivc.live.pusher.AlivcLivePusher;
 import com.alivc.live.pusher.AlivcPreviewOrientationEnum;
 import com.alivc.live.pusher.SurfaceStatus;
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.base.BaseActivity;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.utils.network.NetUtils;
 
 import java.io.File;
@@ -43,13 +54,15 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import butterknife.BindView;
+
 import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_BACK;
 import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_FRONT;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_LEFT;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_RIGHT;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_PORTRAIT;
 
-public class LivePushActivity extends AppCompatActivity {
+public class LivePushActivity extends BaseActivity {
     private static final String URL_KEY = "url_key";
     private static final String ASYNC_KEY = "async_key";
     private static final String AUDIO_ONLY_KEY = "audio_only_key";
@@ -62,11 +75,38 @@ public class LivePushActivity extends AppCompatActivity {
     private static final String MIX_EXTERN = "mix_extern";
     private static final String MIX_MAIN = "mix_main";
     private static final int REQ_CODE_PUSH = 0x1112;
+    @BindView(R.id.preview_view)
+    SurfaceView previewView;
+    @BindView(R.id.frag_tv_playstatus)
+    TextView fragTvPlaystatus;
+    @BindView(R.id.frag_tv_jieqi)
+    TextView fragTvJieqi;
+    @BindView(R.id.frag_tv_city)
+    TextView fragTvCity;
+    @BindView(R.id.frag_layout_city)
+    LinearLayout fragLayoutCity;
+    @BindView(R.id.frag_layout_rank)
+    LinearLayout fragLayoutRank;
+    @BindView(R.id.btn_exit)
+    ImageView btnExit;
+    @BindView(R.id.lv_rankdata)
+    ListView lvRankdata;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.frag_layout_name)
+    LinearLayout fragLayoutName;
+    @BindView(R.id.lv_msg)
+    ListView lvMsg;
+    @BindView(R.id.edt_content)
+    SupplierEditText edtContent;
+    @BindView(R.id.btn_liwu)
+    ImageView btnLiwu;
+    @BindView(R.id.btn_camera)
+    ImageView btnCamera;
+    @BindView(R.id.relat_push)
+    RelativeLayout relatPush;
 
-    public SurfaceView mPreviewView;
-    private ImageView mCamera;
-    private Button mPushButton;
-    private Button mOperaButton;
+
     private AlivcLivePushConfig mAlivcLivePushConfig;
 
     private AlivcLivePusher mAlivcLivePusher = null;
@@ -94,25 +134,69 @@ public class LivePushActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setAllowFullScreen(true);
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.live_push);
-        initView();
-        initData();
     }
 
-    public void initView() {
-        mPreviewView = (SurfaceView) findViewById(R.id.preview_view);
-        mPreviewView.getHolder().addCallback(mCallback);
-        mCamera = (ImageView) findViewById(R.id.camera);
-        mPushButton = (Button) findViewById(R.id.push_button);
-        mOperaButton = (Button) findViewById(R.id.opera_button);
-        mCamera.setOnClickListener(onClickListener);
-        mPushButton.setOnClickListener(onClickListener);
-        mOperaButton.setOnClickListener(onClickListener);
+    @Override
+    public void onClick(View view) {
+
     }
+
+    @Override
+    public View bindView() {
+        return null;
+    }
+
+    @Override
+    public int bindLayout() {
+        return R.layout.live_push;
+    }
+
+    @Override
+    public void initView(View view) {
+
+    }
+
+    @Override
+    public void setListener() {
+        previewView.getHolder().addCallback(mCallback);
+        btnLiwu.setVisibility(View.GONE);
+        btnCamera.setOnClickListener(onClickListener);
+        btnExit.setOnClickListener(onClickListener);
+        fragLayoutName.setOnClickListener(onClickListener);
+        edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId,
+                                          KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND
+                        || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                    if (!TextUtils.isEmpty(edtContent.getText().toString().trim())) {
+                        String content = edtContent.getText().toString().trim();
+                        edtContent.setText("");
+                        ToastUtils.showToast("功能开发中...");
+                    }
+                    ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void initDataAfter() {
+        initData();
+        String city = new LocationUtils().getAddressCity(this);
+        fragTvCity.setText("" + city);
+        fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
+        Intent intent = getIntent();
+        String playTitle = intent.getStringExtra("playTitle");
+        fragTvPlaystatus.setText("直播中: " + playTitle);
+        String live_name = intent.getStringExtra("live_name");
+        tvName.setText("互祝" + live_name);
+    }
+
 
     private void initData() {
         mPushUrl = getIntent().getStringExtra(URL_KEY);
@@ -139,14 +223,30 @@ public class LivePushActivity extends AppCompatActivity {
         mAlivcLivePusher.setLivePushNetworkListener(mPushNetworkListener);
     }
 
+    public static final int SENDLIWU = 11;
+    public static final int CAMERA = 22;
+    public static final int EXIT = 33;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SENDLIWU:
+                    break;
+                case CAMERA:
+                    break;
+                case EXIT:
+                    break;
+            }
+        }
+    };
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.exit:
+                case R.id.btn_exit:
                     finish();
                     break;
-                case R.id.camera:
+                case R.id.btn_camera:
                     if (mCameraId == CAMERA_TYPE_FRONT.getCameraId()) {
                         mCameraId = CAMERA_TYPE_BACK.getCameraId();
                     } else {
@@ -154,11 +254,11 @@ public class LivePushActivity extends AppCompatActivity {
                     }
                     mAlivcLivePusher.switchCamera();
                     break;
-                case R.id.push_button:
-                    startPlay();
+                case R.id.btn_liwu:
+                    ToastUtils.showToast("功能开发中...");
                     break;
-                case R.id.opera_button:
-                    finish();
+                case R.id.frag_layout_name:
+                    ToastUtils.showToast("功能开发中...");
                     break;
                 default:
                     break;
@@ -185,9 +285,9 @@ public class LivePushActivity extends AppCompatActivity {
                 if (mAlivcLivePusher != null) {
                     try {
                         if (mAsync) {
-                            mAlivcLivePusher.startPreviewAysnc(mPreviewView);
+                            mAlivcLivePusher.startPreviewAysnc(previewView);
                         } else {
-                            mAlivcLivePusher.startPreview(mPreviewView);
+                            mAlivcLivePusher.startPreview(previewView);
                         }
                         if (mAlivcLivePushConfig.isExternMainStream()) {
                             startYUV(getApplicationContext());
@@ -199,7 +299,7 @@ public class LivePushActivity extends AppCompatActivity {
                             public void run() {
                                 startPlay();
                             }
-                        }, 2000);
+                        }, 2200);
                     } catch (IllegalArgumentException e) {
                         e.toString();
                     } catch (IllegalStateException e) {
@@ -227,7 +327,7 @@ public class LivePushActivity extends AppCompatActivity {
                                      String url, boolean async, boolean audioOnly, boolean videoOnly,
                                      AlivcPreviewOrientationEnum orientation, int cameraId,
                                      boolean isFlash, String authTime, String privacyKey,
-                                     boolean mixExtern, boolean mixMain) {
+                                     boolean mixExtern, boolean mixMain, String playTitle, String live_name) {
         Intent intent = new Intent(activity, LivePushActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(AlivcLivePushConfig.CONFIG, alivcLivePushConfig);
@@ -242,6 +342,8 @@ public class LivePushActivity extends AppCompatActivity {
         bundle.putString(PRIVACY_KEY, privacyKey);
         bundle.putBoolean(MIX_EXTERN, mixExtern);
         bundle.putBoolean(MIX_MAIN, mixMain);
+        bundle.putString("playTitle", playTitle);
+        bundle.putString("live_name", live_name);
         intent.putExtras(bundle);
         activity.startActivityForResult(intent, REQ_CODE_PUSH);
     }
@@ -291,7 +393,7 @@ public class LivePushActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        mPreviewView = null;
+        previewView = null;
         mAlivcLivePushConfig = null;
         mAlivcLivePusher = null;
         super.onDestroy();
@@ -330,7 +432,7 @@ public class LivePushActivity extends AppCompatActivity {
     }
 
     public SurfaceView getPreviewView() {
-        return this.mPreviewView;
+        return this.previewView;
     }
 
     public interface PauseState {

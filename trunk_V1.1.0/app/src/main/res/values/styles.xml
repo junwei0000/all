@@ -99,7 +99,15 @@
         <!-- AppCompatEditText选择的底线颜色 -->
         <item name="colorControlActivated">@color/gray</item>
     </style>
-
+    <style name="text_padd_oval">
+        <item name="android:paddingTop">@dimen/dp1</item>
+        <item name="android:paddingBottom">@dimen/dp1</item>
+        <item name="android:paddingLeft">@dimen/dp4</item>
+        <item name="android:paddingRight">@dimen/dp4</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
     <style name="text_padd">
         <item name="android:paddingTop">3dp</item>
         <item name="android:paddingBottom">3dp</item>

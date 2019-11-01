@@ -133,5 +133,31 @@ public class LocationUtils {
         }
         return "";
     }
+
+    /**
+     * 根据经纬度获取地理位置
+     *
+     * @param mContext
+     * @return
+     */
+    public String getAddressCity(Context mContext) {
+        try {
+            double[] mLngAndLat = getLngAndLatWithNetwork(mContext);
+            double latitude = mLngAndLat[0];
+            double longitude = mLngAndLat[1];
+            Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
+            if (geocoder == null) {
+                return "";
+            }
+            List<Address> addresses = geocoder.getFromLocation(latitude,
+                    longitude, 1);
+            if (addresses != null && addresses.size() > 0) {
+                return addresses.get(0).getLocality();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
 

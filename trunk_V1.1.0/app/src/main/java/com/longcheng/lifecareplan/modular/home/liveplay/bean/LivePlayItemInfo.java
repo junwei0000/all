@@ -1,6 +1,5 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.bean;
 
-import com.google.gson.annotations.SerializedName;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 
 /**
@@ -9,42 +8,67 @@ import com.longcheng.lifecareplan.bean.ResponseBean;
  * 意图：
  */
 public class LivePlayItemInfo extends ResponseBean {
-    @SerializedName("pushurl")
-    private String pushurl;
+    private String uid;
+    private int thumb;
+    private String playTile;
+    private String name;
+    private String jieqi;
+    private String time;
 
-    private String rtmpurl;
-    private String flvurl;
-    private String m3u8url;
-
-    public String getRtmpurl() {
-        return rtmpurl;
+    public LivePlayItemInfo(String uid, int thumb, String playTile, String name,String jieqi,String time) {
+        this.uid = uid;
+        this.playTile = playTile;
+        this.name = name;
+        this.jieqi = jieqi;
+        this.thumb = thumb;
+        this.time = time;
     }
 
-    public void setRtmpurl(String rtmpurl) {
-        this.rtmpurl = rtmpurl;
+    public String getJieqi() {
+        return jieqi;
     }
 
-    public String getFlvurl() {
-        return flvurl;
+    public void setJieqi(String jieqi) {
+        this.jieqi = jieqi;
     }
 
-    public void setFlvurl(String flvurl) {
-        this.flvurl = flvurl;
+    public String getUid() {
+        return uid;
     }
 
-    public String getM3u8url() {
-        return m3u8url;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public void setM3u8url(String m3u8url) {
-        this.m3u8url = m3u8url;
+    public int getThumb() {
+        return thumb;
     }
 
-    public String getPushurl() {
-        return pushurl;
+    public void setThumb(int thumb) {
+        this.thumb = thumb;
     }
 
-    public void setPushurl(String pushurl) {
-        this.pushurl = pushurl;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getPlayTile() {
+        return playTile;
+    }
+
+    public void setPlayTile(String playTile) {
+        this.playTile = playTile;
     }
 }

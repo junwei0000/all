@@ -37,9 +37,9 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
      * 获取推流数据
      */
 
-    public void getLivePush() {
+    public void getLivePush(String uid) {
         mView.showDialog();
-        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePush(UserUtils.getUserId(mContext), ExampleApplication.token);
+        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePush(uid, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<LivePushDataInfo>() {
@@ -48,6 +48,32 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                         mView.dismissDialog();
                         Log.d("getLivePush",""+responseBean.getPushurl());
                         mView.BackPushSuccess(responseBean);
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.Error();
+                        Log.d("getLivePush",""+throwable.toString());
+                    }
+                });
+
+    }
+    /**
+     * 获取
+     */
+
+    public void getLivePlay(String uid) {
+        mView.showDialog();
+        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePlay(uid, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<LivePushDataInfo>() {
+                    @Override
+                    public void accept(LivePushDataInfo responseBean) throws Exception {
+                        mView.dismissDialog();
+                        Log.d("getLivePush",""+responseBean.getPushurl());
+                        mView.BackPlaySuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

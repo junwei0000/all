@@ -19,12 +19,12 @@ public interface ApiLiveService {
 //    https://dock.lihan.ltd/dock/classic/live/play_longcheng
 //    live/push_longcheng
     @FormUrlEncoded
-    @POST("live/push_longcheng")
-    Observable<LivePushDataInfo> getLivePush(@Field("user_id") String user_id,
+    @POST("live/push")
+    Observable<LivePushDataInfo> getLivePush(@Field("uid") String user_id,
                                              @Field("token") String token);
     @FormUrlEncoded
-    @POST("live/play_longcheng")
-    Observable<LivePushDataInfo> getLivePlay(@Field("user_id") String user_id,
+    @POST("live/player")
+    Observable<LivePushDataInfo> getLivePlay(@Field("uid") String user_id,
                                              @Field("token") String token);
 }
 

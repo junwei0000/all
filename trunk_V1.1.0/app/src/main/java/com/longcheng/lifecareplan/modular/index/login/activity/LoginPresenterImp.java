@@ -75,6 +75,9 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
 
     public void pUsePhoneLogin(String phoneNum, String code) {
         mView.showDialog();
+        if (mLocationUtils == null) {
+            mLocationUtils = new LocationUtils();
+        }
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         double phone_user_latitude = mLngAndLat[0];
         double phone_user_longitude = mLngAndLat[1];

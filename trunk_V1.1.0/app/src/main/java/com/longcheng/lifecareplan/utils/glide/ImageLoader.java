@@ -122,7 +122,7 @@ public class ImageLoader {
         f = null;
     }
 
-    private void setRoundCorner(ImageView imageView, Bitmap bitmap) {
+    public void setRoundCorner(ImageView imageView, Bitmap bitmap) {
         if (imgStatus.equals("headImg")) {
             Bitmap Roundbitmap = ConfigUtils.getINSTANCE().toRoundCorner(context, bitmap);
             imageView.setImageBitmap(Roundbitmap);

@@ -18,10 +18,13 @@ import com.alivc.live.pusher.AlivcPreviewOrientationEnum;
 import com.alivc.live.pusher.AlivcResolutionEnum;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.fragment.SharedPreferenceUtils;
+import com.longcheng.lifecareplan.utils.DatesUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -51,6 +54,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @BindView(R.id.layout_live_push)
     LinearLayout layoutLivePush;
 
+    private String uid;
     private String Pushurl;
     private AlivcLivePushConfig mAlivcLivePushConfig;
     private AlivcResolutionEnum mDefinition = AlivcResolutionEnum.RESOLUTION_720P;
@@ -72,7 +76,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 back();
                 break;
             case R.id.layout_live_push:
-                mPresent.getLivePush();
+                mPresent.getLivePush(uid);
                 break;
         }
     }
@@ -112,7 +116,9 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 if (playList != null && playList.size() > 0) {
                     Intent intent = new Intent(mActivity, LivePlayActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("playurl", playList.get(position).getPushurl());
+                    intent.putExtra("uid", playList.get(position).getUid());
+                    intent.putExtra("playTitle", playList.get(position).getPlayTile());
+                    intent.putExtra("live_name", playList.get(position).getName());
                     startActivity(intent);
                 }
             }
@@ -122,6 +128,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void initDataAfter() {
+        uid = UserUtils.getUserId(mContext);
         mAlivcLivePushConfig = new AlivcLivePushConfig();
         AlivcLivePushConfig.setMediaProjectionPermissionResultData(null);
         mPresent.getLivePlayList();
@@ -146,12 +153,28 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @Override
     public void BackPushSuccess(LivePushDataInfo responseBean) {
         Pushurl = responseBean.getPushurl();
+        String playTile = "";
+        String live_name="";
+        if (playList != null) {
+            for (LivePlayItemInfo livePlayItemInfo : playList) {
+                if (uid.equals(livePlayItemInfo.getUid())) {
+                    playTile = livePlayItemInfo.getPlayTile();
+                    live_name=livePlayItemInfo.getName();
+                    break;
+                }
+            }
+        }
         if (getPushConfig() != null) {
             LivePushActivity.startActivity(this, mAlivcLivePushConfig, Pushurl,
                     mAsyncValue, mAudioOnlyPush, mVideoOnlyPush, mOrientationEnum,
                     mCameraId, isFlash, mAuthTimeStr, mPrivacyKeyStr, mMixStream,
-                    mAlivcLivePushConfig.isExternMainStream());
+                    mAlivcLivePushConfig.isExternMainStream(), playTile,live_name);
         }
+    }
+
+    @Override
+    public void BackPlaySuccess(LivePushDataInfo responseBean) {
+
     }
 
     ArrayList<LivePlayItemInfo> playList;
@@ -159,11 +182,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @Override
     public void BackPlayListSuccess(LivePushDataInfo responseBean) {
         playList = responseBean.getPlayList();
+        String time = DatesUtils.getInstance().getNowTime("yyyy-MM-dd HH:mm:ss");
         if (playList == null) {
             playList = new ArrayList<>();
-            for (int i = 0; i < 24; i++) {
-                playList.add(new LivePlayItemInfo());
-            }
+            playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张总", HomeFragment.jieqi_name, time));
+            playList.add(new LivePlayItemInfo("134", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云老师", HomeFragment.jieqi_name, time));
         }
         PlayListAdapter mAdapter = new PlayListAdapter(mContext, playList);
         playView.setAdapter(mAdapter);
