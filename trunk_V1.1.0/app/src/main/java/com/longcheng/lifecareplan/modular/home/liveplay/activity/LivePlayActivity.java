@@ -157,7 +157,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
         Intent intent = getIntent();
         String live_name = intent.getStringExtra("live_name");
-        tvName.setText("互祝" + live_name);
+        tvName.setText("祝福" + live_name);
         String playTitle = intent.getStringExtra("playTitle");
         fragTvPlaystatus.setText("直播中: " + playTitle);
         String uid = intent.getStringExtra("uid");

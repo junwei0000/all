@@ -185,8 +185,8 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         String time = DatesUtils.getInstance().getNowTime("yyyy-MM-dd HH:mm:ss");
         if (playList == null) {
             playList = new ArrayList<>();
-            playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张总", HomeFragment.jieqi_name, time));
-            playList.add(new LivePlayItemInfo("134", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云老师", HomeFragment.jieqi_name, time));
+            playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
+            playList.add(new LivePlayItemInfo("134", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云莉雅", HomeFragment.jieqi_name, time));
         }
         PlayListAdapter mAdapter = new PlayListAdapter(mContext, playList);
         playView.setAdapter(mAdapter);

@@ -45,7 +45,7 @@ public class PlayListAdapter extends BaseAdapterHelper<LivePlayItemInfo> {
         mHolder.item_tv_name.setText(mHelpItemBean.getName());
         mHolder.item_tv_jieqi.setText(mHelpItemBean.getJieqi());
         mHolder.item_tv_date.setText(mHelpItemBean.getTime());
-        mHolder.item_tv_playstatus.setText("直播中: " + mHelpItemBean.getPlayTile());
+        mHolder.item_tv_playstatus.setText("" + mHelpItemBean.getPlayTile());
         asyncImageLoader.setRoundCorner(mHolder.item_iv_thumb, asyncImageLoader.readBitMap(context, mHelpItemBean.getThumb()));
         return convertView;
     }

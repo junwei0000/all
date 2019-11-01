@@ -194,7 +194,7 @@ public class LivePushActivity extends BaseActivity {
         String playTitle = intent.getStringExtra("playTitle");
         fragTvPlaystatus.setText("直播中: " + playTitle);
         String live_name = intent.getStringExtra("live_name");
-        tvName.setText("互祝" + live_name);
+        tvName.setText("祝福" + live_name);
     }
 
 
