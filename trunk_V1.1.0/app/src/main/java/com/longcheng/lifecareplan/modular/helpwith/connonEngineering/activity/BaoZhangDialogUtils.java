@@ -183,6 +183,9 @@ public class BaoZhangDialogUtils {
         } else {
             payType = "4";
         }
+        if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障初始化默认微信
+            payType = "1";
+        }
         num = 1;
         tv_num.setText("" + num);
         detailhelp_tv_account.setText(context.getResources().getString(R.string.mark_money) + asset_debt);

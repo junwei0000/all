@@ -12,12 +12,53 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@mipmap/my_luck_successful"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/dp65"
         android:paddingLeft="@dimen/dp30"
-        android:paddingRight="@dimen/dp30">
+        android:paddingRight="@dimen/dp30"
+        android:paddingTop="@dimen/dp10">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FDF8DA"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp8"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/jianJu">
+
+            <TextView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="1dp"
+                android:background="@color/red_openredfen" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp6"
+                android:paddingRight="@dimen/dp6"
+                android:text="收 获 满 满"
+                android:textColor="@color/red_openredfen"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="1dp"
+                android:background="@color/red_openredfen" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_rednum"
+            style="@style/view_paddlefgtright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/jianJu"
+            android:text="本次开启红包0个"
+            android:textColor="@color/red_openredfen"
+            android:textSize="@dimen/text_contents_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,16 +187,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_rednum"
-        style="@style/view_paddlefgtright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp50"
-        android:text="本次开启红包0个"
-        android:textColor="@color/red_openredfen"
-        android:textSize="@dimen/text_contents_size" />
 
     <TextView
         android:id="@+id/tv_know"
