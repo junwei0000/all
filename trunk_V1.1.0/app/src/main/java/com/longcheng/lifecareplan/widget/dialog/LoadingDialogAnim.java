@@ -131,7 +131,7 @@ public class LoadingDialogAnim extends Dialog {
                 /**
                  * 防止OOM异常崩溃的问题
                  */
-                SceneAnimation anim = new SceneAnimation(animationIV, meetPics, 20);
+                SceneAnimation anim = new SceneAnimation(context,animationIV, meetPics, 20);
                 loadDialog.show();
             }
         }, 0);
