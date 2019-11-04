@@ -17,7 +17,6 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -53,7 +52,6 @@ import com.longcheng.lifecareplan.modular.mine.phosphor.PhosphorAct;
 import com.longcheng.lifecareplan.modular.mine.rebirth.activity.RebirthActivity;
 import com.longcheng.lifecareplan.modular.mine.relationship.activity.RelationshipAccountAct;
 import com.longcheng.lifecareplan.modular.mine.rewardcenters.activity.RewardCentersActivity;
-import com.longcheng.lifecareplan.modular.mine.set.activity.ReceiveH5Activity;
 import com.longcheng.lifecareplan.modular.mine.set.activity.SetActivity;
 import com.longcheng.lifecareplan.modular.mine.signIn.activity.SignInH5Activity;
 import com.longcheng.lifecareplan.modular.mine.starinstruction.StarInstructionAct;
@@ -1247,41 +1245,43 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 基础保障弹层
      */
     public void showLifeBasiDialog() {
-        if (LifeBasicDialog == null) {
-            LifeBasicDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
-            LifeBasicDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = LifeBasicDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            LifeBasicDialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = LifeBasicDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4;
-            LifeBasicDialog.getWindow().setAttributes(p); //设置生效
-            ImageView fram_bg = (ImageView) LifeBasicDialog.findViewById(R.id.fram_bg);
-            fram_bg.setBackgroundResource(R.mipmap.my_basic_bj);
-            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.423)));
-            LinearLayout layout_cancel = (LinearLayout) LifeBasicDialog.findViewById(R.id.layout_cancel);
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            if (LifeBasicDialog == null) {
+                LifeBasicDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+                LifeBasicDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = LifeBasicDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                LifeBasicDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = LifeBasicDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                LifeBasicDialog.getWindow().setAttributes(p); //设置生效
+                ImageView fram_bg = (ImageView) LifeBasicDialog.findViewById(R.id.fram_bg);
+                fram_bg.setBackgroundResource(R.mipmap.my_basic_bj);
+                fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.423)));
+                LinearLayout layout_cancel = (LinearLayout) LifeBasicDialog.findViewById(R.id.layout_cancel);
 
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LifeBasicDialog.dismiss();
-                }
-            });
-            fram_bg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LifeBasicDialog.dismiss();/**/
-                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", "" + data.getDisplayLifeBasicUrl());
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                }
-            });
-        } else {
-            LifeBasicDialog.show();
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LifeBasicDialog.dismiss();
+                    }
+                });
+                fram_bg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LifeBasicDialog.dismiss();/**/
+                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + data.getDisplayLifeBasicUrl());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
+                });
+            } else {
+                LifeBasicDialog.show();
+            }
         }
     }
 
@@ -1291,39 +1291,41 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 基础保障弹层
      */
     public void showMyKaDialog() {
-        if (myKaDialog == null) {
-            myKaDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_myka);// 创建Dialog并设置样式主题
-            myKaDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = myKaDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            myKaDialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = myKaDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4;
-            myKaDialog.getWindow().setAttributes(p); //设置生效
-            TextView btn_jihuo = (TextView) myKaDialog.findViewById(R.id.btn_jihuo);
-            LinearLayout layout_cancel = (LinearLayout) myKaDialog.findViewById(R.id.layout_cancel);
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            if (myKaDialog == null) {
+                myKaDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_myka);// 创建Dialog并设置样式主题
+                myKaDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = myKaDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                myKaDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = myKaDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                myKaDialog.getWindow().setAttributes(p); //设置生效
+                TextView btn_jihuo = (TextView) myKaDialog.findViewById(R.id.btn_jihuo);
+                LinearLayout layout_cancel = (LinearLayout) myKaDialog.findViewById(R.id.layout_cancel);
 
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    myKaDialog.dismiss();
-                }
-            });
-            btn_jihuo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    myKaDialog.dismiss();/**/
-                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", "" + data.getMyka_url());
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                }
-            });
-        } else {
-            myKaDialog.show();
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myKaDialog.dismiss();
+                    }
+                });
+                btn_jihuo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myKaDialog.dismiss();/**/
+                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + data.getMyka_url());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
+                });
+            } else {
+                myKaDialog.show();
+            }
         }
     }
 
@@ -1333,41 +1335,43 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 基础保障未提现弹层
      */
     public void showLifeBasicCashDialog() {
-        if (LifeBasicCashDialog == null) {
-            LifeBasicCashDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
-            LifeBasicCashDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = LifeBasicCashDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            LifeBasicCashDialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = LifeBasicCashDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4;
-            LifeBasicCashDialog.getWindow().setAttributes(p); //设置生效
-            ImageView fram_bg = (ImageView) LifeBasicCashDialog.findViewById(R.id.fram_bg);
-            fram_bg.setBackgroundResource(R.mipmap.my_lifebasiccash_bg);
-            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.316)));
-            LinearLayout layout_cancel = (LinearLayout) LifeBasicCashDialog.findViewById(R.id.layout_cancel);
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            if (LifeBasicCashDialog == null) {
+                LifeBasicCashDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+                LifeBasicCashDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = LifeBasicCashDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                LifeBasicCashDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = LifeBasicCashDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                LifeBasicCashDialog.getWindow().setAttributes(p); //设置生效
+                ImageView fram_bg = (ImageView) LifeBasicCashDialog.findViewById(R.id.fram_bg);
+                fram_bg.setBackgroundResource(R.mipmap.my_lifebasiccash_bg);
+                fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.316)));
+                LinearLayout layout_cancel = (LinearLayout) LifeBasicCashDialog.findViewById(R.id.layout_cancel);
 
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LifeBasicCashDialog.dismiss();
-                }
-            });
-            fram_bg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LifeBasicCashDialog.dismiss();/**/
-                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", "" + data.getLifeBasicApplyCashUrl());
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                }
-            });
-        } else {
-            LifeBasicCashDialog.show();
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LifeBasicCashDialog.dismiss();
+                    }
+                });
+                fram_bg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LifeBasicCashDialog.dismiss();/**/
+                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + data.getLifeBasicApplyCashUrl());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
+                });
+            } else {
+                LifeBasicCashDialog.show();
+            }
         }
     }
 
@@ -1377,41 +1381,43 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 债务未提现提示弹层
      */
     public void showCrediterCashDialog() {
-        if (CrediterCashDialog == null) {
-            CrediterCashDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
-            CrediterCashDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = CrediterCashDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            CrediterCashDialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = CrediterCashDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4;
-            CrediterCashDialog.getWindow().setAttributes(p); //设置生效
-            ImageView fram_bg = (ImageView) CrediterCashDialog.findViewById(R.id.fram_bg);
-            fram_bg.setBackgroundResource(R.mipmap.my_credite_bg);
-            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.316)));
-            LinearLayout layout_cancel = (LinearLayout) CrediterCashDialog.findViewById(R.id.layout_cancel);
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            if (CrediterCashDialog == null) {
+                CrediterCashDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_connon);// 创建Dialog并设置样式主题
+                CrediterCashDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = CrediterCashDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                CrediterCashDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = CrediterCashDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                CrediterCashDialog.getWindow().setAttributes(p); //设置生效
+                ImageView fram_bg = (ImageView) CrediterCashDialog.findViewById(R.id.fram_bg);
+                fram_bg.setBackgroundResource(R.mipmap.my_credite_bg);
+                fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.316)));
+                LinearLayout layout_cancel = (LinearLayout) CrediterCashDialog.findViewById(R.id.layout_cancel);
 
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CrediterCashDialog.dismiss();
-                }
-            });
-            fram_bg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CrediterCashDialog.dismiss();/**/
-                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                }
-            });
-        } else {
-            CrediterCashDialog.show();
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CrediterCashDialog.dismiss();
+                    }
+                });
+                fram_bg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CrediterCashDialog.dismiss();/**/
+                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + data.getVolunteerCreditorUrl());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
+                });
+            } else {
+                CrediterCashDialog.show();
+            }
         }
     }
 
@@ -1469,43 +1475,45 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 红包弹层
      */
     public void showRedBaoDialog() {
-        if (redBaoDialog == null) {
-            redBaoDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_centeropenredbao);// 创建Dialog并设置样式主题
-            redBaoDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = redBaoDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            redBaoDialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = redBaoDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth(); //宽度设置为屏幕
-            redBaoDialog.getWindow().setAttributes(p); //设置生效
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            if (redBaoDialog == null) {
+                redBaoDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_centeropenredbao);// 创建Dialog并设置样式主题
+                redBaoDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = redBaoDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                redBaoDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = redBaoDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth(); //宽度设置为屏幕
+                redBaoDialog.getWindow().setAttributes(p); //设置生效
 
-            RelativeLayout relat_redbao = (RelativeLayout) redBaoDialog.findViewById(R.id.relat_redbao);
-            LinearLayout layout_cancel = (LinearLayout) redBaoDialog.findViewById(R.id.layout_cancel);
-            ImageView iv_cancel = (ImageView) redBaoDialog.findViewById(R.id.iv_cancel);
-            ImageView iv_xingji = (ImageView) redBaoDialog.findViewById(R.id.iv_xingji);
+                RelativeLayout relat_redbao = (RelativeLayout) redBaoDialog.findViewById(R.id.relat_redbao);
+                LinearLayout layout_cancel = (LinearLayout) redBaoDialog.findViewById(R.id.layout_cancel);
+                ImageView iv_cancel = (ImageView) redBaoDialog.findViewById(R.id.iv_cancel);
+                ImageView iv_xingji = (ImageView) redBaoDialog.findViewById(R.id.iv_xingji);
 
-            int bmpW = BitmapFactory.decodeResource(getResources(), R.mipmap.my_goodluckto_popupwindow).getWidth();// 获取图片宽度
-            layout_cancel.setPadding(0, 0, (d.getWidth() - bmpW) / 2, 0);
-            iv_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    redBaoDialog.dismiss();
-                }
-            });
-            iv_xingji.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    redBaoDialog.dismiss();
-                    Intent intent = new Intent(mActivity, GoodLuckActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-                }
-            });
-        } else {
-            redBaoDialog.show();
+                int bmpW = BitmapFactory.decodeResource(getResources(), R.mipmap.my_goodluckto_popupwindow).getWidth();// 获取图片宽度
+                layout_cancel.setPadding(0, 0, (d.getWidth() - bmpW) / 2, 0);
+                iv_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        redBaoDialog.dismiss();
+                    }
+                });
+                iv_xingji.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        redBaoDialog.dismiss();
+                        Intent intent = new Intent(mActivity, GoodLuckActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
+                });
+            } else {
+                redBaoDialog.show();
+            }
         }
     }
 
@@ -1515,35 +1523,37 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 申请志愿者 不是cho弹层
      */
     public void showNotCHODialog() {
-        if (notCHODialog == null) {
-            notCHODialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mycenter_notcho);// 创建Dialog并设置样式主题
-            notCHODialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = notCHODialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            notCHODialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = notCHODialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
-            notCHODialog.getWindow().setAttributes(p); //设置生效
-            LinearLayout layout_cancel = (LinearLayout) notCHODialog.findViewById(R.id.layout_cancel);
-            TextView btn_upgrade = (TextView) notCHODialog.findViewById(R.id.btn_upgrade);
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            if (notCHODialog == null) {
+                notCHODialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mycenter_notcho);// 创建Dialog并设置样式主题
+                notCHODialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = notCHODialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                notCHODialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = notCHODialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+                notCHODialog.getWindow().setAttributes(p); //设置生效
+                LinearLayout layout_cancel = (LinearLayout) notCHODialog.findViewById(R.id.layout_cancel);
+                TextView btn_upgrade = (TextView) notCHODialog.findViewById(R.id.btn_upgrade);
 
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    notCHODialog.dismiss();
-                }
-            });
-            btn_upgrade.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    notCHODialog.dismiss();/**/
-                    mHandler.sendEmptyMessage(SkipEDIT);
-                }
-            });
-        } else {
-            notCHODialog.show();
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        notCHODialog.dismiss();
+                    }
+                });
+                btn_upgrade.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        notCHODialog.dismiss();/**/
+                        mHandler.sendEmptyMessage(SkipEDIT);
+                    }
+                });
+            } else {
+                notCHODialog.show();
+            }
         }
     }
 
@@ -1553,26 +1563,28 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
      * 成为坐堂医交押金成功弹层
      */
     public void showDoctorDialog() {
-        if (toDoctorDialog == null) {
-            toDoctorDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mycenter_todoctor);// 创建Dialog并设置样式主题
-            toDoctorDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = toDoctorDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            toDoctorDialog.show();
-            WindowManager m = getActivity().getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = toDoctorDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
-            toDoctorDialog.getWindow().setAttributes(p); //设置生效
-            LinearLayout layout_cancel = (LinearLayout) toDoctorDialog.findViewById(R.id.layout_cancel);
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    toDoctorDialog.dismiss();
-                }
-            });
-        } else {
-            toDoctorDialog.show();
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            if (toDoctorDialog == null) {
+                toDoctorDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_mycenter_todoctor);// 创建Dialog并设置样式主题
+                toDoctorDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = toDoctorDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                toDoctorDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = toDoctorDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+                toDoctorDialog.getWindow().setAttributes(p); //设置生效
+                LinearLayout layout_cancel = (LinearLayout) toDoctorDialog.findViewById(R.id.layout_cancel);
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toDoctorDialog.dismiss();
+                    }
+                });
+            } else {
+                toDoctorDialog.show();
+            }
         }
     }
 
