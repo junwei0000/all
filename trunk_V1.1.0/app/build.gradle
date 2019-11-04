@@ -143,8 +143,15 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.44'
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'org.greenrobot:eventbus:3.1.1'
-    //阿里云播放器的两个依赖
+    //阿里云播放器的依赖
     implementation 'com.aliyun.dpa:oss-android-sdk:+'
+
+    //美洽聊天的依赖
+    implementation 'com.meiqia:meiqiasdk:+'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+
+
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')
     implementation project(':np_lib')

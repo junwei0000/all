@@ -17,6 +17,8 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.CustomCrashHandler;
 import com.longcheng.lifecareplan.utils.UnCeHandler;
+import com.meiqia.core.callback.OnInitCallback;
+import com.meiqia.meiqiasdk.util.MQConfig;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -64,6 +66,43 @@ public class ExampleApplication extends MultiDexApplication {
 
         //初始化播放器（只需调用一次即可，建议在application中初始化）
         AliVcMediaPlayer.init(getApplicationContext());
+
+        initMeiQia();
+    }
+
+    /**
+     * 初始化美洽
+     */
+    private void initMeiQia() {
+        MQConfig.init(this, "3871d57fb830593af57ef75af3538082", new OnInitCallback() {
+            @Override
+            public void onSuccess(String clientId) {
+//                ToastUtils.showToast("init success");
+            }
+
+            @Override
+            public void onFailure(int code, String message) {
+//                ToastUtils.showToast("int failure");
+            }
+        });
+        // 可选
+        customMeiqiaSDK();
+    }
+
+    private void customMeiqiaSDK() {
+        // 配置自定义信息
+        MQConfig.ui.titleGravity = MQConfig.ui.MQTitleGravity.LEFT;
+        MQConfig.ui.backArrowIconResId = R.mipmap.back;
+        MQConfig.isShowClientAvatar=true;//是否显示用户头像
+//        MQConfig.ui.titleBackgroundResId = R.color.test_red;
+//        MQConfig.ui.titleTextColorResId = R.color.test_blue;
+//        MQConfig.ui.leftChatBubbleColorResId = R.color.test_green;
+//        MQConfig.ui.leftChatTextColorResId = R.color.test_red;
+//        MQConfig.ui.rightChatBubbleColorResId = R.color.test_red;
+//        MQConfig.ui.rightChatTextColorResId = R.color.test_green;
+//        MQConfig.ui.robotEvaluateTextColorResId = R.color.test_red;
+//        MQConfig.ui.robotMenuItemTextColorResId = R.color.test_blue;
+//        MQConfig.ui.robotMenuTipTextColorResId = R.color.test_blue;
     }
 
     public static String token;
@@ -184,10 +223,10 @@ public class ExampleApplication extends MultiDexApplication {
             @Override
             public void xm_onCommandResult(Context context, MiPushCommandMessage message) {
                 /*
-                *获取给服务器发送命令的结果,结果封装在MiPushCommandMessage类中.
-                * <p>
-                * 当客户端向服务器发送注册push、设置alias、取消注册alias、订阅topic、取消订阅topic等等命令后，从服务器返回结果。
-                * */
+                 *获取给服务器发送命令的结果,结果封装在MiPushCommandMessage类中.
+                 * <p>
+                 * 当客户端向服务器发送注册push、设置alias、取消注册alias、订阅topic、取消订阅topic等等命令后，从服务器返回结果。
+                 * */
                 Log.d("pushListener", "xm_onCommandResult -> " + message);
             }
         });

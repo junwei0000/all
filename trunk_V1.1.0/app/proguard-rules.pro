@@ -1,17 +1,10 @@
-# 指定代码的压缩级别
--optimizationpasses 5
--dontusemixedcaseclassnames
+-optimizationpasses 5               # 指定代码的压缩级别
+-dontusemixedcaseclassnames         # 是否使用大小写混合
 -dontskipnonpubliclibraryclasses
--dontpreverify
--verbose
-
+-dontpreverify                      # 混淆时是否做预校验
+-verbose                            # 混淆时是否记录日志
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
 # 不被混淆的
-# 直播
--keep class com.alibaba.livecloud.** { *;}
--keep class com.alivc.** { *;}
--keep class com.aliyun.clientinforeport.**{*;}
--dontwarn com.alivc.player.**
-
 -keep public class * extends android.app.Fragment
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
@@ -23,41 +16,20 @@
 -keep public class * extends android.support.annotation.**
 -keep public class * extends android.support.v7.**
 
-# 第三方接口不混淆
--keep class com.tencent.android.tpush.** { *; }
--keep class com.tencent.mid.** { *; }
--keep class com.jg.** { *; }
--keep class com.qq.** { *; }
--keep class src.com.qq.** { *; }
--keep class com.nineoldandroids.** { *; }
--keep class com.aps.** { *; }
--keep class com.amap.api.** { *; }
--keep class com.google.protobuf.micro.** { *; }
 
-# http client
--keep class org.apache.http.** {*; }
-
-# 保持 native 方法不被混淆
--keepclasseswithmembernames class * {
-    native <methods>;
-}
-
-# 实体类不混淆（注意xxx是你项目的路径）
--keep class com.longcheng.lifecareplan.bean.** { *; }
--keep class com.longcheng.lifecareplan.modular.home.bean.** { *; }
-
-# 保持 Parcelable 不被混淆
--keep class * implements android.os.Parcelable {
+-keep class * implements android.os.Parcelable {# 保持 Parcelable 不被混淆
     public static final android.os.Parcelable$Creator *;
 }
 
-#自定义控件不被混淆
+-keepclasseswithmembernames class * {# 保持 native 方法不被混淆
+    native <methods>;
+}
 
--keepclasseswithmembers class * {
+-keepclasseswithmembers class * {#自定义控件不被混淆
     public <init>(android.content.Context, android.util.AttributeSet);
 }
 
--keepclasseswithmembers class * {
+-keepclasseswithmembers class * {# 保持自定义控件类不被混淆
     public <init>(android.content.Context, android.util.AttributeSet, int);
 }
 
@@ -80,12 +52,33 @@
 }
 
 
+
+# 直播
+-keep class com.alibaba.livecloud.** { *;}
+-keep class com.alivc.** { *;}
+-keep class com.aliyun.clientinforeport.**{*;}
+-dontwarn com.alivc.player.**
+# 第三方接口不混淆
+-keep class com.tencent.android.tpush.** { *; }
+-keep class com.tencent.mid.** { *; }
+-keep class com.jg.** { *; }
+-keep class com.qq.** { *; }
+-keep class src.com.qq.** { *; }
+-keep class com.nineoldandroids.** { *; }
+-keep class com.aps.** { *; }
+-keep class com.amap.api.** { *; }
+-keep class com.google.protobuf.micro.** { *; }
+
+# http client
+-keep class org.apache.http.** {*; }
+
+# 实体类不混淆（注意xxx是你项目的路径）
+-keep class com.longcheng.lifecareplan.bean.** { *; }
+-keep class com.longcheng.lifecareplan.modular.home.bean.** { *; }
+
 #zxing二维码混淆配置
 -dontwarn com.google.zxing.**
 -keep class com.google.zxing.**{*;}
-
-
-#第三方混淆
 
 #GLide混淆
 -keep public class * implements com.bumptech.glide.module.GlideModule

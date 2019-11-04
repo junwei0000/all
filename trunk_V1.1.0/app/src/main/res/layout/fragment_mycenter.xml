@@ -1,137 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/page_bg"
-    android:orientation="vertical">
+    android:background="@color/page_bg">
 
-    <include layout="@layout/page_top" />
-
-
-    <com.longcheng.lifecareplan.utils.myview.MyScrollView
-        android:id="@+id/home_sv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="false"
-        android:fadingEdge="none"
-        android:scrollbars="none">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include layout="@layout/page_top" />
+
+
+        <com.longcheng.lifecareplan.utils.myview.MyScrollView
+            android:id="@+id/home_sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <include layout="@layout/fragment_mycenter_top" />
-            <!--现金余额 -->
-            <include layout="@layout/fragment_mycenter_money" />
-            <!--节气-->
-            <include layout="@layout/fragment_mycenter_jieqi" />
-            <!--功能-->
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/jianJu"
-                android:background="@color/white"
-                android:gravity="center_vertical">
+                android:orientation="vertical">
 
-                <TextView
-                    style="@style/view_padd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="常用功能"
-                    android:textColor="@color/text_biaoTi_color"
-                    android:textSize="@dimen/text_biaoTi_size"
-                    android:textStyle="bold" />
+                <include layout="@layout/fragment_mycenter_top" />
+                <!--现金余额 -->
+                <include layout="@layout/fragment_mycenter_money" />
+                <!--节气-->
+                <include layout="@layout/fragment_mycenter_jieqi" />
+                <!--功能-->
 
                 <LinearLayout
-                    android:id="@+id/layout_functionstatus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingRight="@dimen/padd_leftright">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@mipmap/my_gongnengstauts_icon" />
+                    android:layout_marginTop="@dimen/jianJu"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/tv_functionstatus"
+                        style="@style/view_padd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
-                        android:text="宫格展示"
-                        android:textColor="@color/text_noclick_color"
-                        android:textSize="@dimen/text_contents_size" />
+                        android:layout_weight="1"
+                        android:text="常用功能"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_functionstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingRight="@dimen/padd_leftright">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/my_gongnengstauts_icon" />
+
+                        <TextView
+                            android:id="@+id/tv_functionstatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                            android:text="宫格展示"
+                            android:textColor="@color/text_noclick_color"
+                            android:textSize="@dimen/text_contents_size" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <include layout="@layout/line" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/layout_gongnengnlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <include layout="@layout/fragment_mycenter_gongnenglist" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_gongnengngv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <com.longcheng.lifecareplan.utils.myview.MyGridView
+                            android:id="@+id/gongnengn_gv1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp20"
+                            android:background="@color/white"
+                            android:cacheColorHint="@color/page_bg"
+                            android:divider="@null"
+                            android:fadeScrollbars="false"
+                            android:fadingEdge="none"
+                            android:focusable="false"
+                            android:numColumns="4"
+                            android:scrollbars="none"
+                            android:verticalSpacing="@dimen/dp15" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/jianJu"
+                            android:layout_marginTop="@dimen/dp20"
+                            android:layout_marginBottom="@dimen/dp20"
+                            android:background="@color/page_bg" />
+
+                        <com.longcheng.lifecareplan.utils.myview.MyGridView
+                            android:id="@+id/gongnengn_gv2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:cacheColorHint="@color/page_bg"
+                            android:divider="@null"
+                            android:fadeScrollbars="false"
+                            android:fadingEdge="none"
+                            android:focusable="false"
+                            android:numColumns="4"
+                            android:scrollbars="none"
+                            android:verticalSpacing="@dimen/dp15" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/jianJu"
+                            android:layout_marginTop="@dimen/dp20"
+                            android:background="@color/page_bg" />
+                    </LinearLayout>
+                </FrameLayout>
             </LinearLayout>
+        </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+    </LinearLayout>
 
-            <include layout="@layout/line" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/layout_gongnengnlist"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <include layout="@layout/fragment_mycenter_gongnenglist" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_gongnengngv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:orientation="vertical">
-
-                    <com.longcheng.lifecareplan.utils.myview.MyGridView
-                        android:id="@+id/gongnengn_gv1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp20"
-                        android:background="@color/white"
-                        android:cacheColorHint="@color/page_bg"
-                        android:divider="@null"
-                        android:fadeScrollbars="false"
-                        android:fadingEdge="none"
-                        android:focusable="false"
-                        android:numColumns="4"
-                        android:scrollbars="none"
-                        android:verticalSpacing="@dimen/dp15" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/jianJu"
-                        android:layout_marginBottom="@dimen/dp20"
-                        android:layout_marginTop="@dimen/dp20"
-                        android:background="@color/page_bg" />
-
-                    <com.longcheng.lifecareplan.utils.myview.MyGridView
-                        android:id="@+id/gongnengn_gv2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:cacheColorHint="@color/page_bg"
-                        android:divider="@null"
-                        android:fadeScrollbars="false"
-                        android:fadingEdge="none"
-                        android:focusable="false"
-                        android:numColumns="4"
-                        android:scrollbars="none"
-                        android:verticalSpacing="@dimen/dp15" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/jianJu"
-                        android:layout_marginTop="@dimen/dp20"
-                        android:background="@color/page_bg" />
-                </LinearLayout>
-            </FrameLayout>
-        </LinearLayout>
-    </com.longcheng.lifecareplan.utils.myview.MyScrollView>
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_meiqia"
+        style="@style/view_margin"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/meiqia" />
+</RelativeLayout>

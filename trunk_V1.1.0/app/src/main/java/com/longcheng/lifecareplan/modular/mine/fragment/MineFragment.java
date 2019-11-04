@@ -1,11 +1,18 @@
 package com.longcheng.lifecareplan.modular.mine.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -73,6 +80,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreference
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.meiqia.meiqiasdk.util.MQIntentBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -246,7 +254,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     MyGridView gongnengn_gv2;
     @BindView(R.id.mycenter_iv_jieqi)
     ImageView mycenter_iv_jieqi;
-
+    @BindView(R.id.iv_meiqia)
+    ImageView iv_meiqia;
     @BindView(R.id.layout_commissioner)
     LinearLayout layout_commissioner;
 
@@ -332,6 +341,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         layout_publicize.setOnClickListener(this);
         usercenter_layout_tel.setOnClickListener(this);
         layout_pool.setOnClickListener(this);
+        iv_meiqia.setOnClickListener(this);
         gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -467,6 +477,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         gongnengn_gv2.setAdapter(mFunctionAdapter2);
     }
 
+
     /**
      * @param v
      */
@@ -479,6 +490,10 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private void viewClick(int viewId) {
         Intent intent;
         switch (viewId) {
+            case R.id.iv_meiqia:
+                conversationWrapper();
+                break;
+
             case R.id.pagetop_layout_rigth://设置
                 intent = new Intent(mActivity, SetActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -1761,5 +1776,59 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         MineAfterDataMap.clear();
         MineAfterDataMap.put("mGetHomeInfoBean", mHomeAfterBean);
         SharedPreferencesUtil.getInstance().putHashMapData("mMineAfterData_" + user_id, MineAfterDataMap);
+    }
+
+    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
+
+    /**
+     * 兼容Android6.0动态权限
+     * 咨询客服
+     */
+    private void conversationWrapper() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        } else {
+            conversation();
+        }
+    }
+
+    /**
+     * 启动对话界面
+     * 顾客上线的时候，能够上传（或者更新）一些用户的自定义信息
+     */
+    private void conversation() {
+
+
+        String avatar = (String) SharedPreferencesHelper.get(mActivity, "avatar", "");
+        String phone = (String) SharedPreferencesHelper.get(mActivity, "phone", "");
+        String user_name = (String) SharedPreferencesHelper.get(mActivity, "user_name", "");
+        HashMap<String, String> updateInfo = new HashMap<>();
+        updateInfo.put("name", user_name);
+        updateInfo.put("avatar", avatar);
+        updateInfo.put("tel", phone);
+        user_id = (String) SharedPreferencesHelper.get(mActivity, "user_id", "");
+        Intent intent = new MQIntentBuilder(getActivity())
+                .setCustomizedId(user_id) // 相同的 id 会被识别为同一个顾客
+                //.setClientInfo(clientInfo) // 设置顾客信息 PS: 这个接口只会生效一次,如果需要更新顾客信息,需要调用更新接口
+                .updateClientInfo(updateInfo) // 更新顾客信息 PS: 如果客服在工作台更改了顾客信息，更新接口会覆盖之前的内容
+                .build();
+        startActivity(intent);
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case WRITE_EXTERNAL_STORAGE_REQUEST_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    conversationWrapper();
+                } else {
+                    ToastUtils.showToast(com.meiqia.meiqiasdk.R.string.mq_sdcard_no_permission);
+                }
+                break;
+            }
+        }
     }
 }
