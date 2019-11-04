@@ -96,11 +96,20 @@ public class LocationUtils {
      */
     public boolean getNetWorkStatus(Context context) {
         boolean status = false;
+        boolean isWifiConn = false;
+        boolean isMobileConn = false;
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connMgr == null) {
+            return status;
+        }
         NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        boolean isWifiConn = networkInfo.isConnected();
+        if (networkInfo != null) {
+            isWifiConn = networkInfo.isConnected();
+        }
         networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        boolean isMobileConn = networkInfo.isConnected();
+        if (networkInfo != null) {
+            isMobileConn = networkInfo.isConnected();
+        }
         if (isMobileConn || isWifiConn) {
             status = true;
         }

@@ -19,10 +19,9 @@ import com.longcheng.lifecareplan.modular.index.login.bean.SendCodeBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.Timer;
@@ -191,11 +190,17 @@ public class UpdatePwActivity extends BaseActivityMVP<LoginContract.View, LoginP
             super.handleMessage(msg);
             switch (msg.what) {
                 case Daojishistart:
-                    phonetypeTvGetcode.setEnabled(false);
                     count = 60;
                     daojishi();
+                    if (phonetypeTvGetcode == null) {
+                        break;
+                    }
+                    phonetypeTvGetcode.setEnabled(false);
                     break;
                 case Daojishiover:
+                    if (phonetypeTvGetcode == null) {
+                        break;
+                    }
                     if (msg.arg1 < 10) {
                         phonetypeTvGetcode.setText("0" + msg.arg1 + getString(R.string.tv_codeunit));
                     } else {
