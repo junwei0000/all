@@ -78,7 +78,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_exit:
-                finish();
+                back();
                 break;
             case R.id.btn_liwu:
                 ToastUtils.showToast("功能开发中...");
