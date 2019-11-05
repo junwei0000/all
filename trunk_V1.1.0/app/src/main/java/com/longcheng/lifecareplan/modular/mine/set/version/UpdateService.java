@@ -203,6 +203,7 @@ public class UpdateService extends Service {
             this.context = c;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
