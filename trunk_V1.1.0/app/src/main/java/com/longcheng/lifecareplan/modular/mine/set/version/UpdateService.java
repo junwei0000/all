@@ -187,9 +187,6 @@ public class UpdateService extends Service {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void Instanll(File file, Context context) {
-        //Android8.0安装应用需要打开未\n知来源权限，请去设置中开启权限
-        boolean b = context.getPackageManager().canRequestPackageInstalls();
-        String[] mPermissionList = new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES};
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(android.content.Intent.ACTION_VIEW);
