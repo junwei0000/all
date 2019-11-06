@@ -54,10 +54,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     ImageView btnExit;
     @BindView(R.id.lv_rankdata)
     ListView lvRankdata;
-    @BindView(R.id.tv_name)
-    TextView tvName;
-    @BindView(R.id.frag_layout_name)
-    LinearLayout fragLayoutName;
     @BindView(R.id.lv_msg)
     ListView lvMsg;
     @BindView(R.id.edt_content)
@@ -74,6 +70,16 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     RelativeLayout relat_push;
     @BindView(R.id.layout_notlive)
     LinearLayout layoutNotlive;
+    @BindView(R.id.frag_tv_follow)
+    TextView fragTvFollow;
+    @BindView(R.id.frag_iv_follow)
+    ImageView fragIvFollow;
+    @BindView(R.id.frag_tv_sharenum)
+    TextView fragTvSharenum;
+    @BindView(R.id.frag_layout_share)
+    LinearLayout fragLayoutShare;
+    @BindView(R.id.layout_gn)
+    LinearLayout layoutGn;
 
     @Override
     public void onClick(View v) {
@@ -82,9 +88,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 back();
                 break;
             case R.id.btn_liwu:
-                ToastUtils.showToast("功能开发中...");
-                break;
-            case R.id.frag_layout_name:
                 ToastUtils.showToast("功能开发中...");
                 break;
             default:
@@ -127,9 +130,10 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     public void setListener() {
         mSurfaceView.getHolder().addCallback(new MyCallBack());
         btnLiwu.setOnClickListener(this);
-        btnCamera.setVisibility(View.GONE);
         btnExit.setOnClickListener(this);
-        fragLayoutName.setOnClickListener(this);
+        btnCamera.setVisibility(View.GONE);
+        fragTvFollow.setVisibility(View.VISIBLE);
+        fragIvFollow.setVisibility(View.GONE);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -157,9 +161,10 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
         Intent intent = getIntent();
         String live_name = intent.getStringExtra("live_name");
-        tvName.setText("祝福" + live_name);
         String playTitle = intent.getStringExtra("playTitle");
-        fragTvPlaystatus.setText("直播中: " + playTitle);
+        if (!TextUtils.isEmpty(playTitle)) {
+            fragTvPlaystatus.setText("直播中: " + playTitle);
+        }
         String uid = intent.getStringExtra("uid");
         mPresent.getLivePlay(uid);
     }

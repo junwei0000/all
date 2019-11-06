@@ -93,10 +93,6 @@ public class LivePushActivity extends BaseActivity {
     ImageView btnExit;
     @BindView(R.id.lv_rankdata)
     ListView lvRankdata;
-    @BindView(R.id.tv_name)
-    TextView tvName;
-    @BindView(R.id.frag_layout_name)
-    LinearLayout fragLayoutName;
     @BindView(R.id.lv_msg)
     ListView lvMsg;
     @BindView(R.id.edt_content)
@@ -109,6 +105,16 @@ public class LivePushActivity extends BaseActivity {
     RelativeLayout relatPush;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.frag_tv_follow)
+    TextView fragTvFollow;
+    @BindView(R.id.frag_iv_follow)
+    ImageView fragIvFollow;
+    @BindView(R.id.frag_tv_sharenum)
+    TextView fragTvSharenum;
+    @BindView(R.id.frag_layout_share)
+    LinearLayout fragLayoutShare;
+    @BindView(R.id.layout_gn)
+    LinearLayout layoutGn;
 
     private AlivcLivePushConfig mAlivcLivePushConfig;
 
@@ -139,7 +145,7 @@ public class LivePushActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        setAllowFullScreen(true);
         super.onCreate(savedInstanceState);
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity,toolbar,getResources().getColor(R.color.transparent));
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
     }
 
     @Override
@@ -166,9 +172,10 @@ public class LivePushActivity extends BaseActivity {
     public void setListener() {
         previewView.getHolder().addCallback(mCallback);
         btnLiwu.setVisibility(View.GONE);
+        fragTvFollow.setVisibility(View.VISIBLE);
+        fragIvFollow.setVisibility(View.GONE);
         btnCamera.setOnClickListener(onClickListener);
         btnExit.setOnClickListener(onClickListener);
-        fragLayoutName.setOnClickListener(onClickListener);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -196,9 +203,10 @@ public class LivePushActivity extends BaseActivity {
         fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
         Intent intent = getIntent();
         String playTitle = intent.getStringExtra("playTitle");
-        fragTvPlaystatus.setText("直播中: " + playTitle);
+        if (!TextUtils.isEmpty(playTitle)) {
+            fragTvPlaystatus.setText("直播中: " + playTitle);
+        }
         String live_name = intent.getStringExtra("live_name");
-        tvName.setText("祝福" + live_name);
     }
 
 
@@ -259,9 +267,6 @@ public class LivePushActivity extends BaseActivity {
                     mAlivcLivePusher.switchCamera();
                     break;
                 case R.id.btn_liwu:
-                    ToastUtils.showToast("功能开发中...");
-                    break;
-                case R.id.frag_layout_name:
                     ToastUtils.showToast("功能开发中...");
                     break;
                 default:

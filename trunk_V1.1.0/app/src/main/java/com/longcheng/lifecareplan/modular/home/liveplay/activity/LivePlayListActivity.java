@@ -201,6 +201,10 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             Toast.makeText(this, "请重新获取直播信息", Toast.LENGTH_LONG).show();
             return null;
         }
+        mAlivcLivePushConfig.setBeautyBuffing(55);
+        SharedPreferenceUtils.setBuffing(getApplicationContext(), 55);
+        mAlivcLivePushConfig.setBeautyWhite(55);
+        SharedPreferenceUtils.setWhiteValue(getApplicationContext(), 55);
         mAlivcLivePushConfig.setConnectRetryInterval(DEFAULT_VALUE_INT_RETRY_INTERVAL);
         mAlivcLivePushConfig.setConnectRetryCount(DEFAULT_VALUE_INT_AUDIO_RETRY_COUNT);
         mAlivcLivePushConfig.setResolution(mDefinition);
