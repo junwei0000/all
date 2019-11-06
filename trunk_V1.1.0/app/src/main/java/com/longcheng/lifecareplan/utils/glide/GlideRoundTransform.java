@@ -21,6 +21,22 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 public class GlideRoundTransform extends BitmapTransformation {
     private static float radius = 0f;
+    private boolean exceptLeftTop, exceptRightTop, exceptLeftBottom, exceptRightBotoom;
+
+    /**
+     * 除了那几个角不需要圆角的
+     *
+     * @param leftTop
+     * @param rightTop
+     * @param leftBottom
+     * @param rightBottom
+     */
+    public void setExceptCorner(boolean leftTop, boolean rightTop, boolean leftBottom, boolean rightBottom) {
+        this.exceptLeftTop = leftTop;
+        this.exceptRightTop = rightTop;
+        this.exceptLeftBottom = leftBottom;
+        this.exceptRightBotoom = rightBottom;
+    }
 
     public GlideRoundTransform(Context context) {
         this(context, 4);
@@ -36,7 +52,7 @@ public class GlideRoundTransform extends BitmapTransformation {
         return roundCrop(pool, toTransform);
     }
 
-    private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
+    private Bitmap roundCrop(BitmapPool pool, Bitmap source) {
         if (source == null) return null;
 
         Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);
@@ -50,6 +66,20 @@ public class GlideRoundTransform extends BitmapTransformation {
         paint.setAntiAlias(true);
         RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());
         canvas.drawRoundRect(rectF, radius, radius, paint);
+        if (exceptLeftTop) { //左上角不为圆角
+            canvas.drawRect(0, 0, radius, radius, paint);
+        }
+        if (exceptRightTop) {//右上角不为圆角
+            canvas.drawRect(canvas.getWidth() - radius, 0, canvas.getWidth(), radius, paint);
+        }
+
+        if (exceptLeftBottom) {//左下角不为圆角
+            canvas.drawRect(0, canvas.getHeight() - radius, radius, canvas.getHeight(), paint);
+        }
+
+        if (exceptRightBotoom) {//右下角不为圆角
+            canvas.drawRect(canvas.getWidth() - radius, canvas.getHeight() - radius, canvas.getWidth(), canvas.getHeight(), paint);
+        }
         return result;
     }
 

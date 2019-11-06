@@ -4,13 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
-import com.longcheng.lifecareplan.utils.glide.ImageLoader;
-import com.longcheng.lifecareplan.utils.myview.CircleImageView;
+import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;
 
@@ -23,12 +27,13 @@ import java.util.List;
 public class PlayListAdapter extends BaseAdapterHelper<LivePlayItemInfo> {
     ViewHolder mHolder = null;
     Context context;
-    ImageLoader asyncImageLoader;
 
-    public PlayListAdapter(Context context, List<LivePlayItemInfo> list) {
+    boolean liveSeleStatus;
+
+    public PlayListAdapter(Context context, List<LivePlayItemInfo> list, boolean liveSeleStatus) {
         super(context, list);
         this.context = context;
-        asyncImageLoader = new ImageLoader(context, "headImg");
+        this.liveSeleStatus = liveSeleStatus;
     }
 
     @Override
@@ -43,26 +48,37 @@ public class PlayListAdapter extends BaseAdapterHelper<LivePlayItemInfo> {
         }
         LivePlayItemInfo mHelpItemBean = list.get(position);
         mHolder.item_tv_name.setText(mHelpItemBean.getName());
-        mHolder.item_tv_jieqi.setText(mHelpItemBean.getJieqi());
-        mHolder.item_tv_date.setText(mHelpItemBean.getTime());
-        mHolder.item_tv_playstatus.setText("" + mHelpItemBean.getPlayTile());
-        asyncImageLoader.setRoundCorner(mHolder.item_iv_thumb, asyncImageLoader.readBitMap(context, mHelpItemBean.getThumb()));
+        mHolder.item_tv_playtitle.setText("" + mHelpItemBean.getPlayTile());
+        int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 25)) / 2;
+        int height;
+        int moid;
+        if (liveSeleStatus) {
+            height = width;
+            moid = R.mipmap.live_listnotdatebg;
+        } else {
+            height = (int) (width * 1.54);
+            moid = R.mipmap.live_listnotdatebg2;
+        }
+        GlideDownLoadImage.getInstance().loadCircleImageLive("", moid, mHolder.item_iv_thumb, ConstantManager.image_angle);
+        mHolder.relat_thumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
         return convertView;
     }
 
     private class ViewHolder {
-        private CircleImageView item_iv_thumb;
+        private RelativeLayout relat_thumb;
+        private ImageView item_iv_thumb;
         private TextView item_tv_name;
-        private TextView item_tv_jieqi;
-        private TextView item_tv_playstatus;
-        private TextView item_tv_date;
+        private TextView item_tv_num;
+        private TextView item_tv_playtitle;
+        private TextView item_tv_city;
 
         public ViewHolder(View view) {
-            item_iv_thumb = (CircleImageView) view.findViewById(R.id.item_iv_thumb);
+            relat_thumb = (RelativeLayout) view.findViewById(R.id.relat_thumb);
+            item_iv_thumb = (ImageView) view.findViewById(R.id.item_iv_thumb);
             item_tv_name = (TextView) view.findViewById(R.id.item_tv_name);
-            item_tv_jieqi = (TextView) view.findViewById(R.id.item_tv_jieqi);
-            item_tv_playstatus = (TextView) view.findViewById(R.id.item_tv_playstatus);
-            item_tv_date = (TextView) view.findViewById(R.id.item_tv_date/**/);
+            item_tv_num = (TextView) view.findViewById(R.id.item_tv_num);
+            item_tv_playtitle = (TextView) view.findViewById(R.id.item_tv_playtitle);
+            item_tv_city = (TextView) view.findViewById(R.id.item_tv_city);
         }
     }
 }

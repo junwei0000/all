@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alivc.live.pusher.AlivcLivePushConfig;
+import com.alivc.live.pusher.AlivcLivePushConstants;
 import com.alivc.live.pusher.AlivcLivePushInfoListener;
 import com.alivc.live.pusher.AlivcLivePushNetworkListener;
 import com.alivc.live.pusher.AlivcLivePusher;
@@ -40,6 +41,7 @@ import com.alivc.live.pusher.SurfaceStatus;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
+import com.longcheng.lifecareplan.modular.home.liveplay.fragment.SharedPreferenceUtils;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
@@ -60,6 +62,8 @@ import butterknife.BindView;
 
 import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_BACK;
 import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_FRONT;
+import static com.alivc.live.pusher.AlivcLivePushConstants.DEFAULT_VALUE_INT_AUDIO_RETRY_COUNT;
+import static com.alivc.live.pusher.AlivcLivePushConstants.DEFAULT_VALUE_INT_RETRY_INTERVAL;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_LEFT;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_RIGHT;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_PORTRAIT;
@@ -107,8 +111,6 @@ public class LivePushActivity extends BaseActivity {
     Toolbar toolbar;
     @BindView(R.id.frag_tv_follow)
     TextView fragTvFollow;
-    @BindView(R.id.frag_iv_follow)
-    ImageView fragIvFollow;
     @BindView(R.id.frag_tv_sharenum)
     TextView fragTvSharenum;
     @BindView(R.id.frag_layout_share)
@@ -172,8 +174,6 @@ public class LivePushActivity extends BaseActivity {
     public void setListener() {
         previewView.getHolder().addCallback(mCallback);
         btnLiwu.setVisibility(View.GONE);
-        fragTvFollow.setVisibility(View.VISIBLE);
-        fragIvFollow.setVisibility(View.GONE);
         btnCamera.setOnClickListener(onClickListener);
         btnExit.setOnClickListener(onClickListener);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -332,27 +332,40 @@ public class LivePushActivity extends BaseActivity {
         }
     };
 
-    public static void startActivity(Activity activity, AlivcLivePushConfig alivcLivePushConfig,
-                                     String url, boolean async, boolean audioOnly, boolean videoOnly,
-                                     AlivcPreviewOrientationEnum orientation, int cameraId,
-                                     boolean isFlash, String authTime, String privacyKey,
-                                     boolean mixExtern, boolean mixMain, String playTitle, String live_name) {
+    public static void startActivity(Activity activity, String url) {
+        AlivcLivePushConfig mAlivcLivePushConfig = new AlivcLivePushConfig();
+        AlivcLivePushConfig.setMediaProjectionPermissionResultData(null);
+        mAlivcLivePushConfig.setBeautyBuffing(55);
+        SharedPreferenceUtils.setBuffing(activity, 55);
+        mAlivcLivePushConfig.setBeautyWhite(55);
+        SharedPreferenceUtils.setWhiteValue(activity, 55);
+        mAlivcLivePushConfig.setConnectRetryInterval(DEFAULT_VALUE_INT_RETRY_INTERVAL);
+        mAlivcLivePushConfig.setConnectRetryCount(DEFAULT_VALUE_INT_AUDIO_RETRY_COUNT);
+        mAlivcLivePushConfig.setInitialVideoBitrate(Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P.DEFAULT_VALUE_INT_INIT_BITRATE.getBitrate())));
+        mAlivcLivePushConfig.setAudioBitRate(1000 * 64);
+        mAlivcLivePushConfig.setMinVideoBitrate(Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_RESOLUTION_FIRST.DEFAULT_VALUE_INT_MIN_BITRATE.getBitrate())));
+        SharedPreferenceUtils.setMinBit(activity, Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_RESOLUTION_FIRST.DEFAULT_VALUE_INT_MIN_BITRATE.getBitrate())));
+        mAlivcLivePushConfig.setTargetVideoBitrate(Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_FLUENCY_FIRST.DEFAULT_VALUE_INT_TARGET_BITRATE.getBitrate())));
+        SharedPreferenceUtils.setTargetBit(activity, Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_FLUENCY_FIRST.DEFAULT_VALUE_INT_TARGET_BITRATE.getBitrate())));
+
+        SharedPreferenceUtils.setHintTargetBit(activity, AlivcLivePushConstants.BITRATE_540P.DEFAULT_VALUE_INT_TARGET_BITRATE.getBitrate());
+        SharedPreferenceUtils.setHintMinBit(activity, AlivcLivePushConstants.BITRATE_540P.DEFAULT_VALUE_INT_MIN_BITRATE.getBitrate());
+
+
         Intent intent = new Intent(activity, LivePushActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(AlivcLivePushConfig.CONFIG, alivcLivePushConfig);
+        bundle.putSerializable(AlivcLivePushConfig.CONFIG, mAlivcLivePushConfig);
         bundle.putString(URL_KEY, url);
-        bundle.putBoolean(ASYNC_KEY, async);
-        bundle.putBoolean(AUDIO_ONLY_KEY, audioOnly);
-        bundle.putBoolean(VIDEO_ONLY_KEY, videoOnly);
-        bundle.putInt(ORIENTATION_KEY, orientation.ordinal());
-        bundle.putInt(CAMERA_ID, cameraId);
-        bundle.putBoolean(FLASH_ON, isFlash);
-        bundle.putString(AUTH_TIME, authTime);
-        bundle.putString(PRIVACY_KEY, privacyKey);
-        bundle.putBoolean(MIX_EXTERN, mixExtern);
-        bundle.putBoolean(MIX_MAIN, mixMain);
-        bundle.putString("playTitle", playTitle);
-        bundle.putString("live_name", live_name);
+        bundle.putBoolean(ASYNC_KEY, true);
+        bundle.putBoolean(AUDIO_ONLY_KEY, false);
+        bundle.putBoolean(VIDEO_ONLY_KEY, false);
+        bundle.putInt(ORIENTATION_KEY, ORIENTATION_PORTRAIT.ordinal());
+        bundle.putInt(CAMERA_ID, Camera.CameraInfo.CAMERA_FACING_FRONT);
+        bundle.putBoolean(FLASH_ON, false);
+        bundle.putString(AUTH_TIME, "");
+        bundle.putString(PRIVACY_KEY, "");
+        bundle.putBoolean(MIX_EXTERN, false);
+        bundle.putBoolean(MIX_MAIN, mAlivcLivePushConfig.isExternMainStream());
         intent.putExtras(bundle);
         activity.startActivityForResult(intent, REQ_CODE_PUSH);
     }

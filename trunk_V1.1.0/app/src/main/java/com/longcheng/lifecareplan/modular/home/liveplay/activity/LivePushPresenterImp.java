@@ -86,7 +86,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
 
     }
     /**
-     * 获取播流列表
+     * 获取直播列表
      */
     public void getLivePlayList() {
         mView.showDialog();
@@ -99,6 +99,31 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                         mView.dismissDialog();
                         Log.d("getLivePush",""+responseBean.getPushurl());
                         mView.BackPlayListSuccess(responseBean);
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.Error();
+                        Log.d("getLivePush",""+throwable.toString());
+                    }
+                });
+
+    }
+    /**
+     * 获取播流列表
+     */
+    public void getVideoPlayList() {
+        mView.showDialog();
+        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePlay(UserUtils.getUserId(mContext), ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<LivePushDataInfo>() {
+                    @Override
+                    public void accept(LivePushDataInfo responseBean) throws Exception {
+                        mView.dismissDialog();
+                        Log.d("getLivePush",""+responseBean.getPushurl());
+                        mView.BackVideoListSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override

@@ -216,6 +216,27 @@ public class GlideDownLoadImage {
     }
 
     /**
+     * @param url
+     * @param view
+     * @param dp
+     * @name 加载网络带角度的图片
+     * @auhtor MarkMingShuai
+     * @Data 2017-9-5 11:18
+     */
+    public void loadCircleImageLive(String url, int mipmapid, ImageView view, int dp) {
+        GlideRoundTransform mGlideRoundTransform = new GlideRoundTransform(ExampleApplication.getContext(), dp);
+//        mGlideRoundTransform.setExceptCorner(false, false, true, true);
+        Glide.with(ExampleApplication.getContext())
+                .load(url).asBitmap()
+                .placeholder(mipmapid)
+                .error(mipmapid)
+                .skipMemoryCache(true)
+                .transform(mGlideRoundTransform)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(view);
+    }
+
+    /**
      * 互祝首页加载节气图标
      *
      * @param mContext

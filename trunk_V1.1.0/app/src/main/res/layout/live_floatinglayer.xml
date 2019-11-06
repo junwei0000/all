@@ -17,7 +17,10 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/dp8">
+            android:paddingLeft="@dimen/dp8"
+            android:paddingTop="@dimen/dp3"
+            android:paddingRight="@dimen/dp8"
+            android:paddingBottom="@dimen/dp8">
 
             <TextView
                 android:id="@+id/frag_tv_playstatus"
@@ -156,12 +159,6 @@
                         android:text="关注"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_contents_size" />
-
-                    <ImageView
-                        android:id="@+id/frag_iv_follow"
-                        android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"
-                        android:background="@mipmap/zhibo_zan_hong1" />
 
                     <LinearLayout
                         android:id="@+id/frag_layout_share"

@@ -17,6 +17,7 @@ public interface LivePushContract {
         void BackPushSuccess(LivePushDataInfo responseBean);
         void BackPlaySuccess(LivePushDataInfo responseBean);
         void BackPlayListSuccess(LivePushDataInfo responseBean);
+        void BackVideoListSuccess(LivePushDataInfo responseBean);
         void Error();
     }
 

@@ -1,12 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/page_bg"
     android:orientation="vertical">
     <!---->
     <include layout="@layout/activity_tool" />
 
-    <include layout="@layout/page_top" />
+    <include layout="@layout/live_page_top" />
 
     <include layout="@layout/line" />
     <!---->
@@ -14,33 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
+        <GridView
             android:id="@+id/play_view"
+            style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fastScrollEnabled="true"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/padd_imgtextleftright"
+            android:listSelector="@drawable/list_notselector"
+            android:numColumns="2"
             android:scrollbars="none"
+            android:verticalSpacing="@dimen/dp3"
             android:visibility="gone" />
 
         <include layout="@layout/live_play_notdata" />
-
-        <LinearLayout
-            android:id="@+id/layout_live_push"
-            android:layout_width="@dimen/dp60"
-            android:layout_height="@dimen/dp60"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/dp15"
-            android:background="@mipmap/live_ov_bg"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp2"
-                android:text="开启\n直播"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_contents_size" />
-        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

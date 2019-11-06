@@ -72,8 +72,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     LinearLayout layoutNotlive;
     @BindView(R.id.frag_tv_follow)
     TextView fragTvFollow;
-    @BindView(R.id.frag_iv_follow)
-    ImageView fragIvFollow;
     @BindView(R.id.frag_tv_sharenum)
     TextView fragTvSharenum;
     @BindView(R.id.frag_layout_share)
@@ -117,7 +115,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         setTrans(false);
     }
 
-
     private void setTrans(boolean playstatus) {
         if (playstatus) {
             Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
@@ -132,8 +129,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         btnLiwu.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         btnCamera.setVisibility(View.GONE);
-        fragTvFollow.setVisibility(View.VISIBLE);
-        fragIvFollow.setVisibility(View.GONE);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -165,7 +160,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         if (!TextUtils.isEmpty(playTitle)) {
             fragTvPlaystatus.setText("直播中: " + playTitle);
         }
-        String uid = intent.getStringExtra("uid");
+        String uid = intent.getStringExtra("playuid");
         mPresent.getLivePlay(uid);
     }
 
@@ -193,12 +188,16 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     public void BackPlaySuccess(LivePushDataInfo responseBean) {
         playurl = responseBean.getM3u8url();
         startPlay();
-
     }
 
 
     @Override
     public void BackPlayListSuccess(LivePushDataInfo responseBean) {
+
+    }
+
+    @Override
+    public void BackVideoListSuccess(LivePushDataInfo responseBean) {
 
     }
 

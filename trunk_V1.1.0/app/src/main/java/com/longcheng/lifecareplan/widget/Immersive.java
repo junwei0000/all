@@ -193,6 +193,7 @@ public class Immersive {
                 activity.getWindow().setStatusBarColor(color);
                 // 底部导航栏颜色也可以由系统设置
                 //activity.getWindow().setNavigationBarColor(color);
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
             } else {
                 setKitKatStatusBarColor(activity, color);
             }
