@@ -81,7 +81,9 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 changeData();
                 break;
             case R.id.layout_playlist_mine:
-
+                Intent  intent = new Intent(mActivity, MineActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 break;
         }
     }
