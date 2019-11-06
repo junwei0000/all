@@ -3,7 +3,6 @@ package com.longcheng.lifecareplan.widget;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -14,11 +13,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-
-import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.ExampleApplication;
-
-import java.lang.reflect.Method;
+import android.widget.LinearLayout;
 
 /**
  * 作者：MarkShuai
@@ -37,7 +32,7 @@ public class Immersive {
                 && android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //设置虚拟导航栏为透明
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
 
@@ -186,11 +181,11 @@ public class Immersive {
  * ***************************************************************************************
  */
     /**
-     * 背景设置透明
+     * 状态栏背景设置透明
      *
      * @param activity
      */
-    public static void setOrChangeTranslucentColorTransparent(Activity activity, int color) {
+    public static void setOrChangeTranslucentColorTransparent(Activity activity, Toolbar toolbar, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //设置虚拟导航栏为透明
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
@@ -200,6 +195,22 @@ public class Immersive {
                 //activity.getWindow().setNavigationBarColor(color);
             } else {
                 setKitKatStatusBarColor(activity, color);
+            }
+
+
+            /**
+             * android4.3以上的沉浸式 ，4.3以下没效果，所以不要头部填充状态栏高度
+             */
+            int sysVersion = Build.VERSION.SDK_INT;
+            if (sysVersion > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                int result = 0;
+                int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+                if (resourceId > 0) {
+                    result = activity.getResources().getDimensionPixelSize(resourceId);
+                }
+                LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(activity.getWindowManager().getDefaultDisplay().getWidth(), result);
+                //设置修改后的布局。
+                toolbar.setLayoutParams(para);
             }
             removeMarginTop(activity);
         }

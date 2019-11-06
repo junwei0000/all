@@ -4,6 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -23,12 +24,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/page_top_height"
-        android:layout_marginTop="@dimen/dp20"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <!--<include layout="@layout//activity_tool" />-->
+        <include layout="@layout/activity_tool" />
 
         <LinearLayout
             android:layout_width="match_parent"

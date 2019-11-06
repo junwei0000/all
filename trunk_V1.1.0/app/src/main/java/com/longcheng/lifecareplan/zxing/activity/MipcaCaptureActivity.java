@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.widget.Toolbar;
@@ -18,9 +17,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -57,7 +54,8 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
     SurfaceView previewView;
     @BindView(R.id.viewfinder_view)
     ViewfinderView viewfinderView;
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private CaptureActivityHandler handler;
     private boolean hasSurface;
@@ -85,7 +83,7 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
         CameraManager.init(getApplication());
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, getResources().getColor(R.color.transparent));
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity,toolbar, getResources().getColor(R.color.transparent));
     }
 
 

@@ -27,6 +27,7 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
@@ -93,7 +94,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        setAllowFullScreen(true);
         super.onCreate(savedInstanceState);
     }
 
@@ -117,7 +117,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     private void setTrans(boolean playstatus) {
         if (playstatus) {
-            setOrChangeTranslucentOtherColor(toolbar, null, getResources().getColor(R.color.transparent));
+            Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
         } else {
             setOrChangeTranslucentColor(toolbar, null);
         }

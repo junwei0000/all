@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -44,6 +45,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.utils.network.NetUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -105,7 +107,8 @@ public class LivePushActivity extends BaseActivity {
     ImageView btnCamera;
     @BindView(R.id.relat_push)
     RelativeLayout relatPush;
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private AlivcLivePushConfig mAlivcLivePushConfig;
 
@@ -134,8 +137,9 @@ public class LivePushActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setAllowFullScreen(true);
+//        setAllowFullScreen(true);
         super.onCreate(savedInstanceState);
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity,toolbar,getResources().getColor(R.color.transparent));
     }
 
     @Override

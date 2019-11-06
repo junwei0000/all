@@ -10,6 +10,8 @@
         android:layout_marginBottom="@dimen/dp50"
         android:orientation="vertical">
 
+        <include layout="@layout/activity_tool" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +27,7 @@
                 android:singleLine="true"
                 android:text="直播中：极速大牛"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_tishi_size" />
+                android:textSize="@dimen/text_biaoTi_size" />
 
             <TextView
                 android:id="@+id/frag_tv_jieqi"
@@ -49,8 +51,8 @@
                     android:id="@+id/frag_tv_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/dp2"
-                    android:paddingRight="@dimen/dp4"
+                    android:paddingLeft="@dimen/dp1"
+                    android:paddingRight="@dimen/dp3"
                     android:singleLine="true"
                     android:text="北京"
                     android:textColor="@color/white"
@@ -59,63 +61,44 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp2"
+                    android:layout_marginRight="@dimen/dp1"
                     android:background="@mipmap/live_dingwei_icon" />
             </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp1"
             android:layout_marginLeft="@dimen/dp6"
             android:layout_marginRight="@dimen/dp6"
-            android:background="@color/text_noclick_color" />
+            android:background="@color/text_noclick_color"
+            android:visibility="gone" />
+
 
         <LinearLayout
-            android:layout_marginTop="@dimen/jianJu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:id="@+id/frag_layout_rank"
+            style="@style/text_padd_oval"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/live_beijingi_1">
 
-            <LinearLayout
-                android:id="@+id/frag_layout_rank"
-                style="@style/text_padd_oval"
-                android:layout_alignParentRight="true"
-                android:background="@mipmap/live_beijingi_1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="@dimen/dp6"
-                    android:paddingRight="@dimen/dp8"
-                    android:singleLine="true"
-                    android:text="礼物榜排行榜"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_biaoTi_size" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp4"
-                    android:background="@mipmap/live_jiantou_3" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginRight="@dimen/jianJu"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right">
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/dp6"
+                android:paddingRight="@dimen/dp8"
+                android:singleLine="true"
+                android:text="礼物榜排行榜"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
 
-                <ImageView
-                    android:id="@+id/btn_exit"
-                    android:layout_width="@dimen/dp35"
-                    android:layout_height="@dimen/dp35"
-                    android:background="@mipmap/live_guanbi_icon"
-                    android:onClick="exit" />
-            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp4"
+                android:background="@mipmap/live_jiantou_3" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,14 +130,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingLeft="@dimen/dp4"
-                        android:paddingRight="@dimen/dp8"
                         android:ellipsize="end"
                         android:maxEms="4"
                         android:maxLines="1"
-                        android:text="互祝小明"
+                        android:paddingLeft="@dimen/dp4"
+                        android:paddingRight="@dimen/dp8"
+                        android:text="祝福"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_contents_size" />
+                        android:textSize="@dimen/text_biaoTi_size" />
 
                     <ImageView
                         android:layout_width="wrap_content"
