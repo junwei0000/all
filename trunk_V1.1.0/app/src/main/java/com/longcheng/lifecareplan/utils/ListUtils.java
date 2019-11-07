@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.utils;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
@@ -25,7 +26,11 @@ public class ListUtils {
         }
         return instance;
     }
-
+    public void RefreshCompleteG(PullToRefreshGridView Listview) {
+        if (Listview != null) {
+            Listview.onRefreshComplete();
+        }
+    }
     public void RefreshCompleteL(PullToRefreshListView Listview) {
         if (Listview != null) {
             Listview.onRefreshComplete();
