@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/view_paddlefgtright"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/jianJu"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
+        style="@style/view_paddtopbottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -16,85 +14,43 @@
         <TextView
             android:layout_width="3dp"
             android:layout_height="15dp"
-            android:layout_marginRight="@dimen/padd_imgtextleftright"
-            android:background="@color/blue" />
+            android:background="@drawable/corners_bg_red" />
 
         <TextView
             android:id="@+id/tv_newtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_weight="1"
             android:paddingBottom="@dimen/img_setTextcenter"
             android:text="健康速递"
             android:textColor="@color/text_biaoTi_color"
             android:textSize="@dimen/text_biaoTi_size" />
 
-        <LinearLayout
-            android:id="@+id/mainhealth_layout_more"
-            style="@style/view_paddtopbottom"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/mainhealth_tv_more"
+            style="@style/text_padd_oval"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="right|center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/padd_imgtextleftright"
-                android:paddingBottom="@dimen/img_setTextcenter"
-                android:text="查看更多"
-                android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_zhu_size" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/usercenter_arrow_img" />
-        </LinearLayout>
+            android:background="@drawable/corners_bg_writehealth"
+            android:text="查看全部"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
     </LinearLayout>
     <!---->
-    <FrameLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_write"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/jianJu"
+        android:paddingBottom="@dimen/jianJu">
 
-        <LinearLayout
-            android:id="@+id/layout_health"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/homededi_vp_health"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/padd_topbottom"
-            android:visibility="invisible">
-
-            <ImageView
-                android:id="@+id/mainhealth_iv_thumb"
-                android:layout_width="@dimen/listItem_iconWidth"
-                android:layout_height="@dimen/listItem_iconHeight"
-                android:scaleType="centerCrop" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/homededi_vp_health"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/listItem_iconHeight"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:id="@+id/homededi_layout_healthdot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginBottom="@dimen/padd_imgtextleftright"
-                android:layout_marginTop="@dimen/jianJu"
-                android:orientation="horizontal" />
-        </LinearLayout>
-    </FrameLayout>
+            android:layout_height="@dimen/listItem_iconHeight"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>

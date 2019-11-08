@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
@@ -22,17 +21,15 @@ import com.longcheng.lifecareplan.modular.exchange.fragment.ExChangeFragment;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginActivity;
-import com.longcheng.lifecareplan.modular.index.login.activity.UpdatePwActivity;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.PriceUtils;
-import com.longcheng.lifecareplan.utils.ShortcutUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.MyViewPager;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.widget.Immersive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +37,6 @@ import java.util.List;
 import butterknife.BindView;
 
 public class BottomMenuActivity extends BaseActivity {
-
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
 
     @BindView(R.id.vp_bt_menu)
     MyViewPager mViewPager;
@@ -97,11 +91,12 @@ public class BottomMenuActivity extends BaseActivity {
         return R.layout.activity_bottom_menu;
     }
 
+
     @Override
     public void initView(View view) {
         mMenuContext = this;
         registerMessageReceiver();
-        setOrChangeTranslucentColor(mToolbar, null);
+        Immersive.setStatusBarFragment(mActivity);
 //        ShortcutUtils.setDynamicShort(mActivity);
     }
 
@@ -339,6 +334,7 @@ public class BottomMenuActivity extends BaseActivity {
         DisAllDialog();
         super.onStop();
     }
+
     @Override
     protected void onDestroy() {
         DisAllDialog();

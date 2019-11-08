@@ -1,14 +1,12 @@
 package com.longcheng.lifecareplan.modular.exchange.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -45,21 +43,17 @@ import com.longcheng.lifecareplan.modular.exchange.bean.MallGoodsListDataBean;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetailActivity;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.activity.ShopCartActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
-import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +67,8 @@ import butterknife.BindView;
  */
 
 public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExChangePresenterImp<ExChangeContract.View>> implements ExChangeContract.View {
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.exchange_layout_select)
     LinearLayout exchange_layout_select;
     @BindView(R.id.exchange_et_search)
@@ -170,6 +165,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void initView(View view) {
+        Immersive.setBarH(getActivity(),toolbar);
         ScrowUtil.ScrollViewConfigAll(exchange_sv);
         showNoMoreData(false);
         notDateCont.setText("找不到搜索的内容噢~");

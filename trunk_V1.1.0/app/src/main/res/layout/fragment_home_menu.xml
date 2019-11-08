@@ -3,8 +3,7 @@
     style="@style/view_paddlefgtright"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/jianJu"
-    android:background="@color/white"
+    android:background="@drawable/corners_bg_write"
     android:orientation="vertical">
 
     <LinearLayout

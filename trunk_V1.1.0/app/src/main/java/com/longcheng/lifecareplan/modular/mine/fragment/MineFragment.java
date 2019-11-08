@@ -13,6 +13,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -80,6 +81,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreference
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 import com.meiqia.meiqiasdk.util.MQIntentBuilder;
 
 import java.util.ArrayList;
@@ -93,7 +95,8 @@ import butterknife.BindView;
  * @time 2017/11/23 17:24
  */
 public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresenterImp<MineContract.View>> implements MineContract.View {
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.pagetop_iv_left)
     ImageView pagetopIvLeft;
     @BindView(R.id.pagetop_layout_left)
@@ -294,6 +297,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
     @Override
     public void initView(View view) {
+        Immersive.setBarH(getActivity(),toolbar);
         pageTopTvName.setText("我家");
         pagetopIvLeft.setVisibility(View.INVISIBLE);
         pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);

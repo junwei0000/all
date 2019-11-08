@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -17,7 +15,6 @@ import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.detail.activity.HealthyDeliveryDetailAct;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.DateUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 
@@ -70,15 +67,14 @@ public class HealthAdapter extends PagerAdapter {
             TextView tvTypeDes = view.findViewById(R.id.tvtypedes);
             TextView tvTime = view.findViewById(R.id.tvtime);
             ImageView avatar = view.findViewById(R.id.ivavatar);
-            tvTypeDes.setBackgroundResource(R.drawable.corners_bg_redbian);
-            tvTypeDes.setTextColor(mContext.getResources().getColor(R.color.red));
+            tvTypeDes.setBackgroundResource(R.drawable.corners_bg_graybian);
+            tvTypeDes.setTextColor(mContext.getResources().getColor(R.color.text_noclick_color));
             HomeItemBean item = list.get(position);
-
             tvTitle.setText(item.getNew_name());
             tvContent.setText(item.getDes());
             tvTypeDes.setText(item.getType_name());
             tvTime.setText(item.getCreate_time());
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, item.getPic(), avatar);
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, item.getPic(), avatar,ConstantManager.image_angle);
 
 
             view.setTag(item);

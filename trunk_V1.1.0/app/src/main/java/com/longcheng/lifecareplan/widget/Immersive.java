@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.widget;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -200,21 +201,37 @@ public class Immersive {
             }
 
 
-            /**
-             * android4.3以上的沉浸式 ，4.3以下没效果，所以不要头部填充状态栏高度
-             */
-            int sysVersion = Build.VERSION.SDK_INT;
-            if (sysVersion > Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                int result = 0;
-                int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
-                if (resourceId > 0) {
-                    result = activity.getResources().getDimensionPixelSize(resourceId);
-                }
-                LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(activity.getWindowManager().getDefaultDisplay().getWidth(), result);
-                //设置修改后的布局。
-                toolbar.setLayoutParams(para);
-            }
+            setBarH(activity, toolbar);
             removeMarginTop(activity);
+        }
+    }
+    /**
+     * 设置fragment适配状态栏
+     */
+    public static void setStatusBarFragment(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+
+    }
+    public static void setBarH(Activity activity, Toolbar toolbar) {
+        /**
+         * android4.3以上的沉浸式 ，4.3以下没效果，所以不要头部填充状态栏高度
+         */
+        int sysVersion = Build.VERSION.SDK_INT;
+        if (sysVersion > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            int result = 0;
+            int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = activity.getResources().getDimensionPixelSize(resourceId);
+            }
+            LinearLayout.LayoutParams para = new LinearLayout.LayoutParams(activity.getWindowManager().getDefaultDisplay().getWidth(), result);
+            //设置修改后的布局。
+            toolbar.setLayoutParams(para);
         }
     }
 

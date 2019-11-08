@@ -3,22 +3,19 @@ package com.longcheng.lifecareplan.modular.helpwith.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -28,19 +25,13 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.adapter.HelpWithBottomAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.adapter.HelpWithTopAdapter;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpWithInfo;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 import com.longcheng.lifecareplan.modular.helpwith.myDedication.activity.MyDeH5Activity;
-import com.longcheng.lifecareplan.modular.helpwith.myDedication.activity.MyDedicationActivity;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
-import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGratitudeActivity;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.MyFamilyActivity;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
@@ -52,20 +43,18 @@ import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.MyScrollView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * 作者：MarkShuai
@@ -75,7 +64,8 @@ import butterknife.Unbinder;
  */
 
 public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, HelpWithPresenterImp<HelpWithContract.View>> implements HelpWithContract.View {
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.pagetop_iv_left)
     ImageView pagetop_iv_left;
     @BindView(R.id.pageTop_tv_name)
@@ -112,6 +102,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
 
     @Override
     public void initView(View view) {
+        Immersive.setBarH(getActivity(),toolbar);
         tvTohelp.setOnClickListener(this);
         layoutGolf.setOnClickListener(this);
         pagetop_iv_left.setVisibility(View.GONE);

@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <include layout="@layout/page_top" />
 
@@ -103,8 +103,8 @@
                 android:gravity="center"
                 android:horizontalSpacing="@dimen/dp8"
                 android:numColumns="5"
-                android:paddingBottom="@dimen/dp20"
                 android:paddingTop="@dimen/dp20"
+                android:paddingBottom="@dimen/dp20"
                 android:scrollbars="none"
                 android:verticalSpacing="@dimen/padd_leftright" />
 
@@ -203,8 +203,8 @@
                         <LinearLayout
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/dp30"
                             android:layout_marginTop="@dimen/dp30"
+                            android:layout_marginBottom="@dimen/dp30"
                             android:background="@color/red" />
 
 
@@ -224,11 +224,11 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
                         android:gravity="right"
-                        android:paddingBottom="@dimen/dp8"
-                        android:paddingRight="@dimen/dp8">
+                        android:paddingRight="@dimen/dp8"
+                        android:paddingBottom="@dimen/dp8">
 
                         <ImageView
                             android:id="@+id/iv_tohelpimg"

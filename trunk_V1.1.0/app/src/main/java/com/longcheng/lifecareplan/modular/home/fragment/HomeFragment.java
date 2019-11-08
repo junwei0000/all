@@ -90,8 +90,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     ImageView pagetopIvLeft;
     @BindView(R.id.pagetop_layout_left)
     LinearLayout pagetopLayoutLeft;
-    @BindView(R.id.pageTop_tv_name)
-    TextView pageTopTvName;
     @BindView(R.id.pagetop_iv_rigth)
     ImageView pagetopIvRigth;
     @BindView(R.id.pagetop_layout_rigth)
@@ -99,21 +97,14 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     @BindView(R.id.main_sv)
     PullToRefreshScrollView main_sv;
 
-
-    @BindView(R.id.maintop_tv_startday)
-    TextView maintopTvStartday;
-    @BindView(R.id.maintop_tv_helpnum)
-    TextView maintopTvHelpnum;
-    @BindView(R.id.maintop_tv_lifeenergy)
-    TextView maintopTvLifeenergy;
     @BindView(R.id.vp)
     ViewFlipper vp;
 
     @BindView(R.id.gv_icon)
     MyGridView gv_icon;
 
-    @BindView(R.id.mainhealth_layout_more)
-    LinearLayout mainhealthLayoutMore;
+    @BindView(R.id.mainhealth_tv_more)
+    TextView mainhealth_tv_more;
 
     @BindView(R.id.homededi_vp_dedication)
     ViewPager homedediVpDedication;
@@ -147,8 +138,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @BindView(R.id.homededi_vp_health)
     ViewPager homedediVpHealth;
-    @BindView(R.id.homededi_layout_healthdot)
-    LinearLayout homedediLayoutHealthdot;
 
     List<HomeItemBean> msg;
     List<HomeItemBean> actions, icons;
@@ -240,17 +229,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     @Override
     public void initView(View view) {
         initContext();
-        pagetopLayoutLeft.setOnClickListener(this);
-        pagetopLayoutRigth.setOnClickListener(this);
-        mainhealthLayoutMore.setOnClickListener(this);
-        mainhotpushLayoutMore.setOnClickListener(this);
-        mainactionLayoutMore.setOnClickListener(this);
-        int width = DensityUtil.screenWith(mActivity);
-        int height = (int) (width * 0.454);
-        homedediVpTop.setLayoutParams(new FrameLayout.LayoutParams(width, height));
-        pagetopLayoutRigth.setFocusable(true);
-        pagetopLayoutRigth.setFocusableInTouchMode(true);
-        pagetopLayoutRigth.requestFocus();
         showChache(false);
         try {
             String d = CleanMessageUtil.getTotalCacheSize(mActivity);
@@ -258,12 +236,21 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         } catch (Exception e) {
             e.printStackTrace();
         }
-        pagetopIvRigth.setBackgroundResource(R.mipmap.homepage_scan_icon);
-        pagetopIvRigth.setVisibility(View.VISIBLE);
-        pageTopTvName.setText(getString(R.string.main_title));
+        pagetopLayoutLeft.getBackground().setAlpha(60);
+        pagetopLayoutRigth.getBackground().setAlpha(60);
+        pagetopLayoutLeft.setOnClickListener(this);
+        pagetopLayoutRigth.setOnClickListener(this);
+        mainhealth_tv_more.setOnClickListener(this);
+        mainhotpushLayoutMore.setOnClickListener(this);
+        mainactionLayoutMore.setOnClickListener(this);
+        int width = DensityUtil.screenWith(mActivity);
+        int height = (int) (width * 0.62);
+        homedediVpTop.setLayoutParams(new FrameLayout.LayoutParams(width, height));
+        pagetopLayoutRigth.setFocusable(true);
+        pagetopLayoutRigth.setFocusableInTouchMode(true);
+        pagetopLayoutRigth.requestFocus();
         ScrowUtil.ScrollViewDownConfig(main_sv);
         homedediVpTop.addOnPageChangeListener(mOnPageChangeTopListener);
-        homedediVpHealth.addOnPageChangeListener(mOnPageChangeHealthListener);
         homedediVpDedication.addOnPageChangeListener(mOnPageChangeListener);
         main_sv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
@@ -470,7 +457,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
-            case R.id.mainhealth_layout_more:// 健康速递 查看更多
+            case R.id.mainhealth_tv_more:// 健康速递 查看更多
                 intent = new Intent(mActivity, HealthyDeliveryAct.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
@@ -628,7 +615,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     int showLayerIndex = -1;
 
     private void setLoadData(HomeAfterBean mHomeAfterBean) {
-        if (mHomeAfterBean != null && maintopTvStartday != null) {
+        if (mHomeAfterBean != null) {
             layer = mHomeAfterBean.getLayer();
             if (layer != null && layer.size() > 0) {
                 showCononDialog();
@@ -653,11 +640,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             }
             chacheMap(mHomeAfterBean);
             showNoDataView(false);
-            if (maintopTvStartday != null) {
-                maintopTvStartday.setText(mHomeAfterBean.getRunDay());
-                maintopTvHelpnum.setText(mHomeAfterBean.getHz_people());
-                maintopTvLifeenergy.setText(mHomeAfterBean.getHz_ability_sum());
-            }
             List<HomeItemBean> Banners = mHomeAfterBean.getBanners();
             if (Banners != null) {
                 shoeZZJieQi(Banners);
@@ -839,12 +821,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             }
             imgList.add(img);
         }
-        dotHealthList.clear();
-        homedediLayoutHealthdot.removeAllViews();
-        for (int i = 0; i < newpuList.size(); i++) {
-            homedediLayoutHealthdot.addView(imgList.get(i), getDotViewParams());
-            dotHealthList.add(imgList.get(i));
-        }
     }
 
 
@@ -853,7 +829,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     int selectHealthPosition;
     int selectTopPosition;
     private List<ImageView> dotList = new ArrayList<>();
-    private List<ImageView> dotHealthList = new ArrayList<>();
     private List<ImageView> dotTopList = new ArrayList<>();
 
     /**
@@ -937,30 +912,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             for (int i = 0; i < dotTopList.size(); i++) {
                 ImageView img = dotTopList.get(i);
                 if (i == selectTopPosition) {
-                    img.setImageResource(R.drawable.corners_oval_red);
-                } else {
-                    img.setImageResource(R.drawable.corners_oval_redfen);
-                }
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
-    ViewPager.OnPageChangeListener mOnPageChangeHealthListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            selectHealthPosition = position % dotHealthList.size();
-            for (int i = 0; i < dotHealthList.size(); i++) {
-                ImageView img = dotHealthList.get(i);
-                if (i == selectHealthPosition) {
                     img.setImageResource(R.drawable.corners_oval_red);
                 } else {
                     img.setImageResource(R.drawable.corners_oval_redfen);
