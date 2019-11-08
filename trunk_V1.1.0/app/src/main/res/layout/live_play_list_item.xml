@@ -38,7 +38,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:singleLine="true"
-                    android:text="小鱼儿"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_zhu_size" />
 
@@ -48,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp10"
                     android:singleLine="true"
-                    android:text="1.5万"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_zhu_size" />
             </LinearLayout>

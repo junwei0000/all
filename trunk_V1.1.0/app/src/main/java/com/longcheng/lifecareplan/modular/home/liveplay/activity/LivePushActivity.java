@@ -16,10 +16,12 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,6 +46,7 @@ import com.alivc.live.pusher.SurfaceStatus;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
@@ -159,7 +162,24 @@ public class LivePushActivity extends BaseActivity {
         btnLiwu.setVisibility(View.GONE);
         btnCamera.setOnClickListener(onClickListener);
         btnExit.setOnClickListener(onClickListener);
-        fragLayoutRank.setOnClickListener(onClickListener);
+//        fragLayoutRank.setOnClickListener(onClickListener);
+        edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId,
+                                          KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND
+                        || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                    if (!TextUtils.isEmpty(edtContent.getText().toString().trim())) {
+                        String content = edtContent.getText().toString().trim();
+                        edtContent.setText("");
+                        ToastUtils.showToast("功能开发中...");
+                    }
+                    ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -173,12 +193,12 @@ public class LivePushActivity extends BaseActivity {
         if (!TextUtils.isEmpty(playTitle)) {
             fragTvPlaystatus.setText("直播中: " + playTitle);
         }
-        String live_name = intent.getStringExtra("live_name");
     }
 
-    public static void startActivity(Activity activity, String url) {
+    public static void startActivity(Activity activity, String url,String playTitle) {
         Intent intent = new Intent(activity, LivePushActivity.class);
         intent.putExtra(URL_KEY, url);
+        intent.putExtra("playTitle", playTitle);
         activity.startActivityForResult(intent, REQ_CODE_PUSH);
     }
 

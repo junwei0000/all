@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="在线人数：2654"
+                android:text="在线人数：0"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_zhu_size" />
         </LinearLayout>
@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp2"
                         android:singleLine="true"
-                        android:text="1.4万"
+                        android:text="1"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_zhu_size" />
                 </LinearLayout>

@@ -12,9 +12,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;
 
@@ -59,7 +57,8 @@ public class PlayListAdapter extends BaseAdapterHelper<LivePlayItemInfo> {
             height = (int) (width * 1.54);
             moid = R.mipmap.live_listnotdatebg2;
         }
-        GlideDownLoadImage.getInstance().loadCircleImageLive("", moid, mHolder.item_iv_thumb, ConstantManager.image_angle);
+        mHolder.item_iv_thumb.setImageDrawable(context.getResources().getDrawable(mHelpItemBean.getThumb()));
+//        GlideDownLoadImage.getInstance().loadCircleImageLive("", moid, mHolder.item_iv_thumb, ConstantManager.image_angle);
         mHolder.relat_thumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
         return convertView;
     }

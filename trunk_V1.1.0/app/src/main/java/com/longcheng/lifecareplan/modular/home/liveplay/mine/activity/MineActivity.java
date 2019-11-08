@@ -17,7 +17,9 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.AllFragment;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.ComingFragment;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.PendingFragment;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.CircleImageView;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -113,6 +115,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     @Override
     public void initDataAfter() {
         pageTopTvName.setText("我的");
+        String avatar = (String) SharedPreferencesHelper.get(mActivity, "avatar", "");
+        GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mActivity, avatar, ivHead);
         position = 0;
         initFragment();
         setPageAdapter();
