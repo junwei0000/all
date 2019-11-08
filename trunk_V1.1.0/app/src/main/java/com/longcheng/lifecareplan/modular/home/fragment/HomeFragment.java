@@ -72,7 +72,6 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesU
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -108,8 +107,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @BindView(R.id.homededi_vp_dedication)
     ViewPager homedediVpDedication;
-    @BindView(R.id.homededi_layout_dedicationdot)
-    LinearLayout homedediLayoutDedicationdot;
 
     @BindView(R.id.mainaction_layout_more)
     LinearLayout mainactionLayoutMore;
@@ -143,8 +140,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     List<HomeItemBean> actions, icons;
     @BindView(R.id.homededi_vp_top)
     ViewPager homedediVpTop;
-    @BindView(R.id.homededi_layout_topdot)
-    LinearLayout homedediLayoutTopdot;
 
     public static String jieqi_name = "";
     public static String kn_url = "";
@@ -250,8 +245,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         pagetopLayoutRigth.setFocusableInTouchMode(true);
         pagetopLayoutRigth.requestFocus();
         ScrowUtil.ScrollViewDownConfig(main_sv);
-        homedediVpTop.addOnPageChangeListener(mOnPageChangeTopListener);
-        homedediVpDedication.addOnPageChangeListener(mOnPageChangeListener);
         main_sv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
@@ -669,7 +662,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             List<HomeItemBean> rankingData = mHomeAfterBean.getRankingData();
             if (rankingData != null && rankingData.size() > 0) {
                 showDedicationAdapter(rankingData);
-                initLineLayoutDao(rankingData);
             }
 
             msg = mHomeAfterBean.getMsg();
@@ -747,29 +739,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * @param BannersList
      */
     private void shoeZZJieQi(List<HomeItemBean> BannersList) {
-
         TopAdapter adapter = new TopAdapter(mActivity, BannersList);
         homedediVpTop.setAdapter(adapter);
-        List<ImageView> imgList = new ArrayList<>();
-        for (int i = 0; i < BannersList.size(); i++) {
-            ImageView img = new ImageView(mActivity); // 现在空
-            img.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
-            if (i == selectTopPosition) {
-                img.setImageResource(R.drawable.corners_oval_red);
-            } else {
-                img.setImageResource(R.drawable.corners_oval_redfen);
-            }
-            imgList.add(img);
-        }
-        dotTopList.clear();
-        homedediLayoutTopdot.removeAllViews();
-        for (int i = 0; i < BannersList.size(); i++) {
-            homedediLayoutTopdot.addView(imgList.get(i), getDotViewParams());
-            dotTopList.add(imgList.get(i));
-        }
-        if (BannersList.size() > 2) {
-            selectTopPosition = 1;
-            homedediVpTop.setCurrentItem(selectTopPosition);
+        if (BannersList != null && BannersList.size() > 1) {
+            homedediVpTop.setCurrentItem(1);
         }
     }
 
@@ -807,29 +780,12 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 健康速递
      */
     private void showNewPu(List<HomeItemBean> newpuList) {
-        selectHealthPosition = 0;
         HealthAdapter adapter = new HealthAdapter(getActivity(), newpuList);
         homedediVpHealth.setAdapter(adapter);
-        List<ImageView> imgList = new ArrayList<>();
-        for (int i = 0; i < newpuList.size(); i++) {
-            ImageView img = new ImageView(mActivity); // 现在空
-            img.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
-            if (i == selectHealthPosition) {
-                img.setImageResource(R.drawable.corners_oval_red);
-            } else {
-                img.setImageResource(R.drawable.corners_oval_redfen);
-            }
-            imgList.add(img);
-        }
     }
 
 
     //**********************奉献榜 start*****************************************
-    int selectDedicationPosition;
-    int selectHealthPosition;
-    int selectTopPosition;
-    private List<ImageView> dotList = new ArrayList<>();
-    private List<ImageView> dotTopList = new ArrayList<>();
 
     /**
      * 奉献榜
@@ -837,93 +793,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * @param list
      */
     private void showDedicationAdapter(List<HomeItemBean> list) {
-        selectDedicationPosition = 0;
         DedicationAdapter adapter = new DedicationAdapter(mActivity, list);
         homedediVpDedication.setAdapter(adapter);
-
-
-    }
-
-    /**
-     * 奉献榜 初始化点
-     *
-     * @param list
-     */
-    public void initLineLayoutDao(List<HomeItemBean> list) {
-        List<ImageView> imgList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            ImageView img = new ImageView(mActivity); // 现在空
-            img.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
-            if (i == selectDedicationPosition) {
-                img.setImageResource(R.drawable.corners_oval_red);
-            } else {
-                img.setImageResource(R.drawable.corners_oval_redfen);
-            }
-            imgList.add(img);
-        }
-        dotList.clear();
-        homedediLayoutDedicationdot.removeAllViews();
-        for (int i = 0; i < imgList.size(); i++) {
-            homedediLayoutDedicationdot.addView(imgList.get(i), getDotViewParams());
-            dotList.add(imgList.get(i));
-        }
-    }
-
-    public LinearLayout.LayoutParams getDotViewParams() {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(20, 20);
-        params.setMargins(5, 0, 5, 5);
-        return params;
     }
 
 
-    ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            selectDedicationPosition = position % dotList.size();
-            for (int i = 0; i < dotList.size(); i++) {
-                ImageView img = dotList.get(i);
-                if (i == selectDedicationPosition) {
-                    img.setImageResource(R.drawable.corners_oval_red);
-                } else {
-                    img.setImageResource(R.drawable.corners_oval_redfen);
-                }
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
-    ViewPager.OnPageChangeListener mOnPageChangeTopListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            selectTopPosition = position % dotTopList.size();
-            for (int i = 0; i < dotTopList.size(); i++) {
-                ImageView img = dotTopList.get(i);
-                if (i == selectTopPosition) {
-                    img.setImageResource(R.drawable.corners_oval_red);
-                } else {
-                    img.setImageResource(R.drawable.corners_oval_redfen);
-                }
-            }
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
     //**********************奉献榜 end*****************************************
     ActionAdapter mActionAdapter;
 

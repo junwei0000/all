@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -40,7 +41,7 @@
             android:gravity="bottom"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -50,6 +51,7 @@
                     android:id="@+id/tvtypedes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:paddingLeft="@dimen/dp8"
                     android:paddingTop="1dp"
                     android:paddingRight="@dimen/dp8"
@@ -60,21 +62,53 @@
 
                 <TextView
                     android:id="@+id/tvtime"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:layout_toLeftOf="@+id/layout_zan"
+                    android:layout_toRightOf="@+id/tvtypedes"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="阅读 0"
                     android:textColor="@color/text_noclick_color"
                     android:textSize="@dimen/text_zhu_size" />
-            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_zan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/home_dianzan_icpn" />
+
+                    <TextView
+                        android:id="@+id/tv_zan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="0"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/ivavatar"
         android:layout_width="@dimen/listItem_iconWidth"
         android:layout_height="@dimen/listItem_iconHeight"
         android:scaleType="centerCrop"
-        android:src="@mipmap/moren_new" />
+        android:src="@mipmap/moren_new"
+        app:riv_border_color="@color/transparent"
+        app:riv_border_width="1dp"
+        app:riv_corner_radius="3dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="false" />
 </LinearLayout>
 
 

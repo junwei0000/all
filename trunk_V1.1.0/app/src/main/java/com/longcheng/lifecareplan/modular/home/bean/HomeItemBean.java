@@ -39,6 +39,8 @@ public class HomeItemBean implements Serializable {
     private String des;
     private String type_name;
     private String add_time;
+    private String new_num;
+    private String new_zan;
     private String info_url;
     //actions
     private String ability_price;
@@ -80,6 +82,22 @@ public class HomeItemBean implements Serializable {
     private String href;
 
     private int isLiveBroadcast;//是否有直播权限
+
+    public String getNew_num() {
+        return new_num;
+    }
+
+    public void setNew_num(String new_num) {
+        this.new_num = new_num;
+    }
+
+    public String getNew_zan() {
+        return new_zan;
+    }
+
+    public void setNew_zan(String new_zan) {
+        this.new_zan = new_zan;
+    }
 
     public int getIsLiveBroadcast() {
         return isLiveBroadcast;

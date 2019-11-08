@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -17,6 +16,7 @@ import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtil
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -66,15 +66,17 @@ public class HealthAdapter extends PagerAdapter {
             TextView tvContent = view.findViewById(R.id.tvNewContent);
             TextView tvTypeDes = view.findViewById(R.id.tvtypedes);
             TextView tvTime = view.findViewById(R.id.tvtime);
-            ImageView avatar = view.findViewById(R.id.ivavatar);
+            TextView tv_zan = view.findViewById(R.id.tv_zan);
+            RoundedImageView avatar = view.findViewById(R.id.ivavatar);
             tvTypeDes.setBackgroundResource(R.drawable.corners_bg_graybian);
             tvTypeDes.setTextColor(mContext.getResources().getColor(R.color.text_noclick_color));
             HomeItemBean item = list.get(position);
             tvTitle.setText(item.getNew_name());
             tvContent.setText(item.getDes());
             tvTypeDes.setText(item.getType_name());
-            tvTime.setText(item.getCreate_time());
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, item.getPic(), avatar,ConstantManager.image_angle);
+            tvTime.setText("阅读 " + item.getNew_num());
+            tv_zan.setText(item.getNew_zan());
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, item.getPic(), avatar, ConstantManager.image_angle);
 
 
             view.setTag(item);
