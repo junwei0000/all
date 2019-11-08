@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relat_pop"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp60"
+    android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:paddingLeft="@dimen/jianJu"
     android:paddingRight="@dimen/jianJu">
@@ -12,8 +13,8 @@
         android:layout_height="@dimen/dp35"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_toLeftOf="@+id/layout_gn"
         android:background="@drawable/corners_bg_blackxingji"
         android:focusable="true"

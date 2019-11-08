@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.utils.DatesUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
@@ -82,7 +84,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 changeData();
                 break;
             case R.id.layout_playlist_mine:
-                Intent  intent = new Intent(mActivity, MineActivity.class);
+                Intent intent = new Intent(mActivity, MineActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 break;
@@ -189,7 +191,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 }
             }
         }
-        LivePushActivity.startActivity(this, Pushurl);
+        if (!TextUtils.isEmpty(Pushurl)) {
+            LivePushActivity.startActivity(this, Pushurl);
+        } else {
+            ToastUtils.showToast("获取直播信息失败");
+        }
     }
 
     @Override
@@ -206,6 +212,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         playList = new ArrayList<>();
         playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
         playList.add(new LivePlayItemInfo("128767", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云莉雅", HomeFragment.jieqi_name, time));
+        playList.add(new LivePlayItemInfo("942", R.mipmap.yun, "测试", "孤鬼", HomeFragment.jieqi_name, time));
         PlayListAdapter mAdapter = new PlayListAdapter(mContext, playList, liveSeleStatus);
         playView.setAdapter(mAdapter);
         playView.setVisibility(View.VISIBLE);

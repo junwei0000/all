@@ -763,13 +763,15 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeLive"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".modular.home.liveplay.activity.LivePlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeLive" />
         <activity
             android:name=".modular.home.liveplay.activity.LivePlayListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -782,6 +784,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".modular.home.liveplay.activity.TestActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLive"
+            android:windowSoftInputMode="adjustResize" />
 
         <service
             android:name=".utils.apkupload.service.DownloadService"

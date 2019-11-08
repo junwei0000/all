@@ -2,9 +2,9 @@
     android:id="@+id/layout_notlive"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/dp80"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp80">
 
     <ImageView
         android:layout_width="wrap_content"

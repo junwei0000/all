@@ -8,22 +8,18 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -31,18 +27,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alivc.component.custom.AlivcLivePushCustomDetect;
+import com.alivc.component.custom.AlivcLivePushCustomFilter;
+import com.alivc.live.detect.TaoFaceFilter;
+import com.alivc.live.filter.TaoBeautyFilter;
+import com.alivc.live.pusher.AlivcBeautyLevelEnum;
 import com.alivc.live.pusher.AlivcLivePushConfig;
-import com.alivc.live.pusher.AlivcLivePushConstants;
 import com.alivc.live.pusher.AlivcLivePushInfoListener;
 import com.alivc.live.pusher.AlivcLivePushNetworkListener;
 import com.alivc.live.pusher.AlivcLivePusher;
+import com.alivc.live.pusher.AlivcPreviewDisplayMode;
 import com.alivc.live.pusher.AlivcPreviewOrientationEnum;
+import com.alivc.live.pusher.AlivcQualityModeEnum;
+import com.alivc.live.pusher.AlivcResolutionEnum;
 import com.alivc.live.pusher.SurfaceStatus;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
-import com.longcheng.lifecareplan.modular.home.liveplay.fragment.SharedPreferenceUtils;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
@@ -62,25 +63,12 @@ import butterknife.BindView;
 
 import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_BACK;
 import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_FRONT;
-import static com.alivc.live.pusher.AlivcLivePushConstants.DEFAULT_VALUE_INT_AUDIO_RETRY_COUNT;
-import static com.alivc.live.pusher.AlivcLivePushConstants.DEFAULT_VALUE_INT_RETRY_INTERVAL;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_LEFT;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_RIGHT;
 import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_PORTRAIT;
 
 public class LivePushActivity extends BaseActivity {
-    private static final String URL_KEY = "url_key";
-    private static final String ASYNC_KEY = "async_key";
-    private static final String AUDIO_ONLY_KEY = "audio_only_key";
-    private static final String VIDEO_ONLY_KEY = "video_only_key";
-    private static final String ORIENTATION_KEY = "orientation_key";
-    private static final String CAMERA_ID = "camera_id";
-    private static final String FLASH_ON = "flash_on";
-    private static final String AUTH_TIME = "auth_time";
-    private static final String PRIVACY_KEY = "privacy_key";
-    private static final String MIX_EXTERN = "mix_extern";
-    private static final String MIX_MAIN = "mix_main";
-    private static final int REQ_CODE_PUSH = 0x1112;
+
     @BindView(R.id.preview_view)
     SurfaceView previewView;
     @BindView(R.id.frag_tv_playstatus)
@@ -93,6 +81,8 @@ public class LivePushActivity extends BaseActivity {
     LinearLayout fragLayoutCity;
     @BindView(R.id.frag_layout_rank)
     LinearLayout fragLayoutRank;
+    @BindView(R.id.rank_iv_arrow)
+    ImageView rank_iv_arrow;
     @BindView(R.id.btn_exit)
     ImageView btnExit;
     @BindView(R.id.lv_rankdata)
@@ -118,37 +108,30 @@ public class LivePushActivity extends BaseActivity {
     @BindView(R.id.layout_gn)
     LinearLayout layoutGn;
 
+    private static final String URL_KEY = "url_key";
+    private static final int REQ_CODE_PUSH = 0x1112;
     private AlivcLivePushConfig mAlivcLivePushConfig;
-
     private AlivcLivePusher mAlivcLivePusher = null;
     private String mPushUrl = null;
-
-    private boolean mAsync = false;
+    private boolean mAsync = true;
     private boolean mAudioOnly = false;
     private boolean mVideoOnly = false;
-
     private SurfaceStatus mSurfaceStatus = SurfaceStatus.UNINITED;
     private boolean isPause = false;
-
     private int mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
     private boolean mFlash = false;
     private boolean mMixExtern = false;
     private boolean mMixMain = false;
-
     private String mAuthTime = "";
     private String mPrivacyKey = "";
-
     private boolean videoThreadOn = false;
     private boolean audioThreadOn = false;
-
     private int mNetWork = 0;
+    TaoFaceFilter taoFaceFilter;
+    TaoBeautyFilter taoBeautyFilter;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        setAllowFullScreen(true);
-        super.onCreate(savedInstanceState);
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
-    }
+
+    boolean rankOpenStatus = false;
 
     @Override
     public void onClick(View view) {
@@ -167,7 +150,7 @@ public class LivePushActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
     }
 
     @Override
@@ -176,23 +159,7 @@ public class LivePushActivity extends BaseActivity {
         btnLiwu.setVisibility(View.GONE);
         btnCamera.setOnClickListener(onClickListener);
         btnExit.setOnClickListener(onClickListener);
-        edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId,
-                                          KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEND
-                        || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-                    if (!TextUtils.isEmpty(edtContent.getText().toString().trim())) {
-                        String content = edtContent.getText().toString().trim();
-                        edtContent.setText("");
-                        ToastUtils.showToast("功能开发中...");
-                    }
-                    ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
-                    return true;
-                }
-                return false;
-            }
-        });
+        fragLayoutRank.setOnClickListener(onClickListener);
     }
 
     @Override
@@ -209,22 +176,26 @@ public class LivePushActivity extends BaseActivity {
         String live_name = intent.getStringExtra("live_name");
     }
 
+    public static void startActivity(Activity activity, String url) {
+        Intent intent = new Intent(activity, LivePushActivity.class);
+        intent.putExtra(URL_KEY, url);
+        activity.startActivityForResult(intent, REQ_CODE_PUSH);
+    }
 
     private void initData() {
         mPushUrl = getIntent().getStringExtra(URL_KEY);
-        mAsync = getIntent().getBooleanExtra(ASYNC_KEY, false);
-        mAudioOnly = getIntent().getBooleanExtra(AUDIO_ONLY_KEY, false);
-        mVideoOnly = getIntent().getBooleanExtra(VIDEO_ONLY_KEY, false);
-        mCameraId = getIntent().getIntExtra(CAMERA_ID, Camera.CameraInfo.CAMERA_FACING_FRONT);
-        mFlash = getIntent().getBooleanExtra(FLASH_ON, false);
-        mAuthTime = getIntent().getStringExtra(AUTH_TIME);
-        mPrivacyKey = getIntent().getStringExtra(PRIVACY_KEY);
-        mMixExtern = getIntent().getBooleanExtra(MIX_EXTERN, false);
-        mMixMain = getIntent().getBooleanExtra(MIX_MAIN, false);
-        mAlivcLivePushConfig = (AlivcLivePushConfig) getIntent().getSerializableExtra(AlivcLivePushConfig.CONFIG);
+        mAlivcLivePushConfig = new AlivcLivePushConfig();
         mAlivcLivePusher = new AlivcLivePusher();
         try {
+            mMixMain = mAlivcLivePushConfig.isExternMainStream();
+            mAlivcLivePushConfig.setMediaProjectionPermissionResultData(null);
+            mAlivcLivePushConfig.setResolution(AlivcResolutionEnum.RESOLUTION_540P);
+            mAlivcLivePushConfig.setQualityMode(AlivcQualityModeEnum.QM_RESOLUTION_FIRST);//显示模式 清晰度优先
+            mAlivcLivePushConfig.setPreviewDisplayMode(AlivcPreviewDisplayMode.ALIVC_LIVE_PUSHER_PREVIEW_ASPECT_FIT);//横屏适配
+            mAlivcLivePushConfig.setBeautyOn(true);// 开启美颜
+            mAlivcLivePushConfig.setBeautyLevel(AlivcBeautyLevelEnum.BEAUTY_Professional);//设定为高级美颜
             mAlivcLivePusher.init(getApplicationContext(), mAlivcLivePushConfig);
+            mAlivcLivePusher.setAutoFocus(true);//自动对焦
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (IllegalStateException e) {
@@ -233,20 +204,83 @@ public class LivePushActivity extends BaseActivity {
         mNetWork = NetUtils.getAPNType(this);
         mAlivcLivePusher.setLivePushInfoListener(mPushInfoListener);
         mAlivcLivePusher.setLivePushNetworkListener(mPushNetworkListener);
+        //人脸识别回调（只接入标准版美颜可不需要调用此接口）
+        mAlivcLivePusher.setCustomDetect(new AlivcLivePushCustomDetect() {
+            @Override
+            public void customDetectCreate() {
+                taoFaceFilter = new TaoFaceFilter(getApplicationContext());
+                taoFaceFilter.customDetectCreate();
+            }
+
+            @Override
+            public long customDetectProcess(long data, int width, int height, int rotation, int format, long extra) {
+                if (taoFaceFilter != null) {
+                    return taoFaceFilter.customDetectProcess(data, width, height, rotation, format, extra);
+                }
+                return 0;
+            }
+
+            @Override
+            public void customDetectDestroy() {
+                if (taoFaceFilter != null) {
+                    taoFaceFilter.customDetectDestroy();
+                }
+            }
+        });
+        //美颜回调
+        mAlivcLivePusher.setCustomFilter(new AlivcLivePushCustomFilter() {
+            @Override
+            public void customFilterCreate() {
+                taoBeautyFilter = new TaoBeautyFilter();
+                taoBeautyFilter.customFilterCreate();
+            }
+
+            @Override
+            public void customFilterUpdateParam(float fSkinSmooth, float fWhiten, float fWholeFacePink, float fThinFaceHorizontal, float fCheekPink, float fShortenFaceVertical, float fBigEye) {
+                if (taoBeautyFilter != null) {
+                    taoBeautyFilter.customFilterUpdateParam(fSkinSmooth, fWhiten, fWholeFacePink, fThinFaceHorizontal, fCheekPink, fShortenFaceVertical, fBigEye);
+                }
+            }
+
+            @Override
+            public void customFilterSwitch(boolean on) {
+                if (taoBeautyFilter != null) {
+                    taoBeautyFilter.customFilterSwitch(on);
+                }
+            }
+
+            @Override
+            public int customFilterProcess(int inputTexture, int textureWidth, int textureHeight, long extra) {
+                if (taoBeautyFilter != null) {
+                    return taoBeautyFilter.customFilterProcess(inputTexture, textureWidth, textureHeight, extra);
+                }
+                return inputTexture;
+            }
+
+            @Override
+            public void customFilterDestroy() {
+                if (taoBeautyFilter != null) {
+                    taoBeautyFilter.customFilterDestroy();
+                }
+                taoBeautyFilter = null;
+            }
+        });
     }
 
-    public static final int SENDLIWU = 11;
-    public static final int CAMERA = 22;
-    public static final int EXIT = 33;
+
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case SENDLIWU:
+                case BoEditPopupUtils.CONTENT:
                     break;
-                case CAMERA:
+                case BoEditPopupUtils.SENDLIWU:
                     break;
-                case EXIT:
+                case BoEditPopupUtils.CAMERA:
+                    setCameraSwitch();
+                    break;
+                case BoEditPopupUtils.EXIT:
+                    finish();
                     break;
             }
         }
@@ -258,16 +292,21 @@ public class LivePushActivity extends BaseActivity {
                 case R.id.btn_exit:
                     finish();
                     break;
+                case R.id.edt_content:
+                    break;
                 case R.id.btn_camera:
-                    if (mCameraId == CAMERA_TYPE_FRONT.getCameraId()) {
-                        mCameraId = CAMERA_TYPE_BACK.getCameraId();
-                    } else {
-                        mCameraId = CAMERA_TYPE_FRONT.getCameraId();
-                    }
-                    mAlivcLivePusher.switchCamera();
+                    setCameraSwitch();
                     break;
                 case R.id.btn_liwu:
                     ToastUtils.showToast("功能开发中...");
+                    break;
+                case R.id.frag_layout_rank:
+                    if (rankOpenStatus) {
+                        rankOpenStatus = false;
+                    } else {
+                        rankOpenStatus = true;
+                    }
+                    setRankListOpenStatus();
                     break;
                 default:
                     break;
@@ -275,8 +314,29 @@ public class LivePushActivity extends BaseActivity {
         }
     };
 
+    private void setRankListOpenStatus() {
+        if (rankOpenStatus) {
+            rank_iv_arrow.setBackgroundResource(R.mipmap.live_jiantou_2);
+            fragLayoutRank.setBackgroundResource(R.mipmap.live_beijingi_2);
+            lvRankdata.setVisibility(View.VISIBLE);
+        } else {
+            rank_iv_arrow.setBackgroundResource(R.mipmap.live_jiantou_3);
+            fragLayoutRank.setBackgroundResource(R.mipmap.live_beijingi_1);
+            lvRankdata.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void setCameraSwitch() {
+        if (mCameraId == CAMERA_TYPE_FRONT.getCameraId()) {
+            mCameraId = CAMERA_TYPE_BACK.getCameraId();
+        } else {
+            mCameraId = CAMERA_TYPE_FRONT.getCameraId();
+        }
+        mAlivcLivePusher.switchCamera();
+    }
+
     /**
-     * 开启
+     * 开始推流
      */
     public void startPlay() {
         if (mAsync) {
@@ -302,6 +362,9 @@ public class LivePushActivity extends BaseActivity {
                             startYUV(getApplicationContext());
                             startPCM(getApplicationContext());
                         }
+                        mAlivcLivePusher.setBeautyBuffing(60);// 磨皮范围0-100
+                        mAlivcLivePusher.setBeautyWhite(50);// 美白范围0-100
+                        mAlivcLivePusher.setBeautyBigEye(30);// 大眼设置范围0-100
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -332,43 +395,6 @@ public class LivePushActivity extends BaseActivity {
         }
     };
 
-    public static void startActivity(Activity activity, String url) {
-        AlivcLivePushConfig mAlivcLivePushConfig = new AlivcLivePushConfig();
-        AlivcLivePushConfig.setMediaProjectionPermissionResultData(null);
-        mAlivcLivePushConfig.setBeautyBuffing(55);
-        SharedPreferenceUtils.setBuffing(activity, 55);
-        mAlivcLivePushConfig.setBeautyWhite(55);
-        SharedPreferenceUtils.setWhiteValue(activity, 55);
-        mAlivcLivePushConfig.setConnectRetryInterval(DEFAULT_VALUE_INT_RETRY_INTERVAL);
-        mAlivcLivePushConfig.setConnectRetryCount(DEFAULT_VALUE_INT_AUDIO_RETRY_COUNT);
-        mAlivcLivePushConfig.setInitialVideoBitrate(Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P.DEFAULT_VALUE_INT_INIT_BITRATE.getBitrate())));
-        mAlivcLivePushConfig.setAudioBitRate(1000 * 64);
-        mAlivcLivePushConfig.setMinVideoBitrate(Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_RESOLUTION_FIRST.DEFAULT_VALUE_INT_MIN_BITRATE.getBitrate())));
-        SharedPreferenceUtils.setMinBit(activity, Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_RESOLUTION_FIRST.DEFAULT_VALUE_INT_MIN_BITRATE.getBitrate())));
-        mAlivcLivePushConfig.setTargetVideoBitrate(Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_FLUENCY_FIRST.DEFAULT_VALUE_INT_TARGET_BITRATE.getBitrate())));
-        SharedPreferenceUtils.setTargetBit(activity, Integer.valueOf(String.valueOf(AlivcLivePushConstants.BITRATE_540P_FLUENCY_FIRST.DEFAULT_VALUE_INT_TARGET_BITRATE.getBitrate())));
-
-        SharedPreferenceUtils.setHintTargetBit(activity, AlivcLivePushConstants.BITRATE_540P.DEFAULT_VALUE_INT_TARGET_BITRATE.getBitrate());
-        SharedPreferenceUtils.setHintMinBit(activity, AlivcLivePushConstants.BITRATE_540P.DEFAULT_VALUE_INT_MIN_BITRATE.getBitrate());
-
-
-        Intent intent = new Intent(activity, LivePushActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(AlivcLivePushConfig.CONFIG, mAlivcLivePushConfig);
-        bundle.putString(URL_KEY, url);
-        bundle.putBoolean(ASYNC_KEY, true);
-        bundle.putBoolean(AUDIO_ONLY_KEY, false);
-        bundle.putBoolean(VIDEO_ONLY_KEY, false);
-        bundle.putInt(ORIENTATION_KEY, ORIENTATION_PORTRAIT.ordinal());
-        bundle.putInt(CAMERA_ID, Camera.CameraInfo.CAMERA_FACING_FRONT);
-        bundle.putBoolean(FLASH_ON, false);
-        bundle.putString(AUTH_TIME, "");
-        bundle.putString(PRIVACY_KEY, "");
-        bundle.putBoolean(MIX_EXTERN, false);
-        bundle.putBoolean(MIX_MAIN, mAlivcLivePushConfig.isExternMainStream());
-        intent.putExtras(bundle);
-        activity.startActivityForResult(intent, REQ_CODE_PUSH);
-    }
 
     @Override
     protected void onResume() {
@@ -409,8 +435,20 @@ public class LivePushActivity extends BaseActivity {
         videoThreadOn = false;
         audioThreadOn = false;
         if (mAlivcLivePusher != null) {
+            //停止推流
+            try {
+                mAlivcLivePusher.stopPush();
+            } catch (Exception e) {
+            }
+            //停止预览
+            try {
+                mAlivcLivePusher.stopPreview();
+            } catch (Exception e) {
+            }
+            //释放推流
             try {
                 mAlivcLivePusher.destroy();
+                mAlivcLivePusher.setLivePushInfoListener(null);
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             }
