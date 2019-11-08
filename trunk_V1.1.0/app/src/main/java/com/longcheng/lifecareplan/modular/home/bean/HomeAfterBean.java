@@ -1,8 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class HomeAfterBean implements Serializable {
     private HomeItemBean current_jieqi;
     private List<String> top_msgs;
     private List<HomeItemBean> newpu;
-    private List<HomeItemBean> rankingData;
+    private ArrayList<HomeItemBean> rankingData;
     private List<HomeItemBean> actions;
     private List<HomeItemBean> msg;
 
@@ -147,11 +146,11 @@ public class HomeAfterBean implements Serializable {
         this.newpu = newpu;
     }
 
-    public List<HomeItemBean> getRankingData() {
+    public ArrayList<HomeItemBean> getRankingData() {
         return rankingData;
     }
 
-    public void setRankingData(List<HomeItemBean> rankingData) {
+    public void setRankingData(ArrayList<HomeItemBean> rankingData) {
         this.rankingData = rankingData;
     }
 

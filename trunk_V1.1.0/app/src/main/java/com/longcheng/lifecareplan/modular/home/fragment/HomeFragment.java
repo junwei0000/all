@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -72,6 +73,7 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesU
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -108,15 +110,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     @BindView(R.id.homededi_vp_dedication)
     ViewPager homedediVpDedication;
 
-    @BindView(R.id.mainaction_layout_more)
-    LinearLayout mainactionLayoutMore;
+    @BindView(R.id.mainaction_tv_more)
+    TextView mainactionLayoutMore;
     @BindView(R.id.gv_Action)
     MyGridView gv_Action;
 
-    @BindView(R.id.mainhotpush_iv_arrow)
-    ImageView mainhotpushIvArrow;
-    @BindView(R.id.mainhotpush_layout_more)
-    LinearLayout mainhotpushLayoutMore;
+    @BindView(R.id.mainhotpush_tv_more)
+    TextView mainhotpushLayoutMore;
     @BindView(R.id.mainhotpush_lv)
     MyListView mainhotpushLv;
     @BindView(R.id.frame_bottom)
@@ -432,7 +432,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
-            case R.id.mainaction_layout_more://热门行动
+            case R.id.mainaction_tv_more://热门行动
                 if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
                     intent = new Intent(mActivity, PopularActionActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -440,7 +440,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
                 break;
-            case R.id.mainhotpush_layout_more://热推互祝
+            case R.id.mainhotpush_tv_more://热推互祝
                 SharedPreferencesHelper.put(mActivity, "skiptype", "HomeFragment");
                 if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHelpWithEnergy)) {
                     intent = new Intent(mActivity, HelpWithEnergyActivity.class);
@@ -659,7 +659,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             }
 
 
-            List<HomeItemBean> rankingData = mHomeAfterBean.getRankingData();
+            ArrayList<HomeItemBean> rankingData = mHomeAfterBean.getRankingData();
             if (rankingData != null && rankingData.size() > 0) {
                 showDedicationAdapter(rankingData);
             }
@@ -792,9 +792,15 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      *
      * @param list
      */
-    private void showDedicationAdapter(List<HomeItemBean> list) {
+    private void showDedicationAdapter(ArrayList<HomeItemBean> list) {
+        boolean ss = (list.size() % 2) == 0;
+        if (!ss) {
+            list.add(list.get(0));
+        }
         DedicationAdapter adapter = new DedicationAdapter(mActivity, list);
         homedediVpDedication.setAdapter(adapter);
+        int width = (DensityUtil.screenWith(mContext) - DensityUtil.dip2px(mContext, 30)) / 2;
+        homedediVpDedication.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, width));
     }
 
 

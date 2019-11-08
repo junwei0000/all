@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/view_paddlefgtright"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/jianJu"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/padd_topbottom">
+    android:orientation="vertical">
 
     <LinearLayout
+        style="@style/view_paddtopbottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -17,41 +14,27 @@
         <TextView
             android:layout_width="3dp"
             android:layout_height="15dp"
-            android:layout_marginRight="@dimen/padd_imgtextleftright"
-            android:background="@color/blue" />
+            android:background="@drawable/corners_bg_red" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_weight="1"
             android:paddingBottom="@dimen/img_setTextcenter"
             android:text="热推互祝"
             android:textColor="@color/text_biaoTi_color"
             android:textSize="@dimen/text_biaoTi_size" />
 
-        <LinearLayout
-            android:id="@+id/mainhotpush_layout_more"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/mainhotpush_tv_more"
+            style="@style/text_padd_oval"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="right|center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/padd_imgtextleftright"
-                android:paddingBottom="@dimen/img_setTextcenter"
-                android:text="查看更多"
-                android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_zhu_size" />
-
-            <ImageView
-                android:id="@+id/mainhotpush_iv_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/usercenter_arrow_img" />
-        </LinearLayout>
+            android:background="@drawable/corners_bg_writehealth"
+            android:text="查看全部"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
     </LinearLayout>
     <!---->
     <com.longcheng.lifecareplan.utils.myview.MyListView
@@ -60,11 +43,11 @@
         android:layout_height="match_parent"
         android:cacheColorHint="@color/page_bg"
         android:divider="@null"
-        android:focusable="false"
+        android:dividerHeight="@dimen/dp10"
         android:fadeScrollbars="false"
         android:fadingEdge="none"
-        android:paddingLeft="9dp"
-        android:paddingRight="9dp"
+        android:focusable="false"
+        android:paddingBottom="@dimen/dp10"
         android:scrollbars="none" />
 
 </LinearLayout>

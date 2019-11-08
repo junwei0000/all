@@ -5,20 +5,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.bean.HelpIndexDataBean;
 import com.longcheng.lifecareplan.modular.home.adapter.ActionAdapter;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -31,8 +30,6 @@ import butterknife.BindView;
  */
 public class PopularActionActivity extends BaseActivityMVP<HomeContract.View, HomePresenterImp<HomeContract.View>> implements HomeContract.View {
 
-    @BindView(R.id.layout_bg)
-    LinearLayout layout_bg;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.pagetop_layout_left)
@@ -40,7 +37,7 @@ public class PopularActionActivity extends BaseActivityMVP<HomeContract.View, Ho
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
     @BindView(R.id.action_lv)
-    MyGridView action_lv;
+    GridView action_lv;
     private String user_id;
 
     @Override
@@ -69,7 +66,6 @@ public class PopularActionActivity extends BaseActivityMVP<HomeContract.View, Ho
 
     @Override
     public void setListener() {
-        layout_bg.setBackgroundColor(getResources().getColor(R.color.white));
         pagetopLayoutLeft.setOnClickListener(this);
         action_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

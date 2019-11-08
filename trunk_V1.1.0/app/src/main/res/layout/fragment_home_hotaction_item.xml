@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:paddingTop="@dimen/padd_topbottom"
+    android:background="@drawable/corners_bg_write"
     android:orientation="vertical">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/item_iv_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp88"
-        android:scaleType="fitXY" />
+        android:scaleType="centerCrop"
+        android:src="@mipmap/moren_new"
+        app:riv_border_color="@color/transparent"
+        app:riv_border_width="0dp"
+        app:riv_corner_radius_top_left="3dp"
+        app:riv_corner_radius_top_right="3dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="false" />
 
-    <TextView
-        android:id="@+id/item_tv_name1"
-        android:layout_marginTop="@dimen/dp10"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/text_contents_color"
-        android:textSize="@dimen/text_contents_size" />
+        android:orientation="vertical"
+        android:padding="@dimen/dp8">
 
-    <TextView
-        android:id="@+id/item_tv_name2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/text_noclick_color"
-        android:textSize="@dimen/text_dp12_size" />
+        <TextView
+            android:id="@+id/item_tv_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
 
-    <TextView
-        android:id="@+id/item_tv_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dp3"
-        android:textColor="@color/text_engry_bg"
-        android:textSize="@dimen/text_zhu_size" />
+        <TextView
+            android:id="@+id/item_tv_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/item_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp3"
+            android:textColor="@color/text_engry_bg"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
 </LinearLayout>

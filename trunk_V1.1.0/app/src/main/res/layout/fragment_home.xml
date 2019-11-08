@@ -28,15 +28,6 @@
                     android:layout_height="match_parent" />
 
                 <LinearLayout
-                    android:id="@+id/homededi_layout_topdot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:layout_margin="@dimen/dp10"
-                    android:orientation="horizontal"
-                    android:visibility="gone" />
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp25"

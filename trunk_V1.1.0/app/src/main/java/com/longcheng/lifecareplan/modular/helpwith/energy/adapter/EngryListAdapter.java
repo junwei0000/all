@@ -1,18 +1,11 @@
 package com.longcheng.lifecareplan.modular.helpwith.energy.adapter;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.text.Html;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -20,7 +13,6 @@ import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpItemBean;
 import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar;
 
@@ -48,7 +40,7 @@ public class EngryListAdapter extends BaseAdapterHelper<HelpItemBean> {
     public View getItemView(int position, View convertView, ViewGroup parent, List<HelpItemBean> list, LayoutInflater inflater) {
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.fragment_home_hotpush_item, parent, false);
+            convertView = inflater.inflate(R.layout.engry_hotpush_item, parent, false);
             mHolder = new ViewHolder(convertView);
             convertView.setTag(mHolder);
         } else {

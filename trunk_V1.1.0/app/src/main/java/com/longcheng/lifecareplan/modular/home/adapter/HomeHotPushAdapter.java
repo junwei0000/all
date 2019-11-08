@@ -1,18 +1,15 @@
 package com.longcheng.lifecareplan.modular.home.adapter;
 
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpItemBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
@@ -48,7 +45,6 @@ public class HomeHotPushAdapter extends BaseAdapterHelper<HomeItemBean> {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        mHolder.item_layout_right.setVisibility(View.GONE);
         HomeItemBean mHelpItemBean = list.get(position);
         String groupimg = mHelpItemBean.getGroup_img();
         String gs_name = mHelpItemBean.getGs_name();
@@ -68,8 +64,7 @@ public class HomeHotPushAdapter extends BaseAdapterHelper<HomeItemBean> {
         mHolder.pb_lifeenergynum.setProgress(progress);
         mProgressUtils.showNum(progress, mHolder.pb_lifeenergynum.getMax(), mHolder.item_pb_num);
 
-        String showT = "已有<font color=\"#231815\">" + ability_price_action + "</font>生命能量";
-        mHolder.item_tv_lifeenergynum.setText(Html.fromHtml(showT));
+        mHolder.item_tv_lifeenergynum.setText("" + ability_price_action);
         mHolder.item_tv_date.setText(date);
         return convertView;
     }
@@ -86,10 +81,8 @@ public class HomeHotPushAdapter extends BaseAdapterHelper<HomeItemBean> {
         private TextView item_pb_num;
         private TextView item_tv_lifeenergynum;
         private TextView item_tv_date;
-        private LinearLayout item_layout_right;
 
         public ViewHolder(View view) {
-            item_layout_right = (LinearLayout) view.findViewById(R.id.item_layout_right);
             item_iv_communethumb = (ImageView) view.findViewById(R.id.item_iv_communethumb);
             item_iv_communename = (TextView) view.findViewById(R.id.item_iv_communename);
 

@@ -25,6 +25,7 @@
         android:id="@+id/item_layout_type1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingLeft="@dimen/dp20"
         android:visibility="gone">
@@ -34,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/jianJu"
-            android:layout_marginTop="@dimen/dp20"
             android:text="越互祝越健康，感恩您的祝福"
             android:textColor="@color/new_title_bg"
             android:textSize="@dimen/text_dp12_size" />

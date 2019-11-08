@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.adapter;
 
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,9 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpItemBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
-import com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar;
 
 import java.util.List;
 
@@ -50,7 +46,7 @@ public class ActionAdapter extends BaseAdapterHelper<HomeItemBean> {
             mHolder = (ViewHolder) convertView.getTag();
         }
         HomeItemBean mHelpItemBean = list.get(position);
-        GlideDownLoadImage.getInstance().loadCircleImageRole(context, mHelpItemBean.getImg(), mHolder.item_iv_img, 0);
+        GlideDownLoadImage.getInstance().loadCircleImageRoleREf(context, mHelpItemBean.getImg(), mHolder.item_iv_img, 0);
         mHolder.item_tv_name1.setText(mHelpItemBean.getName1());
         mHolder.item_tv_name2.setText(mHelpItemBean.getName2());
         mHolder.item_tv_num.setText(mHelpItemBean.getAbility_price() + "生命能量");
