@@ -30,6 +30,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.config.Config;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
@@ -78,6 +79,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.Unbinder;
 
 /**
  * 作者：MarkShuai
@@ -143,6 +145,17 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     public static String jieqi_name = "";
     public static String kn_url = "";
+    @BindView(R.id.tv_newtitle)
+    TextView tvNewtitle;
+    @BindView(R.id.tv_drawable1)
+    TextView tvDrawable1;
+    @BindView(R.id.tv_drawable2)
+    TextView tvDrawable2;
+    @BindView(R.id.tv_drawable3)
+    TextView tvDrawable3;
+    @BindView(R.id.tv_drawable4)
+    TextView tvDrawable4;
+    Unbinder unbinder;
 
     private int IsLiveBroadcast;
 
@@ -173,6 +186,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      *
      */
     public void reLoadData() {
+        ColorChangeByTime.getInstance().changeDrawable(mActivity, tvDrawable1);
+        ColorChangeByTime.getInstance().changeDrawable(mActivity, tvDrawable2);
+        ColorChangeByTime.getInstance().changeDrawable(mActivity, tvDrawable3);
+        ColorChangeByTime.getInstance().changeDrawable(mActivity, tvDrawable4);
         if (appUpdate == null) {
             appUpdate = new AppUpdate();
         }
@@ -669,7 +686,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 mainhotpushLv.setFocusable(false);
                 setHotPushHelp(msg);
             }
+
             setFocuse();
+
         }
     }
 

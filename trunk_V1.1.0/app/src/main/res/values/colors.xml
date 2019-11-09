@@ -78,13 +78,42 @@
     <color name="cartnumbg">#818181</color>
 
 
-
     <color name="xing_left">#6b2fdd</color>
     <color name="xing_rigth">#9159f8</color>
-
     <color name="main_mangzhong">#6d4223</color>
     <color name="main_lixia">#bf0f1b</color>
     <color name="main_xiaohan">#302825</color>
     <color name="main_dongzhi">#0258c2</color>
     <color name="main_qiufen">#a23c21</color>
+
+
+    <color name="lichuncolors">#00bf70</color><!-- 03:00 -->
+    <color name="yushuicolors">#00bf7f</color><!-- 04:00 -->
+    <color name="jingzecolors">#00bf9f</color><!-- 05:00 -->
+    <color name="chunfencolors">#00bfaf</color><!-- 06:00 -->
+    <color name="qingmingcolors">#00e5e5</color><!-- 07:00 -->
+    <color name="guyucolors">#a8501a</color><!-- 08:00 -->
+
+    <color name="lixiacolors">#e500e5</color><!-- 09:00 -->
+    <color name="xiaomancolors">#e600ac</color><!-- 10:00 -->
+    <color name="mangzhongcolors">#e60073</color><!-- 11:00 -->
+    <color name="xiazhicolors">#e60039</color><!-- 12:00 -->
+    <color name="xiaoshucolors">#e60000</color><!-- 13:00 -->
+    <color name="dashucolors">#a8501a</color><!-- 14:00 -->
+
+    <color name="liqiucolors">#e6b800</color><!-- 15:00 -->
+    <color name="chushucolors">#d38d06</color><!-- 16:00 -->
+    <color name="bailucolors">#e67300</color><!-- 17:00 -->
+    <color name="qiufencolors">#e63900</color><!-- 18:00 -->
+    <color name="hanlucolors">#cb3f08</color><!-- 19:00 -->
+    <color name="shuangjiangcolors">#a8501a</color><!-- 20:00 -->
+
+    <color name="lidongcolors">#00ace6</color><!-- 21:00 -->
+    <color name="xiaoxuecolors">#0073e6</color><!-- 22:00 -->
+    <color name="daxuecolors">#0039e6</color><!-- 23:00 -->
+    <color name="dongzhicolors">#0000e6</color><!-- 24:00 -->
+    <color name="xioahancolors">#3900e6</color><!-- 01:00 -->
+    <color name="dahancolors">#a8501a</color><!-- 02:00 -->
+
+
 </resources>

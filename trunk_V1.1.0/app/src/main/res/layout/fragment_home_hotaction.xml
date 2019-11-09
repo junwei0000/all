@@ -12,6 +12,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_drawable3"
             android:layout_width="3dp"
             android:layout_height="15dp"
             android:background="@drawable/corners_bg_red" />

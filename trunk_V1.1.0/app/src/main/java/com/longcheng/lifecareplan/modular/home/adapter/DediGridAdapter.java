@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.modular.home.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -163,6 +164,11 @@ public class DediGridAdapter extends BaseAdapter {
                 }
             }
             mHolder.layout_right.setVisibility(View.INVISIBLE);
+        }
+       String color= mHomeItemBean.getColor();
+        if(!TextUtils.isEmpty(color)){
+            mHolder.item_tv_title.setTextColor(Color.parseColor(mHomeItemBean.getColor()));
+            mHolder.item_tv_time.setTextColor(Color.parseColor(mHomeItemBean.getColor()));
         }
         Log.i("BannerListSuccess", "BannerListSuccess: " + mHomeItemBean.getPic());
         GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, mHomeItemBean.getPic(), mHolder.item_iv_pic, 0);

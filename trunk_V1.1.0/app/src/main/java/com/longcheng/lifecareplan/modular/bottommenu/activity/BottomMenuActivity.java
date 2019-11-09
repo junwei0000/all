@@ -5,6 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -98,6 +101,10 @@ public class BottomMenuActivity extends BaseActivity {
         registerMessageReceiver();
         Immersive.setStatusBarFragment(mActivity);
 //        ShortcutUtils.setDynamicShort(mActivity);
+        Drawable top =  getResources().getDrawable(R.drawable.home_tab_main_selector);
+        top.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
+//        mButtonHome.setColor(ColorChangeByTime.getInstance().backColor(mActivity));
+        mButtonHome.setCompoundDrawablesWithIntrinsicBounds(null, top , null, null);
     }
 
 

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -66,6 +67,9 @@ public class HomeHotPushAdapter extends BaseAdapterHelper<HomeItemBean> {
 
         mHolder.item_tv_lifeenergynum.setText("" + ability_price_action);
         mHolder.item_tv_date.setText(date);
+        ColorChangeByTime.getInstance().changeDrawable(context, mHolder.item_tv_lifeenergynum);
+        ColorChangeByTime.getInstance().changeDrawable(context, mHolder.item_pb_num);
+        mHolder.pb_lifeenergynum.setReachedBarColor(ColorChangeByTime.getInstance().backColor(context));
         return convertView;
     }
 
