@@ -5,20 +5,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseActivity;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.modular.exchange.fragment.ExChangeFragment;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
@@ -44,23 +43,32 @@ public class BottomMenuActivity extends BaseActivity {
     @BindView(R.id.vp_bt_menu)
     MyViewPager mViewPager;
 
-    @BindView(R.id.rb_bottom_home)
-    RadioButton mButtonHome;
-
-    @BindView(R.id.rb_bottom_helpWith)
-    RadioButton mButtonHelpWith;
-
-    @BindView(R.id.rb_bottom_exchange)
-    RadioButton mButtonExChange;
-
-    @BindView(R.id.rb_bottom_me)
-    RadioButton mButtonMine;
-
-    @BindView(R.id.rg_bottom_main)
-    RadioGroup mRadioGroup;
+    @BindView(R.id.bottom_iv_home)
+    ImageView bottomIvHome;
+    @BindView(R.id.bottom_tv_home)
+    TextView bottomTvHome;
+    @BindView(R.id.bottom_iv_helpWith)
+    ImageView bottomIvHelpWith;
+    @BindView(R.id.bottom_tv_helpWith)
+    TextView bottomTvHelpWith;
+    @BindView(R.id.bottom_iv_exchange)
+    ImageView bottomIvExchange;
+    @BindView(R.id.bottom_tv_exchange)
+    TextView bottomTvExchange;
+    @BindView(R.id.bottom_tv_me)
+    TextView bottomTvMe;
+    @BindView(R.id.bottom_iv_me)
+    ImageView bottomIvMe;
+    @BindView(R.id.bottom_layout_home)
+    LinearLayout bottomLayoutHome;
+    @BindView(R.id.bottom_layout_helpWith)
+    LinearLayout bottomLayoutHelpWith;
+    @BindView(R.id.bottom_layout_exchange)
+    LinearLayout bottomLayoutExchange;
+    @BindView(R.id.bottom_layout_me)
+    LinearLayout bottomLayoutMe;
 
     public static List<Fragment> fragmentList = new ArrayList<>();
-    private List<RadioButton> radioButtonList = new ArrayList<>();
     private MessageReceiver mMessageReceiver;
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_EXTRAS = "extras";
@@ -101,10 +109,6 @@ public class BottomMenuActivity extends BaseActivity {
         registerMessageReceiver();
         Immersive.setStatusBarFragment(mActivity);
 //        ShortcutUtils.setDynamicShort(mActivity);
-        Drawable top =  getResources().getDrawable(R.drawable.home_tab_main_selector);
-        top.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
-//        mButtonHome.setColor(ColorChangeByTime.getInstance().backColor(mActivity));
-        mButtonHome.setCompoundDrawablesWithIntrinsicBounds(null, top , null, null);
     }
 
 
@@ -119,31 +123,10 @@ public class BottomMenuActivity extends BaseActivity {
 
     @Override
     public void setListener() {
-        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    //主页
-                    case R.id.rb_bottom_home:
-                        selectPage(tab_position_home);
-                        break;
-                    //互助
-                    case R.id.rb_bottom_helpWith:
-                        after_tab_position = tab_position_helpwith;
-                        chackSkipByLoginStatus();
-                        break;
-                    //兑换
-                    case R.id.rb_bottom_exchange:
-                        after_tab_position = tab_position_exchange;
-                        chackSkipByLoginStatus();
-                        break;
-                    //我的
-                    case R.id.rb_bottom_me:
-                        after_tab_position = tab_position_mine;
-                        chackSkipByLoginStatus();
-                        break;
-                }
-            }
-        });
+        bottomLayoutHome.setOnClickListener(this);
+        bottomLayoutHelpWith.setOnClickListener(this);
+        bottomLayoutExchange.setOnClickListener(this);
+        bottomLayoutMe.setOnClickListener(this);
     }
 
     /**
@@ -169,8 +152,52 @@ public class BottomMenuActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            //主页
+            case R.id.bottom_layout_home:
+                selectPage(tab_position_home);
+                break;
+            //互助
+            case R.id.bottom_layout_helpWith:
+                after_tab_position = tab_position_helpwith;
+                chackSkipByLoginStatus();
+                break;
+            //兑换
+            case R.id.bottom_layout_exchange:
+                after_tab_position = tab_position_exchange;
+                chackSkipByLoginStatus();
+                break;
+            //我的
+            case R.id.bottom_layout_me:
+                after_tab_position = tab_position_mine;
+                chackSkipByLoginStatus();
+                break;
+        }
     }
 
+    private void setBottomBtn() {
+        bottomTvHome.setTextColor(getResources().getColor(R.color.main_tab_text_color_select));
+        bottomTvHelpWith.setTextColor(getResources().getColor(R.color.main_tab_text_color_select));
+        bottomTvExchange.setTextColor(getResources().getColor(R.color.main_tab_text_color_select));
+        bottomTvMe.setTextColor(getResources().getColor(R.color.main_tab_text_color_select));
+        bottomIvHome.setColorFilter(getResources().getColor(R.color.gray_bian));
+        bottomIvHelpWith.setColorFilter(getResources().getColor(R.color.gray_bian));
+        bottomIvExchange.setColorFilter(getResources().getColor(R.color.gray_bian));
+        bottomIvMe.setColorFilter(getResources().getColor(R.color.gray_bian));
+        if (position == tab_position_home) {
+            bottomIvHome.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
+            bottomTvHome.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
+        } else if (position == tab_position_helpwith) {
+            bottomIvHelpWith.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
+            bottomTvHelpWith.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
+        } else if (position == tab_position_exchange) {
+            bottomIvExchange.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
+            bottomTvExchange.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
+        } else if (position == tab_position_mine) {
+            bottomIvMe.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
+            bottomTvMe.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
+        }
+    }
 
     /**
      * @param
@@ -181,19 +208,15 @@ public class BottomMenuActivity extends BaseActivity {
     private void initFragment() {
         HomeFragment homeFragment = new HomeFragment();
         fragmentList.add(homeFragment);
-        radioButtonList.add(mButtonHome);
 
         HelpWithFragmentNew helpFragment = new HelpWithFragmentNew();
         fragmentList.add(helpFragment);
-        radioButtonList.add(mButtonHelpWith);
 
         ExChangeFragment exChangeFragment = new ExChangeFragment();
         fragmentList.add(exChangeFragment);
-        radioButtonList.add(mButtonExChange);
 
         MineFragment mineFragment = new MineFragment();
         fragmentList.add(mineFragment);
-        radioButtonList.add(mButtonMine);
 
     }
 
@@ -243,8 +266,7 @@ public class BottomMenuActivity extends BaseActivity {
         Log.e("BottomMenuActivity", "mViewPager=" + mViewPager.getAdapter().toString());
         // 切换页面
         mViewPager.setCurrentItem(position, false);
-        radioButtonList.get(position).setChecked(true);
-
+        setBottomBtn();
         if (position == tab_position_home) {
             ((HomeFragment) fragmentList.get(position)).showCononDialog();
         } else {
@@ -293,6 +315,7 @@ public class BottomMenuActivity extends BaseActivity {
         filter.addAction(ConstantManager.MAINMENU_ACTION);
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
     }
+
 
     public class MessageReceiver extends BroadcastReceiver {
 
