@@ -134,8 +134,53 @@
                         android:id="@+id/detailhelp_iv_engryselect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@mipmap/pay_selcet_icon_red"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/detailhelp_relat_superengry"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp43"
+                    android:layout_marginLeft="@dimen/padd_leftright"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_black"
+                    android:padding="0dp">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/detailhelp_tv_superengrytitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="超级生命能量"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_dp12_size" />
+
+                        <TextView
+                            android:id="@+id/detailhelp_tv_superengry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_zhu_size" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/detailhelp_iv_superengryselect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
                         android:background="@mipmap/pay_selcet_icon_red"
                         android:visibility="gone" />
                 </RelativeLayout>
@@ -144,7 +189,6 @@
                     android:id="@+id/detailhelp_relat_account"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp43"
-                    android:layout_marginLeft="@dimen/padd_leftright"
                     android:layout_weight="1"
                     android:background="@drawable/corners_bg_black"
                     android:padding="0dp">
@@ -178,8 +222,8 @@
                         android:id="@+id/detailhelp_iv_accountselect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
                         android:background="@mipmap/pay_selcet_icon_red"
                         android:visibility="gone" />
                 </RelativeLayout>
@@ -228,8 +272,8 @@
                         android:id="@+id/detailhelp_iv_wxselect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
                         android:background="@mipmap/pay_selcet_icon_red" />
                 </RelativeLayout>
 
@@ -268,8 +312,8 @@
                         android:id="@+id/detailhelp_iv_zfbselect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
                         android:background="@mipmap/pay_selcet_icon_red"
                         android:visibility="gone" />
                 </RelativeLayout>

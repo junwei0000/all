@@ -247,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padd_imgtextleftright"
                 android:singleLine="true"
-                android:text="沉睡生命能量"
+                android:text="超级生命能量"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />
         </LinearLayout>

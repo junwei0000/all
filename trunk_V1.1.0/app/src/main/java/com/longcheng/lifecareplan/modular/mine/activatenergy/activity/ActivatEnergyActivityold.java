@@ -42,7 +42,7 @@ import butterknife.BindView;
 /**
  * 激活能量
  */
-public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract.View, ActivatEnergyPresenterImp<ActivatEnergyContract.View>> implements ActivatEnergyContract.View {
+public class ActivatEnergyActivityold extends BaseActivityMVP<ActivatEnergyContract.View, ActivatEnergyPresenterImp<ActivatEnergyContract.View>> implements ActivatEnergyContract.View {
 
 
     @BindView(R.id.toolbar)
@@ -86,6 +86,11 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
     private String asset = "0";
     private String user_id;
 
+    /**
+     * 混合状态下是否选中微信
+     */
+    boolean hunheWXStatus = true;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -93,16 +98,59 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
                 doFinish();
                 break;
             case R.id.activat_relat_wx:
-                payType = "2";
-                selectPayTypeView();
+                if (Double.valueOf(asset) >= Double.valueOf(money_select) || Double.valueOf(asset) == 0) {
+                    payType = "2";
+                    selectPayTypeView();
+                } else {
+                    if (!payType.equals("3")) {
+                        payType = "3";
+                        selectPayTypeView();
+                    }
+                }
                 break;
             case R.id.activat_relat_account:
-                payType = "1";
-                selectPayTypeView();
+                if (Double.valueOf(asset) >= Double.valueOf(money_select)) {
+                    payType = "1";
+                    selectPayTypeView();
+                } else if (Double.valueOf(asset) > 0) {
+//                    if (hunheWXStatus) {
+//                        payType = "2";
+//                        selectPayTypeView();
+//                    } else {
+//                        payType = "4";
+//                        selectPayTypeView();
+//                    }
+//                } else {
+                    if (hunheWXStatus) {
+                        if (payType.equals("3")) {//当选中时并且payType = "3";时取消选中
+                            payType = "2";
+                            selectPayTypeView();
+                        } else {
+                            //优化：两个都选
+                            payType = "3";
+                            selectPayTypeView();
+                        }
+                    } else {
+                        if (!payType.equals("5")) {
+                            payType = "5";
+                            selectPayTypeView();
+                        } else {
+                            payType = "4";
+                            selectPayTypeView();
+                        }
+                    }
+                }
                 break;
             case R.id.detailhelp_relat_zfb:
-                payType = "4";
-                selectPayTypeView();
+                if (Double.valueOf(asset) >= Double.valueOf(money_select) || Double.valueOf(asset) == 0) {
+                    payType = "4";
+                    selectPayTypeView();
+                } else {
+                    if (!payType.equals("5")) {
+                        payType = "5";
+                        selectPayTypeView();
+                    }
+                }
                 break;
             case R.id.btn_jihuo:
                 mPresent.assetRecharge(user_id, money_select, asset, payType);
@@ -174,10 +222,26 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
             activatIvAccountselect.setVisibility(View.VISIBLE);
             activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatAccount.setPadding(0, 0, 0, 0);
+        } else if (payType.equals("3")) {
+            hunheWXStatus = true;
+            activatIvWxselect.setVisibility(View.VISIBLE);
+            activatRelatWx.setBackgroundResource(R.drawable.corners_bg_redbian);
+            activatRelatWx.setPadding(0, 0, 0, 0);
+            activatIvAccountselect.setVisibility(View.VISIBLE);
+            activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_redbian);
+            activatRelatAccount.setPadding(0, 0, 0, 0);
         } else if (payType.equals("4")) {
             detailhelpIvZfbselect.setVisibility(View.VISIBLE);
             detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_redbian);
             detailhelpRelatZfb.setPadding(0, 0, 0, 0);
+        } else if (payType.equals("5")) {
+            hunheWXStatus = false;
+            detailhelpIvZfbselect.setVisibility(View.VISIBLE);
+            detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_redbian);
+            detailhelpRelatZfb.setPadding(0, 0, 0, 0);
+            activatIvAccountselect.setVisibility(View.VISIBLE);
+            activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_redbian);
+            activatRelatAccount.setPadding(0, 0, 0, 0);
         }
     }
 
@@ -192,8 +256,23 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
         activatTvNum.setText(mEnergyItemBean.getTotal_energy());
         activatTvCont.setText("激活" + mEnergyItemBean.getFirst_energy() + "+赠送" + mEnergyItemBean.getPresenter_energy());
         money_select = mEnergyItemBean.getMoney();
-        payType = "2";
-        selectPayTypeView();
+        if (Double.valueOf(asset) >= Double.valueOf(money_select)) {
+            payType = "1";
+            selectPayTypeView();
+        } else if (Double.valueOf(asset) == 0) {
+            if (!selectstatus) {
+                payType = "2";
+                selectPayTypeView();
+            }
+        } else {
+            if (hunheWXStatus) {
+                payType = "3";
+                selectPayTypeView();
+            } else {
+                payType = "5";
+                selectPayTypeView();
+            }
+        }
     }
 
     @Override

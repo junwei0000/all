@@ -1,8 +1,6 @@
 package com.longcheng.lifecareplan.modular.helpwith.energydetail.bean;
 
 import com.google.gson.annotations.SerializedName;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpItemBean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -123,6 +121,9 @@ public class DetailItemBean implements Serializable {
     private int money;
     @SerializedName("ability")
     private String ability = "0";
+    @SerializedName("super_ability")
+    private String super_ability = "0";
+
     @SerializedName("weight")
     private String weight;
     @SerializedName("is_default")
@@ -132,6 +133,14 @@ public class DetailItemBean implements Serializable {
     @SerializedName("asset_debt")
     private String asset_debt;
 
+
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
 
     public String getAsset_debt() {
         return asset_debt;

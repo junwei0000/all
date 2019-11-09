@@ -6,24 +6,17 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,7 +24,6 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.adapter.DetailMoneyAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.myview.BaseSelectPopupWindow;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 
@@ -51,39 +43,44 @@ public class DetailHelpDialogUtils {
     RelativeLayout detailhelp_relat_engry;
     TextView detailhelp_tv_engry;
     ImageView detailhelp_iv_engryselect;
+    TextView detailhelp_tv_engrytitle;
+
+    RelativeLayout detailhelp_relat_superengry;
+    TextView detailhelp_tv_superengry;
+    ImageView detailhelp_iv_superengryselect;
+    TextView detailhelp_tv_superengrytitle;
 
     RelativeLayout detailhelp_relat_account;
     TextView detailhelp_tv_account;
     ImageView detailhelp_iv_accountselect;
+    TextView detailhelp_tv_accounttitle;
 
     RelativeLayout detailhelp_relat_wx, detailhelp_relat_zfb;
     ImageView detailhelp_iv_wxselect, detailhelp_iv_zfbselect;
-
+    TextView detailhelp_tv_wxselecttitle;
+    TextView tv_zfbtitle;
     TextView detailhelp_tv_money;
     EditText detailhelp_et_content;
+    TextView btn_helpsure;
 
-    String blessings;
-    Handler mHandler;
-    int mHandlerID;
+    private String blessings;
+    private Handler mHandler;
+    private int mHandlerID;
     /**
      * 支付方式互祝类型 asset (现金支付)， ability(生命能量支付)， wxpay(微信支付)
      */
-    String payType = "wxpay";
-    int selectmoney;
-    String selectengery = "0";
-    DetailMoneyAdapter mMoneyAdapter;
+    private String payType = "wxpay";
+    private int selectmoney;
+    private String selectengery = "0";
+    private DetailMoneyAdapter mMoneyAdapter;
     private String ability = "0";//生命能量
+    private String super_ability = "0";
     private String asset;//金额
-    Activity context;
-    int is_applying_help;
-    int mutual_help_money;
-    List<DetailItemBean> mutual_help_money_all;
-    private TextView btn_helpsure;
-    private TextView detailhelp_tv_engrytitle;
-    private TextView detailhelp_tv_accounttitle;
-    private TextView detailhelp_tv_wxselecttitle;
-    List<DetailItemBean> blessings_list;
-    private TextView tv_zfbtitle;
+    private Activity context;
+    private int is_applying_help;
+    private int mutual_help_money;
+    private List<DetailItemBean> mutual_help_money_all;
+    private List<DetailItemBean> blessings_list;
 
     public DetailHelpDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
@@ -95,6 +92,7 @@ public class DetailHelpDialogUtils {
                          int is_applying_help, int mutual_help_money,
                          List<DetailItemBean> mutual_help_money_all) {
         if (userInfo != null) {
+            super_ability = userInfo.getSuper_ability();
             ability = userInfo.getAbility();
             asset = userInfo.getAsset();
         }
@@ -149,6 +147,11 @@ public class DetailHelpDialogUtils {
             detailhelp_iv_engryselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_engryselect);
 
 
+            detailhelp_relat_superengry = (RelativeLayout) selectDialog.findViewById(R.id.detailhelp_relat_superengry);
+            detailhelp_tv_superengrytitle = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_superengrytitle);
+            detailhelp_tv_superengry = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_superengry);
+            detailhelp_iv_superengryselect = (ImageView) selectDialog.findViewById(R.id.detailhelp_iv_superengryselect);
+
             detailhelp_relat_account = (RelativeLayout) selectDialog.findViewById(R.id.detailhelp_relat_account);
             detailhelp_tv_accounttitle = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_accounttitle);
             detailhelp_tv_account = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_account);
@@ -165,6 +168,7 @@ public class DetailHelpDialogUtils {
             layout_cancel.setOnClickListener(dialogClick);
             btn_helpsure.setOnClickListener(dialogClick);
             detailhelp_relat_engry.setOnClickListener(dialogClick);
+            detailhelp_relat_superengry.setOnClickListener(dialogClick);
             detailhelp_relat_account.setOnClickListener(dialogClick);
             detailhelp_relat_wx.setOnClickListener(dialogClick);
             detailhelp_relat_zfb.setOnClickListener(dialogClick);
@@ -216,6 +220,13 @@ public class DetailHelpDialogUtils {
                         selectPayTypeView();
                     }
                     break;
+                case R.id.detailhelp_relat_superengry:
+                    if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
+                        payType = "super_ability";
+                        selectPayTypeView();
+                    }
+                    break;
+
                 case R.id.detailhelp_relat_account:
                     if (Double.valueOf(asset) >= selectmoney) {
                         payType = "asset";
@@ -325,6 +336,8 @@ public class DetailHelpDialogUtils {
         detailhelp_tv_money.setText("（祝福金额：" + selectmoney + "元）");
         if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
             payType = "ability";
+        } else if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
+            payType = "super_ability";
         } else if (Double.valueOf(asset) >= selectmoney) {
             payType = "asset";
         } else {
@@ -340,11 +353,16 @@ public class DetailHelpDialogUtils {
 
         detailhelp_tv_engrytitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
         detailhelp_tv_engry.setTextColor(context.getResources().getColor(R.color.text_contents_color));
+        detailhelp_tv_superengrytitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
+        detailhelp_tv_superengry.setTextColor(context.getResources().getColor(R.color.text_contents_color));
+
         detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
         detailhelp_tv_account.setTextColor(context.getResources().getColor(R.color.text_contents_color));
         detailhelp_tv_wxselecttitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
         tv_zfbtitle.setTextColor(context.getResources().getColor(R.color.text_contents_color));
 
+        detailhelp_iv_superengryselect.setVisibility(View.GONE);
+        detailhelp_relat_superengry.setBackgroundResource(R.drawable.corners_bg_black);
         detailhelp_iv_engryselect.setVisibility(View.GONE);
         detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_black);
         detailhelp_iv_accountselect.setVisibility(View.GONE);
@@ -360,6 +378,11 @@ public class DetailHelpDialogUtils {
             detailhelp_tv_engrytitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_engry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_black);
+        }
+        if (Double.valueOf(super_ability) < Double.valueOf(selectengery)) {
+            detailhelp_tv_superengrytitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
+            detailhelp_tv_superengry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
+            detailhelp_relat_superengry.setBackgroundResource(R.drawable.corners_bg_black);
         }
         if (Double.valueOf(asset) < selectmoney) {
             detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
@@ -384,6 +407,12 @@ public class DetailHelpDialogUtils {
             detailhelp_iv_engryselect.setVisibility(View.VISIBLE);
             detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_redbian);
             detailhelp_relat_engry.setPadding(0, 0, 0, 0);
+        } else if (payType.equals("super_ability")) {
+            detailhelp_tv_superengrytitle.setTextColor(context.getResources().getColor(R.color.red));
+            detailhelp_tv_superengry.setTextColor(context.getResources().getColor(R.color.red));
+            detailhelp_iv_superengryselect.setVisibility(View.VISIBLE);
+            detailhelp_relat_superengry.setBackgroundResource(R.drawable.corners_bg_redbian);
+            detailhelp_relat_superengry.setPadding(0, 0, 0, 0);
         } else if (payType.equals("alipay")) {
             tv_zfbtitle.setTextColor(context.getResources().getColor(R.color.red));
             detailhelp_iv_zfbselect.setVisibility(View.VISIBLE);

@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.mine.userinfo.bean;
 
 import com.google.gson.annotations.SerializedName;
-import com.longcheng.lifecareplan.bean.ResponseBean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,6 +24,8 @@ public class GetHomeInfoBean implements Serializable {
     private String shengmingnengliang;
     @SerializedName("frost_ability")
     private String frost_ability;
+    @SerializedName("super_ability")
+    private String super_ability;
     @SerializedName("currentStartLevel")
     private int currentStartLevel;
     @SerializedName("nextStartLevel")
@@ -155,6 +156,14 @@ public class GetHomeInfoBean implements Serializable {
     private int is_myka;//是否有卡 0：否 1：是
     @SerializedName("knp_team_bind_card_url")
     private String myka_url;//我的卡包地址
+
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
 
     public int getIs_myka() {
         return is_myka;

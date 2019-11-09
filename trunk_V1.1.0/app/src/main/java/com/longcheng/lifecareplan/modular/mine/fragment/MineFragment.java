@@ -297,7 +297,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
     @Override
     public void initView(View view) {
-        Immersive.setBarH(getActivity(),toolbar);
+        Immersive.setBarH(getActivity(), toolbar);
         pageTopTvName.setText("我家");
         pagetopIvLeft.setVisibility(View.INVISIBLE);
         pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);
@@ -1714,9 +1714,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         mycentertopTvAwakeskb.setText(shoukangyuan);
         String dongjie = mGetHomeInfoBean.getDongjie();
         mycentertopTvSleepskb.setText(dongjie);
-        String sleepengry = mGetHomeInfoBean.getFrost_ability();
-        sleepengry = PriceUtils.getInstance().seePrice(sleepengry);
-        mycentertopTvSleeplifeenergy.setText(sleepengry);
+        String super_ability = mGetHomeInfoBean.getSuper_ability();
+        super_ability = PriceUtils.getInstance().seePrice(super_ability);
+        mycentertopTvSleeplifeenergy.setText(super_ability);
         String shengmingnengliang = mGetHomeInfoBean.getShengmingnengliang();
         shengmingnengliang = PriceUtils.getInstance().seePrice(shengmingnengliang);
         mycentertopTvLifeenergy.setText(shengmingnengliang);
