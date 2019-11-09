@@ -165,7 +165,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void initView(View view) {
-        Immersive.setBarH(getActivity(),toolbar);
+        Immersive.setBarH(getActivity(), toolbar);
         ScrowUtil.ScrollViewConfigAll(exchange_sv);
         showNoMoreData(false);
         notDateCont.setText("找不到搜索的内容噢~");
@@ -538,7 +538,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                 List<JieQiItemBean> layer = mJieQiAfterBean.getLayer();
                 if (layer != null && layer.size() > 0) {
                     JieQiItemBean mJieQiItemBean = layer.get(0);
-                    showCononDialog(mJieQiItemBean.getHref(), mJieQiItemBean.getImg());
+                    showCononDialog(mJieQiItemBean);
                 }
             }
         }
@@ -564,7 +564,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
     /**
      * 是否显示康农弹层
      */
-    public void showCononDialog(String url, String img) {
+    public void showCononDialog(JieQiItemBean jieQiItemBean) {
         if (BottomMenuActivity.position != BottomMenuActivity.tab_position_exchange
                 || BottomMenuActivity.updatedialogstatus) {
             dismissAllDialog();
@@ -599,17 +599,26 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
                     @Override
                     public void onClick(View v) {
                         YinLiaoDialog.dismiss();/**/
-                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("html_url", "" + url);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                        Intent intent;
+                        if (jieQiItemBean.getIs_h5() == 1) {
+                            intent = new Intent(mActivity, BaoZhangActitvty.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("html_url", "" + jieQiItemBean.getHref());
+                            startActivity(intent);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                        } else {
+                            intent = new Intent(mActivity, MallDetailActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("shop_goods_id", jieQiItemBean.getShop_goods_id());
+                            startActivity(intent);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                        }
                     }
                 });
             } else {
                 YinLiaoDialog.show();
             }
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, img, fram_bg, 0);
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, jieQiItemBean.getImg(), fram_bg, 0);
 
         } catch (Exception e) {
 

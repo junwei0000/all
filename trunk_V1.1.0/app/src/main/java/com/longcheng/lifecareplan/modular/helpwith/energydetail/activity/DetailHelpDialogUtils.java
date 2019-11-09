@@ -200,6 +200,7 @@ public class DetailHelpDialogUtils {
         if (!TextUtils.isEmpty(blessings)) {
             detailhelp_et_content.setSelection(detailhelp_et_content.getText().length());
         }
+        detailhelp_tv_superengry.setText(super_ability + "");
         detailhelp_tv_engry.setText(ability + "");
         detailhelp_tv_account.setText("¥" + asset + "");
         setapplingDefault();
@@ -215,10 +216,13 @@ public class DetailHelpDialogUtils {
                     selectDialog.dismiss();
                     break;
                 case R.id.detailhelp_relat_engry:
-                    if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
-                        payType = "ability";
-                        selectPayTypeView();
+                    if (is_applying_help == 0) {
+                        if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
+                            payType = "ability";
+                            selectPayTypeView();
+                        }
                     }
+
                     break;
                 case R.id.detailhelp_relat_superengry:
                     if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
@@ -228,9 +232,11 @@ public class DetailHelpDialogUtils {
                     break;
 
                 case R.id.detailhelp_relat_account:
-                    if (Double.valueOf(asset) >= selectmoney) {
-                        payType = "asset";
-                        selectPayTypeView();
+                    if (is_applying_help == 0) {
+                        if (Double.valueOf(asset) >= selectmoney) {
+                            payType = "asset";
+                            selectPayTypeView();
+                        }
                     }
                     break;
                 case R.id.detailhelp_relat_wx:
@@ -334,16 +340,23 @@ public class DetailHelpDialogUtils {
         selectmoney = mEnergyItemBean.getMoney();
         selectengery = mEnergyItemBean.getAbility();
         detailhelp_tv_money.setText("（祝福金额：" + selectmoney + "元）");
-        if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
-            payType = "ability";
-        } else if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
-            payType = "super_ability";
-        } else if (Double.valueOf(asset) >= selectmoney) {
-            payType = "asset";
+        if (is_applying_help > 0) {
+            if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
+                payType = "super_ability";
+            } else {
+                payType = "wxpay";
+            }
         } else {
-            payType = "wxpay";
+            if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
+                payType = "ability";
+            } else if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
+                payType = "super_ability";
+            } else if (Double.valueOf(asset) >= selectmoney) {
+                payType = "asset";
+            } else {
+                payType = "wxpay";
+            }
         }
-
 
         selectPayTypeView();
     }
@@ -374,7 +387,7 @@ public class DetailHelpDialogUtils {
 
 
         //设置默认
-        if (Double.valueOf(ability) < Double.valueOf(selectengery)) {
+        if (is_applying_help > 0 || (Double.valueOf(ability) < Double.valueOf(selectengery))) {
             detailhelp_tv_engrytitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_engry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_black);
@@ -384,7 +397,7 @@ public class DetailHelpDialogUtils {
             detailhelp_tv_superengry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_superengry.setBackgroundResource(R.drawable.corners_bg_black);
         }
-        if (Double.valueOf(asset) < selectmoney) {
+        if (is_applying_help > 0 || (Double.valueOf(asset) < selectmoney)) {
             detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_account.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_account.setBackgroundResource(R.drawable.corners_bg_black);

@@ -421,7 +421,7 @@ public interface ApiService {
                                                   @Query("month") String month,
                                                   @Query("token") String token);
 
-    @GET(Config.VERSION + "record/sleepAbility")
+    @GET(Config.VERSION + "record/superAbility")
     Observable<BillResultBean> getSleepEngryRecordList(@Query("user_id") String user_id,
                                                        @Query("page") int page,
                                                        @Query("page_size") int page_size,

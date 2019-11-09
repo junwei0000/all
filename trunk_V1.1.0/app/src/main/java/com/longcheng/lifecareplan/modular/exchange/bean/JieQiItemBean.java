@@ -28,6 +28,24 @@ public class JieQiItemBean implements Serializable {
 
     private String img;
     private String href;
+    private int is_h5;
+    private String shop_goods_id;
+
+    public int getIs_h5() {
+        return is_h5;
+    }
+
+    public void setIs_h5(int is_h5) {
+        this.is_h5 = is_h5;
+    }
+
+    public String getShop_goods_id() {
+        return shop_goods_id;
+    }
+
+    public void setShop_goods_id(String shop_goods_id) {
+        this.shop_goods_id = shop_goods_id;
+    }
 
     public String getImg() {
         return img;
