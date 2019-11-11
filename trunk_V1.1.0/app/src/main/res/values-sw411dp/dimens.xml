@@ -47,7 +47,7 @@
     <dimen name="dp200">240dp</dimen>
     <dimen name="getcode_width">90dp</dimen>
     <!-- 左右之间padd -->
-    <dimen name="padd_leftright">12dp</dimen>
+    <dimen name="padd_leftright">10dp</dimen>
     <!-- 上下之间padd -->
     <dimen name="padd_topbottom">15dp</dimen>
     <!-- 布局上下间距-->

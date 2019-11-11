@@ -75,12 +75,12 @@
                 android:fadingEdge="none"
                 android:focusable="false"
                 android:gravity="left"
-                android:horizontalSpacing="@dimen/dp10"
+                android:horizontalSpacing="@dimen/padd_leftright"
                 android:listSelector="@drawable/list_notselector"
                 android:numColumns="3"
                 android:overScrollMode="never"
                 android:scrollbars="none"
-                android:verticalSpacing="@dimen/dp10" />
+                android:verticalSpacing="@dimen/padd_leftright" />
 
             <TextView
                 style="@style/view_margin"

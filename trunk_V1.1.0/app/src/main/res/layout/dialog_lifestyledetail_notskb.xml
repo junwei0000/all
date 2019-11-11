@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/padd_leftright"
         android:gravity="center"
         android:text="您的寿康宝余额不足"
         android:textColor="@color/text_biaoTi_color"
@@ -45,7 +45,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/padd_leftright"
         android:gravity="center"
         android:text="请多用生命能量互祝噢～"
         android:textColor="@color/text_biaoTi_color"

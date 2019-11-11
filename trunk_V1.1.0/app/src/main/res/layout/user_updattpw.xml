@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/page_bg"
-        android:padding="@dimen/dp10"
+        android:padding="@dimen/padd_leftright"
         android:text="*系统检测您的密码过于简单，为了您的账户安全，请您修改密码。"
         android:textColor="@color/red"
         android:textSize="@dimen/text_zhu_size"

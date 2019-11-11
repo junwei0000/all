@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/dp10">
+                android:paddingBottom="@dimen/padd_leftright">
                 <!--接福人-->
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                                         android:id="@+id/iv_actionimg"
                                         android:layout_width="@dimen/engrylistItem_iconWidth"
                                         android:layout_height="@dimen/engrylistItem_iconHeight"
-                                        android:layout_marginRight="@dimen/dp10"
+                                        android:layout_marginRight="@dimen/padd_leftright"
                                         android:scaleType="fitXY"
                                         android:visibility="gone" />
 

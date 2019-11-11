@@ -76,8 +76,8 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingBottom="@dimen/padd_imgtextleftright"
-                    android:paddingLeft="@dimen/dp10"
-                    android:paddingRight="@dimen/dp10">
+                    android:paddingLeft="@dimen/padd_leftright"
+                    android:paddingRight="@dimen/padd_leftright">
 
                     <ImageView
                         android:layout_width="wrap_content"

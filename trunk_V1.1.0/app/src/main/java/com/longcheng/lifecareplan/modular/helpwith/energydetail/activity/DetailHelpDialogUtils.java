@@ -340,24 +340,24 @@ public class DetailHelpDialogUtils {
         selectmoney = mEnergyItemBean.getMoney();
         selectengery = mEnergyItemBean.getAbility();
         detailhelp_tv_money.setText("（祝福金额：" + selectmoney + "元）");
-        if (is_applying_help > 0) {
-            if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
-                payType = "super_ability";
-            } else {
-                payType = "wxpay";
-            }
-        } else {
-            if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
-                payType = "ability";
-            } else if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
-                payType = "super_ability";
-            } else if (Double.valueOf(asset) >= selectmoney) {
-                payType = "asset";
-            } else {
-                payType = "wxpay";
-            }
-        }
-
+//        if (is_applying_help > 0) {
+//            if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
+//                payType = "super_ability";
+//            } else {
+//                payType = "wxpay";
+//            }
+//        } else {
+//            if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
+//                payType = "ability";
+//            } else if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
+//                payType = "super_ability";
+//            } else if (Double.valueOf(asset) >= selectmoney) {
+//                payType = "asset";
+//            } else {
+//                payType = "wxpay";
+//            }
+//        }
+        payType = "wxpay";
         selectPayTypeView();
     }
 

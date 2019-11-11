@@ -68,7 +68,7 @@
             style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp10">
+            android:layout_marginBottom="@dimen/padd_leftright">
 
 
             <TextView

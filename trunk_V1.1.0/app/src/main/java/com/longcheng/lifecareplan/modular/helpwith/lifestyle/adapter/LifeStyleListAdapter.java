@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.helpwith.lifestyle.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +10,8 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleListProgressUtils;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean.LifeStyleItemBean;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar;
 
@@ -83,7 +80,7 @@ public class LifeStyleListAdapter extends BaseAdapterHelper<LifeStyleItemBean> {
 
         int progress = mHelpItemBean.getProgress();
         mHolder.pb_lifeenergynum.setProgress(progress);
-        mProgressUtils.showNum(progress, mHolder.pb_lifeenergynum.getMax(), mHolder.item_pb_num);
+        mProgressUtils.showNum(progress, mHolder.pb_lifeenergynum.getMax(), mHolder.item_pb_numne);
         String showT = "已有" + ability_price_action + "寿康宝";
         mHolder.item_tv_lifeenergynum.setText(Html.fromHtml(showT));
         mHolder.item_tv_date.setText(date);
@@ -105,7 +102,7 @@ public class LifeStyleListAdapter extends BaseAdapterHelper<LifeStyleItemBean> {
         private TextView item_tv_name;
 
         private NumberProgressBar pb_lifeenergynum;
-        private TextView item_pb_num;
+        private TextView item_pb_numne;
         private TextView item_tv_lifeenergynum;
         private TextView item_tv_date;
 
@@ -123,7 +120,7 @@ public class LifeStyleListAdapter extends BaseAdapterHelper<LifeStyleItemBean> {
             item_tv_name = (TextView) view.findViewById(R.id.item_tv_name);
 
             pb_lifeenergynum = (NumberProgressBar) view.findViewById(R.id.item_pb_lifeenergynum);
-            item_pb_num = (TextView) view.findViewById(R.id.item_pb_num);
+            item_pb_numne = (TextView) view.findViewById(R.id.item_pb_numne);
             item_tv_lifeenergynum = (TextView) view.findViewById(R.id.item_tv_lifeenergynum);
             item_tv_date = (TextView) view.findViewById(R.id.item_tv_date);
         }

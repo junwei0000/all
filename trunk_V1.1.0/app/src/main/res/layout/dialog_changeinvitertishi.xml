@@ -53,8 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp30"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10">
+        android:paddingLeft="@dimen/padd_leftright"
+        android:paddingRight="@dimen/padd_leftright">
 
         <TextView
             android:id="@+id/btn_left"

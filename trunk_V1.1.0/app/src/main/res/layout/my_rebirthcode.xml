@@ -54,7 +54,7 @@
             android:id="@+id/tv_tishi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/padd_leftright"
             android:text="*使用重生卡将重置您的星级、已祝福的生命能量和已祝福的次数,使用后将不可恢复，请您慎重使用。"
             android:textColor="@color/red"
             android:textSize="@dimen/text_dp12_size" />

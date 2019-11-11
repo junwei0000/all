@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingTop="@dimen/dp10"
+    android:paddingTop="@dimen/padd_leftright"
     android:paddingBottom="@dimen/padd_imgtextleftright">
 
     <FrameLayout
@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/padd_leftright"
         android:gravity="center_vertical">
 
         <ImageView

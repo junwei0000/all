@@ -44,11 +44,11 @@
         android:layout_height="match_parent"
         android:cacheColorHint="@color/page_bg"
         android:divider="@null"
-        android:dividerHeight="@dimen/dp10"
+        android:dividerHeight="@dimen/padd_leftright"
         android:fadeScrollbars="false"
         android:fadingEdge="none"
         android:focusable="false"
-        android:paddingBottom="@dimen/dp10"
+        android:paddingBottom="@dimen/padd_leftright"
         android:scrollbars="none" />
 
 </LinearLayout>

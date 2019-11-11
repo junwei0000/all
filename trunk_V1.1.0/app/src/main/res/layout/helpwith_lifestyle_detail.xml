@@ -153,7 +153,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/dp10">
+                        android:padding="@dimen/padd_leftright">
 
                         <com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar
                             android:id="@+id/pb_lifeprogressnum"

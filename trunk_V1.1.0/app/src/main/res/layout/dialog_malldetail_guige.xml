@@ -57,7 +57,7 @@
         android:listSelector="@drawable/list_notselector"
         android:numColumns="2"
         android:scrollbars="none"
-        android:verticalSpacing="@dimen/dp10" />
+        android:verticalSpacing="@dimen/padd_leftright" />
 
 
     <TextView

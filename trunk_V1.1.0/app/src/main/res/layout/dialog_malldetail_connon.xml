@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginBottom="@dimen/padd_leftright"
             android:layout_marginTop="@dimen/dp20"
             android:background="@mipmap/my_volunteer_icon" />
     </FrameLayout>
@@ -38,7 +38,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/padd_leftright"
         android:gravity="center"
         android:text="此套餐只限康农工程志愿者申请"
         android:textColor="@color/text_biaoTi_color"

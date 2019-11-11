@@ -22,12 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:horizontalSpacing="@dimen/dp10"
+        android:horizontalSpacing="@dimen/padd_leftright"
         android:listSelector="@drawable/list_notselector"
         android:numColumns="3"
-        android:padding="@dimen/dp10"
+        android:padding="@dimen/padd_leftright"
         android:scrollbars="none"
-        android:verticalSpacing="@dimen/dp10" />
+        android:verticalSpacing="@dimen/padd_leftright" />
 
     <TextView
         android:layout_width="match_parent"

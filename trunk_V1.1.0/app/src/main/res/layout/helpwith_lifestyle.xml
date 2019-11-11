@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"
                 android:gravity="right|center_vertical"
                 android:paddingLeft="@dimen/padd_leftright"
-                android:paddingRight="@dimen/dp10">
+                android:paddingRight="@dimen/padd_leftright">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -81,8 +81,8 @@
             android:gravity="left|center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dp15"
-            android:paddingBottom="@dimen/dp10"
-            android:paddingTop="@dimen/dp10">
+            android:paddingBottom="@dimen/padd_leftright"
+            android:paddingTop="@dimen/padd_leftright">
 
             <TextView
                 android:id="@+id/help_tv_time"

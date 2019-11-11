@@ -84,9 +84,9 @@ public class DediGridAdapter extends BaseAdapter {
         } else {
             mHolder = (ViewHolder) view.getTag();
         }
-        int width = (DensityUtil.screenWith(mContext) - DensityUtil.dip2px(mContext, 30)) / 2;
+        int width = (DensityUtil.screenWith(mContext) - DensityUtil.dip2px(mContext, 32)) / 2;
         mHolder.item_iv_pic.setLayoutParams(new FrameLayout.LayoutParams(width, width));
-
+        mHolder.item_iv_pic.setScaleType(ImageView.ScaleType.FIT_XY);
         HomeItemBean mHomeItemBean = mList.get(position);
         mHolder.item_tv_title.setText(mHomeItemBean.getTitle());
         List<HomeItemBean> extend_info = mHomeItemBean.getExtend_info();
@@ -171,7 +171,7 @@ public class DediGridAdapter extends BaseAdapter {
             mHolder.item_tv_time.setTextColor(Color.parseColor(mHomeItemBean.getColor()));
         }
         Log.i("BannerListSuccess", "BannerListSuccess: " + mHomeItemBean.getPic());
-        GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, mHomeItemBean.getPic(), mHolder.item_iv_pic, 0);
+        GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, mHomeItemBean.getPic(), mHolder.item_iv_pic, ConstantManager.image_angle);
 
         return view;
     }

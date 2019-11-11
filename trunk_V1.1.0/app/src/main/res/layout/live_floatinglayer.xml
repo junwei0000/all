@@ -32,8 +32,8 @@
         <TextView
             android:id="@+id/frag_tv_jieqi"
             style="@style/text_padd_oval"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:layout_marginRight="@dimen/padd_leftright"
             android:layout_toLeftOf="@+id/frag_layout_city"
             android:background="@drawable/corners_bg_communered"
             android:singleLine="true"

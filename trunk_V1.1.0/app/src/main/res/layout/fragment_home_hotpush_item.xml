@@ -94,8 +94,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dp10"
-        android:paddingBottom="@dimen/dp10">
+        android:paddingTop="@dimen/padd_leftright"
+        android:paddingBottom="@dimen/padd_leftright">
 
         <com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar
             android:id="@+id/item_pb_lifeenergynum"

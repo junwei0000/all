@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp35"
             android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginRight="@dimen/padd_leftright"
             android:layout_marginTop="@dimen/dp35"
             android:gravity="center_vertical"
             android:visibility="invisible">
@@ -167,7 +167,7 @@
         style="@style/view_marginlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/padd_leftright"
         android:singleLine="true"
         android:text="*邀请人变更只可修改一次，请慎重操作"
         android:textColor="#e9060c"
@@ -186,7 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp35"
             android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginRight="@dimen/padd_leftright"
             android:layout_marginTop="@dimen/dp35"
             android:gravity="center_vertical">
 

@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/padd_leftright"
         android:gravity="center"
         android:text="您当前还不是CHO噢~"
         android:textStyle="bold"
@@ -47,7 +47,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/padd_leftright"
         android:gravity="center"
         android:text="请升级后再申请"
         android:textColor="@color/text_noclick_color"

@@ -142,7 +142,7 @@
             android:layout_centerVertical="true" />
 
         <TextView
-            android:id="@+id/item_pb_num"
+            android:id="@+id/item_pb_numnew"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

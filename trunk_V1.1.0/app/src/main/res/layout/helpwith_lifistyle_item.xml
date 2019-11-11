@@ -139,7 +139,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10">
+                android:layout_marginTop="@dimen/padd_leftright">
 
                 <com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar
                     android:id="@+id/item_pb_lifeenergynum"
@@ -147,7 +147,7 @@
                     android:layout_centerVertical="true" />
 
                 <TextView
-                    android:id="@+id/item_pb_num"
+                    android:id="@+id/item_pb_numne"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/dp10">
+                android:paddingTop="@dimen/padd_leftright">
 
                 <TextView
                     android:id="@+id/item_tv_date"

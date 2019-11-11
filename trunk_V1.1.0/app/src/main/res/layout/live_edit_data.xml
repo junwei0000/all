@@ -39,21 +39,21 @@
             android:id="@+id/btn_liwu"
             android:layout_width="@dimen/dp35"
             android:layout_height="@dimen/dp35"
-            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginLeft="@dimen/padd_leftright"
             android:background="@mipmap/live_liwu" />
 
         <ImageView
             android:id="@+id/btn_camera"
             android:layout_width="@dimen/dp35"
             android:layout_height="@dimen/dp35"
-            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginLeft="@dimen/padd_leftright"
             android:background="@mipmap/camera_id" />
 
         <ImageView
             android:id="@+id/btn_exit"
             android:layout_width="@dimen/dp35"
             android:layout_height="@dimen/dp35"
-            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginLeft="@dimen/padd_leftright"
             android:background="@mipmap/live_guanbi_icon"
             android:onClick="exit" />
     </LinearLayout>

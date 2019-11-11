@@ -91,7 +91,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
-        android:layout_marginLeft="@dimen/dp10"
-        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginLeft="@dimen/padd_leftright"
+        android:layout_marginRight="@dimen/padd_leftright"
         android:background="@color/linebg" />
 </LinearLayout>

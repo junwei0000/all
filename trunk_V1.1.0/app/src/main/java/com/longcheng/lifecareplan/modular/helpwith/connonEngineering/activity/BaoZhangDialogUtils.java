@@ -23,8 +23,6 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.adapter.BaoZhangMoneyAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
-import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneItemBean;
-import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionDetailMoneyAdapter;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.LongClickButton;
@@ -178,14 +176,15 @@ public class BaoZhangDialogUtils {
         } else {
             selectDialog.show();
         }
-        if (TextUtils.isEmpty(asset_debt) || (!TextUtils.isEmpty(asset_debt)) && asset_debt.equals("0")) {
-            payType = "1";
-        } else {
-            payType = "4";
-        }
-        if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障初始化默认微信
-            payType = "1";
-        }
+//        if (TextUtils.isEmpty(asset_debt) || (!TextUtils.isEmpty(asset_debt)) && asset_debt.equals("0")) {
+//            payType = "1";
+//        } else {
+//            payType = "4";
+//        }
+//        if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障初始化默认微信
+//            payType = "1";
+//        }
+        payType = "1";
         num = 1;
         tv_num.setText("" + num);
         detailhelp_tv_account.setText(context.getResources().getString(R.string.mark_money) + asset_debt);

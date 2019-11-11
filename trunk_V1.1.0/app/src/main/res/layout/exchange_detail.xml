@@ -196,7 +196,7 @@
                         android:listSelector="@drawable/list_notselector"
                         android:numColumns="2"
                         android:scrollbars="none"
-                        android:verticalSpacing="@dimen/dp10" />
+                        android:verticalSpacing="@dimen/padd_leftright" />
                 </LinearLayout>
                 <!--guige-->
                 <LinearLayout
@@ -318,8 +318,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/dp10"
-                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/padd_leftright"
+                    android:layout_marginLeft="@dimen/padd_leftright"
                     android:background="@drawable/corners_oval_rednull"
                     android:gravity="center"
                     android:minHeight="@dimen/dp15"
@@ -374,10 +374,10 @@
             android:layout_marginRight="@dimen/dp15"
             android:background="@mipmap/mall_icon_thetop"
             android:gravity="center"
-            android:paddingTop="@dimen/dp10"
+            android:paddingTop="@dimen/padd_leftright"
             android:text="顶部"
             android:textColor="@color/text_biaoTi_color"
-            android:textSize="@dimen/dp10"
+            android:textSize="@dimen/text_min_size"
             android:visibility="gone" />
 
     </RelativeLayout>

@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/dp30"
         android:paddingRight="@dimen/dp30"
-        android:paddingTop="@dimen/dp10">
+        android:paddingTop="@dimen/padd_leftright">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -69,9 +69,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginBottom="@dimen/padd_leftright"
                 android:layout_marginLeft="@dimen/jianJu"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/padd_leftright"
                 android:layout_weight="1"
                 android:text="获得现金"
                 android:textColor="@color/red_openredfen"
@@ -107,16 +107,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/padd_leftright"
             android:background="@drawable/corners_bg_write"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginBottom="@dimen/padd_leftright"
                 android:layout_marginLeft="@dimen/jianJu"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/padd_leftright"
                 android:layout_weight="1"
                 android:text="获得寿康宝"
                 android:textColor="@color/red_openredfen"
@@ -152,16 +152,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/padd_leftright"
             android:background="@drawable/corners_bg_write"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginBottom="@dimen/padd_leftright"
                 android:layout_marginLeft="@dimen/jianJu"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/padd_leftright"
                 android:layout_weight="1"
                 android:text="获得生命能量"
                 android:textColor="@color/red_openredfen"

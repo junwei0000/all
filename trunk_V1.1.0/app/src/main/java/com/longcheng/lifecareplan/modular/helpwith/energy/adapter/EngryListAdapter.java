@@ -82,8 +82,8 @@ public class EngryListAdapter extends BaseAdapterHelper<HelpItemBean> {
         int progress = mHelpItemBean.getProgress();
         mHolder.pb_lifeenergynum.setProgress(progress);
         mHolder.pb_lifeenergynum.setReachedBarColor(context.getResources().getColor(R.color.red));
-        mHolder.item_pb_num.setBackgroundResource(R.drawable.corners_bg_redprogress);
-        mProgressUtils.showNum(progress, mHolder.pb_lifeenergynum.getMax(), mHolder.item_pb_num);
+        mHolder.item_pb_numnew.setBackgroundResource(R.drawable.corners_bg_redprogress);
+        mProgressUtils.showNum(progress, mHolder.pb_lifeenergynum.getMax(), mHolder.item_pb_numnew);
         String showT = "已有<font color=\"#231815\">" + ability_price_action + "</font>生命能量";
         mHolder.item_tv_lifeenergynum.setText(Html.fromHtml(showT));
         mHolder.item_tv_date.setText(date);
@@ -105,7 +105,7 @@ public class EngryListAdapter extends BaseAdapterHelper<HelpItemBean> {
         private TextView item_tv_name;
 
         private NumberProgressBar pb_lifeenergynum;
-        private TextView item_pb_num;
+        private TextView item_pb_numnew;
         private TextView item_tv_lifeenergynum;
         private TextView item_tv_date;
 
@@ -123,7 +123,7 @@ public class EngryListAdapter extends BaseAdapterHelper<HelpItemBean> {
             item_tv_name = (TextView) view.findViewById(R.id.item_tv_name);
 
             pb_lifeenergynum = (NumberProgressBar) view.findViewById(R.id.item_pb_lifeenergynum);
-            item_pb_num = (TextView) view.findViewById(R.id.item_pb_num);
+            item_pb_numnew = (TextView) view.findViewById(R.id.item_pb_numnew);
             item_tv_lifeenergynum = (TextView) view.findViewById(R.id.item_tv_lifeenergynum);
             item_tv_date = (TextView) view.findViewById(R.id.item_tv_date);
         }

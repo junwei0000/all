@@ -113,7 +113,7 @@
                     android:gravity="left|center_vertical"
                     android:orientation="horizontal"
                     android:paddingTop="@dimen/padd_imgtextleftright"
-                    android:paddingBottom="@dimen/dp10">
+                    android:paddingBottom="@dimen/padd_leftright">
 
                     <TextView
                         android:id="@+id/exchange_tv_time"
@@ -140,7 +140,7 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingTop="@dimen/padd_imgtextleftright"
-                    android:paddingBottom="@dimen/dp10">
+                    android:paddingBottom="@dimen/padd_leftright">
 
                     <TextView
                         android:id="@+id/exchange_tv_price"
@@ -168,7 +168,7 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingTop="@dimen/padd_imgtextleftright"
-                    android:paddingBottom="@dimen/dp10">
+                    android:paddingBottom="@dimen/padd_leftright">
 
                     <TextView
                         android:id="@+id/exchange_tv_popularity"
@@ -195,7 +195,7 @@
                     android:gravity="right|center_vertical"
                     android:orientation="horizontal"
                     android:paddingTop="@dimen/padd_imgtextleftright"
-                    android:paddingBottom="@dimen/dp10">
+                    android:paddingBottom="@dimen/padd_leftright">
 
                     <TextView
                         android:id="@+id/exchange_tv_selectjieqi"
@@ -396,7 +396,7 @@
                     android:fadeScrollbars="false"
                     android:fadingEdge="none"
                     android:gravity="center"
-                    android:horizontalSpacing="@dimen/dp10"
+                    android:horizontalSpacing="@dimen/padd_leftright"
                     android:listSelector="@drawable/list_notselector"
                     android:numColumns="3"
                     android:paddingLeft="@dimen/jianJu"
@@ -404,7 +404,7 @@
                     android:paddingRight="@dimen/jianJu"
                     android:paddingBottom="@dimen/padd_topbottom"
                     android:scrollbars="none"
-                    android:verticalSpacing="@dimen/dp10" />
+                    android:verticalSpacing="@dimen/padd_leftright" />
 
             </LinearLayout>
         </LinearLayout>

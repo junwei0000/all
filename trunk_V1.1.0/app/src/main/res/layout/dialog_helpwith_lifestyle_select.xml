@@ -126,8 +126,8 @@
 
         <TextView
             android:id="@+id/btn_reset"
-            android:paddingTop="@dimen/dp10"
-            android:paddingBottom="@dimen/dp10"
+            android:paddingTop="@dimen/padd_leftright"
+            android:paddingBottom="@dimen/padd_leftright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp15"
