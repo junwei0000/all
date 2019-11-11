@@ -2,8 +2,6 @@ package com.longcheng.lifecareplan.modular.mine.userinfo.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
@@ -16,22 +14,14 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ValueSelectUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DatesUtils;
-import com.longcheng.lifecareplan.utils.datepick.DatePickUtil;
-import com.longcheng.lifecareplan.utils.datepick.OnDatePickedListener;
 import com.nanchen.calendarview.ClickDataListener;
 import com.nanchen.calendarview.MyCalendarView;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-
-import static com.alibaba.fastjson.parser.JSONLexer.VALUE;
 
 public class CalendarActivity extends BaseActivity {
 
