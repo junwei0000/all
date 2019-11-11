@@ -50,8 +50,8 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
-
-
+#忽略内部类的一些属性
+-keepattributes EnclosingMethod
 
 # 直播
 -keep class com.alibaba.livecloud.** { *;}
