@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -174,7 +173,7 @@ public class AppUpdate {
             androidVersion = androidVersion.replace("_", ".");
         }
         tv_version.setText("版本号：V" + androidVersion);
-        tv_cont.setText(Html.fromHtml(""+description));
+        tv_cont.setText(description);
         tv_update.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
                 try {
