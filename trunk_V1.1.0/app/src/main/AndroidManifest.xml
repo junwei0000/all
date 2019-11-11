@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.longcheng.lifecareplan">
 
-
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <!-- 可用网络 -->

@@ -53,28 +53,34 @@
 #忽略内部类的一些属性
 -keepattributes EnclosingMethod
 
+######################短视频混淆配置#########################
+-keep class com.aliyun.**{*;}
+-keep class com.duanqu.**{*;}
+-keep class com.qu.**{*;}
+-keep class com.alibaba.**{*;}
+-keep class component.alivc.**{*;}
 # 直播
--keep class com.alibaba.livecloud.** { *;}
--keep class com.alivc.** { *;}
+-keep class com.alibaba.livecloud.**{*;}
+-keep class com.alivc.**{*;}
 -keep class com.aliyun.clientinforeport.**{*;}
 -dontwarn com.alivc.player.**
 # 第三方接口不混淆
--keep class com.tencent.android.tpush.** { *; }
--keep class com.tencent.mid.** { *; }
--keep class com.jg.** { *; }
--keep class com.qq.** { *; }
--keep class src.com.qq.** { *; }
--keep class com.nineoldandroids.** { *; }
--keep class com.aps.** { *; }
--keep class com.amap.api.** { *; }
--keep class com.google.protobuf.micro.** { *; }
+-keep class com.tencent.android.tpush.**{*;}
+-keep class com.tencent.mid.**{*;}
+-keep class com.jg.**{*;}
+-keep class com.qq.**{*;}
+-keep class src.com.qq.**{*;}
+-keep class com.nineoldandroids.**{*;}
+-keep class com.aps.**{*;}
+-keep class com.amap.api.**{*;}
+-keep class com.google.protobuf.micro.**{*;}
 
 # http client
--keep class org.apache.http.** {*; }
+-keep class org.apache.http.**{*;}
 
 # 实体类不混淆（注意xxx是你项目的路径）
--keep class com.longcheng.lifecareplan.bean.** { *; }
--keep class com.longcheng.lifecareplan.modular.home.bean.** { *; }
+-keep class com.longcheng.lifecareplan.bean.**{*;}
+-keep class com.longcheng.lifecareplan.modular.home.bean.**{*;}
 
 #zxing二维码混淆配置
 -dontwarn com.google.zxing.**
@@ -83,7 +89,7 @@
 #GLide混淆
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$**{
   **[] $VALUES;
   public *;
 }
@@ -104,12 +110,12 @@
 -keepattributes *Annotation*
 
 # Gson specific classes
--keep class sun.misc.Unsafe { *; }
+-keep class sun.misc.Unsafe {*;}
 #-keep class com.google.gson.stream.** { *; }
 
 # Application classes that will be serialized/deserialized over Gson
 #自己的Gson Bean类
--keep class com.google.gson.examples.android.model.** { *; }
+-keep class com.google.gson.examples.android.model.**{*;}
 
 ##---------------End: proguard configuration for Gson  ----------
 
@@ -138,14 +144,14 @@
 #RXJava
 # rx
 -dontwarn rx.**
--keepclassmembers class rx.** { *; }
+-keepclassmembers class rx.**{*;}
 # retrolambda
 -dontwarn java.lang.invoke.*
 
 #butterknife
--keep class butterknife.** { *; }
+-keep class butterknife.**{*;}
 -dontwarn butterknife.internal.**
--keep class **$$ViewBinder { *; }
+-keep class **$$ViewBinder{*;}
 -keepclasseswithmembernames class * {
     @butterknife.* <fields>;
 }
@@ -158,11 +164,11 @@
 -dontpreverify
 
 -dontwarn cn.jpush.**
--keep class cn.jpush.** { *; }
--keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
+-keep class cn.jpush.**{*;}
+-keep class * extends cn.jpush.android.helpers.JPushMessageReceiver {*;}
 
 -dontwarn cn.jiguang.**
--keep class cn.jiguang.** { *; }
+-keep class cn.jiguang.**{*;}
 
 #华为推送
 -ignorewarning
@@ -181,7 +187,7 @@
 -dontwarn com.xiaomi.push.**
 
 #友盟统计
--keep class com.umeng.commonsdk.** {*;}
+-keep class com.umeng.commonsdk.**{*;}
 #友盟
  -dontusemixedcaseclassnames
     -dontshrink
@@ -202,12 +208,12 @@
     -keep public interface com.umeng.socialize.**
     -keep public interface com.umeng.socialize.sensor.**
     -keep public interface com.umeng.scrshot.**
-    -keep class com.android.dingtalk.share.ddsharemodule.** { *; }
-    -keep public class com.umeng.socialize.* {*;}
+    -keep class com.android.dingtalk.share.ddsharemodule.**{*;}
+    -keep public class com.umeng.socialize.*{*;}
 
 
     -keep class com.umeng.scrshot.**
-    -keep public class com.tencent.** {*;}
+    -keep public class com.tencent.**{*;}
     -keep class com.umeng.socialize.sensor.**
     -keep class com.umeng.socialize.handler.**
     -keep class com.umeng.socialize.handler.*
@@ -227,9 +233,9 @@
    *;
     }
     -dontwarn twitter4j.**
-    -keep class twitter4j.** { *; }
+    -keep class twitter4j.**{*;}
 
-    -keep class com.tencent.** {*;}
+    -keep class com.tencent.**{*;}
     -dontwarn com.tencent.**
     -keep public class com.umeng.com.umeng.soexample.R$*{
     public static final int *;
@@ -258,7 +264,7 @@
     public static final ** CREATOR;
     }
 
-    -keep class com.linkedin.** { *; }
+    -keep class com.linkedin.**{*;}
     -keepattributes Signature
 
 

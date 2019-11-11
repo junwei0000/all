@@ -8,6 +8,7 @@ buildscript {
         maven() {
             url 'https://maven.aliyun.com/repository/releases'
         }
+        maven { url "http://maven.aliyun.com/nexus/content/repositories/releases" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -28,12 +29,17 @@ allprojects {
             url 'http://developer.huawei.com/repo/'
         }
         maven { url "https://jitpack.io" }
+        //直播
         mavenCentral()
         maven() {
             url 'https://maven.aliyun.com/repository/releases'
         }
         flatDir {
             dirs 'libs'
+        }
+        //短视频
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
         }
     }
 }
