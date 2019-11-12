@@ -33,6 +33,15 @@ public class HomeAfterBean implements Serializable {
 
     private List<HomeItemBean> layer;
 
+    private String display_note;
+
+    public String getDisplay_note() {
+        return display_note;
+    }
+
+    public void setDisplay_note(String display_note) {
+        this.display_note = display_note;
+    }
 
     public List<HomeItemBean> getLayer() {
         return layer;

@@ -82,6 +82,19 @@ public class DetailHelpDialogUtils {
     private List<DetailItemBean> mutual_help_money_all;
     private List<DetailItemBean> blessings_list;
 
+    /**
+     * 是否正常使用普通能量互祝  默认是1 可以使用
+     */
+    int is_normal_help = 1;
+
+    public int getIs_normal_help() {
+        return is_normal_help;
+    }
+
+    public void setIs_normal_help(int is_normal_help) {
+        this.is_normal_help = is_normal_help;
+    }
+
     public DetailHelpDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
         this.mHandler = mHandler;
@@ -216,7 +229,7 @@ public class DetailHelpDialogUtils {
                     selectDialog.dismiss();
                     break;
                 case R.id.detailhelp_relat_engry:
-                    if (is_applying_help == 0) {
+                    if (is_applying_help == 0 && is_normal_help == 1) {
                         if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
                             payType = "ability";
                             selectPayTypeView();
@@ -232,7 +245,7 @@ public class DetailHelpDialogUtils {
                     break;
 
                 case R.id.detailhelp_relat_account:
-                    if (is_applying_help == 0) {
+                    if (is_applying_help == 0 && is_normal_help == 1) {
                         if (Double.valueOf(asset) >= selectmoney) {
                             payType = "asset";
                             selectPayTypeView();
@@ -340,23 +353,6 @@ public class DetailHelpDialogUtils {
         selectmoney = mEnergyItemBean.getMoney();
         selectengery = mEnergyItemBean.getAbility();
         detailhelp_tv_money.setText("（祝福金额：" + selectmoney + "元）");
-//        if (is_applying_help > 0) {
-//            if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
-//                payType = "super_ability";
-//            } else {
-//                payType = "wxpay";
-//            }
-//        } else {
-//            if (Double.valueOf(ability) >= Double.valueOf(selectengery)) {
-//                payType = "ability";
-//            } else if (Double.valueOf(super_ability) >= Double.valueOf(selectengery)) {
-//                payType = "super_ability";
-//            } else if (Double.valueOf(asset) >= selectmoney) {
-//                payType = "asset";
-//            } else {
-//                payType = "wxpay";
-//            }
-//        }
         payType = "wxpay";
         selectPayTypeView();
     }
@@ -387,7 +383,7 @@ public class DetailHelpDialogUtils {
 
 
         //设置默认
-        if (is_applying_help > 0 || (Double.valueOf(ability) < Double.valueOf(selectengery))) {
+        if (is_normal_help != 1 || is_applying_help > 0 || (Double.valueOf(ability) < Double.valueOf(selectengery))) {
             detailhelp_tv_engrytitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_engry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_engry.setBackgroundResource(R.drawable.corners_bg_black);
@@ -397,7 +393,7 @@ public class DetailHelpDialogUtils {
             detailhelp_tv_superengry.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_superengry.setBackgroundResource(R.drawable.corners_bg_black);
         }
-        if (is_applying_help > 0 || (Double.valueOf(asset) < selectmoney)) {
+        if (is_normal_help != 1 || is_applying_help > 0 || (Double.valueOf(asset) < selectmoney)) {
             detailhelp_tv_accounttitle.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_tv_account.setTextColor(context.getResources().getColor(R.color.text_noclick_color));
             detailhelp_relat_account.setBackgroundResource(R.drawable.corners_bg_black);

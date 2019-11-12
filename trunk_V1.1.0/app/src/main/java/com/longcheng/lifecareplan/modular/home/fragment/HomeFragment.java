@@ -516,6 +516,43 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
     }
 
+    MyDialog mUpdaDialog;
+
+    /**
+     * 是否显示更新内容弹层
+     */
+    public void showUpdaDialog(String display_note) {
+        try {
+            if (mUpdaDialog == null) {
+                mUpdaDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_updat);// 创建Dialog并设置样式主题
+                mUpdaDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = mUpdaDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                mUpdaDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = mUpdaDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                mUpdaDialog.getWindow().setAttributes(p); //设置生效
+                LinearLayout fram_bg = (LinearLayout) mUpdaDialog.findViewById(R.id.fram_bg);
+                fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.433)));
+                LinearLayout layout_cancel = (LinearLayout) mUpdaDialog.findViewById(R.id.layout_cancel);
+                TextView tv_dialog_content = (TextView) mUpdaDialog.findViewById(R.id.tv_dialog_content);
+                tv_dialog_content.setText(Html.fromHtml(display_note));
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mUpdaDialog.dismiss();
+                    }
+                });
+            } else {
+                mUpdaDialog.show();
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
     MyDialog CononDialog;
     ImageView fram_bg;
 
@@ -523,6 +560,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 0初始化 ； 1 跳转登录返回（未登录返回不再显示）；2 跳转快速组队页
      */
     public int isFirstComIn = 0;
+    String display_note;
 
     /**
      * 是否显示康农弹层
@@ -545,6 +583,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
             return;
         }
+        if (!TextUtils.isEmpty(display_note)) {
+            showUpdaDialog(display_note);
+            return;
+        }
+
         if (CononDialog != null && CononDialog.isShowing()) {
             return;
         }
@@ -627,6 +670,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     private void setLoadData(HomeAfterBean mHomeAfterBean) {
         if (mHomeAfterBean != null) {
             layer = mHomeAfterBean.getLayer();
+            display_note = mHomeAfterBean.getDisplay_note();
             if (layer != null && layer.size() > 0) {
                 showCononDialog();
             }

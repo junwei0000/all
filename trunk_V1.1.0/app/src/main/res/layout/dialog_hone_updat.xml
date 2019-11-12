@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fram_bg"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/home_bg_updat"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/home_bg_updaticon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:text="健康互祝公社"
+                android:textColor="@color/home_updat_bg"
+                android:textSize="@dimen/text_dp25_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_margintopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/home_updat_bg" />
+
+        <com.longcheng.lifecareplan.utils.myview.MyScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dp10"
+                    android:text="新功能上线公告"
+                    android:textColor="@color/home_updat_bg"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <TextView
+                    android:id="@+id/tv_dialog_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/home_updat_bg"
+                    android:textSize="@dimen/text_biaoTi_size" />
+            </LinearLayout>
+        </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp20">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/my_thestar_shutdown" />
+    </LinearLayout>
+</LinearLayout>

@@ -51,7 +51,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
@@ -251,7 +250,15 @@ public class BaoZhangActitvty extends WebAct {
         mBridgeWebView.registerHandler("knp_showHelpDialog", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
-                msg_id = data;
+                JSONObject jsonObject = null;
+                int is_normal_help = 1;
+                try {
+                    jsonObject = new JSONObject(data);
+                    msg_id = jsonObject.optString("knp_msg_id", "0");
+                    is_normal_help = jsonObject.optInt("is_normal_help", 1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 weixinPayBackType = "knpDetailPay";
                 Log.e("registerHandler", "data=" + data);
                 if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
@@ -259,6 +266,7 @@ public class BaoZhangActitvty extends WebAct {
                         mknpDetailHelpDialogUtils = new DetailHelpDialogUtils(mActivity, mHandler, KNPBLESS);
                     }
                     mknpDetailHelpDialogUtils.initData(userInfo, blessings_list, 0, mutual_help_money, mutual_help_money_all);
+                    mknpDetailHelpDialogUtils.setIs_normal_help(is_normal_help);
                     mknpDetailHelpDialogUtils.showPopupWindow();
                 } else {
                     ToastUtils.showToast(R.string.net_tishi);

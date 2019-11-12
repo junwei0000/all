@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,8 +17,9 @@ import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
-import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
 import com.longcheng.lifecareplan.utils.DatesUtils;
+import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -69,9 +71,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 back();
                 break;
             case R.id.pagetop_layout_rigth:
-                intent = new Intent(mActivity, ShortVideoActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+//                intent = new Intent(mActivity, ShortVideoActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                startActivity(intent);
+                String uid = UserUtils.getUserId(mContext);
+                mPresent.getLivePush(uid);
                 break;
             case R.id.layout_playlist_video:
                 liveSeleStatus = false;
@@ -175,7 +179,19 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void BackPushSuccess(LivePushDataInfo responseBean) {
-
+        String Pushurl = responseBean.getPushurl();
+        String tilte = "";
+        for (LivePlayItemInfo mLivePlayItemInfo : playList) {
+            if (UserUtils.getUserId(mContext).equals(mLivePlayItemInfo.getUid())) {
+                tilte = mLivePlayItemInfo.getPlayTile();
+                break;
+            }
+        }
+        if (!TextUtils.isEmpty(Pushurl)) {
+            LivePushActivity.startActivity(this, Pushurl, tilte);
+        } else {
+            ToastUtils.showToast("获取直播信息失败");
+        }
     }
 
     @Override
