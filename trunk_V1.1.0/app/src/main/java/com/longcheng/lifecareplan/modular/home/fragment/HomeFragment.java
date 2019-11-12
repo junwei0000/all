@@ -511,6 +511,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (CononDialog != null && CononDialog.isShowing()) {
             CononDialog.dismiss();
         }
+        if (mUpdaDialog != null && mUpdaDialog.isShowing()) {
+            mUpdaDialog.dismiss();
+        }
         if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
             OpenNotificationDialog.dismiss();
         }
