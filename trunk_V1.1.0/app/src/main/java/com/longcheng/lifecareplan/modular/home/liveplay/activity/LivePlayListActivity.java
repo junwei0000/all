@@ -203,7 +203,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void BackPlayListSuccess(LivePushDataInfo responseBean) {
-        playList = responseBean.getPlayList();
+//        playList = responseBean.getPlayList();
         String time = DatesUtils.getInstance().getNowTime("yyyy-MM-dd HH:mm:ss");
         playList = new ArrayList<>();
         playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
@@ -217,6 +217,10 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void BackVideoListSuccess(LivePushDataInfo responseBean) {
+        String time = DatesUtils.getInstance().getNowTime("yyyy-MM-dd HH:mm:ss");
+        playList = new ArrayList<>();
+        playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
+        playList.add(new LivePlayItemInfo("128767", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云莉雅", HomeFragment.jieqi_name, time));
         playView.setVisibility(View.GONE);
         layout_notlive.setVisibility(View.VISIBLE);
 
