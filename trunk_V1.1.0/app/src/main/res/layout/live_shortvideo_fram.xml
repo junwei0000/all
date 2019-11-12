@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_tool" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/page_top_height"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/padd_leftright">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back"
+                android:tint="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_pageTop_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_rigth"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:paddingRight="@dimen/padd_leftright">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone">
+
+
+            <TextView
+                android:layout_width="@dimen/dp6"
+                android:layout_height="@dimen/dp6"
+                android:background="@drawable/corners_oval_red" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp3"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_dp12_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/dp23"
+                    android:layout_height="@dimen/dp23"
+                    android:src="@mipmap/zhibo_shanchu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/dp4"
+                    android:text="删除"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_min_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_start"
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp60"
+                android:layout_marginLeft="@dimen/dp50"
+                android:layout_marginRight="@dimen/dp50"
+                android:background="@mipmap/shortvideo_start">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"  />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/dp23"
+                    android:layout_height="@dimen/dp23"
+                    android:src="@mipmap/zhibo_wancheng" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/dp4"
+                    android:text="完成"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_min_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp20"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.StringScrollPicker
+                android:id="@+id/video_pickerview"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                app:spv_end_color="@color/text_noclick_color"
+                app:spv_is_circulation="false"
+                app:spv_max_text_size="@dimen/text_tishi_size"
+                app:spv_min_text_size="@dimen/text_contents_size"
+                app:spv_orientation="horizontal"
+                app:spv_start_color="@color/white"
+                app:spv_visible_item_count="5" />
+
+            <TextView
+                android:layout_width="@dimen/dp6"
+                android:layout_height="@dimen/dp6"
+                android:background="@drawable/corners_oval_write" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

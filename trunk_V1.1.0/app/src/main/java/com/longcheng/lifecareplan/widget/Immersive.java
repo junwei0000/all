@@ -186,16 +186,19 @@ public class Immersive {
      *
      * @param activity
      */
-    public static void setOrChangeTranslucentColorTransparent(Activity activity, Toolbar toolbar, int color) {
+    public static void setOrChangeTranslucentColorTransparent(Activity activity, Toolbar toolbar, int color, boolean textblackstatus) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //设置虚拟导航栏为透明
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//设置状态栏黑色字体
+            if (textblackstatus) {
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//设置状态栏黑色字体
+            } else {
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 activity.getWindow().setStatusBarColor(color);
                 // 底部导航栏颜色也可以由系统设置
                 //activity.getWindow().setNavigationBarColor(color);
-//                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//恢复状态栏白色字体
             } else {
                 setKitKatStatusBarColor(activity, color);
             }
@@ -205,6 +208,7 @@ public class Immersive {
             removeMarginTop(activity);
         }
     }
+
     /**
      * 设置fragment适配状态栏
      */
@@ -218,6 +222,7 @@ public class Immersive {
         }
 
     }
+
     public static void setBarH(Activity activity, Toolbar toolbar) {
         /**
          * android4.3以上的沉浸式 ，4.3以下没效果，所以不要头部填充状态栏高度

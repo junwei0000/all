@@ -83,7 +83,7 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
         CameraManager.init(getApplication());
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity,toolbar, getResources().getColor(R.color.transparent));
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity,toolbar, getResources().getColor(R.color.transparent),false);
     }
 
 

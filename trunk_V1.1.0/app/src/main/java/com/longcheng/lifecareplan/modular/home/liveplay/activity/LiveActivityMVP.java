@@ -22,7 +22,6 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
-import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
@@ -119,15 +118,6 @@ public abstract class LiveActivityMVP extends BaseActivityMVP<LivePushContract.V
         } else {
             btnCamera.setVisibility(View.GONE);
         }
-    }
-
-    public void setTrans(boolean playstatus) {
-        if (playstatus) {
-            Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
-        } else {
-            setOrChangeTranslucentColor(toolbar, null);
-        }
-
     }
 
     /**

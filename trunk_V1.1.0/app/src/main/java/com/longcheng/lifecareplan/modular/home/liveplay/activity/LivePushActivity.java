@@ -153,7 +153,7 @@ public class LivePushActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent),false);
     }
 
     @Override

@@ -111,7 +111,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     @Override
     public void initView(View view) {
         relat_push.setVisibility(View.GONE);
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent));
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent),true);
 
     }
 

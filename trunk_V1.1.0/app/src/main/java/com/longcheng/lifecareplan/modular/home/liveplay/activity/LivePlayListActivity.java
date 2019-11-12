@@ -2,7 +2,6 @@ package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +16,8 @@ import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
 import com.longcheng.lifecareplan.utils.DatesUtils;
-import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -57,9 +55,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @BindView(R.id.pagetop_layout_rigth)
     LinearLayout pagetopLayoutRigth;
 
-    private String uid;
-    private String Pushurl;
-
 
     /**
      * 是否选中直播
@@ -68,12 +63,15 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
                 back();
                 break;
             case R.id.pagetop_layout_rigth:
-                mPresent.getLivePush(uid);
+                intent = new Intent(mActivity, ShortVideoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 break;
             case R.id.layout_playlist_video:
                 liveSeleStatus = false;
@@ -84,7 +82,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 changeData();
                 break;
             case R.id.layout_playlist_mine:
-                Intent intent = new Intent(mActivity, MineActivity.class);
+                intent = new Intent(mActivity, MineActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 break;
@@ -135,7 +133,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void initDataAfter() {
-        uid = UserUtils.getUserId(mContext);
         liveSeleStatus = false;
         changeData();
     }
@@ -178,23 +175,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void BackPushSuccess(LivePushDataInfo responseBean) {
-        Pushurl = responseBean.getPushurl();
-        String playTile = "";
-        String live_name = "";
-        if (playList != null) {
-            for (LivePlayItemInfo livePlayItemInfo : playList) {
-                if (uid.equals(livePlayItemInfo.getUid())) {
-                    playTile = livePlayItemInfo.getPlayTile();
-                    live_name = livePlayItemInfo.getName();
-                    break;
-                }
-            }
-        }
-        if (!TextUtils.isEmpty(Pushurl)) {
-            LivePushActivity.startActivity(this, Pushurl,playTile);
-        } else {
-            ToastUtils.showToast("获取直播信息失败");
-        }
+
     }
 
     @Override

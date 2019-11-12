@@ -145,7 +145,11 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     //阿里云播放器的依赖
     implementation 'com.aliyun.dpa:oss-android-sdk:+'
-
+    implementation 'com.aliyun.video.android:svideosnap:3.11.0'//短视频基础版SDK必须依赖
+    implementation 'com.aliyun.video.android:core:1.2.1' //核心库必须依赖
+    implementation  'com.alivc.conan:AlivcConan:0.9.5.1'//核心库必须依赖
+    implementation  'com.aliyun.video.android:AlivcSvideoFFmpeg:1.0.1'//必须依赖
+    implementation  'com.aliyun.video.android:upload:1.5.3'// 上传库,如不需要上传可不依赖
     //美洽聊天的依赖
     implementation 'com.meiqia:meiqiasdk:+'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'

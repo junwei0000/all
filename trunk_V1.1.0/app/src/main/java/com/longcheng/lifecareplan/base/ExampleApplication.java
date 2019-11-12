@@ -66,8 +66,14 @@ public class ExampleApplication extends MultiDexApplication {
 
         //初始化播放器（只需调用一次即可，建议在application中初始化）
         AliVcMediaPlayer.init(getApplicationContext());
-
+        initHttp();
         initMeiQia();
+    }
+    /**
+     * 短视频需要的http依赖
+     */
+    private void initHttp() {
+        com.aliyun.vod.common.httpfinal.QupaiHttpFinal.getInstance().initOkHttpFinal();
     }
 
     /**
