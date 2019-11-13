@@ -8,6 +8,7 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -551,10 +552,30 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             } else {
                 mUpdaDialog.show();
             }
-            tv_dialog_content.setText(Html.fromHtml(display_note));
+            Log.e("fromHtml", "\n" + display_note);
+            Spanned result;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                result = Html.fromHtml(ToDBC(display_note), Html.FROM_HTML_MODE_LEGACY);
+            } else {
+                result = Html.fromHtml(ToDBC(display_note));
+            }
+            tv_dialog_content.setText(result);
         } catch (Exception e) {
 
         }
+    }
+
+    public static String ToDBC(String text) {
+        char[] c = text.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == 12288) {// 全角空格为12288，半角空格为32
+                c[i] = (char) 32;
+                continue;
+            }
+            if (c[i] > 65280 && c[i] < 65375)// 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
+                c[i] = (char) (c[i] - 65248);
+        }
+        return new String(c);
     }
 
     MyDialog CononDialog;

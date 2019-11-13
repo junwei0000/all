@@ -47,7 +47,9 @@
     <style name="MyCustomTabTextAppearance">
         <item name="android:textSize">15sp</item>
     </style>
-
+    <style name="AlignTextView_Default">
+        <item name="align">center</item>
+    </style>
     <style name="JPushDialogStyle">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
