@@ -520,6 +520,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
     MyDialog mUpdaDialog;
+    TextView tv_dialog_content;
 
     /**
      * 是否显示更新内容弹层
@@ -540,8 +541,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 LinearLayout fram_bg = (LinearLayout) mUpdaDialog.findViewById(R.id.fram_bg);
                 fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.433)));
                 LinearLayout layout_cancel = (LinearLayout) mUpdaDialog.findViewById(R.id.layout_cancel);
-                TextView tv_dialog_content = (TextView) mUpdaDialog.findViewById(R.id.tv_dialog_content);
-                tv_dialog_content.setText(Html.fromHtml(display_note));
+                tv_dialog_content = (TextView) mUpdaDialog.findViewById(R.id.tv_dialog_content);
                 layout_cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -551,6 +551,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             } else {
                 mUpdaDialog.show();
             }
+            tv_dialog_content.setText(Html.fromHtml(display_note));
         } catch (Exception e) {
 
         }
