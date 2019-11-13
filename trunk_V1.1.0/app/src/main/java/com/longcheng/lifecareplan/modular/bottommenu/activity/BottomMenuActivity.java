@@ -268,7 +268,7 @@ public class BottomMenuActivity extends BaseActivity {
         mViewPager.setCurrentItem(position, false);
         setBottomBtn();
         if (position == tab_position_home) {
-            ((HomeFragment) fragmentList.get(position)).showCononDialog();
+            ((HomeFragment) fragmentList.get(position)).setAllContDialog();
         } else {
             ((HomeFragment) fragmentList.get(tab_position_home)).dismissAllDialog();
         }

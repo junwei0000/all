@@ -39,33 +39,19 @@
             android:layout_height="0.5dp"
             android:background="@color/home_updat_bg" />
 
-        <com.longcheng.lifecareplan.utils.myview.MyScrollView
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp10"
+            android:text="新功能上线公告"
+            android:textColor="@color/home_updat_bg"
+            android:textSize="@dimen/text_pageTop_size" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/dp10"
-                    android:text="新功能上线公告"
-                    android:textColor="@color/home_updat_bg"
-                    android:textSize="@dimen/text_pageTop_size" />
-
-                <TextView
-                    android:id="@+id/tv_dialog_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/home_updat_bg"
-                    android:textSize="@dimen/text_biaoTi_size" />
-            </LinearLayout>
-        </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+        <com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView
+            android:id="@+id/tv_dialog_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 

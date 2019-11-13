@@ -8,7 +8,6 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -73,6 +72,7 @@ import com.longcheng.lifecareplan.utils.myview.MyListView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 import com.longcheng.lifecareplan.zxing.activity.MipcaCaptureActivity;
 
 import java.util.ArrayList;
@@ -201,27 +201,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
     }
 
-    Handler handler = new Handler();
-
-    private void setDaTing() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (isAdded()) {
-                    if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
-                        isFirstComIn = 2;
-                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
-                        startActivity(intent);
-                    } else {
-                        isFirstComIn = 1;
-                    }
-                }
-            }
-        }, 0);
-    }
-
 
     /**
      * 第一次跳转登录页面，返回设置
@@ -238,6 +217,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
         PriceUtils.getInstance().mbackgroundStatus = false;
     }
+
+    /**
+     * 第一次缓存开启页面
+     */
+    boolean initshowChache = true;
 
     @Override
     public void initView(View view) {
@@ -497,6 +481,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void ListSuccess(HomeDataBean responseBean) {
+        RefreshComplete();
         String status_ = responseBean.getStatus();
         if (status_.equals("400")) {
             ToastUtils.showToast(responseBean.getMsg());
@@ -504,7 +489,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             HomeAfterBean mHomeAfterBean = responseBean.getData();
             setLoadData(mHomeAfterBean);
         }
-        RefreshComplete();
     }
 
 
@@ -521,63 +505,47 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
     MyDialog mUpdaDialog;
-    TextView tv_dialog_content;
+    BridgeWebView tv_dialog_content;
 
     /**
      * 是否显示更新内容弹层
      */
-    public void showUpdaDialog(String display_note) {
-        try {
-            if (mUpdaDialog == null) {
-                mUpdaDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_updat);// 创建Dialog并设置样式主题
-                mUpdaDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-                Window window = mUpdaDialog.getWindow();
-                window.setGravity(Gravity.CENTER);
-                mUpdaDialog.show();
-                WindowManager m = getActivity().getWindowManager();
-                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-                WindowManager.LayoutParams p = mUpdaDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-                p.width = d.getWidth() * 3 / 4;
-                mUpdaDialog.getWindow().setAttributes(p); //设置生效
-                LinearLayout fram_bg = (LinearLayout) mUpdaDialog.findViewById(R.id.fram_bg);
-                fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.433)));
-                LinearLayout layout_cancel = (LinearLayout) mUpdaDialog.findViewById(R.id.layout_cancel);
-                tv_dialog_content = (TextView) mUpdaDialog.findViewById(R.id.tv_dialog_content);
-                layout_cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mUpdaDialog.dismiss();
-                    }
-                });
-            } else {
-                mUpdaDialog.show();
-            }
-            Log.e("fromHtml", "\n" + display_note);
-            Spanned result;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                result = Html.fromHtml(ToDBC(display_note), Html.FROM_HTML_MODE_LEGACY);
-            } else {
-                result = Html.fromHtml(ToDBC(display_note));
-            }
-            tv_dialog_content.setText(result);
-        } catch (Exception e) {
-
+    public void showUpdaDialog() {
+        if (mUpdaDialog == null) {
+            mUpdaDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_updat);// 创建Dialog并设置样式主题
+            mUpdaDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = mUpdaDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            mUpdaDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = mUpdaDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4;
+            mUpdaDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout fram_bg = (LinearLayout) mUpdaDialog.findViewById(R.id.fram_bg);
+            fram_bg.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.433)));
+            LinearLayout layout_cancel = (LinearLayout) mUpdaDialog.findViewById(R.id.layout_cancel);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mUpdaDialog.dismiss();
+                }
+            });
+            tv_dialog_content = (BridgeWebView) mUpdaDialog.findViewById(R.id.tv_dialog_content);
+            ConfigUtils.getINSTANCE().setInitWebView(tv_dialog_content, mContext);
+        } else {
+            mUpdaDialog.show();
         }
+        Log.e("showUpdaDialog", "\n" + display_note);
+        uphandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ConfigUtils.getINSTANCE().showBridgeWebViewColor(tv_dialog_content, display_note);
+            }
+        }, 0);
     }
 
-    public static String ToDBC(String text) {
-        char[] c = text.toCharArray();
-        for (int i = 0; i < c.length; i++) {
-            if (c[i] == 12288) {// 全角空格为12288，半角空格为32
-                c[i] = (char) 32;
-                continue;
-            }
-            if (c[i] > 65280 && c[i] < 65375)// 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
-                c[i] = (char) (c[i] - 65248);
-        }
-        return new String(c);
-    }
-
+    Handler uphandler = new Handler();
     MyDialog CononDialog;
     ImageView fram_bg;
 
@@ -590,32 +558,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     /**
      * 是否显示康农弹层
      */
-    public void showCononDialog() {
-        if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
-            dismissAllDialog();
-            return;
-        }
-        if (isFirstComIn == 0) {
-            dismissAllDialog();
-            setDaTing();
-            return;
-        }
-        if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home) {
-            dismissAllDialog();
-            return;
-        }
-        //显示通知弹层时不显示互祝
-        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
-            return;
-        }
-        if (!TextUtils.isEmpty(display_note)) {
-            showUpdaDialog(display_note);
-            return;
-        }
-
-        if (CononDialog != null && CononDialog.isShowing()) {
-            return;
-        }
+    private void showCononDialog() {
         try {
             if (showLayerIndex + 1 < layer.size()) {
                 showLayerIndex++;
@@ -685,6 +628,56 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
 
+    private void setDaTing() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (isAdded()) {
+                    if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                        isFirstComIn = 2;
+                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
+                        startActivity(intent);
+                    } else {
+                        isFirstComIn = 1;
+                    }
+                }
+            }
+        }, 0);
+    }
+
+    public void setAllContDialog() {
+        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn);
+        if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
+            dismissAllDialog();
+            return;
+        }
+        if (isFirstComIn == 0) {
+            dismissAllDialog();
+            setDaTing();
+            return;
+        }
+        if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home) {
+            dismissAllDialog();
+            return;
+        }
+        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
+            //显示通知弹层时不显示互祝
+            return;
+        }
+        if (!TextUtils.isEmpty(display_note)) {
+            showUpdaDialog();
+            return;
+        }
+        if (layer != null && layer.size() > 0) {
+            showCononDialog();
+            return;
+        }
+    }
+
+
     HashMap<String, HomeAfterBean> HomeAfterDataMap = new HashMap<>();
     /**
      * 0 不显示康农弹层;1 显示
@@ -696,9 +689,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (mHomeAfterBean != null) {
             layer = mHomeAfterBean.getLayer();
             display_note = mHomeAfterBean.getDisplay_note();
-            if (layer != null && layer.size() > 0) {
-                showCononDialog();
-            }
             kn_url = mHomeAfterBean.getKn_url();
             String sign_url = mHomeAfterBean.getSign_url();
             SharedPreferencesHelper.put(mActivity, "sign_url", "" + sign_url);
@@ -755,9 +745,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 mainhotpushLv.setFocusable(false);
                 setHotPushHelp(msg);
             }
-
+            if (!initshowChache) {
+                setAllContDialog();
+            }
             setFocuse();
-
         }
     }
 
@@ -794,8 +785,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void ListError() {
-        showChache(true);
         RefreshComplete();
+        showChache(true);
     }
 
     private void showChache(boolean showAreaListError) {
@@ -813,6 +804,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
     private void RefreshComplete() {
+        initshowChache = false;
         if (frame_bottom != null) {
             //防止数据加载有跳动
             frame_bottom.setVisibility(View.VISIBLE);
@@ -1001,4 +993,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         Log.e("super.onResume", "onStop");
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (tv_dialog_content != null) {
+            tv_dialog_content.destroy();
+        }
+    }
 }

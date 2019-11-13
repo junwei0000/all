@@ -46,6 +46,7 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
         if (mLocationUtils == null) {
             mLocationUtils = new LocationUtils();
         }
+        Log.e("showUpdaDialog","setListViewData");
         int version_code = ConfigUtils.getINSTANCE().getVersionCode(mContext);
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         double phone_user_latitude = mLngAndLat[0];
