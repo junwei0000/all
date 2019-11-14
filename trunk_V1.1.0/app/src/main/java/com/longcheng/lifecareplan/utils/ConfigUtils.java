@@ -454,28 +454,34 @@ public class ConfigUtils {
      * 显示showBridgeWebView cont
      */
     public void showBridgeWebView(BridgeWebView mBridgeWebView, String H5String) {
-        mBridgeWebView.setFocusable(false);
+        if (mBridgeWebView != null) {
+            mBridgeWebView.setFocusable(false);
 //        mBridgeWebView.loadData(H5String, "text/html; charset=UTF-8", null);//这种写法可以正确解码
-        mBridgeWebView.loadDataWithBaseURL(null, getHtmlData(H5String),
-                "text/html", "utf-8", null);
+            mBridgeWebView.loadDataWithBaseURL(null, getHtmlData(H5String),
+                    "text/html", "utf-8", null);
+        }
     }
 
     /**
      * 显示showBridgeWebView cont
      */
     public void showBridgeWebViewColor(BridgeWebView mBridgeWebView, String H5String) {
-        mBridgeWebView.setFocusable(false);
-        String cont = "<font color= '#ecd890'>" + H5String + "</font>";
-        mBridgeWebView.loadDataWithBaseURL(null, cont,
-                "text/html", "utf-8", null);
+        if (mBridgeWebView != null) {
+            mBridgeWebView.setFocusable(false);
+            String cont = "<font color= '#ecd890'>" + H5String + "</font>";
+            mBridgeWebView.loadDataWithBaseURL(null, cont,
+                    "text/html", "utf-8", null);
+        }
     }
 
     public void setInitWebView(BridgeWebView mBridgeWebView, Context context) {
         int fontSize = (int) context.getResources().getDimension(R.dimen.text_zhu_size);
-        mBridgeWebView.getSettings().setDefaultFontSize(fontSize);
-        mBridgeWebView.getSettings().setTextSize(WebSettings.TextSize.LARGER);
-        mBridgeWebView.setBackgroundColor(0); // 设置背景色
-        mBridgeWebView.getBackground().setAlpha(0); // 设置填充透明度 范围：0-255
+        if (mBridgeWebView != null) {
+            mBridgeWebView.getSettings().setDefaultFontSize(fontSize);
+            mBridgeWebView.getSettings().setTextSize(WebSettings.TextSize.LARGER);
+            mBridgeWebView.setBackgroundColor(0); // 设置背景色
+            mBridgeWebView.getBackground().setAlpha(0); // 设置填充透明度 范围：0-255
+        }
     }
 
     public void setHtmlText(TextView text, String cont) {
