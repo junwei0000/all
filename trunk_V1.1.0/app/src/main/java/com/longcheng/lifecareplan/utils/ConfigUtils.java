@@ -473,7 +473,6 @@ public class ConfigUtils {
     public void setInitWebView(BridgeWebView mBridgeWebView, Context context) {
         int fontSize = (int) context.getResources().getDimension(R.dimen.text_zhu_size);
         mBridgeWebView.getSettings().setDefaultFontSize(fontSize);
-        mBridgeWebView.getSettings().setTextZoom(90);
         mBridgeWebView.getSettings().setTextSize(WebSettings.TextSize.LARGER);
         mBridgeWebView.setBackgroundColor(0); // 设置背景色
         mBridgeWebView.getBackground().setAlpha(0); // 设置填充透明度 范围：0-255

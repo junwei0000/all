@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.adapter.MoneyAdapter;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.EnergyAfterBean;
@@ -80,7 +81,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
     /**
      * 支付方式激活类型 1现金; 2 微信 ; 3  现金微信混合; 4  支付宝； 5 现金支付宝混合    （默认1
      */
-    String payType = "";
+    int payType = 2;
     MoneyAdapter mMoneyAdapter;
 
     private String asset = "0";
@@ -93,19 +94,19 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
                 doFinish();
                 break;
             case R.id.activat_relat_wx:
-                payType = "2";
+                payType = 2;
                 selectPayTypeView();
                 break;
             case R.id.activat_relat_account:
-                payType = "1";
+                payType = 1;
                 selectPayTypeView();
                 break;
             case R.id.detailhelp_relat_zfb:
-                payType = "4";
+                payType = 4;
                 selectPayTypeView();
                 break;
             case R.id.btn_jihuo:
-                mPresent.assetRecharge(user_id, money_select, asset, payType);
+                mPresent.assetRecharge(user_id, money_select, asset, "" + payType);
                 break;
         }
     }
@@ -166,18 +167,24 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
         activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_graybian);
         detailhelpIvZfbselect.setVisibility(View.GONE);
         detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_graybian);
-        if (payType.equals("2")) {
+        if (payType == 2) {
             activatIvWxselect.setVisibility(View.VISIBLE);
             activatRelatWx.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatWx.setPadding(0, 0, 0, 0);
-        } else if (payType.equals("1")) {
+            btnJihuo.setText("立即激活 (超级生命能量)");
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,btnJihuo,R.color.engry_btn_bg);
+        } else if (payType == 1) {
             activatIvAccountselect.setVisibility(View.VISIBLE);
             activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatAccount.setPadding(0, 0, 0, 0);
-        } else if (payType.equals("4")) {
+            btnJihuo.setText("立即激活 (生命能量)");
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, btnJihuo,R.color.red);
+        } else if (payType == 4) {
             detailhelpIvZfbselect.setVisibility(View.VISIBLE);
             detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_redbian);
             detailhelpRelatZfb.setPadding(0, 0, 0, 0);
+            btnJihuo.setText("立即激活 (超级生命能量)");
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,btnJihuo,R.color.engry_btn_bg);
         }
     }
 
@@ -192,7 +199,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
         activatTvNum.setText(mEnergyItemBean.getTotal_energy());
         activatTvCont.setText("激活" + mEnergyItemBean.getFirst_energy() + "+赠送" + mEnergyItemBean.getPresenter_energy());
         money_select = mEnergyItemBean.getMoney();
-        payType = "2";
+        payType = 2;
         selectPayTypeView();
     }
 
@@ -250,12 +257,12 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
             ToastUtils.showToast(responseBean.getMsg());
         } else if (status.equals("200")) {
             PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
-            if (payType.equals("1")) {
+            if (payType == 1) {
                 jihuoSuccess();
-            } else if (payType.equals("2") || payType.equals("3")) {
+            } else if (payType == 2 || payType == 3) {
                 Log.e(TAG, payWeChatBean.toString());
                 PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
-            } else if (payType.equals("4") || payType.equals("5")) {
+            } else if (payType == 4 || payType == 5) {
                 String payInfo = payWeChatBean.getPayInfo();
                 payZfb(payInfo);
             }

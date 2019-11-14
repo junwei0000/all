@@ -1,18 +1,15 @@
 package com.longcheng.lifecareplan.modular.mine.activatenergy.adapter;
 
 import android.content.Context;
-import android.os.Handler;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.BaseAdapterHelper;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.EnergyItemBean;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 
@@ -80,6 +77,7 @@ public class MoneyAdapter extends BaseAdapter {
         if (is_default == 1) {//默认
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.white));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_login);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_layout_money,R.color.red);
         } else {
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.text_contents_color));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_graybian);

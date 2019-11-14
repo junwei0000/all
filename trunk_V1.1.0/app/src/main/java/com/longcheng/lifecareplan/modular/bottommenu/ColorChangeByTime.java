@@ -139,4 +139,9 @@ public class ColorChangeByTime {
         }
 
     }
+
+    public void changeDrawableToClolor(Context activity, View view, int color) {
+        GradientDrawable gradientDrawable = (GradientDrawable) view.getBackground();
+        gradientDrawable.setColor(activity.getResources().getColor(color));
+    }
 }
