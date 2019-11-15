@@ -88,6 +88,8 @@ public class ImageLoader {
             stub_id = R.mipmap.moren_new;
         } else if (imgStatus.equals("headImg")) {
             stub_id = R.mipmap.user_default_icon;
+        } else if (imgStatus.equals("good")) {
+            stub_id = R.mipmap.mall_icon_thedefault;
         }
         bitmap_orve = readBitMap(context, stub_id);
     }

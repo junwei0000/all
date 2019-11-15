@@ -1,26 +1,18 @@
 package com.longcheng.lifecareplan.modular.exchange.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.exchange.bean.GoodsItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
-import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
-import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderAfterBean;
-import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderItemBean;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
+import com.longcheng.lifecareplan.utils.glide.ImageLoader;
 
 import java.util.List;
 
@@ -35,9 +27,11 @@ public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
     ViewHolder mHolder = null;
     Context context;
 
+    ImageLoader imageLoader;
     public GoodsListAdapter(Context context, List<GoodsItemBean> list) {
         super(context, list);
         this.context = context;
+        imageLoader=new ImageLoader(context,"good");
     }
 
     @Override
@@ -80,7 +74,8 @@ public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
         int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 36)) / 2;
         int height = width;
         mHolder.item_iv_img.setLayoutParams(new FrameLayout.LayoutParams(width, height));
-        GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mHelpItemBean.getThumb(), mHolder.item_iv_img, 0);
+//        GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mHelpItemBean.getThumb(), mHolder.item_iv_img, 0);
+        imageLoader.DisplayImage(mHelpItemBean.getThumb(), mHolder.item_iv_img);
         return convertView;
     }
 
