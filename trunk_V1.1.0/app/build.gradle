@@ -153,8 +153,12 @@ dependencies {
     //美洽聊天的依赖
     implementation 'com.meiqia:meiqiasdk:+'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-
+    //圆角image
     implementation 'com.makeramen:roundedimageview:2.2.1'
+
+    //有赞
+    implementation 'com.youzanyun.open.mobile:x5sdk:6.4.14'
+    implementation 'com.youzanyun.open.mobile:basic:6.4.14'
 
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')

@@ -41,6 +41,8 @@ allprojects {
         maven {
             url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
         }
+        //有赞
+        maven {url 'https://dl.bintray.com/youzanyun/maven/'}
     }
 }
 
@@ -52,7 +54,7 @@ ext {
     minSdkVersion = 18
     targetSdkVersion = 22
 
-    appcompatVersion = '26.+'
+    appcompatVersion = '27.1.1'
     junitVersion = '4.12'
 
     glideVersion = '3.7.0'

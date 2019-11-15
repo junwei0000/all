@@ -7,7 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 
 import com.longcheng.lifecareplan.R;
@@ -17,7 +17,6 @@ import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtil
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.push.PushClient;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.LogUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -27,7 +26,6 @@ import org.json.JSONObject;
 
 import java.util.Iterator;
 
-import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 
 /**

@@ -26,7 +26,6 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebSettings;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -451,6 +450,26 @@ public class ConfigUtils {
     }
 
     /**
+     * 解决HTML5手机端字体小的问题。关键下下面的前2行内容
+     *
+     * @param bodyHTML
+     * @return
+     */
+    private String getHtmlAdpterMober(String bodyHTML) {
+        String bef =
+                " <!DOCTYPE html PUBLIC \"-//WAPFORUM//DTD XHTML Mobile 1.0//EN\" \"http://www.wapforum.org/DTD/xhtml-mobile10.dtd\">\n" +
+                        "\n" +
+                        "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
+                        "\n" +
+                        "<head>\n" +
+                        "\n" +
+                        "</head>\n" +
+                        "\n" +
+                        "<body>";
+        return bef + bodyHTML + " </body></html>";
+    }
+
+    /**
      * 显示showBridgeWebView cont
      */
     public void showBridgeWebView(BridgeWebView mBridgeWebView, String H5String) {
@@ -469,16 +488,23 @@ public class ConfigUtils {
         if (mBridgeWebView != null) {
             mBridgeWebView.setFocusable(false);
             String cont = "<font color= '#ecd890'>" + H5String + "</font>";
-            mBridgeWebView.loadDataWithBaseURL(null, cont,
+            mBridgeWebView.loadDataWithBaseURL(null, getHtmlAdpterMober(cont),
                     "text/html", "utf-8", null);
         }
     }
 
+    /**
+     * 初始化webview背景透明
+     *
+     * @param mBridgeWebView
+     * @param context
+     */
     public void setInitWebView(BridgeWebView mBridgeWebView, Context context) {
         int fontSize = (int) context.getResources().getDimension(R.dimen.text_zhu_size);
         if (mBridgeWebView != null) {
-            mBridgeWebView.getSettings().setDefaultFontSize(fontSize);
-            mBridgeWebView.getSettings().setTextSize(WebSettings.TextSize.LARGER);
+//            mBridgeWebView.getSettings().setDefaultFontSize(fontSize);
+//            mBridgeWebView.getSettings().setTextSize(WebSettings.TextSize.LARGER);
+//            mBridgeWebView.getSettings().setTextZoom(130);
             mBridgeWebView.setBackgroundColor(0); // 设置背景色
             mBridgeWebView.getBackground().setAlpha(0); // 设置填充透明度 范围：0-255
         }

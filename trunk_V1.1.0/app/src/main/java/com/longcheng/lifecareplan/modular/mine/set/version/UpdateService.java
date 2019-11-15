@@ -1,6 +1,5 @@
 package com.longcheng.lifecareplan.modular.mine.set.version;
 
-import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -185,7 +184,6 @@ public class UpdateService extends Service {
      * @param file
      * @param context
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void Instanll(File file, Context context) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -203,7 +201,6 @@ public class UpdateService extends Service {
             this.context = c;
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
