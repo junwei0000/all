@@ -35,7 +35,7 @@ import java.util.List;
  * 作者：jun on
  * 时间：2018/8/30 16:05
  * 意图：
- * **************************天才行动互祝弹层***********************************
+ * **************************生活保障 天才无债互祝弹层***********************************
  */
 
 public class BaoZhangDialogUtils {
@@ -139,9 +139,11 @@ public class BaoZhangDialogUtils {
             if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障用绿色
                 tv_tishi.setVisibility(View.GONE);
                 btn_helpsure.setBackgroundResource(R.color.lv);
+                detailhelp_relat_account.setVisibility(View.VISIBLE);
             } else {
                 tv_tishi.setVisibility(View.VISIBLE);
                 btn_helpsure.setBackgroundResource(R.color.red);
+                detailhelp_relat_account.setVisibility(View.GONE);
             }
             layout_cancel.setOnClickListener(dialogClick);
             tv_jian.setOnClickListener(dialogClick);

@@ -24,7 +24,6 @@ import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailHelpDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.RedEnvelopeKnpActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
@@ -78,7 +77,7 @@ public class BaoZhangActitvty extends WebAct {
 
 
     private ShareUtils mShareUtils;
-    private DetailHelpDialogUtils mknpDetailHelpDialogUtils;
+    private KangNDialogUtils mknpDetailHelpDialogUtils;
     private VolunterDialogUtils mVolunterDialogUtils;
     private VolunterDialogUtils mChangeLFDialogUtils;
     private BaoZhangDialogUtils mLifeBasicPayDialogUtils;
@@ -263,7 +262,7 @@ public class BaoZhangActitvty extends WebAct {
                 Log.e("registerHandler", "data=" + data);
                 if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
                     if (mknpDetailHelpDialogUtils == null) {
-                        mknpDetailHelpDialogUtils = new DetailHelpDialogUtils(mActivity, mHandler, KNPBLESS);
+                        mknpDetailHelpDialogUtils = new KangNDialogUtils(mActivity, mHandler, KNPBLESS);
                     }
                     mknpDetailHelpDialogUtils.initData(userInfo, blessings_list, 0, mutual_help_money, mutual_help_money_all);
                     mknpDetailHelpDialogUtils.setIs_normal_help(is_normal_help);

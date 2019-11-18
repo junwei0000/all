@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleListProgressUtils;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean.LifeStyleItemBean;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
@@ -81,6 +82,7 @@ public class LifeStyleListAdapter extends BaseAdapterHelper<LifeStyleItemBean> {
         int progress = mHelpItemBean.getProgress();
         mHolder.pb_lifeenergynum.setProgress(progress);
         mProgressUtils.showNum(progress, mHolder.pb_lifeenergynum.getMax(), mHolder.item_pb_numne);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(context,mHolder.item_pb_numne,R.color.red);
         String showT = "已有" + ability_price_action + "寿康宝";
         mHolder.item_tv_lifeenergynum.setText(Html.fromHtml(showT));
         mHolder.item_tv_date.setText(date);
