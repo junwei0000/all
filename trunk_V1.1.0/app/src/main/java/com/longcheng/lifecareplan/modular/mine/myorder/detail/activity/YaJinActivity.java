@@ -5,12 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,17 +19,13 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
-import com.longcheng.lifecareplan.modular.mine.bill.activity.EngryRecordActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailDataBean;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
-import com.longcheng.lifecareplan.utils.myview.CircleImageView;
 import com.longcheng.lifecareplan.utils.pay.PayCallBack;
 import com.longcheng.lifecareplan.utils.pay.PayUtils;
 import com.longcheng.lifecareplan.utils.pay.PayWXAfterBean;
@@ -42,7 +35,6 @@ import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -73,12 +65,6 @@ public class YaJinActivity extends BaseActivity {
     ImageView activatIvWxselect;
     @BindView(R.id.activat_relat_wx)
     RelativeLayout activatRelatWx;
-    @BindView(R.id.activat_tv_account)
-    TextView activatTvAccount;
-    @BindView(R.id.activat_iv_accountselect)
-    ImageView activatIvAccountselect;
-    @BindView(R.id.activat_relat_account)
-    RelativeLayout activatRelatAccount;
     @BindView(R.id.tv_zfbtitle)
     TextView tvZfbtitle;
     @BindView(R.id.detailhelp_iv_zfbselect)
@@ -110,10 +96,6 @@ public class YaJinActivity extends BaseActivity {
                 break;
             case R.id.activat_relat_wx:
                 payWay = "wxpay";
-                selectPayTypeView();
-                break;
-            case R.id.activat_relat_account:
-                payWay = "asset";
                 selectPayTypeView();
                 break;
             case R.id.detailhelp_relat_zfb:
@@ -149,7 +131,6 @@ public class YaJinActivity extends BaseActivity {
         pagetopLayoutLeft.setOnClickListener(this);
         activatRelatWx.setOnClickListener(this);
         detailhelpRelatZfb.setOnClickListener(this);
-        activatRelatAccount.setOnClickListener(this);
         btnPay.setOnClickListener(this);
     }
 
@@ -177,11 +158,9 @@ public class YaJinActivity extends BaseActivity {
         showDialog();
         Observable<DetailDataBean> observable;
         if (type == 3) {
-            activatRelatAccount.setVisibility(View.GONE);
             observable = Api.getInstance().service.getYaJinLifeStylePayInfo(UserUtils.getUserId(mContext),
                     order_id, ExampleApplication.token);
         } else {
-            activatRelatAccount.setVisibility(View.VISIBLE);
             observable = Api.getInstance().service.getYaJinPayInfo(UserUtils.getUserId(mContext),
                     order_id, ExampleApplication.token);
         }
@@ -216,7 +195,6 @@ public class YaJinActivity extends BaseActivity {
         GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mContext, mDetailAfterBean.getAvatar(), ivHead);
         tvName.setText("" + mDetailAfterBean.getUser_name());
         tvMoney.setText("" + mDetailAfterBean.getDeposit_str());
-        activatTvAccount.setText(getString(R.string.mark_money) + asset);
         /**
          * 押金类型  1CHO  2坐堂医 3志愿者
          */
@@ -234,18 +212,12 @@ public class YaJinActivity extends BaseActivity {
     private void selectPayTypeView() {
         activatIvWxselect.setVisibility(View.GONE);
         activatRelatWx.setBackgroundResource(R.drawable.corners_bg_black);
-        activatIvAccountselect.setVisibility(View.GONE);
-        activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_black);
         detailhelpIvZfbselect.setVisibility(View.GONE);
         detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_black);
         if (payWay.equals("wxpay")) {
             activatIvWxselect.setVisibility(View.VISIBLE);
             activatRelatWx.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatWx.setPadding(0, 0, 0, 0);
-        } else if (payWay.equals("asset")) {
-            activatIvAccountselect.setVisibility(View.VISIBLE);
-            activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_redbian);
-            activatRelatAccount.setPadding(0, 0, 0, 0);
         } else if (payWay.equals("alipay")) {
             detailhelpIvZfbselect.setVisibility(View.VISIBLE);
             detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_redbian);

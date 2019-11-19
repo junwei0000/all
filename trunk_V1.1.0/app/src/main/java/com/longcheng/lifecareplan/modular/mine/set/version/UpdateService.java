@@ -12,10 +12,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.RequiresApi;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
 
+import com.longcheng.lifecareplan.BuildConfig;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 
@@ -120,11 +121,11 @@ public class UpdateService extends Service {
                     InputStream is = entity.getContent();
                     if (is != null) {
                         states = true;
-                        File rootFile = new File(Environment.getExternalStorageDirectory(), "/hejiakang");
+                        File rootFile = new File(Environment.getExternalStorageDirectory(), "/longcheng");
                         if (!rootFile.exists() && !rootFile.isDirectory())
                             rootFile.mkdir();
                         tempFile = new File(Environment.getExternalStorageDirectory(),
-                                "/hejiakang/" + url.substring(url.lastIndexOf("/") + 1));
+                                "/longcheng/" + url.substring(url.lastIndexOf("/") + 1));
                         if (tempFile.exists())
                             tempFile.delete();
                         tempFile.createNewFile();
@@ -191,7 +192,25 @@ public class UpdateService extends Service {
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         context.startActivity(intent);
     }
-
+    /**
+     * 进入安装
+     *
+     * @return
+     */
+    private void getInstanll(File file) {
+        Intent install = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= 24) { //判读版本是否在7.0以上
+            Uri apkUri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID + ".fileprovider", file);//在AndroidManifest中的android:authorities值
+            install = new Intent(Intent.ACTION_VIEW);
+            install.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); //添加这一句表示对目标应用临时授权该Uri所代表的文件
+            install.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        } else {
+            install.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+            install.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        startActivity(install);
+    }
     /* 事件处理类 */
     class MyHandler extends Handler {
         private Context context;
@@ -216,7 +235,8 @@ public class UpdateService extends Service {
                         // 下载完成后清除所有下载信息，执行安装提示
                         download_precent = 0;
                         nm.cancel(notificationId);
-                        Instanll((File) msg.obj, context);
+//                        Instanll((File) msg.obj, context);
+                        getInstanll((File) msg.obj);
                         // 停止掉当前的服务
                         stopSelf();
                         break;
