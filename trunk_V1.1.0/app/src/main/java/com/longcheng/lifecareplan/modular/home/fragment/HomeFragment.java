@@ -354,63 +354,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void doBusiness(Context mActivity) {
-        getIsOpenNotification();
-    }
-
-    /**
-     * 首页 是否开启通知
-     */
-    private void getIsOpenNotification() {
-        NotificationManagerCompat manager = NotificationManagerCompat.from(mActivity);
-        boolean isOpened = manager.areNotificationsEnabled();
-        Log.e("getIsOpenNotification", "isOpened=" + isOpened);
-        if (!isOpened) {
-            showOpenNotificationWindow();
-        }
-    }
-
-    MyDialog OpenNotificationDialog;
-
-    private void showOpenNotificationWindow() {
-        if (CononDialog != null && CononDialog.isShowing()) {
-            CononDialog.dismiss();
-        }
-        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
-            return;
-        }
-        OpenNotificationDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
-        OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-        Window window = OpenNotificationDialog.getWindow();
-        window.setGravity(Gravity.CENTER);
-        OpenNotificationDialog.show();
-        WindowManager m = getActivity().getWindowManager();
-        Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-        WindowManager.LayoutParams p = OpenNotificationDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-        p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
-        OpenNotificationDialog.getWindow().setAttributes(p); //设置生效
-
-        LinearLayout layout_cancel = (LinearLayout) OpenNotificationDialog.findViewById(R.id.layout_cancel);
-        TextView btn_ok = (TextView) OpenNotificationDialog.findViewById(R.id.btn_ok);
-        layout_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reLoadData();
-                OpenNotificationDialog.dismiss();
-            }
-        });
-        btn_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenNotificationDialog.dismiss();
-                String pkg = mActivity.getApplicationContext().getPackageName();
-                // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", pkg, null);
-                intent.setData(uri);
-                startActivity(intent);
-            }
-        });
 
     }
 
@@ -502,6 +445,54 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
             OpenNotificationDialog.dismiss();
         }
+    }
+
+    /**
+     * 首页 是否开启通知
+     */
+    MyDialog OpenNotificationDialog;
+
+    private void showOpenNotificationWindow() {
+        if (CononDialog != null && CononDialog.isShowing()) {
+            CononDialog.dismiss();
+        }
+        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
+            return;
+        }
+        OpenNotificationDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_openotification);// 创建Dialog并设置样式主题
+        OpenNotificationDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+        Window window = OpenNotificationDialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+        OpenNotificationDialog.show();
+        WindowManager m = getActivity().getWindowManager();
+        Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+        WindowManager.LayoutParams p = OpenNotificationDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+        p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
+        OpenNotificationDialog.getWindow().setAttributes(p); //设置生效
+
+        LinearLayout layout_cancel = (LinearLayout) OpenNotificationDialog.findViewById(R.id.layout_cancel);
+        TextView btn_ok = (TextView) OpenNotificationDialog.findViewById(R.id.btn_ok);
+        layout_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reLoadData();
+                OpenNotificationDialog.dismiss();
+            }
+        });
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenNotificationDialog.dismiss();
+                String pkg = mActivity.getApplicationContext().getPackageName();
+                // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", pkg, null);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+
     }
 
     MyDialog mUpdaDialog;
@@ -655,6 +646,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }, 0);
     }
 
+    /**
+     * 没有通知时是否显示过通知弹层
+     */
+    boolean notNoticeShowStatus = false;
+
     public void setAllContDialog() {
         Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn);
         if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
@@ -670,9 +666,16 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             dismissAllDialog();
             return;
         }
-        if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
-            //显示通知弹层时不显示互祝
-            return;
+        NotificationManagerCompat manager = NotificationManagerCompat.from(mActivity);
+        boolean isOpened = manager.areNotificationsEnabled();
+        Log.e("getIsOpenNotification", "isOpened=" + isOpened);
+        if (!isOpened) {
+            if (!notNoticeShowStatus) {
+                dismissAllDialog();
+                notNoticeShowStatus = true;
+                showOpenNotificationWindow();
+                return;
+            }
         }
         if (!TextUtils.isEmpty(display_note)) {
             showUpdaDialog();
