@@ -7,8 +7,10 @@ import android.graphics.Matrix;
 
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 /**
  * 文件缓存
@@ -37,7 +39,7 @@ public class FileCache {
         // 如果有SD卡则在SD卡中建一个LazyList的目录存放缓存的图片
         // 没有SD卡就放在系统的缓存目录中
         if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-            cacheDir = new File(android.os.Environment.getExternalStorageDirectory(), "bestdo");
+            cacheDir = new File(android.os.Environment.getExternalStorageDirectory(), "longCheng");
         } else {
             cacheDir = context.getCacheDir();
         }
@@ -139,4 +141,29 @@ public class FileCache {
             f.delete();
     }
 
+
+    public Bitmap getFitSampleBitmap(InputStream inputStream) throws Exception {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        byte[] bytes = readStream(inputStream);
+        BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+        options.inSampleSize = 2;
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+    }
+
+    /**
+     * 从inputStream中获取字节流 数组大小
+     **/
+    public byte[] readStream(InputStream inStream) throws Exception {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, len);
+        }
+        outStream.close();
+        inStream.close();
+        return outStream.toByteArray();
+    }
 }

@@ -511,6 +511,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * 是否显示更新内容弹层
      */
     public void showUpdaDialog() {
+        if (getActivity() == null) {
+            return;
+        }
         if (mUpdaDialog == null) {
             mUpdaDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_updat);// 创建Dialog并设置样式主题
             mUpdaDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
@@ -534,7 +537,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             tv_dialog_content = (BridgeWebView) mUpdaDialog.findViewById(R.id.tv_dialog_content);
             ConfigUtils.getINSTANCE().setInitWebView(tv_dialog_content, mContext);
         } else {
-            mUpdaDialog.show();
+            if (getActivity() != null && !getActivity().isFinishing()) {
+                mUpdaDialog.show();
+            }
         }
         Log.e("showUpdaDialog", "\n" + display_note);
         uphandler.postDelayed(new Runnable() {
@@ -617,7 +622,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                     }
                 });
             } else {
-                CononDialog.show();
+                if (getActivity() != null && !getActivity().isFinishing()) {
+                    CononDialog.show();
+                }
             }
             String img = layer.get(showLayerIndex).getImg();
             GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, img, fram_bg, 0);
@@ -995,9 +1002,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        dismissAllDialog();
         if (tv_dialog_content != null) {
             tv_dialog_content.destroy();
         }
+        super.onDestroy();
     }
 }

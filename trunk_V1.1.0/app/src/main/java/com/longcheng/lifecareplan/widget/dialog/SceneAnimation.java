@@ -95,10 +95,12 @@ public class SceneAnimation {
 
 
     private void setBg(int id) {
-
         InputStream is = context.getResources().openRawResource(id);
-        Bitmap bm = BitmapFactory.decodeStream(is, null, opt);
-        BitmapDrawable bd = new BitmapDrawable(context.getResources(), bm);
-        mImageView.setBackgroundDrawable(bd);
+        if (is != null) {
+            Bitmap bm = BitmapFactory.decodeStream(is, null, opt);
+            BitmapDrawable bd = new BitmapDrawable(context.getResources(), bm);
+            if (mImageView != null)
+                mImageView.setBackgroundDrawable(bd);
+        }
     }
 }

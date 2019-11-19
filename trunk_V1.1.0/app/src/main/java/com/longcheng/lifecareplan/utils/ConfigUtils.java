@@ -506,7 +506,9 @@ public class ConfigUtils {
 //            mBridgeWebView.getSettings().setTextSize(WebSettings.TextSize.LARGER);
 //            mBridgeWebView.getSettings().setTextZoom(130);
             mBridgeWebView.setBackgroundColor(0); // 设置背景色
-            mBridgeWebView.getBackground().setAlpha(0); // 设置填充透明度 范围：0-255
+            if (mBridgeWebView.getBackground() != null) {
+                mBridgeWebView.getBackground().setAlpha(0); // 设置填充透明度 范围：0-255
+            }
         }
     }
 
