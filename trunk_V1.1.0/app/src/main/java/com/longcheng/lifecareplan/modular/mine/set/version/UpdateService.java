@@ -192,8 +192,13 @@ public class UpdateService extends Service {
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         context.startActivity(intent);
     }
+
     /**
      * 进入安装
+     * android.content.ActivityNotFoundException:
+     * No Activity found to handle Intent { act=android.intent.action.VIEW
+     * dat=file:///storage/emulated/0/hejiakang/choV2.3.3.apk
+     * typ=application/vnd.android.package-archive flg=0x10000000 }
      *
      * @return
      */
@@ -211,6 +216,7 @@ public class UpdateService extends Service {
         }
         startActivity(install);
     }
+
     /* 事件处理类 */
     class MyHandler extends Handler {
         private Context context;
