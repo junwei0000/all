@@ -3,7 +3,6 @@ package com.longcheng.lifecareplan.modular.bottommenu.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 
 import java.util.List;
 
@@ -43,7 +42,8 @@ public class FragmentAdapter extends FragmentPagerAdapter {
      * 原来FragmentPagerAdapter里在根据getItemId(int position)来判断当前position里Fragment是否存在，
      * 如果存在，则不会创建亦不会更新，那么要让FragmentPagerAdapter的更新生效，那在getItemId(int)里根据数据返回一个唯一的数据ID，
      * 当FragmentPagerAdapter更新时，数据ID改变了，那么Fragment就会调用getItem(int)去获取新Fragment，达到更新效果
-     好了，我们的解决方案就是通过重新getItemId()方法，返回唯一的id。
+     * 好了，我们的解决方案就是通过重新getItemId()方法，返回唯一的id。
+     *
      * @param position
      * @return
      */
@@ -51,6 +51,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     public long getItemId(int position) {
         return fgs.get(position).hashCode();
     }
+
     /**
      * 1.最重要的是要return POSITION_NONE，这个表示需要刷新，另一个参数是POSITION_UNCHANGED,这个表示不需要刷新，
      * 所以这里必须返回return POSITION_NONE,少了这句就不会刷新了。
@@ -62,13 +63,15 @@ public class FragmentAdapter extends FragmentPagerAdapter {
 
     /**
      * 重新设置页面内容
+     * onSaveInstanceState方法是在该Activity即将被销毁前调用，来保存Activity数据的，如果在保存玩状态后
+     * 再给它添加Fragment就会出错。解决办法就是把commit（）方法替换成 commitAllowingStateLoss()就行
      *
      * @param items
      */
     public void setPagerItems(List<Fragment> items) {
         if (items != null) {
             for (int i = 0; i < fgs.size(); i++) {
-                mFragmentManager.beginTransaction().remove(fgs.get(i)).commit();
+                mFragmentManager.beginTransaction().remove(fgs.get(i)).commitAllowingStateLoss();
             }
             fgs = items;
         }

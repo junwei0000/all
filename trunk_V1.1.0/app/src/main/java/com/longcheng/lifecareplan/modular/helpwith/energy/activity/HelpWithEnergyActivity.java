@@ -9,7 +9,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -36,6 +35,7 @@ import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseListActivity;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.energy.adapter.ActionSelectAdapter;
+import com.longcheng.lifecareplan.modular.helpwith.energy.adapter.EngryListAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.energy.adapter.SelectAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionListDataBean;
@@ -43,14 +43,11 @@ import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpEnergyAfterBe
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpEnergyListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energy.adapter.EngryListAdapter;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
@@ -285,7 +282,7 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
         helpEtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!TextUtils.isEmpty(user_id) && TextUtils.isEmpty(helpEtSearch.getText())) {
+                if (!TextUtils.isEmpty(user_id) && helpEtSearch != null && TextUtils.isEmpty(helpEtSearch.getText())) {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Search = helpEtSearch.getText().toString();
                     h_user_id = "0";
