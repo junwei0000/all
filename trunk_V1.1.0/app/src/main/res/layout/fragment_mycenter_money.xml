@@ -73,6 +73,7 @@
             android:layout_height="@dimen/dp17"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/dp15"
+            android:visibility="gone"
             android:layout_marginRight="@dimen/dp15">
 
             <include layout="@layout/line_su" />
@@ -85,6 +86,7 @@
             android:gravity="center"
             android:paddingRight="@dimen/dp8"
             android:text="充值"
+            android:visibility="gone"
             android:textColor="@color/red"
             android:textSize="@dimen/text_contents_size" />
     </LinearLayout>
