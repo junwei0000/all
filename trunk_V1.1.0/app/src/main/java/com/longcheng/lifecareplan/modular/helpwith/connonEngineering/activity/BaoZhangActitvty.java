@@ -93,6 +93,7 @@ public class BaoZhangActitvty extends WebAct {
     private int mutual_help_money;
     private DetailItemBean userInfo;
     private String asset_debt;
+    private int is_super_ability;//是否是超级生命能量的卷 1 不使用余额支付
     /**
      * 生活保障详情id
      */
@@ -272,7 +273,7 @@ public class BaoZhangActitvty extends WebAct {
                 }
             }
         });
-        //生活保障详情--显示祝福支付
+        //天下无债详情--显示祝福支付
         mBridgeWebView.registerHandler("Life_AppPayment", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -290,12 +291,12 @@ public class BaoZhangActitvty extends WebAct {
                 }
             }
         });
-        //志愿者互祝---基础保障详情--显示支付
+        //志愿者互祝---生活保障详情--显示支付
         mBridgeWebView.registerHandler("LifeBasic_AppPayment", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
                 weixinPayBackType = "LifeBasicDetailPay";
-                Log.e("registerHandler", "data=" + data);
+                Log.e("registerHandler", "data=" + data+"  is_super_ability=="+is_super_ability);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(data);
@@ -309,6 +310,7 @@ public class BaoZhangActitvty extends WebAct {
                         mLifeBasicPayDialogUtils = new BaoZhangDialogUtils(mActivity, mHandler, LifeBasicAppPayment);
                     }
                     mLifeBasicPayDialogUtils.initData(blessings_list, mutual_help_money_all, asset_debt);
+                    mLifeBasicPayDialogUtils.setIs_super_ability(is_super_ability);
                     mLifeBasicPayDialogUtils.showPopupWindow();
                 } else {
                     ToastUtils.showToast(R.string.net_tishi);
@@ -379,7 +381,7 @@ public class BaoZhangActitvty extends WebAct {
             }
         });
 
-        //志愿者互祝---申请基础保障支付
+        //志愿者互祝---申请生活保障支付
         mBridgeWebView.registerHandler("LifeBasic_applyPay", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -897,7 +899,7 @@ public class BaoZhangActitvty extends WebAct {
 //--------------------------------------------------------------------------------------------------------
 
     /**
-     * 志愿者互祝---申请基础保障支付
+     * 志愿者互祝---申请生活保障支付
      */
 
     private void LifeBasicApplyPay(String json_datas, String payment_channel) {
@@ -956,7 +958,7 @@ public class BaoZhangActitvty extends WebAct {
 
 
     /**
-     * 志愿者互祝----申请基础保障支付回调
+     * 志愿者互祝----申请生活保障支付回调
      */
     private void LifeBasicApplyPaySuccuess() {
         mBridgeWebView.callHandler("LifeBasic_applyPaySucBack", "" + one_order_id, new CallBackFunction() {
@@ -1115,7 +1117,7 @@ public class BaoZhangActitvty extends WebAct {
 
 
     /**
-     * 志愿者互祝--基础保障详情互祝支付
+     * 志愿者互祝--生活保障详情互祝支付
      *
      * @param user_id
      * @param help_comment_content
@@ -1181,7 +1183,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 志愿者互祝--基础保障详情支付成功跳转红包页
+     * 志愿者互祝--生活保障详情支付成功跳转红包页
      */
     private void LifeBasicDetailPaySuccess() {
         mBridgeWebView.callHandler("LifeBasic_paySuccessBack", "" + one_order_id, new CallBackFunction() {
@@ -1194,7 +1196,7 @@ public class BaoZhangActitvty extends WebAct {
 //--------------------------------------------------------------------------------------------------------
 
     /**
-     * 生活保障---详情互祝支付
+     * 天下无债---详情互祝支付
      *
      * @param user_id
      * @param help_comment_content
@@ -1257,7 +1259,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 生活保障---支付成功跳转红包页
+     * 天下无债---支付成功跳转红包页
      */
     private void lifeSkipSuccess() {
         if (mBridgeWebView == null) {
@@ -1272,7 +1274,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 生活保障/基础保障---分享成功刷新生活保障详情页
+     * 天下无债/生活保障---分享成功刷新生活保障详情页
      */
     private void lifeDetailShareRefresh() {
         mBridgeWebView.callHandler("Life_DetailRefresh", "" + one_order_id, new CallBackFunction() {
@@ -1364,7 +1366,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 生活保障详情---获取生活保障详情数据
+     * 天下无债详情---获取天下无债详情数据
      *
      * @param life_repay_id
      */
@@ -1407,7 +1409,7 @@ public class BaoZhangActitvty extends WebAct {
     }
 
     /**
-     * 志愿者互祝--基础保障详情---获取基础保障详情数据
+     * 志愿者互祝--生活保障详情---获取生活保障详情数据
      *
      * @param life_basic_id
      */
@@ -1424,6 +1426,7 @@ public class BaoZhangActitvty extends WebAct {
                         } else if (status.equals("200")) {
                             DetailAfterBean mDetailAfterBean = (DetailAfterBean) responseBean.getData();
                             if (mDetailAfterBean != null) {
+                                is_super_ability= mDetailAfterBean.getIs_super_ability();
                                 knp_sharetitle = mDetailAfterBean.getKnp_sharetitle();
                                 knp_shareurl = mDetailAfterBean.getKnp_shareurl();
                                 knp_sharePic = mDetailAfterBean.getKnp_sharePic();

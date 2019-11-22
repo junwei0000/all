@@ -65,6 +65,15 @@ public class BaoZhangDialogUtils {
     private List<DetailItemBean> blessings_list;
     private String blessings;
     private String asset_debt;
+    private int is_super_ability;//是否是超级生命能量的卷 1 不使用余额支付
+
+    public int getIs_super_ability() {
+        return is_super_ability;
+    }
+
+    public void setIs_super_ability(int is_super_ability) {
+        this.is_super_ability = is_super_ability;
+    }
 
     public BaoZhangDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
@@ -186,6 +195,13 @@ public class BaoZhangDialogUtils {
 //        if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障初始化默认微信
 //            payType = "1";
 //        }
+        if (mHandlerID == BaoZhangActitvty.LifeBasicAppPayment) {//基础保障用绿色
+            if (is_super_ability == 1) {
+                detailhelp_relat_account.setVisibility(View.GONE);
+            } else {
+                detailhelp_relat_account.setVisibility(View.VISIBLE);
+            }
+        }
         payType = "1";
         num = 1;
         tv_num.setText("" + num);

@@ -1,8 +1,6 @@
 package com.longcheng.lifecareplan.modular.helpwith.energydetail.bean;
 
 import com.google.gson.annotations.SerializedName;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpItemBean;
 
 import java.util.List;
 
@@ -43,6 +41,7 @@ public class DetailAfterBean {
     private DetailItemBean knp_helpmoneydefault;
     @SerializedName("blessings_list")
     private List<DetailItemBean> knp_blessings_list;
+    private int is_super_ability;//是否是超级生命能量的卷 1 不使用余额支付
 
     //当前节气
     @SerializedName("current_jieqi")
@@ -58,6 +57,14 @@ public class DetailAfterBean {
     private List<DetailItemBean> list;
     @SerializedName("action")
     private DetailItemBean action;
+
+    public int getIs_super_ability() {
+        return is_super_ability;
+    }
+
+    public void setIs_super_ability(int is_super_ability) {
+        this.is_super_ability = is_super_ability;
+    }
 
     public DetailItemBean getAction() {
         return action;
