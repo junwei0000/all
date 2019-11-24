@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
@@ -57,7 +58,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @BindView(R.id.pagetop_layout_rigth)
     LinearLayout pagetopLayoutRigth;
 
-
+    String uid;
     /**
      * 是否选中直播
      */
@@ -74,7 +75,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 //                intent = new Intent(mActivity, ShortVideoActivity.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 //                startActivity(intent);
-                String uid = UserUtils.getUserId(mContext);
                 mPresent.getLivePush(uid);
                 break;
             case R.id.layout_playlist_video:
@@ -139,6 +139,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     public void initDataAfter() {
         liveSeleStatus = false;
         changeData();
+        uid = UserUtils.getUserId(mContext);
     }
 
     private void changeData() {
@@ -151,12 +152,14 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             tvPlaylistLiveLine.setVisibility(View.VISIBLE);
             tvPlaylistLiveLine.setBackgroundResource(R.drawable.corners_bg_red);
             tvPlaylistLive.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistLiveLine, R.color.red);
             mPresent.getLivePlayList();
         } else {
             tvPlaylistVideoLine.setVisibility(View.VISIBLE);
             tvPlaylistLiveLine.setVisibility(View.INVISIBLE);
             tvPlaylistVideoLine.setBackgroundResource(R.drawable.corners_bg_red);
             tvPlaylistVideo.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistVideoLine, R.color.red);
             mPresent.getVideoPlayList();
         }
     }
@@ -182,7 +185,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         String Pushurl = responseBean.getPushurl();
         String tilte = "";
         for (LivePlayItemInfo mLivePlayItemInfo : playList) {
-            if (UserUtils.getUserId(mContext).equals(mLivePlayItemInfo.getUid())) {
+            if (uid.equals(mLivePlayItemInfo.getUid())) {
                 tilte = mLivePlayItemInfo.getPlayTile();
                 break;
             }
