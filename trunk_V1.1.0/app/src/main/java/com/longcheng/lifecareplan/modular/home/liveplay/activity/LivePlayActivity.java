@@ -1,6 +1,8 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -17,8 +19,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alivc.player.AliVcMediaPlayer;
-import com.alivc.player.MediaPlayer;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
@@ -28,6 +28,8 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 
@@ -111,12 +113,11 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     @Override
     public void initView(View view) {
         relat_push.setVisibility(View.GONE);
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent),true);
+        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), true);
 
     }
 
     public void setListener() {
-        mSurfaceView.getHolder().addCallback(new MyCallBack());
         btnLiwu.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         btnCamera.setVisibility(View.GONE);
@@ -139,7 +140,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         });
     }
 
-
     @Override
     public void initDataAfter() {
         String city = new LocationUtils().getAddressCity(this);
@@ -152,6 +152,100 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         }
         String uid = intent.getStringExtra("playuid");
         mPresent.getLivePlay(uid);
+    }
+
+    private MediaPlayer mediaPlayer;
+    private SurfaceHolder surfaceHolder;
+
+    /**
+     * 播放视频
+     */
+    private void palyVideo(String filePath) {
+        //surfaceHolder可以通过surfaceview的getHolder()方法获得
+        surfaceHolder = mSurfaceView.getHolder();
+        //给surfaceHolder设置一个callback
+        surfaceHolder.addCallback(new SHCallBack());
+        mediaPlayer = new MediaPlayer();
+        try {
+            //设置要播放的资源，可以是文件、文件路径、或者URL
+            mediaPlayer.setDataSource(this, Uri.parse(filePath));
+            //调用MediaPlayer.prepare()来准备
+            mediaPlayer.prepare();
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    //调用MediaPlayer.start()来播放视频
+                    mediaPlayer.start();
+                    mediaPlayer.setLooping(true);
+                    if (relat_push != null) {
+                        relat_push.setVisibility(View.VISIBLE);
+                        layoutNotlive.setVisibility(View.GONE);
+                    }
+                    Log.i("MyCallBack", "setOnPreparedListener");
+                }
+            });
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    //视频正常播放完成时触发
+                    if (relat_push != null) {
+                        relat_push.setVisibility(View.GONE);
+                        layoutNotlive.setVisibility(View.VISIBLE);
+                    }
+                    Log.i("MyCallBack", "onCompletion");
+                }
+            });
+            mediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                @Override
+                public void onSeekComplete(MediaPlayer mp) {
+                    Log.i("MyCallBack", "onSeekComplete");
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void stopPlay() {
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+        }
+    }
+
+    private class SHCallBack implements SurfaceHolder.Callback {
+        /**
+         * 在SurfaceHolder被创建的时候回调，
+         * 在这里可以做一些初始化的操作
+         *
+         * @param holder
+         */
+        @Override
+        public void surfaceCreated(SurfaceHolder holder) {
+            //调用MediaPlayer.setDisplay(holder)设置surfaceHolder，surfaceHolder可以通过surfaceview的getHolder()方法获得
+            mediaPlayer.setDisplay(holder);
+            Log.d("MyCallBack", "surfaceCreated");
+        }
+
+        /**
+         * 当SurfaceHolder的尺寸发生变化的时候被回调
+         *
+         * @param holder
+         * @param format
+         * @param width
+         * @param height
+         */
+        @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            Log.d("MyCallBack", "surfaceChanged");
+        }
+
+        @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
+            Log.d("MyCallBack", "surfaceDestroyed");
+        }
     }
 
     @Override
@@ -180,6 +274,12 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         startPlay();
     }
 
+    /**
+     * 播放视频
+     */
+    private void startPlay() {
+        palyVideo(playurl);
+    }
 
     @Override
     public void BackPlayListSuccess(LivePushDataInfo responseBean) {
@@ -195,95 +295,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     public void Error() {
     }
 
-
-    class MyCallBack implements SurfaceHolder.Callback {
-
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width,
-                                   int height) {
-            Log.d("MyCallBack", "surfaceCreated");
-
-        }
-
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
-            Log.d("MyCallBack", "surfaceCreated");
-            //准备播放
-            initPlay();
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
-            Log.d("MyCallBack", "surfaceDestroyed");
-            //防止退到后台重置问题
-//            stopPlay();
-//            if (mSurfaceView != null) {
-//                mSurfaceView.setVisibility(View.GONE);
-//                layout_notlive.setVisibility(View.VISIBLE);
-//            }
-        }
-    }
-
-    AliVcMediaPlayer mPlayer;
-
-    private void initPlay() {
-        stopPlay();
-        //创建播放器的实例
-        mPlayer = new AliVcMediaPlayer(this, mSurfaceView);
-        if (mPlayer != null) {
-            mPlayer.prepareAndPlay(playurl);
-        }
-        mPlayer.play();
-        //填充效果
-        mPlayer.setVideoScalingMode(MediaPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
-        //开启循环播放
-        mPlayer.setCirclePlay(false);
-        //设置缺省编码类型：0表示硬解；1表示软解；
-        //如果缺省为硬解，在使用硬解时如果解码失败，会尝试使用软解
-        //如果缺省为软解，则一直使用软解，软解较为耗电，建议移动设备尽量使用硬解
-        mPlayer.setDefaultDecoder(0);
-        //准备完成
-        mPlayer.setPreparedListener(new MediaPlayer.MediaPlayerPreparedListener() {
-            @Override
-            public void onPrepared() {
-                Log.i("MyCallBack", "setPreparedListener");
-                mPlayer.play();
-                if (relat_push != null) {
-                    relat_push.setVisibility(View.VISIBLE);
-                    layoutNotlive.setVisibility(View.GONE);
-                }
-            }
-        });
-        mPlayer.setCompletedListener(new MediaPlayer.MediaPlayerCompletedListener() {
-            @Override
-            public void onCompleted() {
-                Log.i("MyCallBack", "onCompleted");
-                //视频正常播放完成时触发
-                if (relat_push != null) {
-                    relat_push.setVisibility(View.GONE);
-                    layoutNotlive.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-    }
-
-    /**
-     * 播放视频
-     */
-    private void startPlay() {
-        initPlay();
-    }
-
-    /**
-     * 停止播放  (其他的，暂停等功能自己可以定义方法实现)
-     */
-    private void stopPlay() {
-        if (mPlayer != null) {
-            mPlayer.stop();
-            mPlayer.destroy();
-            mPlayer = null;
-        }
-    }
 
     private void back() {
         stopPlay();
