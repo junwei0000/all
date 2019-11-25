@@ -7,7 +7,9 @@
 
     <LinearLayout
         android:id="@+id/fram_bg"
-        style="@style/view_padd"
+        android:paddingTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp6"
+        style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@mipmap/home_bg_updat"
@@ -44,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="@dimen/dp10"
+            android:paddingBottom="@dimen/dp3"
             android:text="新功能上线公告"
             android:textColor="@color/home_updat_bg"
             android:textSize="@dimen/text_pageTop_size" />
