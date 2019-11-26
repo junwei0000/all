@@ -208,6 +208,7 @@ public class LivePushActivity extends BaseActivity {
         mAlivcLivePusher = new AlivcLivePusher();
         try {
             mMixMain = mAlivcLivePushConfig.isExternMainStream();
+            mAlivcLivePushConfig.setCameraType(CAMERA_TYPE_BACK);//设置摄像头
             mAlivcLivePushConfig.setMediaProjectionPermissionResultData(null);
             mAlivcLivePushConfig.setResolution(AlivcResolutionEnum.RESOLUTION_540P);
             mAlivcLivePushConfig.setQualityMode(AlivcQualityModeEnum.QM_RESOLUTION_FIRST);//显示模式 清晰度优先
