@@ -11,11 +11,9 @@ import android.util.Log;
 import com.alipay.sdk.app.PayTask;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -82,15 +80,6 @@ public class PayUtils {
             }
         };
 
-    }
-
-    public static void Pay(Context context, PayBeforeBean payBeforeBean, PayEnum payEnum, PayCallBack payCallBack) {
-        LoadingDialogAnim.show(context);
-        if (payEnum.equals(PayEnum.WECHAT)) {
-            getWeChatInfo(context, payBeforeBean, payCallBack);
-        } else if (payEnum.equals(PayEnum.ALIPAY)) {
-            getAlipayInfo(context, payBeforeBean, payCallBack);
-        }
     }
 
     /**
@@ -172,71 +161,6 @@ public class PayUtils {
 //            }
 //        });
     }
-
-    /**
-     * 获取微信支付订单
-     *
-     * @param context
-     * @param payBeforeBean
-     * @param payCallBack
-     */
-    private static void getWeChatInfo(final Context context, PayBeforeBean payBeforeBean, final PayCallBack payCallBack) {
-        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
-        stringObjectHashMap.put("userid", payBeforeBean.getUserid());
-        stringObjectHashMap.put("money", payBeforeBean.getMoney());
-        stringObjectHashMap.put("ip", payBeforeBean.getIp());
-        stringObjectHashMap.put("productid", payBeforeBean.getProductid());
-//        HttpXUtils3Manager.postHttpRequest(InterfaceUrl.rechargeWeChatOrder(), stringObjectHashMap, new XUtils3Callback() {
-//            @Override
-//            public void onSuccess(String result) {
-//                try {
-//                    JSONObject jsonObject = new JSONObject(result);
-//                    JSONObject result1 = jsonObject.getJSONObject("result");
-//                    SKBPayAfterBean payAfterBean = new SKBPayAfterBean();
-//                    payAfterBean.setPackages(result1.getString("package"));
-//                    payAfterBean.setAppid(result1.getString("appid"));
-//                    payAfterBean.setSign(result1.getString("sign"));
-//                    payAfterBean.setPartnerid(result1.getString("partnerid"));
-//                    payAfterBean.setPrepayid(result1.getString("prepayid"));
-//                    payAfterBean.setNoncestr(result1.getString("noncestr"));
-//                    payAfterBean.setTimestamp(result1.getString("timestamp"));
-//                    payAfterBean.setOrdernum(result1.getString("partnerid"));
-//                    getWeChatPay(context, payAfterBean);
-//                    payCallBack.onSuccess(payAfterBean);
-//                } catch (JSONException e) {
-//                    payCallBack.onFailure("Json解析错误");
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onError(int code, String message) {
-//                payCallBack.onFailure(code + "__" + message);
-//            }
-//
-//            @Override
-//            public void onFinished() {
-//                LoadingDialogAnim.dismiss(context);
-//            }
-//        });
-    }
-
-    /**
-     * 吊起微信支付
-     */
-//    private static void getWeChatPay(Context context, PayWXAfterBean payWeChatBean) {
-//        PayReq req = new PayReq();
-//        req.appId = payWeChatBean.getAppid();
-//        req.partnerId = payWeChatBean.getPartnerid();
-//        req.prepayId = payWeChatBean.getPrepayid();
-//        req.nonceStr = payWeChatBean.getNoncestr();
-//        req.timeStamp = payWeChatBean.getTimestamp();
-//        req.packageValue = payWeChatBean.getPackages();
-//        req.sign = payWeChatBean.getSign();
-//        IWXAPI wxapi = WXAPIFactory.createWXAPI(context, null);
-//        wxapi.registerApp(ConstantManager.WECHATAPPID);
-//        wxapi.sendReq(req);
-//    }
 
     /**
      * 吊起微信支付
