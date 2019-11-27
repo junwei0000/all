@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
 
 import java.util.List;
 
@@ -22,12 +21,10 @@ import java.util.List;
 public class FunctionAdapter extends BaseAdapterHelper<FunctionGVItemBean> {
     ViewHolder mHolder = null;
     Context context;
-    ProgressUtils mProgressUtils;
 
     public FunctionAdapter(Context context, List<FunctionGVItemBean> list) {
         super(context, list);
         this.context = context;
-        mProgressUtils = new ProgressUtils(context);
     }
 
     @Override

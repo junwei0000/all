@@ -7,19 +7,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.exchange.bean.GoodsItemBean;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.activity.ShopCartActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
-import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;

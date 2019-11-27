@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.ProgressUtils;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
@@ -27,12 +25,10 @@ import java.util.List;
 public class IconAdapter extends BaseAdapterHelper<HomeItemBean> {
     ViewHolder mHolder = null;
     Context context;
-    ProgressUtils mProgressUtils;
 
     public IconAdapter(Context context, List<HomeItemBean> list) {
         super(context, list);
         this.context = context;
-        mProgressUtils = new ProgressUtils(context);
     }
 
     @Override

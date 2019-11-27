@@ -13,7 +13,6 @@ public class HelpItemBean implements Serializable {
     private String h_user_id;
     private String h_user;//接福人
     private String gs_name;//公社名称
-    private int progress;//进度
     private String ability_price_action;//生命能量
     private String action_image;
     private String group_img;//公社头像
@@ -21,6 +20,58 @@ public class HelpItemBean implements Serializable {
     private int bless_me;//祝福我
     private String goods_x_name;
     private String date;//时间
+    private int progress;//进度
+
+
+    private int ability_type;// 互祝类型 1普通  2超级 3混合
+    private int ability_proportion;//普通能量比例
+    private int normal_progress;//普通能量比例-实际互助的比例
+    private int super_ability_proportion;//超级能量值比例
+    private int super_progress;//超级能量值比例-实际互助的比例
+
+
+    public int getAbility_type() {
+        return ability_type;
+    }
+
+    public void setAbility_type(int ability_type) {
+        if (ability_type == 0) {
+            ability_type = 1;
+        }
+        this.ability_type = ability_type;
+    }
+
+    public int getAbility_proportion() {
+        return ability_proportion;
+    }
+
+    public void setAbility_proportion(String ability_proportion) {
+        this.ability_proportion = Integer.parseInt(ability_proportion);
+    }
+
+    public int getNormal_progress() {
+        return normal_progress;
+    }
+
+    public void setNormal_progress(int normal_progress) {
+        this.normal_progress = normal_progress;
+    }
+
+    public int getSuper_ability_proportion() {
+        return super_ability_proportion;
+    }
+
+    public void setSuper_ability_proportion(String super_ability_proportion) {
+        this.super_ability_proportion = Integer.parseInt(super_ability_proportion);
+    }
+
+    public int getSuper_progress() {
+        return super_progress;
+    }
+
+    public void setSuper_progress(int super_progress) {
+        this.super_progress = super_progress;
+    }
 
     public String getGoods_id() {
         return goods_id;
