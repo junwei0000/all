@@ -127,11 +127,11 @@ public class EngryListAdapter extends BaseAdapterHelper<HelpItemBean> {
             mProgressUtils.setTextCont(normal_progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
 
             int progresslen = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 46);
-            float ww = progresslen * Super_ability_proportion / 100;
+            float ww = progresslen * Super_ability_proportion / 100- DensityUtil.dip2px(context, 3);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins((int) ww, 0, 0, DensityUtil.dip2px(context, 18));
+            params.setMargins((int) ww, 0, 0, DensityUtil.dip2px(context, 21));
             mHolder.iv_rate.setLayoutParams(params);
         } else {
             mHolder.item_pb_super.setVisibility(View.GONE);

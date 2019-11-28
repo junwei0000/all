@@ -21,10 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.alipay.sdk.app.PayTask;
-import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
@@ -39,8 +36,6 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetai
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.PayDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.rank.activity.RankActivity;
-import com.longcheng.lifecareplan.modular.home.fragment.PoActionDetailH5Actitvty;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -48,29 +43,21 @@ import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
-import com.longcheng.lifecareplan.utils.pay.PayCallBack;
-import com.longcheng.lifecareplan.utils.pay.PayResult;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
+import com.longcheng.lifecareplan.utils.pay.PayCallBack;
 import com.longcheng.lifecareplan.utils.pay.PayUtils;
 import com.longcheng.lifecareplan.utils.pay.PayWXAfterBean;
 import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.view.CircleInProgressBar;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import butterknife.BindView;
 
@@ -197,6 +184,7 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
                         mDetailHelpDialogUtils = new DetailHelpDialogUtils(mActivity, mHandler, BLESSING);
                     }
                     mDetailHelpDialogUtils.initData(userInfo, blessings_list, is_applying_help, mutual_help_money, mutual_help_money_all);
+                    mDetailHelpDialogUtils.setIs_normal_help(is_normal_help);
                     mDetailHelpDialogUtils.showPopupWindow();
                 }
                 break;
@@ -483,9 +471,30 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
     }
 
     int progress;
+    int is_normal_help = 1;
+
+    /**
+     * 判断是否使用普通能量支付
+     *
+     * @param msgInfo
+     */
+    private void setHelpStauts(DetailItemBean msgInfo) {
+        int ability_type = msgInfo.getAbility_type();//互祝类型 1普通  2超级 3混合
+        if (ability_type == 2) {
+            is_normal_help = 0;
+        } else if (ability_type == 3) {
+            int normal_progress = msgInfo.getNormal_progress();
+            int Ability_proportion = msgInfo.getAbility_proportion();
+            if (normal_progress >= Ability_proportion) {
+                is_normal_help = 0;
+            }
+        } else {
+            is_normal_help = 1;
+        }
+    }
 
     private void showTopView(DetailItemBean msgInfo) {
-
+        setHelpStauts(msgInfo);
         detailTvHelpname.setText("接福人：" + msgInfo.getH_user());
         int timeTamp = msgInfo.getM_time();
         String time = DatesUtils.getInstance().getTimeStampToDate(timeTamp, "yyyy-MM-dd");
