@@ -555,7 +555,7 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
 
     public void dismissAllDialog() {
         if (YinLiaoDialog != null && YinLiaoDialog.isShowing()) {
-            if (mActivity != null && mActivity.isFinishing()) {
+            if (mActivity != null && !mActivity.isDestroyed()) {
                 YinLiaoDialog.dismiss();
             }
         }

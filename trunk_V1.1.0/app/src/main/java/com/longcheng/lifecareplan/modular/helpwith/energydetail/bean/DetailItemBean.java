@@ -114,6 +114,8 @@ public class DetailItemBean implements Serializable {
     private String goods_x_name;
 
 
+
+
     //金额
     @SerializedName(value = "mutual_help_money_id", alternate = {"life_basic_money_id"})
     private String mutual_help_money_id;

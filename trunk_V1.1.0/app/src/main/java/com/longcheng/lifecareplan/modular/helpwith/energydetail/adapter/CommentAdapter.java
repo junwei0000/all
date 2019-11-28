@@ -10,17 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailItemBean;
 import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
@@ -60,7 +55,14 @@ public class CommentAdapter extends BaseAdapterHelper<DetailItemBean> {
         mItemBean.setPosition(position);
         String name = mItemBean.getUser_name();
         mHolder.item_tv_name.setText(name);
-        String showT = "祝福了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 生命能量";
+        int ability_type=mItemBean.getAbility_type();
+        String showT ="";
+        if(ability_type==1){
+              showT = "祝福了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 生命能量";
+        }else{
+              showT = "祝福了 <font color=\"#edbc25\">" + mItemBean.getPrice() + "</font> 超级生命能量";
+        }
+
         mHolder.item_tv_num.setText(Html.fromHtml(showT));
         mHolder.item_tv_deseribe.setText(mItemBean.getContent());
         mHolder.item_tv_time.setText(mItemBean.getComment_date());
