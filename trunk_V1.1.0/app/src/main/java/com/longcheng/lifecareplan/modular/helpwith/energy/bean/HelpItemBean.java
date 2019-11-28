@@ -21,14 +21,21 @@ public class HelpItemBean implements Serializable {
     private String goods_x_name;
     private String date;//时间
     private int progress;//进度
-
-
+    private int status;//进行中 已完成
     private int ability_type;// 互祝类型 1普通  2超级 3混合
     private int ability_proportion;//普通能量比例
     private int normal_progress;//普通能量比例-实际互助的比例
     private int super_ability_proportion;//超级能量值比例
     private int super_progress;//超级能量值比例-实际互助的比例
 
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getAbility_type() {
         return ability_type;

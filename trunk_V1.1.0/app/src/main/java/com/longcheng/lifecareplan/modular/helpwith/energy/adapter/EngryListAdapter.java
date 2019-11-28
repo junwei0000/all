@@ -87,66 +87,82 @@ public class EngryListAdapter extends BaseAdapterHelper<HelpItemBean> {
 
 
         //******************更新进度***************
-        int ability_type = mHelpItemBean.getAbility_type();//互祝类型 1普通  2超级 3混合
-        int super_progress = mHelpItemBean.getSuper_progress();
-        int Super_ability_proportion = mHelpItemBean.getSuper_ability_proportion();
-        int normal_progress = mHelpItemBean.getNormal_progress();
-        int Ability_proportion = mHelpItemBean.getAbility_proportion();
-        if (super_progress > Super_ability_proportion) {
-            super_progress = Super_ability_proportion;
-        }
-        if (normal_progress > Ability_proportion) {
-            normal_progress = Ability_proportion;
-        }
-        mHolder.item_pb_super.setProgress(super_progress);
-        mHolder.item_pb_super.setReachedBarColor(context.getResources().getColor(R.color.engry_btn_bg));
-        mHolder.item_pb_supernumnew.setBackgroundResource(R.drawable.corners_bg_redprogress);
-        ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_pb_supernumnew, R.color.engry_btn_bg);
-        if (ability_type == 2) {
-            mHolder.item_pb_super.setVisibility(View.VISIBLE);
-            mHolder.item_pb_supernumnew.setVisibility(View.VISIBLE);
-            mHolder.item_pb_normal.setVisibility(View.GONE);
-            mHolder.item_pb_normalnumnew.setVisibility(View.GONE);
-            mHolder.iv_rate.setVisibility(View.GONE);
-            mProgressUtils.showNum(super_progress, mHolder.item_pb_super.getMax(), mHolder.item_pb_supernumnew);
-        } else if (ability_type == 3) {
-            mHolder.item_pb_super.setVisibility(View.VISIBLE);
-            mHolder.item_pb_supernumnew.setVisibility(View.VISIBLE);
-            mHolder.item_pb_normal.setVisibility(View.VISIBLE);
-            mHolder.item_pb_normalnumnew.setVisibility(View.VISIBLE);
-            mHolder.iv_rate.setVisibility(View.VISIBLE);
-            mProgressUtils.showNummixSuper(super_progress, Super_ability_proportion, mHolder.item_pb_super.getMax(), mHolder.item_pb_supernumnew);
-            //---------------------------
-            int fan_progress = 100 - normal_progress;
-            mHolder.item_pb_normal.setProgress(fan_progress);
-            mHolder.item_pb_normal.setUnreachedBarColor(context.getResources().getColor(R.color.red));
-            mHolder.item_pb_normal.setReachedBarColor(context.getResources().getColor(R.color.transparent));
-            mHolder.item_pb_normalnumnew.setBackgroundResource(R.drawable.corners_bg_redprogress);
-            mProgressUtils.showNum(fan_progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_pb_normalnumnew, R.color.red);
-            mProgressUtils.setTextCont(normal_progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
-
-            int progresslen = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 46);
-            float ww = progresslen * Super_ability_proportion / 100- DensityUtil.dip2px(context, 3);
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins((int) ww, 0, 0, DensityUtil.dip2px(context, 21));
-            mHolder.iv_rate.setLayoutParams(params);
-        } else {
+        int status = mHelpItemBean.getStatus();
+        if (status == 2) {
+            int progress = mHelpItemBean.getProgress();
             mHolder.item_pb_super.setVisibility(View.GONE);
             mHolder.item_pb_supernumnew.setVisibility(View.GONE);
             mHolder.item_pb_normal.setVisibility(View.VISIBLE);
             mHolder.item_pb_normalnumnew.setVisibility(View.VISIBLE);
             mHolder.iv_rate.setVisibility(View.GONE);
-            mHolder.item_pb_normal.setProgress(normal_progress);
+            mHolder.item_pb_normal.setProgress(progress);
             mHolder.item_pb_normal.setUnreachedBarColor(context.getResources().getColor(R.color.progressbarbg));
             mHolder.item_pb_normal.setReachedBarColor(context.getResources().getColor(R.color.red));
             mHolder.item_pb_normalnumnew.setBackgroundResource(R.drawable.corners_bg_redprogress);
-            mProgressUtils.showNum(normal_progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
+            mProgressUtils.showNum(progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
             ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_pb_normalnumnew, R.color.red);
-        }
+        } else {
+            int ability_type = mHelpItemBean.getAbility_type();//互祝类型 1普通  2超级 3混合
+            int super_progress = mHelpItemBean.getSuper_progress();
+            int Super_ability_proportion = mHelpItemBean.getSuper_ability_proportion();
+            int normal_progress = mHelpItemBean.getNormal_progress();
+            int Ability_proportion = mHelpItemBean.getAbility_proportion();
+            if (super_progress > Super_ability_proportion) {
+                super_progress = Super_ability_proportion;
+            }
+            if (normal_progress > Ability_proportion) {
+                normal_progress = Ability_proportion;
+            }
+            mHolder.item_pb_super.setProgress(super_progress);
+            mHolder.item_pb_super.setReachedBarColor(context.getResources().getColor(R.color.engry_btn_bg));
+            mHolder.item_pb_supernumnew.setBackgroundResource(R.drawable.corners_bg_redprogress);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_pb_supernumnew, R.color.engry_btn_bg);
+            if (ability_type == 2) {
+                mHolder.item_pb_super.setVisibility(View.VISIBLE);
+                mHolder.item_pb_supernumnew.setVisibility(View.VISIBLE);
+                mHolder.item_pb_normal.setVisibility(View.GONE);
+                mHolder.item_pb_normalnumnew.setVisibility(View.GONE);
+                mHolder.iv_rate.setVisibility(View.GONE);
+                mProgressUtils.showNum(super_progress, mHolder.item_pb_super.getMax(), mHolder.item_pb_supernumnew);
+            } else if (ability_type == 3) {
+                mHolder.item_pb_super.setVisibility(View.VISIBLE);
+                mHolder.item_pb_supernumnew.setVisibility(View.VISIBLE);
+                mHolder.item_pb_normal.setVisibility(View.VISIBLE);
+                mHolder.item_pb_normalnumnew.setVisibility(View.VISIBLE);
+                mHolder.iv_rate.setVisibility(View.VISIBLE);
+                mProgressUtils.showNummixSuper(super_progress, Super_ability_proportion, mHolder.item_pb_super.getMax(), mHolder.item_pb_supernumnew);
+                //---------------------------
+                int fan_progress = 100 - normal_progress;
+                mHolder.item_pb_normal.setProgress(fan_progress);
+                mHolder.item_pb_normal.setUnreachedBarColor(context.getResources().getColor(R.color.red));
+                mHolder.item_pb_normal.setReachedBarColor(context.getResources().getColor(R.color.transparent));
+                mHolder.item_pb_normalnumnew.setBackgroundResource(R.drawable.corners_bg_redprogress);
+                mProgressUtils.showNum(fan_progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
+                ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_pb_normalnumnew, R.color.red);
+                mProgressUtils.setTextCont(normal_progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
 
+                int progresslen = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 46);
+                float ww = progresslen * Super_ability_proportion / 100 - DensityUtil.dip2px(context, 2);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins((int) ww, 0, 0, DensityUtil.dip2px(context, 21));
+                mHolder.iv_rate.setLayoutParams(params);
+            } else {
+                mHolder.item_pb_super.setVisibility(View.GONE);
+                mHolder.item_pb_supernumnew.setVisibility(View.GONE);
+                mHolder.item_pb_normal.setVisibility(View.VISIBLE);
+                mHolder.item_pb_normalnumnew.setVisibility(View.VISIBLE);
+                mHolder.iv_rate.setVisibility(View.GONE);
+                mHolder.item_pb_normal.setProgress(normal_progress);
+                mHolder.item_pb_normal.setUnreachedBarColor(context.getResources().getColor(R.color.progressbarbg));
+                mHolder.item_pb_normal.setReachedBarColor(context.getResources().getColor(R.color.red));
+                mHolder.item_pb_normalnumnew.setBackgroundResource(R.drawable.corners_bg_redprogress);
+                mProgressUtils.showNum(normal_progress, mHolder.item_pb_normal.getMax(), mHolder.item_pb_normalnumnew);
+                ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_pb_normalnumnew, R.color.red);
+            }
+
+        }
         return convertView;
     }
 
