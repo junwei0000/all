@@ -271,7 +271,7 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
     }
-
+    -keep class com.tencent.** { *; }
     -keep class com.tencent.open.TDialog$*
     -keep class com.tencent.open.TDialog$* {*;}
     -keep class com.tencent.open.PKDialog

@@ -16,8 +16,7 @@ import retrofit2.http.POST;
  */
 public interface ApiLiveService {
     //****************************直播****************************
-//    https://dock.lihan.ltd/dock/classic/live/play_longcheng
-//    live/push_longcheng
+//    http://t.dock.lifecareplan.cn/
     @FormUrlEncoded
     @POST("live/push")
     Observable<LivePushDataInfo> getLivePush(@Field("uid") String user_id,

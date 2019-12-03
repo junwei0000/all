@@ -9,7 +9,6 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
-import com.alivc.player.AliVcMediaPlayer;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.push.PushClient;
 import com.longcheng.lifecareplan.push.listener.IBasePushReceiverListener;
@@ -19,6 +18,7 @@ import com.longcheng.lifecareplan.utils.CustomCrashHandler;
 import com.longcheng.lifecareplan.utils.UnCeHandler;
 import com.meiqia.core.callback.OnInitCallback;
 import com.meiqia.meiqiasdk.util.MQConfig;
+import com.tencent.rtmp.TXLiveBase;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -63,18 +63,18 @@ public class ExampleApplication extends MultiDexApplication {
         setStyleCustom();
         initPush();
         pushListener();
-
-        //初始化播放器（只需调用一次即可，建议在application中初始化）
-        AliVcMediaPlayer.init(getApplicationContext());
-//        initHttp();
+        initTencentLive();
         initMeiQia();
     }
-//    /**
-//     * 短视频需要的http依赖
-//     */
-//    private void initHttp() {
-//        com.aliyun.vod.common.httpfinal.QupaiHttpFinal.getInstance().initOkHttpFinal();
-//    }
+
+    /**
+     * 初始化腾讯云直播
+     */
+    private void initTencentLive() {
+        String licenceURL = "http://license.vod2.myqcloud.com/license/v1/def2b691939d9eb3be268179c8930e67/TXLiveSDK.licence"; // 获取到的 licence url
+        String licenceKey = "f7902ca622e5fd7f4b6559a455fdcc2d"; // 获取到的 licence key
+        TXLiveBase.getInstance().setLicence(this, licenceURL, licenceKey);
+    }
 
     /**
      * 初始化美洽
@@ -99,7 +99,7 @@ public class ExampleApplication extends MultiDexApplication {
         // 配置自定义信息
         MQConfig.ui.titleGravity = MQConfig.ui.MQTitleGravity.LEFT;
         MQConfig.ui.backArrowIconResId = R.mipmap.back;
-        MQConfig.isShowClientAvatar=true;//是否显示用户头像
+        MQConfig.isShowClientAvatar = true;//是否显示用户头像
 //        MQConfig.ui.titleBackgroundResId = R.color.test_red;
 //        MQConfig.ui.titleTextColorResId = R.color.test_blue;
 //        MQConfig.ui.leftChatBubbleColorResId = R.color.test_green;

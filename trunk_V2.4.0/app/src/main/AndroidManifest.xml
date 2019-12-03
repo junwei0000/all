@@ -40,7 +40,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <!-- ************************************************ 访问照相机 end *********************************************** -->
-
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <!-- ************************************************ 联系人 *********************************************** -->
     <!-- 读联系人 -->

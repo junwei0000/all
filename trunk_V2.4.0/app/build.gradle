@@ -21,16 +21,16 @@ android {
             cmake {
                 cppFlags "-std=c++11 -frtti -fexceptions"
                 //选择要添加的对应CPU类型的so
-                abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
-//                abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+//                abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+                abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
                 //还可以选择'x86', 'x86_64', 'mips', 'mips64'
             }
         }
 
         ndk {
             //选择要添加的对应CPU类型的so
-//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
             //还可以选择'x86', 'x86_64', 'mips', 'mips64'
         }
 
@@ -144,17 +144,16 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.44'
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'org.greenrobot:eventbus:3.1.1'
-    //阿里云播放器的依赖
-    implementation 'com.aliyun.dpa:oss-android-sdk:+'
     //美洽聊天的依赖
     implementation 'com.meiqia:meiqiasdk:+'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     //圆角image
     implementation 'com.makeramen:roundedimageview:2.2.1'
-
     //有赞
     implementation 'com.youzanyun.open.mobile:x5sdk:6.4.14'
     implementation 'com.youzanyun.open.mobile:basic:6.4.14'
+    //腾讯云直播
+    implementation 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release'
 
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')

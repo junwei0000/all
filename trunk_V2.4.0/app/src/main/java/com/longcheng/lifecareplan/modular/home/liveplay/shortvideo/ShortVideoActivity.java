@@ -136,6 +136,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     private void getLivePush() {
         String uid = UserUtils.getUserId(mContext);
         mPresent.getLivePush(uid);
+        LivePushActivity.startActivity(this, "", "ceshi");
     }
 
     @Override

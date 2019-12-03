@@ -18,6 +18,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
@@ -72,10 +73,9 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 back();
                 break;
             case R.id.pagetop_layout_rigth:
-//                intent = new Intent(mActivity, ShortVideoActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                startActivity(intent);
-                mPresent.getLivePush(uid);
+                intent = new Intent(mActivity, ShortVideoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 break;
             case R.id.layout_playlist_video:
                 liveSeleStatus = false;
