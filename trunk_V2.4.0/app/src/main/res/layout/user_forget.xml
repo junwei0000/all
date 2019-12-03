@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+
+    <LinearLayout
+        style="@style/login_padd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp30"
+            android:gravity="center"
+            android:text="@string/forget_tilte"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_max_size" />
+
+
+        <!---->
+        <RelativeLayout
+            android:id="@+id/login_rl_phonetype"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/phonetype_tv_tilte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="中国大陆"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/phonetype_tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/jianJu"
+                android:layout_toLeftOf="@+id/phonetype_iv"
+                android:text="+86"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <ImageView
+                android:id="@+id/phonetype_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+
+
+        </RelativeLayout>
+
+        <include layout="@layout/line" />
+
+        <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+            android:id="@+id/phonetype_et_phone"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="@string/account_hint"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/text_biaoTi_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/btn_next"
+            style="@style/btn"
+            android:text="@string/next" />
+
+
+    </LinearLayout>
+</LinearLayout>

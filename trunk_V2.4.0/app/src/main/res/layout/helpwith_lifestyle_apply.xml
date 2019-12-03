@@ -1,0 +1,338 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/view_paddtopbottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp20"
+            android:text="互祝产品"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/tv_goodsname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_contents_size" />
+
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/view_paddtopbottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp20"
+            android:text="申请数量"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/padd_leftright"
+            android:layout_marginTop="@dimen/padd_leftright"
+            android:background="@drawable/corners_bg_graybian"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/item_layout_sub"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/item_tv_sub"
+                    android:layout_width="@dimen/dp8"
+                    android:layout_height="1.5dp"
+                    android:background="@color/text_biaoTi_color"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0.8dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_bian" />
+
+            <TextView
+                android:id="@+id/item_tv_goodsnum"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="1"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <LinearLayout
+                android:layout_width="0.8dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_bian" />
+
+            <TextView
+                android:id="@+id/item_tv_add"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:id="@+id/relat_people"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_peopletitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp20"
+            android:text="接福人\u3000"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/tv_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_peopletitle"
+            android:hint="请选择接福人"
+            android:singleLine="true"
+            android:textColor="@color/text_healthcontents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:id="@+id/relat_address"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_addresstitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp20"
+            android:text="收货地址"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_addresstitle"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_addressname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="请选择收货地址"
+                    android:singleLine="true"
+                    android:textColor="@color/text_healthcontents_color"
+                    android:textColorHint="@color/login_hint_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/tv_addressmobile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="@dimen/padd_leftright"
+                    android:textColor="@color/text_healthcontents_color"
+                    android:textColorHint="@color/login_hint_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/usercenter_arrow_img" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp20"
+                android:textColor="@color/text_healthcontents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp15"
+            android:text="互祝用途"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cb_give"
+                    android:layout_width="@dimen/checkbox_dp"
+                    android:layout_height="@dimen/checkbox_dp"
+                    android:background="@mipmap/check_true_red" />
+
+                <TextView
+                    android:id="@+id/tv_give"
+                    style="@style/view_paddtopbottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/padd_imgtextleftright"
+                    android:text="送礼(40寿康宝)"
+                    android:textColor="@color/text_healthcontents_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/cb_ziyong"
+                    android:layout_width="@dimen/checkbox_dp"
+                    android:layout_height="@dimen/checkbox_dp"
+                    android:background="@mipmap/check_false" />
+
+                <TextView
+                    android:id="@+id/tv_ziyong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/padd_imgtextleftright"
+                    android:text="自用"
+                    android:textColor="@color/text_healthcontents_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_yongtu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="请填写36字以内祝福留言"
+                android:maxLength="36"
+                android:paddingBottom="@dimen/padd_topbottom"
+                android:textColor="@color/text_healthcontents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:id="@+id/relat_explain"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_explaintitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp20"
+            android:text="互祝说明"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/tv_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_explainarrow"
+            android:layout_toRightOf="@+id/tv_explaintitle"
+            android:hint="请选择互祝说明"
+            android:paddingRight="@dimen/padd_imgtextleftright"
+            android:textColor="@color/text_healthcontents_color"
+            android:textColorHint="@color/login_hint_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:id="@+id/iv_explainarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+
+    <TextView
+        android:id="@+id/btn_save"
+        style="@style/btn"
+        android:layout_marginLeft="@dimen/padd_leftright"
+        android:layout_marginRight="@dimen/padd_leftright"
+        android:layout_marginTop="@dimen/dp20"
+        android:text="申请互祝" />
+</LinearLayout>

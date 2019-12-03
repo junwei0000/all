@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp60">
+
+    <include layout="@layout/activity_tool" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp8"
+        android:paddingTop="@dimen/dp3"
+        android:paddingRight="@dimen/dp8"
+        android:paddingBottom="@dimen/dp8">
+
+        <TextView
+            android:id="@+id/frag_tv_playstatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/frag_tv_jieqi"
+            android:hint="直播中：说点什么~"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/frag_tv_jieqi"
+            style="@style/text_padd_oval"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:layout_toLeftOf="@+id/frag_layout_city"
+            android:background="@drawable/corners_bg_communered"
+            android:singleLine="true"
+            android:text="白鹭节气"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <LinearLayout
+            android:id="@+id/frag_layout_city"
+            style="@style/text_padd_oval"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/corners_bg_blackxingji">
+
+            <TextView
+                android:id="@+id/frag_tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dp3"
+                android:singleLine="true"
+                android:text="北京"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/live_dingwei_icon" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp6"
+        android:layout_marginRight="@dimen/dp6"
+        android:background="@color/text_noclick_color"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:id="@+id/frag_layout_rank"
+        style="@style/text_padd_oval"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/live_beijingi_1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp6"
+            android:paddingTop="@dimen/dp2"
+            android:paddingRight="@dimen/dp8"
+            android:paddingBottom="@dimen/dp2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="礼物榜排行榜"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="在线人数：0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/rank_iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp4"
+            android:background="@mipmap/live_jiantou_3" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lv_rankdata"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none"  />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/lv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scrollbars="none" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/jianJu"
+                android:gravity="bottom|right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/frag_tv_follow"
+                    style="@style/text_padd_oval"
+                    android:background="@drawable/corners_bg_communered"
+                    android:singleLine="true"
+                    android:text="关注"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <LinearLayout
+                    android:id="@+id/frag_layout_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp40"
+                    android:layout_marginBottom="@dimen/dp40"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp27"
+                        android:background="@mipmap/live_share" />
+
+                    <TextView
+                        android:id="@+id/frag_tv_sharenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

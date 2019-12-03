@@ -11,9 +11,6 @@ KiwiSports_V1.2.0/KiwiSports/build/
 /build
 /captures
 .externalNativeBuild
-trunk_V1.1.0/.idea
-trunk_V1.1.0/app/build/
-trunk_V1.1.0/pulltorefreshlibrary/build/
 trunk/np_lib/build/
 trunk/app/build/
 trunk/pulltorefreshlibrary/build/
@@ -23,3 +20,9 @@ testTv/app/build/
 testTv/pulltorefreshlibrary/build/
 longcheng_web/app/build/
 longcheng_web/build/
+trunk_V1.1.0/.idea
+trunk_V1.1.0/app/build/
+trunk_V1.1.0/pulltorefreshlibrary/build/
+trunk_V2.4.0/.idea
+trunk_V2.4.0/app/build/
+trunk_V2.4.0/pulltorefreshlibrary/build/

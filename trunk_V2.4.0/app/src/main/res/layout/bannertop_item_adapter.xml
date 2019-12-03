@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/item_iv_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/item_tv_jieqiday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/dp40"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="-2dp"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <LinearLayout
+        android:id="@+id/item_layout_type1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp20"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/item_tv_jieqititle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/jianJu"
+            android:text="越互祝越健康，感恩您的祝福"
+            android:textColor="@color/new_title_bg"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您送出祝福"
+            android:textColor="@color/new_title_bg"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/item_tv_givehelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/jianJu"
+            android:text="0次，生命能量0"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您收获祝福"
+            android:textColor="@color/new_title_bg"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/item_tv_helpme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0次，生命能量0"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_dp12_size" />
+    </LinearLayout>
+</FrameLayout>

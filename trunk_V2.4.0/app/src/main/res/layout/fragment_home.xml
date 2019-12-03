@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/main_sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/homededi_vp_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp30"
+                    android:gravity="right">
+
+                    <LinearLayout
+                        android:id="@+id/pagetop_layout_left"
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"
+                        android:background="@drawable/corners_oval_gray"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/pagetop_iv_left"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/usercenter_notinfo_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/pagetop_layout_rigth"
+                        style="@style/view_marginlefgtright"
+                        android:layout_width="@dimen/dp35"
+                        android:layout_height="@dimen/dp35"
+                        android:background="@drawable/corners_oval_gray"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/pagetop_iv_rigth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/homepage_scan_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/frame_bottom"
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-25dp"
+                android:orientation="vertical"
+                android:visibility="invisible">
+                <!--四个按钮-->
+                <include layout="@layout/fragment_home_menu" />
+                <!--健康速递-->
+                <include layout="@layout/fragment_home_health" />
+                <!--榜单-->
+                <include layout="@layout/fragment_home_dedicationlist" />
+                <!--热门行动-->
+                <include layout="@layout/fragment_home_hotaction" />
+                <!--热推互助-->
+                <include layout="@layout/fragment_home_hotpush" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+    <include layout="@layout/not_date" />
+</FrameLayout>

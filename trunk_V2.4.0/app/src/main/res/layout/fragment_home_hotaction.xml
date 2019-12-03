@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_drawable3"
+            android:layout_width="3dp"
+            android:layout_height="15dp"
+            android:background="@drawable/corners_bg_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/img_setTextcenter"
+            android:text="热门行动"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/mainaction_tv_more"
+            style="@style/text_padd_oval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_writehealth"
+            android:text="查看全部"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+    <!---->
+    <com.longcheng.lifecareplan.utils.myview.MyGridView
+        android:id="@+id/gv_Action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/page_bg"
+        android:divider="@null"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:focusable="false"
+        android:horizontalSpacing="@dimen/padd_leftright"
+        android:numColumns="2"
+        android:scrollbars="none" />
+</LinearLayout>

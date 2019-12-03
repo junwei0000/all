@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relat_pop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:paddingLeft="@dimen/jianJu"
+    android:paddingRight="@dimen/jianJu">
+
+    <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+        android:id="@+id/edt_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp35"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_toLeftOf="@+id/layout_gn"
+        android:background="@drawable/corners_bg_blackxingji"
+        android:focusable="true"
+        android:hint="一起聊天吧~"
+        android:imeOptions="actionSend"
+        android:maxLength="50"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="@dimen/text_contents_size" />
+
+    <LinearLayout
+        android:id="@+id/layout_gn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/btn_liwu"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:background="@mipmap/live_liwu" />
+
+        <ImageView
+            android:id="@+id/btn_camera"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:background="@mipmap/camera_id" />
+
+        <ImageView
+            android:id="@+id/btn_exit"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:background="@mipmap/live_guanbi_icon"
+            android:onClick="exit" />
+    </LinearLayout>
+</RelativeLayout>

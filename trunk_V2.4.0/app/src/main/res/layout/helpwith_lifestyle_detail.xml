@@ -1,0 +1,427 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+            android:id="@+id/main_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_help"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!--name-->
+                <LinearLayout
+                    style="@style/view_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/detail_tv_helpname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingRight="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/detail_tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+                </LinearLayout>
+
+                <!---->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg_helpdetail"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/padd_topbottom">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/jianJu"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/dp3"
+                                android:text="祝福您的人"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_biaoTi_size" />
+
+                            <TextView
+                                android:id="@+id/detail_tv_havelifeenergy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/text_pageTop_size" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/dp3"
+                                android:text="收到寿康宝"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_biaoTi_size" />
+
+                            <TextView
+                                android:id="@+id/detail_tv_helpnum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/text_pageTop_size" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/dp3"
+                                android:text="目标寿康宝"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_biaoTi_size" />
+
+                            <TextView
+                                android:id="@+id/detail_tv_lifeenergy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/text_pageTop_size" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padd_leftright">
+
+                        <com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar
+                            android:id="@+id/pb_lifeprogressnum"
+                            style="@style/NumberProgressBar_Default"
+                            android:layout_centerVertical="true" />
+
+                        <TextView
+                            android:id="@+id/pb_num"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/corners_bg_redprogress"
+                            android:gravity="center"
+                            android:paddingBottom="1dp"
+                            android:paddingTop="1dp"
+                            android:text="0%"
+                            android:textColor="@color/white"
+                            android:textSize="9dp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/detail_layout_rank"
+                        style="@style/view_padd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/mutuallist_love" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/padd_imgtextleftright"
+                            android:text="爱心榜"
+                            android:textColor="@color/text_contents_color"
+                            android:textSize="@dimen/text_contents_size" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/gv_aixin"
+                                style="@style/view_marginlefgtright"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@color/transparent"
+                                android:gravity="right|center_vertical"
+                                android:orientation="horizontal" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/usercenter_arrow_img" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <!--社区-->
+                <!--<include layout="@layout/line" />-->
+
+                <LinearLayout
+                    android:id="@+id/layout_commune"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/dp20"
+                    android:paddingTop="@dimen/dp20">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:background="@drawable/corners_bg_grayfang"
+                        android:padding="0.9dp">
+
+                        <ImageView
+                            android:id="@+id/detail_iv_communethumb"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_leftright"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/detail_tv_communename"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_biaoTi_color"
+                            android:textSize="@dimen/text_biaoTi_size" />
+
+                        <TextView
+                            android:id="@+id/detail_tv_communenum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padd_imgtextleftright"
+                            android:textColor="@color/text_noclick_color"
+                            android:textSize="@dimen/text_zhu_size" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <include layout="@layout/line" />
+                <!---->
+                <TextView
+                    android:id="@+id/detail_tv_daiyantilte"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/jianJu"
+                    android:paddingTop="@dimen/dp20"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <TextView
+                    android:id="@+id/detail_tv_daiyandescribe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp20"
+                    android:textColor="@color/text_contents_color"
+                    android:textSize="@dimen/text_contents_size" />
+                <!---->
+                <include layout="@layout/line" />
+
+                <TextView
+                    style="@style/view_paddtopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="互祝产品"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <LinearLayout
+                    android:id="@+id/layout_gooddetail"
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg_goodgray"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/padd_imgtextleftright"
+                    android:paddingTop="@dimen/padd_imgtextleftright">
+
+                    <ImageView
+                        android:id="@+id/detail_iv_goodthumb"
+                        android:layout_width="@dimen/lifestyle_detail_goodwidth"
+                        android:layout_height="@dimen/lifestyle_detail_goodwidth"
+                        android:scaleType="fitXY" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/padd_leftright">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/detail_tv_goodname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxEms="11"
+                                android:maxLines="1"
+                                android:textColor="@color/text_biaoTi_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/detail_tv_goodgeshu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="@dimen/padd_leftright"
+                                android:singleLine="true"
+                                android:textColor="@color/text_biaoTi_color"
+                                android:textSize="@dimen/text_contents_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/jianJu"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/activat_skb_icon"
+                                android:scaleType="centerCrop" />
+
+                            <TextView
+                                android:id="@+id/detail_tv_goodnum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/padd_imgtextleftright"
+                                android:textColor="@color/cyanblue"
+                                android:textSize="@dimen/text_zhu_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/usercenter_arrow_img" />
+
+                </LinearLayout>
+                <!---->
+
+
+                <LinearLayout
+                    android:id="@+id/layout_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/view_paddtopbottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="祝福感言"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <com.longcheng.lifecareplan.utils.myview.MyListView
+                        android:id="@+id/detail_lv_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:cacheColorHint="@color/page_bg"
+                        android:divider="@null"
+                        android:fadeScrollbars="false"
+                        android:fadingEdge="none"
+                        android:scrollbars="none" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+        <TextView
+            android:id="@+id/btn_help"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="送上祝福"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_contents_size" />
+    </RelativeLayout>
+</LinearLayout>

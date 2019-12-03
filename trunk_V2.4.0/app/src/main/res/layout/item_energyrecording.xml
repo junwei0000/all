@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_marginTop="@dimen/padd_topbottom"
+        android:id="@+id/ivpaychanel"
+        android:layout_width="@dimen/dp43"
+        android:layout_height="@dimen/dp43"
+        android:layout_marginLeft="@dimen/padd_leftright"
+        android:layout_marginRight="@dimen/padd_leftright"
+        android:background="@mipmap/my_lifeenergy_wechat" />
+
+    <TextView
+        android:id="@+id/tvpayname"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/padd_topbottom"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivpaychanel"
+        android:text="微信支付"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_contents_size" />
+
+    <TextView
+        android:id="@+id/tvdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tvpayname"
+        android:layout_below="@id/tvpayname"
+        android:layout_marginTop="@dimen/padd_imgtextleftright"
+        android:text="2018-05-01 11:11:11"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/tvenergytotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/padd_leftright"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/tvpayname"
+        android:paddingBottom="15dp"
+        android:text="18900生命能量"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_contents_size" />
+
+    <TextView
+        android:id="@+id/tvenergydetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/padd_leftright"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/tvdate"
+        android:layout_below="@id/tvpayname"
+        android:text="激活18000+赠送900"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+    <View
+        android:layout_below="@id/ivpaychanel"
+        android:background="@color/linebg"
+        android:layout_marginTop="@dimen/padd_topbottom"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"/>
+</RelativeLayout>

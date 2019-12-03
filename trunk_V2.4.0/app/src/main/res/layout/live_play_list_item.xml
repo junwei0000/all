@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp2">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp2"
+        android:background="@drawable/corners_bg_write"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relat_thumb"
+            android:layout_width="200dp"
+            android:layout_height="200dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/item_iv_thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/moren_new"
+                app:riv_border_color="@color/transparent"
+                app:riv_border_width="0dp"
+                app:riv_corner_radius_top_left="3dp"
+                app:riv_corner_radius_top_right="3dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp8">
+
+                <TextView
+                    android:id="@+id/item_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:id="@+id/item_tv_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padd_leftright"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp8">
+
+            <TextView
+                android:id="@+id/item_tv_playtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="说点啥~"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_zhu_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/item_tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padd_leftright"
+                android:singleLine="true"
+                android:text="北京"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

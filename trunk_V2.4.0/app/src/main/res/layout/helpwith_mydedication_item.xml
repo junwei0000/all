@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/padd_leftright">
+
+
+        <LinearLayout
+            android:id="@+id/item_layout_thumb"
+            style="@style/view_paddtopbottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_iv_thumb"
+                android:layout_width="@dimen/dp43"
+                android:layout_height="@dimen/dp43"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padd_leftright"
+                android:layout_toRightOf="@+id/item_tv_num"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_name"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="@dimen/padd_imgtextleftright"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/layout_num"
+            android:layout_toRightOf="@+id/item_layout_thumb"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/item_tv_shequ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_engerynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14654"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/item_tv_mingxi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="明细记录"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>

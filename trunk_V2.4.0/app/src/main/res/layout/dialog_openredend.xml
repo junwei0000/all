@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/layout_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@mipmap/my_luck_successful"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp30"
+        android:paddingRight="@dimen/dp30"
+        android:paddingTop="@dimen/padd_leftright">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FDF8DA"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp8"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/jianJu">
+
+            <TextView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="1dp"
+                android:background="@color/red_openredfen" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp6"
+                android:paddingRight="@dimen/dp6"
+                android:text="收 获 满 满"
+                android:textColor="@color/red_openredfen"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="1dp"
+                android:background="@color/red_openredfen" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_rednum"
+            style="@style/view_paddlefgtright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/jianJu"
+            android:text="本次开启红包0个"
+            android:textColor="@color/red_openredfen"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_write"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_leftright"
+                android:layout_marginLeft="@dimen/jianJu"
+                android:layout_marginTop="@dimen/padd_leftright"
+                android:layout_weight="1"
+                android:text="获得现金"
+                android:textColor="@color/red_openredfen"
+                android:textSize="@dimen/text_contents_size" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_openred">
+
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_imgtextleftright"
+                    android:paddingLeft="@dimen/padd_imgtextleftright"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_imgtextleftright"
+                    android:text="元"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_min_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_leftright"
+            android:background="@drawable/corners_bg_write"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_leftright"
+                android:layout_marginLeft="@dimen/jianJu"
+                android:layout_marginTop="@dimen/padd_leftright"
+                android:layout_weight="1"
+                android:text="获得寿康宝"
+                android:textColor="@color/red_openredfen"
+                android:textSize="@dimen/text_contents_size" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_openred">
+
+                <TextView
+                    android:id="@+id/tv_skb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_imgtextleftright"
+                    android:paddingLeft="@dimen/padd_imgtextleftright"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_imgtextleftright"
+                    android:text="个"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_min_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_leftright"
+            android:background="@drawable/corners_bg_write"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_leftright"
+                android:layout_marginLeft="@dimen/jianJu"
+                android:layout_marginTop="@dimen/padd_leftright"
+                android:layout_weight="1"
+                android:text="获得生命能量"
+                android:textColor="@color/red_openredfen"
+                android:textSize="@dimen/text_contents_size" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_openred">
+
+                <TextView
+                    android:id="@+id/tv_ablity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_imgtextleftright"
+                    android:paddingLeft="@dimen/padd_imgtextleftright"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_know"
+        style="@style/dialog_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="@dimen/dp23"
+        android:background="@drawable/corners_bg_write"
+        android:paddingLeft="@dimen/dp60"
+        android:paddingRight="@dimen/dp60"
+        android:text="知道了"
+        android:textColor="#e80a0a"
+        android:textSize="@dimen/text_biaoTi_size" />
+</FrameLayout>

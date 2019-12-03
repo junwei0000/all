@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddtopbottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/jianJu"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_activatenergy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_energy" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="激活能量"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_myka"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_card" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="我的卡包"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/usercenter_relay_zodiacdescripte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_thecommune" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:singleLine="true"
+            android:text="一字千金"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/usercenter_relay_myorder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_dingdan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="我的订单"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_invitationrecord"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_record" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="邀请记录"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+</LinearLayout>

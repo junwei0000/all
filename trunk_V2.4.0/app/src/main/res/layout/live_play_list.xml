@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/activity_tool" />
+
+    <include layout="@layout/live_page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/play_view"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:gravity="center"
+            android:horizontalSpacing="@dimen/padd_imgtextleftright"
+            android:listSelector="@drawable/list_notselector"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:verticalSpacing="@dimen/dp3"
+            android:visibility="gone" />
+
+        <include layout="@layout/live_play_notdata" />
+    </RelativeLayout>
+</LinearLayout>
