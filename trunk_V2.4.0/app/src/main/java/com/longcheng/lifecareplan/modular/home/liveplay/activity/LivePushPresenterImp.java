@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import com.longcheng.lifecareplan.apiLive.ApiLive;
+import com.longcheng.lifecareplan.http.api.DefaultBackObserver;
 import com.longcheng.lifecareplan.http.api.DefaultObserver;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
@@ -33,6 +34,30 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
 
     @Override
     public void fetch() {
+    }
+
+    /**
+     * 用户申请直播详情
+     */
+    public void getUserLiveStatus() {
+        mView.showDialog();
+        ApiLive.getInstance().service.getUserLiveStatus(UserUtils.getUserId(mContext))
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.getUserLiveStatusSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
     }
 
     /**

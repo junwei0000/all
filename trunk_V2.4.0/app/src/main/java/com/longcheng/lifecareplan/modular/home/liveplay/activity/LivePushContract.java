@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public interface LivePushContract {
     interface View extends BaseView<Presenter> {
+        void getUserLiveStatusSuccess(BasicResponse responseBean);
         void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean);
 
         void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage);

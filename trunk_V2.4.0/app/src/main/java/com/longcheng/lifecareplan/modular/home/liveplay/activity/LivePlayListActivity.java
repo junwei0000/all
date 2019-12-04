@@ -215,6 +215,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
 
     @Override
+    public void getUserLiveStatusSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {
 
     }

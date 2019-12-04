@@ -22,7 +22,6 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.rtmp.ITXLivePlayListener;
@@ -138,7 +137,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     @Override
     public void initDataAfter() {
         initPlay();
-        String city = new LocationUtils().getAddressCity(this);
         String live_room_id = getIntent().getStringExtra("live_room_id");
         mPresent.getLivePlayInfo(live_room_id);
     }
@@ -237,6 +235,11 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         LoadingDialogAnim.dismiss(mContext);
     }
 
+
+    @Override
+    public void getUserLiveStatusSuccess(BasicResponse responseBean) {
+
+    }
 
     @Override
     public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {

@@ -208,6 +208,7 @@
                     android:background="@color/transparent"
                     android:gravity="top"
                     android:hint="请输入直播主题"
+                    android:maxLength="40"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="@dimen/text_contents_size" />

@@ -767,6 +767,13 @@
             android:theme="@style/AppThemeLive"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
+            android:name=".modular.home.liveplay.activity.ApplyXieYiActitvty"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLive"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
             android:name=".modular.home.liveplay.activity.LivePlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"

@@ -1,14 +1,17 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.home.liveplay.activity.ApplyXieYiActitvty;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
@@ -19,7 +22,9 @@ import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.BaseScro
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.RecordMode;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.RecordState;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.StringScrollPicker;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -70,7 +75,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     @BindView(R.id.iv_thumb)
     RoundedImageView ivThumb;
     @BindView(R.id.tv_livetitle)
-    TextView tvLivetitle;
+    EditText tvLivetitle;
     @BindView(R.id.layout_livecity)
     LinearLayout layoutLivecity;
     @BindView(R.id.tv_livecity)
@@ -115,7 +120,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                 ToastUtils.showToast("请选择图片");
                 break;
             case R.id.tv_livestart:
-                getLivePush();
+                mPresent.getUserLiveStatus();
                 break;
         }
 
@@ -144,6 +149,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         layoutOk.setOnClickListener(this);
         ivThumb.setOnClickListener(this);
         tvLivestart.setOnClickListener(this);
+        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(tvLivetitle, 40);
         videoPickerview.setOnSelectedListener(new BaseScrollPickerView.OnSelectedListener() {
             @Override
             public void onSelected(BaseScrollPickerView baseScrollPickerView, int position) {
@@ -161,6 +167,8 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                     layoutShortVideo.setVisibility(View.GONE);
                     layoutLive.setVisibility(View.VISIBLE);
                     recordMode = RecordMode.live;
+                    String city = new LocationUtils().getAddressCity(mContext);
+                    tvLivecity.setText("" + city);
                 }
             }
         });
@@ -220,6 +228,19 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
     }
 
+
+    @Override
+    public void getUserLiveStatusSuccess(BasicResponse responseBean) {
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+
+        } else if (errcode == -1) {
+            ToastUtils.showToast("" + responseBean.getMsg());
+            Intent intent = new Intent(mActivity, ApplyXieYiActitvty.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        }
+    }
 
     @Override
     public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {

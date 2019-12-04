@@ -39,6 +39,10 @@ public interface ApiLiveService {
     @POST("dock/live/room/info")
     Observable<BasicResponse<LiveDetailInfo>> getLivePlayInfo(@Field("live_room_id") String live_room_id);
 
+    @FormUrlEncoded
+    @POST("dock/live/user/info")
+    Observable<BasicResponse> getUserLiveStatus(@Field("user_id") String user_id);
+
 }
 
 
