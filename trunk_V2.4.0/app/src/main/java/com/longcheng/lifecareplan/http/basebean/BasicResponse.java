@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName;
  *
  */
 public class BasicResponse<T> {
-
+    @SerializedName("errMsg")
     protected String msg;
-    @SerializedName(value = "status", alternate = {"code"})
-    protected String status;
+    @SerializedName(value = "status", alternate = {"errCode"})
+    protected int status;
     private T data;
 
 
@@ -22,11 +22,11 @@ public class BasicResponse<T> {
         this.msg = msg;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

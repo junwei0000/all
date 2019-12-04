@@ -1,27 +1,32 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.BaseScrollPickerView;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.RecordMode;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.RecordState;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.StringScrollPicker;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.tencent.rtmp.TXLiveConstants;
+import com.tencent.rtmp.TXLivePushConfig;
+import com.tencent.rtmp.TXLivePusher;
+import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +40,7 @@ import butterknife.BindView;
  */
 public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View {
     @BindView(R.id.preview_view)
-    SurfaceView previewView;
+    TXCloudVideoView previewView;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.layout_left)
@@ -56,7 +61,22 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     StringScrollPicker videoPickerview;
     @BindView(R.id.layout_bottom)
     LinearLayout layoutBottom;
-
+    @BindView(R.id.layout_shortVideo)
+    LinearLayout layoutShortVideo;
+    @BindView(R.id.layout_live)
+    LinearLayout layoutLive;
+    @BindView(R.id.layout_livetitle)
+    LinearLayout layoutLivetitle;
+    @BindView(R.id.iv_thumb)
+    RoundedImageView ivThumb;
+    @BindView(R.id.tv_livetitle)
+    TextView tvLivetitle;
+    @BindView(R.id.layout_livecity)
+    LinearLayout layoutLivecity;
+    @BindView(R.id.tv_livecity)
+    TextView tvLivecity;
+    @BindView(R.id.tv_livestart)
+    TextView tvLivestart;
 
     /**
      * 功能模式
@@ -91,6 +111,12 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                 }
                 updateRecordBtnView();
                 break;
+            case R.id.iv_thumb:
+                ToastUtils.showToast("请选择图片");
+                break;
+            case R.id.tv_livestart:
+                getLivePush();
+                break;
         }
 
     }
@@ -116,37 +142,54 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         layoutStart.setOnClickListener(this);
         layoutDel.setOnClickListener(this);
         layoutOk.setOnClickListener(this);
+        ivThumb.setOnClickListener(this);
+        tvLivestart.setOnClickListener(this);
         videoPickerview.setOnSelectedListener(new BaseScrollPickerView.OnSelectedListener() {
             @Override
             public void onSelected(BaseScrollPickerView baseScrollPickerView, int position) {
                 Log.i(TAG, "onSelected:" + position);
                 if (position == 0) {
+                    layoutShortVideo.setVisibility(View.GONE);
+                    layoutLive.setVisibility(View.GONE);
                     recordMode = RecordMode.Upload;
                     ToastUtils.showToast("请选择本地上传");
                 } else if (position == 1) {
+                    layoutShortVideo.setVisibility(View.VISIBLE);
+                    layoutLive.setVisibility(View.GONE);
                     recordMode = RecordMode.short_video;
                 } else if (position == 2) {
+                    layoutShortVideo.setVisibility(View.GONE);
+                    layoutLive.setVisibility(View.VISIBLE);
                     recordMode = RecordMode.live;
-                    getLivePush();
                 }
             }
         });
     }
 
     private void getLivePush() {
-        String uid = UserUtils.getUserId(mContext);
-        mPresent.getLivePush(uid);
         LivePushActivity.startActivity(this, "", "ceshi");
     }
 
+    TXLivePusher mLivePusher;
+
     @Override
     public void initDataAfter() {
+        TXLivePushConfig mLivePushConfig = new TXLivePushConfig();
+        mLivePusher = new TXLivePusher(this);
+        // 一般情况下不需要修改 config 的默认配置
+        mLivePusher.setConfig(mLivePushConfig);
+        mLivePusher.startCameraPreview(previewView);
+        // 设置美颜
+        mLivePusher.setBeautyFilter(TXLiveConstants.BEAUTY_STYLE_SMOOTH, 4, 3, 2);
         List<String> strings = new ArrayList<>(3);
         strings.add("上传");
         strings.add("拍摄");
         strings.add("直播");
         videoPickerview.setDrawAllItem(true);
         videoPickerview.setData(strings);
+
+        layoutLivetitle.getBackground().setAlpha(50);
+        layoutLivecity.getBackground().setAlpha(50);
     }
 
     /**
@@ -174,31 +217,22 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
 
     @Override
     protected LivePushPresenterImp<LivePushContract.View> createPresent() {
-        return new LivePushPresenterImp<>(mContext, this);
+        return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
     }
 
-    @Override
-    public void BackPushSuccess(LivePushDataInfo responseBean) {
-        String Pushurl = responseBean.getPushurl();
-        if (!TextUtils.isEmpty(Pushurl)) {
-            LivePushActivity.startActivity(this, Pushurl, "");
-        } else {
-            ToastUtils.showToast("获取直播信息失败");
-        }
-    }
 
     @Override
-    public void BackPlaySuccess(LivePushDataInfo responseBean) {
+    public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {
 
     }
 
     @Override
-    public void BackPlayListSuccess(LivePushDataInfo responseBean) {
+    public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
 
     }
 
     @Override
-    public void BackVideoListSuccess(LivePushDataInfo responseBean) {
+    public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
 
     }
 
@@ -218,17 +252,27 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
+        if (previewView != null) {
+            previewView.onResume();
+        }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
+        if (previewView != null) {
+            previewView.onPause();
+        }
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
+        if (previewView != null) {
+            previewView.onDestroy(); // 销毁 View
+        }
         super.onDestroy();
     }
+
 }

@@ -11,8 +11,9 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;
 
@@ -22,20 +23,20 @@ import java.util.List;
  * 邮箱：MarkShuai@163.com
  */
 
-public class PlayListAdapter extends BaseAdapterHelper<LivePlayItemInfo> {
+public class PlayListAdapter extends BaseAdapterHelper<VideoItemInfo> {
     ViewHolder mHolder = null;
     Context context;
 
     boolean liveSeleStatus;
 
-    public PlayListAdapter(Context context, List<LivePlayItemInfo> list, boolean liveSeleStatus) {
+    public PlayListAdapter(Context context, List<VideoItemInfo> list, boolean liveSeleStatus) {
         super(context, list);
         this.context = context;
         this.liveSeleStatus = liveSeleStatus;
     }
 
     @Override
-    public View getItemView(int position, View convertView, ViewGroup parent, List<LivePlayItemInfo> list, LayoutInflater inflater) {
+    public View getItemView(int position, View convertView, ViewGroup parent, List<VideoItemInfo> list, LayoutInflater inflater) {
 
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.live_play_list_item, parent, false);
@@ -44,10 +45,12 @@ public class PlayListAdapter extends BaseAdapterHelper<LivePlayItemInfo> {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        LivePlayItemInfo mHelpItemBean = list.get(position);
-        mHolder.item_tv_name.setText(mHelpItemBean.getName());
-        mHolder.item_tv_playtitle.setText("" + mHelpItemBean.getPlayTile());
-        int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 25)) / 2;
+        VideoItemInfo mHelpItemBean = list.get(position);
+        mHolder.item_tv_name.setText(mHelpItemBean.getUser_name());
+        mHolder.item_tv_playtitle.setText("" + mHelpItemBean.getTitle());
+        mHolder.item_tv_num.setText("" + mHelpItemBean.getTotal_number());
+        mHolder.item_tv_city.setText("" + mHelpItemBean.getAddress());
+        int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 20)) / 2;
         int height;
         int moid;
         if (liveSeleStatus) {
@@ -57,9 +60,8 @@ public class PlayListAdapter extends BaseAdapterHelper<LivePlayItemInfo> {
             height = (int) (width * 1.54);
             moid = R.mipmap.live_listnotdatebg2;
         }
-        mHolder.item_iv_thumb.setImageDrawable(context.getResources().getDrawable(mHelpItemBean.getThumb()));
-//        GlideDownLoadImage.getInstance().loadCircleImageLive("", moid, mHolder.item_iv_thumb, ConstantManager.image_angle);
-        mHolder.relat_thumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
+        GlideDownLoadImage.getInstance().loadCircleImageLive(mHelpItemBean.getCover_url(), moid, mHolder.item_iv_thumb, 0);
+        mHolder.relat_thumb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height));
         return convertView;
     }
 

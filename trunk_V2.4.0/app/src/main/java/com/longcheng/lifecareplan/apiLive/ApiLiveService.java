@@ -1,7 +1,12 @@
 package com.longcheng.lifecareplan.apiLive;
 
 
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -16,15 +21,24 @@ import retrofit2.http.POST;
  */
 public interface ApiLiveService {
     //****************************直播****************************
-//    http://t.dock.lifecareplan.cn/
+//    http://t.dock.lifecareplan.cn/dock/video/video/lists
+
     @FormUrlEncoded
-    @POST("live/push")
-    Observable<LivePushDataInfo> getLivePush(@Field("uid") String user_id,
-                                             @Field("token") String token);
+    @POST("dock/video/video/lists")
+    Observable<BasicResponse<ArrayList<VideoItemInfo>>> getVideoList(@Field("user_id") String user_id,
+                                                                     @Field("page") int page,
+                                                                     @Field("page_size") int page_size);
+
     @FormUrlEncoded
-    @POST("live/player")
-    Observable<LivePushDataInfo> getLivePlay(@Field("uid") String user_id,
-                                             @Field("token") String token);
+    @POST("dock/live/room/lists")
+    Observable<BasicResponse<VideoDataInfo>> getLiveList(@Field("user_id") String user_id,
+                                                         @Field("page") int page,
+                                                         @Field("page_size") int page_size);
+
+    @FormUrlEncoded
+    @POST("dock/live/room/info")
+    Observable<BasicResponse<LiveDetailInfo>> getLivePlayInfo(@Field("live_room_id") String live_room_id);
+
 }
 
 

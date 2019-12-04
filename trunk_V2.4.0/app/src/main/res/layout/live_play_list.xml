@@ -14,20 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <GridView
+        <include layout="@layout/live_play_notdata" />
+
+        <com.handmark.pulltorefresh.library.PullToRefreshGridView
             android:id="@+id/play_view"
-            style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fastScrollEnabled="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:fadeScrollbars="false"
+            android:fastScrollEnabled="false"
             android:gravity="center"
             android:horizontalSpacing="@dimen/padd_imgtextleftright"
             android:listSelector="@drawable/list_notselector"
             android:numColumns="2"
-            android:scrollbars="none"
-            android:verticalSpacing="@dimen/dp3"
-            android:visibility="gone" />
-
-        <include layout="@layout/live_play_notdata" />
+            android:scrollbars="none" />
     </RelativeLayout>
 </LinearLayout>

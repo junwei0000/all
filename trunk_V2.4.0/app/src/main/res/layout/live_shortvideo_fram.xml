@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     android:orientation="vertical">
 
     <include layout="@layout/activity_tool" />
@@ -52,108 +51,217 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/layout_time"
+            android:id="@+id/layout_shortVideo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone">
+
+
+                <TextView
+                    android:layout_width="@dimen/dp6"
+                    android:layout_height="@dimen/dp6"
+                    android:background="@drawable/corners_oval_red" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp3"
+                    android:text="00:00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_dp12_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp6"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/layout_del"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp23"
+                        android:layout_height="@dimen/dp23"
+                        android:src="@mipmap/zhibo_shanchu" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dp4"
+                        android:text="删除"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_min_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_start"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="@dimen/dp60"
+                    android:layout_marginLeft="@dimen/dp50"
+                    android:layout_marginRight="@dimen/dp50"
+                    android:background="@mipmap/shortvideo_start">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp23"
+                        android:layout_height="@dimen/dp23"
+                        android:src="@mipmap/zhibo_wancheng" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dp4"
+                        android:text="完成"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_min_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_live"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:orientation="vertical"
             android:visibility="gone">
 
-
-            <TextView
-                android:layout_width="@dimen/dp6"
-                android:layout_height="@dimen/dp6"
-                android:background="@drawable/corners_oval_red" />
-
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="@dimen/dp3"
-                android:text="00:00"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_dp12_size" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp6"
-            android:gravity="bottom|center_horizontal"
-            android:orientation="horizontal">
-
             <LinearLayout
-                android:id="@+id/layout_del"
-                android:layout_width="wrap_content"
+                android:id="@+id/layout_livetitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:background="@drawable/corners_bg_transparent"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp8">
 
-                <ImageView
-                    android:layout_width="@dimen/dp23"
-                    android:layout_height="@dimen/dp23"
-                    android:src="@mipmap/zhibo_shanchu" />
+                <RelativeLayout
+                    android:layout_width="@dimen/dp72"
+                    android:layout_height="@dimen/dp72">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/dp4"
-                    android:text="删除"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_min_size" />
-            </LinearLayout>
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/iv_thumb"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/zhang"
+                        app:riv_border_color="@color/transparent"
+                        app:riv_border_width="0dp"
+                        app:riv_corner_radius="3dp"
+                        app:riv_mutate_background="true"
+                        app:riv_oval="false" />
 
-            <LinearLayout
-                android:id="@+id/layout_start"
-                android:layout_width="@dimen/dp60"
-                android:layout_height="@dimen/dp60"
-                android:layout_marginLeft="@dimen/dp50"
-                android:layout_marginRight="@dimen/dp50"
-                android:background="@mipmap/shortvideo_start">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|bottom"
+                        android:paddingBottom="@dimen/dp2"
+                        android:text="更换封面"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_dp12_size" />
+                </RelativeLayout>
 
-                <ImageView
+                <EditText
+                    android:id="@+id/tv_livetitle"
+                    style="@style/view_paddlefgtright"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"  />
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:gravity="top"
+                    android:hint="请输入直播主题"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/text_contents_size" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_ok"
-                android:layout_width="wrap_content"
+                android:id="@+id/layout_livecity"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="@dimen/dp23"
-                    android:layout_height="@dimen/dp23"
-                    android:src="@mipmap/zhibo_wancheng" />
+                android:layout_marginTop="@dimen/jianJu"
+                android:background="@drawable/corners_bg_transparent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp8">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/dp4"
-                    android:text="完成"
+                    android:drawableLeft="@mipmap/live_dingwei_icon"
+                    android:drawablePadding="@dimen/dp10"
+                    android:text="当前定位"
+                    android:textColor="@color/e9"
+                    android:textSize="@dimen/text_dp12_size" />
+
+                <TextView
+                    android:id="@+id/tv_livecity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingTop="@dimen/dp6"
+                    android:paddingBottom="@dimen/dp6"
+                    android:text="北京"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_min_size" />
+                    android:textSize="@dimen/text_dp12_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/tv_livestart"
+                    style="@style/btn"
+                    android:text="开始视频直播" />
             </LinearLayout>
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/layout_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/dp20"
             android:gravity="center"
             android:orientation="vertical">
@@ -176,8 +284,5 @@
                 android:layout_height="@dimen/dp6"
                 android:background="@drawable/corners_oval_write" />
         </LinearLayout>
-
-
-    </LinearLayout>
-
+    </RelativeLayout>
 </LinearLayout>

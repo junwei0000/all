@@ -1,16 +1,12 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
@@ -21,15 +17,20 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
+import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -64,9 +65,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     @BindView(R.id.btn_camera)
     ImageView btnCamera;
 
-    String playurl;
     @BindView(R.id.preview_view)
-    SurfaceView mSurfaceView;
+    TXCloudVideoView mSurfaceView;
     @BindView(R.id.relat_push)
     RelativeLayout relat_push;
     @BindView(R.id.layout_notlive)
@@ -92,11 +92,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
             default:
                 break;
         }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -143,15 +138,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     @Override
     public void initDataAfter() {
         String city = new LocationUtils().getAddressCity(this);
-        fragTvCity.setText("" + city);
-        fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
-        Intent intent = getIntent();
-        String playTitle = intent.getStringExtra("playTitle");
-        if (!TextUtils.isEmpty(playTitle)) {
-            fragTvPlaystatus.setText("直播中: " + playTitle);
-        }
-        String uid = intent.getStringExtra("playuid");
-        mPresent.getLivePlay(uid);
+        String live_room_id = getIntent().getStringExtra("live_room_id");
+        mPresent.getLivePlayInfo(live_room_id);
     }
 
     private MediaPlayer mediaPlayer;
@@ -250,7 +238,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     protected LivePushPresenterImp<LivePushContract.View> createPresent() {
-        return new LivePushPresenterImp<>(mContext, this);
+        return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
     }
 
 
@@ -264,30 +252,31 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         LoadingDialogAnim.dismiss(mContext);
     }
 
+
     @Override
-    public void BackPushSuccess(LivePushDataInfo responseBean) {
+    public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {
+        LiveDetailInfo mLiveDetailInfo = responseBean.getData();
+        if (mLiveDetailInfo != null) {
+            LiveDetailItemInfo PlayUrl = mLiveDetailInfo.getPlayUrl();
+            if (PlayUrl != null) {
+                String playurl = PlayUrl.getRtmpurl();
+                palyVideo(playurl);
+            }
+            LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
+            if (info != null) {
+                fragTvCity.setText("" + info.getAddress());
+                fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
+            }
+        }
     }
 
     @Override
-    public void BackPlaySuccess(LivePushDataInfo responseBean) {
-        playurl = responseBean.getM3u8url();
-        startPlay();
-    }
-
-    /**
-     * 播放视频
-     */
-    private void startPlay() {
-        palyVideo(playurl);
-    }
-
-    @Override
-    public void BackPlayListSuccess(LivePushDataInfo responseBean) {
+    public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
 
     }
 
     @Override
-    public void BackVideoListSuccess(LivePushDataInfo responseBean) {
+    public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
 
     }
 

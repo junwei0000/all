@@ -2,7 +2,7 @@ package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,18 +10,20 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
-import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePlayItemInfo;
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
-import com.longcheng.lifecareplan.utils.DatesUtils;
-import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.utils.ListUtils;
+import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @BindView(R.id.pagetop_layout_left)
     LinearLayout pagetopLayoutLeft;
     @BindView(R.id.play_view)
-    GridView playView;
+    PullToRefreshGridView playView;
     @BindView(R.id.layout_notlive)
     LinearLayout layout_notlive;
     @BindView(R.id.tv_playlist_video)
@@ -59,11 +61,15 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @BindView(R.id.pagetop_layout_rigth)
     LinearLayout pagetopLayoutRigth;
 
-    String uid;
     /**
      * 是否选中直播
      */
-    boolean liveSeleStatus = false;
+    private boolean liveSeleStatus = false;
+    private int page = 0;
+    private int pageSize = 20;
+    boolean refreshStatus = false;
+    ArrayList<VideoItemInfo> mAllList = new ArrayList<>();
+    PlayListAdapter mAdapter;
 
     @Override
     public void onClick(View v) {
@@ -118,17 +124,36 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         layoutPlaylistVideo.setOnClickListener(this);
         layoutPlaylistLive.setOnClickListener(this);
         layoutPlaylistMine.setOnClickListener(this);
-        Intent intent = getIntent();
-        int IsLiveBroadcast = intent.getIntExtra("IsLiveBroadcast", 0);
+        playView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<GridView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
+                refreshStatus = true;
+                getList(1);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
+                refreshStatus = true;
+                getList(page + 1);
+            }
+        });
         playView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (playList != null && playList.size() > 0) {
-                    Intent intent = new Intent(mActivity, LivePlayActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("playuid", playList.get(position).getUid());
-                    intent.putExtra("playTitle", playList.get(position).getPlayTile());
-                    startActivity(intent);
+                if (mAllList != null && mAllList.size() > 0) {
+                    Intent intent;
+                    if (liveSeleStatus) {
+                        intent = new Intent(mActivity, LivePlayActivity.class);
+                        intent.putExtra("live_room_id", mAllList.get(position).getVideo_id());
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                    } else {
+//                        intent = new Intent(mActivity, LivePlayActivity.class);
+//                        intent.putExtra("short_video_id", mAllList.get(position).getVideo_id());
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                        startActivity(intent);
+                    }
+
                 }
             }
         });
@@ -139,7 +164,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     public void initDataAfter() {
         liveSeleStatus = false;
         changeData();
-        uid = UserUtils.getUserId(mContext);
     }
 
     private void changeData() {
@@ -153,87 +177,132 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             tvPlaylistLiveLine.setBackgroundResource(R.drawable.corners_bg_red);
             tvPlaylistLive.setTextColor(getResources().getColor(R.color.red));
             ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistLiveLine, R.color.red);
-            mPresent.getLivePlayList();
         } else {
             tvPlaylistVideoLine.setVisibility(View.VISIBLE);
             tvPlaylistLiveLine.setVisibility(View.INVISIBLE);
             tvPlaylistVideoLine.setBackgroundResource(R.drawable.corners_bg_red);
             tvPlaylistVideo.setTextColor(getResources().getColor(R.color.red));
             ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistVideoLine, R.color.red);
-            mPresent.getVideoPlayList();
+        }
+        getList(1);
+    }
+
+    private void getList(int page) {
+        if (liveSeleStatus) {
+            mPresent.getLivePlayList(page, pageSize);
+        } else {
+            mPresent.getVideoPlayList(page, pageSize);
         }
     }
 
     @Override
     protected LivePushPresenterImp<LivePushContract.View> createPresent() {
-        return new LivePushPresenterImp<>(mContext, this);
+        return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
     }
 
 
     @Override
     public void showDialog() {
-        LoadingDialogAnim.show(mContext);
+        if (!refreshStatus)
+            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
+        refreshStatus = false;
         LoadingDialogAnim.dismiss(mContext);
     }
 
+
     @Override
-    public void BackPushSuccess(LivePushDataInfo responseBean) {
-        String Pushurl = responseBean.getPushurl();
-        String tilte = "";
-        for (LivePlayItemInfo mLivePlayItemInfo : playList) {
-            if (uid.equals(mLivePlayItemInfo.getUid())) {
-                tilte = mLivePlayItemInfo.getPlayTile();
-                break;
+    public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {
+
+    }
+
+    @Override
+    public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
+        VideoDataInfo mVideoDataInfo = responseBean.getData();
+        if (mVideoDataInfo != null) {
+            ArrayList<VideoItemInfo> mList = mVideoDataInfo.getLiveRoomList();
+            int size = mList == null ? 0 : mList.size();
+            if (backPage == 1) {
+                mAllList.clear();
+                mAdapter = null;
+//            showNoMoreData(false);
             }
+            if (size > 0) {
+                mAllList.addAll(mList);
+            }
+            if (mAdapter == null) {
+                mAdapter = new PlayListAdapter(mContext, mList, liveSeleStatus);
+                playView.setAdapter(mAdapter);
+            } else {
+                mAdapter.reloadListView(mList, false);
+            }
+            page = backPage;
+            checkLoadOver(size);
+            ListUtils.getInstance().RefreshCompleteG(playView);
         }
-        if (!TextUtils.isEmpty(Pushurl)) {
-            LivePushActivity.startActivity(this, Pushurl, tilte);
+    }
+
+    @Override
+    public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
+        ArrayList<VideoItemInfo> mList = responseBean.getData();
+        int size = mList == null ? 0 : mList.size();
+        if (backPage == 1) {
+            mAllList.clear();
+            mAdapter = null;
+//            showNoMoreData(false);
+        }
+        if (size > 0) {
+            mAllList.addAll(mList);
+        }
+        if (mAdapter == null) {
+            mAdapter = new PlayListAdapter(mContext, mList, liveSeleStatus);
+            playView.setAdapter(mAdapter);
         } else {
-            ToastUtils.showToast("获取直播信息失败");
+            mAdapter.reloadListView(mList, false);
         }
-    }
-
-    @Override
-    public void BackPlaySuccess(LivePushDataInfo responseBean) {
-
-    }
-
-    ArrayList<LivePlayItemInfo> playList;
-
-    @Override
-    public void BackPlayListSuccess(LivePushDataInfo responseBean) {
-//        playList = responseBean.getPlayList();
-        String time = DatesUtils.getInstance().getNowTime("yyyy-MM-dd HH:mm:ss");
-        playList = new ArrayList<>();
-        playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
-        playList.add(new LivePlayItemInfo("128767", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云莉雅", HomeFragment.jieqi_name, time));
-//        playList.add(new LivePlayItemInfo("942", R.mipmap.live_listnotdatebg, "北戴河一日游", "張謙", HomeFragment.jieqi_name, time));
-        PlayListAdapter mAdapter = new PlayListAdapter(mContext, playList, liveSeleStatus);
-        playView.setAdapter(mAdapter);
-        playView.setVisibility(View.VISIBLE);
-        layout_notlive.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void BackVideoListSuccess(LivePushDataInfo responseBean) {
-        String time = DatesUtils.getInstance().getNowTime("yyyy-MM-dd HH:mm:ss");
-        playList = new ArrayList<>();
-        playList.add(new LivePlayItemInfo("113", R.mipmap.zhang, "生命呵护计划-海南调研", "张秋利", HomeFragment.jieqi_name, time));
-        playList.add(new LivePlayItemInfo("128767", R.mipmap.yun, "国际大数据与数据科学进展主题论坛", "云莉雅", HomeFragment.jieqi_name, time));
-        playView.setVisibility(View.GONE);
-        layout_notlive.setVisibility(View.VISIBLE);
-
+        page = backPage;
+        checkLoadOver(size);
+        ListUtils.getInstance().RefreshCompleteG(playView);
     }
 
     @Override
     public void Error() {
-
+        RefreshComplete();
+        checkLoadOver(0);
     }
 
+    private void RefreshComplete() {
+        ListUtils.getInstance().RefreshCompleteG(playView);
+        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
+    }
+
+    private void checkLoadOver(int size) {
+        Log.e("checkLoadOver", "" + mAdapter.getCount() + "  " + page * pageSize);
+        if (size < pageSize) {
+            ScrowUtil.gridViewDownConfig(playView);
+            if (size > 0 || (page > 1 && size >= 0)) {
+//                showNoMoreData(true);
+            }
+        } else {
+            ScrowUtil.gridViewConfigAll(playView);
+        }
+    }
+
+    /**
+     * @param flag true:显示footer；false 不显示footer
+     */
+    public void showNoMoreData(boolean flag) {
+        if (layout_notlive != null) {
+            if (flag) {
+                layout_notlive.setVisibility(View.VISIBLE);
+            } else {
+                layout_notlive.setVisibility(View.GONE);
+            }
+        }
+    }
 
     private void back() {
         doFinish();

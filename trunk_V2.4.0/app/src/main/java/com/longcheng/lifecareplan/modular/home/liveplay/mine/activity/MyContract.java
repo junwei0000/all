@@ -3,7 +3,6 @@ package com.longcheng.lifecareplan.modular.home.liveplay.mine.activity;
 import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 
 /**
  * 作者：MarkShuai
@@ -14,8 +13,6 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 
 public interface MyContract {
     interface View extends BaseView<Presenter> {
-        void BackPlayListSuccess(LivePushDataInfo responseBean);
-        void BackVideoListSuccess(LivePushDataInfo responseBean);
         void Error();
     }
 

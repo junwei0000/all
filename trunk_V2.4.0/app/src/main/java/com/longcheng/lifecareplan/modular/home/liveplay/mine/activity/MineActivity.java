@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
-import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.AllFragment;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.ComingFragment;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.PendingFragment;
@@ -217,15 +216,6 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     }
 
 
-    @Override
-    public void BackPlayListSuccess(LivePushDataInfo responseBean) {
-
-    }
-
-    @Override
-    public void BackVideoListSuccess(LivePushDataInfo responseBean) {
-
-    }
 
     @Override
     public void Error() {
