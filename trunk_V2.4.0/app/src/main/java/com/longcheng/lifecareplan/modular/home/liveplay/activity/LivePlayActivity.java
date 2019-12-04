@@ -1,12 +1,10 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
@@ -27,9 +25,11 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
+import com.tencent.rtmp.ITXLivePlayListener;
+import com.tencent.rtmp.TXLiveConstants;
+import com.tencent.rtmp.TXLivePlayer;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -107,9 +107,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void initView(View view) {
-        relat_push.setVisibility(View.GONE);
+        layoutNotlive.setVisibility(View.GONE);
         Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), true);
-
     }
 
     public void setListener() {
@@ -135,105 +134,91 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         });
     }
 
+
     @Override
     public void initDataAfter() {
+        initPlay();
         String city = new LocationUtils().getAddressCity(this);
         String live_room_id = getIntent().getStringExtra("live_room_id");
         mPresent.getLivePlayInfo(live_room_id);
     }
 
-    private MediaPlayer mediaPlayer;
-    private SurfaceHolder surfaceHolder;
+    TXLivePlayer mLivePlayer;
+
+    private void initPlay() {
+        //创建 player 对象
+        mLivePlayer = new TXLivePlayer(mActivity);
+        //关键 player 对象与界面 view
+        mLivePlayer.setPlayerView(mSurfaceView);
+        // 设置填充模式
+        mLivePlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
+        mLivePlayer.setPlayListener(new ITXLivePlayListener() {
+            @Override
+            public void onPlayEvent(int event, Bundle param) {
+                if (event == TXLiveConstants.PLAY_EVT_PLAY_END) {
+                    stopPlay();
+                } else if (event == TXLiveConstants.PLAY_ERR_NET_DISCONNECT) {
+                    ToastUtils.showToast(R.string.net_tishi);
+                }
+            }
+
+            @Override
+            public void onNetStatus(Bundle status) {
+                Log.d(TAG, "Current status, CPU:" + status.getString(TXLiveConstants.NET_STATUS_CPU_USAGE) +
+                        ", RES:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH) + "*" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT) +
+                        ", SPD:" + status.getInt(TXLiveConstants.NET_STATUS_NET_SPEED) + "Kbps" +
+                        ", FPS:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_FPS) +
+                        ", ARA:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE) + "Kbps" +
+                        ", VRA:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE) + "Kbps");
+            }
+        });
+    }
 
     /**
      * 播放视频
      */
-    private void palyVideo(String filePath) {
-        //surfaceHolder可以通过surfaceview的getHolder()方法获得
-        surfaceHolder = mSurfaceView.getHolder();
-        //给surfaceHolder设置一个callback
-        surfaceHolder.addCallback(new SHCallBack());
-        mediaPlayer = new MediaPlayer();
-        try {
-            //设置要播放的资源，可以是文件、文件路径、或者URL
-            mediaPlayer.setDataSource(this, Uri.parse(filePath));
-            //调用MediaPlayer.prepare()来准备
-            mediaPlayer.prepare();
-            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    //调用MediaPlayer.start()来播放视频
-                    mediaPlayer.start();
-                    mediaPlayer.setLooping(true);
-                    if (relat_push != null) {
-                        relat_push.setVisibility(View.VISIBLE);
-                        layoutNotlive.setVisibility(View.GONE);
-                    }
-                    Log.i("MyCallBack", "setOnPreparedListener");
-                }
-            });
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    //视频正常播放完成时触发
-                    if (relat_push != null) {
-                        relat_push.setVisibility(View.GONE);
-                        layoutNotlive.setVisibility(View.VISIBLE);
-                    }
-                    Log.i("MyCallBack", "onCompletion");
-                }
-            });
-            mediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
-                @Override
-                public void onSeekComplete(MediaPlayer mp) {
-                    Log.i("MyCallBack", "onSeekComplete");
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void palyVideo(String playurl) {
+        mLivePlayer.startPlay(playurl, TXLivePlayer.PLAY_TYPE_LIVE_FLV); //推荐 FLV 成熟度高、高并发无压力
     }
 
     private void stopPlay() {
-        if (mediaPlayer != null) {
-            if (mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
-            }
-            mediaPlayer.release();
+        if (mLivePlayer != null) {
+            mLivePlayer.stopRecord();
+            mLivePlayer.setPlayListener(null);
+            mLivePlayer.stopPlay(true);
         }
     }
 
-    private class SHCallBack implements SurfaceHolder.Callback {
-        /**
-         * 在SurfaceHolder被创建的时候回调，
-         * 在这里可以做一些初始化的操作
-         *
-         * @param holder
-         */
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
-            //调用MediaPlayer.setDisplay(holder)设置surfaceHolder，surfaceHolder可以通过surfaceview的getHolder()方法获得
-            mediaPlayer.setDisplay(holder);
-            Log.d("MyCallBack", "surfaceCreated");
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mLivePlayer != null) {
+            // 暂停
+            mLivePlayer.pause();
         }
+    }
 
-        /**
-         * 当SurfaceHolder的尺寸发生变化的时候被回调
-         *
-         * @param holder
-         * @param format
-         * @param width
-         * @param height
-         */
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            Log.d("MyCallBack", "surfaceChanged");
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mLivePlayer != null) {
+            // 继续
+            mLivePlayer.resume();
         }
+    }
 
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
-            Log.d("MyCallBack", "surfaceDestroyed");
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mLivePlayer != null) {
+            mLivePlayer.stopPlay(true);
+            mLivePlayer = null;
         }
+        if (mSurfaceView != null) {
+            mSurfaceView.onDestroy();
+            mSurfaceView = null;
+        }
+        Log.d(TAG, "vrender onDestroy");
     }
 
     @Override
@@ -259,7 +244,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         if (mLiveDetailInfo != null) {
             LiveDetailItemInfo PlayUrl = mLiveDetailInfo.getPlayUrl();
             if (PlayUrl != null) {
-                String playurl = PlayUrl.getRtmpurl();
+                String playurl = PlayUrl.getFlvurl();
                 palyVideo(playurl);
             }
             LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
