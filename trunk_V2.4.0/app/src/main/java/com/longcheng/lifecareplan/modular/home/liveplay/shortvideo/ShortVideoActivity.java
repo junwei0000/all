@@ -1,9 +1,18 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,14 +25,18 @@ import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushActivit
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.BaseScrollPickerView;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.RecordMode;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.RecordState;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.StringScrollPicker;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.utils.AblumUtils;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -91,6 +104,12 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
      * 录制状态，开始、暂停、录制中,只是针对UI变化
      */
     private RecordState recordState = RecordState.READY;
+    String cover_url;
+    String city;
+    double phone_user_latitude;
+    double phone_user_longitude;
+    String cost;
+    LocationUtils mLocationUtils;
 
     @Override
     public void onClick(View view) {
@@ -117,7 +136,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                 updateRecordBtnView();
                 break;
             case R.id.iv_thumb:
-                ToastUtils.showToast("请选择图片");
+                mAblumUtils.onAddAblumClick();
                 break;
             case R.id.tv_livestart:
                 mPresent.getUserLiveStatus();
@@ -167,18 +186,21 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                     layoutShortVideo.setVisibility(View.GONE);
                     layoutLive.setVisibility(View.VISIBLE);
                     recordMode = RecordMode.live;
-                    String city = new LocationUtils().getAddressCity(mContext);
+                    if (mLocationUtils == null) {
+                        mLocationUtils = new LocationUtils();
+                    }
+                    city = mLocationUtils.getAddressCity(mContext);
+                    double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
+                    phone_user_latitude = mLngAndLat[0];
+                    phone_user_longitude = mLngAndLat[1];
                     tvLivecity.setText("" + city);
                 }
             }
         });
     }
 
-    private void getLivePush() {
-        LivePushActivity.startActivity(this, "", "ceshi");
-    }
-
     TXLivePusher mLivePusher;
+    AblumUtils mAblumUtils;
 
     @Override
     public void initDataAfter() {
@@ -198,6 +220,8 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
 
         layoutLivetitle.getBackground().setAlpha(50);
         layoutLivecity.getBackground().setAlpha(50);
+        mAblumUtils = new AblumUtils(this, mHandler, UPDATEABLUM);
+        mAblumUtils.setCropStaus(false);
     }
 
     /**
@@ -230,10 +254,61 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
 
 
     @Override
-    public void getUserLiveStatusSuccess(BasicResponse responseBean) {
+    public void applyLiveSuccess(BasicResponse responseBean) {
+
+    }
+
+
+    @Override
+    public void editAvatarSuccess(EditDataBean responseBean) {
+        String status = responseBean.getStatus();
+        if (status.equals("200")) {
+            cover_url= responseBean.getData();
+        } else {
+            ToastUtils.showToast(responseBean.getMsg());
+        }
+    }
+
+    @Override
+    public void openRoomPaySuccess(BasicResponse<LiveStatusInfo> responseBean) {
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
+            LiveStatusInfo mLiveStatusInfo=  responseBean.getData();
+            if(mLiveStatusInfo!=null){
+                String pushUrl=mLiveStatusInfo.getPushUrl();
+                String live_room_id=mLiveStatusInfo.getLive_room_id();
+                LivePushActivity.startActivity(this, pushUrl, live_room_id);
+            }
+        }else{
+            ToastUtils.showToast("" + responseBean.getMsg());
+        }
+    }
 
+    @Override
+    public void getUserLiveStatusSuccess(BasicResponse<LiveStatusInfo> responseBean) {
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            LiveStatusInfo mLiveStatusInfo = (LiveStatusInfo) responseBean.getData();
+            if (mLiveStatusInfo != null) {
+                int status = mLiveStatusInfo.getStatus();
+                if (status == 1) {
+                    int is_charge = mLiveStatusInfo.getIs_charge();//是否收费 1：收费 2：免费
+                    cost = mLiveStatusInfo.getCost();
+                    if (TextUtils.isEmpty(cost)) {
+                        cost = "0";
+                    }
+                    if (is_charge == 1) {
+                        showPopupWindow();
+                    } else if (is_charge == 2) {
+                        mHandler.sendEmptyMessage(openRoomPay);
+                    }
+
+                } else if (status == -1) {
+                    ToastUtils.showToast("申请已驳回");
+                } else {
+                    ToastUtils.showToast("申请审核中");
+                }
+            }
         } else if (errcode == -1) {
             ToastUtils.showToast("" + responseBean.getMsg());
             Intent intent = new Intent(mActivity, ApplyXieYiActitvty.class);
@@ -294,6 +369,101 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
             previewView.onDestroy(); // 销毁 View
         }
         super.onDestroy();
+    }
+
+    TextView tvskb;
+    MyDialog selectDialog;
+
+    public void showPopupWindow() {
+        if (selectDialog == null) {
+            selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_live_pay);// 创建Dialog并设置样式主题
+            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = selectDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.showBottomDialog);
+            selectDialog.show();
+            WindowManager m = mActivity.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth(); //宽度设置为屏幕
+            selectDialog.getWindow().setAttributes(p); //设置生效
+            tvskb = (TextView) selectDialog.findViewById(R.id.tvskb);
+            TextView tv_cancel = (TextView) selectDialog.findViewById(R.id.tv_cancel);
+            TextView tv_sure = (TextView) selectDialog.findViewById(R.id.tv_sure);
+            tv_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
+                }
+            });
+            tv_sure.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
+                    mHandler.sendEmptyMessage(openRoomPay);
+                }
+            });
+        } else {
+            selectDialog.show();
+        }
+        tvskb.setText("" + cost);
+    }
+
+    /*
+     * 调用相册
+     */
+    protected static final int UPDATEABLUM = 3;
+    protected static final int SETRESULT = 4;
+    protected static final int openRoomPay = 5;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case openRoomPay:
+                    if (TextUtils.isEmpty(cover_url)) {
+                        ToastUtils.showToast("请选择封面图");
+                        break;
+                    }
+                    String title = tvLivetitle.getText().toString();
+                    if (TextUtils.isEmpty(title)) {
+                        ToastUtils.showToast("请输入直播主题");
+                        break;
+                    }
+                    mPresent.openRoomPay(title, cover_url, city, phone_user_longitude, phone_user_latitude, cost);
+                    break;
+                case UPDATEABLUM:
+                    Bitmap mBitmap = (Bitmap) msg.obj;
+                    ivThumb.setImageBitmap(mBitmap);
+                    //上传头像
+                    String file = mAblumUtils.Bitmap2StrByBase64(mBitmap);
+                    mPresent.uploadImg(file);
+                    break;
+                case SETRESULT:
+                    int requestCode = msg.arg1;
+                    int resultCode = msg.arg2;
+                    Intent data = (Intent) msg.obj;
+                    mAblumUtils.setResult(requestCode, resultCode, data);
+                    break;
+            }
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            if (requestCode == mAblumUtils.RESULTCAMERA || requestCode == mAblumUtils.RESULTGALLERY
+                    || requestCode == mAblumUtils.RESULTCROP) {
+                Message msgMessage = new Message();
+                msgMessage.arg1 = requestCode;
+                msgMessage.arg2 = resultCode;
+                msgMessage.obj = data;
+                msgMessage.what = SETRESULT;
+                mHandler.sendMessage(msgMessage);
+                msgMessage = null;
+            }
+        } catch (Exception e) {
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

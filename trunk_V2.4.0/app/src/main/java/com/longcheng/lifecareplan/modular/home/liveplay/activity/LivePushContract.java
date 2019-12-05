@@ -5,8 +5,10 @@ import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,14 @@ import java.util.ArrayList;
 
 public interface LivePushContract {
     interface View extends BaseView<Presenter> {
-        void getUserLiveStatusSuccess(BasicResponse responseBean);
+        void applyLiveSuccess(BasicResponse responseBean);
+
+        void editAvatarSuccess(EditDataBean responseBean);
+
+        void openRoomPaySuccess(BasicResponse<LiveStatusInfo> responseBean);
+
+        void getUserLiveStatusSuccess(BasicResponse<LiveStatusInfo> responseBean);
+
         void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean);
 
         void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage);

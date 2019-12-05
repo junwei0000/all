@@ -26,8 +26,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.BaseActivity;
+import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
@@ -40,10 +47,11 @@ import com.tencent.rtmp.TXLivePusher;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
-public class LivePushActivity extends BaseActivity {
+public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View {
 
     @BindView(R.id.preview_view)
     TXCloudVideoView mPusherView;
@@ -87,16 +95,17 @@ public class LivePushActivity extends BaseActivity {
     private static final String URL_KEY = "pushUrl_key";
     private String mPushUrl = null;
     boolean rankOpenStatus = false;
+    String live_room_id;
 
     @Override
     public void onClick(View view) {
 
     }
 
-    public static void startActivity(Activity activity, String url, String playTitle) {
+    public static void startActivity(Activity activity, String url, String live_room_id) {
         Intent intent = new Intent(activity, LivePushActivity.class);
         intent.putExtra(URL_KEY, url);
-        intent.putExtra("playTitle", playTitle);
+        intent.putExtra("live_room_id", live_room_id);
         activity.startActivity(intent);
     }
 
@@ -147,13 +156,11 @@ public class LivePushActivity extends BaseActivity {
         fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
         Intent intent = getIntent();
         mPushUrl = intent.getStringExtra(URL_KEY);
-        String playTitle = intent.getStringExtra("playTitle");
-        if (!TextUtils.isEmpty(playTitle)) {
-            fragTvPlaystatus.setText("直播中: " + playTitle);
-        }
         initPusher();
         initListener();
         startRTMPPush();
+        live_room_id = intent.getStringExtra("live_room_id");
+        mPresent.getLivePlayInfo(live_room_id);
     }
 
     /**
@@ -181,7 +188,6 @@ public class LivePushActivity extends BaseActivity {
      * 初始化 SDK 推流器
      */
     private void initPusher() {
-        mPushUrl = "rtmp://tuitx.lifecareplan.cn/live/tuitx109?txSecret=330817e67dc88bad3aa297a5c5a545ba&txTime=5DE75628";
         mLivePusher = new TXLivePusher(this);
         mLivePushConfig = new TXLivePushConfig();
         mLivePushConfig.setVideoEncodeGop(5);
@@ -296,6 +302,7 @@ public class LivePushActivity extends BaseActivity {
             ToastUtils.showToast("直播信息获取失败");
             return false;
         }
+        ToastUtils.showToast("开始直播");
         mIsPushing = true;
         return true;
     }
@@ -319,6 +326,68 @@ public class LivePushActivity extends BaseActivity {
 
     private void setCameraSwitch() {
         mLivePusher.switchCamera();
+    }
+
+    @Override
+    public void applyLiveSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void editAvatarSuccess(EditDataBean responseBean) {
+
+    }
+
+    @Override
+    public void openRoomPaySuccess(BasicResponse<LiveStatusInfo> responseBean) {
+
+    }
+
+    @Override
+    public void getUserLiveStatusSuccess(BasicResponse<LiveStatusInfo> responseBean) {
+
+    }
+
+    @Override
+    public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            LiveDetailInfo mLiveDetailInfo = responseBean.getData();
+            if (mLiveDetailInfo != null) {
+                LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
+                if (info != null) {
+                    fragTvCity.setText("" + info.getAddress());
+                    fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
+                }
+            }
+        } else {
+            ToastUtils.showToast("" + responseBean.getMsg());
+        }
+    }
+
+    @Override
+    public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
+
+    }
+
+    @Override
+    public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
+
+    }
+
+    @Override
+    public void Error() {
+
+    }
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void dismissDialog() {
+
     }
 
     /**
@@ -490,6 +559,11 @@ public class LivePushActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    @Override
+    protected LivePushPresenterImp<LivePushContract.View> createPresent() {
+        return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
+    }
+
     /**
      * 初始化电话监听、系统是否打开旋转监听
      */
@@ -572,6 +646,7 @@ public class LivePushActivity extends BaseActivity {
 
 
     private void back() {
+        mPresent.setLiveRoomBroadcastStatus(live_room_id, 2);
         // 如果正在推流，先停止推流，再退出
         if (mIsPushing) {
             stopRTMPPush();

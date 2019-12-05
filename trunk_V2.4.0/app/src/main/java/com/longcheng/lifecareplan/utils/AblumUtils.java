@@ -3,15 +3,6 @@
  */
 package com.longcheng.lifecareplan.utils;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.utils.myview.MyDialog;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,10 +19,19 @@ import android.util.Base64;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
+
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * @author 作者：zoc
@@ -169,8 +169,8 @@ public class AblumUtils {
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         // 裁剪后输出图片的尺寸大小
-        intent.putExtra("outputX", 200);
-        intent.putExtra("outputY", 200);
+        intent.putExtra("outputX", 600);
+        intent.putExtra("outputY", 600);
         // 图片格式
 //        intent.putExtra("outputFormat", "JPEG");
 //        intent.putExtra("return-data", true);// true:不返回uri，false：返回uri
@@ -237,6 +237,15 @@ public class AblumUtils {
         return img;
     }
 
+    /**
+     * 是否剪切
+     */
+    boolean cropStaus = true;
+
+    public void setCropStaus(boolean cropStaus) {
+        this.cropStaus = cropStaus;
+    }
+
     public final int RESULTCAMERA = 11;// 拍照
     public final int RESULTGALLERY = 22;// 相册
     public final int RESULTCROP = 33;// 剪切
@@ -251,7 +260,6 @@ public class AblumUtils {
                 tempFile = new File(picturePath);
                 crop(uri);
             }
-
         } else if (requestCode == RESULTCAMERA && resultCode == Activity.RESULT_OK) {
             if (hasSdcard()) {
                 mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mUriPath));

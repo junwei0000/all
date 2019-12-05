@@ -8,6 +8,7 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.utils.LogUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import org.json.JSONException;
 
@@ -57,6 +58,7 @@ public abstract class DefaultObserver<T extends BasicResponse> implements Observ
 //            onFail(response);
             String message = response.getMsg();
             ToastUtils.showToast(message);
+            LoadingDialogAnim.dismiss(activity);
         }
     }
 

@@ -18,12 +18,15 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -215,7 +218,22 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
 
     @Override
-    public void getUserLiveStatusSuccess(BasicResponse responseBean) {
+    public void applyLiveSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void editAvatarSuccess(EditDataBean responseBean) {
+
+    }
+
+    @Override
+    public void openRoomPaySuccess(BasicResponse<LiveStatusInfo> responseBean) {
+
+    }
+
+    @Override
+    public void getUserLiveStatusSuccess(BasicResponse<LiveStatusInfo> responseBean) {
 
     }
 
@@ -226,9 +244,41 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
-        VideoDataInfo mVideoDataInfo = responseBean.getData();
-        if (mVideoDataInfo != null) {
-            ArrayList<VideoItemInfo> mList = mVideoDataInfo.getLiveRoomList();
+        ListUtils.getInstance().RefreshCompleteG(playView);
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            VideoDataInfo mVideoDataInfo = responseBean.getData();
+            if (mVideoDataInfo != null) {
+                ArrayList<VideoItemInfo> mList = mVideoDataInfo.getLiveRoomList();
+                int size = mList == null ? 0 : mList.size();
+                if (backPage == 1) {
+                    mAllList.clear();
+                    mAdapter = null;
+//            showNoMoreData(false);
+                }
+                if (size > 0) {
+                    mAllList.addAll(mList);
+                }
+                if (mAdapter == null) {
+                    mAdapter = new PlayListAdapter(mContext, mList, liveSeleStatus);
+                    playView.setAdapter(mAdapter);
+                } else {
+                    mAdapter.reloadListView(mList, false);
+                }
+                page = backPage;
+                checkLoadOver(size);
+            }
+        } else {
+            ToastUtils.showToast("" + responseBean.getMsg());
+        }
+    }
+
+    @Override
+    public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
+        ListUtils.getInstance().RefreshCompleteG(playView);
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            ArrayList<VideoItemInfo> mList = responseBean.getData();
             int size = mList == null ? 0 : mList.size();
             if (backPage == 1) {
                 mAllList.clear();
@@ -246,31 +296,9 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             }
             page = backPage;
             checkLoadOver(size);
-            ListUtils.getInstance().RefreshCompleteG(playView);
-        }
-    }
-
-    @Override
-    public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
-        ArrayList<VideoItemInfo> mList = responseBean.getData();
-        int size = mList == null ? 0 : mList.size();
-        if (backPage == 1) {
-            mAllList.clear();
-            mAdapter = null;
-//            showNoMoreData(false);
-        }
-        if (size > 0) {
-            mAllList.addAll(mList);
-        }
-        if (mAdapter == null) {
-            mAdapter = new PlayListAdapter(mContext, mList, liveSeleStatus);
-            playView.setAdapter(mAdapter);
         } else {
-            mAdapter.reloadListView(mList, false);
+            ToastUtils.showToast("" + responseBean.getMsg());
         }
-        page = backPage;
-        checkLoadOver(size);
-        ListUtils.getInstance().RefreshCompleteG(playView);
     }
 
     @Override

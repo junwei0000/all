@@ -197,6 +197,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "user/editAvatar")
     Observable<EditThumbDataBean> editAvatar(@Field("user_id") String user_id, @Field("file") String file, @Field("token") String token);
+    @FormUrlEncoded
+    @POST(Config.VERSION + "user/uploadImg")
+    Observable<EditDataBean> uploadImg(@Field("user_id") String user_id, @Field("file") String file, @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "user/editPolitical")

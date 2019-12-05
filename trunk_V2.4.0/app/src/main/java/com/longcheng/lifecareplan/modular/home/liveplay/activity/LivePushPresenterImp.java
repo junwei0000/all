@@ -1,17 +1,23 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
+import android.util.Log;
+
+import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.apiLive.ApiLive;
+import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.http.api.DefaultBackObserver;
-import com.longcheng.lifecareplan.http.api.DefaultObserver;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.ArrayList;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -37,11 +43,36 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     }
 
     /**
-     * 用户申请直播详情
+     * 开播支付寿康宝
      */
-    public void getUserLiveStatus() {
+    public void openRoomPay(String title, String cover_url, String address, double lon, double lat, String price) {
         mView.showDialog();
-        ApiLive.getInstance().service.getUserLiveStatus(UserUtils.getUserId(mContext))
+        ApiLive.getInstance().service.openRoomPay(UserUtils.getUserId(mContext)
+                , title, cover_url, address, lon, lat, price)
+                .compose(mContext.<BasicResponse<LiveStatusInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse<LiveStatusInfo>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<LiveStatusInfo> response) {
+                        mView.dismissDialog();
+                        mView.openRoomPaySuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 用户申请直播
+     */
+    public void applyLive() {
+        mView.showDialog();
+        ApiLive.getInstance().service.applyLive(UserUtils.getUserId(mContext))
                 .compose(mContext.<BasicResponse>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,7 +80,77 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     @Override
                     public void onSuccess(BasicResponse response) {
                         mView.dismissDialog();
+                        mView.applyLiveSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    public void uploadImg(String file) {
+        mView.showDialog();
+        Log.e("Observable", "file:  " + file);
+        Observable<EditDataBean> observable = Api.getInstance().service.uploadImg(UserUtils.getUserId(mContext), file, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
+                    @Override
+                    public void accept(EditDataBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        mView.editAvatarSuccess(responseBean);
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.Error();
+                        Log.e("Observable", throwable.toString());
+                    }
+                });
+
+    }
+
+    /**
+     * 用户申请直播详情
+     */
+    public void getUserLiveStatus() {
+        mView.showDialog();
+        ApiLive.getInstance().service.getUserLiveStatus(UserUtils.getUserId(mContext))
+                .compose(mContext.<BasicResponse<LiveStatusInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse<LiveStatusInfo>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<LiveStatusInfo> response) {
+                        mView.dismissDialog();
                         mView.getUserLiveStatusSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 直播间设置状态
+     */
+    public void setLiveRoomBroadcastStatus(String live_room_id, int broadcast_status) {
+        mView.showDialog();
+        ApiLive.getInstance().service.setLiveRoomBroadcastStatus(UserUtils.getUserId(mContext), live_room_id, broadcast_status)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
                     }
 
                     @Override
@@ -69,7 +170,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                 .compose(mContext.<BasicResponse<LiveDetailInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DefaultObserver<BasicResponse<LiveDetailInfo>>(mContext) {
+                .subscribe(new DefaultBackObserver<BasicResponse<LiveDetailInfo>>(mContext) {
                     @Override
                     public void onSuccess(BasicResponse<LiveDetailInfo> response) {
                         mView.dismissDialog();
@@ -94,7 +195,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                 .compose(mContext.<BasicResponse<VideoDataInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DefaultObserver<BasicResponse<VideoDataInfo>>(mContext) {
+                .subscribe(new DefaultBackObserver<BasicResponse<VideoDataInfo>>(mContext) {
                     @Override
                     public void onSuccess(BasicResponse<VideoDataInfo> response) {
                         mView.dismissDialog();
@@ -119,7 +220,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                 .compose(mContext.<BasicResponse<ArrayList<VideoItemInfo>>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DefaultObserver<BasicResponse<ArrayList<VideoItemInfo>>>(mContext) {
+                .subscribe(new DefaultBackObserver<BasicResponse<ArrayList<VideoItemInfo>>>(mContext) {
                     @Override
                     public void onSuccess(BasicResponse<ArrayList<VideoItemInfo>> response) {
                         mView.dismissDialog();

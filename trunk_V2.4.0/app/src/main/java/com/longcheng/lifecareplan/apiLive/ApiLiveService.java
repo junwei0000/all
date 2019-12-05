@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.apiLive;
 
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 
@@ -36,13 +37,32 @@ public interface ApiLiveService {
                                                          @Field("page_size") int page_size);
 
     @FormUrlEncoded
+    @POST("dock/live/room/setBroadcastStatus")
+    Observable<BasicResponse> setLiveRoomBroadcastStatus(@Field("user_id") String user_id,
+                                                         @Field("live_room_id") String live_room_id,
+                                                         @Field("broadcast_status") int broadcast_status);
+
+    @FormUrlEncoded
     @POST("dock/live/room/info")
     Observable<BasicResponse<LiveDetailInfo>> getLivePlayInfo(@Field("live_room_id") String live_room_id);
 
     @FormUrlEncoded
     @POST("dock/live/user/info")
-    Observable<BasicResponse> getUserLiveStatus(@Field("user_id") String user_id);
+    Observable<BasicResponse<LiveStatusInfo>> getUserLiveStatus(@Field("user_id") String user_id);
 
+    @FormUrlEncoded
+    @POST("dock/live/user/apply")
+    Observable<BasicResponse> applyLive(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("dock/live/room/pay")
+    Observable<BasicResponse<LiveStatusInfo>> openRoomPay(@Field("user_id") String user_id,
+                                                          @Field("title") String title,
+                                                          @Field("cover_url") String cover_url,
+                                                          @Field("address") String address,
+                                                          @Field("lon") double lon,
+                                                          @Field("lat") double lat,
+                                                          @Field("price") String price);
 }
 
 

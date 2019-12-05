@@ -18,8 +18,10 @@ import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
@@ -237,24 +239,44 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
 
     @Override
-    public void getUserLiveStatusSuccess(BasicResponse responseBean) {
+    public void applyLiveSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void editAvatarSuccess(EditDataBean responseBean) {
+
+    }
+
+    @Override
+    public void openRoomPaySuccess(BasicResponse<LiveStatusInfo> responseBean) {
+
+    }
+
+    @Override
+    public void getUserLiveStatusSuccess(BasicResponse<LiveStatusInfo> responseBean) {
 
     }
 
     @Override
     public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {
-        LiveDetailInfo mLiveDetailInfo = responseBean.getData();
-        if (mLiveDetailInfo != null) {
-            LiveDetailItemInfo PlayUrl = mLiveDetailInfo.getPlayUrl();
-            if (PlayUrl != null) {
-                String playurl = PlayUrl.getFlvurl();
-                palyVideo(playurl);
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            LiveDetailInfo mLiveDetailInfo = responseBean.getData();
+            if (mLiveDetailInfo != null) {
+                LiveDetailItemInfo PlayUrl = mLiveDetailInfo.getPlayUrl();
+                if (PlayUrl != null) {
+                    String playurl = PlayUrl.getFlvurl();
+                    palyVideo(playurl);
+                }
+                LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
+                if (info != null) {
+                    fragTvCity.setText("" + info.getAddress());
+                    fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
+                }
             }
-            LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
-            if (info != null) {
-                fragTvCity.setText("" + info.getAddress());
-                fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
-            }
+        } else {
+            ToastUtils.showToast("" + responseBean.getMsg());
         }
     }
 

@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/moren_new"
                 app:riv_border_color="@color/transparent"
                 app:riv_border_width="0dp"
                 app:riv_corner_radius_top_left="3dp"
