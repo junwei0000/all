@@ -6,6 +6,5 @@
 
     <include layout="@layout/live_push" />
 
-    <include layout="@layout/live_play_notdata" />
 
 </RelativeLayout>

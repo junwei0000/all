@@ -70,8 +70,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     TXCloudVideoView mSurfaceView;
     @BindView(R.id.relat_push)
     RelativeLayout relat_push;
-    @BindView(R.id.layout_notlive)
-    LinearLayout layoutNotlive;
+    @BindView(R.id.iv_notLive)
+    ImageView iv_notLive;
     @BindView(R.id.frag_tv_follow)
     TextView fragTvFollow;
     @BindView(R.id.frag_tv_sharenum)
@@ -108,11 +108,11 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void initView(View view) {
-        layoutNotlive.setVisibility(View.GONE);
         Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), true);
     }
 
     public void setListener() {
+        iv_notLive.setVisibility(View.VISIBLE);
         btnLiwu.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         btnCamera.setVisibility(View.GONE);
@@ -155,10 +155,14 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         mLivePlayer.setPlayListener(new ITXLivePlayListener() {
             @Override
             public void onPlayEvent(int event, Bundle param) {
-                if (event == TXLiveConstants.PLAY_EVT_PLAY_END) {
+                Log.e("onPlayEvent", "event=" + event + " ;;param==" + param.toString());
+                if (event == TXLiveConstants.PLAY_EVT_PLAY_BEGIN) {
+                    iv_notLive.setVisibility(View.GONE);
+                } else if (event == TXLiveConstants.PLAY_EVT_PLAY_END) {
                     stopPlay();
                 } else if (event == TXLiveConstants.PLAY_ERR_NET_DISCONNECT) {
                     ToastUtils.showToast(R.string.net_tishi);
+                    iv_notLive.setVisibility(View.VISIBLE);
                 }
             }
 

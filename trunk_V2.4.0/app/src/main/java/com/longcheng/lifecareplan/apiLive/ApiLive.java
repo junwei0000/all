@@ -1,22 +1,11 @@
 package com.longcheng.lifecareplan.apiLive;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.longcheng.lifecareplan.api.ApiDns;
-import com.longcheng.lifecareplan.api.ApiService;
-import com.longcheng.lifecareplan.api.CustomGsonConverterFactory;
-import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.config.Config;
-import com.longcheng.lifecareplan.modular.mine.set.activity.NotServiceActivity;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -84,7 +73,7 @@ public class ApiLive {
 
         retrofit = new Retrofit.Builder()
                 .client(client)
-                .addConverterFactory(CustomGsonConverterFactory.create())
+                .addConverterFactory(CustomGsonConverterFactoryL.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(Config.LIVE_BASE_URL)
                 .build();
