@@ -3,6 +3,9 @@ package com.longcheng.lifecareplan.modular.home.liveplay.mine.activity;
 import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
 
 /**
  * 作者：MarkShuai
@@ -13,6 +16,11 @@ import com.longcheng.lifecareplan.base.BaseView;
 
 public interface MyContract {
     interface View extends BaseView<Presenter> {
+        void getMineInfoSuccess(BasicResponse<MineItemInfo> responseBean);
+
+        void updateShowTitleSuccess(BasicResponse responseBean);
+
+        void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean,int back_page);
         void Error();
     }
 

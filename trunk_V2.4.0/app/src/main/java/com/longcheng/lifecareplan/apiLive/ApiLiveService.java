@@ -6,6 +6,8 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
 
 import java.util.ArrayList;
 
@@ -63,6 +65,34 @@ public interface ApiLiveService {
                                                           @Field("lon") double lon,
                                                           @Field("lat") double lat,
                                                           @Field("price") String price);
+
+
+    @FormUrlEncoded
+    @POST("dock/user/user/index")
+    Observable<BasicResponse<MineItemInfo>> getMineInfo(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("dock/user/user/changeShowTitle")
+    Observable<BasicResponse> updateShowTitle(@Field("user_id") String user_id,
+                                              @Field("show_title") String show_title);
+
+    @FormUrlEncoded
+    @POST("dock/user/user/myShortVideoList")
+    Observable<BasicResponse<MVideoDataInfo>> getMineVideoList(@Field("user_id") String user_id,
+                                                               @Field("page") int page,
+                                                               @Field("page_size") int page_size);
+
+    @FormUrlEncoded
+    @POST("dock/user/user/myLiveList")
+    Observable<BasicResponse<MVideoDataInfo>> getMineLiveList(@Field("user_id") String user_id,
+                                                              @Field("page") int page,
+                                                              @Field("page_size") int page_size);
+
+    @FormUrlEncoded
+    @POST("dock/user/user/myFollowList")
+    Observable<BasicResponse<MVideoDataInfo>> getMineFollowList(@Field("user_id") String user_id,
+                                                                @Field("page") int page,
+                                                                @Field("page_size") int page_size);
 }
 
 

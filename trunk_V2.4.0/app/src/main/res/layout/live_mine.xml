@@ -74,14 +74,17 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_showtitle"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp20"
         android:background="@drawable/corners_bg_black"
         android:gravity="center"
+        android:singleLine="true"
+        android:hint="走心的自我介绍获得更多关注，点击添加"
         android:padding="@dimen/padd_imgtextleftright"
-        android:text="走心的自我介绍获得更多关注，点击添加"
         android:textColor="@color/text_noclick_color"
+        android:textColorHint="@color/text_noclick_color"
         android:textSize="@dimen/text_dp12_size" />
 
     <include layout="@layout/line" />

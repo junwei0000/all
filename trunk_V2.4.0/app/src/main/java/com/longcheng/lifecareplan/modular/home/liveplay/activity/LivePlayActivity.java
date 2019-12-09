@@ -161,7 +161,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 } else if (event == TXLiveConstants.PLAY_EVT_PLAY_END) {
                     stopPlay();
                 } else if (event == TXLiveConstants.PLAY_ERR_NET_DISCONNECT) {
-                    ToastUtils.showToast(R.string.net_tishi);
+                    ToastUtils.showToast("直播已断开");
                     iv_notLive.setVisibility(View.VISIBLE);
                 }
             }

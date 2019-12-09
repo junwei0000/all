@@ -3,18 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/date_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
         android:fastScrollEnabled="false"
         android:gravity="center"
-        android:horizontalSpacing="@dimen/dp3"
         android:listSelector="@drawable/list_notselector"
-        android:numColumns="3"
-        android:scrollbars="none"
-        android:verticalSpacing="@dimen/dp2" />
+        android:scrollbars="none" />
 
     <include layout="@layout/live_play_notdata" />
 </RelativeLayout>

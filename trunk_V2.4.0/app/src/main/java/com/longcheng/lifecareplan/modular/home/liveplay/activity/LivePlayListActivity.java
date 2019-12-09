@@ -275,7 +275,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
-        ListUtils.getInstance().RefreshCompleteG(playView);
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
             ArrayList<VideoItemInfo> mList = responseBean.getData();
@@ -299,6 +298,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
+        RefreshComplete();
     }
 
     @Override
