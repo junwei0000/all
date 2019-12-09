@@ -1,6 +1,8 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -11,12 +13,14 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.home.liveplay.activity.LiveSuperPlayActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.adapter.MyLiveListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -64,11 +68,18 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mAllList != null && mAllList.size() > 0 && (position - 1) < mAllList.size()) {
-//                    Intent intent = new Intent(mContext, OrderDetailActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    intent.putExtra("order_id", mAllList.get(position - 1).getCover_url());
-//                    startActivity(intent);
-//                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    String Rebroadcast_url = mAllList.get(position - 1).getRebroadcast_url();
+//                    Rebroadcast_url="http://vodtx.lifecareplan.cn/4698c81fvodcq1252035083/47cd3f7d5285890796399672630/playlist.m3u8";
+                    if (TextUtils.isEmpty(Rebroadcast_url)) {
+                        ToastUtils.showToast("播放地址错误");
+                    } else {
+                        Intent intent = new Intent(mContext, LiveSuperPlayActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("live_room_id", mAllList.get(position - 1).getLive_room_id());
+                        intent.putExtra("Rebroadcast_url", Rebroadcast_url);
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                    }
                 }
             }
         });
@@ -125,6 +136,7 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
 
     @Override
     public void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
+        ListUtils.getInstance().RefreshCompleteL(dateListview);
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
             MVideoDataInfo mVideoDataInfo = responseBean.getData();
@@ -151,7 +163,7 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
-        RefreshComplete();
+        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
     }
 
     @Override

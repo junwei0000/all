@@ -126,6 +126,7 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 
     @Override
     public void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
+        ListUtils.getInstance().RefreshCompleteL(dateListview);
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
             MVideoDataInfo mVideoDataInfo = responseBean.getData();
@@ -152,7 +153,7 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
-        RefreshComplete();
+        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
     }
 
     @Override

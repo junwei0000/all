@@ -10,7 +10,9 @@
         android:fadeScrollbars="false"
         android:fastScrollEnabled="false"
         android:gravity="center"
-        android:listSelector="@drawable/list_notselector"
+        android:background="@color/white"
+        android:cacheColorHint="@color/page_bg"
+        android:divider="@null"
         android:scrollbars="none" />
 
     <include layout="@layout/live_play_notdata" />

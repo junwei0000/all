@@ -4,7 +4,12 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/live_push" />
+    <com.tencent.liteav.demo.play.SuperPlayerView
+        android:id="@+id/preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/live_push_fr" />
 
 
 </RelativeLayout>

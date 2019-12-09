@@ -4,7 +4,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/line" />
 
     <RelativeLayout
         style="@style/view_padd"
@@ -64,5 +63,6 @@
             android:textSize="@dimen/text_dp12_size" />
     </RelativeLayout>
 
+    <include layout="@layout/line" />
 
 </LinearLayout>

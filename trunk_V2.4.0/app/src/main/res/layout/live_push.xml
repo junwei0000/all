@@ -9,16 +9,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/iv_notLive"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:visibility="gone"
-        android:src="@mipmap/pause_publish" />
-
-    <include layout="@layout/live_floatinglayer" />
-
-
-    <include layout="@layout/live_edit_data" />
+    <include layout="@layout/live_push_fr" />
 </RelativeLayout>

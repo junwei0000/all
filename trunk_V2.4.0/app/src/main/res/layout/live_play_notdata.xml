@@ -2,6 +2,7 @@
     android:id="@+id/layout_notlive"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/page_bg"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="@dimen/dp80">

@@ -154,6 +154,9 @@ dependencies {
     implementation 'com.youzanyun.open.mobile:basic:6.4.14'
     //腾讯云直播
     implementation 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release'
+    // 超级播放器弹幕集成的第三方库
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
+
 
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')

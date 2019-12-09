@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
-import android.os.Bundle;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,22 +23,24 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
-import com.tencent.rtmp.ITXLivePlayListener;
+import com.tencent.liteav.demo.play.SuperPlayerConst;
+import com.tencent.liteav.demo.play.SuperPlayerGlobalConfig;
+import com.tencent.liteav.demo.play.SuperPlayerModel;
+import com.tencent.liteav.demo.play.SuperPlayerView;
 import com.tencent.rtmp.TXLiveConstants;
-import com.tencent.rtmp.TXLivePlayer;
-import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 
 /**
- * 直播
+ * 超级播放器--点播
  */
-public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View {
+public class LiveSuperPlayActivity extends BaseActivityMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -66,7 +69,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     ImageView btnCamera;
 
     @BindView(R.id.preview_view)
-    TXCloudVideoView mSurfaceView;
+    SuperPlayerView mSuperPlayerView;
     @BindView(R.id.iv_notLive)
     ImageView iv_notLive;
     @BindView(R.id.frag_tv_follow)
@@ -99,7 +102,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public int bindLayout() {
-        return R.layout.live_push;
+        return R.layout.live_superplay;
     }
 
 
@@ -108,8 +111,9 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public void setListener() {
-        iv_notLive.setVisibility(View.VISIBLE);
+        iv_notLive.setVisibility(View.GONE);
         btnLiwu.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         btnCamera.setVisibility(View.GONE);
@@ -135,89 +139,93 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void initDataAfter() {
-        initPlay();
+        String Rebroadcast_url = getIntent().getStringExtra("Rebroadcast_url");
+        palyVideo(Rebroadcast_url);
         String live_room_id = getIntent().getStringExtra("live_room_id");
         mPresent.getLivePlayInfo(live_room_id);
-    }
-
-    TXLivePlayer mLivePlayer;
-
-    private void initPlay() {
-        //创建 player 对象
-        mLivePlayer = new TXLivePlayer(mActivity);
-        //关键 player 对象与界面 view
-        mLivePlayer.setPlayerView(mSurfaceView);
-        // 设置填充模式
-        mLivePlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
-        mLivePlayer.setPlayListener(new ITXLivePlayListener() {
-            @Override
-            public void onPlayEvent(int event, Bundle param) {
-                Log.e("onPlayEvent", "event=" + event + " ;;param==" + param.toString());
-                if (event == TXLiveConstants.PLAY_EVT_PLAY_BEGIN) {
-                    iv_notLive.setVisibility(View.GONE);
-                } else if (event == TXLiveConstants.PLAY_EVT_PLAY_END) {
-                    stopPlay();
-                } else if (event == TXLiveConstants.PLAY_ERR_NET_DISCONNECT) {
-                    ToastUtils.showToast("直播已断开");
-                    iv_notLive.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onNetStatus(Bundle status) {
-                Log.d(TAG, "Current status, CPU:" + status.getString(TXLiveConstants.NET_STATUS_CPU_USAGE) +
-                        ", RES:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH) + "*" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT) +
-                        ", SPD:" + status.getInt(TXLiveConstants.NET_STATUS_NET_SPEED) + "Kbps" +
-                        ", FPS:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_FPS) +
-                        ", ARA:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE) + "Kbps" +
-                        ", VRA:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE) + "Kbps");
-            }
-        });
     }
 
     /**
      * 播放视频
      */
     private void palyVideo(String playurl) {
-        mLivePlayer.startPlay(playurl, TXLivePlayer.PLAY_TYPE_LIVE_FLV); //推荐 FLV 成熟度高、高并发无压力
-    }
+        // 播放器配置
+        SuperPlayerGlobalConfig prefs = SuperPlayerGlobalConfig.getInstance();
+        // 开启悬浮窗播放
+        prefs.enableFloatWindow = false;
+        // 设置悬浮窗的初始位置和宽高
+        SuperPlayerGlobalConfig.TXRect rect = new SuperPlayerGlobalConfig.TXRect();
+        rect.x = 0;
+        rect.y = 0;
+        rect.width = DensityUtil.screenWith(mContext);
+        rect.height = DensityUtil.screenHigh(mContext);
+        prefs.floatViewRect = rect;
+        // 播放器默认缓存个数
+        prefs.maxCacheItem = 5;
+        // 设置播放器渲染模式
+        prefs.enableHWAcceleration = true;
+        prefs.renderMode = TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN;
+        mSuperPlayerView.setPlayerViewCallback(new SuperPlayerView.OnSuperPlayerViewCallback() {
+            @Override
+            public void onStartFullScreenPlay() {
 
-    private void stopPlay() {
-        if (mLivePlayer != null) {
-            mLivePlayer.stopRecord();
-            mLivePlayer.setPlayListener(null);
-            mLivePlayer.stopPlay(true);
-        }
+            }
+
+            @Override
+            public void onStopFullScreenPlay() {
+
+            }
+
+            @Override
+            public void onClickFloatCloseBtn() {
+
+            }
+
+            @Override
+            public void onClickSmallReturnBtn() {
+
+            }
+
+            @Override
+            public void onStartFloatWindowPlay() {
+
+            }
+        });
+        final SuperPlayerModel superPlayerModelV3 = new SuperPlayerModel();
+        superPlayerModelV3.url = playurl;
+        mSuperPlayerView.playWithModel(superPlayerModelV3);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (mLivePlayer != null) {
-            // 暂停
-            mLivePlayer.pause();
-        }
+        if (mSuperPlayerView != null)
+            if (mSuperPlayerView.getPlayMode() != SuperPlayerConst.PLAYMODE_FLOAT) {
+                mSuperPlayerView.onPause();
+            }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mLivePlayer != null) {
-            // 继续
-            mLivePlayer.resume();
-        }
+        if (mSuperPlayerView != null)
+            if (mSuperPlayerView.getPlayState() == SuperPlayerConst.PLAYSTATE_PLAY) {
+                Log.i(TAG, "onResume state :" + mSuperPlayerView.getPlayState());
+                mSuperPlayerView.onResume();
+                if (mSuperPlayerView.getPlayMode() == SuperPlayerConst.PLAYMODE_FLOAT) {
+                    mSuperPlayerView.requestPlayMode(SuperPlayerConst.PLAYMODE_WINDOW);
+                }
+            }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mLivePlayer != null) {
-            mLivePlayer.stopPlay(true);
-            mLivePlayer = null;
-        }
-        if (mSurfaceView != null) {
-            mSurfaceView.onDestroy();
-            mSurfaceView = null;
+        if (mSuperPlayerView != null) {
+            mSuperPlayerView.release();
+            if (mSuperPlayerView.getPlayMode() != SuperPlayerConst.PLAYMODE_FLOAT) {
+                mSuperPlayerView.resetPlayer();
+            }
         }
         Log.d(TAG, "vrender onDestroy");
     }
@@ -265,11 +273,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         if (errcode == 0) {
             LiveDetailInfo mLiveDetailInfo = responseBean.getData();
             if (mLiveDetailInfo != null) {
-                LiveDetailItemInfo PlayUrl = mLiveDetailInfo.getPlayUrl();
-                if (PlayUrl != null) {
-                    String playurl = PlayUrl.getFlvurl();
-                    palyVideo(playurl);
-                }
                 LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
                 if (info != null) {
                     fragTvCity.setText("" + info.getAddress());
@@ -297,7 +300,6 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
 
     private void back() {
-        stopPlay();
         doFinish();
     }
 
