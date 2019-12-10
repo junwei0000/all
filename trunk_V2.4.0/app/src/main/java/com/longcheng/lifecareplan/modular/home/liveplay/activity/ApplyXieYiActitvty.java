@@ -94,6 +94,11 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
 
 
     @Override
+    public void setFollowLiveSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void applyLiveSuccess(BasicResponse responseBean) {
         int errcode = responseBean.getStatus();
         ToastUtils.showToast("" + responseBean.getMsg());

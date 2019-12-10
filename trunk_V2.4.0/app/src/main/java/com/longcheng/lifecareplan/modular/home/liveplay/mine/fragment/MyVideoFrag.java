@@ -119,6 +119,11 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 
     }
 
+    @Override
+    public void cancelFollowSuccess(BasicResponse responseBean) {
+
+    }
+
     MyVideoListAdapter mAdapter;
     ArrayList<MVideoItemInfo> mAllList = new ArrayList<>();
 

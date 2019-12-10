@@ -39,7 +39,6 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
-import com.longcheng.lifecareplan.widget.Immersive;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
 import com.tencent.rtmp.TXLivePushConfig;
@@ -83,6 +82,8 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     RelativeLayout relatPush;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.tv_onlinenum)
+    TextView tv_onlinenum;
     @BindView(R.id.frag_tv_follow)
     TextView fragTvFollow;
     @BindView(R.id.frag_tv_sharenum)
@@ -121,12 +122,13 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void initView(View view) {
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), false);
+//        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), false);
     }
 
     @Override
     public void setListener() {
         btnLiwu.setVisibility(View.GONE);
+        fragTvFollow.setVisibility(View.GONE);
         btnCamera.setOnClickListener(onClickListener);
         btnExit.setOnClickListener(onClickListener);
 //        fragLayoutRank.setOnClickListener(onClickListener);
@@ -161,6 +163,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         startRTMPPush();
         live_room_id = intent.getStringExtra("live_room_id");
         mPresent.getLivePlayInfo(live_room_id);
+        mPresent.setLiveOnlineNumber(live_room_id, 1);
     }
 
     /**
@@ -329,6 +332,11 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
+    public void setFollowLiveSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void applyLiveSuccess(BasicResponse responseBean) {
 
     }
@@ -356,6 +364,9 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
             if (mLiveDetailInfo != null) {
                 LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
                 if (info != null) {
+                    fragTvSharenum.setText("" + info.getForward_number());
+                    tv_onlinenum.setText("在线人数：" + info.getOnline_number());
+                    fragTvPlaystatus.setText("直播中：" + info.getTitle());
                     fragTvCity.setText("" + info.getAddress());
                     fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
                 }
@@ -647,11 +658,18 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     private void back() {
         mPresent.setLiveRoomBroadcastStatus(live_room_id, 2);
-        // 如果正在推流，先停止推流，再退出
-        if (mIsPushing) {
-            stopRTMPPush();
-        }
-        doFinish();
+        mPresent.setLiveOnlineNumber(live_room_id, 2);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 如果正在推流，先停止推流，再退出
+                if (mIsPushing) {
+                    stopRTMPPush();
+                }
+                doFinish();
+            }
+        }, 100);//秒后执行Runnable中的run方法
     }
 
     @Override

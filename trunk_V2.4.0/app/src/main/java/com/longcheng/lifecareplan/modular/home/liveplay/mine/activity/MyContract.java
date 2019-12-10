@@ -20,7 +20,10 @@ public interface MyContract {
 
         void updateShowTitleSuccess(BasicResponse responseBean);
 
-        void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean,int back_page);
+        void cancelFollowSuccess(BasicResponse responseBean);
+
+        void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page);
+
         void Error();
     }
 

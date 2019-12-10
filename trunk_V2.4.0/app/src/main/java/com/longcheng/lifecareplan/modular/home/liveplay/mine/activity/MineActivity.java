@@ -260,6 +260,11 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     }
 
     @Override
+    public void cancelFollowSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
 
     }

@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,7 +24,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.widget.Immersive;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.rtmp.ITXLivePlayListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -69,6 +70,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     TXCloudVideoView mSurfaceView;
     @BindView(R.id.iv_notLive)
     ImageView iv_notLive;
+    @BindView(R.id.tv_onlinenum)
+    TextView tv_onlinenum;
     @BindView(R.id.frag_tv_follow)
     TextView fragTvFollow;
     @BindView(R.id.frag_tv_sharenum)
@@ -86,6 +89,9 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 break;
             case R.id.btn_liwu:
                 ToastUtils.showToast("功能开发中...");
+                break;
+            case R.id.frag_tv_follow:
+                mPresent.setFollowLive(UserUtils.getUserId(mContext), live_room_id);
                 break;
             default:
                 break;
@@ -105,13 +111,14 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void initView(View view) {
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), true);
+//        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), true);
     }
 
     public void setListener() {
         iv_notLive.setVisibility(View.VISIBLE);
         btnLiwu.setOnClickListener(this);
         btnExit.setOnClickListener(this);
+        fragTvFollow.setOnClickListener(this);
         btnCamera.setVisibility(View.GONE);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -132,12 +139,14 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         });
     }
 
+    String live_room_id;
 
     @Override
     public void initDataAfter() {
         initPlay();
-        String live_room_id = getIntent().getStringExtra("live_room_id");
+        live_room_id = getIntent().getStringExtra("live_room_id");
         mPresent.getLivePlayInfo(live_room_id);
+        mPresent.setLiveOnlineNumber(live_room_id, 1);
     }
 
     TXLivePlayer mLivePlayer;
@@ -240,6 +249,14 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
 
     @Override
+    public void setFollowLiveSuccess(BasicResponse responseBean) {
+        if (fragTvFollow != null) {
+            fragTvFollow.setVisibility(View.GONE);
+        }
+        ToastUtils.showToast("已关注");
+    }
+
+    @Override
     public void applyLiveSuccess(BasicResponse responseBean) {
 
     }
@@ -272,6 +289,13 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 }
                 LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
                 if (info != null) {
+                    int is_user_follow = info.getIs_user_follow();
+                    if (is_user_follow != 0) {
+                        fragTvFollow.setVisibility(View.GONE);
+                    }
+                    fragTvSharenum.setText("" + info.getForward_number());
+                    tv_onlinenum.setText("在线人数：" + info.getOnline_number());
+                    fragTvPlaystatus.setText("直播中：" + info.getTitle());
                     fragTvCity.setText("" + info.getAddress());
                     fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
                 }
@@ -297,8 +321,15 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
 
     private void back() {
-        stopPlay();
-        doFinish();
+        mPresent.setLiveOnlineNumber(live_room_id, 2);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stopPlay();
+                doFinish();
+            }
+        }, 100);//秒后执行Runnable中的run方法
     }
 
     /**

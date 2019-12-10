@@ -6,6 +6,7 @@ import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.apiLive.ApiLive;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.http.api.DefaultBackObserver;
+import com.longcheng.lifecareplan.http.api.DefaultObserver;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
@@ -139,6 +140,53 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     }
 
     /**
+     * 直播- 关注
+     */
+    public void setFollowLive(String user_id, String live_room_id) {
+        mView.showDialog();
+        ApiLive.getInstance().service.setFollowLive(user_id, live_room_id)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.setFollowLiveSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 直播间设在线人数
+     */
+    public void setLiveOnlineNumber(String live_room_id, int type) {
+        mView.showDialog();
+        ApiLive.getInstance().service.setLiveOnlineNumber(UserUtils.getUserId(mContext), live_room_id, type)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
      * 直播间设置状态
      */
     public void setLiveRoomBroadcastStatus(String live_room_id, int broadcast_status) {
@@ -166,7 +214,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
      */
     public void getLivePlayInfo(String live_room_id) {
         mView.showDialog();
-        ApiLive.getInstance().service.getLivePlayInfo(live_room_id)
+        ApiLive.getInstance().service.getLivePlayInfo(UserUtils.getUserId(mContext), live_room_id)
                 .compose(mContext.<BasicResponse<LiveDetailInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

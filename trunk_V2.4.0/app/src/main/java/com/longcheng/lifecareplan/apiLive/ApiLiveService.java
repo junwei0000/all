@@ -45,8 +45,25 @@ public interface ApiLiveService {
                                                          @Field("broadcast_status") int broadcast_status);
 
     @FormUrlEncoded
+    @POST("dock/live/room/onlineNumber")
+    Observable<BasicResponse> setLiveOnlineNumber(@Field("user_id") String user_id,
+                                                  @Field("live_room_id") String live_room_id,
+                                                  @Field("type") int type);
+
+    @FormUrlEncoded
+    @POST("dock/live/room/follow")
+    Observable<BasicResponse> setFollowLive(@Field("user_id") String user_id,
+                                            @Field("live_room_id") String live_room_id);
+
+    @FormUrlEncoded
+    @POST("dock/live/room/cancelFollow")
+    Observable<BasicResponse> setCancelFollowLive(@Field("user_id") String user_id,
+                                                  @Field("follow_user_id") String follow_user_id);
+
+    @FormUrlEncoded
     @POST("dock/live/room/info")
-    Observable<BasicResponse<LiveDetailInfo>> getLivePlayInfo(@Field("live_room_id") String live_room_id);
+    Observable<BasicResponse<LiveDetailInfo>> getLivePlayInfo(@Field("user_id") String user_id,
+                                                              @Field("live_room_id") String live_room_id);
 
     @FormUrlEncoded
     @POST("dock/live/user/info")

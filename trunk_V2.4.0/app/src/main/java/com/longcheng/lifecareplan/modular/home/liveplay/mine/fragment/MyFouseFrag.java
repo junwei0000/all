@@ -1,8 +1,10 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -13,7 +15,7 @@ import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
-import com.longcheng.lifecareplan.modular.home.liveplay.mine.adapter.MyLiveListAdapter;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.adapter.MyFouseListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
@@ -59,18 +61,6 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 refreshStatus = true;
                 getList(page + 1);
-            }
-        });
-        dateListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                if (mAllList != null && mAllList.size() > 0 && (position - 1) < mAllList.size()) {
-//                    Intent intent = new Intent(mContext, OrderDetailActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    intent.putExtra("order_id", mAllList.get(position - 1).getOrder_id());
-//                    startActivity(intent);
-//                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-//                }
             }
         });
     }
@@ -121,8 +111,16 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 
     }
 
-    MyLiveListAdapter mAdapter;
-    ArrayList<MVideoItemInfo> mAllList = new ArrayList<>();
+    @Override
+    public void cancelFollowSuccess(BasicResponse responseBean) {
+        if (mAdapter != null) {
+            mAdapter.removeItem(cancelposition);
+            mAdapter.notifyDataSetChanged();
+        }
+        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
+    }
+
+    MyFouseListAdapter mAdapter;
 
     @Override
     public void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
@@ -134,15 +132,11 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
                 ArrayList<MVideoItemInfo> mList = mVideoDataInfo.getShortVideoList();
                 int size = mList == null ? 0 : mList.size();
                 if (back_page == 1) {
-                    mAllList.clear();
                     mAdapter = null;
 //            showNoMoreData(false);
                 }
-                if (size > 0) {
-                    mAllList.addAll(mList);
-                }
                 if (mAdapter == null) {
-                    mAdapter = new MyLiveListAdapter(mContext, mList);
+                    mAdapter = new MyFouseListAdapter(mContext, mList, mHandler, CANCELFOLLOW);
                     dateListview.setAdapter(mAdapter);
                 } else {
                     mAdapter.reloadListView(mList, false);
@@ -161,6 +155,21 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
         RefreshComplete();
         checkLoadOver(0);
     }
+
+    int cancelposition;
+    private final int CANCELFOLLOW = 1;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case CANCELFOLLOW:
+                    cancelposition = msg.arg1;
+                    String follow_user_id = (String) msg.obj;
+                    mPresent.setCancelFollowLive(follow_user_id);
+                    break;
+            }
+        }
+    };
 
     private void RefreshComplete() {
         ListUtils.getInstance().RefreshCompleteL(dateListview);

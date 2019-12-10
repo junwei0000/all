@@ -98,6 +98,7 @@
                 android:textSize="@dimen/text_biaoTi_size" />
 
             <TextView
+                android:id="@+id/tv_onlinenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -162,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp40"
                     android:layout_marginBottom="@dimen/dp40"
+                    android:layout_marginRight="@dimen/dp3"
                     android:gravity="center"
                     android:orientation="vertical">
 

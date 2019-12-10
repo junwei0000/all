@@ -28,7 +28,7 @@ public class LiveDetailItemInfo implements Serializable {
     private String status;
     private String broadcast_status;
     private String create_time;
-
+    private int is_user_follow;
     //playUrl
     private String rtmpurl;
     private String flvurl;
@@ -39,6 +39,14 @@ public class LiveDetailItemInfo implements Serializable {
     private String pic_url;
     private String skb;
     private String sort;
+
+    public int getIs_user_follow() {
+        return is_user_follow;
+    }
+
+    public void setIs_user_follow(int is_user_follow) {
+        this.is_user_follow = is_user_follow;
+    }
 
     public String getLive_room_id() {
         return live_room_id;

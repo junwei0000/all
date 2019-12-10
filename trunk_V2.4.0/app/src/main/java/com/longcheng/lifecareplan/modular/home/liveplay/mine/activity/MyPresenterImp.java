@@ -154,4 +154,28 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
                     }
                 });
     }
+
+    /**
+     * 直播- 取消关注
+     */
+    public void setCancelFollowLive(String follow_user_id) {
+        mView.showDialog();
+        ApiLive.getInstance().service.setCancelFollowLive(UserUtils.getUserId(mContext), follow_user_id)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.cancelFollowSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
 }

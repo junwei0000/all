@@ -114,7 +114,8 @@ public class LiveSuperPlayActivity extends BaseActivityMVP<LivePushContract.View
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     public void setListener() {
         iv_notLive.setVisibility(View.GONE);
-        btnLiwu.setOnClickListener(this);
+        fragTvFollow.setVisibility(View.GONE);
+        btnLiwu.setVisibility(View.GONE);
         btnExit.setOnClickListener(this);
         btnCamera.setVisibility(View.GONE);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -246,6 +247,11 @@ public class LiveSuperPlayActivity extends BaseActivityMVP<LivePushContract.View
         LoadingDialogAnim.dismiss(mContext);
     }
 
+
+    @Override
+    public void setFollowLiveSuccess(BasicResponse responseBean) {
+
+    }
 
     @Override
     public void applyLiveSuccess(BasicResponse responseBean) {

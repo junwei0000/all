@@ -10,7 +10,7 @@
         android:fadeScrollbars="false"
         android:fastScrollEnabled="false"
         android:gravity="center"
-        android:background="@color/white"
+        android:background="@color/page_bg"
         android:cacheColorHint="@color/page_bg"
         android:divider="@null"
         android:scrollbars="none" />

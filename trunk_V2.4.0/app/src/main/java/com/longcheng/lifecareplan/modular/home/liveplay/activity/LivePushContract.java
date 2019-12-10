@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 public interface LivePushContract {
     interface View extends BaseView<Presenter> {
+        void setFollowLiveSuccess(BasicResponse responseBean);
+
         void applyLiveSuccess(BasicResponse responseBean);
 
         void editAvatarSuccess(EditDataBean responseBean);

@@ -16,6 +16,71 @@ public class MVideoItemInfo implements Serializable {
     String live_broadcast_url;
     String rebroadcast_url;
     String broadcast_status;
+    String video_url;
+
+
+    String user_follow_id;
+    String follow_user_id;
+    String user_name;
+    String avatar;
+    String show_title;
+    int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getUser_follow_id() {
+        return user_follow_id;
+    }
+
+    public void setUser_follow_id(String user_follow_id) {
+        this.user_follow_id = user_follow_id;
+    }
+
+    public String getFollow_user_id() {
+        return follow_user_id;
+    }
+
+    public void setFollow_user_id(String follow_user_id) {
+        this.follow_user_id = follow_user_id;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getShow_title() {
+        return show_title;
+    }
+
+    public void setShow_title(String show_title) {
+        this.show_title = show_title;
+    }
+
+    public String getVideo_url() {
+        return video_url;
+    }
+
+    public void setVideo_url(String video_url) {
+        this.video_url = video_url;
+    }
 
     public String getLive_room_id() {
         return live_room_id;

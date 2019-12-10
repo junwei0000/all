@@ -68,15 +68,15 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mAllList != null && mAllList.size() > 0 && (position - 1) < mAllList.size()) {
-                    String Rebroadcast_url = mAllList.get(position - 1).getRebroadcast_url();
-//                    Rebroadcast_url="http://vodtx.lifecareplan.cn/4698c81fvodcq1252035083/47cd3f7d5285890796399672630/playlist.m3u8";
-                    if (TextUtils.isEmpty(Rebroadcast_url)) {
+                    String video_url = mAllList.get(position - 1).getVideo_url();
+//                    video_url="http://vodtx.lifecareplan.cn/4698c81fvodcq1252035083/47cd3f7d5285890796399672630/playlist.m3u8";
+                    if (TextUtils.isEmpty(video_url)) {
                         ToastUtils.showToast("播放地址错误");
                     } else {
                         Intent intent = new Intent(mContext, LiveSuperPlayActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("live_room_id", mAllList.get(position - 1).getLive_room_id());
-                        intent.putExtra("Rebroadcast_url", Rebroadcast_url);
+                        intent.putExtra("Rebroadcast_url", video_url);
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     }
@@ -128,6 +128,11 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
 
     @Override
     public void updateShowTitleSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void cancelFollowSuccess(BasicResponse responseBean) {
 
     }
 
