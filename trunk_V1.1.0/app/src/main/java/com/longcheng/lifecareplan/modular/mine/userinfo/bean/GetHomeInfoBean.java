@@ -157,6 +157,53 @@ public class GetHomeInfoBean implements Serializable {
     @SerializedName("knp_team_bind_card_url")
     private String myka_url;//我的卡包地址
 
+    private String holiday_asset;//
+    private String holiday_asset_url;//地址
+    private int is_show_holiday_asset;//是否显示 0：否 1：是
+
+    private int displayHolidayTips;//0:不展示  1：展示
+    private int displayHolidayTipsAsset;//  展示金额
+
+    public int getDisplayHolidayTips() {
+        return displayHolidayTips;
+    }
+
+    public void setDisplayHolidayTips(int displayHolidayTips) {
+        this.displayHolidayTips = displayHolidayTips;
+    }
+
+    public int getDisplayHolidayTipsAsset() {
+        return displayHolidayTipsAsset;
+    }
+
+    public void setDisplayHolidayTipsAsset(int displayHolidayTipsAsset) {
+        this.displayHolidayTipsAsset = displayHolidayTipsAsset;
+    }
+
+    public int getIs_show_holiday_asset() {
+        return is_show_holiday_asset;
+    }
+
+    public void setIs_show_holiday_asset(int is_show_holiday_asset) {
+        this.is_show_holiday_asset = is_show_holiday_asset;
+    }
+
+    public String getHoliday_asset() {
+        return holiday_asset;
+    }
+
+    public void setHoliday_asset(String holiday_asset) {
+        this.holiday_asset = holiday_asset;
+    }
+
+    public String getHoliday_asset_url() {
+        return holiday_asset_url;
+    }
+
+    public void setHoliday_asset_url(String holiday_asset_url) {
+        this.holiday_asset_url = holiday_asset_url;
+    }
+
     public String getSuper_ability() {
         return super_ability;
     }

@@ -213,7 +213,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "user/checkUserInfo")
     Observable<EditDataBean> checkUserInfo(@Field("user_id") String user_id, @Field("token") String token);
-
+    @FormUrlEncoded
+    @POST(Config.VERSION + "user/cancelHolidayTips")
+    Observable<ResponseBean> cancelHolidayTips(@Field("user_id") String user_id, @Field("token") String token);
     @FormUrlEncoded
     @POST(Config.VERSION + "user/doStarLevelRemind")
     Observable<ResponseBean> doStarLevelRemind(@Field("user_id") String user_id, @Field("token") String token);

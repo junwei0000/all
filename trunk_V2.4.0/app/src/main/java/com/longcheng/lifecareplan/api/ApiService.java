@@ -197,6 +197,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "user/editAvatar")
     Observable<EditThumbDataBean> editAvatar(@Field("user_id") String user_id, @Field("file") String file, @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "user/uploadImg")
     Observable<EditDataBean> uploadImg(@Field("user_id") String user_id, @Field("file") String file, @Field("token") String token);
@@ -239,6 +240,10 @@ public interface ApiService {
     @GET(Config.VERSION + "help/index")
     Observable<HelpIndexDataBean> getHelpInfo(@Query("user_id") String user_id,
                                               @Query("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "user/cancelHolidayTips")
+    Observable<ResponseBean> cancelHolidayTips(@Field("user_id") String user_id, @Field("token") String token);
 
     @GET(Config.VERSION + "index/actionList")
     Observable<PoActionListDataBean> getReMenActioin();

@@ -40,6 +40,33 @@
                 android:textSize="@dimen/text_biaoTi_size" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layout_jintie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_weight="3"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padd_imgtextleftright"
+                android:text="节日津贴"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/mycenter_tv_jintie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/mycenter_tv_bill"
             android:layout_width="wrap_content"
@@ -73,8 +100,8 @@
             android:layout_height="@dimen/dp17"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/dp15"
-            android:visibility="gone"
-            android:layout_marginRight="@dimen/dp15">
+            android:layout_marginRight="@dimen/dp15"
+            android:visibility="gone">
 
             <include layout="@layout/line_su" />
         </LinearLayout>
@@ -86,9 +113,9 @@
             android:gravity="center"
             android:paddingRight="@dimen/dp8"
             android:text="充值"
-            android:visibility="gone"
             android:textColor="@color/red"
-            android:textSize="@dimen/text_contents_size" />
+            android:textSize="@dimen/text_contents_size"
+            android:visibility="gone" />
     </LinearLayout>
 
     <!---->

@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -265,6 +266,11 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     @BindView(R.id.layout_publicize)
     LinearLayout layout_publicize;
 
+    @BindView(R.id.layout_jintie)
+    LinearLayout layout_jintie;
+    @BindView(R.id.mycenter_tv_jintie)
+    TextView mycenter_tv_jintie;
+
     private String is_cho;
     private String user_id;
 
@@ -302,6 +308,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         pagetopIvLeft.setVisibility(View.INVISIBLE);
         pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);
         pagetopIvRigth.setBackgroundResource(R.mipmap.usercenter_set_icon);
+        layout_jintie.setOnClickListener(this);
         usercenterRelayVolunteer.setOnClickListener(this);
         usercenterRelayDoctor.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
@@ -628,7 +635,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
-
+            case R.id.layout_jintie://节日津贴
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getHoliday_asset_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
             case R.id.mycenter_layout_smallpusher://小推手
                 ToastUtils.showToast("程序猿正在攻坚中…");
                 break;
@@ -1103,6 +1116,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (toDoctorDialog != null && toDoctorDialog.isShowing()) {
             toDoctorDialog.dismiss();
         }
+        if (mJinTieDialog != null && mJinTieDialog.isShowing()) {
+            mJinTieDialog.dismiss();
+        }
         if (LevelDialog != null && LevelDialog.isShowing()) {
             LevelDialog.dismiss();
         }
@@ -1148,6 +1164,16 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             //防止等级弹层提示后，黑屏后重新打开刷新没关闭问题
             if (toDoctorDialog != null && toDoctorDialog.isShowing()) {
                 toDoctorDialog.dismiss();
+            }
+        }
+        int displayHolidayTips = data.getDisplayHolidayTips();
+        if (displayHolidayTips != 0) {
+            Log.e("GetHomeInfoBean", "userHolidayTips");
+            showJinTieDialog();
+        } else {
+            Log.e("GetHomeInfoBean", "data");
+            if (mJinTieDialog != null && mJinTieDialog.isShowing()) {
+                mJinTieDialog.dismiss();
             }
         }
         //等级提示  2
@@ -1216,6 +1242,36 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         }
     }
 
+    TextView tv_asset;
+    MyDialog mJinTieDialog;
+
+    public void showJinTieDialog() {
+        if (mJinTieDialog == null) {
+            mJinTieDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_centerjintie);// 创建Dialog并设置样式主题
+            mJinTieDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = mJinTieDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            mJinTieDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = mJinTieDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            mJinTieDialog.getWindow().setAttributes(p); //设置生效
+            ImageView iv_xingji = (ImageView) mJinTieDialog.findViewById(R.id.iv_xingji);
+            iv_xingji.setLayoutParams(new FrameLayout.LayoutParams(p.width, (int) (p.width * 1.2327)));
+            tv_asset = (TextView) mJinTieDialog.findViewById(R.id.tv_asset);
+            iv_xingji.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mJinTieDialog.dismiss();
+                    mPresent.cancelHolidayTips(user_id);
+                }
+            });
+        } else {
+            mJinTieDialog.show();
+        }
+        tv_asset.setText("" + data.getDisplayHolidayTipsAsset() + "元");
+    }
 
     public void showLevelDialog() {
         //每次升星级都提示并传给后台已读
@@ -1710,6 +1766,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         } else {
             usercenter_layout_rebirth.setVisibility(View.VISIBLE);
         }
+        int is_show_holiday_asset = mGetHomeInfoBean.getIs_show_holiday_asset();
+        if (is_show_holiday_asset != 0) {
+            layout_jintie.setVisibility(View.VISIBLE);
+            mycenter_tv_jintie.setText("" + mGetHomeInfoBean.getHoliday_asset());
+        } else {
+            layout_jintie.setVisibility(View.GONE);
+        }
+
         String shoukangyuan = mGetHomeInfoBean.getShoukangyuan();
         mycentertopTvAwakeskb.setText(shoukangyuan);
         String dongjie = mGetHomeInfoBean.getDongjie();

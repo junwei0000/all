@@ -63,6 +63,33 @@ public class MinePresenterImp<T> extends MineContract.Present<MineContract.View>
     }
 
     /**
+     * 设置津贴弹层已读
+     *
+     * @param user_id
+     */
+    public void cancelHolidayTips(String user_id) {
+        mView.showDialog();
+        Observable<ResponseBean> observable = Api.getInstance().service.cancelHolidayTips(user_id, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<ResponseBean>() {
+                    @Override
+                    public void accept(ResponseBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        Log.e("Observable", "" + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.error();
+                        Log.e("Observable", "" + throwable.toString());
+                    }
+                });
+
+    }
+
+    /**
      * 检查用户信息完善
      *
      * @param user_id
