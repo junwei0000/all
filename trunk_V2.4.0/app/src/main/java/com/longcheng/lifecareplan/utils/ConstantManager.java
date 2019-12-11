@@ -1,9 +1,6 @@
 package com.longcheng.lifecareplan.utils;
 
-import android.app.Activity;
 import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.File;
 
@@ -117,6 +114,10 @@ public class ConstantManager {
      * 康农支付红包底部按钮通知js
      */
     public static final String BroadcastReceiver_KNP_ACTION = "BroadcastReceiver_KNP_ACTION";
+    /**
+     * 直播通知js
+     */
+    public static final String BroadcastReceiver_LIVE_ACTION = "BroadcastReceiver_LIVE_ACTION";
     /**
      * 能量列表
      */

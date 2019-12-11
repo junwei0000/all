@@ -76,6 +76,7 @@
     <LinearLayout
         android:id="@+id/frag_layout_rank"
         style="@style/text_padd_oval"
+        android:layout_width="160dp"
         android:layout_alignParentRight="true"
         android:background="@mipmap/live_beijingi_1">
 
@@ -95,6 +96,7 @@
                 android:singleLine="true"
                 android:text="礼物榜排行榜"
                 android:textColor="@color/white"
+                android:textStyle="bold"
                 android:textSize="@dimen/text_biaoTi_size" />
 
             <TextView
@@ -104,7 +106,7 @@
                 android:singleLine="true"
                 android:text="在线人数：0"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_zhu_size" />
+                android:textSize="@dimen/text_dp12_size" />
         </LinearLayout>
 
         <ImageView
@@ -123,22 +125,44 @@
 
         <ListView
             android:id="@+id/lv_rankdata"
-            android:layout_width="match_parent"
+            style="@style/view_paddlefgtright"
+            android:layout_width="160dp"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp30"
             android:layout_weight="1"
-            android:scrollbars="none"  />
+            android:background="@drawable/corners_bg_liverank"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@null"
+            android:listSelector="@drawable/list_notselector"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:scrollbars="none"
+            android:visibility="invisible" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:orientation="horizontal">
 
             <ListView
                 android:id="@+id/lv_msg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp30"
                 android:layout_weight="1"
+                android:listSelector="@drawable/list_notselector"
+                android:background="@color/transparent"
+                android:cacheColorHint="@color/transparent"
+                android:divider="@null"
+                android:dividerHeight="@dimen/dp10"
+                android:fadeScrollbars="false"
+                android:stackFromBottom="true"
+                android:transcriptMode="alwaysScroll"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
                 android:scrollbars="none" />
 
             <LinearLayout
@@ -162,8 +186,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp40"
-                    android:layout_marginBottom="@dimen/dp40"
                     android:layout_marginRight="@dimen/dp3"
+                    android:layout_marginBottom="@dimen/dp40"
                     android:gravity="center"
                     android:orientation="vertical">
 

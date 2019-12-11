@@ -140,6 +140,30 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     }
 
     /**
+     * 直播间-评论
+     */
+    public void setLComment(String live_room_id, String content) {
+        mView.showDialog();
+        ApiLive.getInstance().service.setLComment(UserUtils.getUserId(mContext), live_room_id, content)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.sendLCommentSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
      * 直播- 关注
      */
     public void setFollowLive(String user_id, String live_room_id) {
@@ -208,7 +232,26 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+    /**
+     * 直播添加转发数量
+     */
+    public void addForwardNumber(String live_room_id) {
+        ApiLive.getInstance().service.addForwardNumber(UserUtils.getUserId(mContext), live_room_id)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.sendLCommentSuccess(response);
+                    }
 
+                    @Override
+                    public void onError() {
+                        mView.Error();
+                    }
+                });
+    }
     /**
      * 获取直播间详情
      */

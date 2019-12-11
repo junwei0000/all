@@ -138,6 +138,11 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
     }
 
     @Override
+    public void sendLCommentSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void Error() {
 
     }

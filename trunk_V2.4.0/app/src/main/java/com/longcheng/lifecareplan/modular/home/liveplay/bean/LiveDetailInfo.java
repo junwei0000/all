@@ -13,6 +13,25 @@ public class LiveDetailInfo implements Serializable {
     private ArrayList<LiveDetailItemInfo> gift;
     private LiveDetailItemInfo playUrl;
 
+    private ArrayList<LiveDetailItemInfo> ranking;
+    private ArrayList<LiveDetailItemInfo> comment;
+
+    public ArrayList<LiveDetailItemInfo> getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(ArrayList<LiveDetailItemInfo> ranking) {
+        this.ranking = ranking;
+    }
+
+    public ArrayList<LiveDetailItemInfo> getComment() {
+        return comment;
+    }
+
+    public void setComment(ArrayList<LiveDetailItemInfo> comment) {
+        this.comment = comment;
+    }
+
     public LiveDetailItemInfo getInfo() {
         return info;
     }

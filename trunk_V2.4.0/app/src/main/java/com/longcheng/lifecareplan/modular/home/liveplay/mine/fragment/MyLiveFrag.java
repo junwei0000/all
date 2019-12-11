@@ -69,13 +69,12 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mAllList != null && mAllList.size() > 0 && (position - 1) < mAllList.size()) {
                     String video_url = mAllList.get(position - 1).getVideo_url();
-//                    video_url="http://vodtx.lifecareplan.cn/4698c81fvodcq1252035083/47cd3f7d5285890796399672630/playlist.m3u8";
                     if (TextUtils.isEmpty(video_url)) {
                         ToastUtils.showToast("播放地址错误");
                     } else {
                         Intent intent = new Intent(mContext, LiveSuperPlayActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("live_room_id", mAllList.get(position - 1).getLive_room_id());
+                        intent.putExtra("title", mAllList.get(position - 1).getTitle());
                         intent.putExtra("Rebroadcast_url", video_url);
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());

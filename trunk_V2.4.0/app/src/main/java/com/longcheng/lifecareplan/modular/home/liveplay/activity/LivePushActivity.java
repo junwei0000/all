@@ -3,7 +3,10 @@ package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,8 +30,12 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
+import com.longcheng.lifecareplan.modular.home.liveplay.adapter.CommentListAdapter;
+import com.longcheng.lifecareplan.modular.home.liveplay.adapter.RankListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
@@ -36,9 +43,11 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
+import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
 import com.tencent.rtmp.TXLivePushConfig;
@@ -47,6 +56,7 @@ import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import butterknife.BindView;
 
@@ -97,6 +107,8 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     private String mPushUrl = null;
     boolean rankOpenStatus = false;
     String live_room_id;
+    ShareUtils mShareUtils;
+    String title, User_name, Cover_url;
 
     @Override
     public void onClick(View view) {
@@ -131,7 +143,9 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         fragTvFollow.setVisibility(View.GONE);
         btnCamera.setOnClickListener(onClickListener);
         btnExit.setOnClickListener(onClickListener);
-//        fragLayoutRank.setOnClickListener(onClickListener);
+        fragLayoutRank.setOnClickListener(onClickListener);
+        lvRankdata.getBackground().setAlpha(50);
+        fragLayoutShare.setOnClickListener(this);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -141,7 +155,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     if (!TextUtils.isEmpty(edtContent.getText().toString().trim())) {
                         String content = edtContent.getText().toString().trim();
                         edtContent.setText("");
-                        ToastUtils.showToast("功能开发中...");
+                        mPresent.setLComment(live_room_id, content);
                     }
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     return true;
@@ -162,10 +176,32 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         initListener();
         startRTMPPush();
         live_room_id = intent.getStringExtra("live_room_id");
-        mPresent.getLivePlayInfo(live_room_id);
         mPresent.setLiveOnlineNumber(live_room_id, 1);
+        initTimer();
     }
-
+    Thread thread;
+    /**
+     * 开始计时
+     */
+    private void initTimer() {
+        if (thread == null) {
+            thread = new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    while (true) {
+                        try {
+                            mHandler.sendEmptyMessage(updateView);
+                            Thread.sleep(10000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+            thread.start();
+        }
+    }
     /**
      * **********************************腾讯云直播设置************************************************
      */
@@ -364,11 +400,25 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
             if (mLiveDetailInfo != null) {
                 LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
                 if (info != null) {
+                    title = info.getTitle();
+                    User_name = info.getUser_name();
+                    Cover_url = info.getCover_url();
                     fragTvSharenum.setText("" + info.getForward_number());
                     tv_onlinenum.setText("在线人数：" + info.getOnline_number());
-                    fragTvPlaystatus.setText("直播中：" + info.getTitle());
+                    fragTvPlaystatus.setText("直播中：" + title);
                     fragTvCity.setText("" + info.getAddress());
                     fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
+                }
+                ArrayList<LiveDetailItemInfo> comment = mLiveDetailInfo.getComment();
+                if (comment != null && comment.size() > 0) {
+                    Collections.reverse(comment);//这行就是将list的内容反转，下面再装进adapter里，就可以倒序显示了
+                    CommentListAdapter mCommentListAdapter = new CommentListAdapter(mActivity, comment);
+                    lvMsg.setAdapter(mCommentListAdapter);
+                }
+                ArrayList<LiveDetailItemInfo> ranklist = mLiveDetailInfo.getRanking();
+                if (ranklist != null && ranklist.size() > 0) {
+                    RankListAdapter mCAdapter = new RankListAdapter(mActivity, ranklist);
+                    lvRankdata.setAdapter(mCAdapter);
                 }
             }
         } else {
@@ -387,9 +437,29 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
-    public void Error() {
-
+    public void sendLCommentSuccess(BasicResponse responseBean) {
+        mHandler.sendEmptyMessage(updateView);
     }
+
+    @Override
+    public void Error() {
+    }
+
+    protected static final int updateView = 5;
+    protected static final int addForwardNum = 6;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case updateView:
+                    mPresent.getLivePlayInfo(live_room_id);
+                    break;
+                case addForwardNum:
+                    mPresent.addForwardNumber(live_room_id);
+                    break;
+            }
+        }
+    };
 
     @Override
     public void showDialog() {
@@ -562,6 +632,12 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void onDestroy() {
+        unregisterReceiver(mReceiver);
+        BaoZhangActitvty.shareBackType = "";
+        BaoZhangActitvty.life_repay_id = "";
+        if (thread != null) {
+            mHandler.removeCallbacks(thread);
+        }
         stopRTMPPush(); // 停止推流
         if (mPusherView != null) {
             mPusherView.onDestroy(); // 销毁 View
@@ -595,24 +671,6 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     /**
      * *******************************************************************************
      */
-    @SuppressLint("HandlerLeak")
-    Handler mHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case BoEditPopupUtils.CONTENT:
-                    break;
-                case BoEditPopupUtils.SENDLIWU:
-                    break;
-                case BoEditPopupUtils.CAMERA:
-                    setCameraSwitch();
-                    break;
-                case BoEditPopupUtils.EXIT:
-                    back();
-                    break;
-            }
-        }
-    };
-
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -636,6 +694,18 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                         rankOpenStatus = true;
                     }
                     setRankListOpenStatus();
+                    break;
+                case R.id.frag_layout_share:
+                    //分享
+                    if (mShareUtils == null) {
+                        mShareUtils = new ShareUtils(mActivity);
+                    }
+                    BaoZhangActitvty.shareBackType = "Live";
+                    BaoZhangActitvty.life_repay_id = "Live";
+                    String wx_share_url = Config.BASE_HEAD_URL + "/home/app/index";
+                    if (!TextUtils.isEmpty(wx_share_url)) {
+                        mShareUtils.setShare("直播中：" + title, Cover_url, wx_share_url, User_name);
+                    }
                     break;
                 default:
                     break;
@@ -679,4 +749,26 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         }
         return false;
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConstantManager.BroadcastReceiver_LIVE_ACTION);
+        registerReceiver(mReceiver, filter);
+    }
+
+    /**
+     * 微信支付回调广播
+     */
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int errCode = intent.getIntExtra("errCode", 0);
+            if (errCode == 10000) {
+                mHandler.sendEmptyMessage(addForwardNum);
+            }
+        }
+    };
+
 }

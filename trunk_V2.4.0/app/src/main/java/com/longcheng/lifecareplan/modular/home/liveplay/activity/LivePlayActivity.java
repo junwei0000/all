@@ -1,7 +1,13 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,7 +21,11 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.home.liveplay.adapter.CommentListAdapter;
+import com.longcheng.lifecareplan.modular.home.liveplay.adapter.RankListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
@@ -23,7 +33,9 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.rtmp.ITXLivePlayListener;
@@ -32,6 +44,7 @@ import com.tencent.rtmp.TXLivePlayer;
 import com.tencent.rtmp.ui.TXCloudVideoView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import butterknife.BindView;
 
@@ -53,6 +66,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     LinearLayout fragLayoutCity;
     @BindView(R.id.frag_layout_rank)
     LinearLayout fragLayoutRank;
+    @BindView(R.id.rank_iv_arrow)
+    ImageView rank_iv_arrow;
     @BindView(R.id.btn_exit)
     ImageView btnExit;
     @BindView(R.id.lv_rankdata)
@@ -81,6 +96,11 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     @BindView(R.id.layout_gn)
     LinearLayout layoutGn;
 
+    boolean isPlaying = false;
+    boolean rankOpenStatus = false;
+    ShareUtils mShareUtils;
+    String title, User_name, Cover_url;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -93,8 +113,40 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
             case R.id.frag_tv_follow:
                 mPresent.setFollowLive(UserUtils.getUserId(mContext), live_room_id);
                 break;
+            case R.id.frag_layout_rank:
+                if (rankOpenStatus) {
+                    rankOpenStatus = false;
+                } else {
+                    rankOpenStatus = true;
+                }
+                setRankListOpenStatus();
+                break;
+            case R.id.frag_layout_share:
+                //分享
+                if (mShareUtils == null) {
+                    mShareUtils = new ShareUtils(mActivity);
+                }
+                BaoZhangActitvty.shareBackType = "Live";
+                BaoZhangActitvty.life_repay_id = "Live";
+                String wx_share_url = Config.BASE_HEAD_URL + "/home/app/index";
+                if (!TextUtils.isEmpty(wx_share_url)) {
+                    mShareUtils.setShare("直播中：" + title, Cover_url, wx_share_url, User_name);
+                }
+                break;
             default:
                 break;
+        }
+    }
+
+    private void setRankListOpenStatus() {
+        if (rankOpenStatus) {
+            rank_iv_arrow.setBackgroundResource(R.mipmap.live_jiantou_2);
+            fragLayoutRank.setBackgroundResource(R.mipmap.live_beijingi_2);
+            lvRankdata.setVisibility(View.VISIBLE);
+        } else {
+            rank_iv_arrow.setBackgroundResource(R.mipmap.live_jiantou_3);
+            fragLayoutRank.setBackgroundResource(R.mipmap.live_beijingi_1);
+            lvRankdata.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -116,10 +168,13 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     public void setListener() {
         iv_notLive.setVisibility(View.VISIBLE);
+        btnCamera.setVisibility(View.GONE);
+        lvRankdata.getBackground().setAlpha(50);
         btnLiwu.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         fragTvFollow.setOnClickListener(this);
-        btnCamera.setVisibility(View.GONE);
+        fragLayoutRank.setOnClickListener(this);
+        fragLayoutShare.setOnClickListener(this);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -129,7 +184,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     if (!TextUtils.isEmpty(edtContent.getText().toString().trim())) {
                         String content = edtContent.getText().toString().trim();
                         edtContent.setText("");
-                        ToastUtils.showToast("功能开发中...");
+                        mPresent.setLComment(live_room_id, content);
                     }
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     return true;
@@ -145,10 +200,34 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     public void initDataAfter() {
         initPlay();
         live_room_id = getIntent().getStringExtra("live_room_id");
-        mPresent.getLivePlayInfo(live_room_id);
         mPresent.setLiveOnlineNumber(live_room_id, 1);
+        initTimer();
     }
 
+    /**
+     * 开始计时
+     */
+    private void initTimer() {
+        if (thread == null) {
+            thread = new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    while (true) {
+                        try {
+                            mHandler.sendEmptyMessage(updateView);
+                            Thread.sleep(10000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+            thread.start();
+        }
+    }
+
+    Thread thread;
     TXLivePlayer mLivePlayer;
 
     private void initPlay() {
@@ -219,7 +298,12 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        unregisterReceiver(mReceiver);
+        BaoZhangActitvty.shareBackType = "";
+        BaoZhangActitvty.life_repay_id = "";
+        if (thread != null) {
+            mHandler.removeCallbacks(thread);
+        }
         if (mLivePlayer != null) {
             mLivePlayer.stopPlay(true);
             mLivePlayer = null;
@@ -229,6 +313,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
             mSurfaceView = null;
         }
         Log.d(TAG, "vrender onDestroy");
+        super.onDestroy();
     }
 
     @Override
@@ -239,6 +324,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void showDialog() {
+        if(!isPlaying)
         LoadingDialogAnim.show(mContext);
     }
 
@@ -283,7 +369,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
             LiveDetailInfo mLiveDetailInfo = responseBean.getData();
             if (mLiveDetailInfo != null) {
                 LiveDetailItemInfo PlayUrl = mLiveDetailInfo.getPlayUrl();
-                if (PlayUrl != null) {
+                if (!isPlaying && PlayUrl != null) {
+                    isPlaying = true;
                     String playurl = PlayUrl.getFlvurl();
                     palyVideo(playurl);
                 }
@@ -293,17 +380,32 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     if (is_user_follow != 0) {
                         fragTvFollow.setVisibility(View.GONE);
                     }
+                    title = info.getTitle();
+                    User_name = info.getUser_name();
+                    Cover_url = info.getCover_url();
                     fragTvSharenum.setText("" + info.getForward_number());
                     tv_onlinenum.setText("在线人数：" + info.getOnline_number());
-                    fragTvPlaystatus.setText("直播中：" + info.getTitle());
+                    fragTvPlaystatus.setText("直播中：" + title);
                     fragTvCity.setText("" + info.getAddress());
                     fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
+                }
+                ArrayList<LiveDetailItemInfo> comment = mLiveDetailInfo.getComment();
+                if (comment != null && comment.size() > 0) {
+                    Collections.reverse(comment);//这行就是将list的内容反转，下面再装进adapter里，就可以倒序显示了
+                    CommentListAdapter mCommentListAdapter = new CommentListAdapter(mActivity, comment);
+                    lvMsg.setAdapter(mCommentListAdapter);
+                }
+                ArrayList<LiveDetailItemInfo> ranklist = mLiveDetailInfo.getRanking();
+                if (ranklist != null && ranklist.size() > 0) {
+                    RankListAdapter mCAdapter = new RankListAdapter(mActivity, ranklist);
+                    lvRankdata.setAdapter(mCAdapter);
                 }
             }
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
     }
+
 
     @Override
     public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
@@ -316,9 +418,29 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
+    public void sendLCommentSuccess(BasicResponse responseBean) {
+        mHandler.sendEmptyMessage(updateView);
+    }
+
+    @Override
     public void Error() {
     }
 
+    protected static final int updateView = 5;
+    protected static final int addForwardNum = 6;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case updateView:
+                    mPresent.getLivePlayInfo(live_room_id);
+                    break;
+                case addForwardNum:
+                    mPresent.addForwardNumber(live_room_id);
+                    break;
+            }
+        }
+    };
 
     private void back() {
         mPresent.setLiveOnlineNumber(live_room_id, 2);
@@ -341,4 +463,26 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         }
         return false;
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConstantManager.BroadcastReceiver_LIVE_ACTION);
+        registerReceiver(mReceiver, filter);
+    }
+
+    /**
+     * 微信支付回调广播
+     */
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int errCode = intent.getIntExtra("errCode", 0);
+            if (errCode == 10000) {
+                mHandler.sendEmptyMessage(addForwardNum);
+            }
+        }
+    };
+
 }

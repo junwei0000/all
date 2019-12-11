@@ -40,6 +40,36 @@ public class LiveDetailItemInfo implements Serializable {
     private String skb;
     private String sort;
 
+    //comment
+    private String live_room_comment_id;
+    private int type;
+    private String content;
+
+
+    public String getLive_room_comment_id() {
+        return live_room_comment_id;
+    }
+
+    public void setLive_room_comment_id(String live_room_comment_id) {
+        this.live_room_comment_id = live_room_comment_id;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public int getIs_user_follow() {
         return is_user_follow;
     }

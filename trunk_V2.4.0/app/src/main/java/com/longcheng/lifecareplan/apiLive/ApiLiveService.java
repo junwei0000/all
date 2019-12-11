@@ -45,10 +45,21 @@ public interface ApiLiveService {
                                                          @Field("broadcast_status") int broadcast_status);
 
     @FormUrlEncoded
+    @POST("dock/live/room/addForwardNumber")
+    Observable<BasicResponse> addForwardNumber(@Field("user_id") String user_id,
+                                               @Field("live_room_id") String live_room_id);
+
+    @FormUrlEncoded
     @POST("dock/live/room/onlineNumber")
     Observable<BasicResponse> setLiveOnlineNumber(@Field("user_id") String user_id,
                                                   @Field("live_room_id") String live_room_id,
                                                   @Field("type") int type);
+
+    @FormUrlEncoded
+    @POST("dock/live/room/comment")
+    Observable<BasicResponse> setLComment(@Field("user_id") String user_id,
+                                          @Field("live_room_id") String live_room_id,
+                                          @Field("content") String content);
 
     @FormUrlEncoded
     @POST("dock/live/room/follow")

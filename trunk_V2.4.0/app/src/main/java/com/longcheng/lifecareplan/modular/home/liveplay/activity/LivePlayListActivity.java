@@ -307,6 +307,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     }
 
     @Override
+    public void sendLCommentSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void Error() {
         RefreshComplete();
         checkLoadOver(0);

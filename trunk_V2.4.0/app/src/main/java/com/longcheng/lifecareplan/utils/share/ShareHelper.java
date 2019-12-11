@@ -10,12 +10,7 @@ import android.util.Log;
 import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.mine.fragment.MineContract;
-import com.longcheng.lifecareplan.utils.BitmapUtil;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.SaveImageUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
@@ -23,8 +18,6 @@ import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
-
-import java.util.concurrent.ExecutionException;
 
 /**
  * 作者:MarkShuai
@@ -163,11 +156,15 @@ public class ShareHelper {
                 if (BaoZhangActitvty.shareBackType.equals("knpDetail")) {
                     intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE_KNPDetailPay);
                     activity.sendBroadcast(intent2);
-                }else if (BaoZhangActitvty.shareBackType.equals("lifeDetail")) {
+                } else if (BaoZhangActitvty.shareBackType.equals("lifeDetail")) {
                     intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE_lifeDetailPay);
                     activity.sendBroadcast(intent2);
                 } else if (BaoZhangActitvty.shareBackType.equals("LifeBasicDetail")) {
                     intent2.putExtra("errCode", BaoZhangActitvty.SHARETYPE_LifeBasicDetailPay);
+                    activity.sendBroadcast(intent2);
+                } else if (BaoZhangActitvty.shareBackType.equals("Live")) {
+                    intent2.setAction(ConstantManager.BroadcastReceiver_LIVE_ACTION);
+                    intent2.putExtra("errCode", 10000);
                     activity.sendBroadcast(intent2);
                 }
                 Log.e("ResponseBody", "分享成功=BaoZhangActitvty.life_repay_id=" + BaoZhangActitvty.life_repay_id);
