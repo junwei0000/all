@@ -368,7 +368,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     CertDialogUtils mCertDialogUtils;
 
     private void sendBroadcastsRefreshList() {
-        OrderListActivity.editOrderStatus=true;
+        OrderListActivity.editOrderStatus = true;
     }
 
     /**

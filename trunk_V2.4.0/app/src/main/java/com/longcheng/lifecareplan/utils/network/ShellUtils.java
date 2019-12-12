@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * @param
  * @author MarkShuai
- *         <p>
- *         blog  : http://blankj.com
+ * <p>
+ * blog  : http://blankj.com
  * @name Shell命令相关工具类
  * @time 2017/12/1 14:32
  */

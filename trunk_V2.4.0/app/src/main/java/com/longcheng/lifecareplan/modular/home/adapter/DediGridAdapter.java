@@ -165,8 +165,8 @@ public class DediGridAdapter extends BaseAdapter {
             }
             mHolder.layout_right.setVisibility(View.INVISIBLE);
         }
-       String color= mHomeItemBean.getColor();
-        if(!TextUtils.isEmpty(color)){
+        String color = mHomeItemBean.getColor();
+        if (!TextUtils.isEmpty(color)) {
             mHolder.item_tv_title.setTextColor(Color.parseColor(mHomeItemBean.getColor()));
             mHolder.item_tv_time.setTextColor(Color.parseColor(mHomeItemBean.getColor()));
         }

@@ -296,7 +296,7 @@ public class BaoZhangActitvty extends WebAct {
             @Override
             public void handler(String data, CallBackFunction function) {
                 weixinPayBackType = "LifeBasicDetailPay";
-                Log.e("registerHandler", "data=" + data+"  is_super_ability=="+is_super_ability);
+                Log.e("registerHandler", "data=" + data + "  is_super_ability==" + is_super_ability);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(data);
@@ -1426,7 +1426,7 @@ public class BaoZhangActitvty extends WebAct {
                         } else if (status.equals("200")) {
                             DetailAfterBean mDetailAfterBean = (DetailAfterBean) responseBean.getData();
                             if (mDetailAfterBean != null) {
-                                is_super_ability= mDetailAfterBean.getIs_super_ability();
+                                is_super_ability = mDetailAfterBean.getIs_super_ability();
                                 knp_sharetitle = mDetailAfterBean.getKnp_sharetitle();
                                 knp_shareurl = mDetailAfterBean.getKnp_shareurl();
                                 knp_sharePic = mDetailAfterBean.getKnp_sharePic();

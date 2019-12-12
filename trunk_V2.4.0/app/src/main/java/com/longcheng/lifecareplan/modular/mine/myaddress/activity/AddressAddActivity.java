@@ -228,7 +228,7 @@ public class AddressAddActivity extends BaseActivityMVP<AddressContract.View, Ad
     }
 
     private void sendBroadcastsRefreshList() {
-        OrderListActivity.editOrderStatus=true;
+        OrderListActivity.editOrderStatus = true;
     }
 
     @Override

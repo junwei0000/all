@@ -11,8 +11,12 @@ import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +28,7 @@ import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.CommentListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.RankListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
@@ -35,6 +40,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -100,15 +106,26 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     boolean rankOpenStatus = false;
     ShareUtils mShareUtils;
     String title, User_name, Cover_url;
+    liWuDialogUtils mliWuDialogUtils;
+    ArrayList<LiveDetailItemInfo> gift;
 
     @Override
     public void onClick(View v) {
+        ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
         switch (v.getId()) {
             case R.id.btn_exit:
                 back();
                 break;
             case R.id.btn_liwu:
-                ToastUtils.showToast("功能开发中...");
+                if (gift != null && gift.size() > 0) {
+                    if (mliWuDialogUtils == null) {
+                        mliWuDialogUtils = new liWuDialogUtils(mActivity, mHandler, liwu);
+                    }
+                    mliWuDialogUtils.setGift(gift);
+                    mliWuDialogUtils.showPopupWindow();
+                } else {
+                    ToastUtils.showToast("获取礼物信息异常");
+                }
                 break;
             case R.id.frag_tv_follow:
                 mPresent.setFollowLive(UserUtils.getUserId(mContext), live_room_id);
@@ -324,7 +341,12 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void showDialog() {
-        if(!isPlaying)
+        if (!isPlaying)
+            LoadingDialogAnim.show(mContext);
+    }
+
+    @Override
+    public void showGiftDialog() {
         LoadingDialogAnim.show(mContext);
     }
 
@@ -371,6 +393,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 LiveDetailItemInfo PlayUrl = mLiveDetailInfo.getPlayUrl();
                 if (!isPlaying && PlayUrl != null) {
                     isPlaying = true;
+                    gift = mLiveDetailInfo.getGift();
                     String playurl = PlayUrl.getFlvurl();
                     palyVideo(playurl);
                 }
@@ -423,11 +446,59 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
+    public void giveGiftSuccess(BasicResponse responseBean) {
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            mHandler.sendEmptyMessage(updateView);
+        } else {
+            setNotSkbDialog();
+        }
+    }
+
+    @Override
     public void Error() {
+    }
+
+    MyDialog selectDialog;
+
+    public void setNotSkbDialog() {
+        if (selectDialog == null) {
+            selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_livenotskb);// 创建Dialog并设置样式主题
+            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = selectDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            selectDialog.show();
+            WindowManager m = mActivity.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            selectDialog.getWindow().setAttributes(p); //设置生效
+            TextView myexit_text_off = (TextView) selectDialog.findViewById(R.id.myexit_text_off);
+            TextView myexit_text_sure = (TextView) selectDialog.findViewById(R.id.myexit_text_sure);
+            myexit_text_off.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
+                }
+            });
+            myexit_text_sure.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
+                    Intent intent = new Intent(mContext, HelpWithEnergyActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("skiptype", "Thanks");
+                    startActivity(intent);
+                }
+            });
+        } else {
+            selectDialog.show();
+        }
     }
 
     protected static final int updateView = 5;
     protected static final int addForwardNum = 6;
+    protected static final int liwu = 7;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -437,6 +508,11 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     break;
                 case addForwardNum:
                     mPresent.addForwardNumber(live_room_id);
+                    break;
+                case liwu:
+                    int help_number = msg.arg1;
+                    String live_gift_id = (String) msg.obj;
+                    mPresent.giveGift(live_room_id, live_gift_id, help_number);
                     break;
             }
         }

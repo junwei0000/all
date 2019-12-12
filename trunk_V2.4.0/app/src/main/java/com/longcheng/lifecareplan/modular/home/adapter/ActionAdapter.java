@@ -47,7 +47,7 @@ public class ActionAdapter extends BaseAdapterHelper<HomeItemBean> {
         GlideDownLoadImage.getInstance().loadCircleImageRoleREf(context, mHelpItemBean.getImg(), mHolder.item_iv_img, 0);
         mHolder.item_tv_name1.setText(mHelpItemBean.getName1());
         mHolder.item_tv_name2.setText(mHelpItemBean.getName2());
-        mHolder.item_tv_num.setText(Html.fromHtml(mHelpItemBean.getAbility_price()+"<font color=\"#939393\">生命能量</font>"));
+        mHolder.item_tv_num.setText(Html.fromHtml(mHelpItemBean.getAbility_price() + "<font color=\"#939393\">生命能量</font>"));
 
         int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 30)) / 2;
         int height = (int) (width * 0.55);

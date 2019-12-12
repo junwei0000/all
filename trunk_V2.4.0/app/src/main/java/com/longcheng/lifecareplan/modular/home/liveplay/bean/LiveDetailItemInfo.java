@@ -39,12 +39,29 @@ public class LiveDetailItemInfo implements Serializable {
     private String pic_url;
     private String skb;
     private String sort;
-
+    private int currentpage;
+    private int position;
     //comment
     private String live_room_comment_id;
     private int type;
     private String content;
 
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getPage() {
+        return currentpage;
+    }
+
+    public void setPage(int currentpage) {
+        this.currentpage = currentpage;
+    }
 
     public String getLive_room_comment_id() {
         return live_room_comment_id;

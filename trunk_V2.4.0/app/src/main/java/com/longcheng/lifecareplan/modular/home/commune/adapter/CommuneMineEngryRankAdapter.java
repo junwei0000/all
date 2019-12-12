@@ -18,6 +18,7 @@ import com.longcheng.lifecareplan.utils.myview.CircleImageView;
 import java.util.List;
 
 /**
+ *
  */
 
 public class CommuneMineEngryRankAdapter extends BaseAdapterHelper<CommuneItemBean> {

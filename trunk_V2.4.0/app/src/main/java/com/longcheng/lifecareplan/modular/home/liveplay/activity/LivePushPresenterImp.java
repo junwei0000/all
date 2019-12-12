@@ -143,7 +143,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
      * 直播间-评论
      */
     public void setLComment(String live_room_id, String content) {
-        mView.showDialog();
+        mView.showGiftDialog();
         ApiLive.getInstance().service.setLComment(UserUtils.getUserId(mContext), live_room_id, content)
                 .compose(mContext.<BasicResponse>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
@@ -232,6 +232,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
     /**
      * 直播添加转发数量
      */
@@ -252,6 +253,31 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
+    /**
+     * 直播-送礼物
+     */
+    public void giveGift(String live_room_id, String live_gift_id, int help_number) {
+        mView.showGiftDialog();
+        ApiLive.getInstance().service.giveGift(UserUtils.getUserId(mContext), live_room_id, live_gift_id, help_number)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.giveGiftSuccess(response);
+                        mView.dismissDialog();
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.Error();
+                        mView.dismissDialog();
+                    }
+                });
+    }
+
     /**
      * 获取直播间详情
      */
@@ -264,8 +290,8 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                 .subscribe(new DefaultBackObserver<BasicResponse<LiveDetailInfo>>(mContext) {
                     @Override
                     public void onSuccess(BasicResponse<LiveDetailInfo> response) {
-                        mView.dismissDialog();
                         mView.BackLiveDetailSuccess(response);
+                        mView.dismissDialog();
                     }
 
                     @Override

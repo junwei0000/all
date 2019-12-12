@@ -745,7 +745,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
      */
     private void sendBroadcastsRefreshOrderList() {
         if (is_applying_help > 0 || progress > 90) {
-            OrderListActivity.editOrderStatus=true;
+            OrderListActivity.editOrderStatus = true;
         }
     }
 

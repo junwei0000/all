@@ -18,11 +18,11 @@ import java.util.regex.Pattern;
 public class Utils {
 
     /*
-    * @params reference
-    * @name 判断是否为空的方法
-    * @data 2017/11/20 15:46
-    * @author :MarkShuai
-    */
+     * @params reference
+     * @name 判断是否为空的方法
+     * @data 2017/11/20 15:46
+     * @author :MarkShuai
+     */
     public static <T> T checkNotNull(T reference) {
         if (reference == null) {
             throw new NullPointerException();

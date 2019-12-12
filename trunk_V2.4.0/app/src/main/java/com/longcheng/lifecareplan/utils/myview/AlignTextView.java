@@ -24,11 +24,12 @@ import com.longcheng.lifecareplan.R;
  */
 
 @SuppressLint("AppCompatCustomView")
-public class AlignTextView  extends TextView {
+public class AlignTextView extends TextView {
     private float mLineSpacingMultiplier = 1.0f;
     private float mLineAdditionalVerticalPadding = 0.0f;
     private CharSequence mRealText;
     private Align mAlign = Align.ALIGN_CENTER;
+
     public AlignTextView(Context context) {
         super(context);
     }
@@ -51,6 +52,7 @@ public class AlignTextView  extends TextView {
         if (!this.isInEditMode())
             initTypedArray(context, attrs, defStyleAttr, defStyleRes);
     }
+
     public enum Align {
         ALIGN_CENTER,
         ALIGN_LEFT,
@@ -129,7 +131,7 @@ public class AlignTextView  extends TextView {
                         y = layout.getLineBottom(i);
                         if (linCount > 1 && i == linCount - 1) { //最后一行保持默认方式
                             canvas.drawText(line, 0, line.length(), layout.getParagraphLeft(i) + getPaddingLeft(), layout.getLineBottom(i), paint);
-                        }else {
+                        } else {
                             for (int j = 0; j < line.length(); j++) {
                                 if (j > 0) {
                                     x = layout.getParagraphLeft(i) + getPaddingLeft() + gap * (j - 1) + paint.measureText(line, 0, j);
@@ -140,7 +142,7 @@ public class AlignTextView  extends TextView {
                         break;
                 }
             }
-        }else {
+        } else {
             super.onDraw(canvas);
         }
     }

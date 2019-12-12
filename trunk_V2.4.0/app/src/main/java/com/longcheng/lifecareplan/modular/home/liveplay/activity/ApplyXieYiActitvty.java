@@ -89,7 +89,7 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
     @Override
     public void initDataAfter() {
         pageTopTvName.setText("直播申请");
-        webView.loadUrl(Config.BASE_HEAD_URL+"home/live/agreement");
+        webView.loadUrl(Config.BASE_HEAD_URL + "home/live/agreement");
     }
 
 
@@ -143,6 +143,11 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
     }
 
     @Override
+    public void giveGiftSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void Error() {
 
     }
@@ -150,6 +155,11 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
     @Override
     public void showDialog() {
         LoadingDialogAnim.show(mContext);
+    }
+
+    @Override
+    public void showGiftDialog() {
+
     }
 
     @Override

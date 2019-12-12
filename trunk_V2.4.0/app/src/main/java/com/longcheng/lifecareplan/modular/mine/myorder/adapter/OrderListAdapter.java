@@ -280,7 +280,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             /**
              * ***********************end*********************
              */
-        }else{
+        } else {
             mHolder.item_tv_left.setText("提现");
             mHolder.item_tv_left.setVisibility(View.VISIBLE);
             mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_redbian);
@@ -365,7 +365,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             } else if (bottom_status == 14) {
                 mutualWish();
             }
-        }else{
+        } else {
             //提现
             Message message = new Message();
             message.what = ConstantManager.ORDER_HANDLE_TiXian;

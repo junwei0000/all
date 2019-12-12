@@ -534,8 +534,8 @@ public class StickyListHeadersListView extends ListView implements
         this.drawingListUnderStickyHeader = drawingListUnderStickyHeader;
     }
 
-	
-	/* METHODS THAT NEED POSITION TRANSLATING! */
+
+    /* METHODS THAT NEED POSITION TRANSLATING! */
 
 
     private void setMultiChoiceModeListenerWrapper() {

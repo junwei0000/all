@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ *
  */
 
 public class RankAdapter extends BaseAdapterHelper<RankItemBean> {

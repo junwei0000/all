@@ -55,12 +55,12 @@ public class CommentAdapter extends BaseAdapterHelper<DetailItemBean> {
         mItemBean.setPosition(position);
         String name = mItemBean.getUser_name();
         mHolder.item_tv_name.setText(name);
-        int ability_type=mItemBean.getAbility_type();
-        String showT ="";
-        if(ability_type==1){
-              showT = "祝福了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 生命能量";
-        }else{
-              showT = "祝福了 <font color=\"#edbc25\">" + mItemBean.getPrice() + "</font> 超级生命能量";
+        int ability_type = mItemBean.getAbility_type();
+        String showT = "";
+        if (ability_type == 1) {
+            showT = "祝福了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 生命能量";
+        } else {
+            showT = "祝福了 <font color=\"#edbc25\">" + mItemBean.getPrice() + "</font> 超级生命能量";
         }
 
         mHolder.item_tv_num.setText(Html.fromHtml(showT));

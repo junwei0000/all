@@ -121,6 +121,7 @@ public class StringScrollPicker extends BaseScrollPickerView<CharSequence> {
 
     /**
      * 最大的行宽,默认为itemWidth.超过后文字自动换行
+     *
      * @param maxLineWidth
      */
     public void setMaxLineWidth(int maxLineWidth) {
@@ -129,6 +130,7 @@ public class StringScrollPicker extends BaseScrollPickerView<CharSequence> {
 
     /**
      * 最大的行宽,默认为itemWidth.超过后文字自动换行
+     *
      * @return
      */
     public Layout.Alignment getAlignment() {

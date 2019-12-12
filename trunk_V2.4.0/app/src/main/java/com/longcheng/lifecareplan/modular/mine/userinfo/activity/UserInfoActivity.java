@@ -349,7 +349,7 @@ public class UserInfoActivity extends BaseActivityMVP<UserInfoContract.View, Use
 
     /*
      * 调用相册
-	 */
+     */
     protected static final int UPDATEABLUM = 3;
     protected static final int SETRESULT = 4;
     private final int SELECTADDRESS = 1;

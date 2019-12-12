@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/corners_bg_write"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp10"
+                android:text="提示"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:text="您的寿康宝余额不足，请您多多互祝获取更多寿康宝"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/myexit_text_off"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <include layout="@layout/line_su" />
+
+            <TextView
+                android:id="@+id/myexit_text_sure"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="前往互祝"
+                android:textColor="@color/red_course"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

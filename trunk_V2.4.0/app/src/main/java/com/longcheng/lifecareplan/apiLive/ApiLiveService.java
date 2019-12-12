@@ -50,6 +50,13 @@ public interface ApiLiveService {
                                                @Field("live_room_id") String live_room_id);
 
     @FormUrlEncoded
+    @POST("dock/live/room/giveGift")
+    Observable<BasicResponse> giveGift(@Field("user_id") String user_id,
+                                       @Field("live_room_id") String live_room_id,
+                                       @Field("live_gift_id") String live_gift_id,
+                                       @Field("help_number") int help_number);
+
+    @FormUrlEncoded
     @POST("dock/live/room/onlineNumber")
     Observable<BasicResponse> setLiveOnlineNumber(@Field("user_id") String user_id,
                                                   @Field("live_room_id") String live_room_id,

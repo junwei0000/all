@@ -21,7 +21,8 @@ public class VideoItemInfo implements Serializable {
     private String video_url;
     private String create_time;
     @SerializedName(value = "follow_number", alternate = {"total_person_number"})
-    private String total_number= "0";;
+    private String total_number = "0";
+    ;
     private String status;
     private String broadcast_status;
 

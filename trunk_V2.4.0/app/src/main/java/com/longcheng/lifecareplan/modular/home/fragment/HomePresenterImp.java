@@ -41,19 +41,20 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
     LocationUtils mLocationUtils;
 
     /**
+     *
      */
     public void setListViewData() {
         if (mLocationUtils == null) {
             mLocationUtils = new LocationUtils();
         }
-        Log.e("showUpdaDialog","setListViewData");
+        Log.e("showUpdaDialog", "setListViewData");
         int version_code = ConfigUtils.getINSTANCE().getVersionCode(mContext);
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         double phone_user_latitude = mLngAndLat[0];
         double phone_user_longitude = mLngAndLat[1];
         String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
         String user_id = UserUtils.getUserId(mContext);
-        Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, version_code,phone_user_latitude,
+        Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, version_code, phone_user_latitude,
                 phone_user_longitude, phone_user_address, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -97,7 +98,7 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
     }
 
     public void getQuickTeamUrl() {
-        Observable<QuickTeamDataBean> observable = Api.getInstance().service.getQuickTeamUrl(UserUtils.getUserId(mContext),ExampleApplication.token);
+        Observable<QuickTeamDataBean> observable = Api.getInstance().service.getQuickTeamUrl(UserUtils.getUserId(mContext), ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<QuickTeamDataBean>() {

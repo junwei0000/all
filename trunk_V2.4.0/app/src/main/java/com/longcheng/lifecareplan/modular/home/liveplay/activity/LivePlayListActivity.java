@@ -211,6 +211,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     }
 
     @Override
+    public void showGiftDialog() {
+
+    }
+
+    @Override
     public void dismissDialog() {
         refreshStatus = false;
         LoadingDialogAnim.dismiss(mContext);
@@ -308,6 +313,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void sendLCommentSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void giveGiftSuccess(BasicResponse responseBean) {
 
     }
 

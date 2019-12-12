@@ -230,6 +230,7 @@ public class ScrowUtil {
             mlistview.getLoadingLayoutProxy(false, true).setReleaseLabel(ConstantManager.ReleaseUpLabel);
         }
     }
+
     /**
      * @param
      * @name 上拉下拉

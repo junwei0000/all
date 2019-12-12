@@ -102,7 +102,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
 
     @Override
     public void initView(View view) {
-        Immersive.setBarH(getActivity(),toolbar);
+        Immersive.setBarH(getActivity(), toolbar);
         tvTohelp.setOnClickListener(this);
         layoutGolf.setOnClickListener(this);
         pagetop_iv_left.setVisibility(View.GONE);
@@ -286,7 +286,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
             LinearLayout layout_cancel = (LinearLayout) VolunteerDialog.findViewById(R.id.layout_cancel);
             TextView btn_gohelp = (TextView) VolunteerDialog.findViewById(R.id.btn_gohelp);
             TextView btn_jihuo = (TextView) VolunteerDialog.findViewById(R.id.btn_jihuo);
-            TextView  tv_title= (TextView) VolunteerDialog.findViewById(R.id.tv_title);
+            TextView tv_title = (TextView) VolunteerDialog.findViewById(R.id.tv_title);
             tv_title.setText("此行动只限志愿者申请");
             tv_title.setTextColor(getResources().getColor(R.color.red));
             btn_gohelp.setVisibility(View.GONE);

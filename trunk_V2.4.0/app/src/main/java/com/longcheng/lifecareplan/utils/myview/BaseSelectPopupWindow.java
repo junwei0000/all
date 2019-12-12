@@ -83,15 +83,15 @@ public class BaseSelectPopupWindow extends PopupWindow {
         this.setBackgroundDrawable(dw);
         // mMenuView添加OnTouchListener监听判断获取触屏位置如果在选择框外面则销毁弹出框
 
-  /*
-   * popView.setOnTouchListener(new OnTouchListener() {
-   *
-   * public boolean onTouch(View v, MotionEvent event) {
-   *
-   * int height = popView.findViewById(R.id.pop_layout).getTop(); int
-   * y=(int) event.getY(); if(event.getAction()==MotionEvent.ACTION_UP){
-   * if(y<height){ dismiss(); } } return true; } });
-   */
+        /*
+         * popView.setOnTouchListener(new OnTouchListener() {
+         *
+         * public boolean onTouch(View v, MotionEvent event) {
+         *
+         * int height = popView.findViewById(R.id.pop_layout).getTop(); int
+         * y=(int) event.getY(); if(event.getAction()==MotionEvent.ACTION_UP){
+         * if(y<height){ dismiss(); } } return true; } });
+         */
 
         (popView.findViewById(R.id.btn_back)).setOnClickListener(new View.OnClickListener() {
 

@@ -57,6 +57,7 @@ public abstract class BaseFragmentMVP<V, T extends BasePresent<V>> extends RxFra
 
     /**
      * 解决java.lang.IllegalStateException: Bindings already cleared.
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState

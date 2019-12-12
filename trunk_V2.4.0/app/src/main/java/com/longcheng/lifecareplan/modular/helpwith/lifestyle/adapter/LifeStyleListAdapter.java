@@ -82,7 +82,7 @@ public class LifeStyleListAdapter extends BaseAdapterHelper<LifeStyleItemBean> {
         int progress = mHelpItemBean.getProgress();
         mHolder.pb_lifeenergynum.setProgress(progress);
         mProgressUtils.showNum(progress, mHolder.pb_lifeenergynum.getMax(), mHolder.item_pb_numne);
-        ColorChangeByTime.getInstance().changeDrawableToClolor(context,mHolder.item_pb_numne,R.color.red);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_pb_numne, R.color.red);
         String showT = "已有" + ability_price_action + "寿康宝";
         mHolder.item_tv_lifeenergynum.setText(Html.fromHtml(showT));
         mHolder.item_tv_date.setText(date);

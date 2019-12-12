@@ -26,11 +26,13 @@ public class ListUtils {
         }
         return instance;
     }
+
     public void RefreshCompleteG(PullToRefreshGridView Listview) {
         if (Listview != null) {
             Listview.onRefreshComplete();
         }
     }
+
     public void RefreshCompleteL(PullToRefreshListView Listview) {
         if (Listview != null) {
             Listview.onRefreshComplete();

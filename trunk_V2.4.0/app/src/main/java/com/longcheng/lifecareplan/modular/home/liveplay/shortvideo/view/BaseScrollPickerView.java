@@ -168,7 +168,7 @@ public abstract class BaseScrollPickerView<T> extends View {
                                 int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mGestureDetector = new GestureDetector(getContext(),
-            new FlingOnGestureListener());
+                new FlingOnGestureListener());
         mScroller = new Scroller(getContext());
 
         initAnimator();
@@ -188,21 +188,21 @@ public abstract class BaseScrollPickerView<T> extends View {
     private void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs,
-                R.styleable.BaseScrollPickerView);
+                    R.styleable.BaseScrollPickerView);
 
             if (typedArray.hasValue(R.styleable.BaseScrollPickerView_spv_center_item_background)) {
                 setCenterItemBackground(
-                    typedArray.getDrawable(R.styleable.BaseScrollPickerView_spv_center_item_background));
+                        typedArray.getDrawable(R.styleable.BaseScrollPickerView_spv_center_item_background));
             }
             setVisibleItemCount(typedArray.getInt(
-                R.styleable.BaseScrollPickerView_spv_visible_item_count,
-                getVisibleItemCount()));
+                    R.styleable.BaseScrollPickerView_spv_visible_item_count,
+                    getVisibleItemCount()));
             setCenterPosition(typedArray.getInt(
-                R.styleable.BaseScrollPickerView_spv_center_item_position,
-                getCenterPosition()));
+                    R.styleable.BaseScrollPickerView_spv_center_item_position,
+                    getCenterPosition()));
             setIsCirculation(typedArray.getBoolean(R.styleable.BaseScrollPickerView_spv_is_circulation, isIsCirculation()));
             setDisallowInterceptTouch(typedArray
-                .getBoolean(R.styleable.BaseScrollPickerView_spv_disallow_intercept_touch, isDisallowInterceptTouch()));
+                    .getBoolean(R.styleable.BaseScrollPickerView_spv_disallow_intercept_touch, isDisallowInterceptTouch()));
             setHorizontal(typedArray.getInt(R.styleable.BaseScrollPickerView_spv_orientation, mIsHorizontal ? 1 : 2) == 1);
             typedArray.recycle();
         }
@@ -234,7 +234,7 @@ public abstract class BaseScrollPickerView<T> extends View {
             if (mDrawAllItem || i <= mCenterPosition + 1) {
                 // 上面的items,相对位置为 -i
                 position = mSelected - i < 0 ? size + mSelected - i
-                    : mSelected - i;
+                        : mSelected - i;
                 // 传入位置信息，绘制item
                 if (mIsCirculation) {
                     drawItem(canvas, mData, position, -i, mMoveLength, mCenterPoint + mMoveLength - i * mItemSize);
@@ -246,7 +246,7 @@ public abstract class BaseScrollPickerView<T> extends View {
             if (mDrawAllItem || i <= mVisibleItemCount - mCenterPosition) {
                 // 下面的items,相对位置为 i
                 position = mSelected + i >= size ? mSelected + i
-                    - mData.size() : mSelected + i;
+                        - mData.size() : mSelected + i;
                 // 传入位置信息，绘制item
                 if (mIsCirculation) {
                     drawItem(canvas, mData, position, i, mMoveLength, mCenterPoint + mMoveLength + i * mItemSize);
@@ -311,10 +311,10 @@ public abstract class BaseScrollPickerView<T> extends View {
         if (mCenterItemBackground != null) {
             //mCenterItemBackground.setBounds(mCenterX, mCenterY, mCenterX + mItemWidth, mCenterY + mItemHeight);
             mCenterItemBackground.setBounds(
-                mCenterX + (mItemWidth >> 1) - dip2px(5),
-                mCenterY + mItemHeight - dip2px(7),
-                mCenterX + (mItemWidth >> 1) + dip2px(5),
-                mCenterY + mItemHeight);
+                    mCenterX + (mItemWidth >> 1) - dip2px(5),
+                    mCenterY + mItemHeight - dip2px(7),
+                    mCenterX + (mItemWidth >> 1) + dip2px(5),
+                    mCenterY + mItemHeight);
         }
 
     }
@@ -472,7 +472,7 @@ public abstract class BaseScrollPickerView<T> extends View {
         if (mMoveLength >= mItemSize) {
             // 向下滑动
             // 该次滚动距离中越过的item数量
-            int span = (int)(mMoveLength / mItemSize);
+            int span = (int) (mMoveLength / mItemSize);
             mSelected -= span;
             if (mSelected < 0) {
                 // 滚动顶部，判断是否循环滚动
@@ -501,7 +501,7 @@ public abstract class BaseScrollPickerView<T> extends View {
         } else if (mMoveLength <= -mItemSize) {
             // 向上滑动
             // 该次滚动距离中越过的item数量
-            int span = (int)(-mMoveLength / mItemSize);
+            int span = (int) (-mMoveLength / mItemSize);
             mSelected += span;
             if (mSelected >= mData.size()) {
                 // 滚动末尾，判断是否循环滚动
@@ -573,19 +573,20 @@ public abstract class BaseScrollPickerView<T> extends View {
 
     /**
      * 平滑滚动
+     *
      * @param from 起始位置
-     * @param to 结束位置
+     * @param to   结束位置
      */
     private void scroll(float from, int to) {
         if (mIsHorizontal) {
-            mLastScrollX = (int)from;
+            mLastScrollX = (int) from;
             mIsMovingCenter = true;
-            mScroller.startScroll((int)from, 0, 0, 0);
+            mScroller.startScroll((int) from, 0, 0, 0);
             mScroller.setFinalX(to);
         } else {
-            mLastScrollY = (int)from;
+            mLastScrollY = (int) from;
             mIsMovingCenter = true;
-            mScroller.startScroll(0, (int)from, 0, 0);
+            mScroller.startScroll(0, (int) from, 0, 0);
             mScroller.setFinalY(to);
         }
         invalidate();
@@ -596,17 +597,17 @@ public abstract class BaseScrollPickerView<T> extends View {
      */
     private void fling(float from, float vel) {
         if (mIsHorizontal) {
-            mLastScrollX = (int)from;
+            mLastScrollX = (int) from;
             mIsFling = true;
             // 最多可以惯性滑动10个item
-            mScroller.fling((int)from, 0, (int)vel, 0, -10 * mItemWidth,
-                10 * mItemWidth, 0, 0);
+            mScroller.fling((int) from, 0, (int) vel, 0, -10 * mItemWidth,
+                    10 * mItemWidth, 0, 0);
         } else {
-            mLastScrollY = (int)from;
+            mLastScrollY = (int) from;
             mIsFling = true;
             // 最多可以惯性滑动10个item
-            mScroller.fling(0, (int)from, 0, (int)vel, 0, 0, -10 * mItemHeight,
-                10 * mItemHeight);
+            mScroller.fling(0, (int) from, 0, (int) vel, 0, 0, -10 * mItemHeight,
+                    10 * mItemHeight);
         }
         invalidate();
     }
@@ -636,8 +637,8 @@ public abstract class BaseScrollPickerView<T> extends View {
         cancelScroll();
         mIsAutoScrolling = true;
 
-        int length = (int)(speed * duration);
-        int circle = (int)(length * 1f / (mData.size() * mItemSize) + 0.5f);
+        int length = (int) (speed * duration);
+        int circle = (int) (length * 1f / (mData.size() * mItemSize) + 0.5f);
         // 圈数
         circle = circle <= 0 ? 1 : circle;
 
@@ -657,7 +658,7 @@ public abstract class BaseScrollPickerView<T> extends View {
             mAutoScrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    computeScroll((int)animation.getAnimatedValue(), end, true);
+                    computeScroll((int) animation.getAnimatedValue(), end, true);
                 }
             });
             mAutoScrollAnimator.removeAllListeners();
@@ -714,6 +715,7 @@ public abstract class BaseScrollPickerView<T> extends View {
     float autoScrollRate = 0;
 
     boolean isAnimatorRunning = false;
+
     /**
      * @param endY         　需要滚动到的位置
      * @param duration     　滚动时间
@@ -734,7 +736,7 @@ public abstract class BaseScrollPickerView<T> extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 isAnimatorRunning = true;
-                computeScroll((int)animation.getAnimatedValue(), endY, true);
+                computeScroll((int) animation.getAnimatedValue(), endY, true);
             }
         });
         mAutoScrollAnimator.addListener(new AnimatorListenerAdapter() {
@@ -743,7 +745,7 @@ public abstract class BaseScrollPickerView<T> extends View {
                 super.onAnimationEnd(animation);
                 if (isAnimatorRunning) {
                     isAnimatorRunning = false;
-                    computeScroll((int)((ValueAnimator) animation).getAnimatedValue(), endY, false);
+                    computeScroll((int) ((ValueAnimator) animation).getAnimatedValue(), endY, false);
                 }
                 mIsAutoScrolling = false;
                 mDisallowTouch = temp;
@@ -777,7 +779,7 @@ public abstract class BaseScrollPickerView<T> extends View {
     private static class SlotInterpolator implements Interpolator {
         @Override
         public float getInterpolation(float input) {
-            return (float)(Math.cos((input + 1) * Math.PI) / 2.0f) + 0.5f;
+            return (float) (Math.cos((input + 1) * Math.PI) / 2.0f) + 0.5f;
         }
     }
 
@@ -789,6 +791,7 @@ public abstract class BaseScrollPickerView<T> extends View {
     private class FlingOnGestureListener extends SimpleOnGestureListener {
 
         private boolean mIsScrollingLastTime = false;
+
         @Override
         public boolean onDown(MotionEvent e) {
             if (mDisallowInterceptTouch) {
@@ -861,7 +864,7 @@ public abstract class BaseScrollPickerView<T> extends View {
         if (data == null) {
             mData = new ArrayList<T>();
         } else {
-            this.mData = (List<T>)data;
+            this.mData = (List<T>) data;
         }
         mSelected = mData.size() >> 1;
         invalidate();
@@ -877,7 +880,7 @@ public abstract class BaseScrollPickerView<T> extends View {
 
     public void setSelectedPosition(int position) {
         if (position < 0 || position > mData.size() - 1
-            || position == mSelected) {
+                || position == mSelected) {
             return;
         }
         mSelected = position;
@@ -1009,10 +1012,10 @@ public abstract class BaseScrollPickerView<T> extends View {
         mCenterItemBackground = centerItemBackground;
         //mCenterItemBackground.setBounds(mCenterX, mCenterY, mCenterX + mItemWidth, mCenterY + mItemHeight);
         mCenterItemBackground.setBounds(
-            mCenterX + (mItemWidth >> 1) - dip2px(5),
-            mCenterY + mItemHeight - dip2px(5),
-            mCenterX + (mItemWidth >> 1) + dip2px(7),
-            mCenterY + mItemHeight);
+                mCenterX + (mItemWidth >> 1) - dip2px(5),
+                mCenterY + mItemHeight - dip2px(5),
+                mCenterX + (mItemWidth >> 1) + dip2px(7),
+                mCenterY + mItemHeight);
         invalidate();
     }
 
@@ -1105,8 +1108,9 @@ public abstract class BaseScrollPickerView<T> extends View {
     public interface OnSelectedListener {
         /**
          * selectedListener
+         *
          * @param baseScrollPickerView BaseScrollPickerView
-         * @param position position
+         * @param position             position
          */
         void onSelected(BaseScrollPickerView baseScrollPickerView, int position);
     }
@@ -1114,7 +1118,7 @@ public abstract class BaseScrollPickerView<T> extends View {
     public int dip2px(float dipValue) {
         DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
         float sDensity = metrics.density;
-        return (int)(dipValue * sDensity + 0.5F);
+        return (int) (dipValue * sDensity + 0.5F);
     }
 
     @Override

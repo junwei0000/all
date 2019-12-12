@@ -45,8 +45,8 @@ public class CertDialogUtils {
             CertificatDialog.getWindow().setAttributes(p); //设置生效
             LinearLayout layout_cancel = (LinearLayout) CertificatDialog.findViewById(R.id.layout_cancel);
             TextView btn_jihuo = (TextView) CertificatDialog.findViewById(R.id.btn_jihuo);
-            TextView tv_tishi=(TextView) CertificatDialog.findViewById(R.id.tv_tishi);
-            TextView tv_tishi2=(TextView) CertificatDialog.findViewById(R.id.tv_tishi2);
+            TextView tv_tishi = (TextView) CertificatDialog.findViewById(R.id.tv_tishi);
+            TextView tv_tishi2 = (TextView) CertificatDialog.findViewById(R.id.tv_tishi2);
             tv_tishi.setVisibility(View.GONE);
             tv_tishi2.setVisibility(View.VISIBLE);
             layout_cancel.setOnClickListener(new View.OnClickListener() {

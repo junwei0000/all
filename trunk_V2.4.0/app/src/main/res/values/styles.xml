@@ -8,6 +8,7 @@
         <item name="colorControlActivated">@color/gray</item>
         <item name="toolbarStyle">@style/MyToolbar</item>
     </style>
+
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="colorPrimary">@color/white</item><!--toolbar-->
         <item name="colorPrimaryDark">@color/white</item><!--状态栏背景-->
@@ -15,6 +16,7 @@
         <item name="colorControlActivated">@color/gray</item>
         <item name="toolbarStyle">@style/MyToolbar</item>
     </style>
+
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/white</item>
@@ -47,9 +49,11 @@
     <style name="MyCustomTabTextAppearance">
         <item name="android:textSize">15sp</item>
     </style>
+
     <style name="AlignTextView_Default">
         <item name="align">center</item>
     </style>
+
     <style name="JPushDialogStyle">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -107,6 +111,7 @@
         <!-- AppCompatEditText选择的底线颜色 -->
         <item name="colorControlActivated">@color/gray</item>
     </style>
+
     <style name="text_padd_oval">
         <item name="android:paddingTop">@dimen/dp1</item>
         <item name="android:paddingBottom">@dimen/dp1</item>
@@ -116,6 +121,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="text_padd">
         <item name="android:paddingTop">3dp</item>
         <item name="android:paddingBottom">3dp</item>
@@ -162,6 +168,17 @@
         <item name="android:paddingBottom">@dimen/padd_topbottom</item>
         <item name="android:paddingLeft">@dimen/padd_leftright</item>
         <item name="android:paddingRight">@dimen/padd_leftright</item>
+    </style>
+
+    <style name="btn_padd">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/dp8</item>
+        <item name="android:paddingBottom">@dimen/dp8</item>
+        <item name="android:paddingLeft">@dimen/dp20</item>
+        <item name="android:paddingRight">@dimen/dp20</item>
+        <item name="android:textSize">@dimen/text_biaoTi_size</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="view_marginpadd">

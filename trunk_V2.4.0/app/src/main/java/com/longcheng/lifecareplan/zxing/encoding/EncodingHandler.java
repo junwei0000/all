@@ -12,7 +12,7 @@ import java.util.Hashtable;
 
 /**
  * @author Ryan Tang
- *         生成二维码、条形码
+ * 生成二维码、条形码
  */
 public class EncodingHandler {
     private static final int BLACK = 0xff000000;

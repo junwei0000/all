@@ -172,19 +172,19 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
             activatRelatWx.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatWx.setPadding(0, 0, 0, 0);
             btnJihuo.setText("立即激活 (超级生命能量)");
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,btnJihuo,R.color.engry_btn_bg);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, btnJihuo, R.color.engry_btn_bg);
         } else if (payType == 1) {
             activatIvAccountselect.setVisibility(View.VISIBLE);
             activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatAccount.setPadding(0, 0, 0, 0);
             btnJihuo.setText("立即激活 (生命能量)");
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, btnJihuo,R.color.red);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, btnJihuo, R.color.red);
         } else if (payType == 4) {
             detailhelpIvZfbselect.setVisibility(View.VISIBLE);
             detailhelpRelatZfb.setBackgroundResource(R.drawable.corners_bg_redbian);
             detailhelpRelatZfb.setPadding(0, 0, 0, 0);
             btnJihuo.setText("立即激活 (超级生命能量)");
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,btnJihuo,R.color.engry_btn_bg);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, btnJihuo, R.color.engry_btn_bg);
         }
     }
 

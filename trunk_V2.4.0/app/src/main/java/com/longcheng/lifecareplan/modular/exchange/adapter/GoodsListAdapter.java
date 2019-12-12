@@ -28,10 +28,11 @@ public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
     Context context;
 
     ImageLoader imageLoader;
+
     public GoodsListAdapter(Context context, List<GoodsItemBean> list) {
         super(context, list);
         this.context = context;
-        imageLoader=new ImageLoader(context,"good");
+        imageLoader = new ImageLoader(context, "good");
     }
 
     @Override

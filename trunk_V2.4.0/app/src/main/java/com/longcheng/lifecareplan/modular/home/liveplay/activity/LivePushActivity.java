@@ -48,6 +48,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
 import com.tencent.rtmp.TXLivePushConfig;
@@ -179,7 +180,9 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         mPresent.setLiveOnlineNumber(live_room_id, 1);
         initTimer();
     }
+
     Thread thread;
+
     /**
      * 开始计时
      */
@@ -202,6 +205,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
             thread.start();
         }
     }
+
     /**
      * **********************************腾讯云直播设置************************************************
      */
@@ -442,6 +446,11 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
+    public void giveGiftSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void Error() {
     }
 
@@ -467,8 +476,13 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
-    public void dismissDialog() {
+    public void showGiftDialog() {
+        LoadingDialogAnim.show(mContext);
+    }
 
+    @Override
+    public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
     }
 
     /**
@@ -675,6 +689,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
             switch (view.getId()) {
                 case R.id.btn_exit:
                     back();

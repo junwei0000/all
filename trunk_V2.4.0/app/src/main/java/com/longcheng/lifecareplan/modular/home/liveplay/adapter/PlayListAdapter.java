@@ -60,7 +60,7 @@ public class PlayListAdapter extends BaseAdapterHelper<VideoItemInfo> {
             height = (int) (width * 1.54);
             moid = R.mipmap.live_listnotdatebg2;
         }
-        String url=mHelpItemBean.getCover_url();
+        String url = mHelpItemBean.getCover_url();
         GlideDownLoadImage.getInstance().loadCircleImageLive(url, moid, mHolder.item_iv_thumb, 0);
         mHolder.relat_thumb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height));
         return convertView;

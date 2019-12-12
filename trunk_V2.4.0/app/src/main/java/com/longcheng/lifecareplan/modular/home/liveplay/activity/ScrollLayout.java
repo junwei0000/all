@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.utils.myview;
+package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.content.Context;
 import android.util.AttributeSet;

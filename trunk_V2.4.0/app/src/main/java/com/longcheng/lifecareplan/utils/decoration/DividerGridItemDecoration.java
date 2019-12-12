@@ -166,9 +166,7 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
         int childCount = parent.getAdapter().getItemCount();
         if (isLastRaw(parent, itemPosition, spanCount, childCount)) {
             outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
-        } else if (isLastColum(parent, itemPosition, spanCount, childCount))
-
-        {
+        } else if (isLastColum(parent, itemPosition, spanCount, childCount)) {
             outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
         } else {
             outRect.set(0, 0, mDivider.getIntrinsicWidth(),

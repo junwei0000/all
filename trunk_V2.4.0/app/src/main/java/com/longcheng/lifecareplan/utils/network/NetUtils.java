@@ -23,21 +23,22 @@ public class NetUtils {
         }
         return false;
     }
+
     /**
      * 判断WIFI网络是否可用
      *
      * @param context
      * @return
-    */
+     */
     public static boolean isWifiConnected(Context context) {
-    if (context != null) {
-        // 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        // 获取NetworkInfo对象
-        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
-        //判断NetworkInfo对象是否为空 并且类型是否为WIFI
-        if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI)
-            return networkInfo.isAvailable();
+        if (context != null) {
+            // 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            // 获取NetworkInfo对象
+            NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+            //判断NetworkInfo对象是否为空 并且类型是否为WIFI
+            if (networkInfo != null && networkInfo.getType() == ConnectivityManager.TYPE_WIFI)
+                return networkInfo.isAvailable();
         }
         return false;
     }
@@ -74,6 +75,7 @@ public class NetUtils {
         }
         return -1;
     }
+
     /**
      * 获取当前的网络状态 ：没有网络-0：WIFI网络1：4G网络-4：3G网络-3：2G网络-2
      * 自定义
@@ -117,9 +119,11 @@ public class NetUtils {
         }
         return netType;
     }
+
     /**
      * 判断GPS是否打开
      * ACCESS_FINE_LOCATION权限
+     *
      * @param context
      * @return
      */

@@ -51,7 +51,7 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
         this.solarTermsEnsImg = solarTermsEnsImg;
     }
 
-    public void initHandle(Handler mHandler,int mHandlerId){
+    public void initHandle(Handler mHandler, int mHandlerId) {
         this.mHandler = mHandler;
         this.mHandlerId = mHandlerId;
     }

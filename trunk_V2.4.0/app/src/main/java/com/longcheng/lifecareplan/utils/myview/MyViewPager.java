@@ -32,7 +32,7 @@ public class MyViewPager extends ViewPager {
     public MyViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MyViewPager);
-         /*获取布局中设置的属性*/
+        /*获取布局中设置的属性*/
         isScroll = array.getBoolean(R.styleable.MyViewPager_isScroll, false);
         array.recycle();
     }

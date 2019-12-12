@@ -268,7 +268,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     public void editAvatarSuccess(EditDataBean responseBean) {
         String status = responseBean.getStatus();
         if (status.equals("200")) {
-            cover_url= responseBean.getData();
+            cover_url = responseBean.getData();
         } else {
             ToastUtils.showToast(responseBean.getMsg());
         }
@@ -278,13 +278,13 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     public void openRoomPaySuccess(BasicResponse<LiveStatusInfo> responseBean) {
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
-            LiveStatusInfo mLiveStatusInfo=  responseBean.getData();
-            if(mLiveStatusInfo!=null){
-                String pushUrl=mLiveStatusInfo.getPushUrl();
-                String live_room_id=mLiveStatusInfo.getLive_room_id();
+            LiveStatusInfo mLiveStatusInfo = responseBean.getData();
+            if (mLiveStatusInfo != null) {
+                String pushUrl = mLiveStatusInfo.getPushUrl();
+                String live_room_id = mLiveStatusInfo.getLive_room_id();
                 LivePushActivity.startActivity(this, pushUrl, live_room_id);
             }
-        }else{
+        } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
     }
@@ -343,6 +343,11 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     }
 
     @Override
+    public void giveGiftSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void Error() {
 
     }
@@ -350,6 +355,11 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     @Override
     public void showDialog() {
         LoadingDialogAnim.show(mContext);
+    }
+
+    @Override
+    public void showGiftDialog() {
+
     }
 
     @Override

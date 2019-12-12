@@ -77,7 +77,7 @@ public class MoneyAdapter extends BaseAdapter {
         if (is_default == 1) {//默认
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.white));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_login);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_layout_money,R.color.red);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_layout_money, R.color.red);
         } else {
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.text_contents_color));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_graybian);

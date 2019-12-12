@@ -38,6 +38,11 @@ public interface LivePushContract {
         void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage);
 
         void sendLCommentSuccess(BasicResponse responseBean);
+
+        void giveGiftSuccess(BasicResponse responseBean);
+
+        void showGiftDialog();
+
         void Error();
     }
 
