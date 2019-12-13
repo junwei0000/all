@@ -27,6 +27,9 @@ allprojects {
         maven { url "https://jitpack.io" }
         //有赞
         maven {url 'https://dl.bintray.com/youzanyun/maven/'}
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 

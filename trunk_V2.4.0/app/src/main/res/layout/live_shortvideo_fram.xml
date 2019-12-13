@@ -182,7 +182,7 @@
                         android:id="@+id/iv_thumb"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         android:src="@mipmap/live_listnotdatebg"
                         app:riv_border_color="@color/transparent"
                         app:riv_border_width="0dp"

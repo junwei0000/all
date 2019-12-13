@@ -19,6 +19,7 @@ import com.longcheng.lifecareplan.utils.UnCeHandler;
 import com.meiqia.core.callback.OnInitCallback;
 import com.meiqia.meiqiasdk.util.MQConfig;
 import com.tencent.rtmp.TXLiveBase;
+import com.tencent.ugc.TXUGCBase;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -68,12 +69,15 @@ public class ExampleApplication extends MultiDexApplication {
     }
 
     /**
-     * 初始化腾讯云直播
+     * 初始化腾讯云直播，短视频
      */
     private void initTencentLive() {
         String licenceURL = "http://license.vod2.myqcloud.com/license/v1/def2b691939d9eb3be268179c8930e67/TXLiveSDK.licence"; // 获取到的 licence url
         String licenceKey = "f7902ca622e5fd7f4b6559a455fdcc2d"; // 获取到的 licence key
         TXLiveBase.getInstance().setLicence(this, licenceURL, licenceKey);
+        TXUGCBase.getInstance().setLicence(this, licenceURL, licenceKey);
+        String sdkver = TXLiveBase.getSDKVersionStr();
+        Log.d("liteavsdk", "liteav sdk version is : " + sdkver);
     }
 
     /**

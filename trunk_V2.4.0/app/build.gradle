@@ -78,15 +78,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    //rxjava 自动匹配高版本的方法
-    packagingOptions {
-        exclude 'META-INF/rxjava.properties'
-    }
-
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
         }
+    }
+    // 集成短视频商业版需要添加 packagingOptions，非商业版不需要
+    packagingOptions {
+        pickFirst '**/libc++_shared.so'
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
@@ -98,6 +97,8 @@ android {
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/license.txt'
         exclude 'META-INF/dependencies.txt'
+        //rxjava 自动匹配高版本的方法
+        exclude 'META-INF/rxjava.properties'
     }
 }
 
@@ -111,10 +112,9 @@ greendao {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation fileTree(include: ['*.aar'], dir: 'libs')
-//    compile (name: 'alipaySdk-15.6.8-20191021122514', ext: 'aar')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -152,10 +152,10 @@ dependencies {
     //有赞
     implementation 'com.youzanyun.open.mobile:x5sdk:6.4.14'
     implementation 'com.youzanyun.open.mobile:basic:6.4.14'
-    //腾讯云直播
-    implementation 'com.tencent.liteavsdk:LiteAVSDK_Smart:latest.release'
-    // 超级播放器弹幕集成的第三方库
+    //腾讯云直播，短视频，弹幕，超级播放器
+    compile "com.tencent.liteav:LiteAVSDK_Professional:latest.release"
     compile 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
+    compile(name: 'libsuperplayer', ext: 'aar')
 
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')
