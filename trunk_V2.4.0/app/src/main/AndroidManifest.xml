@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.longcheng.lifecareplan">
 
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECORD_VIDEO" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -26,10 +29,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 允许读取SD卡数据 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <!-- ************************************************ SD卡权限 end *********************************************** -->
 
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- ************************************************ 日历 *********************************************** -->
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
@@ -38,6 +41,8 @@
 
     <!-- ************************************************ 访问照相机 *********************************************** -->
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.Camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <!-- ************************************************ 访问照相机 end *********************************************** -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -777,16 +782,16 @@
             android:name=".modular.home.liveplay.activity.LivePlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeLive" />
+            android:theme="@style/AppThemeLive"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".modular.home.liveplay.activity.LiveSuperPlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeLive" />
+            android:theme="@style/AppThemeLive"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".modular.home.liveplay.activity.LivePlayListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -904,7 +909,7 @@
             </intent-filter>
         </service>
         <!-- 版本更新服务 -->
-        <service android:name="com.longcheng.lifecareplan.modular.mine.set.version.UpdateService"/>
+        <service android:name="com.longcheng.lifecareplan.modular.mine.set.version.UpdateService" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -914,7 +919,7 @@
 
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
 
         </provider>
         <!-- &lt;!&ndash; since 3.1.0 Required SDK 核心功能 &ndash;&gt; -->
