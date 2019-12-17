@@ -38,6 +38,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.AblumUtils;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.CircleProgressBar;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
@@ -98,6 +99,8 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     TextView tvLivecity;
     @BindView(R.id.tv_livestart)
     TextView tvLivestart;
+    @BindView(R.id.circleProgressBar)
+    CircleProgressBar circleProgressBar;
 
     /**
      * 功能模式
@@ -119,6 +122,9 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         switch (view.getId()) {
             case R.id.layout_left:
                 back();
+                break;
+            case R.id.layout_rigth:
+                switchCamera();
                 break;
             case R.id.layout_ok:
                 stopRecord();
@@ -158,6 +164,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     @Override
     public void setListener() {
         layoutLeft.setOnClickListener(this);
+        layoutRigth.setOnClickListener(this);
         layoutStart.setOnClickListener(this);
         layoutDel.setOnClickListener(this);
         layoutOk.setOnClickListener(this);
@@ -172,10 +179,13 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                     layoutShortVideo.setVisibility(View.GONE);
                     layoutLive.setVisibility(View.GONE);
                     ToastUtils.showToast("请选择本地上传");
+                    layoutRigth.setVisibility(View.GONE);
                 } else if (position == 1) {
                     layoutShortVideo.setVisibility(View.VISIBLE);
                     layoutLive.setVisibility(View.GONE);
+                    layoutRigth.setVisibility(View.VISIBLE);
                 } else if (position == 2) {
+                    layoutRigth.setVisibility(View.GONE);
                     layoutShortVideo.setVisibility(View.GONE);
                     layoutLive.setVisibility(View.VISIBLE);
                     if (mLocationUtils == null) {
@@ -361,7 +371,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
      * **************************************************************************************
      */
     private int mMinDuration = 3 * 1000;
-    private int mMaxDuration = 60 * 1000;
+    private int mMaxDuration = 90 * 1000;
     private boolean mRecording = false;
     private boolean mPause = false;
     private long mDuration; // 视频总时长
@@ -369,6 +379,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     private boolean mStartPreview = false;
     private long mLastClickTime;
     private TXRecordCommon.TXRecordResult mTXRecordResult;
+    private boolean mFront = true;
 
     private void startCameraPreview() {
         if (mStartPreview) {
@@ -399,9 +410,15 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                 @Override
                 public void onRecordProgress(long milliSecond) {
                     TXCLog.i(TAG, "onRecordProgress, milliSecond = " + milliSecond);
+                    if (circleProgressBar == null) {
+                        return;
+                    }
                     float timeSecondFloat = milliSecond / 1000f;
+                    circleProgressBar.setProgress((int) timeSecondFloat);
                     int timeSecond = Math.round(timeSecondFloat);
-                    tvTime.setText(String.format(Locale.CHINA, "00:%02d", timeSecond));
+                    String m = String.format(Locale.CHINA, "%02d", timeSecond / 60);
+                    String s = String.format(Locale.CHINA, "%02d", timeSecond % 60);
+                    tvTime.setText(m + ":" + s);
                 }
 
                 @Override
@@ -412,7 +429,9 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                         mRecording = false;
                         if (mTXCameraRecord != null) {
                             int timeSecond = mTXCameraRecord.getPartsManager().getDuration() / 1000;
-                            tvTime.setText(String.format(Locale.CHINA, "00:%02d", timeSecond));
+                            String m = String.format(Locale.CHINA, "%02d", timeSecond / 60);
+                            String s = String.format(Locale.CHINA, "%02d", timeSecond % 60);
+                            tvTime.setText(m + ":" + s);
                         }
                         ToastUtils.showToast("录制失败");
                     } else {
@@ -431,7 +450,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         simpleConfig.videoQuality = TXRecordCommon.VIDEO_QUALITY_MEDIUM;
         simpleConfig.minDuration = mMinDuration;
         simpleConfig.maxDuration = mMaxDuration;
-        simpleConfig.isFront = true;
+        simpleConfig.isFront = mFront;
         simpleConfig.touchFocus = true; // 手动对焦和自动对焦切换需要重新开启预览
         simpleConfig.needEdit = false;
         mTXCameraRecord.setRecordSpeed(TXRecordCommon.RECORD_SPEED_NORMAL);
@@ -465,6 +484,13 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
             startActivity(intent);
         } else {
             ToastUtils.showToast("录制失败");
+        }
+    }
+
+    private void switchCamera() {
+        mFront = !mFront;
+        if (mTXCameraRecord != null) {
+            mTXCameraRecord.switchCamera(mFront);
         }
     }
 
@@ -537,6 +563,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         if (mTXCameraRecord != null) {
             mTXCameraRecord.getPartsManager().deleteAllParts();
         }
+        circleProgressBar.setProgress(0);
         mRecording = false;
         mPause = false;
         updateRecordBtnView();

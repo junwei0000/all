@@ -109,6 +109,8 @@ public class TCVideoPreviewActivity extends BaseActivity {
         } else if (id == R.id.record_to_edit) {
         } else if (id == R.id.layout_left) {
             doFinish();
+        } else if (id == R.id.button) {
+
         }
 
     }

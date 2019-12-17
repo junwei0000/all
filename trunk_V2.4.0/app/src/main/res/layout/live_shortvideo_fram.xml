@@ -46,7 +46,8 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@mipmap/camera_id" />
         </LinearLayout>
     </LinearLayout>
 
@@ -120,15 +121,23 @@
 
                 <LinearLayout
                     android:id="@+id/layout_start"
-                    android:layout_width="@dimen/dp60"
-                    android:layout_height="@dimen/dp60"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="@dimen/dp50"
                     android:layout_marginRight="@dimen/dp50"
                     android:background="@mipmap/shortvideo_start">
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                    <com.longcheng.lifecareplan.utils.myview.CircleProgressBar
+                        android:id="@+id/circleProgressBar"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:max2="90"
+                        app:roundColor="@color/transparent"
+                        app:roundProgressColor="@color/white"
+                        app:roundWidth="3dp"
+                        app:textColor="@color/transparent"
+                        app:textIsDisplayable="false" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -263,10 +272,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:paddingBottom="@dimen/dp30"
             android:layout_margin="@dimen/dp20"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp30">
 
             <com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.StringScrollPicker
                 android:id="@+id/video_pickerview"
