@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -69,6 +70,8 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     LinearLayout layoutLeft;
     @BindView(R.id.layout_rigth)
     LinearLayout layoutRigth;
+    @BindView(R.id.pagetop_iv_rigth)
+    ImageView pagetop_iv_rigth;
     @BindView(R.id.tv_time)
     TextView tvTime;
     @BindView(R.id.layout_time)
@@ -163,6 +166,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
 
     @Override
     public void setListener() {
+        pagetop_iv_rigth.setVisibility(View.VISIBLE);
         layoutLeft.setOnClickListener(this);
         layoutRigth.setOnClickListener(this);
         layoutStart.setOnClickListener(this);

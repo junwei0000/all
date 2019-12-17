@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -68,18 +69,18 @@ public class TCVideoPreviewActivity extends BaseActivity {
     @BindView(R.id.button)
     Button mButtonThumbnail;
 
-    private int mVideoSource; // 视频来源
     boolean mVideoPlay = false;
     boolean mVideoPause = false;
     boolean mAutoPause = false;
+    private int mVideoSource; // 视频来源
     private String mVideoPath;
     private String mCoverImagePath;
+    //视频时长（ms）
+    private long mVideoDuration;
     private TXVodPlayer mTXVodPlayer = null;
     private TXVodPlayConfig mTXPlayConfig = null;
     private long mTrackingTouchTS = 0;
     private boolean mStartSeek = false;
-    //视频时长（ms）
-    private long mVideoDuration;
     //录制界面传过来的视频分辨率
     private int mVideoResolution;
 
@@ -110,7 +111,13 @@ public class TCVideoPreviewActivity extends BaseActivity {
         } else if (id == R.id.layout_left) {
             doFinish();
         } else if (id == R.id.button) {
-
+            Intent intent = new Intent(getApplicationContext(), UpLoadVideoActivity.class);
+            intent.putExtra(TCConstants.VIDEO_RECORD_TYPE, mVideoSource);
+            intent.putExtra(TCConstants.VIDEO_RECORD_VIDEPATH, mVideoPath);
+            intent.putExtra(TCConstants.VIDEO_RECORD_COVERPATH, mCoverImagePath);
+            intent.putExtra(TCConstants.VIDEO_RECORD_DURATION, mVideoDuration);
+            intent.putExtra(TCConstants.VIDEO_RECORD_RESOLUTION, mVideoResolution);
+            startActivity(intent);
         }
 
     }

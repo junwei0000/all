@@ -16,8 +16,8 @@
         android:id="@+id/cover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/record_preview"
@@ -27,56 +27,7 @@
         android:background="@mipmap/record_start"
         android:onClick="onClick" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include layout="@layout/activity_tool" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/page_top_height"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/layout_left"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="@dimen/padd_leftright">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/back"
-                    android:tint="@color/white" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:textColor="@color/text_biaoTi_color"
-                android:textSize="@dimen/text_pageTop_size" />
-
-            <LinearLayout
-                android:id="@+id/layout_rigth"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="right|center_vertical"
-                android:paddingRight="@dimen/padd_leftright">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    <include layout="@layout/live_top" />
     <!--录制完成-->
     <RelativeLayout
         android:id="@+id/publishLayout"

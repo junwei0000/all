@@ -59,6 +59,7 @@
     <!-- 首页菜单字体颜色 -->
     <color name="main_tab_text_color">#555555</color>
     <color name="black">#000000</color>
+    <color name="black_live">#191919</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#e5e5e5</color>
     <color name="gray_bian">#d1d1d1</color>
