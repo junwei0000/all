@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="contentDescription">
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/record_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/record_start"
+        android:onClick="onClick" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/activity_tool" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/page_top_height"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/padd_leftright">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/back"
+                    android:tint="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_pageTop_size" />
+
+            <LinearLayout
+                android:id="@+id/layout_rigth"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:paddingRight="@dimen/padd_leftright">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <!--录制完成-->
+    <RelativeLayout
+        android:id="@+id/publishLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/record_delete"
+            android:layout_width="@dimen/live_btn_size"
+            android:layout_height="@dimen/live_btn_size"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="80dp"
+            android:background="@mipmap/record_start"
+            android:onClick="onClick" />
+
+        <ImageView
+            android:id="@+id/record_download"
+            android:layout_width="@dimen/live_btn_size"
+            android:layout_height="@dimen/live_btn_size"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="80dp"
+            android:background="@mipmap/record_start"
+            android:onClick="onClick" />
+
+
+        <ImageView
+            android:id="@+id/record_to_edit"
+            android:layout_width="@dimen/live_btn_size"
+            android:layout_height="@dimen/live_btn_size"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/record_start"
+            android:onClick="onClick"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/publishLayout"
+        android:layout_gravity="center|right"
+        android:layout_marginBottom="15dp"
+        android:max="0"
+        android:maxHeight="2.0dip"
+        android:minHeight="2.0dip"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/progressbar_horizontal"
+        android:thumb="@mipmap/play_seekbar_icon"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/progress_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/seekbar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="5dp"
+        android:text="00:00/00:00"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_contents_size"
+        android:visibility="gone" />
+
+    <LinearLayout
+        style="@style/view_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/dp45">
+
+        <Button
+            android:id="@+id/button"
+            style="@style/btn"
+            android:text="下一步" />
+    </LinearLayout>
+</RelativeLayout>

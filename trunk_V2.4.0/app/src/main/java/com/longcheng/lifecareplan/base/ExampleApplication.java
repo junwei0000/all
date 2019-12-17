@@ -74,10 +74,13 @@ public class ExampleApplication extends MultiDexApplication {
     private void initTencentLive() {
         String licenceURL = "http://license.vod2.myqcloud.com/license/v1/def2b691939d9eb3be268179c8930e67/TXLiveSDK.licence"; // 获取到的 licence url
         String licenceKey = "f7902ca622e5fd7f4b6559a455fdcc2d"; // 获取到的 licence key
+        String TXUgclicenceURL = "http://license.vod2.myqcloud.com/license/v1/def2b691939d9eb3be268179c8930e67/TXUgcSDK.licence";
         TXLiveBase.getInstance().setLicence(this, licenceURL, licenceKey);
-        TXUGCBase.getInstance().setLicence(this, licenceURL, licenceKey);
-        String sdkver = TXLiveBase.getSDKVersionStr();
-        Log.d("liteavsdk", "liteav sdk version is : " + sdkver);
+        TXUGCBase.getInstance().setLicence(this, TXUgclicenceURL, licenceKey);
+        String sdkVer = TXLiveBase.getSDKVersionStr();
+        Log.d("liteavsdk", "liteav sdk version is : " + sdkVer);
+        String mLicenceInfo = TXUGCBase.getInstance().getLicenceInfo(this);
+        Log.d("liteavsdk", "mLicenceInfo : " + mLicenceInfo);
     }
 
     /**
