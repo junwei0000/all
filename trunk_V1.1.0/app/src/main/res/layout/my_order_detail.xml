@@ -43,8 +43,8 @@
             style="@style/view_padd"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/jianJu"
             android:layout_marginTop="@dimen/jianJu"
+            android:layout_marginBottom="@dimen/jianJu"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -146,6 +146,7 @@
                             android:id="@+id/item_iv_goodtypeimg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/padd_imgtextleftright"
                             android:scaleType="centerCrop" />
 
                         <TextView
@@ -153,7 +154,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dp1"
-                            android:paddingLeft="@dimen/padd_imgtextleftright"
                             android:textColor="@color/cyanblue"
                             android:textSize="@dimen/text_zhu_size" />
                     </LinearLayout>
@@ -166,8 +166,8 @@
             style="@style/view_padd"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/jianJu"
             android:layout_marginTop="@dimen/jianJu"
+            android:layout_marginBottom="@dimen/jianJu"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -191,8 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:textIsSelectable="true"
                     android:textColor="@color/text_noclick_color"
+                    android:textIsSelectable="true"
                     android:textSize="@dimen/text_zhu_size" />
             </LinearLayout>
 

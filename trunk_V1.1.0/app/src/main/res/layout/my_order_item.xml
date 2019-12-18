@@ -79,6 +79,7 @@
                         android:id="@+id/item_iv_goodtypeimg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
                         android:background="@mipmap/activat_skb_icon"
                         android:scaleType="centerCrop" />
 
@@ -86,7 +87,6 @@
                         android:id="@+id/item_tv_goodnum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padd_imgtextleftright"
                         android:text="生命能量：45"
                         android:textColor="@color/cyanblue"
                         android:textSize="@dimen/text_zhu_size" />

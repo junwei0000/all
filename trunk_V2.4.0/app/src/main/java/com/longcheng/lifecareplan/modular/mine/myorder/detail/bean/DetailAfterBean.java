@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.mine.myorder.detail.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 作者：jun on
@@ -20,6 +19,8 @@ public class DetailAfterBean implements Serializable {
     private String shop_goods_price_name;
     private String image;
     private String price;
+    private String super_ability;
+    private int buy_type;
     private int goods_id;
     private int action_id;
     private String h_user_id;
@@ -57,6 +58,22 @@ public class DetailAfterBean implements Serializable {
     private String deposit_str;
 
     private int is_show_care;//1 显示提现
+
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
+
+    public int getBuy_type() {
+        return buy_type;
+    }
+
+    public void setBuy_type(int buy_type) {
+        this.buy_type = buy_type;
+    }
 
     public int getIs_show_care() {
         return is_show_care;

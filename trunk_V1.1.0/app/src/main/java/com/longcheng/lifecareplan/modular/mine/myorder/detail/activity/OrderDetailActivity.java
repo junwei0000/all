@@ -560,21 +560,30 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         } else {
             item_tv_guigename.setVisibility(View.GONE);
         }
+        itemIvGoodtypeimg.setVisibility(View.GONE);
         if (type == 2 || type == 4) {
             GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, mOrderItemBean.getImage(), itemIvGoodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(mContext, 80);
             int height = DensityUtil.dip2px(mContext, 50);
             itemIvGoodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
             itemIvGoodtypeimg.setBackgroundResource(R.mipmap.activat_icon);
-            itemTvGoodnum.setText("生命能量：" + price);
+            itemTvGoodnum.setText(price+"生命能量");
             itemTvGoodnum.setTextColor(mContext.getResources().getColor(R.color.mediumseagreen));
         } else {
             GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(mContext, mOrderItemBean.getImage(), itemIvGoodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(mContext, 65);
             itemIvGoodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, width));
             itemIvGoodtypeimg.setBackgroundResource(R.mipmap.activat_skb_icon);
-            itemTvGoodnum.setText("寿康宝:" + price);
             itemTvGoodnum.setTextColor(mContext.getResources().getColor(R.color.cyanblue));
+            //1 寿康宝；2 超能 ；3 混合
+            int buy_type = mOrderItemBean.getBuy_type();
+            if (buy_type == 2) {
+                itemTvGoodnum.setText(mOrderItemBean.getSuper_ability() + "超能");
+            } else if (buy_type == 3) {
+                itemTvGoodnum.setText(mOrderItemBean.getSuper_ability() + "超能+" + price + "寿康宝");
+            } else {
+                itemTvGoodnum.setText(price + "寿康宝");
+            }
         }
     }
 

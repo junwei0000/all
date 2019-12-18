@@ -35,10 +35,9 @@ import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import java.util.List;
 
@@ -280,7 +279,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             /**
              * ***********************end*********************
              */
-        }else{
+        } else {
             mHolder.item_tv_left.setText("提现");
             mHolder.item_tv_left.setVisibility(View.VISIBLE);
             mHolder.item_tv_left.setBackgroundResource(R.drawable.corners_bg_redbian);
@@ -299,21 +298,30 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         mHolder.tv_goodtype.setText(mOrderItemBean.getType_name());
         mHolder.item_tv_goodname.setText(mOrderItemBean.getGoods_x_name());
         mHolder.item_tv_date.setText(mOrderItemBean.getDate());
+        mHolder.item_iv_goodtypeimg.setVisibility(View.GONE);
         if (type == 2 || type == 4) {
             GlideDownLoadImage.getInstance().loadCircleImageRole(context, mOrderItemBean.getImage(), mHolder.item_iv_goodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(context, 80);
             int height = DensityUtil.dip2px(context, 50);
             mHolder.item_iv_goodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
             mHolder.item_iv_goodtypeimg.setBackgroundResource(R.mipmap.activat_icon);
-            mHolder.item_tv_goodnum.setText("生命能量：" + price);
+            mHolder.item_tv_goodnum.setText(price + "生命能量");
             mHolder.item_tv_goodnum.setTextColor(context.getResources().getColor(R.color.mediumseagreen));
         } else {
             GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mOrderItemBean.getImage(), mHolder.item_iv_goodthumb, ConstantManager.image_angle);
             int width = DensityUtil.dip2px(context, 65);
             mHolder.item_iv_goodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, width));
             mHolder.item_iv_goodtypeimg.setBackgroundResource(R.mipmap.activat_skb_icon);
-            mHolder.item_tv_goodnum.setText("寿康宝：" + price);
             mHolder.item_tv_goodnum.setTextColor(context.getResources().getColor(R.color.cyanblue));
+            //1 寿康宝；2 超能 ；3 混合
+            int buy_type = mOrderItemBean.getBuy_type();
+            if (buy_type == 2) {
+                mHolder.item_tv_goodnum.setText(mOrderItemBean.getSuper_ability() + "超能");
+            } else if (buy_type == 3) {
+                mHolder.item_tv_goodnum.setText(mOrderItemBean.getSuper_ability() + "超能+" + price + "寿康宝");
+            } else {
+                mHolder.item_tv_goodnum.setText(price + "寿康宝");
+            }
         }
     }
 
@@ -365,7 +373,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             } else if (bottom_status == 14) {
                 mutualWish();
             }
-        }else{
+        } else {
             //提现
             Message message = new Message();
             message.what = ConstantManager.ORDER_HANDLE_TiXian;
