@@ -42,10 +42,10 @@
                         android:id="@+id/tv_imgnum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginBottom="@dimen/dp20"
+                        android:layout_alignParentBottom="true"
                         android:layout_marginRight="@dimen/dp20"
+                        android:layout_marginBottom="@dimen/dp20"
                         android:background="@drawable/corners_bg_write"
                         android:gravity="center"
                         android:paddingLeft="@dimen/dp8"
@@ -90,23 +90,15 @@
                     android:layout_marginBottom="@dimen/jianJu"
                     android:background="@color/white"
                     android:gravity="bottom"
-                    android:paddingBottom="@dimen/padd_topbottom"
-                    android:paddingTop="@dimen/padd_imgtextleftright">
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:paddingBottom="@dimen/padd_topbottom">
 
                     <TextView
                         android:id="@+id/tv_skb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_engry_bg"
-                        android:textSize="@dimen/dp20" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp1"
-                        android:text=" 寿康宝"
-                        android:textColor="@color/text_engry_bg"
-                        android:textSize="@dimen/text_min_size" />
+                        android:textSize="@dimen/text_biaoTi_size" />
 
                     <TextView
                         android:id="@+id/tv_shopnum"
@@ -183,9 +175,9 @@
                         android:id="@+id/guige_gv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/padd_imgtextleftright"
-                        android:layout_marginRight="@dimen/dp20"
                         android:layout_marginTop="@dimen/padd_topbottom"
+                        android:layout_marginRight="@dimen/dp20"
+                        android:layout_marginBottom="@dimen/padd_imgtextleftright"
                         android:background="@color/white"
                         android:cacheColorHint="@color/page_bg"
                         android:divider="@null"
@@ -318,12 +310,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/padd_leftright"
                     android:layout_marginLeft="@dimen/padd_leftright"
+                    android:layout_marginBottom="@dimen/padd_leftright"
                     android:background="@drawable/corners_oval_rednull"
                     android:gravity="center"
-                    android:minHeight="@dimen/dp15"
                     android:minWidth="@dimen/dp15"
+                    android:minHeight="@dimen/dp15"
                     android:padding="@dimen/dp2"
                     android:singleLine="true"
                     android:text="0"
@@ -368,10 +360,10 @@
             android:id="@+id/tv_backtop"
             android:layout_width="@dimen/gooddetail_top_width"
             android:layout_height="@dimen/gooddetail_top_width"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/dp80"
+            android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp80"
             android:background="@mipmap/mall_icon_thetop"
             android:gravity="center"
             android:paddingTop="@dimen/padd_leftright"

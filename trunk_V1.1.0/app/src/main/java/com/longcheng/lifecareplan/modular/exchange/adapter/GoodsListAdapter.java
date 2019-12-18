@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -28,10 +28,11 @@ public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
     Context context;
 
     ImageLoader imageLoader;
+
     public GoodsListAdapter(Context context, List<GoodsItemBean> list) {
         super(context, list);
         this.context = context;
-        imageLoader=new ImageLoader(context,"good");
+        imageLoader = new ImageLoader(context, "good");
     }
 
     @Override
@@ -46,8 +47,18 @@ public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
         }
         GoodsItemBean mHelpItemBean = list.get(position);
         mHolder.item_tv_name1.setText(mHelpItemBean.getName());
-        mHolder.item_tv_skb.setText(mHelpItemBean.getSkb_price());
         mHolder.item_tv_num.setText("已兑换" + mHelpItemBean.getSale_number() + "件");
+        mHolder.item_tv_num.getBackground().setAlpha(70);
+        //1 寿康宝；2 超能 ；3 混合
+        int buy_type = mHelpItemBean.getBuy_type();
+        if (buy_type == 2) {
+            mHolder.item_tv_skb.setText(mHelpItemBean.getSuper_ability() + "超能");
+        } else if (buy_type == 3) {
+            mHolder.item_tv_skb.setText(mHelpItemBean.getSuper_ability() + "超能+" + mHelpItemBean.getSkb_price() + "寿康宝");
+        } else {
+            mHolder.item_tv_skb.setText(mHelpItemBean.getSkb_price() + "寿康宝");
+        }
+
 
         int is_new = mHelpItemBean.getIs_new();
         int is_hot = mHelpItemBean.getIs_hot();
@@ -73,8 +84,7 @@ public class GoodsListAdapter extends BaseAdapterHelper<GoodsItemBean> {
         }
         int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 36)) / 2;
         int height = width;
-        mHolder.item_iv_img.setLayoutParams(new FrameLayout.LayoutParams(width, height));
-//        GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mHelpItemBean.getThumb(), mHolder.item_iv_img, 0);
+        mHolder.item_iv_img.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
         imageLoader.DisplayImage(mHelpItemBean.getThumb(), mHolder.item_iv_img);
         return convertView;
     }

@@ -133,15 +133,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/text_engry_bg"
-                            android:textSize="@dimen/text_pageTop_size" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/dp2"
-                            android:text=" 寿康宝"
-                            android:textColor="@color/text_engry_bg"
-                            android:textSize="@dimen/text_zhu_size" />
+                            android:textSize="@dimen/text_biaoTi_size" />
 
                     </LinearLayout>
 

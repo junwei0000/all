@@ -1,9 +1,6 @@
 package com.longcheng.lifecareplan.modular.exchange.malldetail.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 作者：jun on
@@ -25,6 +22,8 @@ public class DetailItemBean implements Serializable {
     private String sale_number;
     private String content;
     private int is_allow_apply_help;
+    private String super_ability;
+    private int buy_type;//1 寿康宝；2 超能 ；3 混合
     //goodsSolarTerms
     private int solar_terms_id;
     private String solar_terms_name;
@@ -36,6 +35,22 @@ public class DetailItemBean implements Serializable {
     private String price_name;
 //    private String skb_price;
 
+
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
+
+    public int getBuy_type() {
+        return buy_type;
+    }
+
+    public void setBuy_type(int buy_type) {
+        this.buy_type = buy_type;
+    }
 
     public int getIs_allow_apply_help() {
         return is_allow_apply_help;

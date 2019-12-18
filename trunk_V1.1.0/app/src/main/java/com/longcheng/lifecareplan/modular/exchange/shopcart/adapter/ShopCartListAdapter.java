@@ -52,8 +52,16 @@ public class ShopCartListAdapter extends BaseAdapterHelper<DetailItemBean> {
         mHolder.item_tv_name1.setText(mDetailItemBean.getName());
         mHolder.item_tv_name2.setText(mDetailItemBean.getPrice_name());
         String Skb_price = mDetailItemBean.getSkb_price();
-        mHolder.item_tv_skb.setText(Skb_price);
+        String super_ability = mDetailItemBean.getSuper_ability();
         mHolder.item_tv_goodsnum.setText("" + goodsnum);
+        int buy_type = mDetailItemBean.getBuy_type();
+        if (buy_type == 2) {
+            mHolder.item_tv_skb.setText(super_ability + "超能");
+        } else if (buy_type == 3) {
+            mHolder.item_tv_skb.setText(super_ability + "超能+" + Skb_price + "寿康宝");
+        } else {
+            mHolder.item_tv_skb.setText(Skb_price + "寿康宝");
+        }
         if (goodsnum > 1) {
             mHolder.item_layout_sub.setBackgroundResource(R.drawable.corners_bg_blackfang);
             mHolder.item_tv_sub.setBackgroundColor(context.getResources().getColor(R.color.text_biaoTi_color));

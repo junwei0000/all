@@ -459,8 +459,11 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 ivThelabel.setVisibility(View.GONE);
             }
             tvName.setText(GoodsInfo.getName());
-            tvSkb.setText(GoodsInfo.getSkb_price());
             tvShopnum.setText("已兑换" + GoodsInfo.getSale_number() + "件");
+            //1 寿康宝；2 超能 ；3 混合
+            buy_type = GoodsInfo.getBuy_type();
+            setText(GoodsInfo.getSkb_price(), GoodsInfo.getSuper_ability());
+
 
             String merchantName = mDetailAfterBean.getMerchantName();
             String merchantLogo = mDetailAfterBean.getMerchantLogo();
@@ -550,11 +553,27 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                     shop_goods_price_id = goodsGuiGeList.get(guigeSelectPosition).getShop_goods_price_id();
                     mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
                     mGuiGeDetailAdapter.notifyDataSetChanged();
-                    tvSkb.setText(goodsGuiGeList.get(guigeSelectPosition).getSkb_price());
+                    setText(goodsGuiGeList.get(guigeSelectPosition).getSkb_price(), goodsGuiGeList.get(guigeSelectPosition).getSuper_ability());
                 }
             });
         } else {
             layout_guige.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 1 寿康宝；2 超能 ；3 混合
+     */
+    int buy_type;
+
+    private void setText(String skb_price, String super_ability) {
+
+        if (buy_type == 2) {
+            tvSkb.setText(super_ability + "超能");
+        } else if (buy_type == 3) {
+            tvSkb.setText(super_ability + "超能+" + skb_price + "寿康宝");
+        } else {
+            tvSkb.setText(skb_price + "寿康宝");
         }
     }
 

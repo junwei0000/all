@@ -8,7 +8,6 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 
 import io.reactivex.Observable;
@@ -42,10 +41,10 @@ public class ShopCartPresenterImp<T> extends ShopCartContract.Presenter<ShopCart
      * @time 2017/12/8 17:56
      * @author MarkShuai
      */
-    public void submitGoodsOrder(String user_id, String address_id, String total_skb_price, String orders_datas) {
+    public void submitGoodsOrder(String user_id, String address_id, String total_skb_price, String total_super_ability, String orders_datas) {
         mView.showDialog();
         Observable<EditListDataBean> observable = Api.getInstance().service.submitGoodsOrder(user_id, address_id,
-                total_skb_price, orders_datas, ExampleApplication.token);
+                total_skb_price, total_super_ability, orders_datas, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<EditListDataBean>() {

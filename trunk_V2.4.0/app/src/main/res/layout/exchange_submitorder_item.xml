@@ -66,13 +66,6 @@
                     android:textColor="@color/text_engry_bg"
                     android:textSize="@dimen/text_biaoTi_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp2"
-                    android:text=" 寿康宝"
-                    android:textColor="@color/text_engry_bg"
-                    android:textSize="@dimen/text_min_size" />
 
                 <TextView
                     android:id="@+id/item_tv_goodsnum"

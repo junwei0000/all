@@ -30,8 +30,7 @@
                 <RelativeLayout
                     android:id="@+id/relat_cart"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                     >
+                    android:layout_height="wrap_content">
 
                     <com.longcheng.lifecareplan.utils.myview.MyListView
                         android:id="@+id/date_listview"
@@ -71,9 +70,9 @@
                     android:horizontalSpacing="@dimen/jianJu"
                     android:listSelector="@drawable/list_notselector"
                     android:numColumns="2"
-                    android:paddingBottom="@dimen/padd_imgtextleftright"
                     android:paddingLeft="@dimen/jianJu"
                     android:paddingRight="@dimen/jianJu"
+                    android:paddingBottom="@dimen/padd_imgtextleftright"
                     android:scrollbars="none"
                     android:verticalSpacing="0dp" />
 
@@ -121,35 +120,22 @@
                             android:id="@+id/tv_selectnum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/img_setTextcenter"
                             android:paddingLeft="@dimen/padd_imgtextleftright"
+                            android:paddingBottom="@dimen/img_setTextcenter"
                             android:text="全选"
                             android:textColor="@color/text_biaoTi_color"
-                            android:textSize="@dimen/text_contents_size" />
+                            android:textSize="@dimen/text_zhu_size" />
                     </LinearLayout>
 
-                    <LinearLayout
+
+                    <TextView
+                        android:id="@+id/tv_skb"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="right|bottom">
-
-                        <TextView
-                            android:id="@+id/tv_skb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/text_engry_bg"
-                            android:textSize="@dimen/text_biaoTi_size" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/dp2"
-                            android:text=" 寿康宝"
-                            android:textColor="@color/text_engry_bg"
-                            android:textSize="@dimen/text_min_size" />
-
-                    </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:textColor="@color/text_engry_bg"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_zhu_size" />
 
                 </LinearLayout>
             </LinearLayout>

@@ -10,6 +10,8 @@ public class GoodsItemBean implements Serializable {
     private String shop_goods_id;
     private String name;
     private String skb_price;
+    private String super_ability;
+    private int buy_type;//1 寿康宝；2 超能 ；3 混合
     private String thumb;
     private int stock;
     private int top_cid;
@@ -18,6 +20,23 @@ public class GoodsItemBean implements Serializable {
     private int is_hot;//是否最热 0：否 1：是
     private int is_selfmade;//是否自营 0：否 1：是
     private int sale_number;
+
+
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
+
+    public int getBuy_type() {
+        return buy_type;
+    }
+
+    public void setBuy_type(int buy_type) {
+        this.buy_type = buy_type;
+    }
 
     public String getShop_goods_id() {
         return shop_goods_id;

@@ -1044,6 +1044,7 @@ public interface ApiService {
     Observable<EditListDataBean> submitGoodsOrder(@Field("user_id") String user_id,
                                                   @Field("address_id") String address_id,
                                                   @Field("total_skb_price") String total_skb_price,
+                                                  @Field("total_super_ability") String total_super_ability,
                                                   @Field("orders_datas") String orders_datas,
                                                   @Field("token") String token);
 

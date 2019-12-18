@@ -44,8 +44,17 @@ public class OrderCartListAdapter extends BaseAdapterHelper<DetailItemBean> {
         int goodsnum = mDetailItemBean.getGoodsNum();
         mHolder.item_tv_name1.setText(mDetailItemBean.getName());
         mHolder.item_tv_name2.setText(mDetailItemBean.getPrice_name());
-        mHolder.item_tv_skb.setText(mDetailItemBean.getSkb_price());
         mHolder.item_tv_goodsnum.setText("x" + goodsnum);
+        int buy_type = mDetailItemBean.getBuy_type();
+        String Skb_price = mDetailItemBean.getSkb_price();
+        String super_ability = mDetailItemBean.getSuper_ability();
+        if (buy_type == 2) {
+            mHolder.item_tv_skb.setText(super_ability + "超能");
+        } else if (buy_type == 3) {
+            mHolder.item_tv_skb.setText(super_ability + "超能+" + Skb_price + "寿康宝");
+        } else {
+            mHolder.item_tv_skb.setText(Skb_price + "寿康宝");
+        }
         GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(context, mDetailItemBean.getThumb(), mHolder.item_iv_thumb, 0);
         return convertView;
     }

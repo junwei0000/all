@@ -2,14 +2,11 @@ package com.longcheng.lifecareplan.modular.exchange.shopcart.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -38,9 +35,7 @@ import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.DetailItemBea
 import com.longcheng.lifecareplan.modular.exchange.shopcart.adapter.ShopCartListAdapter;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartAfterBean;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartDataBean;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -113,6 +108,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
     boolean haveAllCheck = true;
     int allnum = 0;
     String allskb_price = "0";
+    String allsuper_ability = "0";
 
     @Override
     public void onClick(View v) {
@@ -143,6 +139,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
                     Intent intent = new Intent(mContext, SubmitOrderActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("allskb_price", allskb_price);
+                    intent.putExtra("allsuper_ability", allsuper_ability);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 }
@@ -271,6 +268,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
             haveAllCheck = true;
             allnum = 0;
             allskb_price = "0";
+            allsuper_ability= "0";
             getShoppingCartMap();
         }
     }
@@ -282,6 +280,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
         haveAllCheck = true;
         allnum = 0;
         allskb_price = "0";
+        allsuper_ability= "0";
         getShoppingCartMap();
     }
 
@@ -342,6 +341,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
         getHashMapData();
         allnum = 0;
         allskb_price = "0";
+        allsuper_ability = "0";
         changeCartListView();
         calculateShopCartList();
     }
@@ -380,15 +380,24 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
                     haveSelectNum++;
                     int num_ = GoodsInfo_.getGoodsNum();
                     String skb_price_ = GoodsInfo_.getSkb_price();
+                    String super_ability_ = GoodsInfo_.getSuper_ability();
                     allnum += num_;
                     skb_price_ = PriceUtils.getInstance().gteMultiplySumPrice(skb_price_, "" + num_);
+                    super_ability_ = PriceUtils.getInstance().gteMultiplySumPrice(super_ability_, "" + num_);
                     allskb_price = PriceUtils.getInstance().gteAddSumPrice(allskb_price, skb_price_);
+                    allsuper_ability = PriceUtils.getInstance().gteAddSumPrice(allsuper_ability, super_ability_);
                     Log.e("ShopCartItemBean", "" + ShoppingCartMap.size() + "  num=" + num_);
                 }
             }
             if (haveSelectNum > 0 && haveSelectNum < ShoppingCartMap.size()) {
                 tvSelectnum.setText("已选(" + allnum + ")");
-                tvSkb.setText(allskb_price);
+                if (Integer.parseInt(allsuper_ability) > 0 && Integer.parseInt(allskb_price) > 0) {
+                    tvSkb.setText(allsuper_ability + "超能+" + allskb_price + "寿康宝");
+                } else if (Integer.parseInt(allsuper_ability) > 0) {
+                    tvSkb.setText(allsuper_ability + "超能");
+                } else if (Integer.parseInt(allskb_price) > 0) {
+                    tvSkb.setText(allskb_price + "寿康宝");
+                }
                 tvBuy.setBackgroundColor(getResources().getColor(R.color.blue));
                 haveAllCheck = false;
                 tvCheck.setBackgroundResource(R.mipmap.check_false);
@@ -404,13 +413,18 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
                 haveAllCheck = true;
                 tvCheck.setBackgroundResource(R.mipmap.check_true_red);
                 tvSelectnum.setText("已选(" + allnum + ")");
-                tvSkb.setText(allskb_price);
+                if (Integer.parseInt(allsuper_ability) > 0 && Integer.parseInt(allskb_price) > 0) {
+                    tvSkb.setText(allsuper_ability + "超能+" + allskb_price + "寿康宝");
+                } else if (Integer.parseInt(allsuper_ability) > 0) {
+                    tvSkb.setText(allsuper_ability + "超能");
+                } else if (Integer.parseInt(allskb_price) > 0) {
+                    tvSkb.setText(allskb_price + "寿康宝");
+                }
                 tvBuy.setBackgroundColor(getResources().getColor(R.color.blue));
             }
             Log.e("ShopCartItemBean", "" + ShoppingCartMap.size() + "  allnum=" + allnum);
         }
     }
-
 
     @Override
     protected ShopCartPresenterImp<ShopCartContract.View> createPresent() {

@@ -1,7 +1,5 @@
 package com.longcheng.lifecareplan.modular.mine.myorder.bean;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 /**
@@ -22,6 +20,8 @@ public class OrderItemBean implements Serializable {
     private String shop_goods_price_id;
     private String image;
     private String price;
+    private String super_ability;
+    private int buy_type;
     private int goods_id;
     private int action_status;//是否已下架：0已下架
     private int action_id;
@@ -43,6 +43,22 @@ public class OrderItemBean implements Serializable {
     private String top_title;
 
     private int is_show_care;
+
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
+
+    public int getBuy_type() {
+        return buy_type;
+    }
+
+    public void setBuy_type(int buy_type) {
+        this.buy_type = buy_type;
+    }
 
     public int getIs_show_care() {
         return is_show_care;

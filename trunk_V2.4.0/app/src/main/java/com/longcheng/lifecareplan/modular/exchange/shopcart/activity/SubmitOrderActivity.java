@@ -2,7 +2,6 @@ package com.longcheng.lifecareplan.modular.exchange.shopcart.activity;
 
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -15,19 +14,14 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.exchange.adapter.GoodsListAdapter;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.adapter.OrderCartListAdapter;
-import com.longcheng.lifecareplan.modular.exchange.shopcart.adapter.ShopCartListAdapter;
-import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartAfterBean;
 import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartDataBean;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressListActivity;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressSelectUtils;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressItemBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -50,7 +44,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 商品-提交订单
@@ -90,7 +83,8 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
     ArrayList<DetailItemBean> mCartList = new ArrayList();
     private String user_id;
     private String address_id = "";
-    private String total_skb_price = "";
+    private String total_skb_price = "0";
+    private String total_super_ability = "0";
     private String orders_datas = "";
 
     @Override
@@ -109,7 +103,7 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
                 break;
             case R.id.tv_submit:
                 Log.e("orders_datas", "" + orders_datas);
-                mPresent.submitGoodsOrder(user_id, address_id, total_skb_price, orders_datas);
+                mPresent.submitGoodsOrder(user_id, address_id, total_skb_price, total_super_ability, orders_datas);
                 break;
         }
     }
@@ -143,6 +137,7 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
     public void initDataAfter() {
         Intent intent = getIntent();
         total_skb_price = intent.getStringExtra("allskb_price");
+        total_super_ability = intent.getStringExtra("allsuper_ability");
         user_id = UserUtils.getUserId(mContext);
         mPresent.getAddressList(user_id, user_id);
         getHashMapData();
@@ -156,7 +151,13 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
         ShoppingCartMap.clear();
         ShoppingCartMap.putAll(SharedPreferencesUtil.getInstance().getHashMapData(user_id, DetailItemBean.class));
         if (ShoppingCartMap != null && ShoppingCartMap.size() > 0) {
-            tvSkb.setText(total_skb_price);
+            if (Integer.parseInt(total_super_ability) > 0 && Integer.parseInt(total_skb_price) > 0) {
+                tvSkb.setText(total_super_ability + "超能+" + total_skb_price + "寿康宝");
+            } else if (Integer.parseInt(total_super_ability) > 0) {
+                tvSkb.setText(total_super_ability + "超能");
+            } else if (Integer.parseInt(total_skb_price) > 0) {
+                tvSkb.setText(total_skb_price + "寿康宝");
+            }
             for (String key : ShoppingCartMap.keySet()) {
                 Log.e("key", " " + key);
                 if (ShoppingCartMap.get(key).isCheck())
@@ -174,14 +175,21 @@ public class SubmitOrderActivity extends BaseActivityMVP<ShopCartContract.View, 
             JSONObject latObject = new JSONObject();
             try {
                 DetailItemBean mDetailItemBean = mCartList.get(i);
+                String skb_price = mDetailItemBean.getSkb_price();
+                String super_ability = mDetailItemBean.getSuper_ability();
+                int num = mDetailItemBean.getGoodsNum();
                 latObject.put("shop_goods_id", mDetailItemBean.getShop_goods_id());
-                latObject.put("skb_price", mDetailItemBean.getSkb_price());
-                latObject.put("number", ""
-                        + mDetailItemBean.getGoodsNum());
-                String itemtotal_skb_price = PriceUtils.getInstance().gteMultiplySumPrice(mDetailItemBean.getSkb_price(), ""
-                        + mDetailItemBean.getGoodsNum());
+                latObject.put("skb_price", skb_price);
+                latObject.put("super_ability", super_ability);
+                latObject.put("number", "" + num);
+                String itemtotal_skb_price = PriceUtils.getInstance().gteMultiplySumPrice(skb_price, ""
+                        + num);
+                String itemtotal_super_ability = PriceUtils.getInstance().gteMultiplySumPrice(super_ability, ""
+                        + num);
                 latObject.put("total_skb_price", ""
                         + itemtotal_skb_price);
+                latObject.put("total_super_ability", ""
+                        + itemtotal_super_ability);
                 latObject.put("shop_goods_price_id", ""
                         + mCartList.get(i).getShop_goods_price_id());
                 recordInfoArray.put(latObject);
