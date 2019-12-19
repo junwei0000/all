@@ -15,7 +15,6 @@ import com.longcheng.lifecareplan.modular.mine.myorder.adapter.OrderListAdapter;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderItemBean;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
@@ -134,36 +133,6 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     @Override
     public void BackVideoListSuccess(LivePushDataInfo responseBean) {
         ListUtils.getInstance().RefreshCompleteG(dateListview);
-        String status_ = responseBean.getStatus();
-        if (status_.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status_.equals("200")) {
-//            OrderAfterBean mOrderAfterBean = responseBean.getData();
-//            if (mOrderAfterBean != null) {
-//                count = mOrderAfterBean.getCount();
-//                List<OrderItemBean> mList = mOrderAfterBean.getOrders();
-
-//                int size = mList == null ? 0 : mList.size();
-//                if (back_page == 1) {
-//                    mAllList.clear();
-//                    mAdapter = null;
-//                    showNoMoreData(false, dateListview.getRefreshableView());
-//                }
-//                Log.e("checkLoadOver", "pageSize=" + pageSize + "  size=" + size + "  page=" + page + "  getType()=" + getType());
-//                if (size > 0) {
-//                    mAllList.addAll(mList);
-//                }
-//                if (mAdapter == null) {
-//                    mAdapter = new OrderListAdapter(getActivity(), mList, mHandler);
-//                    dateListview.setAdapter(mAdapter);
-//                } else {
-//                    mAdapter.reloadListView(mList, false);
-//                }
-//                page = back_page;
-//                checkLoadOver(size);
-                ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
-//            }
-        }
     }
 
     @Override

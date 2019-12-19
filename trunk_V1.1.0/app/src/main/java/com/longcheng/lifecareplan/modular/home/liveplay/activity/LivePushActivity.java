@@ -2,24 +2,21 @@ package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.app.Service;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.hardware.Camera;
-import android.net.ConnectivityManager;
-import android.os.Environment;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
+import android.util.TypedValue;
 import android.view.KeyEvent;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
@@ -27,53 +24,33 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.alivc.component.custom.AlivcLivePushCustomDetect;
-import com.alivc.component.custom.AlivcLivePushCustomFilter;
-import com.alivc.live.detect.TaoFaceFilter;
-import com.alivc.live.filter.TaoBeautyFilter;
-import com.alivc.live.pusher.AlivcBeautyLevelEnum;
-import com.alivc.live.pusher.AlivcLivePushConfig;
-import com.alivc.live.pusher.AlivcLivePushInfoListener;
-import com.alivc.live.pusher.AlivcLivePushNetworkListener;
-import com.alivc.live.pusher.AlivcLivePusher;
-import com.alivc.live.pusher.AlivcPreviewDisplayMode;
-import com.alivc.live.pusher.AlivcPreviewOrientationEnum;
-import com.alivc.live.pusher.AlivcQualityModeEnum;
-import com.alivc.live.pusher.AlivcResolutionEnum;
-import com.alivc.live.pusher.SurfaceStatus;
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.BaseActivity;
+import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.config.Config;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
-import com.longcheng.lifecareplan.utils.network.NetUtils;
-import com.longcheng.lifecareplan.widget.Immersive;
+import com.longcheng.lifecareplan.utils.share.ShareUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
+import com.tencent.rtmp.ITXLivePushListener;
+import com.tencent.rtmp.TXLiveConstants;
+import com.tencent.rtmp.TXLivePushConfig;
+import com.tencent.rtmp.TXLivePusher;
+import com.tencent.rtmp.ui.TXCloudVideoView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 
-import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_BACK;
-import static com.alivc.live.pusher.AlivcLivePushCameraTypeEnum.CAMERA_TYPE_FRONT;
-import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_LEFT;
-import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_LANDSCAPE_HOME_RIGHT;
-import static com.alivc.live.pusher.AlivcPreviewOrientationEnum.ORIENTATION_PORTRAIT;
-
-public class LivePushActivity extends BaseActivity {
+public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View {
 
     @BindView(R.id.preview_view)
-    SurfaceView previewView;
+    TXCloudVideoView mPusherView;
     @BindView(R.id.frag_tv_playstatus)
     TextView fragTvPlaystatus;
     @BindView(R.id.frag_tv_jieqi)
@@ -111,34 +88,23 @@ public class LivePushActivity extends BaseActivity {
     @BindView(R.id.layout_gn)
     LinearLayout layoutGn;
 
-    private static final String URL_KEY = "url_key";
-    private static final int REQ_CODE_PUSH = 0x1112;
-    private AlivcLivePushConfig mAlivcLivePushConfig;
-    private AlivcLivePusher mAlivcLivePusher = null;
+    private static final String URL_KEY = "pushUrl_key";
     private String mPushUrl = null;
-    private boolean mAsync = true;
-    private boolean mAudioOnly = false;
-    private boolean mVideoOnly = false;
-    private SurfaceStatus mSurfaceStatus = SurfaceStatus.UNINITED;
-    private boolean isPause = false;
-    private int mCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
-    private boolean mFlash = false;
-    private boolean mMixExtern = false;
-    private boolean mMixMain = false;
-    private String mAuthTime = "";
-    private String mPrivacyKey = "";
-    private boolean videoThreadOn = false;
-    private boolean audioThreadOn = false;
-    private int mNetWork = 0;
-    TaoFaceFilter taoFaceFilter;
-    TaoBeautyFilter taoBeautyFilter;
-
-
     boolean rankOpenStatus = false;
+    String live_room_id;
+    ShareUtils mShareUtils;
+    String title, User_name, Cover_url;
 
     @Override
     public void onClick(View view) {
 
+    }
+
+    public static void startActivity(Activity activity, String url, String live_room_id) {
+        Intent intent = new Intent(activity, LivePushActivity.class);
+        intent.putExtra(URL_KEY, url);
+        intent.putExtra("live_room_id", live_room_id);
+        activity.startActivity(intent);
     }
 
     @Override
@@ -153,16 +119,18 @@ public class LivePushActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent),false);
+//        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), false);
     }
 
     @Override
     public void setListener() {
-        previewView.getHolder().addCallback(mCallback);
         btnLiwu.setVisibility(View.GONE);
+        fragTvFollow.setVisibility(View.GONE);
         btnCamera.setOnClickListener(onClickListener);
         btnExit.setOnClickListener(onClickListener);
-//        fragLayoutRank.setOnClickListener(onClickListener);
+        fragLayoutRank.setOnClickListener(onClickListener);
+        lvRankdata.getBackground().setAlpha(50);
+        fragLayoutShare.setOnClickListener(this);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -170,9 +138,7 @@ public class LivePushActivity extends BaseActivity {
                 if (actionId == EditorInfo.IME_ACTION_SEND
                         || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
                     if (!TextUtils.isEmpty(edtContent.getText().toString().trim())) {
-                        String content = edtContent.getText().toString().trim();
                         edtContent.setText("");
-                        ToastUtils.showToast("功能开发中...");
                     }
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     return true;
@@ -184,134 +150,432 @@ public class LivePushActivity extends BaseActivity {
 
     @Override
     public void initDataAfter() {
-        initData();
         String city = new LocationUtils().getAddressCity(this);
         fragTvCity.setText("" + city);
         fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
         Intent intent = getIntent();
+        mPushUrl = intent.getStringExtra("Pushurl");
         String playTitle = intent.getStringExtra("playTitle");
         if (!TextUtils.isEmpty(playTitle)) {
             fragTvPlaystatus.setText("直播中: " + playTitle);
         }
+        initPusher();
+        initListener();
+        startRTMPPush();
+//        initTimer();
     }
 
-    public static void startActivity(Activity activity, String url,String playTitle) {
-        Intent intent = new Intent(activity, LivePushActivity.class);
-        intent.putExtra(URL_KEY, url);
-        intent.putExtra("playTitle", playTitle);
-        activity.startActivityForResult(intent, REQ_CODE_PUSH);
+
+    /**
+     * **********************************腾讯云直播设置************************************************
+     */
+
+    private TXLivePushConfig mLivePushConfig;                // SDK 推流 config
+    private TXLivePusher mLivePusher;                    // SDK 推流类
+    /**
+     * 其他参数
+     */
+    private int mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960; // 当前分辨率
+    private boolean mIsPushing;                     // 当前是否正在推流
+    /**
+     * 默认美颜参数
+     */
+    private int mBeautyLevel = 4;            // 美颜等级
+    private int mBeautyStyle = TXLiveConstants.BEAUTY_STYLE_SMOOTH; // 美颜样式
+    private int mWhiteningLevel = 3;            // 美白等级
+    private int mRuddyLevel = 2;            // 红润等级
+    private boolean mFrontCamera = false;
+    TXPhoneStateListener mPhoneListener;
+
+    /**
+     * 初始化 SDK 推流器
+     */
+    private void initPusher() {
+        mLivePusher = new TXLivePusher(this);
+        mLivePushConfig = new TXLivePushConfig();
+        mLivePushConfig.setVideoEncodeGop(5);
+        mLivePusher.setConfig(mLivePushConfig);
     }
 
-    private void initData() {
-        mPushUrl = getIntent().getStringExtra(URL_KEY);
-        mAlivcLivePushConfig = new AlivcLivePushConfig();
-        mAlivcLivePusher = new AlivcLivePusher();
-        try {
-            mMixMain = mAlivcLivePushConfig.isExternMainStream();
-            mAlivcLivePushConfig.setCameraType(CAMERA_TYPE_BACK);//设置摄像头
-            mAlivcLivePushConfig.setMediaProjectionPermissionResultData(null);
-            mAlivcLivePushConfig.setResolution(AlivcResolutionEnum.RESOLUTION_540P);
-            mAlivcLivePushConfig.setQualityMode(AlivcQualityModeEnum.QM_RESOLUTION_FIRST);//显示模式 清晰度优先
-            mAlivcLivePushConfig.setPreviewDisplayMode(AlivcPreviewDisplayMode.ALIVC_LIVE_PUSHER_PREVIEW_ASPECT_FIT);//横屏适配
-            mAlivcLivePushConfig.setBeautyOn(true);// 开启美颜
-            mAlivcLivePushConfig.setBeautyLevel(AlivcBeautyLevelEnum.BEAUTY_Professional);//设定为高级美颜
-            mAlivcLivePusher.init(getApplicationContext(), mAlivcLivePushConfig);
-            mAlivcLivePusher.setAutoFocus(true);//自动对焦
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
+    /**
+     * 开始 RTMP 推流
+     * <p>
+     * 推荐使用方式：
+     * 1. 配置好 {@link TXLivePushConfig} ， 配置推流参数
+     * 2. 调用 {@link TXLivePusher#setConfig(TXLivePushConfig)} ，设置推流参数
+     * 3. 调用 {@link TXLivePusher#startCameraPreview(TXCloudVideoView)} ， 开始本地预览
+     * 4. 调用 {@link TXLivePusher#startPusher(String)} ， 发起推流
+     * <p>
+     * 注：步骤 3 要放到 2 之后，否则横屏推流、聚焦曝光、画面缩放功能配置不生效
+     *
+     * @return
+     */
+    private boolean startRTMPPush() {
+        if (TextUtils.isEmpty(mPushUrl) || (!mPushUrl.trim().toLowerCase().startsWith("rtmp://"))) {
+            ToastUtils.showToast("直播地址不合法");
+            return false;
         }
-        mNetWork = NetUtils.getAPNType(this);
-        mAlivcLivePusher.setLivePushInfoListener(mPushInfoListener);
-        mAlivcLivePusher.setLivePushNetworkListener(mPushNetworkListener);
-        //人脸识别回调（只接入标准版美颜可不需要调用此接口）
-        mAlivcLivePusher.setCustomDetect(new AlivcLivePushCustomDetect() {
+        // 显示本地预览的View
+        mPusherView.setVisibility(View.VISIBLE);
+        // 添加播放回调
+        mLivePusher.setPushListener(new ITXLivePushListener() {
             @Override
-            public void customDetectCreate() {
-                taoFaceFilter = new TaoFaceFilter(getApplicationContext());
-                taoFaceFilter.customDetectCreate();
+            public void onPushEvent(int event, Bundle param) {
+                String msg = param.getString(TXLiveConstants.EVT_DESCRIPTION);
+                String pushEventLog = "receive event: " + event + ", " + msg;
+                Log.d(TAG, pushEventLog);
+                // Toast错误内容
+                if (event < 0) {
+                    ToastUtils.showToast(param.getString(TXLiveConstants.EVT_DESCRIPTION));
+                }
+                if (event == TXLiveConstants.PUSH_ERR_NET_DISCONNECT
+                        || event == TXLiveConstants.PUSH_ERR_INVALID_ADDRESS
+                        || event == TXLiveConstants.PUSH_ERR_OPEN_CAMERA_FAIL
+                        || event == TXLiveConstants.PUSH_ERR_OPEN_MIC_FAIL) {
+                    // 遇到以上错误，则停止推流
+//                    stopRTMPPush();
+                } else if (event == TXLiveConstants.PUSH_WARNING_HW_ACCELERATION_FAIL) {
+                    // 开启硬件加速失败
+                    ToastUtils.showToast(param.getString(TXLiveConstants.EVT_DESCRIPTION));
+                    mLivePushConfig.setHardwareAcceleration(TXLiveConstants.ENCODE_VIDEO_SOFTWARE);
+                    mLivePusher.setConfig(mLivePushConfig);
+                } else if (event == TXLiveConstants.PUSH_EVT_CHANGE_RESOLUTION) {
+                    Log.d(TAG, "change resolution to " + param.getInt(TXLiveConstants.EVT_PARAM2) + ", bitrate to" + param.getInt(TXLiveConstants.EVT_PARAM1));
+                } else if (event == TXLiveConstants.PUSH_EVT_CHANGE_BITRATE) {
+                    Log.d(TAG, "change bitrate to" + param.getInt(TXLiveConstants.EVT_PARAM1));
+                } else if (event == TXLiveConstants.PUSH_WARNING_NET_BUSY) {
+                    ToastUtils.showToast(R.string.net_tishi);
+                } else if (event == TXLiveConstants.PUSH_EVT_START_VIDEO_ENCODER) {
+                } else if (event == TXLiveConstants.PUSH_EVT_OPEN_CAMERA_SUCC) {
+                    // 只有后置摄像头可以打开闪光灯，若默认需要开启闪光灯。 那么在打开摄像头成功后，才可以进行配置。 若果当前是前置，设定无效；若是后置，打开闪光灯。
+//                    mLivePusher.turnOnFlashLight(false);
+                }
             }
 
             @Override
-            public long customDetectProcess(long data, int width, int height, int rotation, int format, long extra) {
-                if (taoFaceFilter != null) {
-                    return taoFaceFilter.customDetectProcess(data, width, height, rotation, format, extra);
-                }
-                return 0;
-            }
-
-            @Override
-            public void customDetectDestroy() {
-                if (taoFaceFilter != null) {
-                    taoFaceFilter.customDetectDestroy();
-                }
+            public void onNetStatus(Bundle status) {
+                String str = getStatus(status);
+                Log.d(TAG, "Current status, CPU:" + status.getString(TXLiveConstants.NET_STATUS_CPU_USAGE) +
+                        ", RES:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH) + "*" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT) +
+                        ", SPD:" + status.getInt(TXLiveConstants.NET_STATUS_NET_SPEED) + "Kbps" +
+                        ", FPS:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_FPS) +
+                        ", ARA:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE) + "Kbps" +
+                        ", VRA:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE) + "Kbps");
             }
         });
-        //美颜回调
-        mAlivcLivePusher.setCustomFilter(new AlivcLivePushCustomFilter() {
-            @Override
-            public void customFilterCreate() {
-                taoBeautyFilter = new TaoBeautyFilter();
-                taoBeautyFilter.customFilterCreate();
-            }
+        // 添加后台垫片推流参数
+        Bitmap bitmap = decodeResource(getResources(), R.mipmap.pause_publish);
+        mLivePushConfig.setPauseImg(bitmap);
+        mLivePushConfig.setPauseImg(300, 5);
+        mLivePushConfig.setPauseFlag(TXLiveConstants.PAUSE_FLAG_PAUSE_VIDEO);// 设置暂停时，只停止画面采集，不停止声音采集。
+        // 设置推流分辨率
+        mLivePushConfig.setVideoResolution(mCurrentVideoResolution);
+        // 设置美颜
+        mLivePusher.setBeautyFilter(mBeautyStyle, mBeautyLevel, mWhiteningLevel, mRuddyLevel);
+        // 开启麦克风推流相关--是否静音
+        mLivePusher.setMute(false);
+        // 横竖屏推流相关
+        mLivePushConfig.setHomeOrientation(TXLiveConstants.VIDEO_ANGLE_HOME_DOWN);
+        mLivePusher.setRenderRotation(0);
+        // 是否开启观众端镜像观看
+        mLivePusher.setMirror(false);
+        // 是否打开调试信息
+        mPusherView.showLog(false);
+        // 是否添加水印
+        mLivePushConfig.setWatermark(null, 0, 0, 0);
+        // 是否打开曝光对焦
+        mLivePushConfig.setTouchFocus(true);
+        // 是否打开手势放大预览画面
+        mLivePushConfig.setEnableZoom(false);
+        // 设置推流配置
+        mLivePusher.setConfig(mLivePushConfig);
+        // 设置混响
+        mLivePusher.setReverb(0);
+        // 设置变声
+        mLivePusher.setVoiceChangerType(0);
+        // 设置场景
+        setPushScene(TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION, true);
+        // 设置本地预览View
+        mLivePusher.startCameraPreview(mPusherView);
+        if (!mFrontCamera)
+            mLivePusher.switchCamera();
+        // 发起推流
+        int ret = mLivePusher.startPusher(mPushUrl);
+        if (ret == -5) {
+            ToastUtils.showToast("直播信息获取失败");
+            return false;
+        }
+        ToastUtils.showToast("开始直播");
+        mIsPushing = true;
+        return true;
+    }
 
-            @Override
-            public void customFilterUpdateParam(float fSkinSmooth, float fWhiten, float fWholeFacePink, float fThinFaceHorizontal, float fCheekPink, float fShortenFaceVertical, float fBigEye) {
-                if (taoBeautyFilter != null) {
-                    taoBeautyFilter.customFilterUpdateParam(fSkinSmooth, fWhiten, fWholeFacePink, fThinFaceHorizontal, fCheekPink, fShortenFaceVertical, fBigEye);
-                }
-            }
+    /**
+     * 停止 RTMP 推流
+     */
+    private void stopRTMPPush() {
+        // 停止BGM
+        mLivePusher.stopBGM();
+        // 停止本地预览
+        mLivePusher.stopCameraPreview(true);
+        // 移除监听
+        mLivePusher.setPushListener(null);
+        // 停止推流
+        mLivePusher.stopPusher();
+        // 移除垫片图像
+        mLivePushConfig.setPauseImg(null);
+        mIsPushing = false;
+    }
 
-            @Override
-            public void customFilterSwitch(boolean on) {
-                if (taoBeautyFilter != null) {
-                    taoBeautyFilter.customFilterSwitch(on);
-                }
-            }
+    private void setCameraSwitch() {
+        mLivePusher.switchCamera();
+    }
 
-            @Override
-            public int customFilterProcess(int inputTexture, int textureWidth, int textureHeight, long extra) {
-                if (taoBeautyFilter != null) {
-                    return taoBeautyFilter.customFilterProcess(inputTexture, textureWidth, textureHeight, extra);
-                }
-                return inputTexture;
-            }
+    @Override
+    public void BackPushSuccess(BasicResponse responseBean) {
 
-            @Override
-            public void customFilterDestroy() {
-                if (taoBeautyFilter != null) {
-                    taoBeautyFilter.customFilterDestroy();
-                }
-                taoBeautyFilter = null;
-            }
-        });
+    }
+
+    @Override
+    public void BackPlaySuccess(BasicResponse responseBean) {
+
     }
 
 
+
+
+    @Override
+    public void Error() {
+    }
+
+    protected static final int updateView = 5;
+    protected static final int addForwardNum = 6;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case BoEditPopupUtils.CONTENT:
+                case updateView:
                     break;
-                case BoEditPopupUtils.SENDLIWU:
-                    break;
-                case BoEditPopupUtils.CAMERA:
-                    setCameraSwitch();
-                    break;
-                case BoEditPopupUtils.EXIT:
-                    finish();
+                case addForwardNum:
                     break;
             }
         }
     };
+
+    @Override
+    public void showDialog() {
+
+    }
+
+    @Override
+    public void dismissDialog() {
+        LoadingDialogAnim.dismiss(mContext);
+    }
+
+    /**
+     * 电话监听
+     */
+    private static class TXPhoneStateListener extends PhoneStateListener {
+        WeakReference<TXLivePusher> mPusher;
+
+        public TXPhoneStateListener(TXLivePusher pusher) {
+            mPusher = new WeakReference<TXLivePusher>(pusher);
+        }
+
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            super.onCallStateChanged(state, incomingNumber);
+            TXLivePusher pusher = mPusher.get();
+            switch (state) {
+                //电话等待接听
+                case TelephonyManager.CALL_STATE_RINGING:
+                    if (pusher != null) pusher.pausePusher();
+                    break;
+                //电话接听
+                case TelephonyManager.CALL_STATE_OFFHOOK:
+                    if (pusher != null) pusher.pausePusher();
+                    break;
+                //电话挂机
+                case TelephonyManager.CALL_STATE_IDLE:
+                    if (pusher != null) pusher.resumePusher();
+                    break;
+            }
+        }
+    }
+
+    /**
+     * 获取资源图片
+     *
+     * @param resources
+     * @param id
+     * @return
+     */
+    private Bitmap decodeResource(Resources resources, int id) {
+        TypedValue value = new TypedValue();
+        resources.openRawResource(id, value);
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        opts.inTargetDensity = value.density;
+        return BitmapFactory.decodeResource(resources, id, opts);
+    }
+
+    /**
+     * 设置推流场景
+     * <p>
+     * SDK 内部将根据具体场景，进行推流 分辨率、码率、FPS、是否启动硬件加速、是否启动回声消除 等进行配置
+     * <p>
+     * 适用于一般客户，方便快速进行配置
+     * <p>
+     * 专业客户，推荐通过 {@link TXLivePushConfig} 进行逐一配置
+     */
+    public void setPushScene(int type, boolean enableAdjustBitrate) {
+        Log.i(TAG, "setPushScene: type = " + type + " enableAdjustBitrate = " + enableAdjustBitrate);
+        // 码率、分辨率自适应都关闭
+        boolean autoBitrate = enableAdjustBitrate;
+        boolean autoResolution = false;
+        switch (type) {
+            case TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION: /*360p*/
+                if (mLivePusher != null) {
+                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_STANDARD_DEFINITION, autoBitrate, autoResolution);
+                    mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_360_640;
+                }
+                break;
+            case TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION: /*540p*/
+                if (mLivePusher != null) {
+                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION, autoBitrate, autoResolution);
+                    mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960;
+                }
+                break;
+            case TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION: /*720p*/
+                if (mLivePusher != null) {
+                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION, autoBitrate, autoResolution);
+                    mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_720_1280;
+                }
+                break;
+            case TXLiveConstants.VIDEO_QUALITY_LINKMIC_MAIN_PUBLISHER: /*连麦大主播*/
+                if (mLivePusher != null) {
+                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_LINKMIC_MAIN_PUBLISHER, autoBitrate, autoResolution);
+                    mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960;
+                }
+                break;
+            case TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER: /*连麦小主播*/
+                if (mLivePusher != null) {
+                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_LINKMIC_SUB_PUBLISHER, autoBitrate, autoResolution);
+                    mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_320_480;
+                }
+                break;
+            case TXLiveConstants.VIDEO_QUALITY_REALTIEM_VIDEOCHAT: /*实时*/
+                if (mLivePusher != null) {
+                    mLivePusher.setVideoQuality(TXLiveConstants.VIDEO_QUALITY_REALTIEM_VIDEOCHAT, autoBitrate, autoResolution);
+                    mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_360_640;
+                }
+                break;
+            default:
+                break;
+        }
+        // 设置场景化配置后，SDK 内部会根据场景自动选择相关的配置参数，所以我们这里把内部的config获取出来，赋值到外部。
+        mLivePushConfig = mLivePusher.getConfig();
+        // 是否开启硬件加速
+        mLivePushConfig.setHardwareAcceleration(TXLiveConstants.ENCODE_VIDEO_HARDWARE);
+        mLivePusher.setConfig(mLivePushConfig);
+    }
+
+    /**
+     * 获取当前推流状态
+     *
+     * @param status
+     * @return
+     */
+    private String getStatus(Bundle status) {
+        String str = String.format("%-14s %-14s %-12s\n%-8s %-8s %-8s %-8s\n%-14s %-14s %-12s\n%-14s %-14s",
+                "CPU:" + status.getString(TXLiveConstants.NET_STATUS_CPU_USAGE),
+                "RES:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_WIDTH) + "*" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_HEIGHT),
+                "SPD:" + status.getInt(TXLiveConstants.NET_STATUS_NET_SPEED) + "Kbps",
+                "JIT:" + status.getInt(TXLiveConstants.NET_STATUS_NET_JITTER),
+                "FPS:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_FPS),
+                "GOP:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_GOP) + "s",
+                "ARA:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_BITRATE) + "Kbps",
+                "QUE:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_CACHE) + "|" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_CACHE),
+                "DRP:" + status.getInt(TXLiveConstants.NET_STATUS_AUDIO_DROP) + "|" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_DROP),
+                "VRA:" + status.getInt(TXLiveConstants.NET_STATUS_VIDEO_BITRATE) + "Kbps",
+                "SVR:" + status.getString(TXLiveConstants.NET_STATUS_SERVER_IP),
+                "AUDIO:" + status.getString(TXLiveConstants.NET_STATUS_AUDIO_INFO));
+        return str;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mPusherView != null) {
+            mPusherView.onResume();
+        }
+
+        if (mIsPushing && mLivePusher != null) {
+            // 如果当前是隐私模式，那么不resume
+            mLivePusher.resumePusher();
+            mLivePusher.resumeBGM();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mPusherView != null) {
+            mPusherView.onPause();
+        }
+
+        if (mIsPushing && mLivePusher != null) {
+            // 如果当前已经是隐私模式，那么则不pause
+            mLivePusher.pausePusher();
+            mLivePusher.pauseBGM();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        BaoZhangActitvty.shareBackType = "";
+        BaoZhangActitvty.life_repay_id = "";
+        stopRTMPPush(); // 停止推流
+        if (mPusherView != null) {
+            mPusherView.onDestroy(); // 销毁 View
+        }
+        unInitPhoneListener();
+        super.onDestroy();
+    }
+
+    @Override
+    protected LivePushPresenterImp<LivePushContract.View> createPresent() {
+        return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
+    }
+
+    /**
+     * 初始化电话监听、系统是否打开旋转监听
+     */
+    private void initListener() {
+        mPhoneListener = new TXPhoneStateListener(mLivePusher);
+        TelephonyManager tm = (TelephonyManager) getApplicationContext().getSystemService(Service.TELEPHONY_SERVICE);
+        tm.listen(mPhoneListener, PhoneStateListener.LISTEN_CALL_STATE);
+    }
+
+    /**
+     * 销毁
+     */
+    private void unInitPhoneListener() {
+        TelephonyManager tm = (TelephonyManager) getApplicationContext().getSystemService(Service.TELEPHONY_SERVICE);
+        tm.listen(mPhoneListener, PhoneStateListener.LISTEN_NONE);
+    }
+
+    /**
+     * *******************************************************************************
+     */
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
             switch (view.getId()) {
                 case R.id.btn_exit:
-                    finish();
+                    back();
                     break;
                 case R.id.edt_content:
                     break;
@@ -328,6 +592,18 @@ public class LivePushActivity extends BaseActivity {
                         rankOpenStatus = true;
                     }
                     setRankListOpenStatus();
+                    break;
+                case R.id.frag_layout_share:
+                    //分享
+                    if (mShareUtils == null) {
+                        mShareUtils = new ShareUtils(mActivity);
+                    }
+                    BaoZhangActitvty.shareBackType = "Live";
+                    BaoZhangActitvty.life_repay_id = "Live";
+                    String wx_share_url = Config.BASE_HEAD_URL + "/home/app/index";
+                    if (!TextUtils.isEmpty(wx_share_url)) {
+                        mShareUtils.setShare("直播中：" + title, Cover_url, wx_share_url, User_name);
+                    }
                     break;
                 default:
                     break;
@@ -347,464 +623,28 @@ public class LivePushActivity extends BaseActivity {
         }
     }
 
-    private void setCameraSwitch() {
-        if (mCameraId == CAMERA_TYPE_FRONT.getCameraId()) {
-            mCameraId = CAMERA_TYPE_BACK.getCameraId();
-        } else {
-            mCameraId = CAMERA_TYPE_FRONT.getCameraId();
-        }
-        mAlivcLivePusher.switchCamera();
-    }
 
-    /**
-     * 开始推流
-     */
-    public void startPlay() {
-        if (mAsync) {
-            mAlivcLivePusher.startPushAysnc(mPushUrl);
-        } else {
-            mAlivcLivePusher.startPush(mPushUrl);
-        }
-    }
-
-    SurfaceHolder.Callback mCallback = new SurfaceHolder.Callback() {
-        @Override
-        public void surfaceCreated(SurfaceHolder surfaceHolder) {
-            if (mSurfaceStatus == SurfaceStatus.UNINITED) {
-                mSurfaceStatus = SurfaceStatus.CREATED;
-                if (mAlivcLivePusher != null) {
-                    try {
-                        if (mAsync) {
-                            mAlivcLivePusher.startPreviewAysnc(previewView);
-                        } else {
-                            mAlivcLivePusher.startPreview(previewView);
-                        }
-                        if (mAlivcLivePushConfig.isExternMainStream()) {
-                            startYUV(getApplicationContext());
-                            startPCM(getApplicationContext());
-                        }
-                        mAlivcLivePusher.setBeautyBuffing(60);// 磨皮范围0-100
-                        mAlivcLivePusher.setBeautyWhite(50);// 美白范围0-100
-                        mAlivcLivePusher.setBeautyBigEye(30);// 大眼设置范围0-100
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startPlay();
-                            }
-                        }, 2200);
-                    } catch (IllegalArgumentException e) {
-                        e.toString();
-                    } catch (IllegalStateException e) {
-                        e.toString();
-                    }
-                }
-            } else if (mSurfaceStatus == SurfaceStatus.DESTROYED) {
-                mSurfaceStatus = SurfaceStatus.RECREATED;
-            }
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-            mSurfaceStatus = SurfaceStatus.CHANGED;
-            Log.d("MyCallBack", "surfaceChangedsurfaceChanged");
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-            mSurfaceStatus = SurfaceStatus.DESTROYED;
-        }
-    };
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mAlivcLivePusher != null) {
-            try {
-                if (!isPause) {
-                    if (mAsync) {
-                        mAlivcLivePusher.resumeAsync();
-                    } else {
-                        mAlivcLivePusher.resume();
-                    }
-                }
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mAlivcLivePusher != null) {
-            try {
-                if (mAlivcLivePusher != null/*.isPushing()*/) {
-                    mAlivcLivePusher.pause();
-                }
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        videoThreadOn = false;
-        audioThreadOn = false;
-        if (mAlivcLivePusher != null) {
-            //停止推流
-            try {
-                mAlivcLivePusher.stopPush();
-            } catch (Exception e) {
-            }
-            //停止预览
-            try {
-                mAlivcLivePusher.stopPreview();
-            } catch (Exception e) {
-            }
-            //释放推流
-            try {
-                mAlivcLivePusher.destroy();
-                mAlivcLivePusher.setLivePushInfoListener(null);
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
-        }
-        previewView = null;
-        mAlivcLivePushConfig = null;
-        mAlivcLivePusher = null;
-        super.onDestroy();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        int rotation = getWindowManager().getDefaultDisplay().getRotation();
-        AlivcPreviewOrientationEnum orientationEnum;
-        if (mAlivcLivePusher != null) {
-            switch (rotation) {
-                case Surface.ROTATION_0:
-                    orientationEnum = ORIENTATION_PORTRAIT;
-                    break;
-                case Surface.ROTATION_90:
-                    orientationEnum = ORIENTATION_LANDSCAPE_HOME_RIGHT;
-                    break;
-                case Surface.ROTATION_270:
-                    orientationEnum = ORIENTATION_LANDSCAPE_HOME_LEFT;
-                    break;
-                default:
-                    orientationEnum = ORIENTATION_PORTRAIT;
-                    break;
-            }
-            try {
-                mAlivcLivePusher.setPreviewOrientation(orientationEnum);
-            } catch (IllegalStateException e) {
-
-            }
-        }
-    }
-
-    public AlivcLivePusher getLivePusher() {
-        return this.mAlivcLivePusher;
-    }
-
-    public SurfaceView getPreviewView() {
-        return this.previewView;
-    }
-
-    public interface PauseState {
-        void updatePause(boolean state);
-    }
-
-    private PauseState mStateListener = new PauseState() {
-        @Override
-        public void updatePause(boolean state) {
-            isPause = state;
-        }
-    };
-
-    class ConnectivityChangedReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
-
-                if (mNetWork != NetUtils.getAPNType(context)) {
-                    mNetWork = NetUtils.getAPNType(context);
-                    if (mAlivcLivePusher != null) {
-                        if (mAlivcLivePusher.isPushing()) {
-                            try {
-                                mAlivcLivePusher.reconnectPushAsync(null);
-                            } catch (IllegalStateException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
-    private void showToast(final String text) {
-        if (text == null) {
-            return;
-        }
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
+    private void back() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Toast toast = Toast.makeText(LivePushActivity.this, text, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-            }
-        });
-    }
-
-    AlivcLivePushInfoListener mPushInfoListener = new AlivcLivePushInfoListener() {
-        @Override
-        public void onPreviewStarted(AlivcLivePusher pusher) {
-        }
-
-        @Override
-        public void onPreviewStoped(AlivcLivePusher pusher) {
-        }
-
-        @Override
-        public void onPushStarted(AlivcLivePusher pusher) {
-            showToast(getString(R.string.start_button));
-        }
-
-        @Override
-        public void onPushStoped(AlivcLivePusher pusher) {
-            showToast(getString(R.string.stop_button));
-        }
-
-        @Override
-        public void onFirstAVFramePushed(AlivcLivePusher pusher) {
-        }
-
-        @Override
-        public void onPushPauesed(AlivcLivePusher pusher) {
-            showToast(getString(R.string.pause_button));
-        }
-
-        @Override
-        public void onPushResumed(AlivcLivePusher pusher) {
-            showToast(getString(R.string.resume_button));
-        }
-
-
-        /**
-         * 推流重启通知
-         *
-         * @param pusher AlivcLivePusher实例
-         */
-        @Override
-        public void onPushRestarted(AlivcLivePusher pusher) {
-//            showToast(getString(R.string.restart_success));
-        }
-
-        @Override
-        public void onFirstFramePreviewed(AlivcLivePusher pusher) {
-        }
-
-        @Override
-        public void onDropFrame(AlivcLivePusher pusher, int countBef, int countAft) {
-        }
-
-        @Override
-        public void onAdjustBitRate(AlivcLivePusher pusher, int curBr, int targetBr) {
-        }
-
-        @Override
-        public void onAdjustFps(AlivcLivePusher pusher, int curFps, int targetFps) {
-        }
-    };
-
-    AlivcLivePushNetworkListener mPushNetworkListener = new AlivcLivePushNetworkListener() {
-        @Override
-        public void onNetworkPoor(AlivcLivePusher pusher) {
-            showToast(getString(R.string.network_poor));
-        }
-
-        @Override
-        public void onNetworkRecovery(AlivcLivePusher pusher) {
-            showToast(getString(R.string.network_recovery));
-            mAlivcLivePusher.reconnectPushAsync(null);
-        }
-
-        @Override
-        public void onReconnectStart(AlivcLivePusher pusher) {
-//            showToastShort(getString(R.string.reconnect_start));
-        }
-
-        @Override
-        public void onReconnectFail(AlivcLivePusher pusher) {
-
-//            showDialog(getString(R.string.reconnect_fail));
-        }
-
-        @Override
-        public void onReconnectSucceed(AlivcLivePusher pusher) {
-//            showToast(getString(R.string.reconnect_success));
-        }
-
-        @Override
-        public void onSendDataTimeout(AlivcLivePusher pusher) {
-//            showDialog(getString(R.string.senddata_timeout));
-        }
-
-        @Override
-        public void onConnectFail(AlivcLivePusher pusher) {
-//            showDialog(getString(R.string.connect_fail));
-        }
-
-        @Override
-        public String onPushURLAuthenticationOverdue(AlivcLivePusher alivcLivePusher) {
-            return null;
-        }
-
-        @Override
-        public void onConnectionLost(AlivcLivePusher pusher) {
-//            showToast("推流已断开");
-        }
-
-
-        @Override
-        public void onSendMessage(AlivcLivePusher pusher) {
-//            showToast(getString(R.string.send_message));
-        }
-
-        @Override
-        public void onPacketsLost(AlivcLivePusher pusher) {
-//            showToast("推流丢包通知");
-        }
-    };
-
-    public void startYUV(final Context context) {
-        new ScheduledThreadPoolExecutor(1, new ThreadFactory() {
-            private AtomicInteger atoInteger = new AtomicInteger(0);
-
-            public Thread newThread(Runnable r) {
-                Thread t = new Thread(r);
-                t.setName("LivePushActivity-readYUV-Thread" + atoInteger.getAndIncrement());
-                return t;
-            }
-        }).execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                // 如果正在推流，先停止推流，再退出
+                if (mIsPushing) {
+                    stopRTMPPush();
                 }
-                videoThreadOn = true;
-                byte[] yuv;
-                InputStream myInput = null;
-                try {
-                    File f = new File(Environment.getExternalStorageDirectory().getPath() + File.separator + "alivc_resource/capture0.yuv");
-                    myInput = new FileInputStream(f);
-                    byte[] buffer = new byte[1280 * 720 * 3 / 2];
-                    int length = myInput.read(buffer);
-                    //发数据
-                    while (length > 0 && videoThreadOn) {
-                        mAlivcLivePusher.inputStreamVideoData(buffer, 720, 1280, 720, 1280 * 720 * 3 / 2, System.nanoTime() / 1000, 0);
-                        try {
-                            Thread.sleep(40);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        //发数据
-                        length = myInput.read(buffer);
-                        if (length <= 0) {
-                            myInput.close();
-                            myInput = new FileInputStream(f);
-                            length = myInput.read(buffer);
-                        }
-                    }
-                    myInput.close();
-                    videoThreadOn = false;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                doFinish();
             }
-        });
+        }, 100);//秒后执行Runnable中的run方法
     }
 
-    private void stopYUV() {
-        videoThreadOn = false;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            back();
+        }
+        return false;
     }
 
-    private void startPCM(final Context context) {
-        new ScheduledThreadPoolExecutor(1, new ThreadFactory() {
-            private AtomicInteger atoInteger = new AtomicInteger(0);
-
-            @Override
-            public Thread newThread(Runnable r) {
-                Thread t = new Thread(r);
-                t.setName("LivePushActivity-readPCM-Thread" + atoInteger.getAndIncrement());
-                return t;
-            }
-        }).execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                audioThreadOn = true;
-                byte[] pcm;
-                int allSended = 0;
-                int sizePerSecond = 44100 * 2;
-                InputStream myInput = null;
-                OutputStream myOutput = null;
-                boolean reUse = false;
-                long startPts = System.nanoTime() / 1000;
-                try {
-                    File f = new File("/sdcard/alivc_resource/441.pcm");
-                    myInput = new FileInputStream(f);
-                    byte[] buffer = new byte[2048];
-                    int length = myInput.read(buffer, 0, 2048);
-                    while (length > 0 && audioThreadOn) {
-                        long pts = System.nanoTime() / 1000;
-                        mAlivcLivePusher.inputStreamAudioData(buffer, length, 44100, 1, pts);
-                        allSended += length;
-                        if ((allSended * 1000000L / sizePerSecond - 50000) > (pts - startPts)) {
-                            try {
-                                Thread.sleep(45);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        length = myInput.read(buffer);
-                        if (length < 2048) {
-                            myInput.close();
-                            myInput = new FileInputStream(f);
-                            length = myInput.read(buffer);
-                        }
-                        try {
-                            Thread.sleep(3);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    myInput.close();
-                    audioThreadOn = false;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    private void stopPcm() {
-        audioThreadOn = false;
-    }
 
 }

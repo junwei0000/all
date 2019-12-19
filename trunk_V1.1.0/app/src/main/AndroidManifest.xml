@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.longcheng.lifecareplan">
-
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECORD_VIDEO" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -38,9 +40,10 @@
 
     <!-- ************************************************ 访问照相机 *********************************************** -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.Camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <!-- ************************************************ 访问照相机 end *********************************************** -->
-
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <!-- ************************************************ 联系人 *********************************************** -->
     <!-- 读联系人 -->

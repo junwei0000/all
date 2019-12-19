@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushActivity;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
@@ -173,31 +172,17 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
 
     @Override
     protected LivePushPresenterImp<LivePushContract.View> createPresent() {
-        return new LivePushPresenterImp<>(mContext, this);
+        return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
     }
 
-    @Override
-    public void BackPushSuccess(LivePushDataInfo responseBean) {
-        String Pushurl = responseBean.getPushurl();
-        if (!TextUtils.isEmpty(Pushurl)) {
-            LivePushActivity.startActivity(this, Pushurl, "");
-        } else {
-            ToastUtils.showToast("获取直播信息失败");
-        }
-    }
 
     @Override
-    public void BackPlaySuccess(LivePushDataInfo responseBean) {
+    public void BackPushSuccess(BasicResponse<LivePushDataInfo> responseBean) {
 
     }
 
     @Override
-    public void BackPlayListSuccess(LivePushDataInfo responseBean) {
-
-    }
-
-    @Override
-    public void BackVideoListSuccess(LivePushDataInfo responseBean) {
+    public void BackPlaySuccess(BasicResponse<LivePushDataInfo> responseBean) {
 
     }
 

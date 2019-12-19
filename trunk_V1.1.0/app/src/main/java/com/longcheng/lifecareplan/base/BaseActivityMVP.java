@@ -81,6 +81,7 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
      **/
     public Context mContext = this;
     public Activity mActivity = this;
+    public RxAppCompatActivity mRxAppCompatActivity = this;
     private ActivityManager activityManager;
     private Unbinder bind;
 

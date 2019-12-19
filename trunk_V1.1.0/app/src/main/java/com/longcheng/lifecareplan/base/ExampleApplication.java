@@ -9,7 +9,6 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
-import com.alivc.player.AliVcMediaPlayer;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.push.PushClient;
 import com.longcheng.lifecareplan.push.listener.IBasePushReceiverListener;
@@ -19,6 +18,8 @@ import com.longcheng.lifecareplan.utils.CustomCrashHandler;
 import com.longcheng.lifecareplan.utils.UnCeHandler;
 import com.meiqia.core.callback.OnInitCallback;
 import com.meiqia.meiqiasdk.util.MQConfig;
+import com.tencent.rtmp.TXLiveBase;
+import com.tencent.ugc.TXUGCBase;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -64,18 +65,23 @@ public class ExampleApplication extends MultiDexApplication {
         initPush();
         pushListener();
 
-        //初始化播放器（只需调用一次即可，建议在application中初始化）
-        AliVcMediaPlayer.init(getApplicationContext());
-//        initHttp();
+        initTencentLive();
         initMeiQia();
     }
-//    /**
-//     * 短视频需要的http依赖
-//     */
-//    private void initHttp() {
-//        com.aliyun.vod.common.httpfinal.QupaiHttpFinal.getInstance().initOkHttpFinal();
-//    }
-
+    /**
+     * 初始化腾讯云直播，短视频
+     */
+    private void initTencentLive() {
+        String licenceURL = "http://license.vod2.myqcloud.com/license/v1/def2b691939d9eb3be268179c8930e67/TXLiveSDK.licence"; // 获取到的 licence url
+        String licenceKey = "f7902ca622e5fd7f4b6559a455fdcc2d"; // 获取到的 licence key
+        String TXUgclicenceURL = "http://license.vod2.myqcloud.com/license/v1/def2b691939d9eb3be268179c8930e67/TXUgcSDK.licence";
+        TXLiveBase.getInstance().setLicence(this, licenceURL, licenceKey);
+        TXUGCBase.getInstance().setLicence(this, TXUgclicenceURL, licenceKey);
+        String sdkVer = TXLiveBase.getSDKVersionStr();
+        Log.d("liteavsdk", "liteav sdk version is : " + sdkVer);
+        String mLicenceInfo = TXUGCBase.getInstance().getLicenceInfo(this);
+        Log.d("liteavsdk", "mLicenceInfo : " + mLicenceInfo);
+    }
     /**
      * 初始化美洽
      */

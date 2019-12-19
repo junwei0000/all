@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.http.api;
 
 import android.app.Activity;
-import android.text.TextUtils;
 
 import com.google.gson.JsonParseException;
 import com.longcheng.lifecareplan.R;
@@ -9,6 +8,7 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.utils.LogUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import org.json.JSONException;
 
@@ -35,7 +35,7 @@ public abstract class DefaultObserver<T extends BasicResponse> implements Observ
     /**
      * 请求成功
      */
-    public final static int REQUEST_SUCCESS = 200;
+    public final static int REQUEST_SUCCESS = 0;
 
     private Activity activity;
 
@@ -51,11 +51,14 @@ public abstract class DefaultObserver<T extends BasicResponse> implements Observ
 
     @Override
     public void onNext(T response) {
-        String status = response.getStatus();
-        if (!TextUtils.isEmpty(status) && Integer.parseInt(status) == REQUEST_SUCCESS) {
+        int status = response.getStatus();
+        if (status == 0) {
             onSuccess(response);
         } else {
-            onFail(response);
+//            onFail(response);
+            String message = response.getMsg();
+            ToastUtils.showToast(message);
+            LoadingDialogAnim.dismiss(activity);
         }
     }
 
@@ -75,6 +78,7 @@ public abstract class DefaultObserver<T extends BasicResponse> implements Observ
         } else {
             onException(UNKNOWN_ERROR);
         }
+        onError();
     }
 
     @Override
@@ -97,16 +101,16 @@ public abstract class DefaultObserver<T extends BasicResponse> implements Observ
      */
     public void onFail(T response) {
         String message = response.getMsg();
-        String status = response.getStatus();
-        switch (Integer.parseInt(status)) {
+        int status = response.getStatus();
+        switch (status) {
             case 400: // 数据请求失败
                 ToastUtils.showToast(message);
                 break;
             case 499: // 单点登录弹层
-                UserLoginBack403Utils.getInstance().login499Or500(status);
+                UserLoginBack403Utils.getInstance().login499Or500(String.valueOf(status));
                 break;
             case 500: // 无密码跳转设置密码
-                UserLoginBack403Utils.getInstance().login499Or500(status);
+                UserLoginBack403Utils.getInstance().login499Or500(String.valueOf(status));
                 break;
             default:
                 break;

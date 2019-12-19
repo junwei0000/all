@@ -1,14 +1,12 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.longcheng.lifecareplan.apiLive.ApiLive;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.http.api.DefaultObserver;
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -20,11 +18,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePushContract.View> {
 
-    private Context mContext;
+    private RxAppCompatActivity mContext;
     private LivePushContract.View mView;
     private LivePushContract.Model mModel;
 
-    public LivePushPresenterImp(Context mContext, LivePushContract.View mView) {
+    public LivePushPresenterImp(RxAppCompatActivity mContext, LivePushContract.View mView) {
         this.mContext = mContext;
         this.mView = mView;
     }
@@ -39,25 +37,23 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
 
     public void getLivePush(String uid) {
         mView.showDialog();
-        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePush(uid, ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
+        ApiLive.getInstance().service.getLivePush(uid, ExampleApplication.token)
+                .compose(mContext.<BasicResponse<LivePushDataInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<LivePushDataInfo>() {
+                .subscribe(new DefaultObserver<BasicResponse<LivePushDataInfo>>(mContext) {
                     @Override
-                    public void accept(LivePushDataInfo responseBean) throws Exception {
+                    public void onSuccess(BasicResponse<LivePushDataInfo> response) {
                         mView.dismissDialog();
-                        Log.d("getLivePush",""+responseBean.getPushurl());
-                        mView.BackPushSuccess(responseBean);
+                        mView.BackPushSuccess(response);
                     }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
+
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void onError() {
                         mView.dismissDialog();
                         mView.Error();
-                        Log.d("getLivePush",""+throwable.toString());
                     }
                 });
-
     }
     /**
      * 获取
@@ -65,74 +61,22 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
 
     public void getLivePlay(String uid) {
         mView.showDialog();
-        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePlay(uid, ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
+        ApiLive.getInstance().service.getLivePlay(uid, ExampleApplication.token)
+                .compose(mContext.<BasicResponse<LivePushDataInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<LivePushDataInfo>() {
+                .subscribe(new DefaultObserver<BasicResponse<LivePushDataInfo>>(mContext) {
                     @Override
-                    public void accept(LivePushDataInfo responseBean) throws Exception {
+                    public void onSuccess(BasicResponse<LivePushDataInfo> response) {
                         mView.dismissDialog();
-                        Log.d("getLivePush",""+responseBean.getPushurl());
-                        mView.BackPlaySuccess(responseBean);
+                        mView.BackPlaySuccess(response);
                     }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
+
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void onError() {
                         mView.dismissDialog();
                         mView.Error();
-                        Log.d("getLivePush",""+throwable.toString());
                     }
                 });
-
-    }
-    /**
-     * 获取直播列表
-     */
-    public void getLivePlayList() {
-        mView.showDialog();
-        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePlay(UserUtils.getUserId(mContext), ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<LivePushDataInfo>() {
-                    @Override
-                    public void accept(LivePushDataInfo responseBean) throws Exception {
-                        mView.dismissDialog();
-                        Log.d("getLivePush",""+responseBean.getPushurl());
-                        mView.BackPlayListSuccess(responseBean);
-                    }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        mView.dismissDialog();
-                        mView.Error();
-                        Log.d("getLivePush",""+throwable.toString());
-                    }
-                });
-
-    }
-    /**
-     * 获取播流列表
-     */
-    public void getVideoPlayList() {
-        mView.showDialog();
-        Observable<LivePushDataInfo> observable = ApiLive.getInstance().service.getLivePlay(UserUtils.getUserId(mContext), ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<LivePushDataInfo>() {
-                    @Override
-                    public void accept(LivePushDataInfo responseBean) throws Exception {
-                        mView.dismissDialog();
-                        Log.d("getLivePush",""+responseBean.getPushurl());
-                        mView.BackVideoListSuccess(responseBean);
-                    }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        mView.dismissDialog();
-                        mView.Error();
-                        Log.d("getLivePush",""+throwable.toString());
-                    }
-                });
-
     }
 }

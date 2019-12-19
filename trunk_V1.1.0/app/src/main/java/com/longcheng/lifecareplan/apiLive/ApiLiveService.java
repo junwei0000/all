@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.apiLive;
 
 
+import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LivePushDataInfo;
 
 import io.reactivex.Observable;
@@ -19,13 +20,14 @@ public interface ApiLiveService {
 //    https://dock.lihan.ltd/dock/classic/live/play_longcheng
 //    live/push_longcheng
     @FormUrlEncoded
-    @POST("live/push")
-    Observable<LivePushDataInfo> getLivePush(@Field("uid") String user_id,
-                                             @Field("token") String token);
+    @POST("dock/live/room/pushCurrent")
+    Observable<BasicResponse<LivePushDataInfo>> getLivePush(@Field("user_id") String user_id,
+                                                            @Field("token") String token);
+
     @FormUrlEncoded
-    @POST("live/player")
-    Observable<LivePushDataInfo> getLivePlay(@Field("uid") String user_id,
-                                             @Field("token") String token);
+    @POST("dock/live/room/waveCurrent")
+    Observable<BasicResponse<LivePushDataInfo>> getLivePlay(@Field("user_id") String user_id,
+                                                            @Field("token") String token);
 }
 
 

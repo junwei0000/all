@@ -6,8 +6,7 @@ package com.longcheng.lifecareplan.config;
 
 public class Config {
 
-    public static final String LIVE_BASE_URL = "https://dock.lihan.ltd/dock/classic/";
-
+    public static final String LIVE_BASE_URL = "http://t.dock.lifecareplan.cn/";//测试
     /**
      * 网络请求超时时间毫秒
      */

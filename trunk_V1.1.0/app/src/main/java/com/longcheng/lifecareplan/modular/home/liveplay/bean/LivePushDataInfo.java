@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.bean;
 
 import com.google.gson.annotations.SerializedName;
-import com.longcheng.lifecareplan.bean.ResponseBean;
 
 import java.util.ArrayList;
 
@@ -10,14 +9,21 @@ import java.util.ArrayList;
  * 时间：2019/10/29 15:12
  * 意图：
  */
-public class LivePushDataInfo extends ResponseBean {
-    @SerializedName("pushurl")
+public class LivePushDataInfo   {
+    @SerializedName("pushUrl")
     private String pushurl;
-
+    private LivePushDataInfo playUrl;
     private String rtmpurl;
     private String flvurl;
     private String m3u8url;
 
+    public LivePushDataInfo getPlayUrl() {
+        return playUrl;
+    }
+
+    public void setPlayUrl(LivePushDataInfo playUrl) {
+        this.playUrl = playUrl;
+    }
 
     private ArrayList<LivePlayItemInfo> PlayList;
 
