@@ -1,8 +1,6 @@
 package com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
@@ -13,26 +11,16 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ExplainActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.PeopleActivity;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainAfterBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
@@ -44,6 +32,7 @@ import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressItemBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -51,7 +40,6 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesH
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 生活方式-申请互祝
@@ -85,16 +73,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     TextView tvAddress;
     @BindView(R.id.relat_address)
     RelativeLayout relatAddress;
-    @BindView(R.id.cb_give)
-    TextView cbGive;
-    @BindView(R.id.tv_give)
-    TextView tvGive;
-    @BindView(R.id.cb_ziyong)
-    TextView cbZiyong;
-    @BindView(R.id.tv_ziyong)
-    TextView tvZiyong;
-    @BindView(R.id.et_yongtu)
-    EditText etYongtu;
     @BindView(R.id.tv_explain)
     TextView tvExplain;
     @BindView(R.id.relat_explain)
@@ -104,8 +82,8 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
 
     private String user_id;
     private String shop_goods_price_id;
-    private String remark;
-    private int purpose = 1;//是否送礼 1 送礼
+    private String remark = "";
+    private int purpose = 2;//是否送礼 1 送礼
     private String address_id;
     private int apply_goods_number = 1;//数量
     private String peopleid, peoplename;
@@ -135,20 +113,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                     ToastUtils.showToast("申请数量超额");
                 }
                 itemTvGoodsnum.setText("" + apply_goods_number);
-                break;
-            case R.id.cb_give:
-            case R.id.tv_give:
-                purpose = 1;
-                cbGive.setBackgroundResource(R.mipmap.check_true_red);
-                cbZiyong.setBackgroundResource(R.mipmap.check_false);
-                etYongtu.setVisibility(View.VISIBLE);
-                break;
-            case R.id.cb_ziyong:
-            case R.id.tv_ziyong:
-                purpose = 2;
-                cbGive.setBackgroundResource(R.mipmap.check_false);
-                cbZiyong.setBackgroundResource(R.mipmap.check_true_red);
-                etYongtu.setVisibility(View.GONE);
                 break;
             case R.id.relat_people:
                 intent = new Intent(mContext, PeopleActivity.class);
@@ -180,13 +144,17 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                 Log.e("Observable", "address_id = " + address_id);
                 if (!TextUtils.isEmpty(goods_id) && !TextUtils.isEmpty(peopleid) &&
                         !TextUtils.isEmpty(address_id) && !TextUtils.isEmpty(describe)) {
-                    remark = etYongtu.getText().toString().trim();
-                    mPresent.applyAction(user_id, shop_goods_price_id,
-                            remark, purpose, address_id, apply_goods_number, peopleid, goods_id, describe);
+                    showCNSKBStatus = true;
+                    showPopupWindow();
                 }
                 break;
         }
     }
+
+    /**
+     * 是否显示提示扣除超能或寿康宝
+     */
+    boolean showCNSKBStatus = false;
 
     private void setBtnBg() {
         if (!TextUtils.isEmpty(goods_id) && !TextUtils.isEmpty(peopleid) &&
@@ -217,10 +185,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
         pagetopLayoutLeft.setOnClickListener(this);
         itemLayoutSub.setOnClickListener(this);
         itemTvAdd.setOnClickListener(this);
-        cbGive.setOnClickListener(this);
-        tvGive.setOnClickListener(this);
-        cbZiyong.setOnClickListener(this);
-        tvZiyong.setOnClickListener(this);
         relatPeople.setOnClickListener(this);
         relatAddress.setOnClickListener(this);
         relatExplain.setOnClickListener(this);
@@ -267,6 +231,8 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             if (mPeopleAfterBean != null) {
                 LifeNeedItemBean info = mPeopleAfterBean.getSkbGoodsInfo();
                 if (info != null) {
+                    apply_type = info.getApply_type();
+                    apply_help_price = info.getApply_help_price();
                     tvGoodsname.setText(info.getName());
                     apply_help_max_limit = info.getApply_help_max_limit();
                 }
@@ -278,21 +244,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                     setBtnBg();
                 }
 
-                need_help_number = mPeopleAfterBean.getNeedhelpGoodsnumber();
-                is_read = mPeopleAfterBean.getIs_read();
-                if (need_help_number > 0) {
-                    LifeNeedItemBean appointHelpGoods = mPeopleAfterBean.getAppointHelpGoods();
-                    if (appointHelpGoods != null) {
-                        redirectMsgId = appointHelpGoods.getRedirectMsgId();//互祝help_goods_id
-                    }
-                    showPopupWindow();
-                } else if (is_read == 0 && need_help_number == 0) {
-                    LifeNeedItemBean appointHelpGoods = mPeopleAfterBean.getApplySuccess();
-                    if (appointHelpGoods != null) {
-                        redirectMsgId = appointHelpGoods.getRedirectMsgId();//自己help_goods_id
-                    }
-                    showPopupWindow();
-                }
             }
 
         }
@@ -369,11 +320,11 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             if (mActionItemBean != null) {
                 need_help_number = mActionItemBean.getNeed_help_number();
                 redirectMsgId = mActionItemBean.getRedirectMsgId();
+                showCNSKBStatus = false;
                 showPopupWindow();
             }
         } else {
             String mag = responseBean.getMsg();
-            Log.e("applyActionSuccess", "applyActionSuccess=" + mag);
             ToastUtils.showToast(mag);
         }
     }
@@ -383,7 +334,8 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
         ToastUtils.showToast(R.string.net_tishi);
     }
 
-
+    int apply_type;
+    String apply_help_price;
     MyDialog selectDialog;
     int need_help_number;
     /**
@@ -413,41 +365,47 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             tv_cont3 = (TextView) selectDialog.findViewById(R.id.tv_cont3);
             btn_ok = (TextView) selectDialog.findViewById(R.id.btn_ok);
             initView();
-            selectDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    back();
-                    return true;
-                }
-            });
+//            selectDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+//                @Override
+//                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//                    back();
+//                    return true;
+//                }
+//            });
             btn_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent;
-                    if (need_help_number > 0) {
-                        //申请成功后做任务跳转msgid   0：跳转到列表页   非0：跳转到行动详情页
-                        if (redirectMsgId.equals("0")) {
-                            intent = new Intent(mContext, LifeStyleActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("skiptype", "LifeApplyHelp");
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    if (showCNSKBStatus) {
+                        mPresent.applyAction(user_id, shop_goods_price_id,
+                                remark, purpose, address_id, apply_goods_number, peopleid, goods_id, describe);
+                    } else {
+                        Intent intent;
+                        if (need_help_number > 0) {
+                            //申请成功后做任务跳转msgid   0：跳转到列表页   非0：跳转到行动详情页
+                            if (redirectMsgId.equals("0")) {
+                                intent = new Intent(mContext, LifeStyleActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.putExtra("skiptype", "LifeApplyHelp");
+                                startActivity(intent);
+                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                            } else {
+                                intent = new Intent(mContext, LifeStyleDetailActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.putExtra("help_goods_id", "" + redirectMsgId);
+                                startActivity(intent);
+                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                            }
                         } else {
+                            //查看任务详情页面,并给后台传值已读
+                            mPresent.setTaskRead(user_id, redirectMsgId);
                             intent = new Intent(mContext, LifeStyleDetailActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             intent.putExtra("help_goods_id", "" + redirectMsgId);
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                            doFinish();
                         }
-                    } else {
-                        //查看任务详情页面,并给后台传值已读
-                        mPresent.setTaskRead(user_id, redirectMsgId);
-                        intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("help_goods_id", "" + redirectMsgId);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                        doFinish();
+
                     }
                     selectDialog.dismiss();
                 }
@@ -459,23 +417,40 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     }
 
     private void initView() {
-        if (need_help_number > 0) {
-            tv_cont1.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
-            tv_cont2.setTextColor(getResources().getColor(R.color.text_noclick_color));
-            String showT = "请您送出<font color=\"#db4065\">" + need_help_number + "</font>次祝福";
-            tv_cont1.setText(Html.fromHtml(showT));
-            tv_cont2.setText("即可获得更多人的祝福");
+        if (showCNSKBStatus) {
+            tv_cont1.setVisibility(View.VISIBLE);
             tv_cont2.setVisibility(View.VISIBLE);
             tv_cont3.setVisibility(View.GONE);
-            btn_ok.setText("点击送出祝福");
-        } else {
-            tv_cont2.setVisibility(View.GONE);
-            tv_cont3.setVisibility(View.VISIBLE);
-            tv_cont1.setText("感恩您的奉献！");
-            tv_cont3.setText("恭喜您申请成功！");
+            tv_cont1.setText("" + PriceUtils.getInstance().gteMultiplySumPrice("" + apply_goods_number, apply_help_price));
+            if (apply_type == 1) {
+                tv_cont2.setText("寿康宝");
+            } else if (apply_type == 2) {
+                tv_cont2.setText("超级生命能量");
+            }
             tv_cont1.setTextColor(getResources().getColor(R.color.color_db4065));
-            tv_cont3.setTextColor(getResources().getColor(R.color.color_db4065));
-            btn_ok.setText("知道了，点击查看");
+            tv_cont2.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+            btn_ok.setText("送出祝福");
+        } else {
+            if (need_help_number > 0) {
+                tv_cont1.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+                tv_cont2.setTextColor(getResources().getColor(R.color.text_noclick_color));
+                String showT = "请您送出<font color=\"#db4065\">" + need_help_number + "</font>次祝福";
+                tv_cont1.setText(Html.fromHtml(showT));
+                tv_cont2.setText("即可获得更多人的祝福");
+                tv_cont1.setVisibility(View.VISIBLE);
+                tv_cont2.setVisibility(View.VISIBLE);
+                tv_cont3.setVisibility(View.GONE);
+                btn_ok.setText("点击送出祝福");
+            } else {
+                tv_cont1.setVisibility(View.VISIBLE);
+                tv_cont2.setVisibility(View.GONE);
+                tv_cont3.setVisibility(View.VISIBLE);
+                tv_cont1.setText("感恩您的奉献！");
+                tv_cont3.setText("恭喜您申请成功！");
+                tv_cont1.setTextColor(getResources().getColor(R.color.color_db4065));
+                tv_cont3.setTextColor(getResources().getColor(R.color.color_db4065));
+                btn_ok.setText("知道了，点击查看");
+            }
         }
     }
 

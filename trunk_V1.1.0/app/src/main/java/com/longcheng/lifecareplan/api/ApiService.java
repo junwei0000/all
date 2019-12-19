@@ -566,13 +566,13 @@ public interface ApiService {
                                                       @Field("page_size") int page_size,
                                                       @Field("token") String token);
 
-    @FormUrlEncoded
-    @POST(Config.VERSION + "order/helpGoodsGrateful")
-    Observable<ThanksListDataBean> gethelpGoodsGrateful(@Field("user_id") String user_id,
-                                                        @Field("order_id") String order_id,
-                                                        @Field("page") int page,
-                                                        @Field("page_size") int page_size,
-                                                        @Field("token") String token);
+    @GET(Config.VERSION + "order/helpGoodsGrateful")
+    Observable<ThanksListDataBean> gethelpGoodsGrateful(@Query("user_id") String user_id,
+                                                        @Query("order_id") String order_id,
+                                                        @Query("page") int page,
+                                                        @Query("page_size") int page_size,
+                                                        @Query("help_type") int help_type,
+                                                        @Query("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "order/shipping")
@@ -639,6 +639,7 @@ public interface ApiService {
                                                 @Field("help_goods_skb_money_id") String help_goods_skb_money_id,
                                                 @Field("help_goods_id") String help_goods_id,
                                                 @Field("skb_price") int skb_price,
+                                                @Field("help_type") int help_type,
                                                 @Field("token") String token);
 
     @FormUrlEncoded
@@ -660,6 +661,7 @@ public interface ApiService {
                                                      @Query("help_goods_id") String help_goods_id,
                                                      @Query("page") int page,
                                                      @Query("page_size") int pageSize,
+                                                     @Query("help_type") int help_type,
                                                      @Query("token") String token);
 
     @GET(Config.VERSION + "Helpgoods/HelpGoodsApply")

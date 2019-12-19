@@ -39,8 +39,8 @@ public class LifeRankPresenterImp<T> extends LifeRankContract.Presenter<LifeRank
      * @time 2017/12/8 17:56
      * @author MarkShuai
      */
-    public void setListViewData(String user_id, String help_goods_id, int page, int pageSize) {
-        Observable<LifeRankListDataBean> observable = Api.getInstance().service.getLifeRankList(user_id, help_goods_id, page, pageSize, ExampleApplication.token);
+    public void setListViewData(String user_id, String help_goods_id, int page, int pageSize,int help_type) {
+        Observable<LifeRankListDataBean> observable = Api.getInstance().service.getLifeRankList(user_id, help_goods_id, page, pageSize,help_type, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<LifeRankListDataBean>() {

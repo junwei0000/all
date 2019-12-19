@@ -52,8 +52,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/padd_leftright"
             android:layout_marginTop="@dimen/padd_leftright"
+            android:layout_marginBottom="@dimen/padd_leftright"
             android:background="@drawable/corners_bg_graybian"
             android:orientation="horizontal">
 
@@ -214,7 +214,7 @@
     <include layout="@layout/line" />
 
     <LinearLayout
-        style="@style/view_paddlefgtright"
+        style="@style/view_padd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -222,67 +222,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/dp20"
-            android:paddingTop="@dimen/dp15"
             android:text="互祝用途"
             android:textColor="@color/text_biaoTi_color"
             android:textSize="@dimen/text_contents_size" />
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="@dimen/checkbox_dp"
+                android:layout_height="@dimen/checkbox_dp"
+                android:background="@mipmap/check_true_red" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/cb_give"
-                    android:layout_width="@dimen/checkbox_dp"
-                    android:layout_height="@dimen/checkbox_dp"
-                    android:background="@mipmap/check_true_red" />
-
-                <TextView
-                    android:id="@+id/tv_give"
-                    style="@style/view_paddtopbottom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp20"
-                    android:gravity="center"
-                    android:paddingLeft="@dimen/padd_imgtextleftright"
-                    android:text="送礼(40寿康宝)"
-                    android:textColor="@color/text_healthcontents_color"
-                    android:textSize="@dimen/text_contents_size" />
-
-                <TextView
-                    android:id="@+id/cb_ziyong"
-                    android:layout_width="@dimen/checkbox_dp"
-                    android:layout_height="@dimen/checkbox_dp"
-                    android:background="@mipmap/check_false" />
-
-                <TextView
-                    android:id="@+id/tv_ziyong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/padd_imgtextleftright"
-                    android:text="自用"
-                    android:textColor="@color/text_healthcontents_color"
-                    android:textSize="@dimen/text_contents_size" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/et_yongtu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:hint="请填写36字以内祝福留言"
-                android:maxLength="36"
-                android:paddingBottom="@dimen/padd_topbottom"
+                android:gravity="center"
+                android:paddingLeft="@dimen/padd_imgtextleftright"
+                android:text="自用"
                 android:textColor="@color/text_healthcontents_color"
-                android:textColorHint="@color/login_hint_color"
                 android:textSize="@dimen/text_contents_size" />
         </LinearLayout>
     </LinearLayout>
@@ -332,7 +294,7 @@
         android:id="@+id/btn_save"
         style="@style/btn"
         android:layout_marginLeft="@dimen/padd_leftright"
-        android:layout_marginRight="@dimen/padd_leftright"
         android:layout_marginTop="@dimen/dp20"
+        android:layout_marginRight="@dimen/padd_leftright"
         android:text="申请互祝" />
 </LinearLayout>

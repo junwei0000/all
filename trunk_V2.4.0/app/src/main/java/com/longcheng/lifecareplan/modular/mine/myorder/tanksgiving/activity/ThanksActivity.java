@@ -14,6 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseListActivity;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.tanksgiving.adapter.ThanksListAdapter;
@@ -23,8 +24,8 @@ import com.longcheng.lifecareplan.modular.mine.myorder.tanksgiving.bean.ThanksLi
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.view.FooterNoMoreData;
 
 import java.util.ArrayList;
@@ -52,6 +53,20 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
     MyListView dataLv;
     @BindView(R.id.main_sv)
     PullToRefreshScrollView mainSv;
+    @BindView(R.id.tv_cn)
+    TextView tvCn;
+    @BindView(R.id.tv_cn_line)
+    TextView tvCnLine;
+    @BindView(R.id.layout_cn)
+    LinearLayout layoutCn;
+    @BindView(R.id.tv_skb)
+    TextView tvSkb;
+    @BindView(R.id.tv_skb_line)
+    TextView tvSkbLine;
+    @BindView(R.id.layout_skb)
+    LinearLayout layoutSkb;
+    @BindView(R.id.layout_top)
+    LinearLayout layoutTop;
 
 
     private int page = 0;
@@ -65,9 +80,44 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
             case R.id.pagetop_layout_left:
                 doFinish();
                 break;
+            case R.id.layout_cn:
+                skbStatus = false;
+                changeData();
+                break;
+            case R.id.layout_skb:
+                skbStatus = true;
+                changeData();
+                break;
         }
     }
+    boolean skbStatus = false;
+    int help_type=2;
+    private void changeData() {
+        tvCnLine.setVisibility(View.INVISIBLE);
+        tvSkbLine.setVisibility(View.INVISIBLE);
+        tvCnLine.setBackgroundResource(R.drawable.corners_bg_blackxingji);
+        tvCn.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+        tvSkbLine.setBackgroundResource(R.drawable.corners_bg_blackxingji);
+        tvSkb.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+        if (skbStatus) {
+            help_type=1;
+            tvSkbLine.setVisibility(View.VISIBLE);
+            tvSkbLine.setBackgroundResource(R.drawable.corners_bg_red);
+            tvSkb.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvSkbLine, R.color.red);
+        } else {
+            help_type=2;
+            tvCnLine.setVisibility(View.VISIBLE);
+            tvCnLine.setBackgroundResource(R.drawable.corners_bg_red);
+            tvCn.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvCnLine, R.color.red);
+        }
+        getList(1);
+    }
 
+    private void getList(int page_) {
+        mPresent.getListViewData(user_id, order_id, type, page_, pageSize,help_type);
+    }
     @Override
     public View bindView() {
         return null;
@@ -94,13 +144,15 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
 
     @Override
     public void setListener() {
+        layoutCn.setOnClickListener(this);
+        layoutSkb.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         ScrowUtil.ScrollViewUpConfig(mainSv);
         mainSv.setBottomTextColor(getResources().getColor(R.color.white));
         mainSv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                mPresent.getListViewData(user_id, order_id, type, page + 1, pageSize);
+                getList(page+1);
             }
         });
         dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -132,7 +184,12 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
         Intent intent = getIntent();
         order_id = intent.getStringExtra("order_id");
         type = intent.getIntExtra("type", 0);
-        mPresent.getListViewData(user_id, order_id, type, 1, pageSize);
+        if (type == 2||type ==4) {
+            layoutTop.setVisibility(View.GONE);
+        } else {
+            layoutTop.setVisibility(View.VISIBLE);
+        }
+        getList(1);
     }
 
 

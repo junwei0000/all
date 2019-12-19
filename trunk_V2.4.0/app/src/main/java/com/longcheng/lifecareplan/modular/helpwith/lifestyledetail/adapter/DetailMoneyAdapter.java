@@ -1,6 +1,5 @@
 package com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.adapter;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailItemBean;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 
@@ -30,11 +30,16 @@ public class DetailMoneyAdapter extends BaseAdapter {
     int is_applying_help;
     int mutual_help_money;
     boolean selectDefaultStatus = false;
+    boolean SkbPayStatus;
 
     public DetailMoneyAdapter(Context context, List<LifeStyleDetailItemBean> list) {
         super();
         this.context = context;
         this.list = list;
+    }
+
+    public void setSkbPayStatus(boolean skbPayStatus) {
+        SkbPayStatus = skbPayStatus;
     }
 
     public int getSelectMonetPostion() {
@@ -113,6 +118,11 @@ public class DetailMoneyAdapter extends BaseAdapter {
         if (selectMonetPostion == position && selectDefaultStatus) {//默认
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.white));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_login);
+            if (SkbPayStatus) {
+                ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_layout_money, R.color.red);
+            } else {
+                ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_layout_money, R.color.engry_btn_bg);
+            }
         } else {
             mHolder.item_tv_money.setTextColor(context.getResources().getColor(R.color.text_contents_color));
             mHolder.item_layout_money.setBackgroundResource(R.drawable.corners_bg_skbgray);

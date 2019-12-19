@@ -109,7 +109,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
             } else {
                 String showcon = mOrderItemBean.getTop_title();
                 if (top_status == 1) {//进行中加进度显示
-                    showcon = mOrderItemBean.getTop_title() + " " + mOrderItemBean.getProgress() + "%";
+                    showcon = mOrderItemBean.getTop_title();
                 }
                 mHolder.tv_status.setText(showcon);
             }

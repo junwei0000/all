@@ -21,6 +21,7 @@ public class LifeStyleDetailItemBean implements Serializable {
     private String avatar;
     @SerializedName("shoukangyuan")
     private String shoukangyuan;
+    private String super_ability;
 
     @SerializedName("status")
     private int status = 1;
@@ -49,12 +50,19 @@ public class LifeStyleDetailItemBean implements Serializable {
     private String date;
     @SerializedName("skb_unit_price")
     private String skb_unit_price;
+    private String super_ability_unit_price;
+
     @SerializedName("remark")
     private String remark;
 
     @SerializedName("blessings")
     private String blessings;
 
+    private String super_ability_cumulative_number;
+    private String super_ability_cumulative_price;
+    private String super_ability_total_price;
+    private int super_ability_progress;
+    private int buy_type;
     //group
     @SerializedName("group_id")
     private String group_id;
@@ -85,6 +93,8 @@ public class LifeStyleDetailItemBean implements Serializable {
 
     @SerializedName("price")
     private String price;
+    private int help_type;
+
     @SerializedName("floor")
     private String floor;
 
@@ -105,6 +115,69 @@ public class LifeStyleDetailItemBean implements Serializable {
     @SerializedName("replay_comments")
     private List<LifeStyleDetailItemBean> replay_comments;//评论回复
 
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
+
+    public int getHelp_type() {
+        return help_type;
+    }
+
+    public void setHelp_type(int help_type) {
+        this.help_type = help_type;
+    }
+
+    public String getSuper_ability_unit_price() {
+        return super_ability_unit_price;
+    }
+
+    public void setSuper_ability_unit_price(String super_ability_unit_price) {
+        this.super_ability_unit_price = super_ability_unit_price;
+    }
+
+    public String getSuper_ability_cumulative_number() {
+        return super_ability_cumulative_number;
+    }
+
+    public void setSuper_ability_cumulative_number(String super_ability_cumulative_number) {
+        this.super_ability_cumulative_number = super_ability_cumulative_number;
+    }
+
+    public String getSuper_ability_cumulative_price() {
+        return super_ability_cumulative_price;
+    }
+
+    public void setSuper_ability_cumulative_price(String super_ability_cumulative_price) {
+        this.super_ability_cumulative_price = super_ability_cumulative_price;
+    }
+
+    public String getSuper_ability_total_price() {
+        return super_ability_total_price;
+    }
+
+    public void setSuper_ability_total_price(String super_ability_total_price) {
+        this.super_ability_total_price = super_ability_total_price;
+    }
+
+    public int getSuper_ability_progress() {
+        return super_ability_progress;
+    }
+
+    public void setSuper_ability_progress(int super_ability_progress) {
+        this.super_ability_progress = super_ability_progress;
+    }
+
+    public int getBuy_type() {
+        return buy_type;
+    }
+
+    public void setBuy_type(int buy_type) {
+        this.buy_type = buy_type;
+    }
 
     public String getApply_goods_number() {
         return apply_goods_number;

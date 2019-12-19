@@ -6,12 +6,10 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.CommentDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleCommentDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.SKBPayDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
-import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -165,10 +163,11 @@ public class LifeStyleDetailPresenterImp<T> extends LifeStyleDetailContract.Pres
      * @param help_goods_id
      * @param skb_price
      */
-    public void lifeStylePayHelp(String user_id, String help_comment_content, String help_goods_skb_money_id, String help_goods_id, int skb_price) {
+    public void lifeStylePayHelp(String user_id, String help_comment_content,
+                                 String help_goods_skb_money_id, String help_goods_id, int skb_price, int help_type) {
         mView.showDialog();
         Observable<SKBPayDataBean> observable = Api.getInstance().service.lifeStylePayHelp(user_id,
-                help_comment_content, help_goods_skb_money_id, help_goods_id, skb_price, ExampleApplication.token);
+                help_comment_content, help_goods_skb_money_id, help_goods_id, skb_price, help_type, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<SKBPayDataBean>() {

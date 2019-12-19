@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.Gravity;
@@ -16,12 +15,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.adapter.DetailMoneyAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailItemBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -39,7 +37,7 @@ import java.util.List;
 
 public class LifeStyleDetailHelpDialogUtils {
 
-    TextView detailhelp_tv_money;
+    TextView detailhelp_tv_money, tv_title, tv_pricetitle;
     MyGridView detailhelp_gv_money;
     EditText detailhelp_et_content;
     private TextView btn_helpsure;
@@ -58,20 +56,25 @@ public class LifeStyleDetailHelpDialogUtils {
     private String help_goods_skb_money_id = "";
     List<LifeStyleDetailItemBean> blessings_list;
 
+    boolean SkbPayStatus;
+    String super_ability;
+
     public LifeStyleDetailHelpDialogUtils(Activity context, Handler mHandler, int mHandlerID) {
         this.mHandlerID = mHandlerID;
         this.mHandler = mHandler;
         this.context = context;
     }
 
-    public void initData(String skb, List<LifeStyleDetailItemBean> blessings_list,
+    public void initData(String super_ability, String skb, List<LifeStyleDetailItemBean> blessings_list,
                          int is_applying_help, int mutual_help_money,
-                         List<LifeStyleDetailItemBean> mutual_help_money_all) {
+                         List<LifeStyleDetailItemBean> mutual_help_money_all, boolean SkbPayStatus) {
         this.mutual_help_money_all = mutual_help_money_all;
         this.blessings_list = blessings_list;
+        this.super_ability = super_ability;
         this.skb = skb;
         this.is_applying_help = is_applying_help;
         this.mutual_help_money = mutual_help_money;
+        this.SkbPayStatus = SkbPayStatus;
         setBless();
     }
 
@@ -105,6 +108,8 @@ public class LifeStyleDetailHelpDialogUtils {
             p.width = d.getWidth(); //宽度设置为屏幕
             selectDialog.getWindow().setAttributes(p); //设置生效
 
+            tv_pricetitle = (TextView) selectDialog.findViewById(R.id.tv_pricetitle);
+            tv_title = (TextView) selectDialog.findViewById(R.id.tv_title);
             LinearLayout layout_cancel = (LinearLayout) selectDialog.findViewById(R.id.layout_cancel);
             detailhelp_et_content = (EditText) selectDialog.findViewById(R.id.detailhelp_et_content);
             detailhelp_tv_money = (TextView) selectDialog.findViewById(R.id.detailhelp_tv_money);
@@ -137,11 +142,23 @@ public class LifeStyleDetailHelpDialogUtils {
         } else {
             selectDialog.show();
         }
+
+        if (SkbPayStatus) {
+            tv_title.setText("请选择寿康宝数量");
+            tv_pricetitle.setText("可用寿康宝：");
+            detailhelp_tv_money.setText(skb + "");
+            ColorChangeByTime.getInstance().changeDrawableToClolor(context, btn_helpsure, R.color.red);
+        } else {
+            tv_title.setText("祝福感言");
+            tv_pricetitle.setText("可用超级生命能量：");
+            detailhelp_tv_money.setText(super_ability + "");
+            ColorChangeByTime.getInstance().changeDrawableToClolor(context, btn_helpsure, R.color.engry_btn_bg);
+        }
+
         detailhelp_et_content.setText(blessings);
         if (!TextUtils.isEmpty(blessings)) {
             detailhelp_et_content.setSelection(detailhelp_et_content.getText().length());
         }
-        detailhelp_tv_money.setText(skb + "");
         setapplingDefault();
         setGVMoney();
     }
@@ -183,10 +200,12 @@ public class LifeStyleDetailHelpDialogUtils {
             mMoneyAdapter = new DetailMoneyAdapter(context, mutual_help_money_all);
             mMoneyAdapter.setMutual_help_money(mutual_help_money);
             mMoneyAdapter.setIs_applying_help(is_applying_help);
+            mMoneyAdapter.setSkbPayStatus(SkbPayStatus);
             mMoneyAdapter.setSelectMonetPostion(selectMonetPostion);
             mMoneyAdapter.setSelectDefaultStatus(selectDefaultStatus);
             detailhelp_gv_money.setAdapter(mMoneyAdapter);
         } else {
+            mMoneyAdapter.setSkbPayStatus(SkbPayStatus);
             mMoneyAdapter.setSelectDefaultStatus(selectDefaultStatus);
             mMoneyAdapter.setMutual_help_money(mutual_help_money);
             mMoneyAdapter.setIs_applying_help(is_applying_help);

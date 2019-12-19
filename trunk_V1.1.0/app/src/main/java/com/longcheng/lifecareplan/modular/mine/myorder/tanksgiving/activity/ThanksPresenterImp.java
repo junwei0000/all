@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderListDataBean;
-import com.longcheng.lifecareplan.modular.mine.myorder.tanksgiving.bean.ThanksAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.tanksgiving.bean.ThanksListDataBean;
 
 import io.reactivex.Observable;
@@ -34,15 +32,15 @@ public class ThanksPresenterImp<T> extends ThanksContract.Presenter<ThanksContra
     public void fetch() {
     }
 
-    public void getListViewData(String user_id, String order_id, int type, int page, int pageSize) {
+    public void getListViewData(String user_id, String order_id, int type, int page, int pageSize, int help_type) {
         mView.showDialog();
         Observable<ThanksListDataBean> observable;
-        if (type == 2) {
+        if (type == 2 || type == 4) {
             observable = Api.getInstance().service.getabilityGrateful(user_id, order_id,
                     page, pageSize, ExampleApplication.token);
         } else {
             observable = Api.getInstance().service.gethelpGoodsGrateful(user_id, order_id,
-                    page, pageSize, ExampleApplication.token);
+                    page, pageSize, help_type, ExampleApplication.token);
         }
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -34,6 +34,7 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/tv_cont1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padd_leftright"
@@ -43,6 +44,7 @@
         android:textSize="@dimen/text_tishi_size" />
 
     <TextView
+        android:id="@+id/tv_cont2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padd_leftright"

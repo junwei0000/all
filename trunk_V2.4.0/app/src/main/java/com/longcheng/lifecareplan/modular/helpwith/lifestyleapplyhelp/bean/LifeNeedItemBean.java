@@ -42,6 +42,26 @@ public class LifeNeedItemBean {
     @SerializedName("content")
     private String content;
 
+
+    private int apply_type;//1 skb ;2 超能
+    private String apply_help_price;//弹层显示价格
+
+    public int getApply_type() {
+        return apply_type;
+    }
+
+    public void setApply_type(int apply_type) {
+        this.apply_type = apply_type;
+    }
+
+    public String getApply_help_price() {
+        return apply_help_price;
+    }
+
+    public void setApply_help_price(String apply_help_price) {
+        this.apply_help_price = apply_help_price;
+    }
+
     public LifeNeedItemBean getApplySuccess() {
         return applySuccess;
     }

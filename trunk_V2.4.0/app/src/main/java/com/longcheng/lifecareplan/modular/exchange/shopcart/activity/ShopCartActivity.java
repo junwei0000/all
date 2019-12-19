@@ -135,7 +135,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
                 doFinish();
                 break;
             case R.id.tv_buy:
-                if (Integer.parseInt(allskb_price) > 0) {
+                if (Integer.parseInt(allskb_price) > 0 || Integer.parseInt(allsuper_ability) > 0) {
                     Intent intent = new Intent(mContext, SubmitOrderActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("allskb_price", allskb_price);
@@ -268,7 +268,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
             haveAllCheck = true;
             allnum = 0;
             allskb_price = "0";
-            allsuper_ability= "0";
+            allsuper_ability = "0";
             getShoppingCartMap();
         }
     }
@@ -280,7 +280,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
         haveAllCheck = true;
         allnum = 0;
         allskb_price = "0";
-        allsuper_ability= "0";
+        allsuper_ability = "0";
         getShoppingCartMap();
     }
 

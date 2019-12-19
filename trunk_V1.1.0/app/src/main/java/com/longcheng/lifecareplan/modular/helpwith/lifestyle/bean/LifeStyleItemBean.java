@@ -22,6 +22,43 @@ public class LifeStyleItemBean implements Serializable {
     private int my_bless;//我祝福
     private int bless_me;//祝福我
     private String date;//创建时间
+    private String super_ability_total_price;
+    private String super_ability_cumulative_price;
+    private int super_ability_progress;
+    private int buy_type;
+
+
+    public String getSuper_ability_total_price() {
+        return super_ability_total_price;
+    }
+
+    public void setSuper_ability_total_price(String super_ability_total_price) {
+        this.super_ability_total_price = super_ability_total_price;
+    }
+
+    public String getSuper_ability_cumulative_price() {
+        return super_ability_cumulative_price;
+    }
+
+    public void setSuper_ability_cumulative_price(String super_ability_cumulative_price) {
+        this.super_ability_cumulative_price = super_ability_cumulative_price;
+    }
+
+    public int getSuper_ability_progress() {
+        return super_ability_progress;
+    }
+
+    public void setSuper_ability_progress(int super_ability_progress) {
+        this.super_ability_progress = super_ability_progress;
+    }
+
+    public int getBuy_type() {
+        return buy_type;
+    }
+
+    public void setBuy_type(int buy_type) {
+        this.buy_type = buy_type;
+    }
 
     public String getHelp_goods_id() {
         return help_goods_id;

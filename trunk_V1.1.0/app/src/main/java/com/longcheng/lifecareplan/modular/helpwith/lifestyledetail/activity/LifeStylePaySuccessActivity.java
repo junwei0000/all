@@ -11,21 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseActivity;
-import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.exchange.shopcart.activity.ShopCartContract;
-import com.longcheng.lifecareplan.modular.exchange.shopcart.activity.ShopCartPresenterImp;
-import com.longcheng.lifecareplan.modular.exchange.shopcart.bean.ShopCartDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
-import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
-import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
-import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
 
@@ -109,8 +97,15 @@ public class LifeStylePaySuccessActivity extends BaseActivity {
         String skb_price = intent.getStringExtra("skb_price");
         String cont1 = "感恩<font color=\"#e60c0c\"> " + sponsor_user_name + " </font>的祝福！";
         tv_sname.setText(Html.fromHtml(cont1));
-        String cont2 = "<font color=\"#e60c0c\">" + receive_user_name + " </font>收到您<font color=\"#e60c0c\"> " + skb_price + " </font>个寿康宝";
+        boolean SkbPayStatus = intent.getBooleanExtra("SkbPayStatus", true);
+        String cont2;
+        if (SkbPayStatus) {
+            cont2 = "<font color=\"#e60c0c\">" + receive_user_name + " </font>收到您<font color=\"#e60c0c\"> " + skb_price + " </font>个寿康宝";
+        } else {
+            cont2 = "<font color=\"#e60c0c\">" + receive_user_name + " </font>收到您<font color=\"#e60c0c\"> " + skb_price + " </font>个超级生命能量";
+        }
         tv_rname.setText(Html.fromHtml(cont2));
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, btn_look, R.color.red);
     }
 
 

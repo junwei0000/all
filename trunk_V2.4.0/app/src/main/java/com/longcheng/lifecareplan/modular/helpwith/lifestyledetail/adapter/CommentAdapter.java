@@ -56,7 +56,13 @@ public class CommentAdapter extends BaseAdapterHelper<LifeStyleDetailItemBean> {
         mItemBean.setPosition(position);
         String name = mItemBean.getUser_name();
         mHolder.item_tv_name.setText(name);
-        String showT = "奉献了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 寿康宝";
+        int help_type=mItemBean.getHelp_type();
+        String showT;
+        if(help_type==2){
+            showT = "奉献了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 超级生命能量";
+        }else{
+            showT = "奉献了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 寿康宝";
+        }
         mHolder.item_tv_num.setText(Html.fromHtml(showT));
         mHolder.item_tv_deseribe.setText(mItemBean.getContent());
         mHolder.item_tv_time.setText(mItemBean.getComment_date());

@@ -12,6 +12,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseListActivity;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.lifestylerank.adapter.LifeRankAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.lifestylerank.bean.LifeRankAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.lifestylerank.bean.LifeRankItemBean;
@@ -22,7 +23,6 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,6 +41,18 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
     TextView pageTopTvName;
     @BindView(R.id.help_listview)
     PullToRefreshListView helpListview;
+    @BindView(R.id.tv_cn)
+    TextView tvCn;
+    @BindView(R.id.tv_cn_line)
+    TextView tvCnLine;
+    @BindView(R.id.layout_cn)
+    LinearLayout layoutCn;
+    @BindView(R.id.tv_skb)
+    TextView tvSkb;
+    @BindView(R.id.tv_skb_line)
+    TextView tvSkbLine;
+    @BindView(R.id.layout_skb)
+    LinearLayout layoutSkb;
 
     private int page = 0;
     private int pageSize = 20;
@@ -48,13 +60,48 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
     LifeRankAdapter mRankAdapter;
 
 
+    int help_type = 2;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
                 doFinish();
                 break;
+            case R.id.layout_cn:
+                skbStatus = false;
+                changeData();
+                break;
+            case R.id.layout_skb:
+                skbStatus = true;
+                changeData();
+                break;
         }
+    }
+
+    boolean skbStatus = false;
+
+    private void changeData() {
+        tvCnLine.setVisibility(View.INVISIBLE);
+        tvSkbLine.setVisibility(View.INVISIBLE);
+        tvCnLine.setBackgroundResource(R.drawable.corners_bg_blackxingji);
+        tvCn.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+        tvSkbLine.setBackgroundResource(R.drawable.corners_bg_blackxingji);
+        tvSkb.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+        if (skbStatus) {
+            help_type = 1;
+            tvSkbLine.setVisibility(View.VISIBLE);
+            tvSkbLine.setBackgroundResource(R.drawable.corners_bg_red);
+            tvSkb.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvSkbLine, R.color.red);
+        } else {
+            help_type = 2;
+            tvCnLine.setVisibility(View.VISIBLE);
+            tvCnLine.setBackgroundResource(R.drawable.corners_bg_red);
+            tvCn.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvCnLine, R.color.red);
+        }
+        getList(1);
     }
 
     @Override
@@ -81,6 +128,8 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
 
     @Override
     public void setListener() {
+        layoutCn.setOnClickListener(this);
+        layoutSkb.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         helpListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -105,7 +154,7 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
 
 
     private void getList(int page_) {
-        mPresent.setListViewData(user_id, help_goods_id, page_, pageSize);
+        mPresent.setListViewData(user_id, help_goods_id, page_, pageSize, help_type);
     }
 
     @Override
@@ -214,5 +263,4 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
         }
         return false;
     }
-
 }

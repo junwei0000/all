@@ -3,11 +3,7 @@ package com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity;
 import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 

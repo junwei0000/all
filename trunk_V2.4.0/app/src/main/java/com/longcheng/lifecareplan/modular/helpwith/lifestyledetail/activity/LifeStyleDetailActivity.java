@@ -2,7 +2,6 @@ package com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,14 +27,16 @@ import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseListActivity;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.ReplyEditPopupUtils;
+import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleListProgressUtils;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.adapter.CommentAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleCommentDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailAfterBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.SKBPayAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.SKBPayDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.lifestylerank.activity.LifeRankActivity;
@@ -125,9 +126,27 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     MyListView detailLvComment;
     @BindView(R.id.main_sv)
     PullToRefreshScrollView mainSv;
-    @BindView(R.id.btn_help)
-    TextView btnHelp;
+    @BindView(R.id.btn_helpcn)
+    TextView btn_helpcn;
+    @BindView(R.id.btn_helpskb)
+    TextView btn_helpskb;
+    @BindView(R.id.detail_tv_havelifeskb)
+    TextView detailTvHavelifeskb;
+    @BindView(R.id.detail_tv_helpskbnum)
+    TextView detailTvHelpskbnum;
+    @BindView(R.id.detail_tv_lifeskb)
+    TextView detailTvLifeskb;
+    @BindView(R.id.pb_lifeprogressskb)
+    NumberProgressBar pbLifeprogressskb;
+    @BindView(R.id.pb_skbnum)
+    TextView pbSkbnum;
+    @BindView(R.id.layout_skb)
+    LinearLayout layout_skb;
+    @BindView(R.id.layout_cn)
+    LinearLayout layout_cn;
 
+
+    LifeStyleListProgressUtils mProgressUtils;
 
     private int page = 0;
     private int pageSize = 20;
@@ -149,8 +168,13 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
      * 商品是否下架
      */
     int action_status = 1;
-    private String skb = "0";
+    private String skb = "0", super_ability = "0";
     List<LifeStyleDetailItemBean> blessings_list;
+
+    /**
+     * 是否使用寿康宝祝福
+     */
+    boolean SkbPayStatus = false;
 
     @Override
     public void onClick(View v) {
@@ -183,12 +207,23 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                     RedeemAgain();
                 }
                 break;
-            case R.id.btn_help://送上祝福
+            case R.id.btn_helpskb://送上祝福
+                SkbPayStatus = true;
                 if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
                     if (mDetailHelpDialogUtils == null) {
                         mDetailHelpDialogUtils = new LifeStyleDetailHelpDialogUtils(mActivity, mHandler, BLESSING);
                     }
-                    mDetailHelpDialogUtils.initData(skb, blessings_list, is_applying_help, mutual_help_money, mutual_help_money_all);
+                    mDetailHelpDialogUtils.initData(super_ability, skb, blessings_list, is_applying_help, mutual_help_money, mutual_help_money_all, SkbPayStatus);
+                    mDetailHelpDialogUtils.showPopupWindow();
+                }
+                break;
+            case R.id.btn_helpcn://送上祝福
+                SkbPayStatus = false;
+                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
+                    if (mDetailHelpDialogUtils == null) {
+                        mDetailHelpDialogUtils = new LifeStyleDetailHelpDialogUtils(mActivity, mHandler, BLESSING);
+                    }
+                    mDetailHelpDialogUtils.initData(super_ability, skb, blessings_list, is_applying_help, mutual_help_money, mutual_help_money_all, SkbPayStatus);
                     mDetailHelpDialogUtils.showPopupWindow();
                 }
                 break;
@@ -274,7 +309,8 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         pagetopLayoutLeft.setOnClickListener(this);
         pagetopLayoutRigth.setOnClickListener(this);
         detailLayoutRank.setOnClickListener(this);
-        btnHelp.setOnClickListener(this);
+        btn_helpskb.setOnClickListener(this);
+        btn_helpcn.setOnClickListener(this);
         ScrowUtil.ScrollViewUpConfig(mainSv);
         mainSv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
@@ -338,6 +374,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                 LifeStyleDetailItemBean userInfo = mDetailAfterBean.getUser();
                 if (userInfo != null) {
                     skb = userInfo.getShoukangyuan();
+                    super_ability = userInfo.getSuper_ability();
                 }
                 LifeStyleDetailItemBean help_goodsInfo = mDetailAfterBean.getHelp_goods();
                 if (help_goodsInfo != null) {
@@ -491,22 +528,61 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         detailTvHelpname.setText("接福人：" + receive_user_name);
         String time = help_goodsInfo.getDate();
         detailTvTime.setText(time);
+
+        int buy_type = help_goodsInfo.getBuy_type();
+        if (buy_type == 2) {
+            layout_cn.setVisibility(View.VISIBLE);
+            layout_skb.setVisibility(View.GONE);
+            btn_helpcn.setVisibility(View.VISIBLE);
+            btn_helpskb.setVisibility(View.GONE);
+
+        } else if (buy_type == 3) {
+            layout_cn.setVisibility(View.VISIBLE);
+            layout_skb.setVisibility(View.VISIBLE);
+            btn_helpcn.setVisibility(View.VISIBLE);
+            btn_helpskb.setVisibility(View.VISIBLE);
+        } else {
+            layout_cn.setVisibility(View.GONE);
+            layout_skb.setVisibility(View.VISIBLE);
+            btn_helpcn.setVisibility(View.GONE);
+            btn_helpskb.setVisibility(View.VISIBLE);
+        }
+
+        String super_ability_cumulative_number = help_goodsInfo.getSuper_ability_cumulative_number();
+        detailTvHavelifeenergy.setText(super_ability_cumulative_number);
+        String super_ability_cumulative_price = help_goodsInfo.getSuper_ability_cumulative_price();
+        detailTvHelpnum.setText(super_ability_cumulative_price);
+        String super_ability_total_price = help_goodsInfo.getSuper_ability_total_price();
+        detailTvLifeenergy.setText("" + super_ability_total_price);
+        int super_ability_progress = help_goodsInfo.getSuper_ability_progress();
+        if (super_ability_progress >= 100) {
+            btn_helpcn.setVisibility(View.GONE);
+            sendBroadcastsRefreshOrderList();
+        }
+        pbLifeprogressnum.setProgress(super_ability_progress);
+        if (mProgressUtils == null) {
+            mProgressUtils = new LifeStyleListProgressUtils(mActivity);
+        }
+        mProgressUtils.showNum(super_ability_progress, pbLifeprogressnum, pbNum);
+        pbLifeprogressnum.setReachedBarColor(getResources().getColor(R.color.engry_btn_bg));
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, pbNum, R.color.engry_btn_bg);
+
+
         String cumulative_number = help_goodsInfo.getCumulative_number();
-        detailTvHavelifeenergy.setText(cumulative_number);
+        detailTvHavelifeskb.setText(cumulative_number);
         String skb_cumulative_price = help_goodsInfo.getSkb_cumulative_price();
-        detailTvHelpnum.setText(skb_cumulative_price);
+        detailTvHelpskbnum.setText(skb_cumulative_price);
         String skb_total_price = help_goodsInfo.getSkb_total_price();
-        detailTvLifeenergy.setText("" + skb_total_price);
+        detailTvLifeskb.setText("" + skb_total_price);
         progress = help_goodsInfo.getProgress();
         if (progress >= 100) {
-            btnHelp.setVisibility(View.GONE);
+            btn_helpskb.setVisibility(View.GONE);
             sendBroadcastsRefreshOrderList();
-        } else {
-            btnHelp.setVisibility(View.VISIBLE);
         }
-        pbLifeprogressnum.setProgress(progress);
-        DetailProgressUtils mProgressUtils = new DetailProgressUtils(mActivity);
-        mProgressUtils.showNum(progress, pbLifeprogressnum.getMax(), pbNum);
+        pbLifeprogressskb.setProgress(progress);
+        mProgressUtils.showNum(progress, pbLifeprogressskb, pbSkbnum);
+        pbLifeprogressskb.setReachedBarColor(getResources().getColor(R.color.red));
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, pbSkbnum, R.color.red);
     }
 
     int progress;
@@ -574,7 +650,14 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, help_goodsInfo.getGoods_img(), detailIvGoodthumb, 0);
         detailTvGoodname.setText(help_goodsInfo.getGoods_name());
         detail_tv_goodgeshu.setText("  x  " + help_goodsInfo.getApply_goods_number());
-        detailTvGoodnum.setText("寿康宝：" + help_goodsInfo.getSkb_unit_price());
+        int buy_type = help_goodsInfo.getBuy_type();
+        if (buy_type == 2) {
+            detailTvGoodnum.setText(help_goodsInfo.getSuper_ability_unit_price() + "超能");
+        } else if (buy_type == 3) {
+            detailTvGoodnum.setText(help_goodsInfo.getSuper_ability_unit_price() + "超能+" + help_goodsInfo.getSkb_unit_price() + "寿康宝");
+        } else {
+            detailTvGoodnum.setText(help_goodsInfo.getSkb_unit_price() + "寿康宝");
+        }
     }
 
 
@@ -609,7 +692,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                     if (mReplyEditUtils == null) {
                         mReplyEditUtils = new ReplyEditPopupUtils(mHandler, REPLY);
                     }
-                    mReplyEditUtils.popWiw(mActivity, btnHelp);
+                    mReplyEditUtils.popWiw(mActivity, btn_helpskb);
                     break;
                 case REPLY:
                     String content = (String) msg.obj;
@@ -621,11 +704,23 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                     String help_comment_content = bundle.getString("help_comment_content");
                     String help_goods_skb_money_id = bundle.getString("help_goods_skb_money_id");
                     int skb_price = bundle.getInt("skb_price");
-                    if (Double.valueOf(skb) >= skb_price) {
-                        mPresent.lifeStylePayHelp(user_id, help_comment_content, help_goods_skb_money_id, help_goods_id, skb_price);
+                    int help_type;
+                    if (SkbPayStatus) {
+                        if (Double.valueOf(skb) >= skb_price) {
+                            help_type = 1;
+                            mPresent.lifeStylePayHelp(user_id, help_comment_content, help_goods_skb_money_id, help_goods_id, skb_price, help_type);
+                        } else {
+                            showSKBDialog();
+                        }
                     } else {
-                        showSKBDialog();
+                        if (Double.valueOf(super_ability) >= skb_price) {
+                            help_type = 2;
+                            mPresent.lifeStylePayHelp(user_id, help_comment_content, help_goods_skb_money_id, help_goods_id, skb_price, help_type);
+                        } else {
+                            showSKBDialog();
+                        }
                     }
+
                     break;
                 case ConstantManager.ADDRESS_HANDLE_DEL:
                     del_mutual_help_comment_id = msg.arg1;
@@ -638,6 +733,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     MyDialog redBaoDialog;
     int del_mutual_help_comment_id;
     int del_index;
+    TextView tv_cont1, tv_cont2, btn_gohelp, btn_jihuo;
 
     /**
      * 寿康宝不足提示
@@ -655,8 +751,10 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
             p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
             redBaoDialog.getWindow().setAttributes(p); //设置生效
             LinearLayout layout_cancel = (LinearLayout) redBaoDialog.findViewById(R.id.layout_cancel);
-            TextView btn_gohelp = (TextView) redBaoDialog.findViewById(R.id.btn_gohelp);
-            TextView btn_jihuo = (TextView) redBaoDialog.findViewById(R.id.btn_jihuo);
+            btn_gohelp = (TextView) redBaoDialog.findViewById(R.id.btn_gohelp);
+            tv_cont1 = (TextView) redBaoDialog.findViewById(R.id.tv_cont1);
+            tv_cont2 = (TextView) redBaoDialog.findViewById(R.id.tv_cont2);
+            btn_jihuo = (TextView) redBaoDialog.findViewById(R.id.btn_jihuo);
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -685,6 +783,17 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
             });
         } else {
             redBaoDialog.show();
+        }
+        if (SkbPayStatus) {
+            tv_cont1.setText("您的寿康宝余额不足");
+            tv_cont2.setText("请多用生命能量互祝噢～");
+            btn_gohelp.setVisibility(View.VISIBLE);
+            btn_jihuo.setText("激活生命能量");
+        } else {
+            tv_cont1.setText("您的超级生命能量余额不足");
+            tv_cont2.setText("快去激活吧～");
+            btn_gohelp.setVisibility(View.GONE);
+            btn_jihuo.setText("立即激活");
         }
     }
 
@@ -720,6 +829,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
             intent.putExtra("receive_user_name", mSKBPayAfterBean.getReceive_user_name());
             intent.putExtra("skb_price", mSKBPayAfterBean.getSkb_price());
             intent.putExtra("help_goods_id", help_goods_id);
+            intent.putExtra("SkbPayStatus", SkbPayStatus);
         } else {
             intent.putExtra("sponsor_user_name", "");
             intent.putExtra("receive_user_name", "");

@@ -1,13 +1,11 @@
 package com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar;
 
 /**
  * 作者：jun on
@@ -22,31 +20,35 @@ public class LifeStyleListProgressUtils {
         this.context = context;
     }
 
-    public void showNum(int progress, int max, TextView item_pb_num) {
+    public void showNum(int progress, NumberProgressBar mNumberProgressBar, TextView item_pb_num) {
+        int max = mNumberProgressBar.getMax();
         String mCurrentDrawText = String.format("%d", progress * 100 / max);
         mCurrentDrawText = mCurrentDrawText + "%";
         item_pb_num.setText(mCurrentDrawText);
-        int contentlen = DensityUtil.dip2px(context, 30);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                contentlen,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-        int progresslen = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 144);
-        if (ConfigUtils.getINSTANCE().getWindowPD(context) > 400) {
-            progresslen = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 165);
-        }
-        float ww = progresslen * progress / 100;
-        Log.e("showNum", "progresslen=" + progresslen + ";ww=" + ww
-                + ";contentlen=" + contentlen + ";dip2px=" + DensityUtil.dip2px(context, 6) + ";progress=" + progress);
-        if (progresslen - ww < contentlen) {
-            ww = progresslen - contentlen + DensityUtil.dip2px(context, 6);
-        } else if (progress <= 10) {
-            ww = ww - 2;
-        }
-        Log.e("showNum", "============" + progress + " ;ww==" + ww);
-        if (ww < 0) {
-            ww = 0;
-        }
-        params.setMargins((int) ww, 0, 0, 0);
-        item_pb_num.setLayoutParams(params);
+
+        item_pb_num.post(new Runnable() {
+            @Override
+            public void run() {
+                int contentlen = item_pb_num.getWidth();
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                        contentlen,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                int progresslen = mNumberProgressBar.getWidth();
+                float ww = progresslen * progress / 100;
+                Log.e("showNum", "progresslen=" + progresslen + ";ww=" + ww
+                        + ";contentlen=" + contentlen + ";progress=" + progress);
+                if (progresslen - ww <= contentlen) {
+                    ww = progresslen - contentlen;
+                } else {
+                    ww = ww - 2;
+                }
+                if (ww < 0) {
+                    ww = 0;
+                }
+                params.setMargins((int) ww, 0, 0, 0);
+                item_pb_num.setLayoutParams(params);
+            }
+        });
+
     }
 }
