@@ -676,16 +676,16 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Helpgoods/saveHelpGoodsApply")
-    Observable<LifeNeedDataBean> lifeStyleApplyAction(@Field("user_id") String user_id,
-                                                      @Field("shop_goods_price_id") String shop_goods_price_id,
-                                                      @Field("purpose_remark") String remark,
-                                                      @Field("purpose") int purpose,
-                                                      @Field("address_id") String address_id,
-                                                      @Field("apply_goods_number") int apply_goods_number,
-                                                      @Field("receive_user_id") String receive_user_id,
-                                                      @Field("goods_id") String goods_id,
-                                                      @Field("remark") String purpose_remark,
-                                                      @Field("token") String token);
+    Observable<EditDataBean> lifeStyleApplyAction(@Field("user_id") String user_id,
+                                                  @Field("shop_goods_price_id") String shop_goods_price_id,
+                                                  @Field("purpose_remark") String remark,
+                                                  @Field("purpose") int purpose,
+                                                  @Field("address_id") String address_id,
+                                                  @Field("apply_goods_number") int apply_goods_number,
+                                                  @Field("receive_user_id") String receive_user_id,
+                                                  @Field("goods_id") String goods_id,
+                                                  @Field("remark") String purpose_remark,
+                                                  @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Helpgoods/setRead")

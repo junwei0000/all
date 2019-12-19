@@ -671,7 +671,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Helpgoods/saveHelpGoodsApply")
-    Observable<LifeNeedDataBean> lifeStyleApplyAction(@Field("user_id") String user_id,
+    Observable<EditDataBean> lifeStyleApplyAction(@Field("user_id") String user_id,
                                                       @Field("shop_goods_price_id") String shop_goods_price_id,
                                                       @Field("purpose_remark") String remark,
                                                       @Field("purpose") int purpose,

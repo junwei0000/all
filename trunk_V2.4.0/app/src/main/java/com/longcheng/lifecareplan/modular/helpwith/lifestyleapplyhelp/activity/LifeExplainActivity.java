@@ -11,23 +11,14 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpContract;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpPresenterImp;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ExplainMoBanActivity;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -139,7 +130,7 @@ public class LifeExplainActivity extends BaseActivityMVP<LifeStyleApplyHelpContr
     }
 
     @Override
-    public void applyActionSuccess(LifeNeedDataBean responseBean) {
+    public void applyActionSuccess(EditDataBean responseBean) {
 
     }
 

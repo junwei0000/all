@@ -2,7 +2,6 @@ package com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -21,7 +20,6 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.PeopleActi
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
@@ -30,6 +28,7 @@ import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressSelectU
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressItemBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.PriceUtils;
@@ -313,16 +312,12 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     }
 
     @Override
-    public void applyActionSuccess(LifeNeedDataBean responseBean) {
+    public void applyActionSuccess(EditDataBean responseBean) {
         String status = responseBean.getStatus();
         if (status.equals("200")) {
-            LifeNeedItemBean mActionItemBean = responseBean.getData();
-            if (mActionItemBean != null) {
-                need_help_number = mActionItemBean.getNeed_help_number();
-                redirectMsgId = mActionItemBean.getRedirectMsgId();
-                showCNSKBStatus = false;
-                showPopupWindow();
-            }
+            redirectMsgId = responseBean.getData();
+            showCNSKBStatus = false;
+            showPopupWindow();
         } else {
             String mag = responseBean.getMsg();
             ToastUtils.showToast(mag);
@@ -337,7 +332,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     int apply_type;
     String apply_help_price;
     MyDialog selectDialog;
-    int need_help_number;
     /**
      * 任务ID
      */
@@ -379,33 +373,12 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                         mPresent.applyAction(user_id, shop_goods_price_id,
                                 remark, purpose, address_id, apply_goods_number, peopleid, goods_id, describe);
                     } else {
-                        Intent intent;
-                        if (need_help_number > 0) {
-                            //申请成功后做任务跳转msgid   0：跳转到列表页   非0：跳转到行动详情页
-                            if (redirectMsgId.equals("0")) {
-                                intent = new Intent(mContext, LifeStyleActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                intent.putExtra("skiptype", "LifeApplyHelp");
-                                startActivity(intent);
-                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                            } else {
-                                intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                intent.putExtra("help_goods_id", "" + redirectMsgId);
-                                startActivity(intent);
-                                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                            }
-                        } else {
-                            //查看任务详情页面,并给后台传值已读
-                            mPresent.setTaskRead(user_id, redirectMsgId);
-                            intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("help_goods_id", "" + redirectMsgId);
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                            doFinish();
-                        }
-
+                        Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("help_goods_id", "" + redirectMsgId);
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                        doFinish();
                     }
                     selectDialog.dismiss();
                 }
@@ -431,26 +404,14 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             tv_cont2.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
             btn_ok.setText("送出祝福");
         } else {
-            if (need_help_number > 0) {
-                tv_cont1.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
-                tv_cont2.setTextColor(getResources().getColor(R.color.text_noclick_color));
-                String showT = "请您送出<font color=\"#db4065\">" + need_help_number + "</font>次祝福";
-                tv_cont1.setText(Html.fromHtml(showT));
-                tv_cont2.setText("即可获得更多人的祝福");
-                tv_cont1.setVisibility(View.VISIBLE);
-                tv_cont2.setVisibility(View.VISIBLE);
-                tv_cont3.setVisibility(View.GONE);
-                btn_ok.setText("点击送出祝福");
-            } else {
-                tv_cont1.setVisibility(View.VISIBLE);
-                tv_cont2.setVisibility(View.GONE);
-                tv_cont3.setVisibility(View.VISIBLE);
-                tv_cont1.setText("感恩您的奉献！");
-                tv_cont3.setText("恭喜您申请成功！");
-                tv_cont1.setTextColor(getResources().getColor(R.color.color_db4065));
-                tv_cont3.setTextColor(getResources().getColor(R.color.color_db4065));
-                btn_ok.setText("知道了，点击查看");
-            }
+            tv_cont1.setVisibility(View.VISIBLE);
+            tv_cont2.setVisibility(View.GONE);
+            tv_cont3.setVisibility(View.VISIBLE);
+            tv_cont1.setText("感恩您的奉献！");
+            tv_cont3.setText("恭喜您申请成功！");
+            tv_cont1.setTextColor(getResources().getColor(R.color.color_db4065));
+            tv_cont3.setTextColor(getResources().getColor(R.color.color_db4065));
+            btn_ok.setText("知道了，点击查看");
         }
     }
 

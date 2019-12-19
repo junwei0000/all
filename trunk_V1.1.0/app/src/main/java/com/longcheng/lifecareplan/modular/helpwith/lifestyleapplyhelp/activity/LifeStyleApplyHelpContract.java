@@ -6,6 +6,7 @@ import com.longcheng.lifecareplan.base.BaseView;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 
 /**
  * 作者：MarkShuai
@@ -20,7 +21,7 @@ public interface LifeStyleApplyHelpContract {
 
         void PeopleListSuccess(PeopleDataBean responseBean);
 
-        void applyActionSuccess(LifeNeedDataBean responseBean);
+        void applyActionSuccess(EditDataBean responseBean);
 
         void ListError();
 

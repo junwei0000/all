@@ -6,10 +6,7 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ExplainDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
@@ -111,14 +108,14 @@ public class LifeStyleApplyHelpPresenterImp<T> extends LifeStyleApplyHelpContrac
         Log.e("applyAction", "receive_user_id=" + receive_user_id);
 
         mView.showDialog();
-        Observable<LifeNeedDataBean> observable = Api.getInstance().service.lifeStyleApplyAction(user_id,
+        Observable<EditDataBean> observable = Api.getInstance().service.lifeStyleApplyAction(user_id,
                 shop_goods_price_id,
                 remark, purpose, address_id, apply_goods_number, receive_user_id, goods_id, purpose_remark, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<LifeNeedDataBean>() {
+                .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
                     @Override
-                    public void accept(LifeNeedDataBean responseBean) throws Exception {
+                    public void accept(EditDataBean responseBean) throws Exception {
                         mView.dismissDialog();
                         mView.applyActionSuccess(responseBean);
                         Log.e("Observable", "" + responseBean.toString());
