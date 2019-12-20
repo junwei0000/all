@@ -24,10 +24,10 @@
 
         <ImageView
             android:id="@+id/item_iv_thumb"
-            android:layout_marginRight="@dimen/padd_leftright"
             android:layout_width="@dimen/dp43"
             android:layout_height="@dimen/dp43"
             android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
             android:layout_toRightOf="@+id/item_tv_num"
             android:scaleType="centerCrop" />
 
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/item_tv_engerynum"
+            android:layout_toLeftOf="@+id/layout_you"
             android:layout_toRightOf="@+id/item_iv_thumb"
             android:orientation="vertical">
 
@@ -56,24 +56,30 @@
                 android:textSize="@dimen/text_min_size" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/item_tv_engerynum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/item_iv_engerynum"
-            android:paddingRight="@dimen/padd_imgtextleftright"
-            android:text="14654"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_contents_size" />
-
-        <ImageView
-            android:id="@+id/item_iv_engerynum"
+        <LinearLayout
+            android:id="@+id/layout_you"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="@mipmap/theorder_gratitude_icon1" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/item_tv_engerynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/padd_imgtextleftright"
+                android:text="14654"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:id="@+id/item_iv_engerynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/theorder_gratitude_icon1" />
+        </LinearLayout>
     </RelativeLayout>
 
     <include layout="@layout/line" />

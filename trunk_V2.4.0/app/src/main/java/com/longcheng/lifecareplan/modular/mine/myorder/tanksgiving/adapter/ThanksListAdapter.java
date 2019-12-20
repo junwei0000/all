@@ -52,8 +52,10 @@ public class ThanksListAdapter extends BaseAdapterHelper<ThanksItemBean> {
         mHolder.item_tv_engerynum.setText(mOrderItemBean.getPrice());
         GlideDownLoadImage.getInstance().loadCircleHeadImage(context, mOrderItemBean.getAvatar(), mHolder.item_iv_thumb);
         if (type == 2 || type == 4) {
+            mHolder.item_iv_engerynum.setVisibility(View.VISIBLE);
             mHolder.item_iv_engerynum.setBackgroundResource(R.mipmap.theorder_gratitude_icon2);
         } else {
+            mHolder.item_iv_engerynum.setVisibility(View.GONE);
             mHolder.item_iv_engerynum.setBackgroundResource(R.mipmap.theorder_gratitude_icon1);
         }
         return convertView;
