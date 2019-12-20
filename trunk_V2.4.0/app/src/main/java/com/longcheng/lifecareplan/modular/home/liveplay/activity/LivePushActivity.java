@@ -334,7 +334,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         // 设置变声
         mLivePusher.setVoiceChangerType(0);
         // 设置场景
-        setPushScene(TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION, true);
+        setPushScene(TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION, false);
         // 设置本地预览View
         mLivePusher.startCameraPreview(mPusherView);
         if (!mFrontCamera)
