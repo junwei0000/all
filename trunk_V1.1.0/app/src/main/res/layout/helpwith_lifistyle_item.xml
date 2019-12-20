@@ -221,6 +221,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" | 已有0超能"
+                    android:singleLine="true"
                     android:textColor="@color/text_noclick_color"
                     android:textSize="@dimen/text_min_size" />
 
@@ -230,6 +231,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" | 已有0寿康宝"
+                    android:singleLine="true"
                     android:textColor="@color/text_noclick_color"
                     android:textSize="@dimen/text_min_size" />
             </LinearLayout>

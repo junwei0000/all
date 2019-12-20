@@ -404,6 +404,7 @@ public class ShopCartActivity extends BaseActivityMVP<ShopCartContract.View, Sho
             } else if (haveSelectNum == 0) {
                 allnum = 0;
                 allskb_price = "0";
+                allsuper_ability= "0";
                 tvSelectnum.setText("全选");
                 tvSkb.setText("0");
                 haveAllCheck = false;

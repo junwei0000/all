@@ -116,7 +116,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     @Override
     public void setListener() {
         uid = UserUtils.getUserId(mContext);
-        uid="128767";
         layout_notlive.setVisibility(View.GONE);
         pagetopLayoutLeft.setOnClickListener(this);
         pagetopLayoutRigth.setOnClickListener(this);

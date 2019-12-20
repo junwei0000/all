@@ -344,6 +344,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
             //不相同时：初始化商品数据
             GoodsInfo.setShop_goods_price_id(shop_goods_price_id);
             GoodsInfo.setSkb_price(goodsGuiGeList.get(guigeSelectPosition).getSkb_price());
+            GoodsInfo.setSuper_ability(goodsGuiGeList.get(guigeSelectPosition).getSuper_ability());
             GoodsInfo.setPrice_name(goodsGuiGeList.get(guigeSelectPosition).getPrice_name());
             GoodsInfo.setGoodsNum(1);
         }
@@ -665,7 +666,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                     shop_goods_price_id = goodsGuiGeList.get(guigeSelectPosition).getShop_goods_price_id();
                     mGuiGeDetailAdapter.setGuigeSelectPosition(guigeSelectPosition);
                     mGuiGeDetailAdapter.notifyDataSetChanged();
-                    tvSkb.setText(goodsGuiGeList.get(guigeSelectPosition).getSkb_price());
+                    setText(goodsGuiGeList.get(guigeSelectPosition).getSkb_price(), goodsGuiGeList.get(guigeSelectPosition).getSuper_ability());
                 }
             });
         }
