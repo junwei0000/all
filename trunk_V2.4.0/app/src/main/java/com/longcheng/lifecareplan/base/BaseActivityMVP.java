@@ -1,9 +1,11 @@
 package com.longcheng.lifecareplan.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -148,6 +150,21 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
      */
     public abstract int bindLayout();
 
+
+    private PowerManager.WakeLock mWakelock;
+    @SuppressLint("InvalidWakeLockTag")
+    public void setScreenWake() {
+        PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);// init powerManager
+        mWakelock = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP |
+                PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "target");
+        mWakelock.acquire();
+    }
+
+    public void setScreenRelease() {
+        if (mWakelock != null) {
+            mWakelock.release();
+        }
+    }
     /**
      * [沉浸状态栏]
      */

@@ -215,12 +215,12 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     /**
      * 其他参数
      */
-    private int mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960; // 当前分辨率
+    private int mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_720_1280; // 当前分辨率
     private boolean mIsPushing;                     // 当前是否正在推流
     /**
      * 默认美颜参数
      */
-    private int mBeautyLevel = 4;            // 美颜等级
+    private int mBeautyLevel = 5;            // 美颜等级
     private int mBeautyStyle = TXLiveConstants.BEAUTY_STYLE_SMOOTH; // 美颜样式
     private int mWhiteningLevel = 3;            // 美白等级
     private int mRuddyLevel = 2;            // 红润等级
@@ -334,7 +334,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         // 设置变声
         mLivePusher.setVoiceChangerType(0);
         // 设置场景
-        setPushScene(TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION, true);
+        setPushScene(TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION, true);
         // 设置本地预览View
         mLivePusher.startCameraPreview(mPusherView);
         if (!mFrontCamera)
@@ -347,6 +347,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         }
         ToastUtils.showToast("开始直播");
         mIsPushing = true;
+        setScreenWake();
         return true;
     }
 
@@ -646,6 +647,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void onDestroy() {
+        setScreenRelease();
         unregisterReceiver(mReceiver);
         BaoZhangActitvty.shareBackType = "";
         BaoZhangActitvty.life_repay_id = "";

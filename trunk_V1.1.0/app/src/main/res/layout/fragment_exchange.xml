@@ -138,6 +138,7 @@
                     android:layout_marginRight="@dimen/padd_imgtextleftright"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:paddingTop="@dimen/padd_imgtextleftright"
                     android:paddingBottom="@dimen/padd_leftright">

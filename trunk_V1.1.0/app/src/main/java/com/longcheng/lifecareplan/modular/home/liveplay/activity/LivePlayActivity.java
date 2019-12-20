@@ -183,6 +183,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     TXLivePlayer mLivePlayer;
 
     private void initPlay() {
+        setScreenWake();
         //创建 player 对象
         mLivePlayer = new TXLivePlayer(mActivity);
         //关键 player 对象与界面 view
@@ -250,6 +251,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void onDestroy() {
+        setScreenRelease();
         BaoZhangActitvty.shareBackType = "";
         BaoZhangActitvty.life_repay_id = "";
         if (mLivePlayer != null) {

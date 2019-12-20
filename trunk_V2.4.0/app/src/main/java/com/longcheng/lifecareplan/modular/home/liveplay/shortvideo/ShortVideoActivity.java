@@ -209,6 +209,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
 
     @Override
     public void initDataAfter() {
+        setScreenWake();
         List<String> strings = new ArrayList<>(3);
         strings.add("上传");
         strings.add("拍摄");
@@ -639,6 +640,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
 
     @Override
     public void onDestroy() {
+        setScreenRelease();
         super.onDestroy();
     }
 
