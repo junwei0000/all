@@ -15,6 +15,7 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -92,6 +93,16 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
         webView.loadUrl(Config.BASE_HEAD_URL + "home/live/agreement");
     }
 
+
+    @Override
+    public void upLoadVideoSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void backSignSuccess(BasicResponse<VideoGetSignatureInfo> responseBean) {
+
+    }
 
     @Override
     public void setFollowLiveSuccess(BasicResponse responseBean) {

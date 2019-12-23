@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
 import android.net.Uri;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,8 +18,10 @@ import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresent
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -77,7 +80,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
                 back();
                 break;
             case R.id.tv_upload:
-
+                mPresent.getUploadVideoSignature();
                 break;
         }
 
@@ -130,12 +133,26 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
         }
     }
 
-
     @Override
     protected LivePushPresenterImp<LivePushContract.View> createPresent() {
         return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
     }
 
+
+    @Override
+    public void upLoadVideoSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void backSignSuccess(BasicResponse<VideoGetSignatureInfo> responseBean) {
+        String signature = responseBean.getData().getSignature();
+        if (!TextUtils.isEmpty(signature)) {
+
+        } else {
+            ToastUtils.showToast("获取签名信息错误");
+        }
+    }
 
     @Override
     public void setFollowLiveSuccess(BasicResponse responseBean) {

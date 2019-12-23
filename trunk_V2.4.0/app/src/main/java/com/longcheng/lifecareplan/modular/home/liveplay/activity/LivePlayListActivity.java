@@ -20,6 +20,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.adapter.PlayListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
@@ -221,6 +222,16 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         LoadingDialogAnim.dismiss(mContext);
     }
 
+
+    @Override
+    public void upLoadVideoSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void backSignSuccess(BasicResponse<VideoGetSignatureInfo> responseBean) {
+
+    }
 
     @Override
     public void setFollowLiveSuccess(BasicResponse responseBean) {

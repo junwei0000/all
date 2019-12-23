@@ -5,6 +5,7 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
@@ -128,6 +129,11 @@ public interface ApiLiveService {
     Observable<BasicResponse<MVideoDataInfo>> getMineFollowList(@Field("user_id") String user_id,
                                                                 @Field("page") int page,
                                                                 @Field("page_size") int page_size);
+
+
+    @FormUrlEncoded
+    @POST("dock/video/video/createFileUploadSignature")
+    Observable<BasicResponse<VideoGetSignatureInfo>> getUploadVideoSignature(@Field("user_id") String user_id);
 }
 
 

@@ -11,6 +11,7 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
@@ -67,7 +68,29 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+    /**
+     * 创建视频文件上传签名
+     */
+    public void getUploadVideoSignature() {
+        mView.showDialog();
+        ApiLive.getInstance().service.getUploadVideoSignature(UserUtils.getUserId(mContext))
+                .compose(mContext.<BasicResponse<VideoGetSignatureInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse<VideoGetSignatureInfo>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<VideoGetSignatureInfo> response) {
+                        mView.dismissDialog();
+                        mView.backSignSuccess(response);
+                    }
 
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
     /**
      * 用户申请直播
      */

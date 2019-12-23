@@ -32,6 +32,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresent
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.BaseScrollPickerView;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.StringScrollPicker;
@@ -256,6 +257,16 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         return new LivePushPresenterImp<>(mRxAppCompatActivity, this);
     }
 
+
+    @Override
+    public void upLoadVideoSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void backSignSuccess(BasicResponse<VideoGetSignatureInfo> responseBean) {
+
+    }
 
     @Override
     public void setFollowLiveSuccess(BasicResponse responseBean) {

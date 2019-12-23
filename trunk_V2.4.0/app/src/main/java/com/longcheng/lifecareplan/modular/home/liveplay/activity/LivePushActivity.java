@@ -40,6 +40,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -370,6 +371,16 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     private void setCameraSwitch() {
         mLivePusher.switchCamera();
+    }
+
+    @Override
+    public void upLoadVideoSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void backSignSuccess(BasicResponse<VideoGetSignatureInfo> responseBean) {
+
     }
 
     @Override
