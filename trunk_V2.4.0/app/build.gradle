@@ -159,4 +159,5 @@ dependencies {
 
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')
+    implementation project(path: ':videouploader')
 }

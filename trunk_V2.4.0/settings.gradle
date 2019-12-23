@@ -1,1 +1,1 @@
-include ':app', ':pulltorefreshlibrary', ':calendarview'
+include ':app', ':pulltorefreshlibrary', ':calendarview', ':videouploader', ':player'

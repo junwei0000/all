@@ -29,6 +29,7 @@ allprojects {
         maven {url 'https://dl.bintray.com/youzanyun/maven/'}
         flatDir {
             dirs 'libs'
+            dirs project(':app').file('libs')
         }
     }
 }

@@ -72,7 +72,6 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
      * 创建视频文件上传签名
      */
     public void getUploadVideoSignature() {
-        mView.showDialog();
         ApiLive.getInstance().service.getUploadVideoSignature(UserUtils.getUserId(mContext))
                 .compose(mContext.<BasicResponse<VideoGetSignatureInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
@@ -80,13 +79,11 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                 .subscribe(new DefaultObserver<BasicResponse<VideoGetSignatureInfo>>(mContext) {
                     @Override
                     public void onSuccess(BasicResponse<VideoGetSignatureInfo> response) {
-                        mView.dismissDialog();
                         mView.backSignSuccess(response);
                     }
 
                     @Override
                     public void onError() {
-                        mView.dismissDialog();
                         mView.Error();
                     }
                 });
