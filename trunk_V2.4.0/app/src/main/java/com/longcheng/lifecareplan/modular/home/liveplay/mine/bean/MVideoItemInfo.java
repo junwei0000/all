@@ -25,6 +25,24 @@ public class MVideoItemInfo implements Serializable {
     String avatar;
     String show_title;
     int position;
+    String follow_number;
+    String address;
+
+    public String getFollow_number() {
+        return follow_number;
+    }
+
+    public void setFollow_number(String follow_number) {
+        this.follow_number = follow_number;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public int getPosition() {
         return position;

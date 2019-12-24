@@ -68,6 +68,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
     /**
      * 创建视频文件上传签名
      */
@@ -88,6 +89,31 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
+    /**
+     * 上传视频信息
+     */
+    public void UploadVideoInfo(String title, String content, String cover_url
+            , String address, double lon, double lat, String file_id, String video_url) {
+        ApiLive.getInstance().service.UploadVideoInfo(UserUtils.getUserId(mContext),
+                title, content, cover_url
+                , address, lon, lat, file_id, video_url)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.upLoadVideoSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.Error();
+                    }
+                });
+    }
+
     /**
      * 用户申请直播
      */

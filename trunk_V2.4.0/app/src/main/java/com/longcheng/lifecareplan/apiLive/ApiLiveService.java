@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * get请求：在方法上使用@Get注解来标志该方法为get请求，在方法中的参数需要用@Query来注释。
@@ -134,6 +136,17 @@ public interface ApiLiveService {
     @FormUrlEncoded
     @POST("dock/video/video/createFileUploadSignature")
     Observable<BasicResponse<VideoGetSignatureInfo>> getUploadVideoSignature(@Field("user_id") String user_id);
+
+    @GET("dock/video/video/release")
+    Observable<BasicResponse> UploadVideoInfo(@Query("user_id") String user_id,
+                                              @Query("title") String title,
+                                              @Query("content") String content,
+                                              @Query("cover_url") String cover_url,
+                                              @Query("address") String address,
+                                              @Query("lon") double lon,
+                                              @Query("lat") double lat,
+                                              @Query("file_id") String file_id,
+                                              @Query("video_url") String video_url);
 }
 
 

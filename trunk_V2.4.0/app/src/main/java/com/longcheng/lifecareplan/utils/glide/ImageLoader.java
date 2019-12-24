@@ -8,9 +8,9 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.FileCache;
 
 import java.io.File;
 import java.io.FileOutputStream;

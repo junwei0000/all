@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,6 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
+import com.longcheng.lifecareplan.utils.FileCache;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.tencent.rtmp.ITXVodPlayListener;
@@ -270,14 +270,11 @@ public class TCVideoPreviewActivity extends BaseActivity {
         File file = new File(mVideoPath);
         if (file.exists()) {
             try {
-                String galleryPath = Environment.getExternalStorageDirectory()
-                        + File.separator + Environment.DIRECTORY_DCIM
-                        + File.separator + "Camera" + File.separator;
-                File dir = new File(galleryPath);
+                File dir = new File(FileCache.path);
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
-                File newFile = new File(galleryPath + file.getName());
+                File newFile = new File(FileCache.path + file.getName());
 
                 file.renameTo(newFile);
                 mVideoPath = newFile.getAbsolutePath();

@@ -18,6 +18,7 @@ import android.widget.RemoteViews;
 
 import com.longcheng.lifecareplan.BuildConfig;
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.FileCache;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 
 import org.apache.http.HttpEntity;
@@ -121,11 +122,10 @@ public class UpdateService extends Service {
                     InputStream is = entity.getContent();
                     if (is != null) {
                         states = true;
-                        File rootFile = new File(Environment.getExternalStorageDirectory(), "/longcheng");
+                        File rootFile = new File(FileCache.path);
                         if (!rootFile.exists() && !rootFile.isDirectory())
                             rootFile.mkdir();
-                        tempFile = new File(Environment.getExternalStorageDirectory(),
-                                "/longcheng/" + url.substring(url.lastIndexOf("/") + 1));
+                        tempFile = new File(FileCache.path+ url.substring(url.lastIndexOf("/") + 1));
                         if (tempFile.exists())
                             tempFile.delete();
                         tempFile.createNewFile();

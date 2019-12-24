@@ -1,7 +1,10 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -74,6 +77,8 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
     LinearLayout layoutCity;
     @BindView(R.id.tv_upload)
     TextView tvUpload;
+    @BindView(R.id.tv_lines)
+    TextView tv_lines;
 
     LocationUtils mLocationUtils;
     String city;
@@ -142,6 +147,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
         layoutLeft.setOnClickListener(this);
         tvUpload.setOnClickListener(this);
         ivThumb.setOnClickListener(this);
+        tv_lines.getBackground().setAlpha(60);
     }
 
 
@@ -180,7 +186,9 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
 
     @Override
     public void upLoadVideoSuccess(BasicResponse responseBean) {
-
+        ToastUtils.showToast("发布成功");
+        TCVideoPreviewActivity.mPrActivity.finish();
+        doFinish();
     }
 
     @Override
@@ -314,11 +322,13 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
             WindowManager m = mActivity.getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth(); //宽度设置为屏幕
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
             selectDialog.getWindow().setAttributes(p); //设置生效
 
             ImageView uploader_iv_stop = (ImageView) selectDialog.findViewById(R.id.uploader_iv_stop);
             uploader_pb_loading = (NumberProgressBar) selectDialog.findViewById(R.id.uploader_pb_loading);
+            uploader_pb_loading.setReachedBarColor(getResources().getColor(R.color.red));
+            uploader_pb_loading.setProgressTextColor(getResources().getColor(R.color.white));
             uploader_iv_stop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -366,10 +376,9 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
 //                reportVideoInfo(result);
                 // 注意：如果取消发送时，是取消的剩余未上传的分片发送，如果视频比较小，分片已经进入任务队列了是无法取消的。此时不跳转到下一个界面。
                 if (result.retCode == TXUGCPublishTypeDef.PUBLISH_RESULT_OK) {
-                    ToastUtils.showToast("发布成功");
-                    Log.d("result.videoId", "result.videoId=" + result.videoId + "   result.videoURL=" + result.videoURL);
-                    TCVideoPreviewActivity.mPrActivity.finish();
-                    doFinish();
+                    result_ = result;
+                    Log.d("result.videoId", "result.videoId=" + result.videoId + "   result.coverURL=" + result.coverURL);
+                    mHandler.sendEmptyMessage(uploadVideo);
                 } else {
                     if (result.descMsg.contains("java.net.UnknownHostException") || result.descMsg.contains("java.net.ConnectException")) {
                         ToastUtils.showToast("网络连接断开，视频上传失败");
@@ -386,6 +395,21 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
         param.fileName = title;
         mTXugcPublish.publishVideo(param);
     }
+
+    TXUGCPublishTypeDef.TXPublishResult result_;
+    protected final int uploadVideo = 6;
+    @SuppressLint("HandlerLeak")
+    Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case uploadVideo:
+                    if (result_ != null)
+                        mPresent.UploadVideoInfo(title, cont, result_.coverURL, city,
+                                phone_user_longitude, phone_user_latitude, result_.videoId, result_.videoURL);
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

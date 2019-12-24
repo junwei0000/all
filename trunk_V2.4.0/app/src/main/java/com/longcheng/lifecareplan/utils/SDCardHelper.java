@@ -323,9 +323,7 @@ public class SDCardHelper {
 
     //创建文件存放地址
     public static File getSaveDir(Context context, String name) {
-        String s = Environment.getExternalStorageDirectory()
-                .toString() + "/shihua/";
-        File file = new File(s);
+        File file = new File(FileCache.path);
         if (!file.exists()) {
             file.mkdirs();
         }
