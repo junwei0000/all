@@ -97,7 +97,8 @@ public class GetHomeInfoBean implements Serializable {
 
     private String patient_record_url;//就诊记录url
     private int hasDiagnosticRecord;//是否有就诊记录 0没有；1 有
-
+    @SerializedName("user_reward_url")
+    private String loveVideo_url;//就诊记录url
 
     private String partymember_url;//志愿者列表
     private int isPartymember;//是否有志愿者列表 0没有；1 有
@@ -163,6 +164,15 @@ public class GetHomeInfoBean implements Serializable {
 
     private int displayHolidayTips;//0:不展示  1：展示
     private int displayHolidayTipsAsset;//  展示金额
+
+
+    public String getLoveVideo_url() {
+        return loveVideo_url;
+    }
+
+    public void setLoveVideo_url(String loveVideo_url) {
+        this.loveVideo_url = loveVideo_url;
+    }
 
     public int getDisplayHolidayTips() {
         return displayHolidayTips;

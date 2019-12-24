@@ -265,6 +265,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
 
     @BindView(R.id.layout_publicize)
     LinearLayout layout_publicize;
+    @BindView(R.id.mycenter_layout_loveVideo)
+    LinearLayout mycenter_layout_loveVideo;
 
     @BindView(R.id.layout_jintie)
     LinearLayout layout_jintie;
@@ -353,6 +355,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         usercenter_layout_tel.setOnClickListener(this);
         layout_pool.setOnClickListener(this);
         iv_meiqia.setOnClickListener(this);
+        mycenter_layout_loveVideo.setOnClickListener(this);
         gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -466,6 +469,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (displayLifeAdReward != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("广告收益", R.id.layout_publicize, R.mipmap.my_ad_icon));
         }
+        FunctionGVlist1.add(new FunctionGVItemBean("邀请记录", R.id.mycenter_layout_invitationrecord, R.mipmap.homepage_icon_invitation));
 
         FunctionAdapter mFunctionAdapter1 = new FunctionAdapter(mActivity, FunctionGVlist1);
         gongnengn_gv1.setAdapter(mFunctionAdapter1);
@@ -558,7 +562,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
-            case R.id.layout_pool:
+            case R.id.layout_pool://水池
                 intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getAlipay_pool_user_url());
@@ -625,6 +629,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("html_url", "" + data.getPatient_record_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.mycenter_layout_loveVideo://爱心奉献
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getLoveVideo_url());
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
