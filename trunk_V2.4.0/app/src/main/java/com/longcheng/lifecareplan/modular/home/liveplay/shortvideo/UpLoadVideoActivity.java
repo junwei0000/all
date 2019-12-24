@@ -1,8 +1,10 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -31,6 +33,7 @@ import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.liteav.demo.videouploader.common.view.NumberProgressBar;
 import com.tencent.liteav.demo.videouploader.videoupload.TXUGCPublish;
 import com.tencent.liteav.demo.videouploader.videoupload.TXUGCPublishTypeDef;
@@ -92,6 +95,15 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
             case R.id.layout_left:
                 back();
                 break;
+            case R.id.iv_thumb:
+                Intent intent = new Intent(getApplicationContext(), VideoEditCoverActivity.class);
+                intent.putExtra(TCConstants.VIDEO_RECORD_TYPE, mVideoSource);
+                intent.putExtra(TCConstants.VIDEO_RECORD_VIDEPATH, mVideoPath);
+                intent.putExtra(TCConstants.VIDEO_RECORD_COVERPATH, mCoverImagePath);
+                intent.putExtra(TCConstants.VIDEO_RECORD_DURATION, mVideoDuration);
+                intent.putExtra(TCConstants.VIDEO_RECORD_RESOLUTION, mVideoResolution);
+                startActivityForResult(intent, 1);
+                break;
             case R.id.tv_upload:
                 title = tv_title.getText().toString();
                 if (TextUtils.isEmpty(title)) {
@@ -129,6 +141,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
     public void setListener() {
         layoutLeft.setOnClickListener(this);
         tvUpload.setOnClickListener(this);
+        ivThumb.setOnClickListener(this);
     }
 
 
@@ -145,15 +158,19 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
 
         mVideoSource = getIntent().getIntExtra(TCConstants.VIDEO_RECORD_TYPE, TCConstants.VIDEO_RECORD_TYPE_EDIT);
         mVideoPath = getIntent().getStringExtra(TCConstants.VIDEO_RECORD_VIDEPATH);
-        mCoverImagePath = getIntent().getStringExtra(TCConstants.VIDEO_RECORD_COVERPATH);
         mVideoDuration = getIntent().getLongExtra(TCConstants.VIDEO_RECORD_DURATION, 0);
         mVideoResolution = getIntent().getIntExtra(TCConstants.VIDEO_RECORD_RESOLUTION, -1);
+        mCoverImagePath = getIntent().getStringExtra(TCConstants.VIDEO_RECORD_COVERPATH);
+        setCover();
+    }
+
+    private void setCover() {
+        TXCLog.d("onThumbnail", "mCoverImagePath = " + mCoverImagePath);
         if (mCoverImagePath != null && !mCoverImagePath.isEmpty()) {
             Glide.with(this).load(Uri.fromFile(new File(mCoverImagePath)))
                     .into(ivThumb);
         }
     }
-
 
     @Override
     protected LivePushPresenterImp<LivePushContract.View> createPresent() {
@@ -350,11 +367,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
                 // 注意：如果取消发送时，是取消的剩余未上传的分片发送，如果视频比较小，分片已经进入任务队列了是无法取消的。此时不跳转到下一个界面。
                 if (result.retCode == TXUGCPublishTypeDef.PUBLISH_RESULT_OK) {
                     ToastUtils.showToast("发布成功");
-//                    Intent intent = new Intent(TCVideoPublishActivity.this, SuperPlayerActivity.class);
-//                    intent.putExtra(com.tencent.liteav.demo.videouploader.common.utils.TCConstants.PLAYER_DEFAULT_VIDEO, false);
-//                    intent.putExtra(com.tencent.liteav.demo.videouploader.common.utils.TCConstants.PLAYER_VIDEO_ID, result.videoId);
-//                    intent.putExtra(com.tencent.liteav.demo.videouploader.common.utils.TCConstants.PLAYER_VIDEO_NAME, mTitleStr);
-//                    startActivity(intent);
+                    Log.d("result.videoId", "result.videoId=" + result.videoId + "   result.videoURL=" + result.videoURL);
                     TCVideoPreviewActivity.mPrActivity.finish();
                     doFinish();
                 } else {
@@ -373,4 +386,17 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
         param.fileName = title;
         mTXugcPublish.publishVideo(param);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            if (resultCode == 1) {
+                mCoverImagePath = data.getStringExtra(TCConstants.VIDEO_RECORD_COVERPATH);
+                setCover();
+            }
+        } catch (Exception e) {
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 }

@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
@@ -51,7 +52,10 @@ import com.tencent.rtmp.ui.TXCloudVideoView;
 import com.tencent.ugc.TXRecordCommon;
 import com.tencent.ugc.TXUGCRecord;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -231,6 +235,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         Log.e("updateRecordBtnView", "mRecording=" + mRecording + "  ;mPause=" + mPause);
         if (!mRecording && !mPause) {//初始化
             tvTime.setText("00:00");
+            circleProgressBar.setVisibility(View.GONE);
             layoutTime.setVisibility(View.GONE);
             layoutDel.setVisibility(View.GONE);
             layoutOk.setVisibility(View.GONE);
@@ -240,6 +245,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
             layoutTime.setVisibility(View.VISIBLE);
             layoutDel.setVisibility(View.GONE);
             layoutOk.setVisibility(View.GONE);
+            circleProgressBar.setVisibility(View.VISIBLE);
             layoutBottom.setVisibility(View.INVISIBLE);
             layoutStart.setBackgroundResource(R.mipmap.shortvideo_pause);
         } else if (mRecording && mPause) {//暂停
@@ -247,6 +253,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
             layoutDel.setVisibility(View.VISIBLE);
             layoutOk.setVisibility(View.VISIBLE);
             layoutBottom.setVisibility(View.INVISIBLE);
+            circleProgressBar.setVisibility(View.VISIBLE);
             layoutStart.setBackgroundResource(R.mipmap.shortvideo_restart);
         }
     }
@@ -467,12 +474,12 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         simpleConfig.minDuration = mMinDuration;
         simpleConfig.maxDuration = mMaxDuration;
         simpleConfig.isFront = mFront;
-        simpleConfig.touchFocus = true; // 手动对焦和自动对焦切换需要重新开启预览
+        simpleConfig.touchFocus = false; // 手动对焦和自动对焦切换需要重新开启预览
         simpleConfig.needEdit = false;
         mTXCameraRecord.setRecordSpeed(TXRecordCommon.RECORD_SPEED_NORMAL);
         mTXCameraRecord.startCameraSimplePreview(simpleConfig, previewView);
         mTXCameraRecord.getBeautyManager().setBeautyStyle(0);
-        mTXCameraRecord.getBeautyManager().setBeautyLevel(4);
+        mTXCameraRecord.getBeautyManager().setBeautyLevel(5);
         mTXCameraRecord.getBeautyManager().setWhitenessLevel(1);
         mTXCameraRecord.getBeautyManager().setRuddyLevel(0);
         mTXCameraRecord.getBeautyManager().setFaceSlimLevel(0);
@@ -489,6 +496,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         if (mTXRecordResult != null && (mTXRecordResult.retCode == TXRecordCommon.RECORD_RESULT_OK
                 || mTXRecordResult.retCode == TXRecordCommon.RECORD_RESULT_OK_REACHED_MAXDURATION
                 || mTXRecordResult.retCode == TXRecordCommon.RECORD_RESULT_OK_LESS_THAN_MINDURATION)) {
+            Log.e("startPreview", "coverPath=" + mTXRecordResult.coverPath);
             Intent intent = new Intent(getApplicationContext(), TCVideoPreviewActivity.class);
             intent.putExtra(TCConstants.VIDEO_RECORD_TYPE, TCConstants.VIDEO_RECORD_TYPE_UGC_RECORD);
             intent.putExtra(TCConstants.VIDEO_RECORD_RESULT, mTXRecordResult.retCode);
@@ -496,7 +504,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
             intent.putExtra(TCConstants.VIDEO_RECORD_VIDEPATH, mTXRecordResult.videoPath);
             intent.putExtra(TCConstants.VIDEO_RECORD_COVERPATH, mTXRecordResult.coverPath);
             intent.putExtra(TCConstants.VIDEO_RECORD_DURATION, mDuration);
-            intent.putExtra(TCConstants.VIDEO_RECORD_RESOLUTION, TXRecordCommon.VIDEO_RESOLUTION_540_960);
+            intent.putExtra(TCConstants.VIDEO_RECORD_RESOLUTION, TXRecordCommon.VIDEO_RESOLUTION_720_1280);
             startActivity(intent);
         } else {
             ToastUtils.showToast("录制失败");
@@ -606,7 +614,11 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
             mTXCameraRecord = TXUGCRecord.getInstance(this.getApplicationContext());
         }
         mLastClickTime = System.currentTimeMillis();
-        int result = mTXCameraRecord.startRecord();
+        String customVideoPath = getCustomVideoOutputPath();
+        String customCoverPath = customVideoPath.replace(".mp4", ".jpg");
+        String customPartFolder = getCustomVideoPartFolder();
+
+        int result = mTXCameraRecord.startRecord(customVideoPath, customPartFolder, customCoverPath);
         if (result != TXRecordCommon.START_RECORD_OK) {
             if (result == TXRecordCommon.START_RECORD_ERR_NOT_INIT) {
                 ToastUtils.showToast("别着急，画面还没出来");
@@ -625,6 +637,25 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
         mRecording = true;
         mPause = false;
         updateRecordBtnView();
+    }
+
+    //自定义分段视频存储目录
+    private String getCustomVideoPartFolder() {
+        String outputDir = Environment.getExternalStorageDirectory() + File.separator + "longcheng_video";
+        return outputDir;
+    }
+
+    private String getCustomVideoOutputPath() {
+        long currentTime = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        String time = sdf.format(new Date(currentTime));
+        String outputDir = Environment.getExternalStorageDirectory() + File.separator + "longcheng_video";
+        File outputFolder = new File(outputDir);
+        if (!outputFolder.exists()) {
+            outputFolder.mkdirs();
+        }
+        String tempOutputPath = outputDir + File.separator + "TXUGC_" + time + ".mp4";
+        return tempOutputPath;
     }
 
     @Override

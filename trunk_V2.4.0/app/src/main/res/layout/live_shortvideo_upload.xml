@@ -30,7 +30,7 @@
                     android:id="@+id/iv_thumb"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:src="@mipmap/live_listnotdatebg2"
                     app:riv_border_color="@color/transparent"
                     app:riv_border_width="0dp"

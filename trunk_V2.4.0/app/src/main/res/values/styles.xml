@@ -173,8 +173,8 @@
     <style name="btn_padd">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/dp8</item>
-        <item name="android:paddingBottom">@dimen/dp8</item>
+        <item name="android:paddingTop">@dimen/dp6</item>
+        <item name="android:paddingBottom">@dimen/dp6</item>
         <item name="android:paddingLeft">@dimen/dp20</item>
         <item name="android:paddingRight">@dimen/dp20</item>
         <item name="android:textSize">@dimen/text_biaoTi_size</item>

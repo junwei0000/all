@@ -27,10 +27,8 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -299,24 +297,6 @@ public class AblumUtils {
         }
     }
 
-    /**
-     * Bitmap对象保存味图片文件
-     *
-     * @param bitmap
-     */
-    private void saveBitmapFile(Bitmap bitmap) {
-        try {
-            tempFile = new File(Environment.getExternalStorageDirectory(),
-                    file_name);// 将要保存图片的路径
-            BufferedOutputStream bos = new BufferedOutputStream(
-                    new FileOutputStream(tempFile));
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-            bos.flush();
-            bos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * 通过Base32将Bitmap转换成Base64字符串

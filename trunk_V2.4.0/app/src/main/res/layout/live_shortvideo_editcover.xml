@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_live"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_tool" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/page_top_height"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/padd_leftright">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back"
+                android:tint="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="封面选择"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_pageTop_size" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="right|center_vertical"
+            android:paddingRight="@dimen/padd_leftright">
+
+            <TextView
+                android:id="@+id/tv_sure"
+                style="@style/btn_padd"
+                android:background="@drawable/corners_bg_redprogress"
+                android:gravity="center"
+                android:text="完成" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp30"
+            android:layout_weight="1">
+
+            <FrameLayout
+                android:id="@+id/iv_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageButton
+                android:id="@+id/editer_ib_play"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/record_pause" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="@dimen/dp40">
+
+            <com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.edit.VideoProgressView
+                android:id="@+id/editer_video_progress_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:layout_centerVertical="true" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -93,7 +93,7 @@
     <color name="main_dongzhi">#0258c2</color>
     <color name="main_qiufen">#a23c21</color>
 
-
+    <color name="colorAccentTransparent30">#4d0accac</color>
     <color name="lichuncolors">#00bf70</color><!-- 03:00 -->
     <color name="yushuicolors">#00bf7f</color><!-- 04:00 -->
     <color name="jingzecolors">#00bf9f</color><!-- 05:00 -->

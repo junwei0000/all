@@ -3,10 +3,11 @@ package com.longcheng.lifecareplan.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.util.Log;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 /**
@@ -139,4 +140,25 @@ public class FileCache {
         }
     }
 
+    /**
+     * Bitmap对象保存味图片文件
+     *
+     * @param bitmap
+     */
+    public static File saveBitmapFile(Bitmap bitmap) {
+        try {
+            String file_name = ConfigUtils.getINSTANCE().getRandomNumber(16) + ".jpg";
+            File tempFile = new File(Environment.getExternalStorageDirectory(),
+                    file_name);// 将要保存图片的路径
+            BufferedOutputStream bos = new BufferedOutputStream(
+                    new FileOutputStream(tempFile));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bos.flush();
+            bos.close();
+            return tempFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

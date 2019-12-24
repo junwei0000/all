@@ -325,7 +325,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         // 是否添加水印
         mLivePushConfig.setWatermark(null, 0, 0, 0);
         // 是否打开曝光对焦
-        mLivePushConfig.setTouchFocus(true);
+        mLivePushConfig.setTouchFocus(false);
         // 是否打开手势放大预览画面
         mLivePushConfig.setEnableZoom(false);
         // 设置推流配置
