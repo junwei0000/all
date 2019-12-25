@@ -69,7 +69,7 @@ public class liWuDialogUtils {
     public void showPopupWindow() {
         if (selectDialog == null) {
             selectDialog = new MyDialog(context, R.style.dialog, R.layout.dialog_liveliwu);// 创建Dialog并设置样式主题
-            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectDialog.getWindow();
             window.setGravity(Gravity.BOTTOM);
             window.setWindowAnimations(R.style.showBottomDialog);

@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,9 +48,11 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -90,12 +94,12 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     ImageView btnLiwu;
     @BindView(R.id.btn_camera)
     ImageView btnCamera;
-    @BindView(R.id.relat_push)
-    RelativeLayout relatPush;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tv_onlinenum)
     TextView tv_onlinenum;
+    @BindView(R.id.iv_avatar)
+    ImageView iv_avatar;
     @BindView(R.id.frag_tv_follow)
     TextView fragTvFollow;
     @BindView(R.id.frag_tv_sharenum)
@@ -104,7 +108,8 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     LinearLayout fragLayoutShare;
     @BindView(R.id.layout_gn)
     LinearLayout layoutGn;
-
+    @BindView(R.id.relat_push)
+    RelativeLayout relat_push;
     private static final String URL_KEY = "pushUrl_key";
     private String mPushUrl = null;
     boolean rankOpenStatus = false;
@@ -165,7 +170,45 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 return false;
             }
         });
+        relat_push.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                // 应用可以显示的区域。此处包括应用占用的区域，包括标题栏不包括状态栏
+                Rect r = new Rect();
+                relat_push.getWindowVisibleDisplayFrame(r);
+                // 键盘最小高度
+                int minKeyboardHeight = 150;
+                // 获取状态栏高度
+                int statusBarHeight = Immersive.getStatusBarHeight(mContext);
+                // 屏幕高度,不含虚拟按键的高度
+                int screenHeight = relat_push.getRootView().getHeight();
+                // 在不显示软键盘时，height等于状态栏的高度
+                int height = screenHeight - (r.bottom - r.top);
+
+
+                if (ShowKeyboard) {
+                    // 如果软键盘是弹出的状态，并且height小于等于状态栏高度，
+                    // 说明这时软键盘已经收起
+                    if (height - statusBarHeight < minKeyboardHeight) {
+                        ShowKeyboard = false;
+//                        Toast.makeText(mContext, "键盘隐藏了", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // 如果软键盘是收起的状态，并且height大于状态栏高度，
+                    // 说明这时软键盘已经弹出
+                    if (height - statusBarHeight > minKeyboardHeight) {
+                        ShowKeyboard = true;
+//                        Toast.makeText(mContext, "键盘显示了", Toast.LENGTH_SHORT).show();
+                        rankOpenStatus = false;
+                        setRankListOpenStatus();
+                    }
+                }
+            }
+        });
     }
+
+    // 软键盘的显示状态
+    private boolean ShowKeyboard;
 
     @Override
     public void initDataAfter() {
@@ -424,6 +467,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     fragTvPlaystatus.setText("直播中：" + title);
                     fragTvCity.setText("" + info.getAddress());
                     fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
+                    GlideDownLoadImage.getInstance().loadCircleImage(info.getAvatar(), iv_avatar);
                 }
                 ArrayList<LiveDetailItemInfo> comment = mLiveDetailInfo.getComment();
                 if (comment != null && comment.size() > 0) {

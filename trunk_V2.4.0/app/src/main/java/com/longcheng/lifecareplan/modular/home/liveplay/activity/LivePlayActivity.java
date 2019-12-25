@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,12 +16,14 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -41,9 +44,11 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.rtmp.ITXLivePlayListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -87,6 +92,9 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     ImageView btnLiwu;
     @BindView(R.id.btn_camera)
     ImageView btnCamera;
+    @BindView(R.id.relat_push)
+    RelativeLayout relat_push;
+
 
     @BindView(R.id.preview_view)
     TXCloudVideoView mSurfaceView;
@@ -102,6 +110,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     LinearLayout fragLayoutShare;
     @BindView(R.id.layout_gn)
     LinearLayout layoutGn;
+    @BindView(R.id.iv_avatar)
+    ImageView iv_avatar;
 
     boolean isPlaying = false;
     boolean rankOpenStatus = false;
@@ -118,6 +128,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 back();
                 break;
             case R.id.btn_liwu:
+                rankOpenStatus = false;
+                setRankListOpenStatus();
                 if (gift != null && gift.size() > 0) {
                     if (mliWuDialogUtils == null) {
                         mliWuDialogUtils = new liWuDialogUtils(mActivity, mHandler, liwu);
@@ -184,6 +196,9 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 //        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), true);
     }
 
+    // 软键盘的显示状态
+    private boolean ShowKeyboard;
+
     public void setListener() {
         iv_notLive.setVisibility(View.VISIBLE);
         btnCamera.setVisibility(View.GONE);
@@ -208,6 +223,41 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     return true;
                 }
                 return false;
+            }
+        });
+        relat_push.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                // 应用可以显示的区域。此处包括应用占用的区域，包括标题栏不包括状态栏
+                Rect r = new Rect();
+                relat_push.getWindowVisibleDisplayFrame(r);
+                // 键盘最小高度
+                int minKeyboardHeight = 150;
+                // 获取状态栏高度
+                int statusBarHeight = Immersive.getStatusBarHeight(mContext);
+                // 屏幕高度,不含虚拟按键的高度
+                int screenHeight = relat_push.getRootView().getHeight();
+                // 在不显示软键盘时，height等于状态栏的高度
+                int height = screenHeight - (r.bottom - r.top);
+
+
+                if (ShowKeyboard) {
+                    // 如果软键盘是弹出的状态，并且height小于等于状态栏高度，
+                    // 说明这时软键盘已经收起
+                    if (height - statusBarHeight < minKeyboardHeight) {
+                        ShowKeyboard = false;
+//                        Toast.makeText(mContext, "键盘隐藏了", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // 如果软键盘是收起的状态，并且height大于状态栏高度，
+                    // 说明这时软键盘已经弹出
+                    if (height - statusBarHeight > minKeyboardHeight) {
+                        ShowKeyboard = true;
+//                        Toast.makeText(mContext, "键盘显示了", Toast.LENGTH_SHORT).show();
+                        rankOpenStatus = false;
+                        setRankListOpenStatus();
+                    }
+                }
             }
         });
     }
@@ -415,6 +465,8 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     int is_user_follow = info.getIs_user_follow();
                     if (is_user_follow != 0) {
                         fragTvFollow.setVisibility(View.GONE);
+                    } else {
+                        fragTvFollow.setVisibility(View.VISIBLE);
                     }
                     title = info.getTitle();
                     User_name = info.getUser_name();
@@ -424,6 +476,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     fragTvPlaystatus.setText("直播中：" + title);
                     fragTvCity.setText("" + info.getAddress());
                     fragTvJieqi.setText(info.getCurrent_jieqi_cn() + "节气");
+                    GlideDownLoadImage.getInstance().loadCircleImage(info.getAvatar(), iv_avatar);
                 }
                 ArrayList<LiveDetailItemInfo> comment = mLiveDetailInfo.getComment();
                 if (comment != null && comment.size() > 0) {

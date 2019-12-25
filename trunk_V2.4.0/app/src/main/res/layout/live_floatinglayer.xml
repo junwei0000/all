@@ -96,8 +96,8 @@
                 android:singleLine="true"
                 android:text="礼物榜排行榜"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_biaoTi_size" />
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_onlinenum"
@@ -133,10 +133,10 @@
             android:background="@drawable/corners_bg_liverank"
             android:cacheColorHint="@color/transparent"
             android:divider="@null"
-            android:listSelector="@drawable/list_notselector"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
             android:fastScrollEnabled="false"
+            android:listSelector="@drawable/list_notselector"
             android:scrollbars="none"
             android:visibility="invisible" />
 
@@ -153,17 +153,17 @@
                 android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp30"
                 android:layout_weight="1"
-                android:listSelector="@drawable/list_notselector"
                 android:background="@color/transparent"
                 android:cacheColorHint="@color/transparent"
                 android:divider="@null"
                 android:dividerHeight="@dimen/dp10"
                 android:fadeScrollbars="false"
-                android:stackFromBottom="true"
-                android:transcriptMode="alwaysScroll"
                 android:fadingEdge="none"
                 android:fastScrollEnabled="false"
-                android:scrollbars="none" />
+                android:listSelector="@drawable/list_notselector"
+                android:scrollbars="none"
+                android:stackFromBottom="true"
+                android:transcriptMode="alwaysScroll" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -172,14 +172,28 @@
                 android:gravity="bottom|right"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/frag_tv_follow"
-                    style="@style/text_padd_oval"
-                    android:background="@drawable/corners_bg_communered"
-                    android:singleLine="true"
-                    android:text="关注"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_contents_size" />
+                <RelativeLayout
+                    android:layout_width="@dimen/dp40"
+                    android:layout_height="@dimen/dp45">
+
+                    <ImageView
+                        android:id="@+id/iv_avatar"
+                        android:layout_width="@dimen/dp40"
+                        android:layout_height="@dimen/dp40"
+                        android:background="@mipmap/user_default_icon" />
+
+                    <TextView
+                        android:id="@+id/frag_tv_follow"
+                        style="@style/text_padd_oval"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/corners_bg_communered"
+                        android:singleLine="true"
+                        android:text="关注"
+                        android:textColor="@color/white"
+                        android:textSize="9dp"
+                        android:visibility="gone" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/frag_layout_share"
