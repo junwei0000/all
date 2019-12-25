@@ -95,6 +95,7 @@
         android:label="@string/app_name"
         android:persistent="true"
         android:supportsRtl="true"
+        android:hardwareAccelerated ="true"
         android:theme="@style/SplashTheme">
 
         <activity android:name=".modular.index.welcome.activity.WelcomePageActivity">
@@ -804,6 +805,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".modular.home.liveplay.shortvideo.TCVideoDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".modular.home.liveplay.shortvideo.TCVideoPreviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

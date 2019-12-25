@@ -17,6 +17,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.mine.adapter.MyVideoList
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCVideoDetailActivity;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -63,13 +64,12 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
         dateListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                if (mAllList != null && mAllList.size() > 0 && (position - 1) < mAllList.size()) {
-//                    Intent intent = new Intent(mContext, OrderDetailActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    intent.putExtra("order_id", mAllList.get(position - 1).getOrder_id());
-//                    startActivity(intent);
-//                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
-//                }
+                if (mAllList != null && mAllList.size() > 0) {
+                    TCVideoDetailActivity.skipVideoDetail(mActivity, mAllList.get(position).getCover_url(),
+                            mAllList.get(position).getVideo_url(),
+                            mAllList.get(position).getShort_video_id());
+
+                }
             }
         });
     }

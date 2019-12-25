@@ -8,6 +8,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
 
 import java.util.ArrayList;
@@ -104,6 +105,10 @@ public interface ApiLiveService {
                                                           @Field("lat") double lat,
                                                           @Field("price") String price);
 
+    @FormUrlEncoded
+    @POST("dock/video/video/info")
+    Observable<BasicResponse<MVideoItemInfo>> videoDetail(@Field("user_id") String user_id,
+                                                          @Field("short_video_id") String short_video_id);
 
     @FormUrlEncoded
     @POST("dock/user/user/index")
@@ -147,6 +152,16 @@ public interface ApiLiveService {
                                               @Query("lat") double lat,
                                               @Query("file_id") String file_id,
                                               @Query("video_url") String video_url);
+
+    @FormUrlEncoded
+    @POST("dock/video/follow/operate")
+    Observable<BasicResponse> addVideoFollow(@Field("user_id") String user_id,
+                                             @Field("short_video_id") String short_video_id,
+                                             @Query("type") int type);
+    @FormUrlEncoded
+    @POST("dock/video/Forward/operate")
+    Observable<BasicResponse> addForwardNum(@Field("user_id") String user_id,
+                                             @Field("short_video_id") String short_video_id );
 }
 
 

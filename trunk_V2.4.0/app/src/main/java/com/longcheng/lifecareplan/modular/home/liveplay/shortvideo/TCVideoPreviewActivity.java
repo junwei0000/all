@@ -225,7 +225,8 @@ public class TCVideoPreviewActivity extends BaseActivity {
                         mSeekBar.setProgress(progress);
                     }
                     if (mProgressTime != null) {
-                        mProgressTime.setText(String.format(Locale.CHINA, "%02d:%02d/%02d:%02d", (progress) / 60, progress % 60, (duration) / 60, duration % 60));
+                        mProgressTime.setText(String.format(Locale.CHINA, "%02d:%02d/%02d:%02d",
+                                (progress) / 60, progress % 60, (duration) / 60, duration % 60));
                     }
 
                     if (mSeekBar != null) {

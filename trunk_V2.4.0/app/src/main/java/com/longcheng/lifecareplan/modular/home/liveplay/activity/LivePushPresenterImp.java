@@ -13,6 +13,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -393,6 +394,69 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     @Override
                     public void onError() {
                         mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 短视频详情
+     */
+    public void videoDetail(String short_video_id) {
+        ApiLive.getInstance().service.videoDetail(UserUtils.getUserId(mContext), short_video_id)
+                .compose(mContext.<BasicResponse<MVideoItemInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse<MVideoItemInfo>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<MVideoItemInfo> response) {
+                        mView.videoDetailSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 短视频 点赞/取消
+     */
+    public void addVideoFollow(String short_video_id, int type) {
+        ApiLive.getInstance().service.addVideoFollow(UserUtils.getUserId(mContext), short_video_id, type)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.sendLCommentSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 短视频 转发
+     */
+    public void addForwardNum(String short_video_id) {
+        ApiLive.getInstance().service.addForwardNum(UserUtils.getUserId(mContext), short_video_id)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.sendLCommentSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
                         mView.Error();
                     }
                 });

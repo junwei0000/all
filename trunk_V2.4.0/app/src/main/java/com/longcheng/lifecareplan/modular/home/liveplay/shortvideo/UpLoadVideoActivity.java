@@ -29,6 +29,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
@@ -249,6 +250,11 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
 
     @Override
     public void giveGiftSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
 
     }
 

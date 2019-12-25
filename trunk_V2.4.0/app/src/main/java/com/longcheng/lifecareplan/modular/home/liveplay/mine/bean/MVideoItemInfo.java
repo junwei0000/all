@@ -11,6 +11,7 @@ public class MVideoItemInfo implements Serializable {
     String live_room_id;
     String user_id;
     String title;
+    String content;
     String cover_url;
     String total_person_number;
     String live_broadcast_url;
@@ -26,7 +27,51 @@ public class MVideoItemInfo implements Serializable {
     String show_title;
     int position;
     String follow_number;
+    String comment_number;
+    String forward_number;
     String address;
+    String short_video_id;
+    int is_follow;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getComment_number() {
+        return comment_number;
+    }
+
+    public void setComment_number(String comment_number) {
+        this.comment_number = comment_number;
+    }
+
+    public String getForward_number() {
+        return forward_number;
+    }
+
+    public void setForward_number(String forward_number) {
+        this.forward_number = forward_number;
+    }
+
+    public int getIs_follow() {
+        return is_follow;
+    }
+
+    public void setIs_follow(int is_follow) {
+        this.is_follow = is_follow;
+    }
+
+    public String getShort_video_id() {
+        return short_video_id;
+    }
+
+    public void setShort_video_id(String short_video_id) {
+        this.short_video_id = short_video_id;
+    }
 
     public String getFollow_number() {
         return follow_number;

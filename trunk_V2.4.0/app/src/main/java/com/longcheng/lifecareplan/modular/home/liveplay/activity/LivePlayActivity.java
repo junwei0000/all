@@ -40,6 +40,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -519,6 +520,11 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         } else {
             setNotSkbDialog();
         }
+    }
+
+    @Override
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
+
     }
 
     @Override

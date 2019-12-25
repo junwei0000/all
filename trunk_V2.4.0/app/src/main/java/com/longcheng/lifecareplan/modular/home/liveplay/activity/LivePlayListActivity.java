@@ -23,7 +23,9 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCVideoDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
@@ -152,10 +154,8 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                     } else {
-//                        intent = new Intent(mActivity, LivePlayActivity.class);
-//                        intent.putExtra("short_video_id", mAllList.get(position).getVideo_id());
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                        startActivity(intent);
+                        TCVideoDetailActivity.skipVideoDetail(mActivity, mAllList.get(position).getCover_url(),
+                                mAllList.get(position).getVideo_url(), mAllList.get(position).getVideo_id());
                     }
 
                 }
@@ -329,6 +329,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void giveGiftSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
 
     }
 

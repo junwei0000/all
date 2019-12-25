@@ -144,6 +144,7 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.44'
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    compile 'cn.finalteam:okhttpfinal:2.0.7'
     //美洽聊天的依赖
     implementation 'com.meiqia:meiqiasdk:+'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'

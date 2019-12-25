@@ -26,6 +26,8 @@ import com.umeng.socialize.UMShareAPI;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
 import com.xiaomi.mipush.sdk.MiPushMessage;
 
+import cn.finalteam.okhttpfinal.OkHttpFinal;
+import cn.finalteam.okhttpfinal.OkHttpFinalConfiguration;
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
@@ -66,6 +68,12 @@ public class ExampleApplication extends MultiDexApplication {
         pushListener();
         initTencentLive();
         initMeiQia();
+        initOKHttp();
+    }
+
+    private void initOKHttp() {
+        OkHttpFinalConfiguration.Builder builder = new OkHttpFinalConfiguration.Builder();
+        OkHttpFinal.getInstance().init(builder.build());
     }
 
     /**
