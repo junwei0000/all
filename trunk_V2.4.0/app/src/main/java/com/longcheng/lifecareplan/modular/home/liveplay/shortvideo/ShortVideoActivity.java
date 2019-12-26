@@ -111,14 +111,6 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     @BindView(R.id.circleProgressBar)
     CircleProgressBar circleProgressBar;
 
-    /**
-     * 功能模式
-     */
-//    private RecordMode recordMode = RecordMode.short_video;
-    /**
-     * 录制状态，开始、暂停、录制中,只是针对UI变化
-     */
-//    private RecordState recordState = RecordState.READY;
     String cover_url;
     String city;
     double phone_user_latitude;
@@ -510,7 +502,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
             intent.putExtra(TCConstants.VIDEO_RECORD_VIDEPATH, mTXRecordResult.videoPath);
             intent.putExtra(TCConstants.VIDEO_RECORD_COVERPATH, mTXRecordResult.coverPath);
             intent.putExtra(TCConstants.VIDEO_RECORD_DURATION, mDuration);
-            intent.putExtra(TCConstants.VIDEO_RECORD_RESOLUTION, TXRecordCommon.VIDEO_RESOLUTION_720_1280);
+            intent.putExtra(TCConstants.VIDEO_RECORD_RESOLUTION, TXRecordCommon.VIDEO_RESOLUTION_540_960);
             startActivity(intent);
         } else {
             ToastUtils.showToast("录制失败");

@@ -31,6 +31,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureIn
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
@@ -78,7 +79,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
     LinearLayout layoutCity;
     @BindView(R.id.tv_upload)
     TextView tvUpload;
-    @BindView(R.id.tv_lines)
+    @BindView(R.id.tvlines)
     TextView tv_lines;
 
     LocationUtils mLocationUtils;
@@ -148,7 +149,8 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
         layoutLeft.setOnClickListener(this);
         tvUpload.setOnClickListener(this);
         ivThumb.setOnClickListener(this);
-        tv_lines.getBackground().setAlpha(60);
+        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(tv_title, 20);
+        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(tv_cont, 40);
     }
 
 

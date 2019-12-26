@@ -120,7 +120,42 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void onClick(View view) {
-
+        ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
+        switch (view.getId()) {
+            case R.id.btn_exit:
+                back();
+                break;
+            case R.id.edt_content:
+                break;
+            case R.id.btn_camera:
+                setCameraSwitch();
+                break;
+            case R.id.btn_liwu:
+                ToastUtils.showToast("功能开发中...");
+                break;
+            case R.id.frag_layout_rank:
+                if (rankOpenStatus) {
+                    rankOpenStatus = false;
+                } else {
+                    rankOpenStatus = true;
+                }
+                setRankListOpenStatus();
+                break;
+            case R.id.frag_layout_share:
+                //分享
+                if (mShareUtils == null) {
+                    mShareUtils = new ShareUtils(mActivity);
+                }
+                BaoZhangActitvty.shareBackType = "Live";
+                BaoZhangActitvty.life_repay_id = "Live";
+                String wx_share_url = Config.BASE_HEAD_URL + "/home/app/index";
+                if (!TextUtils.isEmpty(wx_share_url)) {
+                    mShareUtils.setShare("直播中：" + title, Cover_url, wx_share_url, User_name);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public static void startActivity(Activity activity, String url, String live_room_id) {
@@ -147,13 +182,13 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void setListener() {
+        btnCamera.setOnClickListener(this);
+        btnExit.setOnClickListener(this);
+        fragLayoutRank.setOnClickListener(this);
+        fragLayoutShare.setOnClickListener(this);
         btnLiwu.setVisibility(View.GONE);
         fragTvFollow.setVisibility(View.GONE);
-        btnCamera.setOnClickListener(onClickListener);
-        btnExit.setOnClickListener(onClickListener);
-        fragLayoutRank.setOnClickListener(onClickListener);
         lvRankdata.getBackground().setAlpha(50);
-        fragLayoutShare.setOnClickListener(this);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -260,7 +295,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     /**
      * 其他参数
      */
-    private int mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_720_1280; // 当前分辨率
+    private int mCurrentVideoResolution = TXLiveConstants.VIDEO_RESOLUTION_TYPE_540_960; // 当前分辨率
     private boolean mIsPushing;                     // 当前是否正在推流
     /**
      * 默认美颜参数
@@ -296,10 +331,6 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
      * @return
      */
     private boolean startRTMPPush() {
-        if (TextUtils.isEmpty(mPushUrl) || (!mPushUrl.trim().toLowerCase().startsWith("rtmp://"))) {
-            ToastUtils.showToast("直播地址不合法");
-            return false;
-        }
         // 显示本地预览的View
         mPusherView.setVisibility(View.VISIBLE);
         // 添加播放回调
@@ -379,7 +410,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         // 设置变声
         mLivePusher.setVoiceChangerType(0);
         // 设置场景
-        setPushScene(TXLiveConstants.VIDEO_QUALITY_SUPER_DEFINITION, false);
+        setPushScene(TXLiveConstants.VIDEO_QUALITY_HIGH_DEFINITION, false);
         // 设置本地预览View
         mLivePusher.startCameraPreview(mPusherView);
         if (!mFrontCamera)
@@ -749,47 +780,6 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
      * *******************************************************************************
      */
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
-            switch (view.getId()) {
-                case R.id.btn_exit:
-                    back();
-                    break;
-                case R.id.edt_content:
-                    break;
-                case R.id.btn_camera:
-                    setCameraSwitch();
-                    break;
-                case R.id.btn_liwu:
-                    ToastUtils.showToast("功能开发中...");
-                    break;
-                case R.id.frag_layout_rank:
-                    if (rankOpenStatus) {
-                        rankOpenStatus = false;
-                    } else {
-                        rankOpenStatus = true;
-                    }
-                    setRankListOpenStatus();
-                    break;
-                case R.id.frag_layout_share:
-                    //分享
-                    if (mShareUtils == null) {
-                        mShareUtils = new ShareUtils(mActivity);
-                    }
-                    BaoZhangActitvty.shareBackType = "Live";
-                    BaoZhangActitvty.life_repay_id = "Live";
-                    String wx_share_url = Config.BASE_HEAD_URL + "/home/app/index";
-                    if (!TextUtils.isEmpty(wx_share_url)) {
-                        mShareUtils.setShare("直播中：" + title, Cover_url, wx_share_url, User_name);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
 
     private void setRankListOpenStatus() {
         if (rankOpenStatus) {

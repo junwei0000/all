@@ -175,7 +175,7 @@
                     android:hint="请输入直播主题"
                     android:maxLength="40"
                     android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColorHint="@color/text_noclick_color"
                     android:textSize="@dimen/text_contents_size" />
             </LinearLayout>
 
@@ -195,7 +195,7 @@
                     android:drawableLeft="@mipmap/live_dingwei_icon"
                     android:drawablePadding="@dimen/dp10"
                     android:text="当前定位"
-                    android:textColor="@color/e9"
+                    android:textColor="@color/text_noclick_color"
                     android:textSize="@dimen/text_dp12_size" />
 
                 <TextView

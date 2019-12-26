@@ -18,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
@@ -244,7 +243,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
         File saveFile = new File(appDir, fileName);
         if (saveFile.exists()) {
             // 如果已经存在, 就不下载了, 去播放
-            ToastUtils.showToast("已经下载该视频");
+            ToastUtils.showToast("已保存相册文件夹");
         } else {
             ToastUtils.showToast("视频下载中…");
             new Thread(new Runnable() {
@@ -268,14 +267,14 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
                         @Override
                         public void onFailure() {
                             super.onFailure();
-                            Toast.makeText(getBaseContext(), "下载失败", Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast("下载失败");
                         }
 
                         //下载完成（下载成功）
                         @Override
                         public void onDone() {
                             super.onDone();
-                            Toast.makeText(getBaseContext(), "下载成功", Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast("已保存相册文件夹");
                             file_ = saveFile;
                             mHandler.sendEmptyMessage(download);
                         }
@@ -507,7 +506,6 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
                     getDetailInfo();
                     break;
                 case download:
-                    ToastUtils.showToast("下载成功");
                     ContentValues values = initCommonContentValues(file_);
                     values.put(MediaStore.Video.VideoColumns.DATE_TAKEN, System.currentTimeMillis());
                     values.put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4");

@@ -62,13 +62,17 @@
                     android:background="@color/transparent"
                     android:gravity="top"
                     android:hint="输入主题"
-                    android:maxLength="40"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textColor="@color/white"
                     android:textColorHint="@color/text_noclick_color"
                     android:textSize="@dimen/text_contents_size" />
 
-                <include layout="@layout/line" />
+                <TextView
+                    android:id="@+id/tvlines"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/black_live" />
 
                 <EditText
                     android:id="@+id/tv_cont"
