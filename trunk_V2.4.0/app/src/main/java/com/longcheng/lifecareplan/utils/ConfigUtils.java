@@ -416,6 +416,18 @@ public class ConfigUtils {
                     context.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+    /**
+     * 防止弹层键盘不隐藏
+     * @param et_content
+     */
+    public void closeSoftInput(EditText et_content) {
+        if (et_content != null) {
+            final InputMethodManager imm = (InputMethodManager) et_content.getContext()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(et_content.getWindowToken(), 0);
+        }
+    }
+
 
     /**
      * EditText防止输入空格、换行、限制输入字符长度

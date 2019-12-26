@@ -155,6 +155,11 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
     }
 
     @Override
+    public void sendVideoCommentSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void giveGiftSuccess(BasicResponse responseBean) {
 
     }
@@ -176,6 +181,16 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
 
     @Override
     public void showGiftDialog() {
+
+    }
+
+    @Override
+    public void videoDetCommentListSuccess(BasicResponse<ArrayList<MVideoItemInfo>> responseBean, int backPage) {
+
+    }
+
+    @Override
+    public void CommentListError() {
 
     }
 

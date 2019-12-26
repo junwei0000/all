@@ -3,6 +3,8 @@ package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -13,12 +15,21 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
@@ -31,9 +42,14 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureIn
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.FileCache;
+import com.longcheng.lifecareplan.utils.ListUtils;
+import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.tencent.rtmp.ITXVodPlayListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -112,7 +128,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
             }
             mPresent.addVideoFollow(show_video_id, type);
         } else if (id == R.id.frag_layout_comment) {
-
+            showCommentDialog();
         } else if (id == R.id.frag_layout_share) {
             DOWNLOAD();
         }
@@ -402,10 +418,6 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
 
     }
 
-    @Override
-    public void setFollowLiveSuccess(BasicResponse responseBean) {
-
-    }
 
     @Override
     public void applyLiveSuccess(BasicResponse responseBean) {
@@ -448,6 +460,12 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
     }
 
     @Override
+    public void sendVideoCommentSuccess(BasicResponse responseBean) {
+        getList(1);
+        mHandler.sendEmptyMessage(updateInfo);
+    }
+
+    @Override
     public void giveGiftSuccess(BasicResponse responseBean) {
 
     }
@@ -460,10 +478,11 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
                 mVideoPath = mMVideoItemInfo.getVideo_url();
                 startPlay();
             }
+            comment_number = mMVideoItemInfo.getComment_number();
             tvName.setText("" + mMVideoItemInfo.getUser_name());
             tvCont.setText("" + mMVideoItemInfo.getContent());
             fragTvDianzannum.setText("" + mMVideoItemInfo.getFollow_number());
-            fragTvCommentnum.setText("" + mMVideoItemInfo.getComment_number());
+            fragTvCommentnum.setText("" + comment_number);
             fragTvSharenum.setText("" + mMVideoItemInfo.getForward_number());
             is_follow = mMVideoItemInfo.getIs_follow();
             if (is_follow == 0) {
@@ -472,6 +491,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
                 iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
             }
             GlideDownLoadImage.getInstance().loadCircleImage(mMVideoItemInfo.getAvatar(), ivAvatar);
+            setCommentAllNum();
         }
     }
 
@@ -479,6 +499,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
     public void showGiftDialog() {
 
     }
+
 
     @Override
     public void Error() {
@@ -495,9 +516,64 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
 
     }
 
+    @Override
+    public void videoDetCommentListSuccess(BasicResponse<ArrayList<MVideoItemInfo>> responseBean, int back_page) {
+        ListUtils.getInstance().RefreshCompleteL(date_listview);
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            ArrayList<MVideoItemInfo> mList = responseBean.getData();
+            int size = mList == null ? 0 : mList.size();
+            if (back_page == 1) {
+                mAdapter = null;
+            }
+            if (size > 0) {
+            }
+            if (mAdapter == null) {
+                mAdapter = new VideoCommentAdapter(mContext, mList, mHandler);
+                date_listview.setAdapter(mAdapter);
+            } else {
+                mAdapter.reloadListView(mList, false);
+            }
+            page = back_page;
+            checkLoadOver(size);
+        } else {
+            ToastUtils.showToast("" + responseBean.getMsg());
+        }
+//        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
+    }
+
+    @Override
+    public void CommentListError() {
+        RefreshComplete();
+        checkLoadOver(0);
+    }
+
+    private void RefreshComplete() {
+        ListUtils.getInstance().RefreshCompleteL(date_listview);
+//        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
+    }
+
+    private void checkLoadOver(int size) {
+        if (size < page_size) {
+            ScrowUtil.listViewDownConfig(date_listview);
+            if (size > 0 || (page > 1 && size >= 0)) {
+//                showNoMoreData(true, dateListview.getRefreshableView());
+            }
+        } else {
+            ScrowUtil.listViewConfigAll(date_listview);
+        }
+    }
+
+    @Override
+    public void setFollowLiveSuccess(BasicResponse responseBean) {
+        mHandler.sendEmptyMessage(updateInfo);
+
+    }
+
     File file_;
     protected final int updateInfo = 6;
     protected final int download = 7;
+    protected static final int followItem = 8;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -514,7 +590,106 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
                     insertVideoThumb(file_.getPath(), mCoverImagePath);
                     mPresent.addForwardNum(show_video_id);
                     break;
+                case followItem:
+                    int is_follow = msg.arg1;
+                    String short_video_comment_id = (String) msg.obj;
+                    int type;
+                    if (is_follow == 0) {
+                        type = 1;
+                    } else {
+                        type = 2;
+                    }
+                    mPresent.addFollowItem(short_video_comment_id, type);
+                    break;
             }
         }
     };
+
+    String comment_number = "0";
+    VideoCommentAdapter mAdapter;
+    private int page = 1;
+    private int page_size = 15;
+    private TextView tv_count;
+    private MyDialog selectDialog;
+    PullToRefreshListView date_listview;
+    SupplierEditText et_content;
+
+    public void showCommentDialog() {
+        if (selectDialog == null) {
+            selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_videocommentlist);// 创建Dialog并设置样式主题
+            selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = selectDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.showBottomDialog);
+
+            final EditText et = new EditText(mContext);
+            et.setHint("说点啥吧");
+            selectDialog.setView(et);//给对话框添加一个EditText输入文本框
+            selectDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                public void onShow(DialogInterface dialog) {
+                    InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
+                }
+            });
+            selectDialog.show();
+            WindowManager m = mActivity.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth(); //宽度设置为屏幕
+            selectDialog.getWindow().setAttributes(p); //设置生效
+            LinearLayout layout_cancel = (LinearLayout) selectDialog.findViewById(R.id.layout_cancel);
+            tv_count = (TextView) selectDialog.findViewById(R.id.tv_count);
+            date_listview = (PullToRefreshListView) selectDialog.findViewById(R.id.date_listview);
+            et_content = (SupplierEditText) selectDialog.findViewById(R.id.et_content);
+            TextView tv_send = (TextView) selectDialog.findViewById(R.id.tv_send);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
+                }
+            });
+            tv_send.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String cont = et_content.getText().toString();
+                    if (!TextUtils.isEmpty(cont)) {
+                        ConfigUtils.getINSTANCE().closeSoftInput(et_content);
+                        et_content.setText("");
+                        mPresent.setVideoSendComment(show_video_id, cont);
+                    } else {
+                        ToastUtils.showToast("请输入评论");
+                    }
+
+                }
+            });
+            ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_content, 40);
+            date_listview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+                @Override
+                public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                    getList(1);
+                }
+
+                @Override
+                public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                    getList(page + 1);
+                }
+            });
+        } else {
+            selectDialog.show();
+        }
+        if (et_content != null) {
+            et_content.setText("");
+        }
+        setCommentAllNum();
+        getList(1);
+    }
+
+    private void setCommentAllNum() {
+        if (selectDialog != null && selectDialog.isShowing() && tv_count != null)
+            tv_count.setText("" + comment_number + "条评论");
+    }
+
+    private void getList(int page) {
+        mPresent.getCommentList(show_video_id, page, page_size);
+    }
 }

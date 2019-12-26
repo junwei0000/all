@@ -534,6 +534,11 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
+    public void sendVideoCommentSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
     public void giveGiftSuccess(BasicResponse responseBean) {
 
     }
@@ -571,6 +576,16 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     @Override
     public void showGiftDialog() {
         LoadingDialogAnim.show(mContext);
+    }
+
+    @Override
+    public void videoDetCommentListSuccess(BasicResponse<ArrayList<MVideoItemInfo>> responseBean, int backPage) {
+
+    }
+
+    @Override
+    public void CommentListError() {
+
     }
 
     @Override

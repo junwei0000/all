@@ -33,6 +33,25 @@ public class MVideoItemInfo implements Serializable {
     String short_video_id;
     int is_follow;
 
+    String short_video_comment_id;
+    int create_time;
+
+    public String getShort_video_comment_id() {
+        return short_video_comment_id;
+    }
+
+    public void setShort_video_comment_id(String short_video_comment_id) {
+        this.short_video_comment_id = short_video_comment_id;
+    }
+
+    public int getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(int create_time) {
+        this.create_time = create_time;
+    }
+
     public String getContent() {
         return content;
     }

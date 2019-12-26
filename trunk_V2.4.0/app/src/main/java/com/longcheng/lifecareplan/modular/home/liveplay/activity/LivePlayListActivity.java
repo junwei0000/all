@@ -217,6 +217,16 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     }
 
     @Override
+    public void videoDetCommentListSuccess(BasicResponse<ArrayList<MVideoItemInfo>> responseBean, int backPage) {
+
+    }
+
+    @Override
+    public void CommentListError() {
+
+    }
+
+    @Override
     public void dismissDialog() {
         refreshStatus = false;
         LoadingDialogAnim.dismiss(mContext);
@@ -324,6 +334,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void sendLCommentSuccess(BasicResponse responseBean) {
+
+    }
+
+    @Override
+    public void sendVideoCommentSuccess(BasicResponse responseBean) {
 
     }
 

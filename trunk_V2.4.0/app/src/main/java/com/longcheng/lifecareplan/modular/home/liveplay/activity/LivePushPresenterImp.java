@@ -461,4 +461,71 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
+    /**
+     * 评论列表
+     */
+    public void getCommentList(String short_video_id, int page, int page_size) {
+        ApiLive.getInstance().service.getCommentList(UserUtils.getUserId(mContext), short_video_id, page, page_size)
+                .compose(mContext.<BasicResponse<ArrayList<MVideoItemInfo>>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse<ArrayList<MVideoItemInfo>>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<ArrayList<MVideoItemInfo>> response) {
+                        mView.videoDetCommentListSuccess(response, page);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.CommentListError();
+                    }
+                });
+    }
+
+    /**
+     * 短视频 -评论 点赞/取消
+     */
+    public void addFollowItem(String short_video_comment_id, int type) {
+        ApiLive.getInstance().service.addFollowItem(UserUtils.getUserId(mContext), short_video_comment_id, type)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.setFollowLiveSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 视频-发评论
+     */
+    public void setVideoSendComment(String short_video_id, String content) {
+        mView.showGiftDialog();
+        ApiLive.getInstance().service.setVideoSendComment(UserUtils.getUserId(mContext), short_video_id, content)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.sendVideoCommentSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
 }

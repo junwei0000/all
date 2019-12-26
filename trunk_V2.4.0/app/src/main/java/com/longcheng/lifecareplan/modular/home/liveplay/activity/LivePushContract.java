@@ -44,12 +44,16 @@ public interface LivePushContract {
         void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage);
 
         void sendLCommentSuccess(BasicResponse responseBean);
-
+        void sendVideoCommentSuccess(BasicResponse responseBean);
         void giveGiftSuccess(BasicResponse responseBean);
 
         void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean);
 
         void showGiftDialog();
+
+        void videoDetCommentListSuccess(BasicResponse<ArrayList<MVideoItemInfo>> responseBean, int backPage);
+
+        void CommentListError();
 
         void Error();
     }

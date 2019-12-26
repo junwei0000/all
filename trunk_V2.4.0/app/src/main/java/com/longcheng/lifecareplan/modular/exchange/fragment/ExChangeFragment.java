@@ -736,7 +736,6 @@ public class ExChangeFragment extends BaseFragmentMVP<ExChangeContract.View, ExC
             selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectDialog.getWindow();
             window.setGravity(Gravity.RIGHT);
-            getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//设置状态栏黑色字体
             selectDialog.show();
             WindowManager m = getActivity().getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高

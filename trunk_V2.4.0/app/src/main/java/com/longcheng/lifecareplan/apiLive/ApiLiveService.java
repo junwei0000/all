@@ -158,10 +158,30 @@ public interface ApiLiveService {
     Observable<BasicResponse> addVideoFollow(@Field("user_id") String user_id,
                                              @Field("short_video_id") String short_video_id,
                                              @Query("type") int type);
+
     @FormUrlEncoded
     @POST("dock/video/Forward/operate")
     Observable<BasicResponse> addForwardNum(@Field("user_id") String user_id,
-                                             @Field("short_video_id") String short_video_id );
+                                            @Field("short_video_id") String short_video_id);
+
+    @FormUrlEncoded
+    @POST("dock/video/comment/lists")
+    Observable<BasicResponse<ArrayList<MVideoItemInfo>>> getCommentList(@Field("user_id") String user_id,
+                                                                        @Field("short_video_id") String short_video_id,
+                                                                        @Field("page") int page,
+                                                                        @Field("page_size") int page_size);
+
+    @FormUrlEncoded
+    @POST("dock/video/comment/follow")
+    Observable<BasicResponse> addFollowItem(@Field("user_id") String user_id,
+                                            @Field("short_video_comment_id") String short_video_comment_id,
+                                            @Query("type") int type);
+
+    @FormUrlEncoded
+    @POST("dock/video/comment/operate")
+    Observable<BasicResponse> setVideoSendComment(@Field("user_id") String user_id,
+                                                  @Field("short_video_id") String short_video_id,
+                                                  @Field("content") String content);
 }
 
 
