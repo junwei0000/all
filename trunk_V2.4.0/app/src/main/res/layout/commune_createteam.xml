@@ -23,8 +23,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/jianJu"
                 android:layout_marginTop="@dimen/jianJu"
+                android:layout_marginBottom="@dimen/jianJu"
                 android:background="@drawable/corners_bg_write"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/padd_leftright"
@@ -58,12 +58,30 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical">
 
+                    <EditText
+                        android:id="@+id/tv_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_bg_black"
+                        android:hint="请输入大队名称"
+                        android:paddingLeft="@dimen/dp8"
+                        android:paddingTop="@dimen/padd_imgtextleftright"
+                        android:paddingRight="@dimen/dp8"
+                        android:paddingBottom="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/text_contents_color"
+                        android:textColorHint="@color/text_noclick_color"
+                        android:textSize="@dimen/text_contents_size" />
+
                     <TextView
                         android:id="@+id/tv_teamname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:hint="请选择大队名称"
+                        android:paddingLeft="@dimen/dp4"
+                        android:singleLine="true"
                         android:textColor="@color/text_contents_color"
                         android:textColorHint="@color/login_hint_color"
                         android:textSize="@dimen/text_biaoTi_size" />
@@ -73,10 +91,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/corners_bg_black"
-                        android:paddingBottom="@dimen/padd_imgtextleftright"
                         android:paddingLeft="@dimen/dp8"
-                        android:paddingRight="@dimen/dp8"
                         android:paddingTop="@dimen/padd_imgtextleftright"
+                        android:paddingRight="@dimen/dp8"
+                        android:paddingBottom="@dimen/padd_imgtextleftright"
                         android:text="选择名称"
                         android:textColor="@color/text_contents_color"
                         android:textSize="@dimen/text_contents_size" />
@@ -152,10 +170,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/corners_bg_black"
-                        android:paddingBottom="@dimen/padd_imgtextleftright"
                         android:paddingLeft="@dimen/dp8"
-                        android:paddingRight="@dimen/dp8"
                         android:paddingTop="@dimen/padd_imgtextleftright"
+                        android:paddingRight="@dimen/dp8"
+                        android:paddingBottom="@dimen/padd_imgtextleftright"
                         android:text="立即查找"
                         android:textColor="@color/text_contents_color"
                         android:textSize="@dimen/text_contents_size" />

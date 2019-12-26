@@ -345,9 +345,9 @@ public class CommunePresenterImp<T> extends CommuneContract.Presenter<CommuneCon
      *
      * @param user_id
      */
-    public void CreateTeamSearch(String user_id, String phone) {
+    public void CreateTeamSearch(String user_id, String phone,String custom_name) {
         mView.showDialog();
-        Observable<CommuneDataBean> observable = Api.getInstance().service.CreateTeamSearch(user_id, phone, ExampleApplication.token);
+        Observable<CommuneDataBean> observable = Api.getInstance().service.CreateTeamSearch(user_id, phone,custom_name, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<CommuneDataBean>() {

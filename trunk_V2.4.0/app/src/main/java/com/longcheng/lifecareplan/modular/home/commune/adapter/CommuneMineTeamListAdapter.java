@@ -64,7 +64,7 @@ public class CommuneMineTeamListAdapter extends BaseAdapterHelper<CommuneItemBea
         if (TextUtils.isEmpty(engerynum)) {
             engerynum = "";
         }
-        mHolder.item_tv_name.setText(Team_name);
+        mHolder.item_tv_name.setText(mRankItemBean.getCustom_name() + Team_name);
         mHolder.item_tv_shequ.setText(User_name);
         mHolder.item_tv_engerynum.setText(engerynum + "成员");
         asyncImageLoader.DisplayImage(thumb, mHolder.item_iv_thumb);

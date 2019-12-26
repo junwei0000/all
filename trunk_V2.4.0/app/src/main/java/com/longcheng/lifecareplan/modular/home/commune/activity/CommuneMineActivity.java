@@ -3,14 +3,12 @@ package com.longcheng.lifecareplan.modular.home.commune.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -29,8 +27,6 @@ import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneAfterBean;
 import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneDataBean;
 import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneItemBean;
 import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneListDataBean;
-import com.longcheng.lifecareplan.modular.home.healthydelivery.detail.activity.HealthyDeliveryDetailAct;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditThumbDataBean;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
@@ -41,7 +37,6 @@ import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.like.GoodImgView;
-import com.longcheng.lifecareplan.utils.like.GoodView;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -49,7 +44,6 @@ import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 我的公社
@@ -365,8 +359,9 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
                 }
                 CommuneItemBean teamInfo = mCommuneAfterBean.getTeamInfo();
                 if (teamInfo != null) {
-                    team_name = teamInfo.getTeam_name();
+                    team_name = teamInfo.getCustom_name() + teamInfo.getTeam_name();
                     tvDadui.setText(team_name);
+
                 }
                 List<CommuneItemBean> rankings = mCommuneAfterBean.getGroupTeamUsers();
                 showRankView(rankings);

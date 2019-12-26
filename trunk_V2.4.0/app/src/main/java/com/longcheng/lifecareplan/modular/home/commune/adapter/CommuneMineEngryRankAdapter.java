@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.lifestylerank.bean.LifeRankItemBean;
 import com.longcheng.lifecareplan.modular.home.commune.bean.CommuneItemBean;
 import com.longcheng.lifecareplan.utils.glide.ImageLoader;
 import com.longcheng.lifecareplan.utils.myview.CircleImageView;
@@ -65,7 +64,8 @@ public class CommuneMineEngryRankAdapter extends BaseAdapterHelper<CommuneItemBe
             engerynum = "";
         }
         mHolder.item_tv_name.setText(User_name);
-        mHolder.item_tv_shequ.setText(Team_name);
+        String custom_name = mRankItemBean.getCustom_name();
+        mHolder.item_tv_shequ.setText(custom_name + Team_name);
         mHolder.item_tv_engerynum.setText(engerynum);
         asyncImageLoader.DisplayImage(thumb, mHolder.item_iv_thumb);
         return convertView;

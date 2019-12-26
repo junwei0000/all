@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,6 +49,9 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
     TextView pageTopTvName;
     @BindView(R.id.tv_teamname)
     TextView tvTeamname;
+    @BindView(R.id.tv_custom)
+    EditText tv_custom;
+
     @BindView(R.id.tv_teamselect)
     TextView tvTeamselect;
     @BindView(R.id.tv_username)
@@ -77,7 +81,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
     private int team_id;
     String type = "";
     private List<CommuneItemBean> teamNameList;
-    private String team_user_id, solar_terms_name, solar_terms_en;
+    private String team_user_id, solar_terms_name, solar_terms_en,custom_name="";
     private ValueSelectUtils mValueSelectUtils;
     private String[] values;
     /**
@@ -101,6 +105,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
                 }
                 break;
             case R.id.tv_search:
+                custom_name=tv_custom.getText().toString();
                 String phone = etPhone.getText().toString();
                 if (TextUtils.isEmpty(phone)) {
                     ToastUtils.showToast("手机号不能为空");
@@ -110,7 +115,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
                     ToastUtils.showToast("请输入正确的手机号");
                     break;
                 }
-                mPresent.CreateTeamSearch(user_id, phone);
+                mPresent.CreateTeamSearch(user_id, phone,custom_name);
                 break;
             case R.id.tv_create:
                 if (selectNameStatus && !TextUtils.isEmpty(solar_terms_name)) {
@@ -182,6 +187,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
         tvTeamselect.setOnClickListener(this);
         tvSearch.setOnClickListener(this);
         tvCreate.setOnClickListener(this);
+        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(tv_custom, 8);
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -277,7 +283,9 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
                     if (teamInfo != null) {
                         solar_terms_name = teamInfo.getTeam_name();
                         solar_terms_en = teamInfo.getSolar_terms_en();
+                        custom_name= teamInfo.getCustom_name();
                         tvTeamname.setText(solar_terms_name);
+                        tv_custom.setText(custom_name);
                     }
                     teamLeaderUser = mCommuneAfterBean.getTeamLeaderUser();
                     if (teamLeaderUser != null && !TextUtils.isEmpty(teamLeaderUser.getUser_name())) {

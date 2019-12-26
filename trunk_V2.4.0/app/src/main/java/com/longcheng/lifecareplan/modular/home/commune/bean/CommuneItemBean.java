@@ -1,7 +1,5 @@
 package com.longcheng.lifecareplan.modular.home.commune.bean;
 
-import android.widget.LinearLayout;
-
 import java.io.Serializable;
 
 /**
@@ -25,6 +23,7 @@ public class CommuneItemBean implements Serializable {
     private int role;//1：主任 2：执行主任
     private int is_head;
     private String team_name;
+    private String custom_name;
     private String help_ability_group_ranking_id;
 
     private String group_notice_id;
@@ -43,6 +42,14 @@ public class CommuneItemBean implements Serializable {
     private String text;
     private String solar_terms_en;
 
+
+    public String getCustom_name() {
+        return custom_name;
+    }
+
+    public void setCustom_name(String custom_name) {
+        this.custom_name = custom_name;
+    }
 
     public String getValue() {
         return value;

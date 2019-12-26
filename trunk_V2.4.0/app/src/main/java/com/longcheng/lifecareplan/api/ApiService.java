@@ -1122,6 +1122,7 @@ public interface ApiService {
     @GET(Config.VERSION + "group/ajaxSearchTeamLeader")
     Observable<CommuneDataBean> CreateTeamSearch(@Query("user_id") String user_id,
                                                  @Query("phone") String phone,
+                                                 @Query("custom_name") String custom_name,
                                                  @Query("token") String token);
 
     @GET(Config.VERSION + "group/saveTeamInfo")
