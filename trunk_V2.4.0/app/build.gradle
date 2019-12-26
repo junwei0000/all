@@ -156,9 +156,10 @@ dependencies {
     //腾讯云直播，短视频，弹幕，超级播放器
     compile "com.tencent.liteav:LiteAVSDK_Professional:latest.release"
     compile 'com.github.ctiao:DanmakuFlameMaster:0.5.3'
-    compile(name: 'libsuperplayer', ext: 'aar')
+//    compile(name: 'libsuperplayer', ext: 'aar')
 
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')
-    implementation project(path: ':videouploader')
+    implementation project(':videouploader')
+    implementation project(':libsuperplayer')
 }

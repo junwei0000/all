@@ -77,7 +77,8 @@ public class LiveSuperPlayActivity extends BaseActivity {
         prefs.maxCacheItem = 5;
         // 设置播放器渲染模式
         prefs.enableHWAcceleration = true;
-        prefs.renderMode = TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION;
+        prefs.renderMode = TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN;
+        mSuperPlayerView.getmVodControllerLarge().setDanMuVisibility(false);
         mSuperPlayerView.setPlayerViewCallback(new SuperPlayerView.OnSuperPlayerViewCallback() {
             @Override
             public void onStartFullScreenPlay() {
