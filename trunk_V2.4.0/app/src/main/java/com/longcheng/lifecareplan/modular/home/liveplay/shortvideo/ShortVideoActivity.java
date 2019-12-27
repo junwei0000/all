@@ -180,7 +180,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                 if (position == 0) {
                     layoutShortVideo.setVisibility(View.GONE);
                     layoutLive.setVisibility(View.GONE);
-                    ToastUtils.showToast("请选择本地上传");
+                    ToastUtils.showToast("功能开发中");
                     layoutRigth.setVisibility(View.GONE);
                 } else if (position == 1) {
                     layoutShortVideo.setVisibility(View.VISIBLE);

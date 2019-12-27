@@ -350,6 +350,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                         || event == TXLiveConstants.PUSH_ERR_OPEN_MIC_FAIL) {
                     // 遇到以上错误，则停止推流
 //                    stopRTMPPush();
+                    ToastUtils.showToast(R.string.net_tishi);
                 } else if (event == TXLiveConstants.PUSH_WARNING_HW_ACCELERATION_FAIL) {
                     // 开启硬件加速失败
                     ToastUtils.showToast(param.getString(TXLiveConstants.EVT_DESCRIPTION));
@@ -360,7 +361,9 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 } else if (event == TXLiveConstants.PUSH_EVT_CHANGE_BITRATE) {
                     Log.d(TAG, "change bitrate to" + param.getInt(TXLiveConstants.EVT_PARAM1));
                 } else if (event == TXLiveConstants.PUSH_WARNING_NET_BUSY) {
-                    ToastUtils.showToast(R.string.net_tishi);
+                    ToastUtils.showToast("网络不稳，弱网状态");
+                } else if (event == TXLiveConstants.PUSH_WARNING_RECONNECT) {
+                    ToastUtils.showToast("网络断开，正在重连…");
                 } else if (event == TXLiveConstants.PUSH_EVT_START_VIDEO_ENCODER) {
                 } else if (event == TXLiveConstants.PUSH_EVT_OPEN_CAMERA_SUCC) {
                     // 只有后置摄像头可以打开闪光灯，若默认需要开启闪光灯。 那么在打开摄像头成功后，才可以进行配置。 若果当前是前置，设定无效；若是后置，打开闪光灯。
@@ -513,6 +516,9 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     lvRankdata.setAdapter(mCAdapter);
                 }
             }
+        } else if (errcode == -100) {
+            back();
+            ToastUtils.showToast("" + responseBean.getMsg());
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }

@@ -501,7 +501,10 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     lvRankdata.setAdapter(mCAdapter);
                 }
             }
-        } else {
+        } else if (errcode == -100) {
+            back();
+            ToastUtils.showToast("" + responseBean.getMsg());
+        }else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
     }
