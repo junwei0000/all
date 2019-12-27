@@ -114,7 +114,7 @@ public abstract class LiWuAdapter extends BaseAdapter {
         } else {
             viewHolder.item_layout_money.setBackgroundColor(context.getResources().getColor(R.color.transparent));
         }
-        viewHolder.item_layout_money.getBackground().setAlpha(50);
+        viewHolder.item_layout_money.getBackground().setAlpha(90);
         return view;
     }
 

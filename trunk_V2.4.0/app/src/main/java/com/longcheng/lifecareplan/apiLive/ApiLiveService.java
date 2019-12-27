@@ -53,12 +53,11 @@ public interface ApiLiveService {
     Observable<BasicResponse> addForwardNumber(@Field("user_id") String user_id,
                                                @Field("live_room_id") String live_room_id);
 
-    @FormUrlEncoded
-    @POST("dock/live/room/giveGift")
-    Observable<BasicResponse> giveGift(@Field("user_id") String user_id,
-                                       @Field("live_room_id") String live_room_id,
-                                       @Field("live_gift_id") String live_gift_id,
-                                       @Field("help_number") int help_number);
+    @GET("dock/live/room/giveGift")
+    Observable<BasicResponse> giveGift(@Query("user_id") String user_id,
+                                       @Query("live_room_id") String live_room_id,
+                                       @Query("live_gift_id") String live_gift_id,
+                                       @Query("help_number") int help_number);
 
     @FormUrlEncoded
     @POST("dock/live/room/onlineNumber")

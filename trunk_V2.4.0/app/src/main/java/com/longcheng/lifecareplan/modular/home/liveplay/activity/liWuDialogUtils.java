@@ -88,7 +88,7 @@ public class liWuDialogUtils {
             TextView tv_line = (TextView) selectDialog.findViewById(R.id.tv_line);
             tv_line.getBackground().setAlpha(70);
             layout_bg.getBackground().setAlpha(100);
-              tv_handsel = (TextView) selectDialog.findViewById(R.id.tv_handsel);
+            tv_handsel = (TextView) selectDialog.findViewById(R.id.tv_handsel);
             LongClickButton tv_lower = (LongClickButton) selectDialog.findViewById(R.id.tv_lower);
             tv_num = (TextView) selectDialog.findViewById(R.id.tv_num);
             LongClickButton tv_add = (LongClickButton) selectDialog.findViewById(R.id.tv_add);
@@ -116,7 +116,7 @@ public class liWuDialogUtils {
         tv_num.setText("" + num);
         allskb = PriceUtils.getInstance().gteMultiplySumPrice("" + num, skb);
         tv_allskb.setText("" + allskb);
-        ColorChangeByTime.getInstance().changeDrawableToClolor(context,tv_handsel,R.color.red);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(context, tv_handsel, R.color.red);
         loadSport();
     }
 
