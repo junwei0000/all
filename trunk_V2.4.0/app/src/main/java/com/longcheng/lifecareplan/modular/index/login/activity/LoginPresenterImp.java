@@ -81,25 +81,31 @@ public class LoginPresenterImp<T> extends LoginContract.Presenter<LoginContract.
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         double phone_user_latitude = mLngAndLat[0];
         double phone_user_longitude = mLngAndLat[1];
-        String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
-        String ip = ConfigUtils.getINSTANCE().getIPAddress(mContext);
-        Observable<LoginDataBean> observable = Api.getInstance().service.userPhoneLogin(phoneNum, code,
-                ip, phone_user_latitude,
-                phone_user_longitude, phone_user_address, ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<LoginDataBean>() {
-                    public void accept(LoginDataBean responseBean) throws Exception {
-                        mView.dismissDialog();
-                        mView.loginSuccess(responseBean);
-                        Log.e("Observable", "   " + responseBean.toString());
-                    }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
-                    public void accept(Throwable throwable) throws Exception {
-                        mView.dismissDialog();
-                        mView.loginFail();
-                    }
-                });
+        new Thread() {
+            @Override
+            public void run() {
+                String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
+                String ip = ConfigUtils.getINSTANCE().getIPAddress(mContext);
+                Observable<LoginDataBean> observable = Api.getInstance().service.userPhoneLogin(phoneNum, code,
+                        ip, phone_user_latitude,
+                        phone_user_longitude, phone_user_address, ExampleApplication.token);
+                observable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new io.reactivex.functions.Consumer<LoginDataBean>() {
+                            public void accept(LoginDataBean responseBean) throws Exception {
+                                mView.dismissDialog();
+                                mView.loginSuccess(responseBean);
+                                Log.e("Observable", "   " + responseBean.toString());
+                            }
+                        }, new io.reactivex.functions.Consumer<Throwable>() {
+                            public void accept(Throwable throwable) throws Exception {
+                                mView.dismissDialog();
+                                mView.loginFail();
+                            }
+                        });
+            }
+        }.start();
+
     }
 
     public void pUserAccountLogin(String phoneNum, String pw) {

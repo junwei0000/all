@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.ApplyXieYiActitvty;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
@@ -187,6 +188,16 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("CHOOSE_TYPE", TCVideoJoinChooseActivity.TYPE_PUBLISH_CHOOSE);
                     startActivity(intent);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /**
+                             *要执行的操作
+                             */
+                            videoPickerview.setSelectedPosition(1);
+                        }
+                    }, 1500);//秒后执行Runnable中的run方法
                 } else if (position == 1) {
                     layoutShortVideo.setVisibility(View.VISIBLE);
                     layoutLive.setVisibility(View.GONE);
@@ -198,11 +209,10 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                     if (mLocationUtils == null) {
                         mLocationUtils = new LocationUtils();
                     }
-                    city = mLocationUtils.getAddressCity(mContext);
                     double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
                     phone_user_latitude = mLngAndLat[0];
                     phone_user_longitude = mLngAndLat[1];
-                    tvLivecity.setText("" + city);
+                    mHandler.sendEmptyMessage(getCity);
                 }
             }
         });
@@ -781,6 +791,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     protected static final int UPDATEABLUM = 3;
     protected static final int SETRESULT = 4;
     protected static final int openRoomPay = 5;
+    protected static final int getCity = 6;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -809,6 +820,13 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                     int resultCode = msg.arg2;
                     Intent data = (Intent) msg.obj;
                     mAblumUtils.setResult(requestCode, resultCode, data);
+                    break;
+                case getCity:
+                    city = mLocationUtils.getAddressCity(mContext,phone_user_latitude,phone_user_longitude);
+                    if(TextUtils.isEmpty(city)){
+                        city= BottomMenuActivity.city;
+                    }
+                    tvLivecity.setText("" + city);
                     break;
             }
         }

@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePlayListActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
@@ -164,12 +165,14 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
         if (mLocationUtils == null) {
             mLocationUtils = new LocationUtils();
         }
-        city = mLocationUtils.getAddressCity(mContext);
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         phone_user_latitude = mLngAndLat[0];
         phone_user_longitude = mLngAndLat[1];
+        city = mLocationUtils.getAddressCity(mContext,phone_user_latitude,phone_user_longitude);
+        if(TextUtils.isEmpty(city)){
+            city= BottomMenuActivity.city;
+        }
         tvCity.setText("" + city);
-
         mVideoSource = getIntent().getIntExtra(TCConstants.VIDEO_RECORD_TYPE, TCConstants.VIDEO_RECORD_TYPE_EDIT);
         mVideoPath = getIntent().getStringExtra(TCConstants.VIDEO_RECORD_VIDEPATH);
         mVideoDuration = getIntent().getLongExtra(TCConstants.VIDEO_RECORD_DURATION, 0);

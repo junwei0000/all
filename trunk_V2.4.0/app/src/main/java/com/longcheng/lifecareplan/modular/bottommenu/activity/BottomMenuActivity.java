@@ -30,6 +30,7 @@ import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.myview.MyViewPager;
+import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.Immersive;
 
@@ -102,6 +103,8 @@ public class BottomMenuActivity extends BaseActivity {
         return R.layout.activity_bottom_menu;
     }
 
+    LocationUtils mLocationUtils;
+    public static String city;
 
     @Override
     public void initView(View view) {
@@ -109,6 +112,18 @@ public class BottomMenuActivity extends BaseActivity {
         registerMessageReceiver();
         Immersive.setStatusBarFragment(mActivity);
 //        ShortcutUtils.setDynamicShort(mActivity);
+        if (mLocationUtils == null) {
+            mLocationUtils = new LocationUtils();
+        }
+        double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
+        double phone_user_latitude = mLngAndLat[0];
+        double phone_user_longitude = mLngAndLat[1];
+        new Thread() {
+            @Override
+            public void run() {
+                city = mLocationUtils.getAddressCity(mContext, phone_user_latitude, phone_user_longitude);
+            }
+        }.start();
     }
 
 

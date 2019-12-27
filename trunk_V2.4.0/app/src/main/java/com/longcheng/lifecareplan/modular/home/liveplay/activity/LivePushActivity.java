@@ -51,7 +51,6 @@ import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
-import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -248,8 +247,6 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void initDataAfter() {
-        String city = new LocationUtils().getAddressCity(this);
-        fragTvCity.setText("" + city);
         fragTvJieqi.setText(HomeFragment.jieqi_name + "节气");
         Intent intent = getIntent();
         mPushUrl = intent.getStringExtra(URL_KEY);

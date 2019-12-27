@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.fragment;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.api.Api;
@@ -39,6 +40,7 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
     }
 
     LocationUtils mLocationUtils;
+    Handler handler = new Handler();
 
     /**
      *
@@ -52,26 +54,30 @@ public class HomePresenterImp<T> extends HomeContract.Present<HomeContract.View>
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         double phone_user_latitude = mLngAndLat[0];
         double phone_user_longitude = mLngAndLat[1];
-        String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
-        String user_id = UserUtils.getUserId(mContext);
-        Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, version_code, phone_user_latitude,
-                phone_user_longitude, phone_user_address, ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<HomeDataBean>() {
-                    @Override
-                    public void accept(HomeDataBean responseBean) throws Exception {
-                        view.ListSuccess(responseBean);
-                        Log.e("Observable", "" + responseBean.toString());
-                    }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        view.ListError();
-                        Log.e("Observable", "" + throwable.toString());
-                    }
-                });
-
+        new Thread() {
+            @Override
+            public void run() {
+                String phone_user_address = mLocationUtils.getAddress(mContext, mLngAndLat[0], mLngAndLat[1]);
+                String user_id = UserUtils.getUserId(mContext);
+                Observable<HomeDataBean> observable = Api.getInstance().service.getHomeList(user_id, version_code, phone_user_latitude,
+                        phone_user_longitude, phone_user_address, ExampleApplication.token);
+                observable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new io.reactivex.functions.Consumer<HomeDataBean>() {
+                            @Override
+                            public void accept(HomeDataBean responseBean) throws Exception {
+                                view.ListSuccess(responseBean);
+                                Log.e("Observable", "" + responseBean.toString());
+                            }
+                        }, new io.reactivex.functions.Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+                                view.ListError();
+                                Log.e("Observable", "" + throwable.toString());
+                            }
+                        });
+            }
+        }.start();
     }
 
     public void getReMenActioin() {

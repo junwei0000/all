@@ -149,11 +149,8 @@ public class LocationUtils {
      * @param mContext
      * @return
      */
-    public String getAddressCity(Context mContext) {
+    public String getAddressCity(Context mContext, double latitude, double longitude) {
         try {
-            double[] mLngAndLat = getLngAndLatWithNetwork(mContext);
-            double latitude = mLngAndLat[0];
-            double longitude = mLngAndLat[1];
             Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
             if (geocoder == null) {
                 return "";
@@ -161,7 +158,8 @@ public class LocationUtils {
             List<Address> addresses = geocoder.getFromLocation(latitude,
                     longitude, 1);
             if (addresses != null && addresses.size() > 0) {
-                return addresses.get(0).getLocality();
+                Log.e("getAddressCity", "" + addresses.toString());
+                return addresses.get(0).getAdminArea();
             }
         } catch (IOException e) {
             e.printStackTrace();
