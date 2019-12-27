@@ -31,9 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:ems="8"
-                android:maxLines="1"
-                android:ellipsize="end"
+                android:maxEms="8"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />
 
@@ -42,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/dp7"
+                android:singleLine="true"
                 android:text="2019-12-25"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />

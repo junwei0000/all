@@ -341,7 +341,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                             //直播
                             intent = new Intent(mActivity, LivePlayListActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("IsLiveBroadcast", IsLiveBroadcast);
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }

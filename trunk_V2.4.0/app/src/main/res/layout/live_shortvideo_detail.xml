@@ -22,10 +22,12 @@
 
     <ImageButton
         android:id="@+id/record_preview"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="60dp"
         android:layout_centerInParent="true"
-        android:background="@mipmap/record_pause"
+        android:background="@color/transparent"
+        android:src="@mipmap/record_pause"
         android:onClick="onClick" />
 
 

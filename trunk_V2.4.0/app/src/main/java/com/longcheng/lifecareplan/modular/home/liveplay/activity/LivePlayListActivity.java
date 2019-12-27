@@ -163,6 +163,15 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         });
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.e("Observable", "onNewINtent执行了");
+        setIntent(intent);
+        liveSeleStatus = false;
+        changeData();
+    }
+
 
     @Override
     public void initDataAfter() {
@@ -364,7 +373,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     }
 
     private void checkLoadOver(int size) {
-        Log.e("checkLoadOver", "" + mAdapter.getCount() + "  " + page * pageSize);
         if (size < pageSize) {
             ScrowUtil.gridViewDownConfig(playView);
             if (size > 0 || (page > 1 && size >= 0)) {

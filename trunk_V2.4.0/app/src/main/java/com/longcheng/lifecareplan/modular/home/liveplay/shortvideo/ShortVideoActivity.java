@@ -36,6 +36,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.upload.TCVideoJoinChooseActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.BaseScrollPickerView;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.view.StringScrollPicker;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
@@ -180,8 +181,12 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                 if (position == 0) {
                     layoutShortVideo.setVisibility(View.GONE);
                     layoutLive.setVisibility(View.GONE);
-                    ToastUtils.showToast("功能开发中");
+//                    ToastUtils.showToast("功能开发中");
                     layoutRigth.setVisibility(View.GONE);
+                    Intent intent = new Intent(mActivity, TCVideoJoinChooseActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("CHOOSE_TYPE", TCVideoJoinChooseActivity.TYPE_PUBLISH_CHOOSE);
+                    startActivity(intent);
                 } else if (position == 1) {
                     layoutShortVideo.setVisibility(View.VISIBLE);
                     layoutLive.setVisibility(View.GONE);

@@ -84,7 +84,10 @@ public class VideoCommentAdapter extends BaseAdapterHelper<MVideoItemInfo> {
                     newnum = PriceUtils.getInstance().gteAddSumPrice(Follow_number, "1");
                 } else {
                     mItemBean.setIs_follow(0);
-                    newnum = PriceUtils.getInstance().gteSubtractSumPrice(Follow_number, "1");
+                    newnum = PriceUtils.getInstance().gteSubtractSumPrice("1", Follow_number);
+                }
+                if (!TextUtils.isEmpty(newnum) && Integer.parseInt(newnum) < 0) {
+                    newnum = "0";
                 }
                 mItemBean.setFollow_number(newnum);
                 notifyDataSetChanged();

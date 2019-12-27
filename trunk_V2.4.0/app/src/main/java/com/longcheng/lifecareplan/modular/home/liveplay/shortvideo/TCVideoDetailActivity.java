@@ -192,11 +192,12 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
         if (mVideoPlay) {
             if (mVideoPause) {
                 mTXVodPlayer.resume();
-                recordPreview.setBackgroundResource(R.mipmap.record_pause);
+                recordPreview.setImageResource(R.mipmap.record_pause);
+                recordPreview.setImageResource(0);
                 mVideoPause = false;
             } else {
                 mTXVodPlayer.pause();
-                recordPreview.setBackgroundResource(R.mipmap.record_start);
+                recordPreview.setImageResource(R.mipmap.record_start);
                 mVideoPause = true;
             }
         } else {
@@ -205,7 +206,8 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
     }
 
     private boolean startPlay() {
-        recordPreview.setBackgroundResource(R.mipmap.record_pause);
+        recordPreview.setImageResource(R.mipmap.record_pause);
+        recordPreview.setImageResource(0);
         mTXVodPlayer.setPlayerView(videoView);
         mTXVodPlayer.setVodListener(new ITXVodPlayListener() {
             @Override
@@ -213,15 +215,13 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
                 if (event == TXLiveConstants.PLAY_ERR_NET_DISCONNECT) {
                     ToastUtils.showToast(R.string.net_tishi);
                 } else if (event == TXLiveConstants.PLAY_EVT_PLAY_END) {
-                    mTXVodPlayer.pause();
-                    recordPreview.setBackgroundResource(R.mipmap.record_start);
-                    mVideoPause = true;
+                    mTXVodPlayer.resume();
                 } else if (event == TXLiveConstants.PLAY_EVT_PLAY_PROGRESS) {
                     if (cover != null && cover.isShown()) {
                         cover.setVisibility(View.GONE);
                     }
                     int progress = param.getInt(TXLiveConstants.EVT_PLAY_PROGRESS);
-                    mVideoDuration = param.getInt(TXLiveConstants.EVT_PLAY_DURATION);//单位为s
+                    mVideoDuration = param.getInt(TXLiveConstants.EVT_PLAY_DURATION)*1000;//单位为s
                 }
             }
 
@@ -231,7 +231,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
         });
         int result = mTXVodPlayer.startPlay(mVideoPath); // result返回值：0 success;  -1 empty url; -2 invalid url; -3 invalid playType;
         if (result != 0) {
-            recordPreview.setBackgroundResource(R.mipmap.record_start);
+            recordPreview.setImageResource(R.mipmap.record_start);
             return false;
         }
         mVideoPlay = true;
@@ -369,7 +369,8 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
         }
         if (mVideoPlay) {
             mTXVodPlayer.resume();
-            recordPreview.setBackgroundResource(R.mipmap.record_pause);
+            recordPreview.setImageResource(R.mipmap.record_pause);
+            recordPreview.setImageResource(0);
             mAutoPause = false;
         }
     }

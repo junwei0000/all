@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.LiWuAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailItemInfo;
 import com.longcheng.lifecareplan.utils.PriceUtils;
@@ -36,7 +37,7 @@ public class liWuDialogUtils {
     private PageControlView pageControl;
     private TextView tv_allskb;
     private TextView tv_num;
-
+    TextView tv_handsel;
     private Handler mHandler;
     private int mHandlerID;
     private Activity context;
@@ -87,7 +88,7 @@ public class liWuDialogUtils {
             TextView tv_line = (TextView) selectDialog.findViewById(R.id.tv_line);
             tv_line.getBackground().setAlpha(70);
             layout_bg.getBackground().setAlpha(100);
-            TextView tv_handsel = (TextView) selectDialog.findViewById(R.id.tv_handsel);
+              tv_handsel = (TextView) selectDialog.findViewById(R.id.tv_handsel);
             LongClickButton tv_lower = (LongClickButton) selectDialog.findViewById(R.id.tv_lower);
             tv_num = (TextView) selectDialog.findViewById(R.id.tv_num);
             LongClickButton tv_add = (LongClickButton) selectDialog.findViewById(R.id.tv_add);
@@ -111,6 +112,11 @@ public class liWuDialogUtils {
         } else {
             selectDialog.show();
         }
+        num = 1;
+        tv_num.setText("" + num);
+        allskb = PriceUtils.getInstance().gteMultiplySumPrice("" + num, skb);
+        tv_allskb.setText("" + allskb);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(context,tv_handsel,R.color.red);
         loadSport();
     }
 

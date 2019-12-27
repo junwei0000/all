@@ -222,7 +222,7 @@ public class PriceUtils {
      * @return
      */
     public String gteMultiplySumPrice(String price, String startsum) {
-        String sum = "";
+        String sum = "0";
         try {
             BigDecimal mprice = new BigDecimal(price);
             BigDecimal mstartsum = new BigDecimal(startsum);
@@ -241,7 +241,7 @@ public class PriceUtils {
      * @return
      */
     public String gteAddSumPrice(String price, String startsum) {
-        String sum = "";
+        String sum = "0";
         try {
             BigDecimal mprice = new BigDecimal(price);
             BigDecimal mstartsum = new BigDecimal(startsum);
