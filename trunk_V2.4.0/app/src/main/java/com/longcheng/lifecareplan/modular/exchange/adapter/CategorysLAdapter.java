@@ -4,14 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.exchange.bean.JieQiItemBean;
 import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;
 
@@ -55,6 +54,7 @@ public class CategorysLAdapter extends BaseAdapterHelper<JieQiItemBean> {
         if (position == selectPoistion) {
             mHolder.item_tv_name.setTextColor(context.getResources().getColor(R.color.white));
             mHolder.item_tv_name.setBackgroundResource(R.drawable.corners_bg_redprogress);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_tv_name, R.color.red);
         } else {
             mHolder.item_tv_name.setTextColor(context.getResources().getColor(R.color.text_biaoTi_color));
             mHolder.item_tv_name.setBackgroundResource(R.drawable.corners_bg_write);

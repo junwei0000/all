@@ -23,7 +23,7 @@ public class CommuneItemBean implements Serializable {
     private int role;//1：主任 2：执行主任
     private int is_head;
     private String team_name;
-    private String custom_name;
+    private String custom_name="";
     private String help_ability_group_ranking_id;
 
     private String group_notice_id;

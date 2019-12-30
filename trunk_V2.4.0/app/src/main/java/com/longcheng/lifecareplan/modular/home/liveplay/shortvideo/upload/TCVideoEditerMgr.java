@@ -51,7 +51,7 @@ public class TCVideoEditerMgr {
                 fileItem.setDuration(duration);
                 fileItem.setFileType(TCVideoFileInfo.FILE_TYPE_VIDEO);
 
-                if (fileItem.getFileName() != null && fileItem.getFileName().endsWith(".mp4") && duration >= 1000 && duration < 1000 * 60 * 3) {
+                if (fileItem.getFileName() != null && fileItem.getFileName().endsWith(".mp4") && duration >= 1000 && duration < 1000 * 60 * 10) {
                     videos.add(fileItem);
                 }
                 TXCLog.d(TAG, "fileItem = " + fileItem.toString());
