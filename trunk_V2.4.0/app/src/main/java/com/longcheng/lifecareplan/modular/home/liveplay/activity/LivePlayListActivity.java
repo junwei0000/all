@@ -311,6 +311,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
+        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
     }
 
     @Override

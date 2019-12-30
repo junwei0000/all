@@ -23,7 +23,6 @@
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginRight="@dimen/dp10"
             android:fadeScrollbars="false"
-            android:background="@color/page_bg"
             android:fastScrollEnabled="false"
             android:gravity="center"
             android:horizontalSpacing="@dimen/padd_imgtextleftright"
