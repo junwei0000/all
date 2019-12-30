@@ -49,7 +49,8 @@ public class UserLoginBack403Utils {
             tishi = true;
             boolean IsLogout = MySharedPreferences.getInstance().getIsLogout();
             if (!IsLogout)
-                showDialogPromptReLogin(mActivity);
+                zhuXiao();
+//                showDialogPromptReLogin(mActivity);
         } else if (status.equals("500")) {
             tishi = true;
             Intent intent = new Intent(mActivity, UpdatePwActivity.class);
