@@ -15,6 +15,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -78,8 +79,6 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
     Toolbar toolbar;
     @BindView(R.id.layout_left)
     LinearLayout layoutLeft;
-    @BindView(R.id.cover)
-    ImageView cover;
     @BindView(R.id.iv_avatar)
     ImageView ivAvatar;
     @BindView(R.id.tv_name)
@@ -183,7 +182,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
         videoView.disableLog(true);
         mTXVodPlayer.enableHardwareDecode(false);
         mTXVodPlayer.setRenderRotation(TXLiveConstants.RENDER_ROTATION_PORTRAIT);
-        mTXVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
+        mTXVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION);
         mTXVodPlayer.setConfig(mTXPlayConfig);
         startPlay();
     }
@@ -217,11 +216,14 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
                 } else if (event == TXLiveConstants.PLAY_EVT_PLAY_END) {
                     mTXVodPlayer.resume();
                 } else if (event == TXLiveConstants.PLAY_EVT_PLAY_PROGRESS) {
-                    if (cover != null && cover.isShown()) {
-                        cover.setVisibility(View.GONE);
-                    }
                     int progress = param.getInt(TXLiveConstants.EVT_PLAY_PROGRESS);
-                    mVideoDuration = param.getInt(TXLiveConstants.EVT_PLAY_DURATION)*1000;//单位为s
+                    mVideoDuration = param.getInt(TXLiveConstants.EVT_PLAY_DURATION) * 1000;//单位为s
+                } else if (event == TXLiveConstants.PLAY_EVT_PLAY_BEGIN) {
+                    Log.e("onPlayEvent", "event=" + event + "   " + player.getHeight() + "   " + player.getWidth());
+                    if (player.getHeight() > player.getWidth() * 1.5) {
+                        Log.e("onPlayEvent", "" + player.getDuration());
+                        mTXVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
+                    }
                 }
             }
 
