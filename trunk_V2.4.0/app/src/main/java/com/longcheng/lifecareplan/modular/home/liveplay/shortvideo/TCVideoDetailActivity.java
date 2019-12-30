@@ -33,7 +33,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
@@ -101,6 +103,10 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
     LinearLayout layoutRight;
     @BindView(R.id.iv_dianzan)
     ImageView iv_dianzan;
+    @BindView(R.id.frag_layout_dashuang)
+    LinearLayout frag_layout_dashuang;
+
+
     private String mVideoPath, show_video_id, mCoverImagePath;
     private TXVodPlayer mTXVodPlayer = null;
     private TXVodPlayConfig mTXPlayConfig = null;
@@ -130,6 +136,11 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
             showCommentDialog();
         } else if (id == R.id.frag_layout_share) {
             DOWNLOAD();
+        } else if (id == R.id.frag_layout_dashuang) {
+            Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("html_url", "" + Config.BASE_HEAD_URL + "home/reward/pay/userRewardVideoId/1/isAppVideo/1");
+            startActivity(intent);
         }
 
     }
