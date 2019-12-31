@@ -709,8 +709,8 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
         if (!TextUtils.isEmpty(cont)) {
             ConfigUtils.getINSTANCE().closeSoftInput(et_content);
             et_content.setText("");
-            String cont_ = ConfigUtils.getINSTANCE().getString(cont);
-            mPresent.setVideoSendComment(show_video_id, cont_);
+//            String cont_ = ConfigUtils.getINSTANCE().getString(cont);
+            mPresent.setVideoSendComment(show_video_id, cont);
         } else {
             ToastUtils.showToast("请输入评论");
         }
