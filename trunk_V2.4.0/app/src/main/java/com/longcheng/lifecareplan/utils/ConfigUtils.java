@@ -33,16 +33,21 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 作者：jun on
@@ -260,7 +265,7 @@ public class ConfigUtils {
      * @param context
      * @return
      */
-    public static String sHA1(Context context) {
+    public String sHA1(Context context) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(
                     context.getPackageName(), PackageManager.GET_SIGNATURES);
@@ -418,6 +423,7 @@ public class ConfigUtils {
 
     /**
      * 防止弹层键盘不隐藏
+     *
      * @param et_content
      */
     public void closeSoftInput(EditText et_content) {
@@ -434,7 +440,7 @@ public class ConfigUtils {
      *
      * @param editText
      */
-    public static void setEditTextInhibitInputSpace(EditText editText, int max) {
+    public void setEditTextInhibitInputSpace(EditText editText, int max) {
         InputFilter filter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end,
@@ -532,5 +538,173 @@ public class ConfigUtils {
             result = Html.fromHtml(cont);
         }
         text.setText(result);
+    }
+
+    /**
+     * 将系统表情转化为字符串
+     *
+     * @param s
+     * @return
+     */
+    public int getEmojiNum(String s) {
+        int length = s.length();
+        int num = 0;
+        //循环遍历字符串，将字符串拆分为一个一个字符
+        for (int i = 0; i < length; i++) {
+            char codePoint = s.charAt(i);
+            //判断字符是否是emoji表情的字符
+            if (isEmojiCharacter(codePoint)) {
+                //如果是将以大括号括起来
+                String emoji = "{" + Integer.toHexString(codePoint) + "}";
+                Log.e("isEmojiCharacter", "emoji=" + emoji);
+                num++;
+                continue;
+            }
+        }
+        return num;
+    }
+
+    /**
+     * 将系统表情转化为字符串
+     *
+     * @param s
+     * @return
+     */
+    public String getString(String s) {
+        int length = s.length();
+        String context = "";
+        //循环遍历字符串，将字符串拆分为一个一个字符
+        for (int i = 0; i < length; i++) {
+            char codePoint = s.charAt(i);
+            //判断字符是否是emoji表情的字符
+            if (isEmojiCharacter(codePoint)) {
+                //如果是将以大括号括起来
+                String emoji = "{" + Integer.toHexString(codePoint) + "}";
+                Log.e("isEmojiCharacter", "emoji=" + emoji);
+                context = context + emoji;
+                continue;
+            }
+            context = context + codePoint;
+        }
+        if (TextUtils.isEmpty(context)) {
+            context = s;
+        }
+        return context;
+    }
+
+    /**
+     * 是否包含表情
+     *
+     * @param codePoint
+     * @return 如果不包含 返回false,包含 则返回true
+     */
+
+    private boolean isEmojiCharacter(char codePoint) {
+        return !((codePoint == 0x0) || (codePoint == 0x9) || (codePoint == 0xA)
+                || (codePoint == 0xD)
+                || ((codePoint >= 0x20) && (codePoint <= 0xD7FF))
+                || ((codePoint >= 0xE000) && (codePoint <= 0xFFFD)) || ((codePoint >= 0x10000) && (codePoint <= 0x10FFFF)));
+    }
+
+    /**
+     * 将表情描述转换成表情
+     *
+     * @param str
+     * @return
+     */
+    public String getEmoji(Context context, String str) {
+        String string = str;
+        String rep = "\\{(.*?)\\}";
+        Pattern p = Pattern.compile(rep);
+        Matcher m = p.matcher(string);
+        while (m.find()) {
+            String s1 = m.group().toString();
+            String s2 = s1.substring(1, s1.length() - 1);
+            String s3;
+            try {
+                s3 = String.valueOf((char) Integer.parseInt(s2, 16));
+                string = string.replace(s1, s3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (TextUtils.isEmpty(string)) {
+            string = str;
+        }
+        return string;
+    }
+
+    /**
+     * 字符串转换unicode
+     */
+    public String stringToUnicode(String string) {
+
+        StringBuffer unicode = new StringBuffer();
+
+        for (int i = 0; i < string.length(); i++) {
+
+            // 取出每一个字符
+            char c = string.charAt(i);
+
+            // 转换为unicode
+            unicode.append("\\u" + Integer.toHexString(c));
+        }
+
+        return unicode.toString();
+    }
+
+    /**
+     * unicode 转字符串
+     */
+    public String unicode2String(String unicode) {
+
+        StringBuffer string = new StringBuffer();
+
+        String[] hex = unicode.split("\\\\u");
+
+        for (int i = 1; i < hex.length; i++) {
+
+            // 转换出每一个代码点
+            int data = Integer.parseInt(hex[i], 16);
+
+            // 追加成string
+            string.append((char) data);
+        }
+
+        return string.toString();
+    }
+
+    /**
+     * 字符串换成UTF-8
+     *
+     * @param str
+     * @return
+     */
+    public String stringToUtf8(String str) {
+        String result = null;
+        try {
+            result = URLEncoder.encode(str, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * utf-8换成字符串
+     *
+     * @param str
+     * @return
+     */
+    public String utf8ToString(String str) {
+        String result = null;
+        try {
+            result = URLDecoder.decode(str, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
     }
 }

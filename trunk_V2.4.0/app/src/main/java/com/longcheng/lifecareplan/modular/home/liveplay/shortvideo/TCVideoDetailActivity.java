@@ -18,9 +18,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -665,15 +667,19 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
             tv_send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String cont = et_content.getText().toString();
-                    if (!TextUtils.isEmpty(cont)) {
-                        ConfigUtils.getINSTANCE().closeSoftInput(et_content);
-                        et_content.setText("");
-                        mPresent.setVideoSendComment(show_video_id, cont);
-                    } else {
-                        ToastUtils.showToast("请输入评论");
+                    send();
+                }
+            });
+            et_content.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId,
+                                              KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_SEND
+                            || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                        send();
+                        return true;
                     }
-
+                    return false;
                 }
             });
             ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_content, 40);
@@ -697,6 +703,19 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
         setCommentAllNum();
         getList(1);
     }
+
+    private void send() {
+        String cont = et_content.getText().toString();
+        if (!TextUtils.isEmpty(cont)) {
+            ConfigUtils.getINSTANCE().closeSoftInput(et_content);
+            et_content.setText("");
+            String cont_ = ConfigUtils.getINSTANCE().getString(cont);
+            mPresent.setVideoSendComment(show_video_id, cont_);
+        } else {
+            ToastUtils.showToast("请输入评论");
+        }
+    }
+
 
     private void setCommentAllNum() {
         if (selectDialog != null && selectDialog.isShowing() && tv_count != null)

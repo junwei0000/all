@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
@@ -57,7 +58,9 @@ public class VideoCommentAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         mHolder.item_tv_name.setText(name);
         String time = DatesUtils.getInstance().getTimeStampToDate(mItemBean.getCreate_time(), "yyyy-MM-dd");
         mHolder.item_tv_time.setText(time);
-        mHolder.item_tv_deseribe.setText(mItemBean.getContent());
+        String cont = mItemBean.getContent();
+        String cont_ = ConfigUtils.getINSTANCE().getEmoji(context, cont);
+        mHolder.item_tv_deseribe.setText(cont_);
         mHolder.tv_dianzannum.setText(mItemBean.getFollow_number());
         int is_follow = mItemBean.getIs_follow();
         if (is_follow == 0) {
