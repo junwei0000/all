@@ -8,11 +8,7 @@ import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,13 +31,11 @@ import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.tencent.liteav.basic.log.TXCLog;
-import com.tencent.liteav.demo.videouploader.common.view.NumberProgressBar;
 import com.tencent.liteav.demo.videouploader.videoupload.TXUGCPublish;
 import com.tencent.liteav.demo.videouploader.videoupload.TXUGCPublishTypeDef;
 import com.tencent.rtmp.TXLog;
@@ -168,9 +162,9 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
         double[] mLngAndLat = mLocationUtils.getLngAndLatWithNetwork(mContext);
         phone_user_latitude = mLngAndLat[0];
         phone_user_longitude = mLngAndLat[1];
-        city = mLocationUtils.getAddressCity(mContext,phone_user_latitude,phone_user_longitude);
-        if(TextUtils.isEmpty(city)){
-            city= BottomMenuActivity.city;
+        city = mLocationUtils.getAddressCity(mContext, phone_user_latitude, phone_user_longitude);
+        if (TextUtils.isEmpty(city)) {
+            city = BottomMenuActivity.city;
         }
         tvCity.setText("" + city);
         mVideoSource = getIntent().getIntExtra(TCConstants.VIDEO_RECORD_TYPE, TCConstants.VIDEO_RECORD_TYPE_EDIT);
@@ -334,54 +328,22 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
     public void onDestroy() {
         if (mTXugcPublish != null) {
             mTXugcPublish.canclePublish();
-            isCancelPublish = false;
+            if (mVideoDownLoadUtils != null)
+                mVideoDownLoadUtils.isCancelPublish = false;
         }
         super.onDestroy();
     }
 
     private TXUGCPublish mTXugcPublish;
-    private boolean isCancelPublish = false;
-    MyDialog selectDialog;
-    NumberProgressBar uploader_pb_loading;
 
-    public void showPopupWindow() {
-        if (selectDialog == null) {
-            selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.live_videouploader_progress);// 创建Dialog并设置样式主题
-            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = selectDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            window.setWindowAnimations(R.style.showBottomDialog);
-            selectDialog.show();
-            WindowManager m = mActivity.getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
-            selectDialog.getWindow().setAttributes(p); //设置生效
+    VideoDownLoadUtils mVideoDownLoadUtils;
 
-            ImageView uploader_iv_stop = (ImageView) selectDialog.findViewById(R.id.uploader_iv_stop);
-            uploader_pb_loading = (NumberProgressBar) selectDialog.findViewById(R.id.uploader_pb_loading);
-            uploader_pb_loading.setReachedBarColor(getResources().getColor(R.color.red));
-            uploader_pb_loading.setProgressTextColor(getResources().getColor(R.color.white));
-            uploader_iv_stop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mTXugcPublish != null) {
-                        mTXugcPublish.canclePublish();
-                        isCancelPublish = true;
-                        uploader_pb_loading.setProgress(0);
-                        selectDialog.dismiss();
-                    }
-                }
-            });
-        } else {
-            selectDialog.show();
-        }
-        isCancelPublish = false;
-        uploader_pb_loading.setProgress(0);
-    }
 
     private void publish(String signature) {
-        showPopupWindow();
+        if (mVideoDownLoadUtils == null) {
+            mVideoDownLoadUtils = new VideoDownLoadUtils(mActivity, mHandler, cancelPublish);
+        }
+        mVideoDownLoadUtils.showPopupWindow(cancelPublish);
         if (mTXugcPublish == null) {
             mTXugcPublish = new TXUGCPublish(this.getApplicationContext());
         }
@@ -389,20 +351,20 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
             @Override
             public void onPublishProgress(long uploadBytes, long totalBytes) {
                 TXLog.d(TAG, "onPublishProgress [" + uploadBytes + "/" + totalBytes + "]");
-                if (isCancelPublish) {
+                if (mVideoDownLoadUtils != null && mVideoDownLoadUtils.isCancelPublish) {
                     return;
                 }
-                if (uploader_pb_loading != null)
-                    uploader_pb_loading.setProgress((int) ((uploadBytes * 100) / totalBytes));
+                if (mVideoDownLoadUtils != null && mVideoDownLoadUtils.uploader_pb_loading != null)
+                    mVideoDownLoadUtils.uploader_pb_loading.setProgress((int) ((uploadBytes * 100) / totalBytes));
             }
 
             @Override
             public void onPublishComplete(TXUGCPublishTypeDef.TXPublishResult result) {
                 TXLog.d(TAG, "onPublishComplete [" + result.retCode + "/" + (result.retCode == 0 ? result.videoURL : result.descMsg) + "]");
-                if (selectDialog != null) {
-                    selectDialog.dismiss();
+                if (mVideoDownLoadUtils != null && mVideoDownLoadUtils.selectDialog != null) {
+                    mVideoDownLoadUtils.selectDialog.dismiss();
                 }
-                if (isCancelPublish) {
+                if (mVideoDownLoadUtils != null && mVideoDownLoadUtils.isCancelPublish) {
                     return;
                 }
                 // 这里可以把上传返回的视频信息以及自定义的视频信息上报到自己的业务服务器
@@ -431,6 +393,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
 
     TXUGCPublishTypeDef.TXPublishResult result_;
     protected final int uploadVideo = 6;
+    protected final int cancelPublish = 7;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -439,6 +402,11 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
                     if (result_ != null)
                         mPresent.UploadVideoInfo(title, cont, result_.coverURL, city,
                                 phone_user_longitude, phone_user_latitude, result_.videoId, result_.videoURL);
+                    break;
+                case cancelPublish:
+                    if (mTXugcPublish != null) {
+                        mTXugcPublish.canclePublish();
+                    }
                     break;
             }
         }

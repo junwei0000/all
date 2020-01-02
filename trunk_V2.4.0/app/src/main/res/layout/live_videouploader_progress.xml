@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/view_paddlefgtright"
+    android:paddingTop="@dimen/dp35"
+    android:paddingBottom="@dimen/dp35"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha="0.9"
-    android:background="#000">
+    android:background="#000"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/uploader_tv_msg"
@@ -12,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:paddingBottom="20dp"
+        android:paddingBottom="4dp"
         android:text="发布中..."
         android:textColor="#fff"
         android:textSize="14sp" />
@@ -21,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/uploader_tv_msg"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -43,4 +48,4 @@
             android:src="@drawable/uploader_btn_cancel" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

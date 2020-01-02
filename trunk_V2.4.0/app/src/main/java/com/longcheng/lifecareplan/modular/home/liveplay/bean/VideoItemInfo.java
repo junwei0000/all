@@ -16,15 +16,50 @@ public class VideoItemInfo implements Serializable {
     private String user_name;
     private String avatar;
     private String title;
+    private String content;
     private String cover_url;
     private String address;
+    private String comment_number = "0";
+    private String forward_number = "0";
     private String video_url;
     private String create_time;
     @SerializedName(value = "follow_number", alternate = {"total_person_number"})
     private String total_number = "0";
-    ;
     private String status;
     private String broadcast_status;
+    private int is_follow;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getComment_number() {
+        return comment_number;
+    }
+
+    public void setComment_number(String comment_number) {
+        this.comment_number = comment_number;
+    }
+
+    public String getForward_number() {
+        return forward_number;
+    }
+
+    public void setForward_number(String forward_number) {
+        this.forward_number = forward_number;
+    }
+
+    public int getIs_follow() {
+        return is_follow;
+    }
+
+    public void setIs_follow(int is_follow) {
+        this.is_follow = is_follow;
+    }
 
     public String getTotal_number() {
         return total_number;

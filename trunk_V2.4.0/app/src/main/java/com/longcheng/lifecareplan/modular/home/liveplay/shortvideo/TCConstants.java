@@ -28,4 +28,8 @@ public class TCConstants {
     public static final String INTENT_KEY_MULTI_CHOOSE = "multi_video";
     public static final String INTENT_KEY_MULTI_PIC_CHOOSE = "multi_pic";
     public static final String INTENT_KEY_MULTI_PIC_LIST = "pic_list"; // 图片列表
+
+
+    public static final String TCLIVE_INFO_LIST = "txlive_info_list";
+    public static final String TCLIVE_INFO_POSITION = "txlive_info_position";
 }

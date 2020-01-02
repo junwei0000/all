@@ -105,8 +105,6 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
     LinearLayout layoutRight;
     @BindView(R.id.iv_dianzan)
     ImageView iv_dianzan;
-    @BindView(R.id.frag_layout_dashuang)
-    LinearLayout frag_layout_dashuang;
 
 
     private String mVideoPath, show_video_id, mCoverImagePath;
@@ -138,7 +136,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
             showCommentDialog();
         } else if (id == R.id.frag_layout_share) {
             DOWNLOAD();
-        } else if (id == R.id.frag_layout_dashuang) {
+        } else if (id == R.id.frag_iv_dashuang) {
             Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("html_url", "" + Config.BASE_HEAD_URL + "home/reward/pay/userRewardVideoId/1/isAppVideo/1");
