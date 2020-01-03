@@ -29,7 +29,8 @@ public class TCConstants {
     public static final String INTENT_KEY_MULTI_PIC_CHOOSE = "multi_pic";
     public static final String INTENT_KEY_MULTI_PIC_LIST = "pic_list"; // 图片列表
 
-
+    public static final int TCLIVE_INFO_LISTREFRESH = 11;//刷新列表数据
     public static final String TCLIVE_INFO_LIST = "txlive_info_list";
     public static final String TCLIVE_INFO_POSITION = "txlive_info_position";
+    public static final String TCLIVE_INFO_PAGE = "txlive_info_page";
 }

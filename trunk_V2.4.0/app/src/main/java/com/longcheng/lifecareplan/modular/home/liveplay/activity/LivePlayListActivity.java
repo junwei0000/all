@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -25,6 +26,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCConstants;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCVideoDetailNewActivity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ListUtils;
@@ -154,9 +156,10 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
                     } else {
+                        mCurrentPosition = position;
 //                        TCVideoDetailActivity.skipVideoDetail(mActivity, mAllList.get(position).getCover_url(),
 //                                mAllList.get(position).getVideo_url(), mAllList.get(position).getVideo_id());
-                        TCVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position);
+                        TCVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page);
                     }
 
                 }
@@ -285,7 +288,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
 
     @Override
     public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
-        ListUtils.getInstance().RefreshCompleteG(playView);
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
             VideoDataInfo mVideoDataInfo = responseBean.getData();
@@ -312,7 +314,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
-        ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
+        RefreshComplete();
     }
 
     @Override
@@ -410,5 +412,30 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             back();
         }
         return false;
+    }
+
+    int mCurrentPosition;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            if (resultCode == TCConstants.TCLIVE_INFO_LISTREFRESH) {
+                mAllList = (ArrayList<VideoItemInfo>) data.getSerializableExtra(TCConstants.TCLIVE_INFO_LIST);
+                mCurrentPosition = data.getIntExtra(TCConstants.TCLIVE_INFO_POSITION, 0);
+                page = data.getIntExtra(TCConstants.TCLIVE_INFO_PAGE, page);
+                if (mAdapter != null && playView != null) {
+                    mAdapter.refreshListView(mAllList);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            playView.getRefreshableView().smoothScrollToPosition(mCurrentPosition);
+                        }
+                    }, 100);
+                }
+            }
+        } catch (Exception e) {
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

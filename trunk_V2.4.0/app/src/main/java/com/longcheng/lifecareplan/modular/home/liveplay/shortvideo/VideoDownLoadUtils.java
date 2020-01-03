@@ -247,7 +247,7 @@ public class VideoDownLoadUtils {
             uploader_tv_msg.setText("视频下载中...");
             uploader_iv_stop.setVisibility(View.GONE);
         } else {
-            uploader_tv_msg.setText("视频发布中...");
+            uploader_tv_msg.setText("发布中...");
             uploader_iv_stop.setVisibility(View.VISIBLE);
         }
     }
