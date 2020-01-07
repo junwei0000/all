@@ -28,6 +28,17 @@
                 <include layout="@layout/fragment_mycenter_top" />
                 <!--现金余额 -->
                 <include layout="@layout/fragment_mycenter_money" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4">
+
+                    <ImageView
+                        android:id="@+id/iv_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp" />
+                </LinearLayout>
                 <!--节气-->
                 <include layout="@layout/fragment_mycenter_jieqi" />
                 <!--功能-->

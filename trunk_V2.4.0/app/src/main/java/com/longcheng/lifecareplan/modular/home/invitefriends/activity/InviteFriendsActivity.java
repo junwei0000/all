@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.invitefriends.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -25,7 +24,6 @@ import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.zxing.CreateQRImage;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 邀请亲友
@@ -67,7 +65,7 @@ public class InviteFriendsActivity extends BaseActivity {
                 if (!TextUtils.isEmpty(invite_user_url)) {
                     String text = "人生最大的意义，莫过于让生命能量流动起来，祝福更多的人。";
                     String title = username + "邀请您加入健康互祝公社";
-                    mShareUtils.setShare(text, "", invite_user_url, title);
+                    mShareUtils.setShare(text, "",R.mipmap.share_icon, invite_user_url, title);
                 }
                 break;
             case R.id.btn_ok:

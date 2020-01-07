@@ -166,6 +166,34 @@ public class GetHomeInfoBean implements Serializable {
     private int displayHolidayTipsAsset;//  展示金额
 
 
+    private int isShowNewyearMybook;
+    private String newyear_mybook_pic;
+    private String newyear_mybook_url;
+
+    public int getIsShowNewyearMybook() {
+        return isShowNewyearMybook;
+    }
+
+    public void setIsShowNewyearMybook(int isShowNewyearMybook) {
+        this.isShowNewyearMybook = isShowNewyearMybook;
+    }
+
+    public String getNewyear_mybook_pic() {
+        return newyear_mybook_pic;
+    }
+
+    public void setNewyear_mybook_pic(String newyear_mybook_pic) {
+        this.newyear_mybook_pic = newyear_mybook_pic;
+    }
+
+    public String getNewyear_mybook_url() {
+        return newyear_mybook_url;
+    }
+
+    public void setNewyear_mybook_url(String newyear_mybook_url) {
+        this.newyear_mybook_url = newyear_mybook_url;
+    }
+
     public String getLoveVideo_url() {
         return loveVideo_url;
     }

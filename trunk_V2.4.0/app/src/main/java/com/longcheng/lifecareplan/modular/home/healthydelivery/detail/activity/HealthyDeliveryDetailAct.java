@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 
 import butterknife.BindView;
@@ -55,7 +54,7 @@ public class HealthyDeliveryDetailAct extends WebAct {
                 if (mShareUtils == null) {
                     mShareUtils = new ShareUtils(mActivity);
                 }
-                mShareUtils.setShare(cont, img, url, title);
+                mShareUtils.setShare(cont, img,R.mipmap.share_icon, url, title);
                 break;
         }
     }

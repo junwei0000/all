@@ -135,8 +135,9 @@ public class BaoZhangActitvty extends WebAct {
                 if (mShareUtils == null) {
                     mShareUtils = new ShareUtils(mActivity);
                 }
+                Log.e("registerHandler", "knp_shareurl=" + knp_shareurl);
                 if (shareStatus && !TextUtils.isEmpty(knp_shareurl)) {
-                    mShareUtils.setShare(knp_sharedesc, knp_sharePic, knp_shareurl, knp_sharetitle);
+                    mShareUtils.setShare(knp_sharedesc, knp_sharePic,R.mipmap.share_rqz, knp_shareurl, knp_sharetitle);
                 }
                 break;
         }
@@ -199,6 +200,12 @@ public class BaoZhangActitvty extends WebAct {
                             shareBackType = "GiveactivityApply";
                         } else if (!TextUtils.isEmpty(url) && url.contains("/knpteam/roominfo")) {
                             shareBackType = "knpteamroominfo";
+                        } else if (!TextUtils.isEmpty(url) && url.contains("home/mybook/newYearMybook")) {
+                            shareBackType = "newYearMybook";
+                            knp_sharetitle = UserUtils.getUserName(mContext) + "的2019年度账单";
+                            knp_sharedesc = "人生最大的意义，莫过于让生命能量流动起来，祝福更多的人。";
+                            knp_sharePic = "";
+                            knp_shareurl = url;
                         } else {
                             //非详情页、和自己的详情不让分享
                             shareBackType = "";
@@ -229,7 +236,6 @@ public class BaoZhangActitvty extends WebAct {
                             getKnpTeamRoomDetail(life_repay_id);
                         }
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

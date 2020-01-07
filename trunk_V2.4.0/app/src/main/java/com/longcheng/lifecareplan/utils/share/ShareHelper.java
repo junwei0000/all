@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
-import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -85,9 +84,9 @@ public class ShareHelper {
      * @DATE :2017/9/29 9:51
      * @Params 分享带链接 （缩略图 标题 简述）
      */
-    public void shareActionAll(Activity activity, SHARE_MEDIA platform, String text, String targetUrl, String title) {
+    public void shareActionAll(Activity activity, SHARE_MEDIA platform, String text, String targetUrl, String title,int iconid) {
         this.activity = activity;
-        Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(), R.mipmap.share_icon);
+        Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(), iconid);
         UMImage image = new UMImage(activity, bitmap);
         UMWeb web = new UMWeb(targetUrl);
         web.setTitle(title);//标题

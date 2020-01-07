@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.bean.ResponseBean;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
@@ -272,6 +273,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     LinearLayout layout_jintie;
     @BindView(R.id.mycenter_tv_jintie)
     TextView mycenter_tv_jintie;
+    @BindView(R.id.iv_banner)
+    ImageView iv_banner;
 
     private String is_cho;
     private String user_id;
@@ -355,6 +358,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         usercenter_layout_tel.setOnClickListener(this);
         layout_pool.setOnClickListener(this);
         iv_meiqia.setOnClickListener(this);
+        iv_banner.setOnClickListener(this);
         mycenter_layout_loveVideo.setOnClickListener(this);
         gongnengn_gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -502,11 +506,32 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         viewClick(viewId);
     }
 
+    /**
+     * 跳转人情账
+     */
+    private void skipRQZUrl() {
+        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/mybook/newyearmybook/user_id/" + user_id);
+        startActivity(intent);
+        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+    }
+
     private void viewClick(int viewId) {
         Intent intent;
         switch (viewId) {
             case R.id.iv_meiqia:
                 conversationWrapper();
+                break;
+            case R.id.iv_banner:
+                String url = data.getNewyear_mybook_url();
+                if (!TextUtils.isEmpty(url)) {
+                    intent = new Intent(mActivity, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + url);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
                 break;
 
             case R.id.pagetop_layout_rigth://设置
@@ -1059,6 +1084,16 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         tv_jieqiname.setText(jieqi + "小推手");
         GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mActivity, avatar, mycenterIvHead);
         GlideDownLoadImage.getInstance().loadCircleImageHelpIndex(mActivity, data.getJieqi_pic(), mycenter_iv_jieqi);
+
+        int dit = DensityUtil.screenWith(mContext);
+        int jian = (int) (dit / 5.137);
+        iv_banner.setLayoutParams(new LinearLayout.LayoutParams(dit, jian));
+        if (data.getIsShowNewyearMybook() == 1) {
+            iv_banner.setVisibility(View.VISIBLE);
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, data.getNewyear_mybook_pic(), iv_banner);
+        } else {
+            iv_banner.setVisibility(View.GONE);
+        }
         showFunctionGVData();
     }
 
@@ -1151,6 +1186,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (LifeBasicDialog != null && LifeBasicDialog.isShowing()) {
             LifeBasicDialog.dismiss();
         }
+        if (mRQZDialog != null && mRQZDialog.isShowing()) {
+            mRQZDialog.dismiss();
+        }
     }
 
     /**
@@ -1165,6 +1203,16 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 || BottomMenuActivity.updatedialogstatus) {
             dismissAllDialog();
             return;
+        }
+        boolean isShowRQZ = MySharedPreferences.getInstance().getIsShowRQZ();
+        if (isShowRQZ && data.getIsShowNewyearMybook() == 1) {
+            MySharedPreferences.getInstance().saveIsShowRQZ(false);
+            showRQZDialog();
+            return;
+        } else {
+            if (mRQZDialog != null && mRQZDialog.isShowing()) {
+                mRQZDialog.dismiss();
+            }
         }
         //坐堂医支付成功弹层  1
         if (showDoctorDialogStatus) {
@@ -1250,6 +1298,41 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             if (redBaoDialog != null && redBaoDialog.isShowing()) {
                 redBaoDialog.dismiss();
             }
+        }
+    }
+
+    MyDialog mRQZDialog;
+
+    public void showRQZDialog() {
+        if (mRQZDialog == null) {
+            mRQZDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_center_rqz);// 创建Dialog并设置样式主题
+            mRQZDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = mRQZDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            mRQZDialog.show();
+            WindowManager m = getActivity().getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = mRQZDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
+            mRQZDialog.getWindow().setAttributes(p); //设置生效
+            TextView tv_cancel = (TextView) mRQZDialog.findViewById(R.id.tv_cancel);
+            ImageView iv_xingji = (ImageView) mRQZDialog.findViewById(R.id.iv_xingji);
+            iv_xingji.setLayoutParams(new FrameLayout.LayoutParams(p.width, (int) (p.width * 1.116)));
+            iv_xingji.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mRQZDialog.dismiss();
+                    skipRQZUrl();
+                }
+            });
+            tv_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mRQZDialog.dismiss();
+                }
+            });
+        } else {
+            mRQZDialog.show();
         }
     }
 

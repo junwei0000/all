@@ -87,7 +87,7 @@ public class ActionH5Activity extends WebAct {
                     mShareUtils = new ShareUtils(mActivity);
                 }
                 if (!TextUtils.isEmpty(knp_shareurl)) {
-                    mShareUtils.setShare(knp_sharedesc, knp_sharePic, knp_shareurl, knp_sharetitle);
+                    mShareUtils.setShare(knp_sharedesc, knp_sharePic,R.mipmap.share_icon, knp_shareurl, knp_sharetitle);
                 }
                 break;
         }

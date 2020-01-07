@@ -30,12 +30,15 @@ public class ShareUtils {
     String title = "";
     String thumb;
 
+    int iconid;
+
     public ShareUtils(Activity mContext) {
         this.mContext = mContext;
     }
 
-    public void setShare(String text, String thumb, String targetUrl, String title) {
+    public void setShare(String text, String thumb, int iconid, String targetUrl, String title) {
         this.text = text;
+        this.iconid = iconid;
         this.thumb = thumb;
         this.targetUrl = targetUrl;
         this.title = title;
@@ -74,14 +77,14 @@ public class ShareUtils {
                     if (!TextUtils.isEmpty(thumb)) {
                         ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, thumb, text, targetUrl, text);
                     } else {
-                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, text, targetUrl, text);
+                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN_CIRCLE, text, targetUrl, text, iconid);
                     }
                     break;
                 case R.id.layout_wx:
                     if (!TextUtils.isEmpty(thumb)) {
                         ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN, thumb, text, targetUrl, title);
                     } else {
-                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN, text, targetUrl, title);
+                        ShareHelper.getINSTANCE().shareActionAll(mContext, SHARE_MEDIA.WEIXIN, text, targetUrl, title, iconid);
                     }
                     break;
                 default:

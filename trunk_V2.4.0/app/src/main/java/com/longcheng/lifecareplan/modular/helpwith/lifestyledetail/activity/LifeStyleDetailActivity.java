@@ -190,7 +190,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                 if (!TextUtils.isEmpty(wx_share_url)) {
                     String text = receive_user_name + "申请了互祝，让我们行动起来，一起给TA送上祝福。";
                     String title = "生活方式互祝";
-                    mShareUtils.setShare(text, "", wx_share_url, title);
+                    mShareUtils.setShare(text, "",R.mipmap.share_icon, wx_share_url, title);
                 }
                 break;
             case R.id.detail_layout_rank:

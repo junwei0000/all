@@ -161,7 +161,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 BaoZhangActitvty.life_repay_id = "Live";
                 String wx_share_url = Config.BASE_HEAD_URL + "/home/app/index";
                 if (!TextUtils.isEmpty(wx_share_url)) {
-                    mShareUtils.setShare("直播中：" + title, Cover_url, wx_share_url, User_name);
+                    mShareUtils.setShare("直播中：" + title, Cover_url,R.mipmap.share_icon, wx_share_url, User_name);
                 }
                 break;
             default:

@@ -1,22 +1,9 @@
 package com.longcheng.lifecareplan.utils.sharedpreferenceutils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * 作者：jun on
@@ -42,7 +29,10 @@ public class MySharedPreferences {
      * 我家的常用功能状态
      */
     private static final String MINE_FUUNCTIONTYPEList = "MINE_FUUNCTIONTYPEList";
-
+    /**
+     * 是否显示我家人情账弹层
+     */
+    private static final String ISSHOWRQZ = "isLShowRQZ";
 
     public static MySharedPreferences getInstance() {
         if (instance == null) {
@@ -57,6 +47,14 @@ public class MySharedPreferences {
 
     private MySharedPreferences() {
         sharedPreferences = ExampleApplication.getContext().getSharedPreferences(NAME, Context.MODE_PRIVATE);
+    }
+
+    public void saveIsShowRQZ(boolean isShowRQZ) {
+        sharedPreferences.edit().putBoolean(ISSHOWRQZ, isShowRQZ).commit();
+    }
+
+    public boolean getIsShowRQZ() {
+        return sharedPreferences.getBoolean(ISSHOWRQZ, true);
     }
 
     /**

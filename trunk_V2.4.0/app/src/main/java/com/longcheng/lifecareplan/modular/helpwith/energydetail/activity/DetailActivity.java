@@ -161,7 +161,7 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
                 if (!TextUtils.isEmpty(wx_share_url)) {
                     String text = "人生最大的意义，莫过于让生命能量流动起来，祝福更多的人。";
                     String title = mContext.getString(R.string.main_title);
-                    mShareUtils.setShare(text, "", wx_share_url, title);
+                    mShareUtils.setShare(text, "", R.mipmap.share_icon, wx_share_url, title);
                 }
                 break;
             case R.id.detail_layout_rank:
