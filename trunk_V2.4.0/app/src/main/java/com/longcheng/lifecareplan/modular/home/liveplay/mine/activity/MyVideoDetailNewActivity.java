@@ -217,7 +217,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     public void setListener() {
         layoutLeft.setOnClickListener(this);
         mSwipeRefreshLayout.setEnabled(false);
-        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.black,
                 android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

@@ -214,7 +214,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     @Override
     public void setListener() {
         layoutLeft.setOnClickListener(this);
-        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.black,
                 android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -244,7 +244,6 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         mAllList = (ArrayList<VideoItemInfo>) intent.getSerializableExtra(TCConstants.TCLIVE_INFO_LIST);
         mInitTCLiveInfoPosition = intent.getIntExtra(TCConstants.TCLIVE_INFO_POSITION, 0);
         page = intent.getIntExtra(TCConstants.TCLIVE_INFO_PAGE, 0);
-        setPagerAdapter();
     }
 
     private void initViews() {
@@ -308,6 +307,10 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                 }
             }
         });
+        if (mInitTCLiveInfoPosition > 0) {
+            mSwipeRefreshLayout.setEnabled(false);
+        }
+        setPagerAdapter();
     }
 
     private void setPagerAdapter() {
