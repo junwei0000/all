@@ -38,9 +38,9 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
     /**
      * 获取我的页面信息
      */
-    public void getMineInfo() {
+    public void getMineInfo(String user_id) {
         mView.showDialog();
-        ApiLive.getInstance().service.getMineInfo(UserUtils.getUserId(mContext))
+        ApiLive.getInstance().service.getMineInfo(user_id)
                 .compose(mContext.<BasicResponse<MineItemInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -86,9 +86,9 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
     /**
      * 我的视频
      */
-    public void getMineVideoList(int page, int page_size) {
+    public void getMineVideoList(String user_id,int page, int page_size) {
         mView.showDialog();
-        ApiLive.getInstance().service.getMineVideoList(UserUtils.getUserId(mContext), page, page_size)
+        ApiLive.getInstance().service.getMineVideoList(user_id, page, page_size)
                 .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -110,9 +110,9 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
     /**
      * 我的直播
      */
-    public void getMineLiveList(int page, int page_size) {
+    public void getMineLiveList(String video_user_id,int page, int page_size) {
         mView.showDialog();
-        ApiLive.getInstance().service.getMineLiveList(UserUtils.getUserId(mContext), page, page_size)
+        ApiLive.getInstance().service.getMineLiveList(video_user_id, page, page_size)
                 .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -134,9 +134,9 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
     /**
      * 我的关注
      */
-    public void getMineFollowList(int page, int page_size) {
+    public void getMineFollowList(String video_user_id,int page, int page_size) {
         mView.showDialog();
-        ApiLive.getInstance().service.getMineFollowList(UserUtils.getUserId(mContext), page, page_size)
+        ApiLive.getInstance().service.getMineFollowList(video_user_id, page, page_size)
                 .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -103,7 +103,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/jianJu"
             android:paddingBottom="@dimen/jianJu"
-            android:text="我的视频"
+            android:text="视频"
             android:textColor="@color/red"
             android:textSize="@dimen/text_contents_size" />
 
@@ -113,7 +113,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:gravity="center"
-            android:text="我的直播"
+            android:text="直播"
             android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_contents_size" />
 
@@ -123,7 +123,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:gravity="center"
-            android:text="我的关注"
+            android:text="关注"
             android:textColor="@color/text_contents_color"
             android:textSize="@dimen/text_contents_size" />
 

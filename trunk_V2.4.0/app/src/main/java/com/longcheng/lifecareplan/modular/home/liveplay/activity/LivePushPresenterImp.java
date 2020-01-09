@@ -13,6 +13,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
@@ -43,6 +44,30 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
 
     @Override
     public void fetch() {
+    }
+
+    /**
+     * 我的视频
+     */
+    public void getMineVideoList(String user_id, int page, int page_size) {
+        mView.showDialog();
+        ApiLive.getInstance().service.getMineVideoList(user_id, page, page_size)
+                .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse<MVideoDataInfo>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<MVideoDataInfo> response) {
+                        mView.dismissDialog();
+                        mView.BackMyVideoListSuccess(response, page);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
     }
 
     /**
@@ -377,10 +402,10 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     /**
      * 获取短视频列表
      */
-    public void getVideoPlayList(int page, int page_size) {
+    public void getVideoPlayList(int special_search, int page, int page_size) {
         mView.showDialog();
         ApiLive.getInstance().service.getVideoList(UserUtils.getUserId(mContext),
-                page, page_size)
+                page, page_size, special_search)
                 .compose(mContext.<BasicResponse<ArrayList<VideoItemInfo>>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
+package com.longcheng.lifecareplan.modular.home.liveplay.mine.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -49,9 +49,11 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
-import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCConstants;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.VideoCommentAdapter;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.VideoDownLoadUtils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ListUtils;
@@ -79,7 +81,7 @@ import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 /**
  * Created by hans on 2017/12/5.
  */
-public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View, ITXVodPlayListener {
+public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View, ITXVodPlayListener {
     private String TAG = "TCVodPlayerActivity";
     @BindView(R.id.vertical_view_pager)
     VerticalViewPager mVerticalViewPager;
@@ -91,7 +93,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     // 发布者id 、视频地址、 发布者名称、 头像URL、 封面URL
-    private ArrayList<VideoItemInfo> mAllList;
+    private ArrayList<MVideoItemInfo> mAllList;
     private int mInitTCLiveInfoPosition;
 
     private VideoDownLoadUtils mVideoDownLoadUtils;
@@ -136,9 +138,9 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             intent.putExtra("html_url", "" + Config.BASE_HEAD_URL + "home/reward/pay/userRewardVideoId/1/isAppVideo/1");
             startActivity(intent);
         } else if (id == R.id.frag_layout_dianzan) {
-            VideoItemInfo mMVideoItemInfo = (VideoItemInfo) view.getTag();
+            MVideoItemInfo mMVideoItemInfo = (MVideoItemInfo) view.getTag();
             int is_follow = mMVideoItemInfo.getIs_follow();
-            String show_video_id = mMVideoItemInfo.getVideo_id();
+            String show_video_id = mMVideoItemInfo.getShort_video_id();
             int type;
             if (is_follow == 0) {
                 type = 1;
@@ -150,13 +152,13 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         } else if (id == R.id.frag_layout_comment) {
             showCommentDialog();
         } else if (id == R.id.frag_layout_share) {
-            VideoItemInfo mMVideoItemInfo = (VideoItemInfo) view.getTag();
+            MVideoItemInfo mMVideoItemInfo = (MVideoItemInfo) view.getTag();
             if (mVideoDownLoadUtils == null) {
                 mVideoDownLoadUtils = new VideoDownLoadUtils(mActivity, mHandler, download);
             }
             if (!mVideoDownLoadUtils.loading) {
                 clickType = "DOWNLOAD";
-                show_video_id = mMVideoItemInfo.getVideo_id();
+                show_video_id = mMVideoItemInfo.getShort_video_id();
                 mVideoDownLoadUtils.setInit(mMVideoItemInfo.getVideo_url(), mMVideoItemInfo.getCover_url(), mVideoDuration);
                 mVideoDownLoadUtils.DOWNLOAD();
             } else {
@@ -214,6 +216,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     @Override
     public void setListener() {
         layoutLeft.setOnClickListener(this);
+        mSwipeRefreshLayout.setEnabled(false);
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -225,8 +228,8 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         });
     }
 
-    public static void skipVideoDetail(Activity mActivity, ArrayList<VideoItemInfo> mTCLiveInfoList, int selectPosition, int page) {
-        Intent intent = new Intent(mActivity, TCVideoDetailNewActivity.class);
+    public static void skipVideoDetail(Activity mActivity, ArrayList<MVideoItemInfo> mTCLiveInfoList, int selectPosition, int page) {
+        Intent intent = new Intent(mActivity, MyVideoDetailNewActivity.class);
         intent.putExtra(TCConstants.TCLIVE_INFO_LIST, mTCLiveInfoList);
         intent.putExtra(TCConstants.TCLIVE_INFO_POSITION, selectPosition);
         intent.putExtra(TCConstants.TCLIVE_INFO_PAGE, page);
@@ -241,10 +244,10 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
 
     private void initDatas() {
         Intent intent = getIntent();
-        mAllList = (ArrayList<VideoItemInfo>) intent.getSerializableExtra(TCConstants.TCLIVE_INFO_LIST);
+        mAllList = (ArrayList<MVideoItemInfo>) intent.getSerializableExtra(TCConstants.TCLIVE_INFO_LIST);
         mInitTCLiveInfoPosition = intent.getIntExtra(TCConstants.TCLIVE_INFO_POSITION, 0);
         page = intent.getIntExtra(TCConstants.TCLIVE_INFO_PAGE, 0);
-        setPagerAdapter();
+        video_user_id = mAllList.get(0).getUser_id();
     }
 
     private void initViews() {
@@ -265,11 +268,6 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                 if (mTXVodPlayer != null) {
                     mTXVodPlayer.seek(0);
                     mTXVodPlayer.pause();
-                }
-                if (position == 0) {
-                    mSwipeRefreshLayout.setEnabled(true);
-                } else {
-                    mSwipeRefreshLayout.setEnabled(false);
                 }
                 /**
                  * 分页加载数据
@@ -308,6 +306,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                 }
             }
         });
+        setPagerAdapter();
     }
 
     private void setPagerAdapter() {
@@ -328,14 +327,14 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             TXVodPlayer vodPlayer = new TXVodPlayer(mContext);
             vodPlayer.setRenderRotation(TXLiveConstants.RENDER_ROTATION_PORTRAIT);
             vodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION);
-            vodPlayer.setVodListener(TCVideoDetailNewActivity.this);
+            vodPlayer.setVodListener(MyVideoDetailNewActivity.this);
             TXVodPlayConfig config = new TXVodPlayConfig();
             config.setCacheFolderPath(Environment.getExternalStorageDirectory().getPath() + "/longcheng_txcache");
-            config.setMaxCacheItems(5);
+            config.setMaxCacheItems(1);
             vodPlayer.setConfig(config);
             vodPlayer.setAutoPlay(false);
 
-            VideoItemInfo tcLiveInfo = mAllList.get(position);
+            MVideoItemInfo tcLiveInfo = mAllList.get(position);
             playerInfo.playURL = tcLiveInfo.getVideo_url();
             playerInfo.txVodPlayer = vodPlayer;
             playerInfo.pos = position;
@@ -413,21 +412,21 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             TextView frag_tv_commentnum = (TextView) view.findViewById(R.id.frag_tv_commentnum);
             LinearLayout frag_layout_share = (LinearLayout) view.findViewById(R.id.frag_layout_share);
             TextView frag_tv_sharenum = (TextView) view.findViewById(R.id.frag_tv_sharenum);
-            VideoItemInfo mMVideoItemInfo = mAllList.get(position);
+            MVideoItemInfo mMVideoItemInfo = mAllList.get(position);
             frag_iv_dashuang.setTag(mMVideoItemInfo);
             frag_layout_dianzan.setTag(mMVideoItemInfo);
             frag_layout_comment.setTag(mMVideoItemInfo);
             frag_layout_share.setTag(mMVideoItemInfo);
-            record_preview.setOnClickListener(TCVideoDetailNewActivity.this);
-            frag_iv_dashuang.setOnClickListener(TCVideoDetailNewActivity.this);
-            frag_layout_dianzan.setOnClickListener(TCVideoDetailNewActivity.this);
-            frag_layout_comment.setOnClickListener(TCVideoDetailNewActivity.this);
-            frag_layout_share.setOnClickListener(TCVideoDetailNewActivity.this);
-            iv_avatar.setOnClickListener(TCVideoDetailNewActivity.this);
+            record_preview.setOnClickListener(MyVideoDetailNewActivity.this);
+            frag_iv_dashuang.setOnClickListener(MyVideoDetailNewActivity.this);
+            frag_layout_dianzan.setOnClickListener(MyVideoDetailNewActivity.this);
+            frag_layout_comment.setOnClickListener(MyVideoDetailNewActivity.this);
+            frag_layout_share.setOnClickListener(MyVideoDetailNewActivity.this);
+            iv_avatar.setOnClickListener(MyVideoDetailNewActivity.this);
 
             tv_name.setText("" + mMVideoItemInfo.getUser_name());
             tv_cont.setText("" + mMVideoItemInfo.getContent());
-            frag_tv_dianzannum.setText("" + mMVideoItemInfo.getTotal_number());
+            frag_tv_dianzannum.setText("" + mMVideoItemInfo.getFollow_number());
             frag_tv_commentnum.setText("" + mMVideoItemInfo.getComment_number());
             frag_tv_sharenum.setText("" + mMVideoItemInfo.getForward_number());
             GlideDownLoadImage.getInstance().loadCircleImage(mMVideoItemInfo.getAvatar(), iv_avatar);
@@ -653,22 +652,31 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
 
     @Override
     public void BackVideoListSuccess(BasicResponse<ArrayList<VideoItemInfo>> responseBean, int backPage) {
+
+    }
+
+    @Override
+    public void BackMyVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
-            ArrayList<VideoItemInfo> mList = responseBean.getData();
-            int size = mList == null ? 0 : mList.size();
-            if (backPage == 1) {
-                mAllList.clear();
-            }
-            if (size > 0) {
-                mAllList.addAll(mList);
-            }
-            page = backPage;
-            if (backPage == 1) {
-                mInitTCLiveInfoPosition = 0;
-                setPagerAdapter();
-            } else {
-                mPagerAdapter.notifyDataSetChanged();
+            MVideoDataInfo mVideoDataInfo = responseBean.getData();
+            if (mVideoDataInfo != null) {
+                ArrayList<MVideoItemInfo> mList = mVideoDataInfo.getShortVideoList();
+                int size = mList == null ? 0 : mList.size();
+                if (back_page == 1) {
+                    mAllList.clear();
+                }
+                if (size > 0) {
+                    mAllList.addAll(mList);
+                }
+
+                page = back_page;
+                if (back_page == 1) {
+                    mInitTCLiveInfoPosition = 0;
+                    setPagerAdapter();
+                } else {
+                    mPagerAdapter.notifyDataSetChanged();
+                }
             }
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
@@ -677,16 +685,10 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     }
 
     @Override
-    public void BackMyVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
-
-    }
-
-
-    @Override
     public void sendLCommentSuccess(BasicResponse responseBean) {
         if (mAllList != null && mAllList.size() > 0) {
             if (clickType.equals("dianzan")) {
-                String Follow_number = mAllList.get(mCurrentPosition).getTotal_number();
+                String Follow_number = mAllList.get(mCurrentPosition).getFollow_number();
                 int is_follow = mAllList.get(mCurrentPosition).getIs_follow();
                 String newnum;
                 if (is_follow == 0) {
@@ -699,7 +701,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                 if (!TextUtils.isEmpty(newnum) && Integer.parseInt(newnum) < 0) {
                     newnum = "0";
                 }
-                mAllList.get(mCurrentPosition).setTotal_number(newnum);
+                mAllList.get(mCurrentPosition).setFollow_number(newnum);
                 is_follow = mAllList.get(mCurrentPosition).getIs_follow();
                 if (is_follow == 0) {
                     iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_bai);
@@ -793,14 +795,12 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
 
     }
 
-    int special_search = 1;// 默认1 0:普通搜索 1：特殊搜索
-
     private void getList(int page) {
-        mPresent.getVideoPlayList(special_search, page, pageSize);
+        mPresent.getMineVideoList(video_user_id, page, pageSize);
     }
 
     private int page = 0;
-    private int pageSize = 20;
+    private int pageSize = 15;
     VideoCommentAdapter mAdapter;
     private int commentpage = 1;
     private TextView tv_count;
@@ -885,7 +885,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     }
 
     private void send() {
-        show_video_id = mAllList.get(mCurrentPosition).getVideo_id();
+        show_video_id = mAllList.get(mCurrentPosition).getShort_video_id();
         String cont = et_content.getText().toString();
         if (!TextUtils.isEmpty(cont)) {
             ConfigUtils.getINSTANCE().closeSoftInput(et_content);
@@ -905,7 +905,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     }
 
     private void getCommentList(int commentpage) {
-        show_video_id = mAllList.get(mCurrentPosition).getVideo_id();
+        show_video_id = mAllList.get(mCurrentPosition).getShort_video_id();
         mPresent.getCommentList(show_video_id, commentpage, pageSize);
     }
 

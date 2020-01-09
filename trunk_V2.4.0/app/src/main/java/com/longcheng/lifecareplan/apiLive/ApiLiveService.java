@@ -34,7 +34,8 @@ public interface ApiLiveService {
     @POST("dock/video/video/lists")
     Observable<BasicResponse<ArrayList<VideoItemInfo>>> getVideoList(@Field("user_id") String user_id,
                                                                      @Field("page") int page,
-                                                                     @Field("page_size") int page_size);
+                                                                     @Field("page_size") int page_size,
+                                                                     @Field("special_search") int special_search);
 
     @FormUrlEncoded
     @POST("dock/live/room/lists")
@@ -141,16 +142,17 @@ public interface ApiLiveService {
     @POST("dock/video/video/createFileUploadSignature")
     Observable<BasicResponse<VideoGetSignatureInfo>> getUploadVideoSignature(@Field("user_id") String user_id);
 
-    @GET("dock/video/video/release")
-    Observable<BasicResponse> UploadVideoInfo(@Query("user_id") String user_id,
-                                              @Query("title") String title,
-                                              @Query("content") String content,
-                                              @Query("cover_url") String cover_url,
-                                              @Query("address") String address,
-                                              @Query("lon") double lon,
-                                              @Query("lat") double lat,
-                                              @Query("file_id") String file_id,
-                                              @Query("video_url") String video_url);
+    @FormUrlEncoded
+    @POST("dock/video/video/release")
+    Observable<BasicResponse> UploadVideoInfo(@Field("user_id") String user_id,
+                                              @Field("title") String title,
+                                              @Field("content") String content,
+                                              @Field("cover_url") String cover_url,
+                                              @Field("address") String address,
+                                              @Field("lon") double lon,
+                                              @Field("lat") double lat,
+                                              @Field("file_id") String file_id,
+                                              @Field("video_url") String video_url);
 
     @FormUrlEncoded
     @POST("dock/video/follow/operate")

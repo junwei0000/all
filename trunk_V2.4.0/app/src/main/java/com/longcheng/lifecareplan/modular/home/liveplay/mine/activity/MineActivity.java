@@ -36,7 +36,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.CircleImageView;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -102,7 +102,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 selectPage();
                 break;
             case R.id.tv_showtitle:
-                showPopupWindow();
+                if (!TextUtils.isEmpty(video_user_id) && video_user_id.equals(UserUtils.getUserId(mContext)))
+                    showPopupWindow();
                 break;
             default:
                 break;
@@ -135,15 +136,16 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     }
 
 
+    String video_user_id;
+
     @Override
     public void initDataAfter() {
-        pageTopTvName.setText("我的");
-        String avatar = (String) SharedPreferencesHelper.get(mActivity, "avatar", "");
-        GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mActivity, avatar, ivHead);
+        video_user_id = getIntent().getStringExtra("video_user_id");
+
         position = 0;
         initFragment();
         setPageAdapter();
-        mPresent.getMineInfo();
+        mPresent.getMineInfo(video_user_id);
     }
 
     /**
@@ -154,12 +156,15 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
      */
     private void initFragment() {
         MyVideoFrag mMyVideoFrag = new MyVideoFrag();
+        mMyVideoFrag.setVideo_user_id(video_user_id);
         fragmentList.add(mMyVideoFrag);
 
         MyLiveFrag mMyLiveFrag = new MyLiveFrag();
+        mMyLiveFrag.setVideo_user_id(video_user_id);
         fragmentList.add(mMyLiveFrag);
 
         MyFouseFrag mMyFouseFrag = new MyFouseFrag();
+        mMyFouseFrag.setVideo_user_id(video_user_id);
         fragmentList.add(mMyFouseFrag);
     }
 
@@ -250,6 +255,10 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 tvLikenum.setText("" + userExtra.getLike_number());
                 tvSkbnum.setText("" + userExtra.getSkb());
                 tv_showtitle.setText("" + userExtra.getShow_title());
+
+                pageTopTvName.setText(userExtra.getUser_name());
+                String avatar = userExtra.getAvatar();
+                GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mActivity, avatar, ivHead);
             }
         }
     }

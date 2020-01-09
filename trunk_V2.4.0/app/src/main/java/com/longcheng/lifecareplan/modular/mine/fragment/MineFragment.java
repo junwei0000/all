@@ -275,7 +275,8 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     TextView mycenter_tv_jintie;
     @BindView(R.id.iv_banner)
     ImageView iv_banner;
-
+    @BindView(R.id.usercenter_relay_applybless)
+    RelativeLayout usercenter_relay_applybless;
     private String is_cho;
     private String user_id;
 
@@ -325,6 +326,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         usercenterRelayAddress.setOnClickListener(this);
         mycenterLayoutActivatenergy.setOnClickListener(this);
         mycenterLayoutHumanity.setOnClickListener(this);
+        usercenter_relay_applybless.setOnClickListener(this);
         mycenterLayoutallowancearrow.setOnClickListener(this);
         mycenterLayoutAllowance.setOnClickListener(this);
         usercenterRelayappexplanation.setOnClickListener(this);
@@ -424,6 +426,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (is_alipay_pool_user != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("水库", R.id.layout_pool, R.mipmap.my_pool_icon));
         }
+
+        FunctionGVlist1.add(new FunctionGVItemBean("申请祝福师", R.id.usercenter_relay_applybless, R.mipmap.my_zhufushi_icon));
+
         int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
         int isVolunteerIdentity = data.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
         String Voname = "";
@@ -532,6 +537,13 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
+                break;
+            case R.id.usercenter_relay_applybless://申请祝福师
+                intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", "" + data.getZhufu_url());
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
 
             case R.id.pagetop_layout_rigth://设置

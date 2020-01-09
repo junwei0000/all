@@ -819,6 +819,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+
         <activity
             android:name=".modular.home.liveplay.shortvideo.TCVideoPreviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -849,6 +850,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".modular.home.liveplay.mine.activity.MyVideoDetailNewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".modular.home.liveplay.activity.TestActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -6,11 +6,16 @@
     android:background="@color/black_live"
     tools:ignore="contentDescription">
 
-    <fr.castorflex.android.verticalviewpager.VerticalViewPager
-        android:id="@+id/vertical_view_pager"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
+        <fr.castorflex.android.verticalviewpager.VerticalViewPager
+            android:id="@+id/vertical_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <include layout="@layout/live_top" />
 

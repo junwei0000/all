@@ -14,6 +14,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import java.util.List;
 
@@ -28,12 +29,14 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
     Context context;
     Handler mHandler;
     int mHandlerID;
+    String video_user_id;
 
-    public MyFouseListAdapter(Context context, List<MVideoItemInfo> list, Handler mHandler, int mHandlerID) {
+    public MyFouseListAdapter(Context context, List<MVideoItemInfo> list, Handler mHandler, int mHandlerID, String video_user_id) {
         super(context, list);
         this.context = context;
         this.mHandler = mHandler;
         this.mHandlerID = mHandlerID;
+        this.video_user_id = video_user_id;
     }
 
     @Override
@@ -55,6 +58,13 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         mHolder.item_tv_num.setText("" + showtitle);
         String url = mHelpItemBean.getAvatar();
         GlideDownLoadImage.getInstance().loadCircleImage(context, url, mHolder.item_iv_thumb);
+
+        if (!TextUtils.isEmpty(video_user_id) && video_user_id.equals(UserUtils.getUserId(context))) {
+            mHolder.item_tv_follow.setVisibility(View.VISIBLE);
+        } else {
+            mHolder.item_tv_follow.setVisibility(View.GONE);
+        }
+
         mHolder.item_tv_follow.setTag(mHelpItemBean);
         mHolder.item_tv_follow.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,6 +14,24 @@ public class MineItemInfo implements Serializable {
     private String like_number;
     private String skb;
     private String show_title;
+    private String user_name;
+    private String avatar;
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public MineItemInfo getUserExtra() {
         return userExtra;

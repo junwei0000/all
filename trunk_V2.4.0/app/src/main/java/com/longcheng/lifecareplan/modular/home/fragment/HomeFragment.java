@@ -29,7 +29,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
-import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDetailActivity;
@@ -52,6 +51,7 @@ import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneMineActiv
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
 import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFriendsActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePlayListActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCVideoDetailActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
@@ -633,10 +633,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 if (isAdded()) {
                     if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
                         isFirstComIn = 2;
-                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
-                        startActivity(intent);
+//                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                        intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
+//                        startActivity(intent);
+                        TCVideoDetailActivity.skipVideoDetail(mActivity);
                     } else {
                         isFirstComIn = 1;
                     }

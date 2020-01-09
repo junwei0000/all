@@ -13,11 +13,11 @@ import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyVideoDetailNewActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.adapter.MyVideoListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
-import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCVideoDetailActivity;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -40,6 +40,11 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     LinearLayout layout_notlive;
     private int page = 0;
     private int pageSize = 15;
+    String video_user_id;
+
+    public void setVideo_user_id(String video_user_id) {
+        this.video_user_id = video_user_id;
+    }
 
     @Override
     public int bindLayout() {
@@ -65,9 +70,7 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mAllList != null && mAllList.size() > 0) {
-                    TCVideoDetailActivity.skipVideoDetail(mActivity, mAllList.get(position).getCover_url(),
-                            mAllList.get(position).getVideo_url(),
-                            mAllList.get(position).getShort_video_id());
+                    MyVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page);
 
                 }
             }
@@ -86,7 +89,7 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 
 
     private void getList(int page) {
-        mPresent.getMineVideoList(page, pageSize);
+        mPresent.getMineVideoList(video_user_id, page, pageSize);
     }
 
 

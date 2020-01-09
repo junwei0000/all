@@ -41,7 +41,11 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     LinearLayout layout_notlive;
     private int page = 0;
     private int pageSize = 10;
+    String video_user_id;
 
+    public void setVideo_user_id(String video_user_id) {
+        this.video_user_id = video_user_id;
+    }
 
     @Override
     public int bindLayout() {
@@ -77,7 +81,7 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 
 
     private void getList(int page) {
-        mPresent.getMineFollowList(page, pageSize);
+        mPresent.getMineFollowList(video_user_id,page, pageSize);
     }
 
 
@@ -136,7 +140,7 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 //            showNoMoreData(false);
                 }
                 if (mAdapter == null) {
-                    mAdapter = new MyFouseListAdapter(mContext, mList, mHandler, CANCELFOLLOW);
+                    mAdapter = new MyFouseListAdapter(mContext, mList, mHandler, CANCELFOLLOW,video_user_id);
                     dateListview.setAdapter(mAdapter);
                 } else {
                     mAdapter.reloadListView(mList, false);

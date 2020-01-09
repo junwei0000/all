@@ -24,6 +24,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCConstants;
@@ -32,6 +33,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -79,6 +81,8 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     ArrayList<VideoItemInfo> mAllList = new ArrayList<>();
     PlayListAdapter mAdapter;
 
+    int special_search = 1;// 默认1 0:普通搜索 1：特殊搜索
+
     @Override
     public void onClick(View v) {
         Intent intent;
@@ -102,6 +106,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             case R.id.layout_playlist_mine:
                 intent = new Intent(mActivity, MineActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("video_user_id", UserUtils.getUserId(mContext));
                 startActivity(intent);
                 break;
         }
@@ -157,8 +162,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                         startActivity(intent);
                     } else {
                         mCurrentPosition = position;
-//                        TCVideoDetailActivity.skipVideoDetail(mActivity, mAllList.get(position).getCover_url(),
-//                                mAllList.get(position).getVideo_url(), mAllList.get(position).getVideo_id());
                         TCVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page);
                     }
 
@@ -208,7 +211,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         if (liveSeleStatus) {
             mPresent.getLivePlayList(page, pageSize);
         } else {
-            mPresent.getVideoPlayList(page, pageSize);
+            mPresent.getVideoPlayList(special_search, page, pageSize);
         }
     }
 
@@ -343,6 +346,11 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
             ToastUtils.showToast("" + responseBean.getMsg());
         }
         RefreshComplete();
+    }
+
+    @Override
+    public void BackMyVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
+
     }
 
     @Override
