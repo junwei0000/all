@@ -194,6 +194,7 @@ public abstract class WebAct extends BaseActivity {
         mBridgeWebView.registerHandler("loveVideoShow", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
                 Intent intent = new Intent(mActivity, MineActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("video_user_id", data);

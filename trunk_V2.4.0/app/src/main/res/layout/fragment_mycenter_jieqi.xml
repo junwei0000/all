@@ -31,6 +31,29 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/mycenter_layout_loveVideo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_shipin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="康农视频"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/mycenter_layout_myka"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -99,26 +122,4 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/mycenter_layout_loveVideo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/homepage_icon_shipin" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padd_imgtextleftright"
-            android:text="爱心奉献"
-            android:textColor="@color/text_contents_color"
-            android:textSize="@dimen/text_zhu_size" />
-    </LinearLayout>
 </LinearLayout>
