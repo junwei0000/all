@@ -551,6 +551,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     String display_note;
 
     /**
+     * 显示依一次弹层
+     */
+    boolean showDialogStatus = true;
+
+    /**
      * 是否显示康农弹层
      */
     private void showCononDialog() {
@@ -652,20 +657,25 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     boolean notNoticeShowStatus = false;
 
     public void setAllContDialog() {
-        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn);
+        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn + "  showDialogStatus=" + showDialogStatus);
+        //更新或后天隐藏弹层
         if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
             dismissAllDialog();
             return;
         }
+        //显示视频和康农页面
         if (isFirstComIn == 0) {
             dismissAllDialog();
             setDaTing();
+            showDialogStatus = true;
             return;
         }
+        //非首页隐藏首页弹层
         if (BottomMenuActivity.position != BottomMenuActivity.tab_position_home) {
             dismissAllDialog();
             return;
         }
+        //开启通知弹层
         NotificationManagerCompat manager = NotificationManagerCompat.from(mActivity);
         boolean isOpened = manager.areNotificationsEnabled();
         Log.e("getIsOpenNotification", "isOpened=" + isOpened);
@@ -677,11 +687,15 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 return;
             }
         }
-        if (!TextUtils.isEmpty(display_note)) {
+        //只显示一次更新通知弹层
+        if (showDialogStatus && !TextUtils.isEmpty(display_note)) {
+            showDialogStatus = false;
             showUpdaDialog();
             return;
         }
-        if (layer != null && layer.size() > 0) {
+        //只显示一次康农弹层
+        if (showDialogStatus && layer != null && layer.size() > 0) {
+            showDialogStatus = false;
             showCononDialog();
             return;
         }
