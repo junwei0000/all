@@ -277,6 +277,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     ImageView iv_banner;
     @BindView(R.id.usercenter_relay_applybless)
     RelativeLayout usercenter_relay_applybless;
+    @BindView(R.id.usercenter_tv_applybless)
+    TextView usercenter_tv_applybless;
+
     private String is_cho;
     private String user_id;
 
@@ -427,8 +430,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             FunctionGVlist1.add(new FunctionGVItemBean("水库", R.id.layout_pool, R.mipmap.my_pool_icon));
         }
 
-        FunctionGVlist1.add(new FunctionGVItemBean("申请祝福师", R.id.usercenter_relay_applybless, R.mipmap.my_zhufushi_icon));
-
+        int isBlessedTeacher = data.getIsBlessedTeacher();
+        if (isBlessedTeacher == 0) {
+            FunctionGVlist1.add(new FunctionGVItemBean("申请祝福师", R.id.usercenter_relay_applybless, R.mipmap.my_zhufushi_icon));
+        } else {
+            FunctionGVlist1.add(new FunctionGVItemBean("我是祝福师", R.id.usercenter_relay_applybless, R.mipmap.my_zhufushi_icon));
+        }
         int isDoctorIdentity = data.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
         int isVolunteerIdentity = data.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是
         String Voname = "";
@@ -1803,6 +1810,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             usercenterTvVolunteer.setText("申请志愿者");
         } else {
             usercenterTvVolunteer.setText("我是志愿者");
+        }
+        int isBlessedTeacher = data.getIsBlessedTeacher();
+        if (isBlessedTeacher == 0) {
+            usercenter_tv_applybless.setText("申请祝福师");
+        } else {
+            usercenter_tv_applybless.setText("我是祝福师");
         }
         int is_alipay_pool_user = data.getIs_alipay_pool_user();
         if (is_alipay_pool_user != 0) {

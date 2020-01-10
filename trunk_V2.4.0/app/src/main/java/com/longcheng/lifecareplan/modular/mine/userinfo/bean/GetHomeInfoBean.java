@@ -171,7 +171,16 @@ public class GetHomeInfoBean implements Serializable {
     private String newyear_mybook_url;
 
     @SerializedName("apply_blessed_teacher_url")
-     private String zhufu_url;
+    private String zhufu_url;
+    private int isBlessedTeacher;//0:不是  1：是
+
+    public int getIsBlessedTeacher() {
+        return isBlessedTeacher;
+    }
+
+    public void setIsBlessedTeacher(int isBlessedTeacher) {
+        this.isBlessedTeacher = isBlessedTeacher;
+    }
 
     public String getZhufu_url() {
         return zhufu_url;
