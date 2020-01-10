@@ -69,6 +69,7 @@ import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
@@ -551,11 +552,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     String display_note;
 
     /**
-     * 显示依一次弹层
-     */
-    boolean showDialogStatus = true;
-
-    /**
      * 是否显示康农弹层
      */
     private void showCononDialog() {
@@ -651,13 +647,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }, 0);
     }
 
-    /**
-     * 没有通知时是否显示过通知弹层
-     */
-    boolean notNoticeShowStatus = false;
-
     public void setAllContDialog() {
-        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn + "  showDialogStatus=" + showDialogStatus);
+        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn);
         //更新或后天隐藏弹层
         if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
             dismissAllDialog();
@@ -667,7 +658,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (isFirstComIn == 0) {
             dismissAllDialog();
             setDaTing();
-            showDialogStatus = true;
             return;
         }
         //非首页隐藏首页弹层
@@ -675,27 +665,28 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             dismissAllDialog();
             return;
         }
+        boolean showDialogStatus = MySharedPreferences.getInstance().getshowDialogStatus();
         //开启通知弹层
         NotificationManagerCompat manager = NotificationManagerCompat.from(mActivity);
         boolean isOpened = manager.areNotificationsEnabled();
         Log.e("getIsOpenNotification", "isOpened=" + isOpened);
         if (!isOpened) {
-            if (!notNoticeShowStatus) {
+            if (showDialogStatus) {
+                MySharedPreferences.getInstance().showDialogStatus(false);
                 dismissAllDialog();
-                notNoticeShowStatus = true;
                 showOpenNotificationWindow();
                 return;
             }
         }
         //只显示一次更新通知弹层
         if (showDialogStatus && !TextUtils.isEmpty(display_note)) {
-            showDialogStatus = false;
+            MySharedPreferences.getInstance().showDialogStatus(false);
             showUpdaDialog();
             return;
         }
         //只显示一次康农弹层
         if (showDialogStatus && layer != null && layer.size() > 0) {
-            showDialogStatus = false;
+            MySharedPreferences.getInstance().showDialogStatus(false);
             showCononDialog();
             return;
         }

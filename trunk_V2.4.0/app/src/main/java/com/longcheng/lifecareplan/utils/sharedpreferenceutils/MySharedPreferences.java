@@ -34,6 +34,12 @@ public class MySharedPreferences {
      */
     private static final String ISSHOWRQZ = "isLShowRQZ";
 
+
+    /**
+     * 首页弹层只显示一次
+     */
+    private static final String showDialogStatus = "showDialogStatus";
+
     public static MySharedPreferences getInstance() {
         if (instance == null) {
             synchronized (MySharedPreferences.class) {
@@ -47,6 +53,14 @@ public class MySharedPreferences {
 
     private MySharedPreferences() {
         sharedPreferences = ExampleApplication.getContext().getSharedPreferences(NAME, Context.MODE_PRIVATE);
+    }
+
+    public void showDialogStatus(boolean isShowRQZ) {
+        sharedPreferences.edit().putBoolean(showDialogStatus, isShowRQZ).commit();
+    }
+
+    public boolean getshowDialogStatus() {
+        return sharedPreferences.getBoolean(showDialogStatus, true);
     }
 
     public void saveIsShowRQZ(boolean isShowRQZ) {
