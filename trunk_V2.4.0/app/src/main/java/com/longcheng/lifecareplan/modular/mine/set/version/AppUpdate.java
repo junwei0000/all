@@ -80,7 +80,7 @@ public class AppUpdate {
             Log.e("appVersion", "appVersion=" + appVersion);
             appVersion = appVersion.replace(".", "_");
         }
-        Log.e("appVersion", "appVersion new=" + appVersion);
+        Log.e("showUpdaDialog", "appVersion new=" + appVersion);
         Observable<VersionDataBean> observable = Api.getInstance().service.updateVersion(appVersion);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -95,12 +95,14 @@ public class AppUpdate {
                                 String url = mVersionAfterBean.getUrl();
                                 String version = mVersionAfterBean.getVersion();
                                 level = mVersionAfterBean.getLevel();
+                                Log.e("showUpdaDialog", "level=" + level);
                                 if (level.equals("0")) {
                                     BottomMenuActivity.updatedialogstatus = false;
                                     if (TextUtils.isEmpty(updateDirection)) {
                                         ToastUtils.showToast("当前已为最新版本");
                                     }
                                 } else {// 更新
+                                    BottomMenuActivity.updatedialogstatus = true;
                                     dialogstatus = true;
                                     Intent intents = new Intent();
                                     intents.setAction(ConstantManager.MAINMENU_ACTION);

@@ -41,6 +41,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
@@ -839,6 +840,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             date_listview = (PullToRefreshListView) selectDialog.findViewById(R.id.date_listview);
             et_content = (SupplierEditText) selectDialog.findViewById(R.id.et_content);
             TextView tv_send = (TextView) selectDialog.findViewById(R.id.tv_send);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,tv_send,R.color.red);
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

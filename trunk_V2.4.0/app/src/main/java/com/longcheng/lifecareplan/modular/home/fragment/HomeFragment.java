@@ -648,14 +648,14 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
     public void setAllContDialog() {
-        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn);
+        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn+" BottomMenuActivity.updatedialogstatus="+BottomMenuActivity.updatedialogstatus);
         //更新或后天隐藏弹层
         if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
             dismissAllDialog();
             return;
         }
         //显示视频和康农页面
-        if (isFirstComIn == 0) {
+        if (!BottomMenuActivity.updatedialogstatus && isFirstComIn == 0) {
             dismissAllDialog();
             setDaTing();
             return;
