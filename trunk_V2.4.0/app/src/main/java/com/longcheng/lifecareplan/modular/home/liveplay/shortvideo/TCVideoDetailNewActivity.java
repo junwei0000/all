@@ -62,7 +62,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
-import com.longcheng.lifecareplan.widget.Immersive;
+import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
 import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.rtmp.ITXVodPlayListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -209,7 +209,7 @@ public class TCVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
 
     @Override
     public void initView(View view) {
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), false);
+        ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
     }
 
     @Override

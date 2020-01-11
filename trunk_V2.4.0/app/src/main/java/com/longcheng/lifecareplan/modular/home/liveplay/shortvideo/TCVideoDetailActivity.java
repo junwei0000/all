@@ -62,7 +62,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
-import com.longcheng.lifecareplan.widget.Immersive;
+import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
 import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.rtmp.ITXVodPlayListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -208,7 +208,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
 
     @Override
     public void initView(View view) {
-        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), false);
+        ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
     }
 
     @Override
@@ -829,7 +829,7 @@ public class TCVideoDetailActivity extends BaseActivityMVP<LivePushContract.View
             date_listview = (PullToRefreshListView) selectDialog.findViewById(R.id.date_listview);
             et_content = (SupplierEditText) selectDialog.findViewById(R.id.et_content);
             TextView tv_send = (TextView) selectDialog.findViewById(R.id.tv_send);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,tv_send,R.color.red);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tv_send, R.color.red);
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

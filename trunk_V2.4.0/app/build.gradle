@@ -160,6 +160,10 @@ dependencies {
 
     compile 'com.github.castorflex.verticalviewpager:library:19.0.1'
 
+    // 基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+
     implementation project(':pulltorefreshlibrary')
     implementation project(':calendarview')
     implementation project(':videouploader')

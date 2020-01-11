@@ -53,6 +53,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
+import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.tencent.rtmp.ITXLivePushListener;
@@ -177,7 +178,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void initView(View view) {
-//        Immersive.setOrChangeTranslucentColorTransparent(mActivity, toolbar, getResources().getColor(R.color.transparent), false);
+        ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
     }
 
     @Override
