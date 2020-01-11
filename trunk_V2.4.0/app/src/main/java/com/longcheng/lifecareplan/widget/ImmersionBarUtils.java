@@ -16,7 +16,7 @@ import com.longcheng.lifecareplan.R;
  * 意图：沉浸式效果
  */
 
-public class ImmersionBarUtils{
+public class ImmersionBarUtils {
 
     private void init(Activity activity, Toolbar toolbar) {
         ImmersionBar.with(activity)
@@ -70,15 +70,22 @@ public class ImmersionBarUtils{
     /**
      * [沉浸状态栏]
      */
-    public static void steepStatusBar(Activity activity,Toolbar toolbar) {
+    public static void steepStatusBar(Activity activity, Toolbar toolbar) {
         ImmersionBar.with(activity)
                 .statusBarView(toolbar)//解决状态栏和布局重叠问题，任选其一
-//                .navigationBarColor(R.color.black)//导航栏颜色，不写默认黑色
-//                .fitsSystemWindows(true)
-//                .fullScreen(true)//有导航栏的情况下，activity全屏显示，也就是activity最下面被导航栏覆盖，不写默认非全屏
+                .statusBarDarkFont(false)
                 .keyboardEnable(true)  //解决软键盘与底部输入框冲突问题，默认为false，还有一个重载方法，可以指定软键盘mode
                 .init();
     }
 
-
+    /**
+     * [沉浸状态栏]
+     */
+    public static void steepStatusBarDark(Activity activity, Toolbar toolbar) {
+        ImmersionBar.with(activity)
+                .statusBarView(toolbar)//解决状态栏和布局重叠问题，任选其一
+                .statusBarDarkFont(true, 0.2f) //自动状态栏字体变色，必须指定状态栏颜色才可以自动变色哦
+                .keyboardEnable(true)  //解决软键盘与底部输入框冲突问题，默认为false，还有一个重载方法，可以指定软键盘mode
+                .init();
+    }
 }

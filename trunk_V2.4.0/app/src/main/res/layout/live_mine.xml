@@ -1,98 +1,120 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/black_live"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <include layout="@layout/page_top" />
-
-    <include layout="@layout/line" />
+    <include layout="@layout/live_page_top" />
 
     <LinearLayout
-        style="@style/view_paddtopbottom"
-        android:layout_width="match_parent"
+        style="@style/view_paddlefgtright"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal|bottom"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.longcheng.lifecareplan.utils.myview.CircleImageView
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/dp80"
+                android:layout_height="@dimen/dp80"
+                android:layout_marginRight="@dimen/dp10"
+                android:src="@mipmap/user_default_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="这里是用户名字"
+                        android:padding="@dimen/padd_imgtextleftright"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="@dimen/text_max_size" />
+
+                    <TextView
+                        android:id="@+id/tv_follow"
+                        style="@style/view_paddlefgtright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_bg_red"
+                        android:paddingTop="@dimen/dp4"
+                        android:paddingBottom="@dimen/dp4"
+                        android:singleLine="true"
+                        android:text="取消关注"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_showtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="您还没有填写个人简介，请点击添加"
+                    android:padding="@dimen/padd_imgtextleftright"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/text_dp12_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_likenum"
+                style="@style/btn_padd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/text_biaoTi_color"
-                android:textSize="@dimen/text_contents_size" />
+                android:background="@drawable/corners_bg_blackhumanity"
+                android:text="获赞 0" />
 
             <TextView
+                android:id="@+id/tv_mylike"
+                style="@style/btn_padd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="获得点赞"
-                android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_min_size" />
-        </LinearLayout>
-
-        <com.longcheng.lifecareplan.utils.myview.CircleImageView
-            android:id="@+id/iv_head"
-            android:layout_width="@dimen/dp72"
-            android:layout_height="@dimen/dp72"
-            android:layout_marginLeft="@dimen/dp35"
-            android:layout_marginRight="@dimen/dp35"
-            android:src="@mipmap/user_default_icon" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/corners_bg_blackhumanity"
+                android:text="关注 0" />
 
             <TextView
                 android:id="@+id/tv_skbnum"
+                style="@style/btn_padd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/text_biaoTi_color"
-                android:textSize="@dimen/text_contents_size" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="送出寿康宝"
-                android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_min_size" />
+                android:background="@drawable/corners_bg_blackhumanity"
+                android:text="寿康宝 0" />
         </LinearLayout>
+
+
+        <include layout="@layout/line" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_showtitle"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp20"
-        android:background="@drawable/corners_bg_black"
-        android:gravity="center"
-        android:hint="走心的自我介绍获得更多关注，点击添加"
-        android:padding="@dimen/padd_imgtextleftright"
-        android:singleLine="true"
-        android:textColor="@color/text_noclick_color"
-        android:textColorHint="@color/text_noclick_color"
-        android:textSize="@dimen/text_dp12_size" />
-
-    <include layout="@layout/line" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="horizontal">
 
         <TextView
@@ -104,7 +126,7 @@
             android:paddingTop="@dimen/jianJu"
             android:paddingBottom="@dimen/jianJu"
             android:text="视频"
-            android:textColor="@color/red"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_contents_size" />
 
         <TextView
@@ -114,29 +136,27 @@
             android:layout_weight="1.0"
             android:gravity="center"
             android:text="直播"
-            android:textColor="@color/text_contents_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_contents_size" />
 
         <TextView
-            android:id="@+id/tv_mylike"
+            android:id="@+id/tv_mylove"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:gravity="center"
-            android:text="关注"
-            android:textColor="@color/text_contents_color"
+            android:text="喜欢"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_contents_size" />
 
     </LinearLayout>
-
-    <include layout="@layout/line" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/page_bg"
+        android:background="@color/black_live"
         android:fadingEdge="none"
         android:flipInterval="30"
         android:persistentDrawingCache="animation" />

@@ -1,4 +1,4 @@
-package com.longcheng.lifecareplan.modular.home.liveplay.mine.activity;
+package com.longcheng.lifecareplan.modular.home.liveplay.framgent;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,17 +18,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyFouseFrag;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyLiveFrag;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyVideoFrag;
-import com.longcheng.lifecareplan.modular.mine.myorder.activity.AllFragment;
-import com.longcheng.lifecareplan.modular.mine.myorder.activity.ComingFragment;
-import com.longcheng.lifecareplan.modular.mine.myorder.activity.PendingFragment;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
@@ -47,8 +45,7 @@ import butterknife.BindView;
 /**
  * 我的
  */
-public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterImp<MyContract.View>> implements MyContract.View {
-
+public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterImp<MyContract.View>> implements MyContract.View {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.layout_left)
@@ -75,16 +72,29 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     TextView tvFollow;
     @BindView(R.id.tv_mylove)
     TextView tvMylove;
-
     private List<Fragment> fragmentList = new ArrayList<>();
     private int position;
 
+
     @Override
-    public void onClick(View v) {
+    public int bindLayout() {
+        return R.layout.live_mine;
+    }
+
+
+    @Override
+    public void initView(View view) {
+        ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
+        pagetopLayoutLeft.setVisibility(View.INVISIBLE);
+        tvMyvideo.setOnClickListener(this);
+        tvMylive.setOnClickListener(this);
+        tvMylove.setOnClickListener(this);
+        tv_showtitle.setOnClickListener(this);
+    }
+
+    @Override
+    public void widgetClick(View v) {
         switch (v.getId()) {
-            case R.id.layout_left:
-                back();
-                break;
             case R.id.tv_myvideo:
                 position = 0;
                 selectPage();
@@ -106,42 +116,18 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         }
     }
 
-    @Override
-    public View bindView() {
-        return null;
-    }
-
-    @Override
-    public int bindLayout() {
-        return R.layout.live_mine;
-    }
-
-
-    @Override
-    public void initView(View view) {
-        ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
-    }
-
-
-    public void setListener() {
-        pagetopLayoutLeft.setOnClickListener(this);
-        tvMyvideo.setOnClickListener(this);
-        tvMylive.setOnClickListener(this);
-        tvMylove.setOnClickListener(this);
-        tv_showtitle.setOnClickListener(this);
-    }
-
 
     String video_user_id;
 
     @Override
-    public void initDataAfter() {
-        video_user_id = getIntent().getStringExtra("video_user_id");
-
-        position = 0;
-        initFragment();
-        setPageAdapter();
-        mPresent.getMineInfo(video_user_id);
+    public void doBusiness(Context mContext) {
+        if (isAdded()) {
+            video_user_id = UserUtils.getUserId(mContext);
+            position = 0;
+            initFragment();
+            setPageAdapter();
+            mPresent.getMineInfo(video_user_id);
+        }
     }
 
     /**
@@ -151,6 +137,7 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
      * @author MarkShuai
      */
     private void initFragment() {
+        fragmentList.clear();
         MyVideoFrag mMyVideoFrag = new MyVideoFrag();
         mMyVideoFrag.setVideo_user_id(video_user_id);
         fragmentList.add(mMyVideoFrag);
@@ -173,19 +160,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     FragmentAdapter tabPageAdapter;
 
     private void setPageAdapter() {
-        tabPageAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
-        tabPageAdapter.setOnReloadListener(new FragmentAdapter.OnReloadListener() {
-            @Override
-            public void onReload() {
-                fragmentList = null;
-                List<Fragment> list = new ArrayList<Fragment>();
-                list.add(new AllFragment());
-                list.add(new ComingFragment());
-                list.add(new PendingFragment());
-                tabPageAdapter.setPagerItems(list);
-                Log.e("onReload", "onReload");
-            }
-        });
+        Log.e("onPageSelected", "fragmentList=" + fragmentList.size());
+        tabPageAdapter = new FragmentAdapter(getChildFragmentManager(), fragmentList);
         vPager.setAdapter(tabPageAdapter);
         selectPage();
         vPager.setOffscreenPageLimit(3);
@@ -197,7 +173,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
 
             @Override
             public void onPageSelected(int position_) {
-                position = position_;
+                Log.e("onPageSelected", "position_=" + position_);
+                position = position_ % 3;
                 selectPage();
             }
 
@@ -251,7 +228,6 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 tvLikenum.setText("获赞 " + userExtra.getLike_number());
                 tvSkbnum.setText("寿康宝 " + userExtra.getSkb());
                 tv_showtitle.setText("" + userExtra.getShow_title());
-
                 tvName.setText(userExtra.getUser_name());
                 String avatar = userExtra.getAvatar();
                 GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mActivity, avatar, ivHead);
@@ -298,7 +274,7 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 }
             });
             selectDialog.show();
-            WindowManager m = getWindowManager();
+            WindowManager m = getActivity().getWindowManager();
             Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
             WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
             p.width = d.getWidth() * 3 / 4;
@@ -324,17 +300,4 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         et_content.setText("");
     }
 
-    private void back() {
-        doFinish();
-    }
-
-    /**
-     * 重写onkeydown 用于监听返回键
-     */
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            back();
-        }
-        return false;
-    }
 }

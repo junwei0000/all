@@ -25,7 +25,7 @@ public class TCVideoEditerMgr {
         ContentResolver contentResolver = context.getApplicationContext().getContentResolver();
         Cursor cursor = contentResolver.query(
                 MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                mediaColumns, null, null, null);
+                mediaColumns, null, null, MediaStore.Video.VideoColumns._ID + " desc");
 
         if (cursor == null) return videos;
 

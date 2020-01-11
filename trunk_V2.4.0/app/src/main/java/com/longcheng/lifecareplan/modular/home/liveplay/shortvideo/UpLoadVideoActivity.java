@@ -19,7 +19,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
-import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePlayListActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveDetailInfo;
@@ -193,8 +193,9 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
     @Override
     public void upLoadVideoSuccess(BasicResponse responseBean) {
         ToastUtils.showToast("发布成功");
-        Intent intent = new Intent(mActivity, LivePlayListActivity.class);
+        Intent intent = new Intent(mActivity, VideoMenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("skipType", "click");
         startActivity(intent);
         doFinish();
     }

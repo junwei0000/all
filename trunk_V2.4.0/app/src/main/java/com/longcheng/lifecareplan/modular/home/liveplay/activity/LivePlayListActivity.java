@@ -23,17 +23,14 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
-import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCConstants;
-import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCVideoDetailNewActivity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -66,8 +63,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     TextView tvPlaylistLiveLine;
     @BindView(R.id.layout_playlist_live)
     LinearLayout layoutPlaylistLive;
-    @BindView(R.id.layout_playlist_mine)
-    LinearLayout layoutPlaylistMine;
     @BindView(R.id.pagetop_layout_rigth)
     LinearLayout pagetopLayoutRigth;
 
@@ -103,12 +98,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 liveSeleStatus = true;
                 changeData();
                 break;
-            case R.id.layout_playlist_mine:
-                intent = new Intent(mActivity, MineActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("video_user_id", UserUtils.getUserId(mContext));
-                startActivity(intent);
-                break;
         }
     }
 
@@ -136,7 +125,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
         pagetopLayoutRigth.setOnClickListener(this);
         layoutPlaylistVideo.setOnClickListener(this);
         layoutPlaylistLive.setOnClickListener(this);
-        layoutPlaylistMine.setOnClickListener(this);
         playView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<GridView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
@@ -162,7 +150,6 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                         startActivity(intent);
                     } else {
                         mCurrentPosition = position;
-                        TCVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page);
                     }
 
                 }

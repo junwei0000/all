@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCConstants;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.UpLoadVideoActivity;
 import com.longcheng.lifecareplan.utils.FileCache;
@@ -108,8 +109,7 @@ public class TCVideoJoinChooseActivity extends BaseActivity implements View.OnCl
     public void setListener() {
         pagetopLayoutLeft.setOnClickListener(this);
         mBtnOk.setOnClickListener(this);
-
-
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, mBtnOk, R.color.red);
     }
 
     @Override

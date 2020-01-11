@@ -50,8 +50,7 @@ import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneJoinListA
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneMineActivity;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
 import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFriendsActivity;
-import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePlayListActivity;
-import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCVideoDetailActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
@@ -338,10 +337,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                         }
                     } else if (sort == 5) {
                         if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
-//                            mPresent.getQuickTeamUrl();
                             //直播
-                            intent = new Intent(mActivity, LivePlayListActivity.class);
+                            intent = new Intent(mActivity, VideoMenuActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent.putExtra("skipType", "click");
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
@@ -634,11 +633,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                 if (isAdded()) {
                     if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
                         isFirstComIn = 2;
-//                        Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                        intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
-//                        startActivity(intent);
-                        TCVideoDetailActivity.skipVideoDetail(mActivity);
+                        Intent intent = new Intent(mActivity, VideoMenuActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("skipType", "auto");
+                        startActivity(intent);
                     } else {
                         isFirstComIn = 1;
                     }
@@ -648,7 +646,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
     public void setAllContDialog() {
-        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn+" BottomMenuActivity.updatedialogstatus="+BottomMenuActivity.updatedialogstatus);
+        Log.e("showUpdaDialog", "isFirstComIn=" + isFirstComIn + " BottomMenuActivity.updatedialogstatus=" + BottomMenuActivity.updatedialogstatus);
         //更新或后天隐藏弹层
         if (BottomMenuActivity.updatedialogstatus || PriceUtils.getInstance().mbackgroundStatus) {
             dismissAllDialog();

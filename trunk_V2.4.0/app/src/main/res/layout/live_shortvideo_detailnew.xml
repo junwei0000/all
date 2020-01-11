@@ -17,5 +17,5 @@
             android:layout_height="wrap_content" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <include layout="@layout/live_top" />
+    <include layout="@layout/live_page_top" />
 </RelativeLayout>

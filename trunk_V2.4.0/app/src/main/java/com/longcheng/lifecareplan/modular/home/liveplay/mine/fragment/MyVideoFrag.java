@@ -53,6 +53,7 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 
     @Override
     public void initView(View view) {
+        layout_notlive.setBackgroundColor(mActivity.getResources().getColor(R.color.black_live));
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<GridView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {

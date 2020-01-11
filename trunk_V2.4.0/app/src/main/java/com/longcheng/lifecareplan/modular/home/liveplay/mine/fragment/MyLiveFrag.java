@@ -55,6 +55,7 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
 
     @Override
     public void initView(View view) {
+        layout_notlive.setBackgroundColor(mActivity.getResources().getColor(R.color.black_live));
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {

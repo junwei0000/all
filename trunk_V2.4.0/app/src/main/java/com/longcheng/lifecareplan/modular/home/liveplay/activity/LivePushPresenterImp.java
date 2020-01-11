@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.activity;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.api.Api;
@@ -37,8 +38,8 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     private LivePushContract.View mView;
     private LivePushContract.Model mModel;
 
-    public LivePushPresenterImp(RxAppCompatActivity mContext, LivePushContract.View mView) {
-        this.mContext = mContext;
+    public LivePushPresenterImp(Context mContext, LivePushContract.View mView) {
+        this.mContext = (RxAppCompatActivity) mContext;
         this.mView = mView;
     }
 
