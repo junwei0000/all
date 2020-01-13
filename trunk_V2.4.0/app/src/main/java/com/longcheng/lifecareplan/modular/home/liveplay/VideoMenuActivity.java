@@ -3,9 +3,7 @@ package com.longcheng.lifecareplan.modular.home.liveplay;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,7 +14,7 @@ import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.home.liveplay.framgent.CodeFramgemt;
+import com.longcheng.lifecareplan.modular.home.liveplay.framgent.FollowFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.MineFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.VideoFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
@@ -46,9 +44,8 @@ public class VideoMenuActivity extends BaseActivity {
     public static int position;
 
     public static final int tab_position_home = 0;
-    public static final int tab_position_Scancode = 1;
-    public static final int tab_position_Follow = 2;
-    public static final int tab_position_mine = 3;
+    public static final int tab_position_Follow = 1;
+    public static final int tab_position_mine = 2;
 
     public static Activity mMenuContext;
 
@@ -91,21 +88,24 @@ public class VideoMenuActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bottom_tv_home:
-                selectPage(tab_position_home);
-                break;
             case R.id.bottom_tv_scancode:
-                selectPage(tab_position_Scancode);
+
                 break;
             case R.id.bottom_layout_publish:
                 Intent intent = new Intent(mActivity, ShortVideoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 break;
+            case R.id.bottom_tv_home:
+                clickStatus = true;
+                selectPage(tab_position_home);
+                break;
             case R.id.bottom_tv_follow:
+                clickStatus = true;
                 selectPage(tab_position_Follow);
                 break;
             case R.id.bottom_tv_mine:
+                clickStatus = true;
                 selectPage(tab_position_mine);
                 break;
         }
@@ -113,13 +113,10 @@ public class VideoMenuActivity extends BaseActivity {
 
     private void setBottomBtn() {
         bottomTvHome.setTextColor(getResources().getColor(R.color.text_noclick_color));
-        bottomTvScancode.setTextColor(getResources().getColor(R.color.text_noclick_color));
         bottomTvFollow.setTextColor(getResources().getColor(R.color.text_noclick_color));
         bottomTvMine.setTextColor(getResources().getColor(R.color.text_noclick_color));
         if (position == tab_position_home) {
             bottomTvHome.setTextColor(getResources().getColor(R.color.white));
-        } else if (position == tab_position_Scancode) {
-            bottomTvScancode.setTextColor(getResources().getColor(R.color.white));
         } else if (position == tab_position_Follow) {
             bottomTvFollow.setTextColor(getResources().getColor(R.color.white));
         } else if (position == tab_position_mine) {
@@ -128,20 +125,14 @@ public class VideoMenuActivity extends BaseActivity {
     }
 
     /**
-     * @param
      * @name 初始化Fragment
-     * @time 2017/11/24 10:23
-     * @author MarkShuai
      */
     private void initFragment() {
         VideoFramgent videoFramgent = new VideoFramgent();
         fragmentList.add(videoFramgent);
 
-        CodeFramgemt codeFramgemt = new CodeFramgemt();
-        fragmentList.add(codeFramgemt);
-
-        VideoFramgent exChangeFragment = new VideoFramgent();
-        fragmentList.add(exChangeFragment);
+        FollowFramgent followFramgent = new FollowFramgent();
+        fragmentList.add(followFramgent);
 
         MineFramgemt mineFragment = new MineFramgemt();
         fragmentList.add(mineFragment);
@@ -158,29 +149,13 @@ public class VideoMenuActivity extends BaseActivity {
         TabPageAdapter tabPageAdapter = new TabPageAdapter(getSupportFragmentManager(), fragmentList);
         vpBtMenu.setAdapter(tabPageAdapter);
         vpBtMenu.setOffscreenPageLimit(0);
-//        mViewPager.addOnPageChangeListener(mOnPageChange);
         /**
          * 设置是否可以滑动
          */
         vpBtMenu.setScroll(false);
     }
 
-    ViewPager.OnPageChangeListener mOnPageChange = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            Log.e("BottomMenuActivity", "onPageScrolled=" + position);
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            selectPage(position);
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
+    boolean clickStatus = false;
 
     /**
      * @param position
@@ -190,10 +165,26 @@ public class VideoMenuActivity extends BaseActivity {
         // 切换页面
         vpBtMenu.setCurrentItem(position, false);
         setBottomBtn();
+        if (clickStatus) {
+            clickStatus = false;
+            if (position == tab_position_home) {
+                ((VideoFramgent) fragmentList.get(tab_position_home)).onResumeVideo();
+            } else {
+                ((VideoFramgent) fragmentList.get(tab_position_home)).onPauseVideo();
+            }
+            if (position == tab_position_Follow) {
+                ((FollowFramgent) fragmentList.get(tab_position_Follow)).onResumeVideo();
+            } else {
+                ((FollowFramgent) fragmentList.get(tab_position_Follow)).onPauseVideo();
+            }
+            if (position == tab_position_mine) {
+                ((MineFramgemt) fragmentList.get(tab_position_mine)).getMineInfo();
+            }
+        }
     }
 
-    private void back() {
-        if(!TextUtils.isEmpty(skipType)&&skipType.equals("auto")){
+    public void back() {
+        if (!TextUtils.isEmpty(skipType) && skipType.equals("auto")) {
             Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
@@ -202,9 +193,6 @@ public class VideoMenuActivity extends BaseActivity {
         doFinish();
     }
 
-    /**
-     * 重写onkeydown 用于监听返回键
-     */
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             back();

@@ -81,7 +81,7 @@ import fr.castorflex.android.verticalviewpager.VerticalViewPager;
 /**
  *
  */
-public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View, ITXVodPlayListener {
+public class FollowFramgent extends BaseFragmentMVP<LivePushContract.View, LivePushPresenterImp<LivePushContract.View>> implements LivePushContract.View, ITXVodPlayListener {
     private String TAG = "TCVodPlayerActivity";
     @BindView(R.id.vertical_view_pager)
     VerticalViewPager mVerticalViewPager;
@@ -89,9 +89,6 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     Toolbar toolbar;
     @BindView(R.id.layout_left)
     LinearLayout layoutLeft;
-    @BindView(R.id.layout_rigth)
-    LinearLayout layout_rigth;
-
     @BindView(R.id.tv_playlist_video)
     TextView tvPlaylistVideo;
     @BindView(R.id.tv_playlist_video_line)
@@ -132,10 +129,6 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     private int mCurrentPosition;
 
     private String video_user_id;
-    /**
-     * 是否选中直播
-     */
-    private boolean liveSeleStatus = false;
 
     class PlayerInfo {
         public TXVodPlayer txVodPlayer;
@@ -226,23 +219,12 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("video_user_id", video_user_id);
             startActivity(intent);
-        } else if (id == R.id.layout_playlist_video) {
-            liveSeleStatus = false;
-            changeData();
-        } else if (id == R.id.layout_playlist_live) {
-            liveSeleStatus = true;
-            changeData();
         }
     }
 
     @Override
     public void doBusiness(Context mContext) {
         layoutLeft.setOnClickListener(this);
-        layout_rigth.setVisibility(View.VISIBLE);
-        layoutPlaylistVideo.setVisibility(View.VISIBLE);
-        layoutPlaylistLive.setVisibility(View.VISIBLE);
-        layoutPlaylistVideo.setOnClickListener(this);
-        layoutPlaylistLive.setOnClickListener(this);
         notdata_iv_img.setBackgroundResource(R.mipmap.live_quexing);
         layout_notlive.setBackgroundColor(mActivity.getResources().getColor(R.color.black_live));
         mSwipeRefreshLayout.setProgressViewOffset(false, 150, 220);
@@ -320,22 +302,6 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 }
             }
         });
-        liveSeleStatus = false;
-        changeData();
-    }
-
-    private void changeData() {
-        if (liveSeleStatus) {
-            tvPlaylistVideoLine.setVisibility(View.INVISIBLE);
-            tvPlaylistLiveLine.setVisibility(View.VISIBLE);
-            tvPlaylistLiveLine.setBackgroundResource(R.drawable.corners_bg_write);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistLiveLine, R.color.white);
-        } else {
-            tvPlaylistVideoLine.setVisibility(View.VISIBLE);
-            tvPlaylistLiveLine.setVisibility(View.INVISIBLE);
-            tvPlaylistVideoLine.setBackgroundResource(R.drawable.corners_bg_write);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistVideoLine, R.color.white);
-        }
         getList(1);
     }
 
@@ -357,7 +323,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             TXVodPlayer vodPlayer = new TXVodPlayer(mContext);
             vodPlayer.setRenderRotation(TXLiveConstants.RENDER_ROTATION_PORTRAIT);
             vodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION);
-            vodPlayer.setVodListener(VideoFramgent.this);
+            vodPlayer.setVodListener(FollowFramgent.this);
             TXVodPlayConfig config = new TXVodPlayConfig();
             config.setCacheFolderPath(Environment.getExternalStorageDirectory().getPath() + "/longcheng_txcache");
             config.setMaxCacheItems(5);
@@ -447,12 +413,12 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             frag_layout_dianzan.setTag(mMVideoItemInfo);
             frag_layout_comment.setTag(mMVideoItemInfo);
             frag_layout_share.setTag(mMVideoItemInfo);
-            record_preview.setOnClickListener(VideoFramgent.this);
-            frag_iv_dashuang.setOnClickListener(VideoFramgent.this);
-            frag_layout_dianzan.setOnClickListener(VideoFramgent.this);
-            frag_layout_comment.setOnClickListener(VideoFramgent.this);
-            frag_layout_share.setOnClickListener(VideoFramgent.this);
-            iv_avatar.setOnClickListener(VideoFramgent.this);
+            record_preview.setOnClickListener(FollowFramgent.this);
+            frag_iv_dashuang.setOnClickListener(FollowFramgent.this);
+            frag_layout_dianzan.setOnClickListener(FollowFramgent.this);
+            frag_layout_comment.setOnClickListener(FollowFramgent.this);
+            frag_layout_share.setOnClickListener(FollowFramgent.this);
+            iv_avatar.setOnClickListener(FollowFramgent.this);
 
             tv_name.setText("" + mMVideoItemInfo.getUser_name());
             tv_cont.setText("" + mMVideoItemInfo.getContent());
@@ -508,10 +474,12 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     private void restartPlay() {
-        if (mTXVodPlayer != null) {
-            mTXVodPlayer.resume();
-            record_preview.setImageResource(R.mipmap.record_pause);
-            record_preview.setImageResource(0);
+        if (VideoMenuActivity.position == VideoMenuActivity.tab_position_Follow) {
+            if (mTXVodPlayer != null) {
+                mTXVodPlayer.resume();
+                record_preview.setImageResource(R.mipmap.record_pause);
+                record_preview.setImageResource(0);
+            }
         }
     }
 
@@ -522,7 +490,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     public void onResumeVideo() {
-        if (VideoMenuActivity.position == VideoMenuActivity.tab_position_home) {
+        if (VideoMenuActivity.position == VideoMenuActivity.tab_position_Follow) {
             if (mTXCloudVideoView != null) {
                 mTXCloudVideoView.onResume();
             }
@@ -699,7 +667,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 mAllList.clear();
             }
             if (size > 0) {
-                mAllList.addAll(mList);
+//                mAllList.addAll(mList);
             }
             page = backPage;
             if (backPage == 1) {

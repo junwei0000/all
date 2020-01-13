@@ -2,6 +2,8 @@ package com.longcheng.lifecareplan.modular.home.liveplay.mine.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -24,8 +26,8 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
-import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyFouseFrag;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyLiveFrag;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyLoveFrag;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyVideoFrag;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.AllFragment;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.ComingFragment;
@@ -65,8 +67,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     TextView tvMyvideo;
     @BindView(R.id.tv_mylive)
     TextView tvMylive;
-    @BindView(R.id.tv_mylike)
-    TextView tvMylike;
+    @BindView(R.id.tv_myfollow)
+    TextView tv_myfollow;
     @BindView(R.id.vPager)
     ViewPager vPager;
     @BindView(R.id.tv_name)
@@ -79,11 +81,20 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     private List<Fragment> fragmentList = new ArrayList<>();
     private int position;
 
+    private String name = "";
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_left:
                 back();
+                break;
+            case R.id.tv_myfollow:
+                Intent intent = new Intent(mActivity, MyFouseActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("video_user_id", video_user_id);
+                intent.putExtra("user_name", name);
+                startActivity(intent);
                 break;
             case R.id.tv_myvideo:
                 position = 0;
@@ -129,6 +140,7 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         tvMylive.setOnClickListener(this);
         tvMylove.setOnClickListener(this);
         tv_showtitle.setOnClickListener(this);
+        tv_myfollow.setOnClickListener(this);
     }
 
 
@@ -159,9 +171,9 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         mMyLiveFrag.setVideo_user_id(video_user_id);
         fragmentList.add(mMyLiveFrag);
 
-        MyFouseFrag mMyFouseFrag = new MyFouseFrag();
-        mMyFouseFrag.setVideo_user_id(video_user_id);
-        fragmentList.add(mMyFouseFrag);
+        MyLoveFrag myLoveFrag = new MyLoveFrag();
+        myLoveFrag.setVideo_user_id(video_user_id);
+        fragmentList.add(myLoveFrag);
     }
 
     /**
@@ -213,15 +225,21 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
      */
     private void selectPage() {
         vPager.setCurrentItem(position, false);
-        tvMyvideo.setTextColor(getResources().getColor(R.color.white));
-        tvMylive.setTextColor(getResources().getColor(R.color.white));
-        tvMylike.setTextColor(getResources().getColor(R.color.white));
+        tvMyvideo.setTextColor(getResources().getColor(R.color.text_noclick_color));
+        tvMylive.setTextColor(getResources().getColor(R.color.text_noclick_color));
+        tvMylove.setTextColor(getResources().getColor(R.color.text_noclick_color));
+        tvMyvideo.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        tvMylive.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        tvMylove.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         if (position == 0) {
             tvMyvideo.setTextColor(getResources().getColor(R.color.white));
+            tvMyvideo.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         } else if (position == 1) {
             tvMylive.setTextColor(getResources().getColor(R.color.white));
+            tvMylive.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         } else if (position == 2) {
-            tvMylike.setTextColor(getResources().getColor(R.color.white));
+            tvMylove.setTextColor(getResources().getColor(R.color.white));
+            tvMylove.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         }
     }
 
@@ -251,8 +269,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 tvLikenum.setText("获赞 " + userExtra.getLike_number());
                 tvSkbnum.setText("寿康宝 " + userExtra.getSkb());
                 tv_showtitle.setText("" + userExtra.getShow_title());
-
-                tvName.setText(userExtra.getUser_name());
+                name = userExtra.getUser_name();
+                tvName.setText(name);
                 String avatar = userExtra.getAvatar();
                 GlideDownLoadImage.getInstance().loadCircleHeadImageCenter(mActivity, avatar, ivHead);
             }

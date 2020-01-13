@@ -1,20 +1,21 @@
-package com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment;
+package com.longcheng.lifecareplan.modular.home.liveplay.mine.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.BaseFragmentMVP;
+import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
-import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
-import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.adapter.MyFouseListAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
@@ -22,6 +23,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -34,26 +36,56 @@ import butterknife.BindView;
  * 意图：
  */
 
-public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<MyContract.View>> implements MyContract.View {
+public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresenterImp<MyContract.View>> implements MyContract.View {
     @BindView(R.id.date_listview)
     PullToRefreshListView dateListview;
     @BindView(R.id.layout_notlive)
     LinearLayout layout_notlive;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.layout_left)
+    LinearLayout layoutLeft;
+    @BindView(R.id.tv_name)
+    TextView tv_name;
+    @BindView(R.id.notdata_iv_img)
+    ImageView notdataIvImg;
+    @BindView(R.id.notdata_tv_cont)
+    TextView notdataTvCont;
+
+
     private int page = 0;
     private int pageSize = 10;
     String video_user_id;
 
-    public void setVideo_user_id(String video_user_id) {
-        this.video_user_id = video_user_id;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.layout_left:
+                back();
+                break;
+        }
+    }
+
+    @Override
+    public View bindView() {
+        return null;
     }
 
     @Override
     public int bindLayout() {
-        return R.layout.live_mylive_fragment;
+        return R.layout.live_myfollow;
     }
 
     @Override
     public void initView(View view) {
+        ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
+    }
+
+    @Override
+    public void setListener() {
+        layoutLeft.setOnClickListener(this);
+        notdataIvImg.setBackgroundResource(R.mipmap.live_quexing);
+        notdataTvCont.setText("暂无关注");
         layout_notlive.setBackgroundColor(mActivity.getResources().getColor(R.color.black_live));
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -71,24 +103,22 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     }
 
     @Override
-    public void doBusiness(Context mContext) {
+    public void initDataAfter() {
+        video_user_id = getIntent().getStringExtra("video_user_id");
+        String user_name = getIntent().getStringExtra("user_name");
+        tv_name.setText(user_name);
         getList(1);
-    }
-
-    @Override
-    public void widgetClick(View v) {
-
     }
 
 
     private void getList(int page) {
-        mPresent.getMineFollowList(video_user_id,page, pageSize);
+        mPresent.getMineFollowList(video_user_id, page, pageSize);
     }
 
 
     @Override
     protected MyPresenterImp<MyContract.View> createPresent() {
-        return new MyPresenterImp<>(getActivity(), this);
+        return new MyPresenterImp<>(mActivity, this);
     }
 
     boolean refreshStatus = false;
@@ -141,7 +171,7 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
 //            showNoMoreData(false);
                 }
                 if (mAdapter == null) {
-                    mAdapter = new MyFouseListAdapter(mContext, mList, mHandler, CANCELFOLLOW,video_user_id);
+                    mAdapter = new MyFouseListAdapter(mContext, mList, mHandler, CANCELFOLLOW, video_user_id);
                     dateListview.setAdapter(mAdapter);
                 } else {
                     mAdapter.reloadListView(mList, false);
@@ -190,5 +220,19 @@ public class MyFouseFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
         } else {
             ScrowUtil.listViewConfigAll(dateListview);
         }
+    }
+
+    private void back() {
+        doFinish();
+    }
+
+    /**
+     * 重写onkeydown 用于监听返回键
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            back();
+        }
+        return false;
     }
 }

@@ -48,7 +48,7 @@ public class MyVideoListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         mHolder.item_tv_name.setText(mHelpItemBean.getUser_name());
         mHolder.item_tv_num.setText("" + mHelpItemBean.getFollow_number());
         mHolder.item_tv_city.setText("" + mHelpItemBean.getAddress());
-        int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 26)) / 3;
+        int width = (DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 23)) / 2;
         int height;
         int moid;
         height = (int) (width * 1.54);

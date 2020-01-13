@@ -30,8 +30,7 @@ public class TabPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-//        return list.size();
-        return 4;
+        return list.size();
     }
 
     /**

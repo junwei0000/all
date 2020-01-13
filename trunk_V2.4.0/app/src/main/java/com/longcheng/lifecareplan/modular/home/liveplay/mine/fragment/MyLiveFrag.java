@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -41,6 +42,8 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
     PullToRefreshListView dateListview;
     @BindView(R.id.layout_notlive)
     LinearLayout layout_notlive;
+    @BindView(R.id.notdata_iv_img)
+    ImageView notdata_iv_img;
     private int page = 0;
     private int pageSize = 10;
     String video_user_id;
@@ -55,6 +58,7 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
 
     @Override
     public void initView(View view) {
+        notdata_iv_img.setBackgroundResource(R.mipmap.live_quexing);
         layout_notlive.setBackgroundColor(mActivity.getResources().getColor(R.color.black_live));
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override

@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:textAppearance="?android:attr/textAppearance"
-                    android:textColor="#464646"
+                    android:textColor="#939393"
                     android:textSize="@dimen/text_content_size" />
 
                 <TextView
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#464646"
+                    android:textColor="#939393"
                     android:textSize="@dimen/text_content_size"
                     android:visibility="gone" />
             </LinearLayout>

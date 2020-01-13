@@ -34,7 +34,7 @@ import butterknife.BindView;
  * 意图：
  */
 
-public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<MyContract.View>> implements MyContract.View {
+public class MyLoveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<MyContract.View>> implements MyContract.View {
     @BindView(R.id.date_listview)
     PullToRefreshGridView dateListview;
     @BindView(R.id.layout_notlive)

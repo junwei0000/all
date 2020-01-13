@@ -1,5 +1,6 @@
 package com.longcheng.lifecareplan.utils;
 
+import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -46,6 +47,15 @@ public class ListUtils {
     }
 
     public void setNotDateViewL(BaseAdapterHelper mAdapter, LinearLayout layoutNotdate) {
+        if (layoutNotdate != null) {
+            if (mAdapter == null || (mAdapter != null && mAdapter.getCount() == 0)) {
+                layoutNotdate.setVisibility(View.VISIBLE);
+            } else {
+                layoutNotdate.setVisibility(View.GONE);
+            }
+        }
+    }
+    public void setNotDateViewV(PagerAdapter mAdapter, LinearLayout layoutNotdate) {
         if (layoutNotdate != null) {
             if (mAdapter == null || (mAdapter != null && mAdapter.getCount() == 0)) {
                 layoutNotdate.setVisibility(View.VISIBLE);

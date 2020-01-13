@@ -6,6 +6,8 @@
     android:background="@color/black_live"
     tools:ignore="contentDescription">
 
+    <include layout="@layout/live_play_notdata" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
@@ -18,4 +20,5 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <include layout="@layout/live_page_top" />
+
 </RelativeLayout>

@@ -19,8 +19,8 @@
 
             <com.longcheng.lifecareplan.utils.myview.CircleImageView
                 android:id="@+id/iv_head"
-                android:layout_width="@dimen/dp80"
-                android:layout_height="@dimen/dp80"
+                android:layout_width="@dimen/dp72"
+                android:layout_height="@dimen/dp72"
                 android:layout_marginRight="@dimen/dp10"
                 android:src="@mipmap/user_default_icon" />
 
@@ -40,17 +40,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="这里是用户名字"
-                        android:padding="@dimen/padd_imgtextleftright"
                         android:singleLine="true"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
-                        android:textSize="@dimen/text_max_size" />
+                        android:textSize="@dimen/text_pageTop_size"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_follow"
                         style="@style/view_paddlefgtright"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
                         android:background="@drawable/corners_bg_red"
                         android:paddingTop="@dimen/dp4"
                         android:paddingBottom="@dimen/dp4"
@@ -64,11 +65,14 @@
                     android:id="@+id/tv_showtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:hint="您还没有填写个人简介，请点击添加"
-                    android:padding="@dimen/padd_imgtextleftright"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="@dimen/text_dp12_size" />
+                    android:lineSpacingMultiplier="1.1"
+                    android:maxLines="2"
+                    android:paddingTop="@dimen/dp4"
+                    android:textColor="@color/text_noclick_color"
+                    android:textColorHint="@color/text_noclick_color"
+                    android:textSize="@dimen/text_contents_size" />
             </LinearLayout>
         </LinearLayout>
 
@@ -90,7 +94,7 @@
                 android:text="获赞 0" />
 
             <TextView
-                android:id="@+id/tv_mylike"
+                android:id="@+id/tv_myfollow"
                 style="@style/btn_padd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,7 +113,7 @@
         </LinearLayout>
 
 
-        <include layout="@layout/line" />
+        <include layout="@layout/live_line"/>
     </LinearLayout>
 
     <LinearLayout
@@ -119,15 +123,15 @@
 
         <TextView
             android:id="@+id/tv_myvideo"
+            style="@style/view_paddtopbottom"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
             android:gravity="center"
-            android:paddingTop="@dimen/jianJu"
-            android:paddingBottom="@dimen/jianJu"
             android:text="视频"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_contents_size" />
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_mylive"
@@ -136,8 +140,8 @@
             android:layout_weight="1.0"
             android:gravity="center"
             android:text="直播"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_contents_size" />
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_biaoTi_size" />
 
         <TextView
             android:id="@+id/tv_mylove"
@@ -146,8 +150,8 @@
             android:layout_weight="1.0"
             android:gravity="center"
             android:text="喜欢"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_contents_size" />
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_biaoTi_size" />
 
     </LinearLayout>
 

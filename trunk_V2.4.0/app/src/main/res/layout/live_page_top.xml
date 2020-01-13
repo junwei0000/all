@@ -34,13 +34,14 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="5"
             android:gravity="center">
 
             <LinearLayout
                 android:id="@+id/layout_playlist_video"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp10"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="invisible">
@@ -66,8 +67,7 @@
                 android:id="@+id/layout_playlist_live"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/dp25"
-                android:layout_marginRight="@dimen/dp25"
+                android:layout_marginLeft="@dimen/dp10"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="invisible">
@@ -93,12 +93,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/pagetop_layout_rigth"
+            android:id="@+id/layout_rigth"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="right|center_vertical"
             android:orientation="vertical"
-            android:paddingRight="@dimen/padd_leftright" />
+            android:visibility="invisible"
+            android:paddingRight="@dimen/padd_leftright">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/live_sousuo" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
