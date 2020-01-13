@@ -27,12 +27,11 @@ public class PlayListAdapter extends BaseAdapterHelper<VideoItemInfo> {
     ViewHolder mHolder = null;
     Context context;
 
-    boolean liveSeleStatus;
+    boolean liveSeleStatus=false;
 
-    public PlayListAdapter(Context context, List<VideoItemInfo> list, boolean liveSeleStatus) {
+    public PlayListAdapter(Context context, List<VideoItemInfo> list) {
         super(context, list);
         this.context = context;
-        this.liveSeleStatus = liveSeleStatus;
     }
 
     @Override

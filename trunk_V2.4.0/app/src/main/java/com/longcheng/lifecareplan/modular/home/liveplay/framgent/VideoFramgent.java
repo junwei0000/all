@@ -12,7 +12,6 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -63,7 +62,6 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
-import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
 import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.rtmp.ITXVodPlayListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -85,25 +83,6 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     private String TAG = "TCVodPlayerActivity";
     @BindView(R.id.vertical_view_pager)
     VerticalViewPager mVerticalViewPager;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.layout_left)
-    LinearLayout layoutLeft;
-    @BindView(R.id.layout_rigth)
-    LinearLayout layout_rigth;
-
-    @BindView(R.id.tv_playlist_video)
-    TextView tvPlaylistVideo;
-    @BindView(R.id.tv_playlist_video_line)
-    TextView tvPlaylistVideoLine;
-    @BindView(R.id.layout_playlist_video)
-    LinearLayout layoutPlaylistVideo;
-    @BindView(R.id.tv_playlist_live)
-    TextView tvPlaylistLive;
-    @BindView(R.id.tv_playlist_live_line)
-    TextView tvPlaylistLiveLine;
-    @BindView(R.id.layout_playlist_live)
-    LinearLayout layoutPlaylistLive;
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.layout_notlive)
@@ -132,10 +111,6 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     private int mCurrentPosition;
 
     private String video_user_id;
-    /**
-     * 是否选中直播
-     */
-    private boolean liveSeleStatus = false;
 
     class PlayerInfo {
         public TXVodPlayer txVodPlayer;
@@ -173,20 +148,17 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
 
     @Override
     public int bindLayout() {
-        return R.layout.live_shortvideo_detailnew;
+        return R.layout.live_hom_fram_video;
     }
 
     @Override
     public void initView(View view) {
-        ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
     }
 
     @Override
     public void widgetClick(View v) {
         int id = v.getId();
-        if (id == R.id.layout_left) {
-            ((VideoMenuActivity) getActivity()).back();
-        } else if (id == R.id.record_preview) {
+        if (id == R.id.record_preview) {
             switchPlay();
         } else if (id == R.id.frag_iv_dashuang) {
             Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
@@ -227,22 +199,14 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             intent.putExtra("video_user_id", video_user_id);
             startActivity(intent);
         } else if (id == R.id.layout_playlist_video) {
-            liveSeleStatus = false;
-            changeData();
+
         } else if (id == R.id.layout_playlist_live) {
-            liveSeleStatus = true;
-            changeData();
+
         }
     }
 
     @Override
     public void doBusiness(Context mContext) {
-        layoutLeft.setOnClickListener(this);
-        layout_rigth.setVisibility(View.VISIBLE);
-        layoutPlaylistVideo.setVisibility(View.VISIBLE);
-        layoutPlaylistLive.setVisibility(View.VISIBLE);
-        layoutPlaylistVideo.setOnClickListener(this);
-        layoutPlaylistLive.setOnClickListener(this);
         notdata_iv_img.setBackgroundResource(R.mipmap.live_quexing);
         layout_notlive.setBackgroundColor(mActivity.getResources().getColor(R.color.black_live));
         mSwipeRefreshLayout.setProgressViewOffset(false, 150, 220);
@@ -320,22 +284,6 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 }
             }
         });
-        liveSeleStatus = false;
-        changeData();
-    }
-
-    private void changeData() {
-        if (liveSeleStatus) {
-            tvPlaylistVideoLine.setVisibility(View.INVISIBLE);
-            tvPlaylistLiveLine.setVisibility(View.VISIBLE);
-            tvPlaylistLiveLine.setBackgroundResource(R.drawable.corners_bg_write);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistLiveLine, R.color.white);
-        } else {
-            tvPlaylistVideoLine.setVisibility(View.VISIBLE);
-            tvPlaylistLiveLine.setVisibility(View.INVISIBLE);
-            tvPlaylistVideoLine.setBackgroundResource(R.drawable.corners_bg_write);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvPlaylistVideoLine, R.color.white);
-        }
         getList(1);
     }
 
@@ -522,7 +470,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     public void onResumeVideo() {
-        if (VideoMenuActivity.position == VideoMenuActivity.tab_position_home) {
+        if (VideoMenuActivity.position == VideoMenuActivity.tab_position_home && HomFramgemt.position == 0) {
             if (mTXCloudVideoView != null) {
                 mTXCloudVideoView.onResume();
             }

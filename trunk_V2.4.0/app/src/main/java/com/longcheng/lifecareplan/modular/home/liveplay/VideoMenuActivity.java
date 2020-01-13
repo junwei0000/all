@@ -15,8 +15,8 @@ import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.FollowFramgent;
+import com.longcheng.lifecareplan.modular.home.liveplay.framgent.HomFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.MineFramgemt;
-import com.longcheng.lifecareplan.modular.home.liveplay.framgent.VideoFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
 import com.longcheng.lifecareplan.utils.myview.MyViewPager;
 
@@ -128,8 +128,8 @@ public class VideoMenuActivity extends BaseActivity {
      * @name 初始化Fragment
      */
     private void initFragment() {
-        VideoFramgent videoFramgent = new VideoFramgent();
-        fragmentList.add(videoFramgent);
+        HomFramgemt homFramgemt = new HomFramgemt();
+        fragmentList.add(homFramgemt);
 
         FollowFramgent followFramgent = new FollowFramgent();
         fragmentList.add(followFramgent);
@@ -168,9 +168,9 @@ public class VideoMenuActivity extends BaseActivity {
         if (clickStatus) {
             clickStatus = false;
             if (position == tab_position_home) {
-                ((VideoFramgent) fragmentList.get(tab_position_home)).onResumeVideo();
+                ((HomFramgemt) fragmentList.get(tab_position_home)).onResumeVideo();
             } else {
-                ((VideoFramgent) fragmentList.get(tab_position_home)).onPauseVideo();
+                ((HomFramgemt) fragmentList.get(tab_position_home)).onPauseVideo();
             }
             if (position == tab_position_Follow) {
                 ((FollowFramgent) fragmentList.get(tab_position_Follow)).onResumeVideo();

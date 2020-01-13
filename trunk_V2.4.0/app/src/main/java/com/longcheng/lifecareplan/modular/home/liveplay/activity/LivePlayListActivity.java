@@ -293,7 +293,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                     mAllList.addAll(mList);
                 }
                 if (mAdapter == null) {
-                    mAdapter = new PlayListAdapter(mContext, mList, liveSeleStatus);
+                    mAdapter = new PlayListAdapter(mContext, mList);
                     playView.setAdapter(mAdapter);
                 } else {
                     mAdapter.reloadListView(mList, false);
@@ -322,7 +322,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
                 mAllList.addAll(mList);
             }
             if (mAdapter == null) {
-                mAdapter = new PlayListAdapter(mContext, mList, liveSeleStatus);
+                mAdapter = new PlayListAdapter(mContext, mList);
                 playView.setAdapter(mAdapter);
             } else {
                 mAdapter.reloadListView(mList, false);
