@@ -48,12 +48,12 @@
 
                     <TextView
                         android:id="@+id/tv_follow"
-                        style="@style/view_paddlefgtright"
-                        android:layout_width="wrap_content"
+                        android:layout_width="77dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/padd_imgtextleftright"
                         android:background="@drawable/corners_bg_red"
                         android:paddingTop="@dimen/dp4"
+                        android:gravity="center"
                         android:paddingBottom="@dimen/dp4"
                         android:singleLine="true"
                         android:text="取消关注"

@@ -30,6 +30,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.CommentListAdapter;
@@ -205,12 +206,14 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     public void setListener() {
         iv_notLive.setVisibility(View.VISIBLE);
         btnCamera.setVisibility(View.GONE);
-        lvRankdata.getBackground().setAlpha(50);
         btnLiwu.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         fragTvFollow.setOnClickListener(this);
         fragLayoutRank.setOnClickListener(this);
         fragLayoutShare.setOnClickListener(this);
+        lvRankdata.getBackground().setAlpha(50);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvFollow,R.color.red);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvJieqi,R.color.red);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,

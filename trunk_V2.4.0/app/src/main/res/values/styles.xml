@@ -113,8 +113,8 @@
     </style>
 
     <style name="text_padd_oval">
-        <item name="android:paddingTop">@dimen/dp1</item>
-        <item name="android:paddingBottom">@dimen/dp1</item>
+        <item name="android:paddingTop">@dimen/dp2</item>
+        <item name="android:paddingBottom">@dimen/dp2</item>
         <item name="android:paddingLeft">@dimen/padd_imgtextleftright</item>
         <item name="android:paddingRight">@dimen/padd_imgtextleftright</item>
         <item name="android:layout_width">wrap_content</item>

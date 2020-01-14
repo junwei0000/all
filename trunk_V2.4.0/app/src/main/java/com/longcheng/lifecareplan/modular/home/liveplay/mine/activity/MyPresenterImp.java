@@ -154,12 +154,13 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
                     }
                 });
     }
+
     /**
      * 我的关注
      */
     public void getMineFollowList(String video_user_id, int page, int page_size) {
         mView.showDialog();
-        ApiLive.getInstance().service.getMineFollowList(video_user_id, page, page_size)
+        ApiLive.getInstance().service.getMineFollowList(video_user_id, UserUtils.getUserId(mContext), page, page_size)
                 .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -168,6 +169,30 @@ public class MyPresenterImp<T> extends MyContract.Presenter<MyContract.View> {
                     public void onSuccess(BasicResponse<MVideoDataInfo> response) {
                         mView.dismissDialog();
                         mView.BackVideoListSuccess(response, page);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
+     * 关注
+     */
+    public void setFollow(String follow_user_id) {
+        mView.showDialog();
+        ApiLive.getInstance().service.setFollow(UserUtils.getUserId(mContext), follow_user_id)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.cancelFollowSuccess(response);
                     }
 
                     @Override

@@ -34,6 +34,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.liveplay.adapter.CommentListAdapter;
@@ -190,6 +191,8 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         btnLiwu.setVisibility(View.GONE);
         fragTvFollow.setVisibility(View.GONE);
         lvRankdata.getBackground().setAlpha(50);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvFollow,R.color.red);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvJieqi,R.color.red);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,

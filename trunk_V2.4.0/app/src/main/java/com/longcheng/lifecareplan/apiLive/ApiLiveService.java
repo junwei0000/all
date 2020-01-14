@@ -84,6 +84,11 @@ public interface ApiLiveService {
                                             @Field("live_room_id") String live_room_id);
 
     @FormUrlEncoded
+    @POST("dock/video/video/follow")
+    Observable<BasicResponse> setFollow(@Field("user_id") String user_id,
+                                        @Field("follow_user_id") String follow_user_id);
+
+    @FormUrlEncoded
     @POST("dock/live/room/cancelFollow")
     Observable<BasicResponse> setCancelFollowLive(@Field("user_id") String user_id,
                                                   @Field("follow_user_id") String follow_user_id);
@@ -148,7 +153,8 @@ public interface ApiLiveService {
 
     @FormUrlEncoded
     @POST("dock/user/user/myFollowList")
-    Observable<BasicResponse<MVideoDataInfo>> getMineFollowList(@Field("user_id") String user_id,
+    Observable<BasicResponse<MVideoDataInfo>> getMineFollowList(@Field("user_id") String video_user_id,
+                                                                @Field("current_user_id") String current_user_id,
                                                                 @Field("page") int page,
                                                                 @Field("page_size") int page_size);
 

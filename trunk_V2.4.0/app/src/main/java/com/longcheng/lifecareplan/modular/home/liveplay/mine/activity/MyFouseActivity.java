@@ -150,7 +150,12 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
     @Override
     public void cancelFollowSuccess(BasicResponse responseBean) {
         if (mAdapter != null) {
-            mAllList.get(cancelposition).setIs_follow(0);
+            int is_follow = mAllList.get(selectposition).getIs_follow();
+            if (is_follow == 0) {
+                mAllList.get(selectposition).setIs_follow(1);
+            } else {
+                mAllList.get(selectposition).setIs_follow(0);
+            }
             mAdapter.notifyDataSetChanged();
         }
         ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
@@ -196,18 +201,18 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
         checkLoadOver(0);
     }
 
-    int cancelposition;
+    int selectposition;
     private final int CANCELFOLLOW = 1;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case CANCELFOLLOW:
-                    cancelposition = msg.arg1;
+                    selectposition = msg.arg1;
                     String follow_user_id = (String) msg.obj;
                     int is_follow = msg.arg2;
                     if (is_follow == 0) {
-                        ToastUtils.showToast("去关注");
+                        mPresent.setFollow(follow_user_id);
                     } else {
                         mPresent.setCancelFollowLive(follow_user_id);
                     }

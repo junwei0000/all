@@ -1,5 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.mine.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -31,7 +33,8 @@ public class MVideoItemInfo implements Serializable {
     String forward_number;
     String address;
     String short_video_id;
-    int is_follow=1;
+    @SerializedName(value = "is_follow", alternate = {"is_current_user_follow"})
+    int is_follow;
 
     String short_video_comment_id;
     int create_time;

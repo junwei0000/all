@@ -62,6 +62,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.rtmp.ITXVodPlayListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -108,6 +109,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     private ImageButton record_preview;
     private TextView frag_tv_dianzannum, frag_tv_commentnum, frag_tv_sharenum;
     private ImageView iv_dianzan;
+    private ImageView iv_follow;
     private int mCurrentPosition;
 
     private String video_user_id;
@@ -208,6 +210,9 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("html_url", help_url);
             startActivity(intent);
+        } else if (id == R.id.iv_follow) {
+            String follow_user_id = mAllList.get(mCurrentPosition).getUser_id();
+            mPresent.setFollow(follow_user_id);
         }
     }
 
@@ -278,6 +283,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 mIvCover = (ImageView) viewGroup.findViewById(R.id.player_iv_cover);
                 record_preview = (ImageButton) viewGroup.findViewById(R.id.record_preview);
                 iv_dianzan = (ImageView) viewGroup.findViewById(R.id.iv_dianzan);
+                iv_follow = (ImageView) viewGroup.findViewById(R.id.iv_follow);
                 frag_tv_dianzannum = (TextView) viewGroup.findViewById(R.id.frag_tv_dianzannum);
                 frag_tv_commentnum = (TextView) viewGroup.findViewById(R.id.frag_tv_commentnum);
                 frag_tv_sharenum = (TextView) viewGroup.findViewById(R.id.frag_tv_sharenum);
@@ -419,7 +425,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             frag_layout_share.setOnClickListener(VideoFramgent.this);
             iv_avatar.setOnClickListener(VideoFramgent.this);
             frag_layout_zhufu.setOnClickListener(VideoFramgent.this);
-
+            iv_follow.setOnClickListener(VideoFramgent.this);
 
             String jieqi_branch_name = mMVideoItemInfo.getJieqi_branch_name();
             frag_tv_jieqi.setText(jieqi_branch_name);
@@ -450,10 +456,10 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
             }
             int is_user_follow = mMVideoItemInfo.getIs_user_follow();
-            if (is_user_follow == 0) {
-                iv_follow.setVisibility(View.VISIBLE);
-            } else {
+            if (is_user_follow == 1 || mMVideoItemInfo.getUser_id().equals(UserUtils.getUserId(mContext))) {
                 iv_follow.setVisibility(View.GONE);
+            } else {
+                iv_follow.setVisibility(View.VISIBLE);
             }
             int is_display = mMVideoItemInfo.getIs_display();
             if (is_display == 0) {
@@ -648,7 +654,15 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
 
     @Override
     public void setFollowLiveSuccess(BasicResponse responseBean) {
-
+        int errcode = responseBean.getStatus();
+        if (errcode == 0) {
+            if (mPagerAdapter != null) {
+                Log.e("onPageSelected", "errcode" + errcode);
+                mAllList.get(mCurrentPosition).setIs_user_follow(1);
+                iv_follow.setVisibility(View.GONE);
+                mPagerAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     @Override

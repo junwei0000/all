@@ -33,7 +33,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/frag_tv_jieqi"
+            style="@style/btn_padd"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:background="@drawable/corners_bg_redprogress"
+            android:paddingLeft="@dimen/dp6"
+            android:paddingRight="@dimen/dp6"
+            android:paddingBottom="@dimen/dp7"
+            android:paddingTop="@dimen/dp7"
+            android:singleLine="true"
+            android:text="寒露节气"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_zhu_size" />
 
         <ImageView
             android:id="@+id/btn_liwu"
@@ -49,12 +64,5 @@
             android:layout_marginLeft="@dimen/padd_leftright"
             android:background="@mipmap/camera_id" />
 
-        <ImageView
-            android:id="@+id/btn_exit"
-            android:layout_width="@dimen/dp35"
-            android:layout_height="@dimen/dp35"
-            android:layout_marginLeft="@dimen/padd_leftright"
-            android:background="@mipmap/live_guanbi_icon"
-            android:onClick="exit" />
     </LinearLayout>
 </RelativeLayout>

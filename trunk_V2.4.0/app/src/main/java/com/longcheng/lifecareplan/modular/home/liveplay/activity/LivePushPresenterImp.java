@@ -52,7 +52,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
      */
     public void getMineVideoList(String video_user_id, int page, int page_size) {
         mView.showDialog();
-        ApiLive.getInstance().service.getMineVideoList(video_user_id,UserUtils.getUserId(mContext), page, page_size)
+        ApiLive.getInstance().service.getMineVideoList(video_user_id, UserUtils.getUserId(mContext), page, page_size)
                 .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -70,6 +70,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
     /**
      * 我的喜欢
      */
@@ -93,6 +94,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
     /**
      * 开播支付寿康宝
      */
@@ -283,6 +285,30 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     }
 
     /**
+     * 关注
+     */
+    public void setFollow(String follow_user_id) {
+        mView.showDialog();
+        ApiLive.getInstance().service.setFollow(UserUtils.getUserId(mContext), follow_user_id)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.setFollowLiveSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
+    /**
      * 直播间设在线人数
      */
     public void setLiveOnlineNumber(String live_room_id, int type) {
@@ -421,6 +447,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+
     /**
      * 获取首页关注人的视频列表
      */

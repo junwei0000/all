@@ -83,6 +83,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     private int position;
 
     private String name = "";
+    int isFollow;
+    String video_user_id;
 
     @Override
     public void onClick(View v) {
@@ -113,6 +115,13 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 if (!TextUtils.isEmpty(video_user_id) && video_user_id.equals(UserUtils.getUserId(mContext)))
                     showPopupWindow();
                 break;
+            case R.id.tv_follow:
+                if (isFollow == 0) {
+                    mPresent.setFollow(video_user_id);
+                } else {
+                    mPresent.setCancelFollowLive(video_user_id);
+                }
+                break;
             default:
                 break;
         }
@@ -142,10 +151,9 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         tvMylove.setOnClickListener(this);
         tv_showtitle.setOnClickListener(this);
         tv_myfollow.setOnClickListener(this);
+        tvFollow.setOnClickListener(this);
     }
 
-
-    String video_user_id;
 
     @Override
     public void initDataAfter() {
@@ -159,12 +167,16 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         position = 0;
         initFragment();
         setPageAdapter();
-        mPresent.getMineInfo(video_user_id);
+        getMineInfo();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getMineInfo();
+    }
+
+    private void getMineInfo() {
         mPresent.getMineInfo(video_user_id);
     }
 
@@ -282,10 +294,10 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 tvSkbnum.setText("寿康宝 " + userExtra.getSkb());
                 tv_showtitle.setText("" + userExtra.getShow_title());
                 tv_myfollow.setText("关注 " + mMineItemInfo.getUserFollowCount());
-                int isFollow = mMineItemInfo.getIsFollow();
+                isFollow = mMineItemInfo.getIsFollow();
                 if (isFollow == 0) {
                     ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvFollow, R.color.red);
-                    tvFollow.setText("关注");
+                    tvFollow.setText("+ 关注");
                 } else {
                     ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvFollow, R.color.follow_color);
                     tvFollow.setText("取消关注");
@@ -309,7 +321,7 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
 
     @Override
     public void cancelFollowSuccess(BasicResponse responseBean) {
-
+        getMineInfo();
     }
 
     @Override

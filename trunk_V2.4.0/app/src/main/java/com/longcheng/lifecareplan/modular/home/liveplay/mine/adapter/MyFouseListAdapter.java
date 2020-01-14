@@ -18,7 +18,6 @@ import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import java.util.List;
 
@@ -63,7 +62,7 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         String url = mHelpItemBean.getAvatar();
         GlideDownLoadImage.getInstance().loadCircleImage(context, url, mHolder.item_iv_thumb);
 
-        if (!TextUtils.isEmpty(video_user_id) && video_user_id.equals(UserUtils.getUserId(context))) {
+        if (!TextUtils.isEmpty(video_user_id)) {
             mHolder.item_tv_follow.setVisibility(View.VISIBLE);
             int is_follow = mHelpItemBean.getIs_follow();
             if (is_follow == 0) {
