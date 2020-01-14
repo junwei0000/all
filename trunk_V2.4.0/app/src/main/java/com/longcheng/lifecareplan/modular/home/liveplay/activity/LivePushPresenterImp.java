@@ -50,9 +50,9 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     /**
      * 我的视频
      */
-    public void getMineVideoList(String user_id, int page, int page_size) {
+    public void getMineVideoList(String video_user_id, int page, int page_size) {
         mView.showDialog();
-        ApiLive.getInstance().service.getMineVideoList(user_id, page, page_size)
+        ApiLive.getInstance().service.getMineVideoList(video_user_id,UserUtils.getUserId(mContext), page, page_size)
                 .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -70,7 +70,29 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     }
                 });
     }
+    /**
+     * 我的喜欢
+     */
+    public void getMineLoveList(String video_user_id, int page, int page_size) {
+        mView.showDialog();
+        ApiLive.getInstance().service.getMineLoveList(video_user_id, UserUtils.getUserId(mContext), page, page_size)
+                .compose(mContext.<BasicResponse<MVideoDataInfo>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse<MVideoDataInfo>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<MVideoDataInfo> response) {
+                        mView.dismissDialog();
+                        mView.BackMyVideoListSuccess(response, page);
+                    }
 
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
     /**
      * 开播支付寿康宝
      */
@@ -390,6 +412,30 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                     public void onSuccess(BasicResponse<VideoDataInfo> response) {
                         mView.dismissDialog();
                         mView.BackLiveListSuccess(response, page);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+    /**
+     * 获取首页关注人的视频列表
+     */
+    public void getVideoFollowList(int page, int page_size) {
+        mView.showDialog();
+        ApiLive.getInstance().service.getVideoFollowList(UserUtils.getUserId(mContext),
+                page, page_size)
+                .compose(mContext.<BasicResponse<ArrayList<VideoItemInfo>>>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultBackObserver<BasicResponse<ArrayList<VideoItemInfo>>>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse<ArrayList<VideoItemInfo>> response) {
+                        mView.dismissDialog();
+                        mView.BackVideoListSuccess(response, page);
                     }
 
                     @Override

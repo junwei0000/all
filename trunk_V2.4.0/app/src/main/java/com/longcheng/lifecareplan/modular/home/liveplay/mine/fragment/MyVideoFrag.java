@@ -22,7 +22,6 @@ import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
 
@@ -62,13 +61,11 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<GridView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<GridView> refreshView) {
-                refreshStatus = true;
                 getList(1);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<GridView> refreshView) {
-                refreshStatus = true;
                 getList(page + 1);
             }
         });
@@ -76,7 +73,7 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mAllList != null && mAllList.size() > 0) {
-                    MyVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page);
+                    MyVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page,"myvideo");
 
                 }
             }
@@ -104,18 +101,13 @@ public class MyVideoFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp
         return new MyPresenterImp<>(getActivity(), this);
     }
 
-    boolean refreshStatus = false;
 
     @Override
     public void showDialog() {
-        if (!refreshStatus)
-            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-        refreshStatus = false;
-        LoadingDialogAnim.dismiss(mContext);
     }
 
     @Override

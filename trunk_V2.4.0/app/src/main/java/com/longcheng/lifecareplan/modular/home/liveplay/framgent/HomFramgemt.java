@@ -111,6 +111,7 @@ public class HomFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     private void initFragment() {
         fragmentList.clear();
         VideoFramgent videoFramgent = new VideoFramgent();
+        videoFramgent.showPageType=videoFramgent.showPageType_video;
         fragmentList.add(videoFramgent);
 
         LiveFramgent mMyLiveFrag = new LiveFramgent();

@@ -38,6 +38,12 @@ public interface ApiLiveService {
                                                                      @Field("special_search") int special_search);
 
     @FormUrlEncoded
+    @POST("dock/user/user/myFollowShortVideoList")
+    Observable<BasicResponse<ArrayList<VideoItemInfo>>> getVideoFollowList(@Field("user_id") String user_id,
+                                                                           @Field("page") int page,
+                                                                           @Field("page_size") int page_size);
+
+    @FormUrlEncoded
     @POST("dock/live/room/lists")
     Observable<BasicResponse<VideoDataInfo>> getLiveList(@Field("user_id") String user_id,
                                                          @Field("page") int page,
@@ -112,7 +118,8 @@ public interface ApiLiveService {
 
     @FormUrlEncoded
     @POST("dock/user/user/index")
-    Observable<BasicResponse<MineItemInfo>> getMineInfo(@Field("user_id") String user_id);
+    Observable<BasicResponse<MineItemInfo>> getMineInfo(@Field("user_id") String video_user_id,
+                                                        @Field("current_user_id") String current_user_id);
 
     @FormUrlEncoded
     @POST("dock/user/user/changeShowTitle")
@@ -121,9 +128,17 @@ public interface ApiLiveService {
 
     @FormUrlEncoded
     @POST("dock/user/user/myShortVideoList")
-    Observable<BasicResponse<MVideoDataInfo>> getMineVideoList(@Field("user_id") String user_id,
+    Observable<BasicResponse<MVideoDataInfo>> getMineVideoList(@Field("user_id") String video_user_id,
+                                                               @Field("current_user_id") String current_user_id,
                                                                @Field("page") int page,
                                                                @Field("page_size") int page_size);
+
+    @FormUrlEncoded
+    @POST("/dock/user/user/myLikeShortVideoList")
+    Observable<BasicResponse<MVideoDataInfo>> getMineLoveList(@Field("user_id") String video_user_id,
+                                                              @Field("current_user_id") String current_user_id,
+                                                              @Field("page") int page,
+                                                              @Field("page_size") int page_size);
 
     @FormUrlEncoded
     @POST("dock/user/user/myLiveList")

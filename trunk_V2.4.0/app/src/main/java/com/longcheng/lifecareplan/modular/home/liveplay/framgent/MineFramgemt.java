@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
@@ -137,6 +138,12 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
     public void doBusiness(Context mContext) {
         if (isAdded()) {
             video_user_id = UserUtils.getUserId(mContext);
+            if (UserUtils.getUserId(mContext).equals(video_user_id)) {
+                tvFollow.setVisibility(View.INVISIBLE);
+            } else {
+                tvFollow.setVisibility(View.VISIBLE);
+                tvFollow.setOnClickListener(this);
+            }
             position = 0;
             initFragment();
             setPageAdapter();
@@ -146,6 +153,12 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
     public void getMineInfo() {
         if (isAdded() && mPresent != null)
             mPresent.getMineInfo(video_user_id);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getMineInfo();
     }
 
     /**
@@ -250,6 +263,19 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
                 tvLikenum.setText("获赞 " + userExtra.getLike_number());
                 tvSkbnum.setText("寿康宝 " + userExtra.getSkb());
                 tv_showtitle.setText("" + userExtra.getShow_title());
+                tv_myfollow.setText("关注 " + mMineItemInfo.getUserFollowCount());
+                int isFollow = mMineItemInfo.getIsFollow();
+                if (isFollow == 0) {
+                    ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvFollow, R.color.red);
+                    tvFollow.setText("关注");
+                } else {
+                    ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvFollow, R.color.follow_color);
+                    tvFollow.setText("取消关注");
+                }
+                tvMyvideo.setText("视频 " + mMineItemInfo.getShortVideoCount());
+                tvMylive.setText("直播 " + mMineItemInfo.getLiveRoomCount());
+                tvMylove.setText("喜欢 " + mMineItemInfo.getShortVideoFollowUserCount());
+
                 name = userExtra.getUser_name();
                 tvName.setText(name);
                 String avatar = userExtra.getAvatar();

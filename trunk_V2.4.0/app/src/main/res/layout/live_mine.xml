@@ -19,8 +19,8 @@
 
             <com.longcheng.lifecareplan.utils.myview.CircleImageView
                 android:id="@+id/iv_head"
-                android:layout_width="@dimen/dp72"
-                android:layout_height="@dimen/dp72"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:layout_marginRight="@dimen/dp10"
                 android:src="@mipmap/user_default_icon" />
 
@@ -69,51 +69,52 @@
                     android:hint="您还没有填写个人简介，请点击添加"
                     android:lineSpacingMultiplier="1.1"
                     android:maxLines="2"
-                    android:paddingTop="@dimen/dp4"
+                    android:paddingTop="@dimen/dp2"
                     android:textColor="@color/text_noclick_color"
                     android:textColorHint="@color/text_noclick_color"
-                    android:textSize="@dimen/text_contents_size" />
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp6"
+                    android:layout_marginBottom="@dimen/dp20"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_likenum"
+                        style="@style/btn_padd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_bg_blackhumanity"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:text="获赞 0" />
+
+                    <TextView
+                        android:id="@+id/tv_myfollow"
+                        style="@style/btn_padd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp30"
+                        android:background="@drawable/corners_bg_blackhumanity"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:text="关注 0" />
+
+                    <TextView
+                        android:id="@+id/tv_skbnum"
+                        style="@style/btn_padd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_bg_blackhumanity"
+                        android:text="寿康宝 0"
+                        android:visibility="gone" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-
-        <LinearLayout
-            style="@style/view_paddtopbottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginBottom="@dimen/dp10"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_likenum"
-                style="@style/btn_padd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/corners_bg_blackhumanity"
-                android:text="获赞 0" />
-
-            <TextView
-                android:id="@+id/tv_myfollow"
-                style="@style/btn_padd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
-                android:background="@drawable/corners_bg_blackhumanity"
-                android:text="关注 0" />
-
-            <TextView
-                android:id="@+id/tv_skbnum"
-                style="@style/btn_padd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/corners_bg_blackhumanity"
-                android:text="寿康宝 0" />
-        </LinearLayout>
-
-
-        <include layout="@layout/live_line"/>
+        <include layout="@layout/live_line" />
     </LinearLayout>
 
     <LinearLayout

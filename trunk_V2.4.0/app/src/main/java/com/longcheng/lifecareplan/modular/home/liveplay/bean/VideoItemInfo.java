@@ -27,7 +27,53 @@ public class VideoItemInfo implements Serializable {
     private String total_number = "0";
     private String status;
     private String broadcast_status;
-    private int is_follow;
+    private int is_follow;//是否点赞
+    private int is_user_follow;//新增是否关注 0：未关注  1：已关注
+    private String jieqi_branch_name;
+
+    private int is_display;//新增打赏标题是否展示 0：不展示 1：展示
+    private String help_title;
+    private String help_url;
+
+    public int getIs_display() {
+        return is_display;
+    }
+
+    public void setIs_display(int is_display) {
+        this.is_display = is_display;
+    }
+
+    public String getHelp_title() {
+        return help_title;
+    }
+
+    public void setHelp_title(String help_title) {
+        this.help_title = help_title;
+    }
+
+    public String getHelp_url() {
+        return help_url;
+    }
+
+    public void setHelp_url(String help_url) {
+        this.help_url = help_url;
+    }
+
+    public int getIs_user_follow() {
+        return is_user_follow;
+    }
+
+    public void setIs_user_follow(int is_user_follow) {
+        this.is_user_follow = is_user_follow;
+    }
+
+    public String getJieqi_branch_name() {
+        return jieqi_branch_name;
+    }
+
+    public void setJieqi_branch_name(String jieqi_branch_name) {
+        this.jieqi_branch_name = jieqi_branch_name;
+    }
 
     public String getContent() {
         return content;

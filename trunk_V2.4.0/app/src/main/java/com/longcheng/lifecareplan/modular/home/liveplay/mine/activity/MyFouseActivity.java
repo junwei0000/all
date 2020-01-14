@@ -102,6 +102,7 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
         });
     }
 
+
     @Override
     public void initDataAfter() {
         video_user_id = getIntent().getStringExtra("video_user_id");
@@ -149,13 +150,14 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
     @Override
     public void cancelFollowSuccess(BasicResponse responseBean) {
         if (mAdapter != null) {
-            mAdapter.removeItem(cancelposition);
+            mAllList.get(cancelposition).setIs_follow(0);
             mAdapter.notifyDataSetChanged();
         }
         ListUtils.getInstance().setNotDateViewL(mAdapter, layout_notlive);
     }
 
     MyFouseListAdapter mAdapter;
+    ArrayList<MVideoItemInfo> mAllList = new ArrayList<>();
 
     @Override
     public void BackVideoListSuccess(BasicResponse<MVideoDataInfo> responseBean, int back_page) {
@@ -167,8 +169,11 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
                 ArrayList<MVideoItemInfo> mList = mVideoDataInfo.getShortVideoList();
                 int size = mList == null ? 0 : mList.size();
                 if (back_page == 1) {
+                    mAllList.clear();
                     mAdapter = null;
-//            showNoMoreData(false);
+                }
+                if (size > 0) {
+                    mAllList.addAll(mList);
                 }
                 if (mAdapter == null) {
                     mAdapter = new MyFouseListAdapter(mContext, mList, mHandler, CANCELFOLLOW, video_user_id);
@@ -200,7 +205,12 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
                 case CANCELFOLLOW:
                     cancelposition = msg.arg1;
                     String follow_user_id = (String) msg.obj;
-                    mPresent.setCancelFollowLive(follow_user_id);
+                    int is_follow = msg.arg2;
+                    if (is_follow == 0) {
+                        ToastUtils.showToast("去关注");
+                    } else {
+                        mPresent.setCancelFollowLive(follow_user_id);
+                    }
                     break;
             }
         }

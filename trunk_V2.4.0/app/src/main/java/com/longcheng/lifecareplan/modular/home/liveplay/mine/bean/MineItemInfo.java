@@ -17,6 +17,52 @@ public class MineItemInfo implements Serializable {
     private String user_name;
     private String avatar;
 
+    private String userFollowCount;
+    private String shortVideoCount;
+    private String liveRoomCount;
+    private String shortVideoFollowUserCount;
+    private int isFollow;
+
+    public String getUserFollowCount() {
+        return userFollowCount;
+    }
+
+    public void setUserFollowCount(String userFollowCount) {
+        this.userFollowCount = userFollowCount;
+    }
+
+    public String getShortVideoCount() {
+        return shortVideoCount;
+    }
+
+    public void setShortVideoCount(String shortVideoCount) {
+        this.shortVideoCount = shortVideoCount;
+    }
+
+    public String getLiveRoomCount() {
+        return liveRoomCount;
+    }
+
+    public void setLiveRoomCount(String liveRoomCount) {
+        this.liveRoomCount = liveRoomCount;
+    }
+
+    public String getShortVideoFollowUserCount() {
+        return shortVideoFollowUserCount;
+    }
+
+    public void setShortVideoFollowUserCount(String shortVideoFollowUserCount) {
+        this.shortVideoFollowUserCount = shortVideoFollowUserCount;
+    }
+
+    public int getIsFollow() {
+        return isFollow;
+    }
+
+    public void setIsFollow(int isFollow) {
+        this.isFollow = isFollow;
+    }
+
     public String getUser_name() {
         return user_name;
     }

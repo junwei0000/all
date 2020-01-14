@@ -14,9 +14,9 @@ import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.home.liveplay.framgent.FollowFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.HomFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.MineFramgemt;
+import com.longcheng.lifecareplan.modular.home.liveplay.framgent.VideoFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
 import com.longcheng.lifecareplan.utils.myview.MyViewPager;
 
@@ -131,7 +131,8 @@ public class VideoMenuActivity extends BaseActivity {
         HomFramgemt homFramgemt = new HomFramgemt();
         fragmentList.add(homFramgemt);
 
-        FollowFramgent followFramgent = new FollowFramgent();
+        VideoFramgent followFramgent = new VideoFramgent();
+        followFramgent.showPageType=followFramgent.showPageType_follow;
         fragmentList.add(followFramgent);
 
         MineFramgemt mineFragment = new MineFramgemt();
@@ -173,9 +174,9 @@ public class VideoMenuActivity extends BaseActivity {
                 ((HomFramgemt) fragmentList.get(tab_position_home)).onPauseVideo();
             }
             if (position == tab_position_Follow) {
-                ((FollowFramgent) fragmentList.get(tab_position_Follow)).onResumeVideo();
+                ((VideoFramgent) fragmentList.get(tab_position_Follow)).onResumeVideo();
             } else {
-                ((FollowFramgent) fragmentList.get(tab_position_Follow)).onPauseVideo();
+                ((VideoFramgent) fragmentList.get(tab_position_Follow)).onPauseVideo();
             }
             if (position == tab_position_mine) {
                 ((MineFramgemt) fragmentList.get(tab_position_mine)).getMineInfo();

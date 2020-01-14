@@ -1,6 +1,7 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.mine.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -8,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
+import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
@@ -61,6 +65,14 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
 
         if (!TextUtils.isEmpty(video_user_id) && video_user_id.equals(UserUtils.getUserId(context))) {
             mHolder.item_tv_follow.setVisibility(View.VISIBLE);
+            int is_follow = mHelpItemBean.getIs_follow();
+            if (is_follow == 0) {
+                mHolder.item_tv_follow.setText("关注");
+                ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_tv_follow, R.color.red);
+            } else {
+                mHolder.item_tv_follow.setText("已关注");
+                ColorChangeByTime.getInstance().changeDrawableToClolor(context, mHolder.item_tv_follow, R.color.text_noclick_color);
+            }
         } else {
             mHolder.item_tv_follow.setVisibility(View.GONE);
         }
@@ -73,8 +85,22 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
                 Message message = new Message();
                 message.what = mHandlerID;
                 message.arg1 = mHelpItemBean_.getPosition();
+                message.arg2 = mHelpItemBean_.getIs_follow();
                 message.obj = mHelpItemBean_.getFollow_user_id();
                 mHandler.sendMessage(message);
+            }
+        });
+        mHolder.item_layout_thumb.setTag(mHelpItemBean);
+        mHolder.item_layout_thumb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MVideoItemInfo mHelpItemBean_ = (MVideoItemInfo) v.getTag();
+                String video_user_id = mHelpItemBean_.getFollow_user_id();
+                Intent intent = new Intent(context, MineActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("video_user_id", video_user_id);
+                context.startActivity(intent);
+
             }
         });
         return convertView;
@@ -85,12 +111,15 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         private TextView item_tv_name;
         private TextView item_tv_num;
         private TextView item_tv_follow;
+        private LinearLayout item_layout_thumb;
+
 
         public ViewHolder(View view) {
             item_iv_thumb = (ImageView) view.findViewById(R.id.item_iv_thumb);
             item_tv_name = (TextView) view.findViewById(R.id.item_tv_name);
             item_tv_num = (TextView) view.findViewById(R.id.item_tv_num);
             item_tv_follow = (TextView) view.findViewById(R.id.item_tv_follow);
+            item_layout_thumb = (LinearLayout) view.findViewById(R.id.item_layout_thumb);
         }
     }
 }

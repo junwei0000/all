@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/black_live"
     android:orientation="vertical">
 
 
@@ -10,13 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/item_iv_thumb"
-            android:layout_width="@dimen/dp43"
-            android:layout_height="@dimen/dp43"
+        <LinearLayout
+            android:id="@+id/item_layout_thumb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:scaleType="centerCrop" />
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/item_iv_thumb"
+                android:layout_width="@dimen/dp43"
+                android:layout_height="@dimen/dp43"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
 
         <LinearLayout
             style="@style/view_paddlefgtright"
@@ -24,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/item_tv_engerynum"
-            android:layout_toRightOf="@+id/item_iv_thumb"
+            android:layout_toRightOf="@+id/item_layout_thumb"
             android:orientation="vertical">
 
             <TextView
@@ -43,26 +49,23 @@
                 android:paddingTop="@dimen/dp2"
                 android:singleLine="true"
                 android:textColor="@color/text_noclick_color"
-                android:textSize="@dimen/text_dp12_size" />
+                android:textSize="@dimen/text_zhu_size" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/item_tv_follow"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/corners_bg_black"
-            android:paddingLeft="@dimen/jianJu"
+            android:background="@drawable/corners_bg_red"
+            android:gravity="center"
             android:paddingTop="@dimen/dp6"
-            android:paddingRight="@dimen/jianJu"
             android:paddingBottom="@dimen/dp6"
             android:singleLine="true"
             android:text="已关注"
-            android:textColor="@color/text_healthcontents_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_dp12_size" />
     </RelativeLayout>
-
-    <include layout="@layout/line" />
 
 </LinearLayout>

@@ -112,6 +112,10 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
 
     private String video_user_id;
 
+    public String showPageType_video = "showPageType_video";
+    public String showPageType_follow = "showPageType_follow";
+    public String showPageType = "";
+
     class PlayerInfo {
         public TXVodPlayer txVodPlayer;
         public String playURL;
@@ -198,10 +202,12 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("video_user_id", video_user_id);
             startActivity(intent);
-        } else if (id == R.id.layout_playlist_video) {
-
-        } else if (id == R.id.layout_playlist_live) {
-
+        } else if (id == R.id.frag_layout_zhufu) {
+            String help_url = mAllList.get(mCurrentPosition).getHelp_url();
+            Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("html_url", help_url);
+            startActivity(intent);
         }
     }
 
@@ -390,6 +396,17 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             TextView frag_tv_commentnum = (TextView) view.findViewById(R.id.frag_tv_commentnum);
             LinearLayout frag_layout_share = (LinearLayout) view.findViewById(R.id.frag_layout_share);
             TextView frag_tv_sharenum = (TextView) view.findViewById(R.id.frag_tv_sharenum);
+
+            LinearLayout frag_layout_zhufu = (LinearLayout) view.findViewById(R.id.frag_layout_zhufu);
+            TextView frag_tv_zhufu = (TextView) view.findViewById(R.id.frag_tv_zhufu);
+            LinearLayout frag_layout_jieqi = (LinearLayout) view.findViewById(R.id.frag_layout_jieqi);
+            TextView frag_tv_jieqi = (TextView) view.findViewById(R.id.frag_tv_jieqi);
+            LinearLayout frag_layout_city = (LinearLayout) view.findViewById(R.id.frag_layout_city);
+            TextView frag_tv_city = (TextView) view.findViewById(R.id.frag_tv_city);
+            ImageView iv_follow = (ImageView) view.findViewById(R.id.iv_follow);
+            frag_layout_jieqi.getBackground().setAlpha(60);
+            frag_layout_city.getBackground().setAlpha(60);
+
             VideoItemInfo mMVideoItemInfo = mAllList.get(position);
             frag_iv_dashuang.setTag(mMVideoItemInfo);
             frag_layout_dianzan.setTag(mMVideoItemInfo);
@@ -401,7 +418,21 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             frag_layout_comment.setOnClickListener(VideoFramgent.this);
             frag_layout_share.setOnClickListener(VideoFramgent.this);
             iv_avatar.setOnClickListener(VideoFramgent.this);
+            frag_layout_zhufu.setOnClickListener(VideoFramgent.this);
 
+
+            String jieqi_branch_name = mMVideoItemInfo.getJieqi_branch_name();
+            frag_tv_jieqi.setText(jieqi_branch_name);
+            if (TextUtils.isEmpty(jieqi_branch_name)) {
+                frag_layout_jieqi.setVisibility(View.GONE);
+            } else {
+                frag_layout_jieqi.setVisibility(View.VISIBLE);
+            }
+            String city = mMVideoItemInfo.getAddress();
+            if (TextUtils.isEmpty(city)) {
+                city = "北京市";
+            }
+            frag_tv_city.setText("" + city);
             tv_name.setText("" + mMVideoItemInfo.getUser_name());
             tv_cont.setText("" + mMVideoItemInfo.getContent());
             frag_tv_dianzannum.setText("" + mMVideoItemInfo.getTotal_number());
@@ -418,7 +449,19 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             } else {
                 iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
             }
-
+            int is_user_follow = mMVideoItemInfo.getIs_user_follow();
+            if (is_user_follow == 0) {
+                iv_follow.setVisibility(View.VISIBLE);
+            } else {
+                iv_follow.setVisibility(View.GONE);
+            }
+            int is_display = mMVideoItemInfo.getIs_display();
+            if (is_display == 0) {
+                frag_layout_zhufu.setVisibility(View.GONE);
+            } else {
+                frag_tv_zhufu.setText(mMVideoItemInfo.getHelp_title());
+                frag_layout_zhufu.setVisibility(View.VISIBLE);
+            }
             // 获取此player
             TXCloudVideoView playView = (TXCloudVideoView) view.findViewById(R.id.video_view);
             PlayerInfo playerInfo = instantiatePlayerInfo(position, record_preview);
@@ -470,7 +513,8 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     public void onResumeVideo() {
-        if (VideoMenuActivity.position == VideoMenuActivity.tab_position_home && HomFramgemt.position == 0) {
+        if ((showPageType.equals(showPageType_video) && VideoMenuActivity.position == VideoMenuActivity.tab_position_home && HomFramgemt.position == 0)
+                || (showPageType.equals(showPageType_follow) && VideoMenuActivity.position == VideoMenuActivity.tab_position_Follow)) {
             if (mTXCloudVideoView != null) {
                 mTXCloudVideoView.onResume();
             }
@@ -781,8 +825,13 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
 
     int special_search = 1;// 默认1 0:普通搜索 1：特殊搜索
 
-    private void getList(int page) {
-        mPresent.getVideoPlayList(special_search, page, pageSize);
+    public void getList(int page) {
+        if (showPageType.equals(showPageType_follow)) {
+            mPresent.getVideoFollowList(page, pageSize);
+        } else if (showPageType.equals(showPageType_video)) {
+            mPresent.getVideoPlayList(special_search, page, pageSize);
+        }
+
     }
 
     private int page = 0;

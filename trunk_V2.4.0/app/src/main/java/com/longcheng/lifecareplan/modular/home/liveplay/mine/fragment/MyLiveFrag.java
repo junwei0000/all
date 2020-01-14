@@ -25,7 +25,6 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
 
@@ -63,13 +62,11 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                refreshStatus = true;
                 getList(1);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                refreshStatus = true;
                 getList(page + 1);
             }
         });
@@ -114,18 +111,13 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
         return new MyPresenterImp<>(getActivity(), this);
     }
 
-    boolean refreshStatus = false;
 
     @Override
     public void showDialog() {
-        if (!refreshStatus)
-            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-        refreshStatus = false;
-        LoadingDialogAnim.dismiss(mContext);
     }
 
 

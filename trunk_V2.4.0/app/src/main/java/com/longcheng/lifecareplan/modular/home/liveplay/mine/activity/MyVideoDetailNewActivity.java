@@ -171,6 +171,12 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("video_user_id", video_user_id);
             startActivity(intent);
+        } else if (id == R.id.frag_layout_zhufu) {
+            String help_url = mAllList.get(mCurrentPosition).getHelp_url();
+            Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("html_url", help_url);
+            startActivity(intent);
         }
     }
 
@@ -229,11 +235,12 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         });
     }
 
-    public static void skipVideoDetail(Activity mActivity, ArrayList<MVideoItemInfo> mTCLiveInfoList, int selectPosition, int page) {
+    public static void skipVideoDetail(Activity mActivity, ArrayList<MVideoItemInfo> mTCLiveInfoList, int selectPosition, int page, String videoType) {
         Intent intent = new Intent(mActivity, MyVideoDetailNewActivity.class);
         intent.putExtra(TCConstants.TCLIVE_INFO_LIST, mTCLiveInfoList);
         intent.putExtra(TCConstants.TCLIVE_INFO_POSITION, selectPosition);
         intent.putExtra(TCConstants.TCLIVE_INFO_PAGE, page);
+        intent.putExtra("videoType", videoType);
         mActivity.startActivityForResult(intent, TCConstants.TCLIVE_INFO_LISTREFRESH);
     }
 
@@ -243,11 +250,14 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         initViews();
     }
 
+    String videoType;
+
     private void initDatas() {
         Intent intent = getIntent();
         mAllList = (ArrayList<MVideoItemInfo>) intent.getSerializableExtra(TCConstants.TCLIVE_INFO_LIST);
         mInitTCLiveInfoPosition = intent.getIntExtra(TCConstants.TCLIVE_INFO_POSITION, 0);
         page = intent.getIntExtra(TCConstants.TCLIVE_INFO_PAGE, 0);
+        videoType = intent.getStringExtra("videoType");
         video_user_id = mAllList.get(0).getUser_id();
     }
 
@@ -413,6 +423,18 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             TextView frag_tv_commentnum = (TextView) view.findViewById(R.id.frag_tv_commentnum);
             LinearLayout frag_layout_share = (LinearLayout) view.findViewById(R.id.frag_layout_share);
             TextView frag_tv_sharenum = (TextView) view.findViewById(R.id.frag_tv_sharenum);
+
+            LinearLayout frag_layout_zhufu = (LinearLayout) view.findViewById(R.id.frag_layout_zhufu);
+            TextView frag_tv_zhufu = (TextView) view.findViewById(R.id.frag_tv_zhufu);
+            LinearLayout frag_layout_jieqi = (LinearLayout) view.findViewById(R.id.frag_layout_jieqi);
+            TextView frag_tv_jieqi = (TextView) view.findViewById(R.id.frag_tv_jieqi);
+            LinearLayout frag_layout_city = (LinearLayout) view.findViewById(R.id.frag_layout_city);
+            TextView frag_tv_city = (TextView) view.findViewById(R.id.frag_tv_city);
+            ImageView iv_follow = (ImageView) view.findViewById(R.id.iv_follow);
+            frag_layout_jieqi.getBackground().setAlpha(60);
+            frag_layout_city.getBackground().setAlpha(60);
+
+
             MVideoItemInfo mMVideoItemInfo = mAllList.get(position);
             frag_iv_dashuang.setTag(mMVideoItemInfo);
             frag_layout_dianzan.setTag(mMVideoItemInfo);
@@ -424,6 +446,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             frag_layout_comment.setOnClickListener(MyVideoDetailNewActivity.this);
             frag_layout_share.setOnClickListener(MyVideoDetailNewActivity.this);
             iv_avatar.setOnClickListener(MyVideoDetailNewActivity.this);
+            frag_layout_zhufu.setOnClickListener(MyVideoDetailNewActivity.this);
 
             tv_name.setText("" + mMVideoItemInfo.getUser_name());
             tv_cont.setText("" + mMVideoItemInfo.getContent());
@@ -441,7 +464,32 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             } else {
                 iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
             }
+            String jieqi_branch_name = mMVideoItemInfo.getJieqi_branch_name();
+            frag_tv_jieqi.setText(jieqi_branch_name);
+            if (TextUtils.isEmpty(jieqi_branch_name)) {
+                frag_layout_jieqi.setVisibility(View.GONE);
+            } else {
+                frag_layout_jieqi.setVisibility(View.VISIBLE);
+            }
+            String city = mMVideoItemInfo.getAddress();
+            if (TextUtils.isEmpty(city)) {
+                city = "北京市";
+            }
+            frag_tv_city.setText("" + city);
 
+            int is_user_follow = mMVideoItemInfo.getIs_user_follow();
+            if (is_user_follow == 0) {
+                iv_follow.setVisibility(View.VISIBLE);
+            } else {
+                iv_follow.setVisibility(View.GONE);
+            }
+            int is_display = mMVideoItemInfo.getIs_display();
+            if (is_display == 0) {
+                frag_layout_zhufu.setVisibility(View.GONE);
+            } else {
+                frag_tv_zhufu.setText(mMVideoItemInfo.getHelp_title());
+                frag_layout_zhufu.setVisibility(View.VISIBLE);
+            }
             // 获取此player
             TXCloudVideoView playView = (TXCloudVideoView) view.findViewById(R.id.video_view);
             PlayerInfo playerInfo = instantiatePlayerInfo(position, record_preview);
@@ -797,7 +845,11 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     }
 
     private void getList(int page) {
-        mPresent.getMineVideoList(video_user_id, page, pageSize);
+        if (videoType.equals("mylove")) {
+            mPresent.getMineLoveList(video_user_id, page, pageSize);
+        } else if (videoType.equals("myvideo")) {
+            mPresent.getMineVideoList(video_user_id, page, pageSize);
+        }
     }
 
     private int page = 0;
@@ -837,7 +889,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             date_listview = (PullToRefreshListView) selectDialog.findViewById(R.id.date_listview);
             et_content = (SupplierEditText) selectDialog.findViewById(R.id.et_content);
             TextView tv_send = (TextView) selectDialog.findViewById(R.id.tv_send);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,tv_send,R.color.red);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tv_send, R.color.red);
             layout_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

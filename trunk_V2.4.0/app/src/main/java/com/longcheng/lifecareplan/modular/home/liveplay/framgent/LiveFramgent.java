@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,9 +28,10 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.decoration.DividerGridItemDecoration;
+import com.longcheng.lifecareplan.utils.decoration.SpacesItemDecoration;
 
 import java.util.ArrayList;
 
@@ -53,6 +55,9 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
     private int page = 0;
     private int pageSize = 20;
 
+    boolean isLoadingData = false;
+    boolean isLoadBottom = true;
+
     @Override
     public int bindLayout() {
         return R.layout.live_hom_fram_live;
@@ -63,7 +68,9 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
     public void initView(View view) {
         RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         playView.setLayoutManager(layoutManager);
-        playView.addItemDecoration(new DividerGridItemDecoration(getContext()));
+        int space = DensityUtil.dip2px(mContext, 3);
+        playView.addItemDecoration(new SpacesItemDecoration(space));
+//        playView.addItemDecoration(new DividerGridItemDecoration(getContext()));
         notdata_iv_img.setBackgroundResource(R.mipmap.live_quexing);
         layout_notlive.setBackgroundColor(mActivity.getResources().getColor(R.color.black_live));
 
@@ -74,16 +81,18 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
             @Override
             public void onRefresh() {
                 mSwipeRefreshLayout.setRefreshing(true);
+                Log.e("onPageSelected", "onRefresh=" + page);
                 getList(1);
             }
         });
-        playView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        playView.setOnScrollListener(new OnRcvScrollListener() {
             @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                if(){
-//                    getList(page+1);
-//                }
-
+            public void onBottom() {
+                super.onBottom();
+                // 到底部自动加载
+                Log.e("onPageSelected", "onBottom=" + page);
+                if (isLoadBottom)
+                    getList(page + 1);
             }
         });
     }
@@ -99,7 +108,10 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
     }
 
     private void getList(int page) {
-        mPresent.getLivePlayList(page, pageSize);
+        if (!isLoadingData) {
+            isLoadingData = true;
+            mPresent.getLivePlayList(page, pageSize);
+        }
     }
 
     @Override
@@ -167,14 +179,19 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
             VideoDataInfo mVideoDataInfo = responseBean.getData();
             if (mVideoDataInfo != null) {
                 ArrayList<VideoItemInfo> mList = mVideoDataInfo.getLiveRoomList();
-                mList.addAll(mList);
-                mList.addAll(mList);
                 int size = mList == null ? 0 : mList.size();
                 if (backPage == 1) {
                     mAllList.clear();
                 }
+                page = backPage;
                 if (size > 0) {
+                    isLoadBottom = true;
                     mAllList.addAll(mList);
+                    if (size < pageSize) {
+                        isLoadBottom = false;
+                    }
+                } else {
+                    isLoadBottom = false;
                 }
                 if (mAdapter == null) {
                     mAdapter = new LiveListAdapter(getActivity(), mList);
@@ -195,10 +212,13 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
                         }
                     });
                 } else {
-                    mAdapter.setmList(mList);
-                    mAdapter.notifyDataSetChanged();
+                    if (backPage == 1) {
+                        mAdapter.reloadListView(mList, true);
+                    } else {
+                        mAdapter.reloadListView(mList, false);
+                    }
                 }
-                page = backPage;
+                Log.e("onPageSelected", "page=" + page + "  mAllList=" + mAllList.size());
             }
         } else {
             ToastUtils.showToast("" + responseBean.getMsg());
@@ -257,6 +277,7 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
     }
 
     private void RefreshComplete() {
+        isLoadingData = false;
         mSwipeRefreshLayout.setRefreshing(false);
         ListUtils.getInstance().setNotDateViewR(mAdapter, layout_notlive);
     }

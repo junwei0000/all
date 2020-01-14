@@ -37,7 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/dp10"
-        android:layout_marginRight="@dimen/dp3"
+        android:layout_marginRight="@dimen/padd_imgtextleftright"
+        android:layout_marginBottom="@dimen/dp15"
         android:gravity="bottom">
 
         <LinearLayout
@@ -48,26 +49,84 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/frag_layout_zhufu"
+                style="@style/btn_padd"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/corners_bg_jianbian">
+
+                <TextView
+                    android:id="@+id/frag_tv_zhufu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxEms="8"
+                    android:singleLine="true"
+                    android:text="为TA送上祝福"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_contents_size"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/iv_avatar"
-                    android:layout_width="@dimen/dp40"
-                    android:layout_height="@dimen/dp40"
-                    android:background="@mipmap/user_default_icon" />
 
                 <TextView
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:ellipsize="end"
+                    android:maxEms="5"
                     android:singleLine="true"
                     android:text="姓名"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_pageTop_size" />
+                    android:textSize="@dimen/text_pageTop_size"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/frag_layout_jieqi"
+                    style="@style/text_padd_oval"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:background="@drawable/corners_bg_blackxingji">
+
+                    <TextView
+                        android:id="@+id/frag_tv_jieqi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="庚子.大寒"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_dp12_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/frag_layout_city"
+                    style="@style/text_padd_oval"
+                    android:background="@drawable/corners_bg_blackxingji">
+
+                    <TextView
+                        android:id="@+id/frag_tv_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/dp3"
+                        android:singleLine="true"
+                        android:text="北京"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_dp12_size"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/live_dingwei_icon" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -75,7 +134,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp7"
-                android:lineSpacingMultiplier="1.1"
+                android:ellipsize="end"
+                android:lineSpacingMultiplier="1.2"
+                android:maxLines="3"
                 android:text="说点啥…"
                 android:textColor="@color/white"
                 android:textColorHint="@color/text_noclick_color"
@@ -89,11 +150,27 @@
             android:gravity="bottom|center_horizontal"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/frag_iv_dashuang"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/video_dashaung" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
+                    android:background="@mipmap/user_default_icon" />
+
+                <ImageView
+                    android:id="@+id/iv_follow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="34dp"
+                    android:background="@drawable/corners_oval_red"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/add_icon"
+                    android:tint="@android:color/white" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/frag_layout_dianzan"
@@ -125,7 +202,7 @@
                 android:id="@+id/frag_layout_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp30"
+                android:layout_marginTop="@dimen/dp20"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:orientation="vertical">
@@ -150,7 +227,7 @@
                 android:id="@+id/frag_layout_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp30"
+                android:layout_marginTop="@dimen/dp20"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:orientation="vertical">
@@ -170,6 +247,13 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_zhu_size" />
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/frag_iv_dashuang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp25"
+                android:background="@mipmap/video_dashaung" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

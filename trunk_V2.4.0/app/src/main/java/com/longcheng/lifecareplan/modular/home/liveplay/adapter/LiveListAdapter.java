@@ -16,6 +16,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,8 +29,15 @@ public class LiveListAdapter extends BaseRecyclerAdapter<LiveListAdapter.VideoVi
     private List<VideoItemInfo> mList;
     private Context mContext;
 
-    public void setmList(List<VideoItemInfo> mList) {
-        this.mList = mList;
+    //重新加载List的数据
+    public void reloadListView(List<VideoItemInfo> data, boolean isClear) {
+        if (isClear) {
+            mList = new ArrayList<>();
+        }
+        if (data != null && data.size() > 0) {
+            mList.addAll(data);
+            notifyDataSetChanged();
+        }
     }
 
     public LiveListAdapter(Context context, List<VideoItemInfo> list) {
@@ -44,7 +52,7 @@ public class LiveListAdapter extends BaseRecyclerAdapter<LiveListAdapter.VideoVi
         holder.item_tv_playtitle.setText("" + mHelpItemBean.getTitle());
         holder.item_tv_num.setText("" + mHelpItemBean.getTotal_number());
         holder.item_tv_city.setText("" + mHelpItemBean.getAddress());
-        int width = (DensityUtil.screenWith(mContext) - DensityUtil.dip2px(mContext, 20)) / 2;
+        int width = (DensityUtil.screenWith(mContext) - DensityUtil.dip2px(mContext, 23)) / 2;
         int height;
         int moid;
         height = (int) (width * 1.54);
