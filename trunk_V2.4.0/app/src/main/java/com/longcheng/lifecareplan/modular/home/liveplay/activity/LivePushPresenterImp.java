@@ -627,4 +627,28 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                 });
     }
 
+    /**
+     * 删除视频
+     */
+    public void delVideo(String short_video_id) {
+        mView.showGiftDialog();
+        ApiLive.getInstance().service.delVideo(UserUtils.getUserId(mContext), short_video_id)
+                .compose(mContext.<BasicResponse>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<BasicResponse>(mContext) {
+                    @Override
+                    public void onSuccess(BasicResponse response) {
+                        mView.dismissDialog();
+                        mView.upLoadVideoSuccess(response);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mView.dismissDialog();
+                        mView.Error();
+                    }
+                });
+    }
+
 }

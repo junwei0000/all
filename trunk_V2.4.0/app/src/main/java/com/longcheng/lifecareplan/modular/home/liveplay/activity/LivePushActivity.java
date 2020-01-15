@@ -113,13 +113,17 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     LinearLayout layoutGn;
     @BindView(R.id.relat_push)
     RelativeLayout relat_push;
+    @BindView(R.id.frag_layout_zhufu)
+    LinearLayout frag_layout_zhufu;
+    @BindView(R.id.frag_tv_zhufu)
+    TextView frag_tv_zhufu;
     private static final String URL_KEY = "pushUrl_key";
     private String mPushUrl = null;
     boolean rankOpenStatus = false;
     String live_room_id;
     ShareUtils mShareUtils;
     String title, User_name, Cover_url;
-
+    String help_url;
     @Override
     public void onClick(View view) {
         ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
@@ -154,6 +158,12 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 if (!TextUtils.isEmpty(wx_share_url)) {
                     mShareUtils.setShare("直播中：" + title, Cover_url,R.mipmap.share_icon, wx_share_url, User_name);
                 }
+                break;
+            case R.id.frag_layout_zhufu:
+                Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", help_url);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -191,8 +201,8 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
         btnLiwu.setVisibility(View.GONE);
         fragTvFollow.setVisibility(View.GONE);
         lvRankdata.getBackground().setAlpha(50);
-        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvFollow,R.color.red);
-        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvJieqi,R.color.red);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvFollow,R.color.btn_red_hover);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvJieqi,R.color.btn_red_hover);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -496,6 +506,14 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
             if (mLiveDetailInfo != null) {
                 LiveDetailItemInfo info = mLiveDetailInfo.getInfo();
                 if (info != null) {
+                    help_url = info.getHelp_url();
+                    int is_display = info.getIs_display();
+                    if (is_display == 0) {
+                        frag_layout_zhufu.setVisibility(View.GONE);
+                    } else {
+                        frag_tv_zhufu.setText(info.getHelp_title());
+                        frag_layout_zhufu.setVisibility(View.VISIBLE);
+                    }
                     title = info.getTitle();
                     User_name = info.getUser_name();
                     Cover_url = info.getCover_url();

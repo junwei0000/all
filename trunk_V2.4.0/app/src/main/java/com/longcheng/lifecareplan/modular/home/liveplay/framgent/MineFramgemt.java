@@ -310,7 +310,7 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
     public void showPopupWindow() {
         if (selectDialog == null) {
             selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_live_minetitle);// 创建Dialog并设置样式主题
-            selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
             Window window = selectDialog.getWindow();
             window.setGravity(Gravity.CENTER);
             final EditText et = new EditText(mContext);
@@ -336,6 +336,7 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
                     content = et_content.getText().toString();
                     if (!TextUtils.isEmpty(content)) {
                         selectDialog.dismiss();
+                        ConfigUtils.getINSTANCE().closeSoftInput(et_content);
                         mPresent.updateShowTitle(content);
                     } else {
                         ToastUtils.showToast("说点啥吧");

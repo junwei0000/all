@@ -29,6 +29,10 @@ public class LiveDetailItemInfo implements Serializable {
     private String broadcast_status;
     private String create_time;
     private int is_user_follow;
+
+    private int is_display;//新增打赏标题是否展示 0：不展示 1：展示
+    private String help_title;
+    private String help_url;
     //playUrl
     private String rtmpurl;
     private String flvurl;
@@ -46,6 +50,37 @@ public class LiveDetailItemInfo implements Serializable {
     private int type;
     private String content;
 
+    public int getIs_display() {
+        return is_display;
+    }
+
+    public void setIs_display(int is_display) {
+        this.is_display = is_display;
+    }
+
+    public String getHelp_title() {
+        return help_title;
+    }
+
+    public void setHelp_title(String help_title) {
+        this.help_title = help_title;
+    }
+
+    public String getHelp_url() {
+        return help_url;
+    }
+
+    public void setHelp_url(String help_url) {
+        this.help_url = help_url;
+    }
+
+    public int getCurrentpage() {
+        return currentpage;
+    }
+
+    public void setCurrentpage(int currentpage) {
+        this.currentpage = currentpage;
+    }
 
     public int getPosition() {
         return position;

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
+import com.longcheng.lifecareplan.modular.home.liveplay.framgent.VideoFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.utils.DatesUtils;
 import com.longcheng.lifecareplan.utils.PriceUtils;
@@ -95,7 +96,7 @@ public class VideoCommentAdapter extends BaseAdapterHelper<MVideoItemInfo> {
                 notifyDataSetChanged();
 
                 Message message = new Message();
-                message.what = TCVideoDetailActivity.followItem;
+                message.what = VideoFramgent.followItem;
                 message.arg1 = is_follow;
                 message.obj = mItemBean.getShort_video_comment_id();
                 mHandler.sendMessage(message);

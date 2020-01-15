@@ -50,6 +50,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.LiveStatusInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoGetSignatureInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
+import com.longcheng.lifecareplan.modular.home.liveplay.framgent.UpLoadDialogUtils;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCConstants;
@@ -94,16 +95,6 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    // 发布者id 、视频地址、 发布者名称、 头像URL、 封面URL
-    private ArrayList<MVideoItemInfo> mAllList;
-    private int mInitTCLiveInfoPosition;
-
-    private VideoDownLoadUtils mVideoDownLoadUtils;
-    private int mVideoDuration;
-    private String show_video_id = "";
-    private String clickType = "";
-
-
     /**
      * SDK播放器以及配置
      */
@@ -115,8 +106,17 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     private TextView frag_tv_dianzannum, frag_tv_commentnum, frag_tv_sharenum;
     private ImageView iv_dianzan, iv_follow;
     private int mCurrentPosition;
-
+    private int mdelPosition = -1;
     private String video_user_id;
+    private UpLoadDialogUtils mUpLoadDialogUtils;
+    // 发布者id 、视频地址、 发布者名称、 头像URL、 封面URL
+    private ArrayList<MVideoItemInfo> mAllList;
+    private int mInitTCLiveInfoPosition;
+
+    private VideoDownLoadUtils mVideoDownLoadUtils;
+    private int mVideoDuration;
+    private String show_video_id = "";
+    private String clickType = "";
 
     class PlayerInfo {
         public TXVodPlayer txVodPlayer;
@@ -154,18 +154,11 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         } else if (id == R.id.frag_layout_comment) {
             showCommentDialog();
         } else if (id == R.id.frag_layout_share) {
-            MVideoItemInfo mMVideoItemInfo = (MVideoItemInfo) view.getTag();
-            if (mVideoDownLoadUtils == null) {
-                mVideoDownLoadUtils = new VideoDownLoadUtils(mActivity, mHandler, download);
+            if (mUpLoadDialogUtils == null) {
+                mUpLoadDialogUtils = new UpLoadDialogUtils(mActivity, mHandler);
             }
-            if (!mVideoDownLoadUtils.loading) {
-                clickType = "DOWNLOAD";
-                show_video_id = mMVideoItemInfo.getShort_video_id();
-                mVideoDownLoadUtils.setInit(mMVideoItemInfo.getVideo_url(), mMVideoItemInfo.getCover_url(), mVideoDuration);
-                mVideoDownLoadUtils.DOWNLOAD();
-            } else {
-                ToastUtils.showToast("视频下载中");
-            }
+            video_user_id = mAllList.get(mCurrentPosition).getUser_id();
+            mUpLoadDialogUtils.setDialog(video_user_id);
         } else if (id == R.id.iv_avatar) {
             video_user_id = mAllList.get(mCurrentPosition).getUser_id();
             Intent intent = new Intent(mActivity, MineActivity.class);
@@ -184,15 +177,40 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         }
     }
 
-    protected final int download = 7;
+    protected static final int startdownload = 4;
+    protected static final int delVideo = 5;
+    protected static final int shareVideo = 6;
+    protected final int downloaded = 7;
     protected static final int followItem = 8;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case download:
+                case startdownload:
+                    if (mVideoDownLoadUtils == null) {
+                        mVideoDownLoadUtils = new VideoDownLoadUtils(mActivity, mHandler, downloaded);
+                    }
+                    if (!mVideoDownLoadUtils.loading) {
+                        clickType = "DOWNLOAD";
+                        MVideoItemInfo mMVideoItemInfo = mAllList.get(mCurrentPosition);
+                        show_video_id = mMVideoItemInfo.getShort_video_id();
+                        mVideoDownLoadUtils.setInit(mMVideoItemInfo.getVideo_url(), mMVideoItemInfo.getCover_url(), mVideoDuration);
+                        mVideoDownLoadUtils.DOWNLOAD();
+                    } else {
+                        ToastUtils.showToast("视频下载中");
+                    }
+                    break;
+                case downloaded:
                     mVideoDownLoadUtils.initCommonContentValues();
                     mPresent.addForwardNum(show_video_id);
+                    break;
+                case delVideo:
+                    mdelPosition = mCurrentPosition;
+                    show_video_id = mAllList.get(mCurrentPosition).getShort_video_id();
+                    mPresent.delVideo(show_video_id);
+                    break;
+                case shareVideo:
+
                     break;
                 case followItem:
                     int is_follow = msg.arg1;
@@ -403,6 +421,18 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         @Override
         public int getCount() {
             return mAllList.size();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            // 最简单解决 notifyDataSetChanged() 页面不刷新问题的方法
+            View view = (View) object;
+            if (view.getId() == mdelPosition) {
+                mdelPosition = -1;
+                return POSITION_NONE;
+            } else {
+                return POSITION_UNCHANGED;
+            }
         }
 
         @Override
@@ -662,7 +692,10 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
 
     @Override
     public void upLoadVideoSuccess(BasicResponse responseBean) {
-
+        if (mAllList != null && mAllList.size() > 0 && mCurrentPosition < mAllList.size()) {
+            mAllList.remove(mCurrentPosition);
+            mPagerAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

@@ -230,9 +230,8 @@ public class GlideDownLoadImage {
                 .load(url).asBitmap()
                 .placeholder(mipmapid)
                 .error(mipmapid)
-                .skipMemoryCache(true)
                 .transform(mGlideRoundTransform)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(view);
     }
 

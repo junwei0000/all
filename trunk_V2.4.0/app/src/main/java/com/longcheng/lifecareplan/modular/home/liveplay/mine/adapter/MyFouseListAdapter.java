@@ -56,7 +56,7 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         mHolder.item_tv_name.setText(mHelpItemBean.getUser_name());
         String showtitle = mHelpItemBean.getShow_title();
         if (TextUtils.isEmpty(showtitle)) {
-            showtitle = "主播很懒，什么也没留下";
+            showtitle = "什么也没留下";
         }
         mHolder.item_tv_num.setText("" + showtitle);
         String url = mHelpItemBean.getAvatar();

@@ -111,12 +111,13 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     private ImageView iv_dianzan;
     private ImageView iv_follow;
     private int mCurrentPosition;
-
+    private int mdelPosition = -1;
     private String video_user_id;
 
     public String showPageType_video = "showPageType_video";
     public String showPageType_follow = "showPageType_follow";
     public String showPageType = "";
+    UpLoadDialogUtils mUpLoadDialogUtils;
 
     class PlayerInfo {
         public TXVodPlayer txVodPlayer;
@@ -127,15 +128,40 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
         public int pos;
     }
 
-    protected final int download = 7;
-    protected static final int followItem = 8;
+    protected static final int startdownload = 4;
+    protected static final int delVideo = 5;
+    protected static final int shareVideo = 6;
+    protected final int downloaded = 7;
+    public static final int followItem = 8;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case download:
+                case startdownload:
+                    if (mVideoDownLoadUtils == null) {
+                        mVideoDownLoadUtils = new VideoDownLoadUtils(mActivity, mHandler, downloaded);
+                    }
+                    if (!mVideoDownLoadUtils.loading) {
+                        clickType = "DOWNLOAD";
+                        VideoItemInfo mMVideoItemInfo = mAllList.get(mCurrentPosition);
+                        show_video_id = mMVideoItemInfo.getVideo_id();
+                        mVideoDownLoadUtils.setInit(mMVideoItemInfo.getVideo_url(), mMVideoItemInfo.getCover_url(), mVideoDuration);
+                        mVideoDownLoadUtils.DOWNLOAD();
+                    } else {
+                        ToastUtils.showToast("视频下载中");
+                    }
+                    break;
+                case downloaded:
                     mVideoDownLoadUtils.initCommonContentValues();
                     mPresent.addForwardNum(show_video_id);
+                    break;
+                case delVideo:
+                    mdelPosition = mCurrentPosition;
+                    show_video_id = mAllList.get(mCurrentPosition).getVideo_id();
+                    mPresent.delVideo(show_video_id);
+                    break;
+                case shareVideo:
+
                     break;
                 case followItem:
                     int is_follow = msg.arg1;
@@ -186,18 +212,11 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
         } else if (id == R.id.frag_layout_comment) {
             showCommentDialog();
         } else if (id == R.id.frag_layout_share) {
-            VideoItemInfo mMVideoItemInfo = (VideoItemInfo) v.getTag();
-            if (mVideoDownLoadUtils == null) {
-                mVideoDownLoadUtils = new VideoDownLoadUtils(mActivity, mHandler, download);
+            if (mUpLoadDialogUtils == null) {
+                mUpLoadDialogUtils = new UpLoadDialogUtils(mActivity, mHandler);
             }
-            if (!mVideoDownLoadUtils.loading) {
-                clickType = "DOWNLOAD";
-                show_video_id = mMVideoItemInfo.getVideo_id();
-                mVideoDownLoadUtils.setInit(mMVideoItemInfo.getVideo_url(), mMVideoItemInfo.getCover_url(), mVideoDuration);
-                mVideoDownLoadUtils.DOWNLOAD();
-            } else {
-                ToastUtils.showToast("视频下载中");
-            }
+            video_user_id = mAllList.get(mCurrentPosition).getUser_id();
+            mUpLoadDialogUtils.setDialog(video_user_id);
         } else if (id == R.id.iv_avatar) {
             video_user_id = mAllList.get(mCurrentPosition).getUser_id();
             Intent intent = new Intent(mActivity, MineActivity.class);
@@ -372,6 +391,18 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 playerInfo.txVodPlayer.stopPlay(true);
             }
             playerInfoList.clear();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            // 最简单解决 notifyDataSetChanged() 页面不刷新问题的方法
+            View view = (View) object;
+            if (view.getId() == mdelPosition) {
+                mdelPosition = -1;
+                return POSITION_NONE;
+            } else {
+                return POSITION_UNCHANGED;
+            }
         }
 
         @Override
@@ -555,7 +586,9 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             mTXCloudVideoView.onDestroy();
             mTXCloudVideoView = null;
         }
-        mPagerAdapter.onDestroy();
+        if (mPagerAdapter != null) {
+            mPagerAdapter.onDestroy();
+        }
         stopPlay(true);
         mTXVodPlayer = null;
     }
@@ -644,7 +677,10 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
 
     @Override
     public void upLoadVideoSuccess(BasicResponse responseBean) {
-
+        if (mAllList != null && mAllList.size() > 0 && mCurrentPosition < mAllList.size()) {
+            mAllList.remove(mCurrentPosition);
+            mPagerAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

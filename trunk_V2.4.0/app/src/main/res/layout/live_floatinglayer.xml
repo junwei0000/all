@@ -167,6 +167,27 @@
             android:visibility="invisible" />
 
         <LinearLayout
+            android:id="@+id/frag_layout_zhufu"
+            style="@style/btn_padd"
+            android:layout_margin="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@drawable/corners_bg_jianbian">
+
+            <TextView
+                android:id="@+id/frag_tv_zhufu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:singleLine="true"
+                android:text="为TA送上祝福"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.6"

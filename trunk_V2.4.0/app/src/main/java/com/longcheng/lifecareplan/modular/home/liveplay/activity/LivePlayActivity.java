@@ -116,6 +116,10 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     LinearLayout layoutGn;
     @BindView(R.id.iv_avatar)
     ImageView iv_avatar;
+    @BindView(R.id.frag_layout_zhufu)
+    LinearLayout frag_layout_zhufu;
+    @BindView(R.id.frag_tv_zhufu)
+    TextView frag_tv_zhufu;
 
     boolean isPlaying = false;
     boolean rankOpenStatus = false;
@@ -123,6 +127,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
     String title, User_name, Cover_url;
     liWuDialogUtils mliWuDialogUtils;
     ArrayList<LiveDetailItemInfo> gift;
+    String help_url;
 
     @Override
     public void onClick(View v) {
@@ -164,8 +169,14 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 BaoZhangActitvty.life_repay_id = "Live";
                 String wx_share_url = Config.BASE_HEAD_URL + "/home/app/index";
                 if (!TextUtils.isEmpty(wx_share_url)) {
-                    mShareUtils.setShare("直播中：" + title, Cover_url,R.mipmap.share_icon, wx_share_url, User_name);
+                    mShareUtils.setShare("直播中：" + title, Cover_url, R.mipmap.share_icon, wx_share_url, User_name);
                 }
+                break;
+            case R.id.frag_layout_zhufu:
+                Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", help_url);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -211,9 +222,10 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         fragTvFollow.setOnClickListener(this);
         fragLayoutRank.setOnClickListener(this);
         fragLayoutShare.setOnClickListener(this);
+        frag_layout_zhufu.setOnClickListener(this);
         lvRankdata.getBackground().setAlpha(50);
-        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvFollow,R.color.red);
-        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity,fragTvJieqi,R.color.red);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, fragTvFollow, R.color.btn_red_hover);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, fragTvJieqi, R.color.btn_red_hover);
         edtContent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId,
@@ -484,6 +496,14 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
                     } else {
                         fragTvFollow.setVisibility(View.VISIBLE);
                     }
+                    help_url = info.getHelp_url();
+                    int is_display = info.getIs_display();
+                    if (is_display == 0) {
+                        frag_layout_zhufu.setVisibility(View.GONE);
+                    } else {
+                        frag_tv_zhufu.setText(info.getHelp_title());
+                        frag_layout_zhufu.setVisibility(View.VISIBLE);
+                    }
                     title = info.getTitle();
                     User_name = info.getUser_name();
                     Cover_url = info.getCover_url();
@@ -509,7 +529,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         } else if (errcode == -100) {
             back();
             ToastUtils.showToast("" + responseBean.getMsg());
-        }else {
+        } else {
             ToastUtils.showToast("" + responseBean.getMsg());
         }
     }

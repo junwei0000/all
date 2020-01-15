@@ -204,6 +204,11 @@ public interface ApiLiveService {
     Observable<BasicResponse> setVideoSendComment(@Field("user_id") String user_id,
                                                   @Field("short_video_id") String short_video_id,
                                                   @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST("dock/video/video/delete")
+    Observable<BasicResponse> delVideo(@Field("user_id") String user_id,
+                                       @Field("short_video_id") String short_video_id);
 }
 
 

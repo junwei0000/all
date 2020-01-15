@@ -163,6 +163,7 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         } else {
             tvFollow.setVisibility(View.VISIBLE);
             tvFollow.setOnClickListener(this);
+            tv_showtitle.setHint("什么也没留下");
         }
         position = 0;
         initFragment();
@@ -365,6 +366,7 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 public void onClick(View v) {
                     content = et_content.getText().toString();
                     if (!TextUtils.isEmpty(content)) {
+                        ConfigUtils.getINSTANCE().closeSoftInput(et_content);
                         selectDialog.dismiss();
                         mPresent.updateShowTitle(content);
                     } else {

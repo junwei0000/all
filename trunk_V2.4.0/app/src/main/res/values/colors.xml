@@ -44,6 +44,7 @@
     <color name="btn_red_hover">#E8484B</color>
     <color name="red">#e60c0c</color>
     <color name="red_fen">#fde5e5</color>
+
     <color name="red_openredfen">#fc6421</color>
     <color name="ranking_tab_selected">#e66109</color>
     <color name="red_course">#F76185</color>
