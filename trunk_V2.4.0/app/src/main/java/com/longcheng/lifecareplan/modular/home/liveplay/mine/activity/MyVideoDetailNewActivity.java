@@ -135,9 +135,14 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         } else if (id == R.id.record_preview) {
             switchPlay();
         } else if (id == R.id.frag_iv_dashuang) {
+            MVideoItemInfo mMVideoItemInfo = mAllList.get(mCurrentPosition);
+            show_video_id = mMVideoItemInfo.getShort_video_id();
+            String payurl = Config.PAY_URL + "home/live/pay/short_video_id/" + show_video_id +
+                    "/publisher_user_id/" + mMVideoItemInfo.getUser_id() +
+                    "/forwarder_user_id/" + UserUtils.getUserId(mContext);
             Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.putExtra("html_url", "" + Config.BASE_HEAD_URL + "home/reward/pay/userRewardVideoId/1/isAppVideo/1");
+            intent.putExtra("html_url", payurl);
             startActivity(intent);
         } else if (id == R.id.frag_layout_dianzan) {
             MVideoItemInfo mMVideoItemInfo = (MVideoItemInfo) view.getTag();
@@ -182,6 +187,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     protected static final int shareVideo = 6;
     protected final int downloaded = 7;
     protected static final int followItem = 8;
+    protected static final int addShareNum = 9;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -202,6 +208,9 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                     break;
                 case downloaded:
                     mVideoDownLoadUtils.initCommonContentValues();
+                    mHandler.sendEmptyMessage(addShareNum);
+                    break;
+                case addShareNum:
                     mPresent.addForwardNum(show_video_id);
                     break;
                 case delVideo:
@@ -210,7 +219,15 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                     mPresent.delVideo(show_video_id);
                     break;
                 case shareVideo:
-
+                    if (mUpLoadDialogUtils == null) {
+                        mUpLoadDialogUtils = new UpLoadDialogUtils(mActivity, mHandler);
+                    }
+                    MVideoItemInfo mMVideoItemInfo = mAllList.get(mCurrentPosition);
+                    show_video_id = mMVideoItemInfo.getShort_video_id();
+                    String codeurl = Config.PAY_URL + "home/live/info/short_video_id/" + show_video_id +
+                            "/publisher_user_id/" + mMVideoItemInfo.getUser_id() +
+                            "/forwarder_user_id/" + UserUtils.getUserId(mContext);
+                    mUpLoadDialogUtils.setShareDialog(mMVideoItemInfo.getCover_url(), mMVideoItemInfo.getUser_name(), mMVideoItemInfo.getTitle(), codeurl);
                     break;
                 case followItem:
                     int is_follow = msg.arg1;

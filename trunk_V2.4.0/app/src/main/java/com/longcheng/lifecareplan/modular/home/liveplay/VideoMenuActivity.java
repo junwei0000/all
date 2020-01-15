@@ -1,11 +1,18 @@
 package com.longcheng.lifecareplan.modular.home.liveplay;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,11 +21,15 @@ import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.HomFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.MineFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.VideoFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyViewPager;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
+import com.longcheng.lifecareplan.zxing.CreateQRImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +53,7 @@ public class VideoMenuActivity extends BaseActivity {
 
     public static List<Fragment> fragmentList = new ArrayList<>();
     public static int position;
-
+    public static int beforeCodeposition;
     public static final int tab_position_home = 0;
     public static final int tab_position_Follow = 1;
     public static final int tab_position_mine = 2;
@@ -89,7 +100,20 @@ public class VideoMenuActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bottom_tv_scancode:
-
+                VideoItemInfo mVideoItemInfo = null;
+                beforeCodeposition = position;
+                if (position == tab_position_Follow) {
+                    mVideoItemInfo = ((VideoFramgent) fragmentList.get(tab_position_Follow)).getCurrentInfo();
+                } else if (position == tab_position_home) {
+                    mVideoItemInfo = ((HomFramgemt) fragmentList.get(tab_position_home)).getCurrentInfo();
+                }
+                if (mVideoItemInfo != null) {
+                    String payurl = Config.PAY_URL + "home/live/pay/short_video_id/" + mVideoItemInfo.getVideo_id() +
+                            "/publisher_user_id/" + mVideoItemInfo.getUser_id() +
+                            "/forwarder_user_id/" + UserUtils.getUserId(mContext);
+                    setCodeBtn();
+                    setCodeDialog(payurl);
+                }
                 break;
             case R.id.bottom_layout_publish:
                 Intent intent = new Intent(mActivity, ShortVideoActivity.class);
@@ -111,7 +135,52 @@ public class VideoMenuActivity extends BaseActivity {
         }
     }
 
+    MyDialog selectDialog;
+    ImageView iv_code;
+
+    public void setCodeDialog(String payurl) {
+        if (selectDialog == null) {
+            selectDialog = new MyDialog(mActivity, R.style.dialog, R.layout.dialog_sharehomecode);// 创建Dialog并设置样式主题
+            selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = selectDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.showBottomDialog);
+            selectDialog.show();
+            WindowManager m = mActivity.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth(); //宽度设置为屏幕
+            selectDialog.getWindow().setAttributes(p); //设置生效
+            iv_code = (ImageView) selectDialog.findViewById(R.id.iv_code);
+            ImageView iv_bottom = (ImageView) selectDialog.findViewById(R.id.iv_bottom);
+            LinearLayout tv_leftwidth = (LinearLayout) selectDialog.findViewById(R.id.tv_leftwidth);
+            tv_leftwidth.setPadding(d.getWidth() / 5, 0, 0, 30);
+            iv_code.setLayoutParams(new LinearLayout.LayoutParams(p.width / 5 - 1, p.width / 5 - 5));
+            iv_bottom.setLayoutParams(new LinearLayout.LayoutParams(p.width / 5, LinearLayout.LayoutParams.WRAP_CONTENT));
+            selectDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    clickStatus = true;
+                    selectPage(beforeCodeposition);
+                }
+            });
+        } else {
+            selectDialog.show();
+        }
+        Log.e("registerHandler", "payurl=" + payurl);
+        CreateQRImage.createQRImage(payurl, iv_code);
+    }
+
+    private void setCodeBtn() {
+        bottomTvHome.setTextColor(getResources().getColor(R.color.text_noclick_color));
+        bottomTvFollow.setTextColor(getResources().getColor(R.color.text_noclick_color));
+        bottomTvMine.setTextColor(getResources().getColor(R.color.text_noclick_color));
+        bottomTvScancode.setTextColor(getResources().getColor(R.color.white));
+    }
+
+
     private void setBottomBtn() {
+        bottomTvScancode.setTextColor(getResources().getColor(R.color.text_noclick_color));
         bottomTvHome.setTextColor(getResources().getColor(R.color.text_noclick_color));
         bottomTvFollow.setTextColor(getResources().getColor(R.color.text_noclick_color));
         bottomTvMine.setTextColor(getResources().getColor(R.color.text_noclick_color));
@@ -132,7 +201,7 @@ public class VideoMenuActivity extends BaseActivity {
         fragmentList.add(homFramgemt);
 
         VideoFramgent followFramgent = new VideoFramgent();
-        followFramgent.showPageType=followFramgent.showPageType_follow;
+        followFramgent.showPageType = followFramgent.showPageType_follow;
         fragmentList.add(followFramgent);
 
         MineFramgemt mineFragment = new MineFramgemt();

@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
+import com.longcheng.lifecareplan.apiLive.ApiLivePay;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
@@ -137,7 +138,7 @@ public class BaoZhangActitvty extends WebAct {
                 }
                 Log.e("registerHandler", "knp_shareurl=" + knp_shareurl);
                 if (shareStatus && !TextUtils.isEmpty(knp_shareurl)) {
-                    mShareUtils.setShare(knp_sharedesc, knp_sharePic,R.mipmap.share_rqz, knp_shareurl, knp_sharetitle);
+                    mShareUtils.setShare(knp_sharedesc, knp_sharePic, R.mipmap.share_rqz, knp_shareurl, knp_sharetitle);
                 }
                 break;
         }
@@ -443,6 +444,21 @@ public class BaoZhangActitvty extends WebAct {
                 }
             }
         });
+        //打赏
+        mBridgeWebView.registerHandler("allNewPayLive", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "allNewPayLive=" + data);
+                weixinPayBackType = "allNewPayLive";
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    String payment_channel = jsonObject.optString("payment_channel", "");
+                    allNewPayLive(data, payment_channel);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public static final int knpPaySuccessBack = 11;
@@ -636,6 +652,90 @@ public class BaoZhangActitvty extends WebAct {
      */
     private void allNewPayRefresh(String status) {
         mBridgeWebView.callHandler("allNewPay_refreshPage", "" + status, new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
+
+    /**
+     * 康农工程创建房间---互祝支付
+     *
+     * @param json_datas
+     */
+    private void allNewPayLive(String json_datas, String payment_channel) {
+        if (RequestDataStatus) {
+            return;
+        }
+        showDialog();
+        Observable<PayWXDataBean> observable = ApiLivePay.getInstance().service.allNewPay(UserUtils.getUserId(mContext),
+                json_datas, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                one_order_id = payWeChatBean.getOne_order_id();
+                                if (payment_channel.equals("1")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (payment_channel.equals("2")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            allNewPayLiveSuccess();
+                                        }
+
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                }
+                            } else {
+                                ToastUtils.showToast(responseBean.getMsg());
+                                allNewPayLiveRefresh(status);
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastUtils.showToast(R.string.net_tishi);
+                        Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
+                    }
+                });
+    }
+
+    /**
+     *
+     */
+    private void allNewPayLiveSuccess() {
+        if (mBridgeWebView != null) {
+            mBridgeWebView.callHandler("allNewPayLive_SucBack", "" + one_order_id, new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * @param status
+     */
+    private void allNewPayLiveRefresh(String status) {
+        mBridgeWebView.callHandler("allNewPayLive_refreshPage", "" + status, new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
 
@@ -1586,6 +1686,8 @@ public class BaoZhangActitvty extends WebAct {
                     doctorPaySuccess();
                 } else if (weixinPayBackType.equals("allNewPay")) {
                     allNewPaySuccess();
+                } else if (weixinPayBackType.equals("allNewPayLive")) {
+                    allNewPayLiveSuccess();
                 }
 
             } else if (Code == WXPayEntryActivity.PAY_FAILE) {

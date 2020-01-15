@@ -10,6 +10,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MineItemInfo;
+import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 
 import java.util.ArrayList;
 
@@ -121,10 +122,9 @@ public interface ApiLiveService {
     Observable<BasicResponse<MVideoItemInfo>> videoDetail(@Field("user_id") String user_id,
                                                           @Field("short_video_id") String short_video_id);
 
-    @FormUrlEncoded
-    @POST("dock/user/user/index")
-    Observable<BasicResponse<MineItemInfo>> getMineInfo(@Field("user_id") String video_user_id,
-                                                        @Field("current_user_id") String current_user_id);
+    @GET("dock/user/user/index")
+    Observable<BasicResponse<MineItemInfo>> getMineInfo(@Query("user_id") String video_user_id,
+                                                        @Query("current_user_id") String current_user_id);
 
     @FormUrlEncoded
     @POST("dock/user/user/changeShowTitle")
@@ -209,6 +209,12 @@ public interface ApiLiveService {
     @POST("dock/video/video/delete")
     Observable<BasicResponse> delVideo(@Field("user_id") String user_id,
                                        @Field("short_video_id") String short_video_id);
+
+    @FormUrlEncoded
+    @POST("home/Commonpay/index")
+    Observable<PayWXDataBean> allNewPay(@Field("user_id") String user_id,
+                                        @Field("json_datas") String json_datas,
+                                        @Field("token") String token);
 }
 
 

@@ -15,6 +15,7 @@ import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
@@ -111,7 +112,7 @@ public class HomFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     private void initFragment() {
         fragmentList.clear();
         VideoFramgent videoFramgent = new VideoFramgent();
-        videoFramgent.showPageType=videoFramgent.showPageType_video;
+        videoFramgent.showPageType = videoFramgent.showPageType_video;
         fragmentList.add(videoFramgent);
 
         LiveFramgent mMyLiveFrag = new LiveFramgent();
@@ -171,6 +172,15 @@ public class HomFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterImp
             onPauseVideo();
         }
     }
+
+    public VideoItemInfo getCurrentInfo() {
+        if(fragmentList!=null&&fragmentList.size()>0){
+            return ((VideoFramgent) fragmentList.get(0)).getCurrentInfo();
+        }else{
+            return null;
+        }
+    }
+
     public void onResumeVideo() {
         ((VideoFramgent) fragmentList.get(0)).onResumeVideo();
     }

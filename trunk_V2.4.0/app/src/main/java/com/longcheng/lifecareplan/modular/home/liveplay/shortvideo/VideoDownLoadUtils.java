@@ -2,9 +2,16 @@ package com.longcheng.lifecareplan.modular.home.liveplay.shortvideo;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -17,12 +24,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.FileCache;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.tencent.liteav.demo.videouploader.common.view.NumberProgressBar;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import cn.finalteam.okhttpfinal.FileDownloadCallback;
 import cn.finalteam.okhttpfinal.HttpRequest;
@@ -194,6 +205,111 @@ public class VideoDownLoadUtils {
         return values;
     }
 
+    /**
+     * 进行截取屏幕
+     *
+     * @return bitmap
+     */
+    public static Bitmap takeScreenShot(View view, boolean curTop) {
+        Bitmap bitmap = null;
+        view.setDrawingCacheEnabled(true);
+        // 如果绘图缓存无法，强制构建绘图缓存
+        view.buildDrawingCache();
+        // 返回这个缓存视图
+        bitmap = view.getDrawingCache();
+        // 获取状态栏高度
+        Rect frame = new Rect();
+        // 测量屏幕宽和高
+        view.getWindowVisibleDisplayFrame(frame);
+        int stautsHeight = frame.top;
+        if (!curTop) {
+            stautsHeight = 0;
+        }
+        Log.d("jiangqq", "状态栏的高度为:" + stautsHeight);
+
+        int width = view.getWidth();
+        int height = view.getHeight();
+        // 根据坐标点和需要的宽和高创建bitmap
+        bitmap = Bitmap.createBitmap(bitmap, 0, stautsHeight, width, height - stautsHeight);
+        view.setDrawingCacheEnabled(false);
+        view.buildDrawingCache(false);
+        return bitmap;
+    }
+
+    public static void saveImage(Activity activity, String mCoverImagePath, Bitmap bmp) {
+        File appDir = new File(FileCache.path);
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        String fileName = ConfigUtils.getINSTANCE().MD5(mCoverImagePath);
+        Log.e("fileName", "" + fileName);
+        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+            try {
+                MediaStore.Images.Media.insertImage(activity.getContentResolver(),
+                        file.getAbsolutePath(), fileName, null);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            // 最后通知图库更新
+            Uri localUri = Uri.fromFile(file);
+            Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri);
+            activity.sendBroadcast(localIntent);
+            ToastUtils.showToast("已保存相册文件夹");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveImageToGallery(Context context, String mCoverImagePath, Bitmap bmp) {
+        // 首先保存图片
+        File appDir = new File(FileCache.path);
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        String fileName = ConfigUtils.getINSTANCE().MD5(mCoverImagePath) + ".jpg";
+        Log.e("fileName", "" + fileName);
+        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 其次把文件插入到系统图库
+//        try {
+//            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+//                    file.getAbsolutePath(), fileName, null);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        // 最后通知图库更新
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // 判断SDK版本是不是4.4或者高于4.4
+            String[] paths = new String[]{file.getAbsolutePath()};
+            MediaScannerConnection.scanFile(context, paths, null, null);
+        } else {
+            final Intent intent;
+            if (file.isDirectory()) {
+                intent = new Intent(Intent.ACTION_MEDIA_MOUNTED);
+                intent.setClassName("com.android.providers.media", "com.android.providers.media.MediaScannerReceiver");
+                intent.setData(Uri.fromFile(Environment.getExternalStorageDirectory()));
+            } else {
+                intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                intent.setData(Uri.fromFile(file));
+            }
+            context.sendBroadcast(intent);
+        }
+        ToastUtils.showToast("已保存相册文件夹");
+    }
 
     MyDialog selectDialog;
     NumberProgressBar uploader_pb_loading;

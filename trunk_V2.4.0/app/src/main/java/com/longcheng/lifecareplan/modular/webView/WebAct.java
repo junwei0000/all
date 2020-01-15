@@ -158,6 +158,7 @@ public abstract class WebAct extends BaseActivity {
         String avatar = UserUtils.getUserAvatar(mContext);
         String token = UserUtils.getWXToken(mContext);
         int vercode = ConfigUtils.getINSTANCE().getVersionCode(mContext);
+        //Config.WEB_DOMAIN域名
         cookieManager.setCookie(url, "phone_user_name=" + name + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "phone_user_phone=" + phone + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "phone_user_id=" + userId + Config.WEB_DOMAIN);
@@ -166,6 +167,15 @@ public abstract class WebAct extends BaseActivity {
         cookieManager.setCookie(url, "isApp_Storage=1" + Config.WEB_DOMAIN);
         cookieManager.setCookie(url, "APP_type_pay_source=2" + Config.WEB_DOMAIN);//安卓source=2
         cookieManager.setCookie(url, "versionCode=" + vercode + Config.WEB_DOMAIN);
+        //Config.WEB_DOMAIN_PAY域名
+        cookieManager.setCookie(url, "phone_user_name=" + name + Config.WEB_DOMAIN_PAY);
+        cookieManager.setCookie(url, "phone_user_phone=" + phone + Config.WEB_DOMAIN_PAY);
+        cookieManager.setCookie(url, "phone_user_id=" + userId + Config.WEB_DOMAIN_PAY);
+        cookieManager.setCookie(url, "phone_user_avatar=" + avatar + Config.WEB_DOMAIN_PAY);
+        cookieManager.setCookie(url, "phone_user_token=" + token + Config.WEB_DOMAIN_PAY);
+        cookieManager.setCookie(url, "isApp_Storage=1" + Config.WEB_DOMAIN_PAY);
+        cookieManager.setCookie(url, "APP_type_pay_source=2" + Config.WEB_DOMAIN_PAY);//安卓source=2
+        cookieManager.setCookie(url, "versionCode=" + vercode + Config.WEB_DOMAIN_PAY);
         Log.e("aaa", "getCookie : " + cookieManager.getCookie(url));
         cookieManager.getCookie(url);
         if (Build.VERSION.SDK_INT < 21) {
