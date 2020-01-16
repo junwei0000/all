@@ -41,10 +41,18 @@ public class MVideoItemInfo implements Serializable {
 
     private int is_user_follow;//新增是否关注 0：未关注  1：已关注
     private String jieqi_branch_name;
-
+    private String current_jieqi_cn;
     private int is_display;//新增打赏标题是否展示 0：不展示 1：展示
     private String help_title;
     private String help_url;
+
+    public String getCurrent_jieqi_cn() {
+        return current_jieqi_cn;
+    }
+
+    public void setCurrent_jieqi_cn(String current_jieqi_cn) {
+        this.current_jieqi_cn = current_jieqi_cn;
+    }
 
     public int getIs_user_follow() {
         return is_user_follow;

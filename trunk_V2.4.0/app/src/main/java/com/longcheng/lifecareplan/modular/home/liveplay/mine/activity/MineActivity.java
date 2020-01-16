@@ -169,7 +169,6 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         position = 0;
         initFragment();
         setPageAdapter();
-        getMineInfo();
     }
 
     @Override
@@ -179,7 +178,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     }
 
     private void getMineInfo() {
-        mPresent.getMineInfo(video_user_id);
+        if (!TextUtils.isEmpty(video_user_id))
+            mPresent.getMineInfo(video_user_id);
     }
 
     /**

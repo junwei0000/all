@@ -87,7 +87,7 @@ public class UpLoadDialogUtils {
         tv_name.setText(name);
         tv_cont.setText(title);
         CreateQRImage.createQRImage(codeurl, iv_code);
-        Log.e("fileName", "" + cover_url);
+        Log.e("fileName", "" + codeurl);
         GlideDownLoadImage.getInstance().loadCircleImageLive(cover_url, R.mipmap.sharecode_icon, iv_cover, 0);
     }
 

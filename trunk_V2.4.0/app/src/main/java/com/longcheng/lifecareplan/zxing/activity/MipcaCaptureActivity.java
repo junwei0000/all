@@ -23,7 +23,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
-import com.longcheng.lifecareplan.modular.mine.set.activity.ReceiveH5Activity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
@@ -117,7 +117,7 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
         String resultString = result.getText();
         Log.e("handleDecode", "resultString=" + resultString);
         if (!TextUtils.isEmpty(resultString) && resultString.contains("asdyf.com")) {
-            Intent intent = new Intent(mContext, ReceiveH5Activity.class);
+            Intent intent = new Intent(mContext, BaoZhangActitvty.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("html_url", "" + resultString);
             startActivity(intent);

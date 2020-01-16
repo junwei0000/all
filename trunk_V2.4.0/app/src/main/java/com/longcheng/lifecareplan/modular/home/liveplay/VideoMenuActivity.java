@@ -154,6 +154,7 @@ public class VideoMenuActivity extends BaseActivity {
             iv_code = (ImageView) selectDialog.findViewById(R.id.iv_code);
             ImageView iv_bottom = (ImageView) selectDialog.findViewById(R.id.iv_bottom);
             LinearLayout tv_leftwidth = (LinearLayout) selectDialog.findViewById(R.id.tv_leftwidth);
+            LinearLayout pop_layout = (LinearLayout) selectDialog.findViewById(R.id.pop_layout);
             tv_leftwidth.setPadding(d.getWidth() / 5, 0, 0, 30);
             iv_code.setLayoutParams(new LinearLayout.LayoutParams(p.width / 5 - 1, p.width / 5 - 5));
             iv_bottom.setLayoutParams(new LinearLayout.LayoutParams(p.width / 5, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -162,6 +163,12 @@ public class VideoMenuActivity extends BaseActivity {
                 public void onDismiss(DialogInterface dialog) {
                     clickStatus = true;
                     selectPage(beforeCodeposition);
+                }
+            });
+            pop_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
                 }
             });
         } else {

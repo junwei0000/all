@@ -38,6 +38,7 @@
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"
                         android:background="@drawable/corners_oval_gray"
+                        android:layout_marginRight="@dimen/dp10"
                         android:gravity="center">
 
                         <ImageView
@@ -49,7 +50,7 @@
 
                     <LinearLayout
                         android:id="@+id/pagetop_layout_rigth"
-                        style="@style/view_marginlefgtright"
+                        android:layout_marginRight="@dimen/dp10"
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"
                         android:background="@drawable/corners_oval_gray"

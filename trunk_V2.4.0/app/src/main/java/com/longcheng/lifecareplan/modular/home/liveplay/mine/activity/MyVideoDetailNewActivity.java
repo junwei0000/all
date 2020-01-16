@@ -127,10 +127,6 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         public String playURL;
         public boolean isBegin;
         public View playerView;
-        public ImageButton record_preview;
-        public ImageView iv_follow;
-        public ImageView iv_dianzan;
-        public TextView frag_tv_dianzannum;
         public int pos;
     }
 
@@ -317,7 +313,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     }
 
     private void initViews() {
-        mVerticalViewPager.setOffscreenPageLimit(5);
+        mVerticalViewPager.setOffscreenPageLimit(0);
         mVerticalViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -336,6 +332,10 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                     mTXVodPlayer.pause();
                     updateDetailInfo();
                 }
+                Log.i("onPageSelected", "onPageSelected = " + position + " mCurrentPosition" + mCurrentPosition
+                        + "  is_user_follow=" + mAllList.get(mCurrentPosition).getIs_user_follow() + "  is_follow="
+                        + mAllList.get(mCurrentPosition).getIs_follow() + "  Short_video_id(=" + mAllList.get(mCurrentPosition).getShort_video_id());
+
                 /**
                  * 分页加载数据
                  */
@@ -352,7 +352,6 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         mVerticalViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
-                TXLog.i(TAG, "mVerticalViewPager, transformPage pisition = " + position + " mCurrentPosition" + mCurrentPosition);
                 if (position != 0) {
                     return;
                 }
@@ -371,6 +370,25 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                     record_preview.setImageResource(R.mipmap.record_pause);
                     record_preview.setImageResource(0);
                     mTXVodPlayer = playerInfo.txVodPlayer;
+                    Log.i("onPageSelected", "setPageTransformer = " + position + " mCurrentPosition" + mCurrentPosition
+                            + "  is_user_follow=" + mAllList.get(mCurrentPosition).getIs_user_follow() + "  is_follow="
+                            + mAllList.get(mCurrentPosition).getIs_follow() + "  Short_video_id(=" + mAllList.get(mCurrentPosition).getShort_video_id());
+
+                    //切换当前页面后，刷新状态数据
+                    MVideoItemInfo mMVideoItemInfo = mAllList.get(mCurrentPosition);
+                    int is_follow = mMVideoItemInfo.getIs_follow();
+                    int is_user_follow = mMVideoItemInfo.getIs_user_follow();
+                    if (is_follow == 0) {
+                        iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_bai);
+                    } else {
+                        iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
+                    }
+                    if (is_user_follow == 1 || mAllList.get(mCurrentPosition).getUser_id().equals(UserUtils.getUserId(mContext))) {
+                        iv_follow.setVisibility(View.GONE);
+                    } else {
+                        iv_follow.setVisibility(View.VISIBLE);
+                    }
+                    frag_tv_dianzannum.setText("" + mMVideoItemInfo.getFollow_number());
                 }
             }
         });
@@ -388,7 +406,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
 
         ArrayList<PlayerInfo> playerInfoList = new ArrayList<>();
 
-        public PlayerInfo instantiatePlayerInfo(int position, ImageButton record_preview_) {
+        public PlayerInfo instantiatePlayerInfo(int position) {
             TXCLog.d(TAG, "instantiatePlayerInfo " + position);
 
             PlayerInfo playerInfo = new PlayerInfo();
@@ -406,8 +424,8 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             playerInfo.playURL = tcLiveInfo.getVideo_url();
             playerInfo.txVodPlayer = vodPlayer;
             playerInfo.pos = position;
-            playerInfo.record_preview = record_preview_;
             playerInfoList.add(playerInfo);
+            Log.i("onPageSelected", "instantiatePlayerInfo = " + position + " playerInfoList=" + playerInfoList.size());
 
             return playerInfo;
         }
@@ -427,7 +445,6 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         public PlayerInfo findPlayerInfo(int position) {
             for (int i = 0; i < playerInfoList.size(); i++) {
                 PlayerInfo playerInfo = playerInfoList.get(i);
-                playerInfo.record_preview.setVisibility(View.VISIBLE);
                 if (playerInfo.pos == position) {
                     return playerInfo;
                 }
@@ -502,8 +519,8 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             frag_layout_jieqi.getBackground().setAlpha(60);
             frag_layout_city.getBackground().setAlpha(60);
 
-
             MVideoItemInfo mMVideoItemInfo = mAllList.get(position);
+
             frag_iv_dashuang.setTag(mMVideoItemInfo);
             frag_layout_dianzan.setTag(mMVideoItemInfo);
             frag_layout_comment.setTag(mMVideoItemInfo);
@@ -534,7 +551,16 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                 iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
             }
             String jieqi_branch_name = mMVideoItemInfo.getJieqi_branch_name();
-            frag_tv_jieqi.setText(jieqi_branch_name);
+            String current_jieqi_cn = mMVideoItemInfo.getCurrent_jieqi_cn();
+            String show = "";
+            if (!TextUtils.isEmpty(current_jieqi_cn) && !TextUtils.isEmpty(jieqi_branch_name)) {
+                show = jieqi_branch_name + "." + current_jieqi_cn;
+            } else if (!TextUtils.isEmpty(jieqi_branch_name)) {
+                show = jieqi_branch_name;
+            } else if (!TextUtils.isEmpty(current_jieqi_cn)) {
+                show = current_jieqi_cn;
+            }
+            frag_tv_jieqi.setText(show);
             if (TextUtils.isEmpty(jieqi_branch_name)) {
                 frag_layout_jieqi.setVisibility(View.GONE);
             } else {
@@ -545,13 +571,14 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                 city = "北京市";
             }
             frag_tv_city.setText("" + city);
-
             int is_user_follow = mMVideoItemInfo.getIs_user_follow();
             if (is_user_follow == 1 || mMVideoItemInfo.getUser_id().equals(UserUtils.getUserId(mContext))) {
                 iv_follow.setVisibility(View.GONE);
             } else {
                 iv_follow.setVisibility(View.VISIBLE);
             }
+            Log.i("onPageSelected", "instantiateItem = " + position + " mCurrentPosition" + mCurrentPosition
+                    + "  is_user_follow=" + is_user_follow + "  is_follow=" + is_follow + "  Short_video_id(=" + mMVideoItemInfo.getShort_video_id());
             int is_display = mMVideoItemInfo.getIs_display();
             if (is_display == 0) {
                 frag_layout_zhufu.setVisibility(View.GONE);
@@ -561,11 +588,8 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             }
             // 获取此player
             TXCloudVideoView playView = (TXCloudVideoView) view.findViewById(R.id.video_view);
-            PlayerInfo playerInfo = instantiatePlayerInfo(position, record_preview);
+            PlayerInfo playerInfo = instantiatePlayerInfo(position);
             playerInfo.playerView = playView;
-            playerInfo.iv_dianzan = iv_dianzan;
-            playerInfo.iv_follow = iv_follow;
-            playerInfo.frag_tv_dianzannum = frag_tv_dianzannum;
             playerInfo.txVodPlayer.setPlayerView(playView);
             playerInfo.txVodPlayer.startPlay(playerInfo.playURL);
 
@@ -881,18 +905,8 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
             mAllList.get(back_mCurrentPosition).setIs_follow(is_follow);
             mAllList.get(back_mCurrentPosition).setIs_user_follow(is_user_follow);
             mAllList.get(back_mCurrentPosition).setFollow_number(mMVideoItemInfo.getFollow_number());
-            PlayerInfo mPlayerInfo = mPagerAdapter.playerInfoList.get(back_mCurrentPosition);
-            if (is_follow == 0) {
-                mPlayerInfo.iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_bai);
-            } else {
-                mPlayerInfo.iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
-            }
-            if (is_user_follow == 1 || mAllList.get(back_mCurrentPosition).getUser_id().equals(UserUtils.getUserId(mContext))) {
-                mPlayerInfo.iv_follow.setVisibility(View.GONE);
-            } else {
-                mPlayerInfo.iv_follow.setVisibility(View.VISIBLE);
-            }
-            mPlayerInfo.frag_tv_dianzannum.setText("" + mMVideoItemInfo.getFollow_number());
+            Log.i("onPageSelected", "videoDetailSuccess = " + back_mCurrentPosition + " mCurrentPosition" + mCurrentPosition
+                    + "  is_user_follow=" + is_user_follow + "  is_follow=" + is_follow + "  Short_video_id(=" + mMVideoItemInfo.getShort_video_id());
             mPagerAdapter.notifyDataSetChanged();
         }
     }
@@ -963,7 +977,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
     }
 
     private int page = 0;
-    private int pageSize = 15;
+    private int pageSize = 20;
     VideoCommentAdapter mAdapter;
     private int commentpage = 1;
     private TextView tv_count;
