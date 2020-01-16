@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -39,7 +40,7 @@ public class UpLoadDialogUtils {
 
     MyDialog codeDialog;
     ImageView iv_cover, iv_code;
-    TextView tv_name, tv_cont, tv_save;
+    TextView tv_name, tv_cont;
     LinearLayout pop_layout;
 
     String cover_url_;
@@ -64,11 +65,38 @@ public class UpLoadDialogUtils {
             tv_name = (TextView) codeDialog.findViewById(R.id.tv_name);
             tv_cont = (TextView) codeDialog.findViewById(R.id.tv_cont);
             iv_code = (ImageView) codeDialog.findViewById(R.id.iv_code);
-            tv_save = (TextView) codeDialog.findViewById(R.id.tv_save);
+            ImageButton iv_btn = (ImageButton) codeDialog.findViewById(R.id.iv_btn);
             pop_layout = (LinearLayout) codeDialog.findViewById(R.id.pop_layout);
             RelativeLayout relat_cover = (RelativeLayout) codeDialog.findViewById(R.id.relat_cover);
             relat_cover.setLayoutParams(new LinearLayout.LayoutParams(p.width, (int) (p.width * 1.2)));
+            TextView tv_save = (TextView) codeDialog.findViewById(R.id.tv_save);
             tv_save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Bitmap bitmap = VideoDownLoadUtils.takeScreenShot(pop_layout, false);
+                        VideoDownLoadUtils.saveImageToGallery(mContext, cover_url_, bitmap);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    codeDialog.dismiss();
+                    mHandler.sendEmptyMessage(VideoFramgent.addShareNum);
+                }
+            });
+            pop_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Bitmap bitmap = VideoDownLoadUtils.takeScreenShot(pop_layout, false);
+                        VideoDownLoadUtils.saveImageToGallery(mContext, cover_url_, bitmap);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    codeDialog.dismiss();
+                    mHandler.sendEmptyMessage(VideoFramgent.addShareNum);
+                }
+            });
+            iv_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {

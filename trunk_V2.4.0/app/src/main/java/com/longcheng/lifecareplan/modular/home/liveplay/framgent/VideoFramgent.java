@@ -717,8 +717,6 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                         "player.getHeight() =" + player.getHeight() + "player.getWidth() =" + player.getWidth());
                 if (player.getHeight() > player.getWidth() * 1.5) {
                     mTXVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
-                }else{
-                    mTXVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION);
                 }
             }
         } else if (event < 0) {

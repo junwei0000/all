@@ -32,6 +32,7 @@
                 app:riv_oval="false" />
 
             <ImageButton
+                android:id="@+id/iv_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/transparent"
@@ -94,7 +95,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="@dimen/dp15"
-        android:text="保存图片到本地相册"
+        android:text="点击图片保存到本地相册"
         android:textColor="@color/red"
         android:textSize="@dimen/text_tishi_size" />
 </LinearLayout>

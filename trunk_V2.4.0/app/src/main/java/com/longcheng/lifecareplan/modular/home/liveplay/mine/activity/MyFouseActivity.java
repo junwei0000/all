@@ -24,7 +24,6 @@ import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
-import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
 
@@ -90,13 +89,11 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
         dateListview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                refreshStatus = true;
                 getList(1);
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                refreshStatus = true;
                 getList(page + 1);
             }
         });
@@ -108,9 +105,13 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
         video_user_id = getIntent().getStringExtra("video_user_id");
         String user_name = getIntent().getStringExtra("user_name");
         tv_name.setText(user_name);
-        getList(1);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getList(1);
+    }
 
     private void getList(int page) {
         mPresent.getMineFollowList(video_user_id, page, pageSize);
@@ -122,18 +123,13 @@ public class MyFouseActivity extends BaseActivityMVP<MyContract.View, MyPresente
         return new MyPresenterImp<>(mActivity, this);
     }
 
-    boolean refreshStatus = false;
 
     @Override
     public void showDialog() {
-        if (!refreshStatus)
-            LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-        refreshStatus = false;
-        LoadingDialogAnim.dismiss(mContext);
     }
 
 
