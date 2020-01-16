@@ -62,7 +62,7 @@ public class MyFouseListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         String url = mHelpItemBean.getAvatar();
         GlideDownLoadImage.getInstance().loadCircleImage(context, url, mHolder.item_iv_thumb);
 
-        if (!TextUtils.isEmpty(video_user_id)) {
+        if (!TextUtils.isEmpty(video_user_id) && !video_user_id.equals(mHelpItemBean.getUser_follow_id())) {
             mHolder.item_tv_follow.setVisibility(View.VISIBLE);
             int is_follow = mHelpItemBean.getIs_follow();
             if (is_follow == 0) {

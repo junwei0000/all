@@ -1,7 +1,5 @@
 package com.longcheng.lifecareplan.modular.home.liveplay.mine.activity;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
@@ -9,14 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,11 +25,8 @@ import com.longcheng.lifecareplan.modular.home.liveplay.mine.fragment.MyVideoFra
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.AllFragment;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.ComingFragment;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.PendingFragment;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.CircleImageView;
-import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -79,10 +68,16 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
     @BindView(R.id.tv_mylove)
     TextView tvMylove;
 
+    @BindView(R.id.tv_video_line)
+    TextView tv_video_line;
+    @BindView(R.id.tv_live_line)
+    TextView tv_live_line;
+    @BindView(R.id.tv_love_line)
+    TextView tv_love_line;
     private List<Fragment> fragmentList = new ArrayList<>();
     private int position;
 
-    private String name = "";
+    private String name = "", show_title;
     int isFollow;
     String video_user_id;
 
@@ -112,8 +107,12 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
                 selectPage();
                 break;
             case R.id.tv_showtitle:
-                if (!TextUtils.isEmpty(video_user_id) && video_user_id.equals(UserUtils.getUserId(mContext)))
-                    showPopupWindow();
+                if (!TextUtils.isEmpty(video_user_id) && video_user_id.equals(UserUtils.getUserId(mContext))) {
+                    Intent intents = new Intent(mActivity, UpdateInfoActivity.class);
+                    intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intents.putExtra("show_title", show_title);
+                    startActivity(intents);
+                }
                 break;
             case R.id.tv_follow:
                 if (isFollow == 0) {
@@ -152,6 +151,9 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         tv_showtitle.setOnClickListener(this);
         tv_myfollow.setOnClickListener(this);
         tvFollow.setOnClickListener(this);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tv_video_line, R.color.white);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tv_live_line, R.color.white);
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tv_love_line, R.color.white);
     }
 
 
@@ -250,6 +252,9 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
      */
     private void selectPage() {
         vPager.setCurrentItem(position, false);
+        tv_video_line.setVisibility(View.INVISIBLE);
+        tv_live_line.setVisibility(View.INVISIBLE);
+        tv_love_line.setVisibility(View.INVISIBLE);
         tvMyvideo.setTextColor(getResources().getColor(R.color.text_noclick_color));
         tvMylive.setTextColor(getResources().getColor(R.color.text_noclick_color));
         tvMylove.setTextColor(getResources().getColor(R.color.text_noclick_color));
@@ -259,12 +264,15 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
         if (position == 0) {
             tvMyvideo.setTextColor(getResources().getColor(R.color.white));
             tvMyvideo.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            tv_video_line.setVisibility(View.VISIBLE);
         } else if (position == 1) {
             tvMylive.setTextColor(getResources().getColor(R.color.white));
             tvMylive.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            tv_live_line.setVisibility(View.VISIBLE);
         } else if (position == 2) {
             tvMylove.setTextColor(getResources().getColor(R.color.white));
             tvMylove.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            tv_love_line.setVisibility(View.VISIBLE);
         }
     }
 
@@ -293,7 +301,8 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
             if (userExtra != null && tvLikenum != null) {
                 tvLikenum.setText("获赞 " + userExtra.getLike_number());
                 tvSkbnum.setText("寿康宝 " + userExtra.getSkb());
-                tv_showtitle.setText("" + userExtra.getShow_title());
+                show_title = userExtra.getShow_title();
+                tv_showtitle.setText("" + show_title);
                 tv_myfollow.setText("关注 " + mMineItemInfo.getUserFollowCount());
                 isFollow = mMineItemInfo.getIsFollow();
                 if (isFollow == 0) {
@@ -317,7 +326,6 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
 
     @Override
     public void updateShowTitleSuccess(BasicResponse responseBean) {
-        tv_showtitle.setText("" + content);
     }
 
     @Override
@@ -332,53 +340,6 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
 
     @Override
     public void Error() {
-    }
-
-    String content;
-    MyDialog selectDialog;
-    EditText et_content;
-
-    public void showPopupWindow() {
-        if (selectDialog == null) {
-            selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_live_minetitle);// 创建Dialog并设置样式主题
-            selectDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = selectDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            final EditText et = new EditText(mContext);
-            et.setHint("说点啥吧");
-            selectDialog.setView(et);//给对话框添加一个EditText输入文本框
-            selectDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                public void onShow(DialogInterface dialog) {
-                    InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
-                }
-            });
-            selectDialog.show();
-            WindowManager m = getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 3 / 4;
-            selectDialog.getWindow().setAttributes(p); //设置生效
-            et_content = (EditText) selectDialog.findViewById(R.id.et_content);
-            TextView btn_sure = (TextView) selectDialog.findViewById(R.id.btn_sure);
-            btn_sure.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    content = et_content.getText().toString();
-                    if (!TextUtils.isEmpty(content)) {
-                        ConfigUtils.getINSTANCE().closeSoftInput(et_content);
-                        selectDialog.dismiss();
-                        mPresent.updateShowTitle(content);
-                    } else {
-                        ToastUtils.showToast("说点啥吧");
-                    }
-                }
-            });
-            ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_content, 40);
-        } else {
-            selectDialog.show();
-        }
-        et_content.setText("");
     }
 
     private void back() {
