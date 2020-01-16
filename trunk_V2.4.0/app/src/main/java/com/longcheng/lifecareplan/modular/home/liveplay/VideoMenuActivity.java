@@ -156,6 +156,7 @@ public class VideoMenuActivity extends BaseActivity {
             LinearLayout tv_leftwidth = (LinearLayout) selectDialog.findViewById(R.id.tv_leftwidth);
             LinearLayout pop_layout = (LinearLayout) selectDialog.findViewById(R.id.pop_layout);
             tv_leftwidth.setPadding(d.getWidth() / 5, 0, 0, 30);
+            tv_leftwidth.setLayoutParams(new LinearLayout.LayoutParams(p.width, LinearLayout.LayoutParams.WRAP_CONTENT));
             iv_code.setLayoutParams(new LinearLayout.LayoutParams(p.width / 5 - 1, p.width / 5 - 5));
             iv_bottom.setLayoutParams(new LinearLayout.LayoutParams(p.width / 5, LinearLayout.LayoutParams.WRAP_CONTENT));
             selectDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

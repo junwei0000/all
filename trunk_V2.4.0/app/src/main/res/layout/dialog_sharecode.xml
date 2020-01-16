@@ -70,10 +70,9 @@
 
                 <TextView
                     android:id="@+id/tv_cont"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:gravity="center"
                     android:maxLines="2"
                     android:text="视频标题"
                     android:textColor="@color/text_healthcontents_color"

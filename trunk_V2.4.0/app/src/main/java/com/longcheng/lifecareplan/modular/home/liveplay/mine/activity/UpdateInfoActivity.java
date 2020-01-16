@@ -75,6 +75,7 @@ public class UpdateInfoActivity extends BaseActivityMVP<MyContract.View, MyPrese
     public void initView(View view) {
         pageTopTvName.setText("签名编辑");
         pageTopTvrigth.setText("确定");
+        updatename_et_name.setHint("说点啥~");
         pageTopTvrigth.setVisibility(View.VISIBLE);
         setOrChangeTranslucentColor(toolbar, null);
         content = getIntent().getStringExtra("show_title");
