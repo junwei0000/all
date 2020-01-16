@@ -17,7 +17,6 @@ import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
-import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyFouseActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
@@ -88,7 +87,7 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
     @Override
     public void initView(View view) {
         ImmersionBarUtils.steepStatusBar(mActivity, toolbar);
-        layout_left.setOnClickListener(this);
+        layout_left.setVisibility(View.INVISIBLE);
         tvMyvideo.setOnClickListener(this);
         tvMylive.setOnClickListener(this);
         tvMylove.setOnClickListener(this);
@@ -102,9 +101,6 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
     @Override
     public void widgetClick(View v) {
         switch (v.getId()) {
-            case R.id.layout_left:
-                ((VideoMenuActivity) getActivity()).back();
-                break;
             case R.id.tv_myfollow:
                 Intent intent = new Intent(mActivity, MyFouseActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
