@@ -31,7 +31,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
@@ -48,6 +50,7 @@ import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoDataInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -160,10 +163,19 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
                 }
                 break;
             case R.id.frag_layout_zhufu:
-                Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", help_url);
-                startActivity(intent);
+                if (!TextUtils.isEmpty(help_url) && help_url.contains("/home/user/index")) {
+                    Intent intents = new Intent();
+                    intents.setAction(ConstantManager.MAINMENU_ACTION);
+                    intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_CENTER);
+                    LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+                    ActivityManager.getScreenManager().popAllActivityOnlyMain();
+                    doFinish();
+                } else {
+                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", help_url);
+                    startActivity(intent);
+                }
                 break;
             default:
                 break;
@@ -575,7 +587,7 @@ public class LivePushActivity extends BaseActivityMVP<LivePushContract.View, Liv
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int backindex) {
 
     }
 

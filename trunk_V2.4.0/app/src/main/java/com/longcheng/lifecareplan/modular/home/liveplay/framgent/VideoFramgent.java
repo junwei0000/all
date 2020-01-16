@@ -35,7 +35,9 @@ import com.bumptech.glide.Glide;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseFragmentMVP;
+import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
@@ -54,7 +56,9 @@ import com.longcheng.lifecareplan.modular.home.liveplay.mine.bean.MVideoItemInfo
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.VideoCommentAdapter;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.VideoDownLoadUtils;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
@@ -125,6 +129,9 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
         public boolean isBegin;
         public View playerView;
         ImageButton record_preview;
+        public ImageView iv_follow;
+        public ImageView iv_dianzan;
+        public TextView frag_tv_dianzannum;
         public int pos;
     }
 
@@ -250,10 +257,19 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             startActivity(intent);
         } else if (id == R.id.frag_layout_zhufu) {
             String help_url = mAllList.get(mCurrentPosition).getHelp_url();
-            Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.putExtra("html_url", help_url);
-            startActivity(intent);
+            if (!TextUtils.isEmpty(help_url) && help_url.contains("/home/user/index")) {
+                Intent intents = new Intent();
+                intents.setAction(ConstantManager.MAINMENU_ACTION);
+                intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_CENTER);
+                LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+                ActivityManager.getScreenManager().popAllActivityOnlyMain();
+                onPauseVideo();
+            } else {
+                Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("html_url", help_url);
+                startActivity(intent);
+            }
         } else if (id == R.id.iv_follow) {
             String follow_user_id = mAllList.get(mCurrentPosition).getUser_id();
             mPresent.setFollow(follow_user_id);
@@ -296,6 +312,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 if (mTXVodPlayer != null) {
                     mTXVodPlayer.seek(0);
                     mTXVodPlayer.pause();
+                    updateDetailInfo();
                 }
                 if (position == 0) {
                     mSwipeRefreshLayout.setEnabled(true);
@@ -333,10 +350,8 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 frag_tv_sharenum = (TextView) viewGroup.findViewById(R.id.frag_tv_sharenum);
                 PlayerInfo playerInfo = mPagerAdapter.findPlayerInfo(mCurrentPosition);
                 if (playerInfo != null) {
-                    playerInfo.txVodPlayer.resume();
-                    record_preview.setImageResource(R.mipmap.record_pause);
-                    record_preview.setImageResource(0);
                     mTXVodPlayer = playerInfo.txVodPlayer;
+                    restartPlay();
                 }
             }
         });
@@ -529,8 +544,10 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
             PlayerInfo playerInfo = instantiatePlayerInfo(position, record_preview);
             playerInfo.playerView = playView;
             playerInfo.txVodPlayer.setPlayerView(playView);
+            playerInfo.iv_dianzan = iv_dianzan;
+            playerInfo.iv_follow = iv_follow;
+            playerInfo.frag_tv_dianzannum = frag_tv_dianzannum;
             playerInfo.txVodPlayer.startPlay(playerInfo.playURL);
-
             container.addView(view);
             return view;
         }
@@ -561,10 +578,13 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     private void restartPlay() {
-        if (mTXVodPlayer != null) {
-            mTXVodPlayer.resume();
-            record_preview.setImageResource(R.mipmap.record_pause);
-            record_preview.setImageResource(0);
+        if ((showPageType.equals(showPageType_video) && VideoMenuActivity.position == VideoMenuActivity.tab_position_home && HomFramgemt.position == 0)
+                || (showPageType.equals(showPageType_follow) && VideoMenuActivity.position == VideoMenuActivity.tab_position_Follow)) {
+            if (mTXVodPlayer != null) {
+                mTXVodPlayer.resume();
+                record_preview.setImageResource(R.mipmap.record_pause);
+                record_preview.setImageResource(0);
+            }
         }
     }
 
@@ -585,6 +605,14 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 record_preview.setImageResource(R.mipmap.record_pause);
                 record_preview.setImageResource(0);
             }
+            updateDetailInfo();
+        }
+    }
+
+    private void updateDetailInfo() {
+        if (mAllList != null && mAllList.size() > 0) {
+            show_video_id = mAllList.get(mCurrentPosition).getVideo_id();
+            mPresent.videoDetail(show_video_id, mCurrentPosition);
         }
     }
 
@@ -837,8 +865,28 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
-
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean, int back_mCurrentPosition) {
+        if (mAllList != null && mAllList.size() > 0 && back_mCurrentPosition < mAllList.size()) {
+            MVideoItemInfo mMVideoItemInfo = responseBean.getData();
+            int is_follow = mMVideoItemInfo.getIs_follow();
+            int is_user_follow = mMVideoItemInfo.getIs_user_follow();
+            mAllList.get(back_mCurrentPosition).setIs_follow(is_follow);
+            mAllList.get(back_mCurrentPosition).setIs_user_follow(is_user_follow);
+            mAllList.get(back_mCurrentPosition).setTotal_number(mMVideoItemInfo.getFollow_number());
+            PlayerInfo mPlayerInfo = mPagerAdapter.playerInfoList.get(back_mCurrentPosition);
+            if (is_follow == 0) {
+                mPlayerInfo.iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_bai);
+            } else {
+                mPlayerInfo.iv_dianzan.setBackgroundResource(R.mipmap.zhibo_zan_hong1);
+            }
+            if (is_user_follow == 1 || mAllList.get(back_mCurrentPosition).getUser_id().equals(UserUtils.getUserId(mContext))) {
+                mPlayerInfo.iv_follow.setVisibility(View.GONE);
+            } else {
+                mPlayerInfo.iv_follow.setVisibility(View.VISIBLE);
+            }
+            mPlayerInfo.frag_tv_dianzannum.setText("" + mMVideoItemInfo.getFollow_number());
+            mPagerAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

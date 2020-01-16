@@ -171,7 +171,7 @@ public class ApplyXieYiActitvty extends BaseActivityMVP<LivePushContract.View, L
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int backPosition) {
 
     }
 

@@ -29,7 +29,6 @@ import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.CircleImageView;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
-import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -284,12 +283,10 @@ public class MineActivity extends BaseActivityMVP<MyContract.View, MyPresenterIm
 
     @Override
     public void showDialog() {
-        LoadingDialogAnim.show(mContext);
     }
 
     @Override
     public void dismissDialog() {
-        LoadingDialogAnim.dismiss(mContext);
     }
 
 

@@ -17,6 +17,7 @@ import com.longcheng.lifecareplan.base.BaseFragmentMVP;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.FragmentAdapter;
+import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyContract;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyFouseActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MyPresenterImp;
@@ -160,7 +161,8 @@ public class MineFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterIm
     @Override
     public void onResume() {
         super.onResume();
-        getMineInfo();
+        if (VideoMenuActivity.position == VideoMenuActivity.tab_position_mine)
+            getMineInfo();
     }
 
     /**

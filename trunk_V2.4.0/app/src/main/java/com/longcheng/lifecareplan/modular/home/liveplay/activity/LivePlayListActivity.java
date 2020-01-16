@@ -356,7 +356,7 @@ public class LivePlayListActivity extends BaseActivityMVP<LivePushContract.View,
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int backindex) {
 
     }
 

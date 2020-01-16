@@ -252,7 +252,7 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean) {
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int backindex) {
 
     }
 
