@@ -18,7 +18,6 @@ import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.bean.HelpWithInfo;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
@@ -109,7 +108,7 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
                     context.startActivity(intent);
                 } else if (position == 2) {
                     //智能互祝
-                    intent = new Intent(context, AutoHelpH5Activity.class);
+                    intent = new Intent(context, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("html_url", "" + list.get(position).getSkipurl());
                     context.startActivity(intent);
