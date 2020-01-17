@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.VolunterDialogUtils;
 import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
@@ -72,7 +71,6 @@ public class AutoHelpH5Activity extends WebAct {
     @Override
     public void initView(View view) {
         super.initView(view);
-        pageTopTvName.setText("智能互祝");
         setOrChangeTranslucentColor(toolbar, null);
     }
 

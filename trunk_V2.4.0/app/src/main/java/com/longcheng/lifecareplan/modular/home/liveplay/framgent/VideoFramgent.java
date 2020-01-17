@@ -714,7 +714,9 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 TXCLog.i(TAG, "onPlayEvent, event begin, cover remove");
                 mVideoDuration = (int) player.getDuration() * 1000;//单位为s
                 Log.e("onPlayEvent", "mVideoDuration=" + mVideoDuration +
-                        "player.getHeight() =" + player.getHeight() + "player.getWidth() =" + player.getWidth());
+                        "player.getHeight() =" + player.getHeight()
+                        + "player.getWidth() =" + player.getWidth()
+                );
                 if (player.getHeight() > player.getWidth() * 1.5) {
                     mTXVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
                 }

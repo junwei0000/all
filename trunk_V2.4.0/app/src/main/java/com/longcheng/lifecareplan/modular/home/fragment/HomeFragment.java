@@ -235,7 +235,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         }
         pagetopLayoutLeft.getBackground().setAlpha(60);
         pagetopLayoutRigth.getBackground().setAlpha(60);
-        pagetopLayoutRigth.setVisibility(View.GONE);
+        pagetopLayoutRigth.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         mainhealth_tv_more.setOnClickListener(this);
         mainhotpushLayoutMore.setOnClickListener(this);

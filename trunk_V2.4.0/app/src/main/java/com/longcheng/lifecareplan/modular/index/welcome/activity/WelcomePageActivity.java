@@ -20,11 +20,10 @@ import com.longcheng.lifecareplan.modular.index.welcome.bean.WelcomeBean;
 import com.longcheng.lifecareplan.modular.index.welcome.frag.GuidePage1Frag;
 import com.longcheng.lifecareplan.modular.index.welcome.frag.GuidePage2Frag;
 import com.longcheng.lifecareplan.modular.index.welcome.frag.GuidePage3Frag;
-import com.longcheng.lifecareplan.modular.mine.set.bean.VersionAfterBean;
 import com.longcheng.lifecareplan.modular.mine.set.bean.VersionDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
+import com.longcheng.lifecareplan.widget.ImmersionBarUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -80,7 +79,7 @@ public class WelcomePageActivity extends BaseActivityMVP<WelcomeContract.View, W
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        setOrChangeTranslucentColor(toolbar, null);
+        ImmersionBarUtils.steepStatusBarDark(mActivity, toolbar);
         boolean isFirstIn = MySharedPreferences.getInstance().getIsFirstIn();
         if (!isFirstIn) {
             intentIndexPage();

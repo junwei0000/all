@@ -40,6 +40,7 @@ import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleA
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.list.activity.HealthyDeliveryAct;
 import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFriendsActivity;
+import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.mine.activity.MineActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
@@ -201,6 +202,7 @@ public abstract class WebAct extends BaseActivity {
                     pageTopTvName.setText("" + data);
             }
         });
+        //查看用户视频个人中心
         mBridgeWebView.registerHandler("loveVideoShow", new BridgeHandler() {
             @Override
             public void handler(String data, CallBackFunction function) {
@@ -209,6 +211,27 @@ public abstract class WebAct extends BaseActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("video_user_id", data);
                 startActivity(intent);
+            }
+        });
+        // 跳转视频首页
+        mBridgeWebView.registerHandler("about_live", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intent = new Intent(mActivity, VideoMenuActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("skipType", "click");
+                startActivity(intent);
+            }
+        });
+        // 跳转视频首页
+        mBridgeWebView.registerHandler("about_home", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Intent intents = new Intent();
+                intents.setAction(ConstantManager.MAINMENU_ACTION);
+                intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HOME);
+                LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+                ActivityManager.getScreenManager().popAllActivityOnlyMain();
             }
         });
         mBridgeWebView.registerHandler("main_qiming_skipdetail", new BridgeHandler() {

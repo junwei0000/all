@@ -123,7 +123,7 @@ public class MipcaCaptureActivity extends BaseActivity implements SurfaceHolder.
             startActivity(intent);
             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
         } else {
-            ToastUtils.showToast("扫描失败");
+            ToastUtils.showToast("暂不支持");
         }
         doFinish();
     }
