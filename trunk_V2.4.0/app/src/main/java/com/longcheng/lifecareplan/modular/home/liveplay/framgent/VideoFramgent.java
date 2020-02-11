@@ -42,6 +42,7 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.http.basebean.BasicResponse;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
+import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.activity.LivePushContract;
@@ -261,6 +262,14 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
                 LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
                 ActivityManager.getScreenManager().popAllActivityOnlyMain();
                 onPauseVideo();
+            } else if (!TextUtils.isEmpty(help_url) && help_url.contains("/home/shop/goodsInfo")) {
+                String shop_goods_id = help_url.substring(help_url.lastIndexOf("/") + 1);
+                Log.e("ResponseBody", "shop_goods_id=" + shop_goods_id);
+                Intent intent = new Intent(mActivity, MallDetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("shop_goods_id", shop_goods_id);
+                startActivity(intent);
+                ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
             } else {
                 Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
