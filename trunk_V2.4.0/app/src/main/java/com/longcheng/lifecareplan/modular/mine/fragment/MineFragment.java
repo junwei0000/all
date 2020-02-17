@@ -1248,6 +1248,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (displayHolidayTips != 0) {
             Log.e("GetHomeInfoBean", "userHolidayTips");
             showJinTieDialog();
+            return;
         } else {
             Log.e("GetHomeInfoBean", "data");
             if (mJinTieDialog != null && mJinTieDialog.isShowing()) {
