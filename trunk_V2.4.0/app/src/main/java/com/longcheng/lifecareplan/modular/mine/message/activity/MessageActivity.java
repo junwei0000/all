@@ -15,14 +15,16 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseListActivity;
+import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.message.adapter.MessageAdapter;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageAfterBean;
-import com.longcheng.lifecareplan.modular.mine.message.bean.MessageItemBean;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageDataBean;
+import com.longcheng.lifecareplan.modular.mine.message.bean.MessageItemBean;
+import com.longcheng.lifecareplan.push.AppShortCutUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
@@ -102,6 +104,10 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
         notDateImg.setBackgroundResource(R.mipmap.my_nodata_icon);
         setOrChangeTranslucentColor(toolbar, null);
 
+
+        //设置消息已读
+        ExampleApplication.messagecount = 0;
+        AppShortCutUtil.setCount(ExampleApplication.messagecount, mContext);
         SharedPreferencesHelper.put(mContext, "haveNotReadMsgStatus", false);
     }
 

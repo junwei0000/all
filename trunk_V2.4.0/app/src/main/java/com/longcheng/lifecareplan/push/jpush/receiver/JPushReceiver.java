@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
+import com.longcheng.lifecareplan.push.AppShortCutUtil;
 import com.longcheng.lifecareplan.push.PushClient;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -36,6 +38,7 @@ import cn.jpush.android.api.JPushInterface;
  * 2) 接收不到自定义消息
  */
 public class JPushReceiver extends BroadcastReceiver {
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -69,7 +72,9 @@ public class JPushReceiver extends BroadcastReceiver {
                 intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_JPUSHMESSAGE);
                 LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
 
-
+                ExampleApplication.messagecount = ExampleApplication.messagecount + 1;
+                Log.e("AppShortCutUtil", "count=" + ExampleApplication.messagecount);
+                AppShortCutUtil.setCount(ExampleApplication.messagecount, context);
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 // 点击了收到的通知
                 PushClient.getINSTANCE(context).getPushReceiverListener()
@@ -81,6 +86,7 @@ public class JPushReceiver extends BroadcastReceiver {
                     Intent intents = new Intent(mActivity, MessageActivity.class);
                     intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     mActivity.startActivity(intents);
+
                 }
             } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
                 //在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity， 打开一个网页等..
