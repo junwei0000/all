@@ -188,14 +188,17 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
         }
         if (payType == 1) {
             activatTvCont.setText("激活" + First_energy + "+赠送" + Presenter_energy);
+            activatTvNum.setText(Total_energy);
         } else {
             activatTvCont.setText("激活" + First_energy);
+            activatTvNum.setText(First_energy);
         }
     }
 
     String money_select = "0";
     String First_energy = "0";
     String Presenter_energy = "0";
+    String Total_energy = "0";
 
     /**
      * 显示选中的生命能量
@@ -203,7 +206,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
      * @param mEnergyItemBean
      */
     private void setAssetView(EnergyItemBean mEnergyItemBean) {
-        activatTvNum.setText(mEnergyItemBean.getTotal_energy());
+        Total_energy = mEnergyItemBean.getTotal_energy();
         money_select = mEnergyItemBean.getMoney();
         First_energy = mEnergyItemBean.getFirst_energy();
         Presenter_energy = mEnergyItemBean.getPresenter_energy();

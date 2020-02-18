@@ -186,7 +186,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         List<HelpWithInfo> mList = new ArrayList();
         mList.add(new HelpWithInfo("生命能量互祝", "申请", R.color.white, R.mipmap.wisheach_icon_energy, ""));
         mList.add(new HelpWithInfo("生活方式互祝", "申请", R.color.white, R.mipmap.wisheach_icon_life, ""));
-        mList.add(new HelpWithInfo("节气福券", "", R.color.white, R.mipmap.wisheach_icon_baoz, automationHelpUrl));
+        mList.add(new HelpWithInfo("24节气福券", "", R.color.white, R.mipmap.wisheach_icon_baoz, automationHelpUrl));
         mList.add(new HelpWithInfo("天下无癌", "", R.color.white, R.mipmap.wisheach_icon_kangno, HomeFragment.kn_url));
         mList.add(new HelpWithInfo("生活保障互祝", "申请", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrl, lifeBasicApplyUrl));
         mList.add(new HelpWithInfo("天下无债", "", R.color.bluebg, R.mipmap.wisheach_icon_toapplyfor, lifeUrlWorld));
