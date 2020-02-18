@@ -74,6 +74,9 @@ public class JPushReceiver extends BroadcastReceiver {
 
                 ExampleApplication.messagecount = ExampleApplication.messagecount + 1;
                 Log.e("AppShortCutUtil", "count=" + ExampleApplication.messagecount);
+                if (ExampleApplication.messagecount > 99) {
+                    ExampleApplication.messagecount = 99;
+                }
                 AppShortCutUtil.setCount(ExampleApplication.messagecount, context);
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 // 点击了收到的通知
