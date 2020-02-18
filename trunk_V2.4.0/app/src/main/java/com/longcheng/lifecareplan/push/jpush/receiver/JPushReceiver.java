@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
@@ -73,7 +72,6 @@ public class JPushReceiver extends BroadcastReceiver {
                 LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
 
                 ExampleApplication.messagecount = ExampleApplication.messagecount + 1;
-                Log.e("AppShortCutUtil", "count=" + ExampleApplication.messagecount);
                 if (ExampleApplication.messagecount > 99) {
                     ExampleApplication.messagecount = 99;
                 }

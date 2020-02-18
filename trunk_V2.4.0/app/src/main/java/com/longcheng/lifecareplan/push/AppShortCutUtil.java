@@ -16,12 +16,12 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 
 import java.lang.reflect.Field;
@@ -37,16 +37,18 @@ public class AppShortCutUtil {
     private static int notificationId = 0;
 
     public static boolean setCount(final int count, final Context context) {
+        Log.e("AppShortCutUtil", "count=" + ExampleApplication.messagecount);
         if (count >= 0 && context != null) {
-            Log.d("BRAND", Build.BRAND);
+            Log.d("AppShortCutUtil", Build.BRAND);
             switch (Build.BRAND.toLowerCase()) {
                 case "xiaomi":
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setNotificationBadge(count, context);
-                        }
-                    }, 3000);
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            setNotificationBadge(count, context);
+//                        }
+//                    }, 3000);
+                    setXiaoMiBadge(count, context);
                     return true;
                 case "huawei":
                     return setHuaweiBadge(count, context);
@@ -85,10 +87,11 @@ public class AppShortCutUtil {
             channel.setShowBadge(true);
             notificationManager.createNotificationChannel(channel);
         }
+        Log.d("AppShortCutUtil", Build.BRAND + "==" + count);
         Intent intent = new Intent(context, BottomMenuActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         Notification notification = new NotificationCompat.Builder(context, "badge")
-                .setContentText(""+count)
+                .setContentText("" + count)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap
                         .app_icon))
                 .setSmallIcon(R.mipmap.app_icon)
@@ -114,6 +117,28 @@ public class AppShortCutUtil {
             method.invoke(extraNotification, count);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void setXiaoMiBadge(int number, Context context) {
+        try {
+            if (number == 0) {
+                NotificationManager manager = (NotificationManager) context
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+                manager.cancelAll();
+            }
+            Class miuiNotificationClass = Class.forName("android.app.MiuiNotification");
+            Object miuiNotification = miuiNotificationClass.newInstance();
+            Field field = miuiNotification.getClass().getDeclaredField("messageCount");
+            field.setAccessible(true);
+            field.set(miuiNotification, String.valueOf(number == 0 ? "" : number));
+        } catch (Exception e) {
+            e.printStackTrace();
+            // miui6之前
+            Intent localIntent = new Intent("android.intent.action.APPLICATION_MESSAGE_UPDATE");
+            localIntent.putExtra("android.intent.extra.update_application_component_name", context.getPackageName() + "/." + "MainActivity");
+            localIntent.putExtra("android.intent.extra.update_application_message_text", String.valueOf(number == 0 ? "" : number));
+            context.sendBroadcast(localIntent);
         }
     }
 
