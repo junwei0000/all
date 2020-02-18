@@ -163,7 +163,7 @@ public class GetHomeInfoBean implements Serializable {
     private int is_show_holiday_asset;//是否显示 0：否 1：是
 
     private int displayHolidayTips;//0:不展示  1：展示
-    private int displayHolidayTipsAsset;//  展示金额
+    private String displayHolidayTipsAsset;//  展示金额
 
 
     private int isShowNewyearMybook;
@@ -230,11 +230,11 @@ public class GetHomeInfoBean implements Serializable {
         this.displayHolidayTips = displayHolidayTips;
     }
 
-    public int getDisplayHolidayTipsAsset() {
+    public String getDisplayHolidayTipsAsset() {
         return displayHolidayTipsAsset;
     }
 
-    public void setDisplayHolidayTipsAsset(int displayHolidayTipsAsset) {
+    public void setDisplayHolidayTipsAsset(String displayHolidayTipsAsset) {
         this.displayHolidayTipsAsset = displayHolidayTipsAsset;
     }
 
