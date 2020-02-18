@@ -145,7 +145,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
                             mList.get(i).setIs_default(0);
                         }
                     }
-                    setAssetView(mList.get(position), true);
+                    setAssetView(mList.get(position));
                     mMoneyAdapter.setList(mList);
                     mMoneyAdapter.notifyDataSetChanged();
                 }
@@ -186,19 +186,27 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
             btnJihuo.setText("立即激活 (超级生命能量)");
             ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, btnJihuo, R.color.engry_btn_bg);
         }
+        if (payType == 1) {
+            activatTvCont.setText("激活" + First_energy + "+赠送" + Presenter_energy);
+        } else {
+            activatTvCont.setText("激活" + First_energy);
+        }
     }
 
     String money_select = "0";
+    String First_energy = "0";
+    String Presenter_energy = "0";
 
     /**
      * 显示选中的生命能量
      *
      * @param mEnergyItemBean
      */
-    private void setAssetView(EnergyItemBean mEnergyItemBean, boolean selectstatus) {
+    private void setAssetView(EnergyItemBean mEnergyItemBean) {
         activatTvNum.setText(mEnergyItemBean.getTotal_energy());
-        activatTvCont.setText("激活" + mEnergyItemBean.getFirst_energy() + "+赠送" + mEnergyItemBean.getPresenter_energy());
         money_select = mEnergyItemBean.getMoney();
+        First_energy = mEnergyItemBean.getFirst_energy();
+        Presenter_energy = mEnergyItemBean.getPresenter_energy();
         payType = 2;
         selectPayTypeView();
     }
@@ -236,7 +244,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
                     activatGvMoney.setAdapter(mMoneyAdapter);
                     for (EnergyItemBean mEnergyItemBean : mList) {
                         if (mEnergyItemBean.getIs_default() == 1) {
-                            setAssetView(mEnergyItemBean, false);
+                            setAssetView(mEnergyItemBean);
                             break;
                         }
                     }
