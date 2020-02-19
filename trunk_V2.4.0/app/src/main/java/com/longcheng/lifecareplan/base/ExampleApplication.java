@@ -44,10 +44,7 @@ public class ExampleApplication extends MultiDexApplication {
     public static ExampleApplication exampleApplication;
     private static Context context;
     public static UMShareAPI mUMShareAPI;
-    /**
-     * 消息数量
-     */
-    public static int messagecount;
+
     //    友盟配置
     {
         PlatformConfig.setWeixin(ConstantManager.WECHATAPPID, ConstantManager.WECHATSECRET);//真的

@@ -15,7 +15,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseListActivity;
-import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
@@ -106,8 +105,8 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
 
 
         //设置消息已读
-        ExampleApplication.messagecount = 0;
-        AppShortCutUtil.setCount(ExampleApplication.messagecount, mContext);
+        SharedPreferencesHelper.put(mContext, "messagecount", 0);
+        AppShortCutUtil.setCount(0, mContext);
         SharedPreferencesHelper.put(mContext, "haveNotReadMsgStatus", false);
     }
 
@@ -145,7 +144,13 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
                         intent.putExtra("help_goods_id", helpAllList.get(position - 1).getHelp_action_id());
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                    } else if (help_type == 3) {
+                    } else if (help_type == 3) {//康农互祝
+                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    } else if (help_type == 4) {//申请福券
                         Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());

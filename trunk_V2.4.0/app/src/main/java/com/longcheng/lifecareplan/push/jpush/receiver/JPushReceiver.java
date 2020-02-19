@@ -71,11 +71,13 @@ public class JPushReceiver extends BroadcastReceiver {
                 intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_JPUSHMESSAGE);
                 LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
 
-                ExampleApplication.messagecount = ExampleApplication.messagecount + 1;
-                if (ExampleApplication.messagecount > 99) {
-                    ExampleApplication.messagecount = 99;
+                int messagecount = (int) SharedPreferencesHelper.get(context, "messagecount", 0);
+                messagecount = messagecount + 1;
+                if (messagecount > 99) {
+                    messagecount = 99;
                 }
-                AppShortCutUtil.setCount(ExampleApplication.messagecount, context);
+                SharedPreferencesHelper.put(context, "messagecount", messagecount);
+                AppShortCutUtil.setCount(messagecount, context);
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 // 点击了收到的通知
                 PushClient.getINSTANCE(context).getPushReceiverListener()

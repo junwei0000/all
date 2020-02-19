@@ -80,7 +80,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.Unbinder;
 
 /**
  * 作者：MarkShuai
@@ -156,7 +155,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     TextView tvDrawable3;
     @BindView(R.id.tv_drawable4)
     TextView tvDrawable4;
-    Unbinder unbinder;
+    @BindView(R.id.item_tv_num)
+    TextView item_tv_num;
+
 
     private int IsLiveBroadcast;
 
@@ -171,11 +172,15 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     public void haveNotReadMsg() {
         if (pagetopIvLeft != null) {
             pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_notinfo_icon);
+            item_tv_num.setVisibility(View.INVISIBLE);
             String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
             if (loginStatus.equals(ConstantManager.loginStatus)) {
                 boolean haveNotReadMsg = (boolean) SharedPreferencesHelper.get(mActivity, "haveNotReadMsgStatus", false);
                 if (haveNotReadMsg) {
-                    pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);
+                    int messagecount = (int) SharedPreferencesHelper.get(mActivity, "messagecount", 0);
+                    item_tv_num.setVisibility(View.VISIBLE);
+                    item_tv_num.setText("" + messagecount);
+//                    pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);
                 }
             }
         }

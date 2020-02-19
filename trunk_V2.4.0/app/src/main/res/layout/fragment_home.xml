@@ -33,26 +33,33 @@
                     android:layout_marginTop="@dimen/dp30"
                     android:gravity="right">
 
-                    <LinearLayout
-                        android:id="@+id/pagetop_layout_left"
-                        android:layout_width="@dimen/dp35"
-                        android:layout_height="@dimen/dp35"
-                        android:background="@drawable/corners_oval_gray"
-                        android:layout_marginRight="@dimen/dp10"
-                        android:gravity="center">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp10">
 
-                        <ImageView
-                            android:id="@+id/pagetop_iv_left"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@mipmap/usercenter_notinfo_icon" />
-                    </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/pagetop_layout_left"
+                            android:layout_width="@dimen/dp35"
+                            android:layout_height="@dimen/dp35"
+                            android:background="@drawable/corners_oval_gray"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/pagetop_iv_left"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/usercenter_notinfo_icon" />
+                        </LinearLayout>
+
+                        <include layout="@layout/tv_num" />
+                    </FrameLayout>
 
                     <LinearLayout
                         android:id="@+id/pagetop_layout_rigth"
-                        android:layout_marginRight="@dimen/dp10"
                         android:layout_width="@dimen/dp35"
                         android:layout_height="@dimen/dp35"
+                        android:layout_marginRight="@dimen/dp10"
                         android:background="@drawable/corners_oval_gray"
                         android:gravity="center">
 

@@ -12,23 +12,9 @@
         <ImageView
             android:id="@+id/item_iv_select"
             android:layout_width="@dimen/engrylistItem_iconHeight"
-            android:layout_height="@dimen/engrylistItem_iconHeight"
-            android:layout_centerInParent="true"/>
+            android:layout_height="@dimen/engrylistItem_iconHeight" />
 
-        <TextView
-            android:id="@+id/item_tv_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|right"
-            android:background="@drawable/corners_oval_red"
-            android:gravity="center"
-            android:minHeight="@dimen/dp15"
-            android:minWidth="@dimen/dp15"
-            android:padding="@dimen/dp2"
-            android:singleLine="true"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dp8" />
+        <include layout="@layout/tv_num" />
     </FrameLayout>
 
     <TextView

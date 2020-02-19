@@ -1,9 +1,6 @@
 package com.longcheng.lifecareplan.push;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.AsyncQueryHandler;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -12,20 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
-
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +27,7 @@ public class AppShortCutUtil {
     private static int notificationId = 0;
 
     public static boolean setCount(final int count, final Context context) {
-        Log.e("AppShortCutUtil", "count=" + ExampleApplication.messagecount);
+        Log.e("AppShortCutUtil", "count=" + count);
         if (count >= 0 && context != null) {
             Log.d("AppShortCutUtil", Build.BRAND);
             switch (Build.BRAND.toLowerCase()) {
@@ -67,58 +57,58 @@ public class AppShortCutUtil {
                 case "sony":
                     return setSonyBadge(count, context);
                 default:
-                    return setNotificationBadge(count, context);
+                    return true;
             }
         } else {
             return false;
         }
     }
 
-    public static boolean setNotificationBadge(int count, Context context) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService
-                (Context.NOTIFICATION_SERVICE);
-        if (notificationManager == null) {
-            return false;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // 8.0之后添加角标需要NotificationChannel
-            NotificationChannel channel = new NotificationChannel("badge", "badge",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setShowBadge(true);
-            notificationManager.createNotificationChannel(channel);
-        }
-        Log.d("AppShortCutUtil", Build.BRAND + "==" + count);
-        Intent intent = new Intent(context, BottomMenuActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        Notification notification = new NotificationCompat.Builder(context, "badge")
-                .setContentText("" + count)
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap
-                        .app_icon))
-                .setSmallIcon(R.mipmap.app_icon)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-                .setChannelId("badge")
-                .setNumber(count)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL).build();
-        // 小米
-        if (Build.BRAND.equalsIgnoreCase("xiaomi")) {
-            setXiaomiBadge(count, notification);
-        }
-        notificationManager.notify(notificationId++, notification);
-        return true;
-    }
-
-    private static void setXiaomiBadge(int count, Notification notification) {
-        try {
-            Field field = notification.getClass().getDeclaredField("extraNotification");
-            Object extraNotification = field.get(notification);
-            Method method = extraNotification.getClass().getDeclaredMethod("setMessageCount", int
-                    .class);
-            method.invoke(extraNotification, count);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static boolean setNotificationBadge(int count, Context context) {
+//        NotificationManager notificationManager = (NotificationManager) context.getSystemService
+//                (Context.NOTIFICATION_SERVICE);
+//        if (notificationManager == null) {
+//            return false;
+//        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            // 8.0之后添加角标需要NotificationChannel
+//            NotificationChannel channel = new NotificationChannel("badge", "badge",
+//                    NotificationManager.IMPORTANCE_DEFAULT);
+//            channel.setShowBadge(true);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//        Log.d("AppShortCutUtil", Build.BRAND + "==" + count);
+//        Intent intent = new Intent(context, BottomMenuActivity.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+//        Notification notification = new NotificationCompat.Builder(context, "badge")
+//                .setContentText("" + count)
+//                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap
+//                        .app_icon))
+//                .setSmallIcon(R.mipmap.app_icon)
+//                .setAutoCancel(true)
+//                .setContentIntent(pendingIntent)
+//                .setChannelId("badge")
+//                .setNumber(count)
+//                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL).build();
+//        // 小米
+//        if (Build.BRAND.equalsIgnoreCase("xiaomi")) {
+//            setXiaomiBadge(count, notification);
+//        }
+//        notificationManager.notify(notificationId++, notification);
+//        return true;
+//    }
+//
+//    private static void setXiaomiBadge(int count, Notification notification) {
+//        try {
+//            Field field = notification.getClass().getDeclaredField("extraNotification");
+//            Object extraNotification = field.get(notification);
+//            Method method = extraNotification.getClass().getDeclaredMethod("setMessageCount", int
+//                    .class);
+//            method.invoke(extraNotification, count);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private static void setXiaoMiBadge(int number, Context context) {
         try {
