@@ -104,7 +104,9 @@
     <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
     <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
 
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!--android 26 以上需要-->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
     <application
         android:name=".base.ExampleApplication"
         android:allowBackup="true"

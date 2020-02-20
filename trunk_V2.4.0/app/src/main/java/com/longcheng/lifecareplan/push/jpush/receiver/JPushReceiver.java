@@ -59,7 +59,16 @@ public class JPushReceiver extends BroadcastReceiver {
                 PushClient.getINSTANCE(context).getPushReceiverListener()
                         .onPushPassThroughMessage(context, json.toString());
                 LogUtils.d("JPushReceiver", "[JpushReceiver] 接收到推送下来的自定义消息: " + json.toString());
-                receivingNotification(context, bundle);
+
+
+                JSONObject jsonmessage = null;
+                try {
+                    jsonmessage = new JSONObject(bundle.getString(JPushInterface.EXTRA_MESSAGE));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
             } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
                 // 收到通知
                 PushClient.getINSTANCE(context).getPushReceiverListener()
