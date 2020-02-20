@@ -20,10 +20,19 @@ public class MessageItemBean implements Serializable {
     private String info_url;
     private String date;
 
+    private int is_read;
     private List<MessageItemBean> info;
 
     private String key;
     private String value;
+
+    public int getIs_read() {
+        return is_read;
+    }
+
+    public void setIs_read(int is_read) {
+        this.is_read = is_read;
+    }
 
     public String getInfo_url() {
         return info_url;

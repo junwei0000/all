@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageDataBean;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -66,28 +66,28 @@ public class MessagePresenterImp<T> extends MessageContract.Presenter<MessageCon
     }
 
     /**
-     * 开红包
+     * 消息已读
      *
      * @param user_id
-     * @param one_order_id
+     * @param app_push_id
      */
-    public void openRedEnvelope(String user_id, String one_order_id) {
+    public void setReadPush(String user_id, String app_push_id) {
         mView.showDialog();
-        Observable<OpenRedDataBean> observable = Api.getInstance().service.openRedEnvelope(user_id,
-                one_order_id, ExampleApplication.token);
+        Observable<EditDataBean> observable = Api.getInstance().service.setReadPush(user_id,
+                app_push_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<OpenRedDataBean>() {
+                .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
                     @Override
-                    public void accept(OpenRedDataBean responseBean) throws Exception {
+                    public void accept(EditDataBean responseBean) throws Exception {
                         mView.dismissDialog();
-                        mView.OpenRedEnvelopeSuccess(responseBean);
+                        mView.setReadPushSuccess(responseBean);
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         mView.dismissDialog();
-                        mView.onOpenRedEnvelopeError("");
+                        mView.ListError();
                     }
                 });
     }

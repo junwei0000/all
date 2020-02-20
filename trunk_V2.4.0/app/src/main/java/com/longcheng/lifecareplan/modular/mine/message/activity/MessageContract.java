@@ -3,8 +3,8 @@ package com.longcheng.lifecareplan.modular.mine.message.activity;
 import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageDataBean;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 
 /**
  * 作者：MarkShuai
@@ -17,11 +17,9 @@ public interface MessageContract {
     interface View extends BaseView<Presenter> {
         void ListSuccess(MessageDataBean responseBean, int back_page);
 
-        void OpenRedEnvelopeSuccess(OpenRedDataBean responseBean);
+        void setReadPushSuccess(EditDataBean responseBean);
 
         void ListError();
-
-        void onOpenRedEnvelopeError(String msg);
     }
 
     abstract class Presenter<T> extends BasePresent<View> {

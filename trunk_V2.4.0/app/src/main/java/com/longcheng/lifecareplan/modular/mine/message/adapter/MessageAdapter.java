@@ -4,14 +4,13 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageItemBean;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
-import com.longcheng.lifecareplan.utils.DensityUtil;
 
 import java.util.List;
 
@@ -55,6 +54,12 @@ public class MessageAdapter extends BaseAdapterHelper<MessageItemBean> {
                 mHolder.item_listview_info.addView(view);
             }
         }
+        int is_read = mActionItemBean.getIs_read();
+        if (is_read == 1) {
+            mHolder.iv_read.setVisibility(View.GONE);
+        } else {
+            mHolder.iv_read.setVisibility(View.VISIBLE);
+        }
         return convertView;
     }
 
@@ -64,12 +69,14 @@ public class MessageAdapter extends BaseAdapterHelper<MessageItemBean> {
         private TextView item_tv_title;
         private TextView item_tv_content;
         private LinearLayout item_listview_info;
+        private ImageView iv_read;
 
         public ViewHolder(View view) {
             item_tv_date = (TextView) view.findViewById(R.id.item_tv_date);
             item_tv_title = (TextView) view.findViewById(R.id.item_tv_title);
             item_tv_content = (TextView) view.findViewById(R.id.item_tv_content);
             item_listview_info = (LinearLayout) view.findViewById(R.id.item_listview_info);
+            iv_read = (ImageView) view.findViewById(R.id.iv_read);
         }
     }
 }

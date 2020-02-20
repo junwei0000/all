@@ -23,14 +23,29 @@
         android:background="@drawable/corners_bg_write"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/item_tv_title"
-            style="@style/view_padd"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="感恩祝福资讯"
-            android:textColor="@color/text_biaoTi_color"
-            android:textSize="@dimen/text_pageTop_size" />
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/item_tv_title"
+                style="@style/view_padd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="感恩祝福资讯"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_pageTop_size" />
+
+            <ImageView
+                android:id="@+id/iv_read"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginRight="@dimen/padd_leftright"
+                android:background="@drawable/corners_oval_red" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/item_tv_content"
@@ -46,10 +61,9 @@
             style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/jianJu"
             android:layout_marginTop="@dimen/padd_imgtextleftright"
-             />
+            android:layout_marginBottom="@dimen/jianJu"
+            android:orientation="vertical" />
 
         <include layout="@layout/line" />
 

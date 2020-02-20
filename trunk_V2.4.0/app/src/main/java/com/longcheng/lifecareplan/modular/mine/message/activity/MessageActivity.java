@@ -17,12 +17,12 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseListActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.message.adapter.MessageAdapter;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageAfterBean;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageDataBean;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageItemBean;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.push.AppShortCutUtil;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ListUtils;
@@ -157,12 +157,14 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     }
-
+                    isreadIndex = position - 1;
+                    mPresent.setReadPush(user_id, helpAllList.get(position - 1).getApp_push_id());
                 }
             }
         });
     }
 
+    private int isreadIndex;
 
     @Override
     public void initDataAfter() {
@@ -234,9 +236,16 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
     }
 
     @Override
-    public void OpenRedEnvelopeSuccess(OpenRedDataBean responseBean) {
-
+    public void setReadPushSuccess(EditDataBean responseBean) {
+        String status_ = responseBean.getStatus();
+        if (status_.equals("400")) {
+            ToastUtils.showToast(responseBean.getMsg());
+        } else if (status_.equals("200")) {
+            helpAllList.get(isreadIndex).setIs_read(1);
+            mHomeHotPushAdapter.reloadListView(helpAllList, false);
+        }
     }
+
 
     private void checkLoadOver(int size) {
         if (size < pageSize) {
@@ -252,11 +261,6 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
     @Override
     public void ListError() {
         RefreshComplete();
-    }
-
-    @Override
-    public void onOpenRedEnvelopeError(String msg) {
-
     }
 
     /**

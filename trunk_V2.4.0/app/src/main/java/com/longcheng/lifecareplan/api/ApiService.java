@@ -760,6 +760,12 @@ public interface ApiService {
                                                 @Query("one_order_id") String one_order_id,
                                                 @Query("token") String token);
 
+    @GET(Config.VERSION + "user/setReadPush")
+    Observable<EditDataBean> setReadPush(@Query("user_id") String user_id,
+                                         @Query("app_push_id") String app_push_id,
+                                         @Query("token") String token);
+
+
     @GET(Config.VERSION + "user/ajaxOpenRedPacketPk")
     Observable<OpenRedDataBean> GoodLuckopenRedEnvelope(@Query("user_id") String user_id,
                                                         @Query("mutual_help_user_red_packet_id") String mutual_help_user_red_packet_id,

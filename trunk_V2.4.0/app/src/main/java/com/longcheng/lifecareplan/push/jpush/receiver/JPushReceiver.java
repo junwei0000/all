@@ -64,7 +64,7 @@ public class JPushReceiver extends BroadcastReceiver {
                 // 收到通知
                 PushClient.getINSTANCE(context).getPushReceiverListener()
                         .jpush_onNotificationMessageArrived(context, bundle);
-                LogUtils.d(getClass() + "", "[JpushReceiver] 接收到推送下来的通知的ID: " + bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID));
+                LogUtils.d("JPushReceiver", "[JpushReceiver] 接收到推送下来的通知的ID: " + bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID));
                 SharedPreferencesHelper.put(context, "haveNotReadMsgStatus", true);
                 Intent intents = new Intent();
                 intents.setAction(ConstantManager.MAINMENU_ACTION);
