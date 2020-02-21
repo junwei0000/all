@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginActivity;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
+import com.longcheng.lifecareplan.push.jpush.message.EasyMessage;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.PriceUtils;
@@ -121,6 +123,7 @@ public class BottomMenuActivity extends BaseActivity {
         new Thread() {
             @Override
             public void run() {
+                Log.d("OnMessageListener", "getAddressCity=");
                 city = mLocationUtils.getAddressCity(mContext, phone_user_latitude, phone_user_longitude);
             }
         }.start();
@@ -142,6 +145,38 @@ public class BottomMenuActivity extends BaseActivity {
         bottomLayoutHelpWith.setOnClickListener(this);
         bottomLayoutExchange.setOnClickListener(this);
         bottomLayoutMe.setOnClickListener(this);
+        initTimer();
+    }
+
+    private Thread thread;
+    Handler mHandler = new Handler();
+    public static long oldMessageTime = System.currentTimeMillis();
+    public static long newMessageTime;
+
+    /**
+     * 开始计时
+     */
+    private void initTimer() {
+        if (thread == null) {
+            thread = new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    while (true) {
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (System.currentTimeMillis() - newMessageTime > 5000) {
+                            Log.d("OnMessageListener", "initTimer=");
+                            EasyMessage.sendMessage("flag", "");
+                        }
+                    }
+                }
+            };
+            thread.start();
+        }
     }
 
     /**
@@ -384,6 +419,9 @@ public class BottomMenuActivity extends BaseActivity {
     protected void onDestroy() {
         DisAllDialog();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        if (thread != null) {
+            mHandler.removeCallbacks(thread);
+        }
         super.onDestroy();
     }
 

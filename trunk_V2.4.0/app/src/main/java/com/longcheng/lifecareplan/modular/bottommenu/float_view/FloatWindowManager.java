@@ -2,13 +2,13 @@ package com.longcheng.lifecareplan.modular.bottommenu.float_view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.PixelFormat;
-import android.os.Build;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
+import com.longcheng.lifecareplan.push.jpush.message.EasyMessage;
+import com.longcheng.lifecareplan.push.jpush.message.OnMessageListener;
 
 
 /**
@@ -33,11 +33,27 @@ public class FloatWindowManager {
     private WindowManager windowManager;
     //    private LastWindowInfo lastWindowInfo;
     private Activity activity;
+    private OnShowMessageListener mOnShowMessageListener;
+
+    public void setmOnShowMessageListener(OnShowMessageListener mOnShowMessageListener) {
+        this.mOnShowMessageListener = mOnShowMessageListener;
+    }
 
     public FloatWindowManager() {
 //        lastWindowInfo = LastWindowInfo.getInstance();
+        //接收
+        EasyMessage.registerMessageListener("flag", mListener);
     }
-
+    //处理消息
+    public OnMessageListener mListener = new OnMessageListener() {
+        public void onMessage(Object msg) {
+//            long newTime = System.currentTimeMillis();
+//            //打印Demo
+//            Log.e("OnMessageListener", "OnMessageListener=" + msg);
+//            updateShowView("", "" + msg);
+            mOnShowMessageListener.onShowMessage();
+        }
+    };
     /**
      * 显示悬浮窗口
      */
@@ -61,7 +77,7 @@ public class FloatWindowManager {
             if (float_window_type == FW_TYPE_ROOT_VIEW) {
                 initCommonFloatView(context);
             } else {
-                initSystemWindow(context);
+//                initSystemWindow(context);
             }
             isFloatWindowShowing = true;
         } catch (Exception e) {
@@ -84,82 +100,6 @@ public class FloatWindowManager {
             View rootView = activity.getWindow().getDecorView().getRootView();
             contentView = rootView.findViewById(android.R.id.content);
             contentView.addView((View) floatView);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public synchronized void updateShowView(String thumburl, String cont) {
-        ((FloatView) floatView).updateShowView(thumburl, cont);
-    }
-
-    /**
-     * 利用系统弹窗实现悬浮窗
-     *
-     * @param mContext
-     */
-    private void initSystemWindow(Context mContext) {
-        windowManager = SystemUtils.getWindowManager(mContext);
-        WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
-        wmParams.packageName = mContext.getPackageName();
-        wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                | WindowManager.LayoutParams.FLAG_SCALED
-                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR
-                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
-
-        if (float_window_type == FW_TYPE_APP_DIALOG) {
-            //这个一定要activity running
-            //wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG;//TYPE_TOAST
-            //TYPE_TOAST targetSDK必须小于26
-            wmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
-        } else if (float_window_type == FW_TYPE_ALERT_WINDOW) {
-            //需要权限
-            if (Build.VERSION.SDK_INT >= 26) {
-                wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-            } else {
-                wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-            }
-        }
-        wmParams.format = PixelFormat.RGBA_8888;
-        wmParams.gravity = Gravity.START | Gravity.TOP;
-
-        wmParams.width = floatViewParams.width;
-        wmParams.height = floatViewParams.height;
-        wmParams.x = floatViewParams.x;
-        wmParams.y = floatViewParams.y;
-
-        if (floatView instanceof View) {
-            windowManager.removeView((View) this.floatView);
-        }
-
-        floatView = new FloatWindowView(mContext, floatViewParams, wmParams);
-        //监听关闭悬浮窗
-        floatView.setFloatViewListener(new FloatViewListener() {
-            @Override
-            public void onClose() {
-                dismissFloatWindow();
-            }
-
-            @Override
-            public void onClick() {
-
-            }
-
-            @Override
-            public void onMoved() {
-
-            }
-
-            @Override
-            public void onDragged() {
-
-            }
-        });
-        try {
-            final View floatView = (View) this.floatView;
-            windowManager.addView(floatView, wmParams);
         } catch (Exception e) {
             e.printStackTrace();
         }

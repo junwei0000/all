@@ -13,14 +13,17 @@ import android.text.TextUtils;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.push.AppShortCutUtil;
 import com.longcheng.lifecareplan.push.PushClient;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
+import com.longcheng.lifecareplan.push.jpush.message.EasyMessage;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.LogUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,15 +63,17 @@ public class JPushReceiver extends BroadcastReceiver {
                         .onPushPassThroughMessage(context, json.toString());
                 LogUtils.d("JPushReceiver", "[JpushReceiver] 接收到推送下来的自定义消息: " + json.toString());
 
-
-                JSONObject jsonmessage = null;
                 try {
-                    jsonmessage = new JSONObject(bundle.getString(JPushInterface.EXTRA_MESSAGE));
+                    JSONObject jsonmessage = new JSONObject(bundle.getString(JPushInterface.EXTRA_MESSAGE));
+                    String receive_user_id = jsonmessage.optString("receive_user_id");
+                    if (receive_user_id.equals(UserUtils.getUserId(context))) {
+                        //发送
+                        EasyMessage.sendMessage("flag", bundle.getString(JPushInterface.EXTRA_MESSAGE));
+                        BottomMenuActivity.newMessageTime = System.currentTimeMillis();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
                 // 收到通知
                 PushClient.getINSTANCE(context).getPushReceiverListener()

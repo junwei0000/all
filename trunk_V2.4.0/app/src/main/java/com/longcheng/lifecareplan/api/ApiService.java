@@ -259,6 +259,12 @@ public interface ApiService {
                                                      @Field("token") String token);
 
     @FormUrlEncoded
+    @POST(Config.VERSION + "blesscard/gratefulRepay")
+    Observable<EditDataBean> gratefulRepay(@Field("user_id") String user_id,
+                                           @Field(" bless_grateful_push_queue_id") String bless_grateful_push_queue_id,
+                                           @Field("token") String token);
+
+    @FormUrlEncoded
     @POST(Config.VERSION + "help/setTaskRead")
     Observable<EditDataBean> setTaskRead(@Field("user_id") String user_id,
                                          @Field("mutual_help_apply_id") String mutual_help_apply_id,

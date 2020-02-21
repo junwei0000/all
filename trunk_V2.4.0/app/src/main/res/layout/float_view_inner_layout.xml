@@ -27,9 +27,12 @@
             android:id="@+id/tv_cont"
             style="@style/view_paddlefgtright"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:maxEms="16"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
             android:singleLine="true"
-            android:text="向您发起祝福..."
+            android:text="xxx感恩了您的节气祝福！"
             android:textColor="@color/white"
             android:textSize="@dimen/text_zhu_size" />
     </LinearLayout>

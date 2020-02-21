@@ -7,13 +7,19 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.push.jpush.message.EasyMessage;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -28,6 +34,7 @@ public class FloatView extends FrameLayout implements IFloatView {
     private View floatView;
     private TextView tv_cont;
     private ImageView iv_thumb;
+    private LinearLayout layout_cont;
 
     public FloatView(Context mContext) {
         super(mContext);
@@ -53,44 +60,46 @@ public class FloatView extends FrameLayout implements IFloatView {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         floatView = inflater.inflate(R.layout.float_view_inner_layout, null);
 
-        LinearLayout layout_cont = (LinearLayout) floatView.findViewById(R.id.layout_cont);
+        layout_cont = (LinearLayout) floatView.findViewById(R.id.layout_cont);
         tv_cont = (TextView) floatView.findViewById(R.id.tv_cont);
         iv_thumb = (ImageView) floatView.findViewById(R.id.iv_thumb);
         layout_cont.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onClick();
+                    listener.onClick(bless_grateful_push_queue_id);
                 }
             }
         });
-//        closeBtn.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (null != listener) {
-//                    listener.onClose();//关闭
-//                }
-//            }
-//        });
         addView(floatView);
+        updateShowView();
     }
+
+    String bless_grateful_push_queue_id;
 
     /**
      * 更新数据
-     * @param thumburl
-     * @param cont
      */
-
-    public void updateShowView(String thumburl, String cont) {
-        tv_cont.setText(cont);
-        GlideDownLoadImage.getInstance().loadCircleImage(thumburl, iv_thumb);
+    public void updateShowView() {
+        try {
+            JSONObject jsonmessage = new JSONObject("" + EasyMessage.lastMessage);
+            String sponsor_avatar = jsonmessage.optString("sponsor_avatar");
+            String content = jsonmessage.optString("content");
+            bless_grateful_push_queue_id = jsonmessage.optString("bless_grateful_push_queue_id");
+            Log.d("OnMessageListener", "bless_grateful_push_queue_id=" + bless_grateful_push_queue_id + ",content=" + content);
+            tv_cont.setText(bless_grateful_push_queue_id + "  " + content);
+            GlideDownLoadImage.getInstance().loadCircleImage(sponsor_avatar, iv_thumb);
+            Animation mHiddenAction = AnimationUtils.loadAnimation(getContext(), R.anim.push_bottom_in);
+            tv_cont.startAnimation(mHiddenAction);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         Log.d("onLayout", "left=" + left + ",top=" + top + ",right=" + right);
-
     }
 
 

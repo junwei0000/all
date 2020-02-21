@@ -6,27 +6,35 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.modular.bottommenu.float_view.FloatViewListener;
 import com.longcheng.lifecareplan.modular.bottommenu.float_view.FloatWindowManager;
 import com.longcheng.lifecareplan.modular.bottommenu.float_view.IFloatView;
+import com.longcheng.lifecareplan.modular.bottommenu.float_view.OnShowMessageListener;
+import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
+import com.longcheng.lifecareplan.push.jpush.message.EasyMessage;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.Permission.MPermissionUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -145,6 +153,15 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         if (floatWindowManager == null) {
             floatWindowManager = new FloatWindowManager();
         }
+        floatWindowManager.setmOnShowMessageListener(new OnShowMessageListener() {
+            @Override
+            public void onShowMessage() {
+                String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
+                if (loginStatus.equals(ConstantManager.loginStatus) && EasyMessage.lastMessage != null) {
+                    showFloatWindowDelay();
+                }
+            }
+        });
     }
 
     /**
@@ -172,9 +189,14 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
      * 显示悬浮窗
      */
     protected void showFloatWindow() {
-        closeFloatWindow();//如果要显示多个悬浮窗，可以不关闭，这里只显示一个
-        floatWindowManager.showFloatWindow(this, floatWindowType);
-        addFloatWindowClickListener();
+        if (TextUtils.isEmpty("" + EasyMessage.lastMessage)) {
+            Log.d("OnMessageListener", "onClose    EasyMessage.lastMessage=" + EasyMessage.lastMessage);
+            closeFloatWindow();
+        } else {
+            closeFloatWindow();//如果要显示多个悬浮窗，可以不关闭，这里只显示一个
+            floatWindowManager.showFloatWindow(this, floatWindowType);
+            addFloatWindowClickListener();
+        }
     }
 
     /**
@@ -199,26 +221,49 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         }
         //说明悬浮窗view创建了，增加屏幕常亮
         floatView.setFloatViewListener(new FloatViewListener() {
-            @Override
-            public void onClose() {
-                closeFloatWindow();
-            }
 
             @Override
-            public void onClick() {
-                Toast.makeText(mContext, "FloatWindow clicked", Toast.LENGTH_LONG).show();
+            public void onClick(String app_push_id) {
+                gratefulRepay(app_push_id);
             }
 
-            @Override
-            public void onDoubleClick() {
-            }
         });
+    }
+
+    /**
+     * 感恩回馈
+     */
+    public void gratefulRepay(String bless_grateful_push_queue_id) {
+        Observable<EditDataBean> observable = Api.getInstance().service.gratefulRepay(UserUtils.getUserId(mContext), bless_grateful_push_queue_id
+                , ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
+                    @Override
+                    public void accept(EditDataBean responseBean) throws Exception {
+
+                        String status_ = responseBean.getStatus();
+                        if (status_.equals("200")) {
+                            ToastUtils.showToast(responseBean.getMsg());
+                        }
+                        Log.e("Observable", "" + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e("Observable", "" + throwable.toString());
+                    }
+                });
     }
 
     private void destroyWindow() {
         if (floatWindowType != FloatWindowManager.FW_TYPE_ALERT_WINDOW) {
             closeFloatWindow();
         }
+        Log.e("OnMessageListener", "destroyWindow");
+        //取消接收
+        if (floatWindowManager != null)
+            EasyMessage.unregisterMessageListener(floatWindowManager.mListener);
     }
 
     @Override
@@ -227,10 +272,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         MobclickAgent.onResume(this);
         Log.d(TAG, "onResume()");
         String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
-        if (loginStatus.equals(ConstantManager.loginStatus)) {
+        if (loginStatus.equals(ConstantManager.loginStatus) && EasyMessage.lastMessage != null) {
             showFloatWindowDelay();
-        }else{
-            closeFloatWindow();
         }
     }
 
