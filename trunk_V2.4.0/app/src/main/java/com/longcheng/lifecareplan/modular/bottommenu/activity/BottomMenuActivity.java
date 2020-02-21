@@ -21,7 +21,7 @@ import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.modular.exchange.fragment.ExChangeFragment;
-import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
+import com.longcheng.lifecareplan.modular.helpwith.fragment.HuoDongFragmentNew;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginActivity;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
@@ -259,7 +259,7 @@ public class BottomMenuActivity extends BaseActivity {
         HomeFragment homeFragment = new HomeFragment();
         fragmentList.add(homeFragment);
 
-        HelpWithFragmentNew helpFragment = new HelpWithFragmentNew();
+        HuoDongFragmentNew helpFragment = new HuoDongFragmentNew();
         fragmentList.add(helpFragment);
 
         ExChangeFragment exChangeFragment = new ExChangeFragment();
@@ -321,9 +321,6 @@ public class BottomMenuActivity extends BaseActivity {
             ((HomeFragment) fragmentList.get(position)).setAllContDialog();
         } else {
             ((HomeFragment) fragmentList.get(tab_position_home)).dismissAllDialog();
-        }
-        if (position == tab_position_helpwith) {
-            ((HelpWithFragmentNew) fragmentList.get(position)).initInfo();
         }
         if (position == tab_position_exchange) {
             ((ExChangeFragment) fragmentList.get(position)).initLoad(solar_terms_id, solar_terms_name);
@@ -388,8 +385,6 @@ public class BottomMenuActivity extends BaseActivity {
                         ((HomeFragment) fragmentList.get(tab_position_home)).haveNotReadMsg();
                     } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_HOME)) {
                         selectPage(tab_position_home);
-                    } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_HELPWITH)) {
-                        selectPage(tab_position_helpwith);
                     } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_CENTER)) {
                         selectPage(tab_position_mine);
                     } else if (type.equals(ConstantManager.MAIN_ACTION_TYPE_EXCHANGE)) {

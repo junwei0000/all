@@ -9,7 +9,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -29,23 +28,18 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseListActivity;
-import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.adapter.LifeStyleListAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean.LifeStyleAfterBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean.LifeStyleListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean.LifeStyleItemBean;
+import com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean.LifeStyleListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
-import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
@@ -630,15 +624,15 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
 
     private void back() {
         if (!TextUtils.isEmpty(skiptype) && (skiptype.equals("myDeGra") ||
-                skiptype.equals("Order") || skiptype.equals("LifeApplyHelp")
+                skiptype.equals("Order") || skiptype.equals("LifeApplyHelp")|| skiptype.equals("HomeFragment")
                 || skiptype.equals("Thanks"))) {
 
         } else {
-            Intent intents = new Intent();
-            intents.setAction(ConstantManager.MAINMENU_ACTION);
-            intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HELPWITH);
-            LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
-            ActivityManager.getScreenManager().popAllActivityOnlyMain();
+//            Intent intents = new Intent();
+//            intents.setAction(ConstantManager.MAINMENU_ACTION);
+//            intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HELPWITH);
+//            LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+//            ActivityManager.getScreenManager().popAllActivityOnlyMain();
         }
         doFinish();
     }

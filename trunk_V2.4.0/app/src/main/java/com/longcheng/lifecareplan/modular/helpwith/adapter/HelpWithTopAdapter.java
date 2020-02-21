@@ -100,11 +100,13 @@ public class HelpWithTopAdapter extends BaseAdapterHelper<HelpWithInfo> {
                     //生命能量互祝
                     intent = new Intent(context, HelpWithEnergyActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("skiptype", "HomeFragment");
                     context.startActivity(intent);
                 } else if (position == 1) {
                     //生活方式互祝
                     intent = new Intent(context, LifeStyleActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("skiptype", "HomeFragment");
                     context.startActivity(intent);
                 } else if (position == 2) {
                     //智能互祝

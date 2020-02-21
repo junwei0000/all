@@ -35,6 +35,16 @@ public class HomeAfterBean implements Serializable {
 
     private String display_note;
 
+    private String activity_url;//活动url
+
+    public String getActivity_url() {
+        return activity_url;
+    }
+
+    public void setActivity_url(String activity_url) {
+        this.activity_url = activity_url;
+    }
+
     public String getDisplay_note() {
         return display_note;
     }

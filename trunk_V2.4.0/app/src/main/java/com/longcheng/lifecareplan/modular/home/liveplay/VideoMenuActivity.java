@@ -20,7 +20,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithActivity;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.HomFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.MineFramgemt;
@@ -261,11 +261,14 @@ public class VideoMenuActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 康农url
+     * Config.BASE_HEAD_URL + "home/knpteam/allroomlist"
+     */
     public void back() {
         if (!TextUtils.isEmpty(skipType) && skipType.equals("auto")) {
-            Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
+            Intent intent = new Intent(mActivity, HelpWithActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.putExtra("html_url", Config.BASE_HEAD_URL + "home/knpteam/allroomlist");
             startActivity(intent);
         }
         doFinish();

@@ -94,7 +94,6 @@ public class ConstantManager {
      * 首页切换tab
      */
     public static final String MAINMENU_ACTION = "MAINMENU_ACTION";
-    public static final String MAIN_ACTION_TYPE_HELPWITH = "MAIN_ACTION_TYPE_HELPWITH";
     public static final String MAIN_ACTION_TYPE_CENTER = "MAIN_ACTION_TYPE_CENTER";
     public static final String MAIN_ACTION_TYPE_BACK = "MAIN_ACTION_TYPE_BACK";
     public static final String MAIN_ACTION_TYPE_NEXT = "MAIN_ACTION_TYPE_NEXT";

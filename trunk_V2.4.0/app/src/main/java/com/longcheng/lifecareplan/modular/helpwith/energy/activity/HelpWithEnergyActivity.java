@@ -31,9 +31,7 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseListActivity;
-import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.energy.adapter.ActionSelectAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.energy.adapter.EngryListAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.energy.adapter.SelectAdapter;
@@ -43,7 +41,6 @@ import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpEnergyAfterBe
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpEnergyListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.bean.HelpItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
@@ -650,11 +647,11 @@ public class HelpWithEnergyActivity extends BaseListActivity<EnergyContract.View
                 || skiptype.equals("Thanks"))) {
 
         } else {
-            Intent intents = new Intent();
-            intents.setAction(ConstantManager.MAINMENU_ACTION);
-            intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HELPWITH);
-            LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
-            ActivityManager.getScreenManager().popAllActivityOnlyMain();
+//            Intent intents = new Intent();
+//            intents.setAction(ConstantManager.MAINMENU_ACTION);
+//            intents.putExtra("type", ConstantManager.MAIN_ACTION_TYPE_HELPWITH);
+//            LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
+//            ActivityManager.getScreenManager().popAllActivityOnlyMain();
         }
         doFinish();
     }

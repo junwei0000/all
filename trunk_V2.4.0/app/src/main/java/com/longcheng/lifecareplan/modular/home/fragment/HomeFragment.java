@@ -35,6 +35,7 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDeta
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
+import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithActivity;
 import com.longcheng.lifecareplan.modular.home.adapter.ActionAdapter;
 import com.longcheng.lifecareplan.modular.home.adapter.DedicationAdapter;
 import com.longcheng.lifecareplan.modular.home.adapter.HealthAdapter;
@@ -144,7 +145,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     ViewPager homedediVpTop;
 
     public static String jieqi_name = "";
-    public static String kn_url = "";
+    public static String kn_url = "", activity_url = "";
     @BindView(R.id.tv_newtitle)
     TextView tvNewtitle;
     @BindView(R.id.tv_drawable1)
@@ -332,11 +333,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
                     } else if (sort == 4) {
-                        SharedPreferencesHelper.put(mActivity, "skiptype", "HomeFragment");
                         if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHelpWithEnergy)) {
-                            intent = new Intent(mActivity, HelpWithEnergyActivity.class);
+                            intent = new Intent(mActivity, HelpWithActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("skiptype", "HomeFragment");
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                         }
@@ -708,6 +707,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             layer = mHomeAfterBean.getLayer();
             display_note = mHomeAfterBean.getDisplay_note();
             kn_url = mHomeAfterBean.getKn_url();
+            activity_url = mHomeAfterBean.getActivity_url();
             String sign_url = mHomeAfterBean.getSign_url();
             SharedPreferencesHelper.put(mActivity, "sign_url", "" + sign_url);
             String invite_user_url = mHomeAfterBean.getInvite_user_url();
