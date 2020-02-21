@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/layout_cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="120dp"
+        android:alpha="55"
+        android:background="@drawable/corners_bg_blackxingji"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/iv_thumb"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@mipmap/user_default_icon" />
+
+        <TextView
+            android:id="@+id/tv_cont"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="向您发起祝福..."
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+</LinearLayout>

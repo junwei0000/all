@@ -10,11 +10,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.longcheng.lifecareplan.R;
+import com.longcheng.lifecareplan.modular.bottommenu.float_view.FloatViewListener;
+import com.longcheng.lifecareplan.modular.bottommenu.float_view.FloatWindowManager;
+import com.longcheng.lifecareplan.modular.bottommenu.float_view.IFloatView;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
+import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.Permission.MPermissionUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.umeng.analytics.MobclickAgent;
@@ -102,6 +108,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
         //加载主布局
         setContentView(mContextView);
+
+        initFloatWindowManager();
+
         //Activity的管理，将Activity压入栈
         activityManager = ActivityManager.getScreenManager();
         activityManager.pushActivity(this);
@@ -115,13 +124,137 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         initDataBefore();
         //调用初始化控件的方法
         initView(mContextView);
+
         initDataAfter();
         setListener();
 
         //友盟配置检测弹窗提示，打包时隐藏
 //        UmengTool.checkWx(this);
+
     }
 
+    /**
+     * -------------------------float window start---------------------------
+     */
+    FloatWindowManager floatWindowManager;
+
+    private void initFloatWindowManager() {
+        /**
+         * WindowManager 应用内悬浮窗
+         */
+        if (floatWindowManager == null) {
+            floatWindowManager = new FloatWindowManager();
+        }
+    }
+
+    /**
+     * 必须等activity创建后，view展示了再addView，否则可能崩溃
+     * BadTokenException: Unable to add window --token null is not valid; is your activity running?
+     */
+    protected void showFloatWindowDelay() {
+        if (mContextView != null) {
+            mContextView.removeCallbacks(floatWindowRunnable);
+            mContextView.post(floatWindowRunnable);
+        }
+    }
+
+    protected int floatWindowType = FloatWindowManager.FW_TYPE_ROOT_VIEW;
+
+    private final Runnable floatWindowRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Log.e("floatWindowRunnable", "showFloatWindow");
+            showFloatWindow();
+        }
+    };
+
+    /**
+     * 显示悬浮窗
+     */
+    protected void showFloatWindow() {
+        closeFloatWindow();//如果要显示多个悬浮窗，可以不关闭，这里只显示一个
+        floatWindowManager.showFloatWindow(this, floatWindowType);
+        addFloatWindowClickListener();
+    }
+
+    /**
+     * 关闭悬浮窗
+     */
+    protected void closeFloatWindow() {
+        if (mContextView != null) {
+            mContextView.removeCallbacks(floatWindowRunnable);
+        }
+        if (floatWindowManager != null) {
+            floatWindowManager.dismissFloatWindow();
+        }
+    }
+
+    /**
+     * 监听悬浮窗关闭和点击事件
+     */
+    private void addFloatWindowClickListener() {
+        IFloatView floatView = floatWindowManager.getFloatView();
+        if (floatView == null) {
+            return;
+        }
+        //说明悬浮窗view创建了，增加屏幕常亮
+        floatView.setFloatViewListener(new FloatViewListener() {
+            @Override
+            public void onClose() {
+                closeFloatWindow();
+            }
+
+            @Override
+            public void onClick() {
+                Toast.makeText(mContext, "FloatWindow clicked", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onDoubleClick() {
+            }
+        });
+    }
+
+    private void destroyWindow() {
+        if (floatWindowType != FloatWindowManager.FW_TYPE_ALERT_WINDOW) {
+            closeFloatWindow();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+        Log.d(TAG, "onResume()");
+        String loginStatus = (String) SharedPreferencesHelper.get(mActivity, "loginStatus", "");
+        if (loginStatus.equals(ConstantManager.loginStatus)) {
+            showFloatWindowDelay();
+        }else{
+            closeFloatWindow();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+        Log.d(TAG, "onPause()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        activityManager.popActivity(this);
+        //butterknife 解绑
+        bind.unbind();
+        RequestDataStatus = false;
+        super.onDestroy();
+        Log.d(TAG, "onDestroy()");
+        destroyWindow();
+    }
+
+/**
+ * ****************************************end****************************************************
+ */
     /**
      * View点击
      **/
@@ -207,19 +340,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         Log.d(TAG, "onStart()");
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-        Log.d(TAG, "onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-        Log.d(TAG, "onPause()");
-    }
 
     @Override
     protected void onStop() {
@@ -227,17 +347,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         Log.d(TAG, "onStop()");
     }
 
-
-    @Override
-    protected void onDestroy() {
-        activityManager.popActivity(this);
-        //butterknife 解绑
-        bind.unbind();
-        RequestDataStatus = false;
-        super.onDestroy();
-        Log.d(TAG, "onDestroy()");
-
-    }
 
     /**
      * [是否允许全屏]
