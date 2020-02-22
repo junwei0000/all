@@ -569,7 +569,7 @@ public abstract class WebAct extends BaseActivity {
             public void handler(String data, CallBackFunction function) {
                 Log.e("registerHandler", "data=" + data);
                 UserLoginBack403Utils.getInstance()
-                        .showDialogPromptReLogin(mActivity);
+                        .zhuXiao();
             }
         });
         //我的手机卷-完善收货地址跳转订单列表

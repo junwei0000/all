@@ -234,12 +234,15 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
 
             @Override
             public void onClick(String app_push_id) {
-                gratefulRepay(app_push_id);
+                if(!dataLoadStatus){
+                    dataLoadStatus=true;
+                    gratefulRepay(app_push_id);
+                }
             }
 
         });
     }
-
+    boolean dataLoadStatus=false;
     /**
      * 感恩回馈
      */
@@ -251,10 +254,10 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
                 .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
                     @Override
                     public void accept(EditDataBean responseBean) throws Exception {
-
+                        dataLoadStatus=false;
                         String status_ = responseBean.getStatus();
                         if (status_.equals("200")) {
-                            ToastUtils.showToast(responseBean.getMsg());
+                            ToastUtils.showToast(responseBean.getData());
                         }
                         Log.e("Observable", "" + responseBean.toString());
                     }
@@ -262,6 +265,7 @@ public abstract class BaseActivityMVP<V, T extends BasePresent<V>> extends RxApp
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.e("Observable", "" + throwable.toString());
+                        dataLoadStatus=false;
                     }
                 });
     }

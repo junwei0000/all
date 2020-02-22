@@ -101,7 +101,6 @@ public class ActionH5Activity extends WebAct {
     @Override
     public void initView(View view) {
         super.initView(view);
-        pageTopTvName.setText("呵护天才行动");
         setOrChangeTranslucentColor(toolbar, null);
     }
 

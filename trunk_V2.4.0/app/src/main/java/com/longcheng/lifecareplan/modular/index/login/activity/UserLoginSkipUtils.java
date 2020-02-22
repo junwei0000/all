@@ -12,12 +12,12 @@ import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnerg
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneJoinListActivity;
 import com.longcheng.lifecareplan.modular.home.commune.activity.CommuneMineActivity;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.healthydelivery.detail.activity.HealthyDeliveryDetailAct;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -182,6 +182,12 @@ public class UserLoginSkipUtils {
                 intents = new Intent(mActivity, CommuneJoinListActivity.class);
             }
             intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            mActivity.startActivity(intents);
+            mActivity.finish();
+        }else if (loginskiptostatus.equals("ActionH5Activity")) {
+            intents = new Intent(mActivity, BaoZhangActitvty.class);
+            intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intents.putExtra("html_url", "" + HomeFragment.activity_url);
             mActivity.startActivity(intents);
             mActivity.finish();
         }

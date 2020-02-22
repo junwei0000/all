@@ -182,6 +182,9 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
                 int size = mList == null ? 0 : mList.size();
                 if (backPage == 1) {
                     mAllList.clear();
+                    if (size == 0) {
+                        mAdapter = null;
+                    }
                 }
                 page = backPage;
                 if (size > 0) {
@@ -252,7 +255,7 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int backindex) {
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean, int backindex) {
 
     }
 

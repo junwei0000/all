@@ -51,7 +51,6 @@ import com.longcheng.lifecareplan.modular.mine.bill.activity.SleepEngryActivity;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.SleepSkbActivity;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.WakeSkbActivity;
 import com.longcheng.lifecareplan.modular.mine.changeinviter.activity.ChangeInviterActivity;
-import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.FunctionAdapter;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.FunctionGVItemBean;
 import com.longcheng.lifecareplan.modular.mine.goodluck.activity.GoodLuckActivity;
@@ -1646,7 +1645,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 @Override
                 public void onClick(View v) {
                     actionDialog.dismiss();
-                    Intent intent = new Intent(mActivity, ActionH5Activity.class);
+                    Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.putExtra("kn_url", "" + data.getCommonweal_activity_url());
                     startActivity(intent);

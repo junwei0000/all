@@ -490,6 +490,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void BackLiveDetailSuccess(BasicResponse<LiveDetailInfo> responseBean) {
+        dataLoadStatus = false;
         int errcode = responseBean.getStatus();
         if (errcode == 0) {
             LiveDetailInfo mLiveDetailInfo = responseBean.getData();
@@ -590,6 +591,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
 
     @Override
     public void Error() {
+        dataLoadStatus = false;
     }
 
     MyDialog selectDialog;
@@ -629,6 +631,7 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         }
     }
 
+    boolean dataLoadStatus = false;
     protected static final int updateView = 5;
     protected static final int addForwardNum = 6;
     protected static final int liwu = 7;
@@ -637,7 +640,10 @@ public class LivePlayActivity extends BaseActivityMVP<LivePushContract.View, Liv
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case updateView:
-                    mPresent.getLivePlayInfo(live_room_id);
+                    if (!dataLoadStatus) {
+                        dataLoadStatus = true;
+                        mPresent.getLivePlayInfo(live_room_id);
+                    }
                     break;
                 case addForwardNum:
                     mPresent.addForwardNumber(live_room_id);

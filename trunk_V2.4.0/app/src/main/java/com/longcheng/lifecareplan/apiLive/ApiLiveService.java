@@ -94,10 +94,9 @@ public interface ApiLiveService {
     Observable<BasicResponse> setCancelFollowLive(@Field("user_id") String user_id,
                                                   @Field("follow_user_id") String follow_user_id);
 
-    @FormUrlEncoded
-    @POST("dock/live/room/info")
-    Observable<BasicResponse<LiveDetailInfo>> getLivePlayInfo(@Field("user_id") String user_id,
-                                                              @Field("live_room_id") String live_room_id);
+    @GET("dock/live/room/info")
+    Observable<BasicResponse<LiveDetailInfo>> getLivePlayInfo(@Query("user_id") String user_id,
+                                                              @Query("live_room_id") String live_room_id);
 
     @FormUrlEncoded
     @POST("dock/live/user/info")

@@ -31,6 +31,7 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.DetailItemB
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
+import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionlHelpDialogUtils;
 import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -85,6 +86,7 @@ public class BaoZhangActitvty extends WebAct {
     private BaoZhangDialogUtils mDetailHelpDialogUtils;
     private VolunterDialogUtils mGiveactivityDialogUtils;
     private VolunterDialogUtils mDoctorDialogUtils;
+    ActionlHelpDialogUtils mActionDialogUtils;
 
     private List<DetailItemBean> blessings_list;
     private List<DetailItemBean> mutual_help_money_all;
@@ -124,6 +126,9 @@ public class BaoZhangActitvty extends WebAct {
 
     private String volunteer_debt_item_id = "0", type = "1";
     String Givemoney = "", Giveaddress_id = "", __app_pay_token__ = "";
+
+
+    private String commonweal_activity_id;
 
     @Override
     public void onClick(View v) {
@@ -179,6 +184,35 @@ public class BaoZhangActitvty extends WebAct {
         String url = getIntent().getStringExtra("html_url");
         loadUrl(url);
         firstComIn = false;
+        //天才行动-----获取分享  msg_id
+        mBridgeWebView.registerHandler("Genius_AppActivityId", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
+                if (pagetopIvRigth != null) {
+                    pagetopIvRigth.setVisibility(View.VISIBLE);
+                    shareStatus = true;
+                }
+                commonweal_activity_id = data;
+                getActionMsgDetail(commonweal_activity_id);
+            }
+        });
+        //天才行动-----显示祝福弹层
+        mBridgeWebView.registerHandler("Genius_AppPayment", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                msg_id = data;
+                weixinPayBackType = "GeniusPay";
+                Log.e("registerHandler", "data=" + data);
+                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
+                    if (mActionDialogUtils == null) {
+                        mActionDialogUtils = new ActionlHelpDialogUtils(mActivity, mHandler, ACTIONBLESSING);
+                    }
+                    mActionDialogUtils.initData(userInfo, blessings_list, 0, mutual_help_money, mutual_help_money_all);
+                    mActionDialogUtils.showPopupWindow();
+                }
+            }
+        });
         //详情--获取分享 knp_msg_id
         mBridgeWebView.registerHandler("knp_getKnpMsgId", new BridgeHandler() {
             @Override
@@ -461,6 +495,7 @@ public class BaoZhangActitvty extends WebAct {
         });
     }
 
+
     public static final int knpPaySuccessBack = 11;
     public static final int knpPaySucRreDetail = 12;
     private static final int KNPBLESS = 20;
@@ -475,7 +510,7 @@ public class BaoZhangActitvty extends WebAct {
     private static final int sendLifeBasicDetailShareNum = 77;
     private static final int sendKNPDetailShareNum = 78;
     private static final int GiveactivityApplyPay = 88;
-
+    private static final int ACTIONBLESSING = 99;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         Bundle bundle;
@@ -486,6 +521,12 @@ public class BaoZhangActitvty extends WebAct {
 
         public void handleMessage(Message msg) {
             switch (msg.what) {
+                case ACTIONBLESSING:
+                    bundle = msg.getData();
+                    payType = bundle.getString("payType");
+                    selectmoney = bundle.getInt("selectmoney");
+                    ActionPayHelp(UserUtils.getUserId(mContext), commonweal_activity_id, payType, msg_id, selectmoney);
+                    break;
                 case KNPBLESS:
                     bundle = msg.getData();
                     help_comment_content = bundle.getString("help_comment_content");
@@ -826,6 +867,79 @@ public class BaoZhangActitvty extends WebAct {
         }
     }
     //--------------------------------------------------------------------------------------------------------
+
+    /**
+     * 天才行动支付
+     *
+     * @param user_id
+     * @param commonweal_activity_id
+     * @param pay_way
+     * @param msg_id
+     * @param money
+     */
+    public void ActionPayHelp(String user_id, String commonweal_activity_id, String pay_way, String msg_id, int money) {
+        if (RequestDataStatus) {
+            return;
+        }
+        showDialog();
+        Observable<PayWXDataBean> observable = Api.getInstance().service.GenuisPayHelp(user_id, user_id,
+                commonweal_activity_id, pay_way, msg_id, money, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+
+                            String status = responseBean.getStatus();
+                            if (status.equals("400")) {
+                                ToastUtils.showToast(responseBean.getMsg());
+                            } else if (status.equals("200")) {
+                                PayWXAfterBean payWeChatBean = (PayWXAfterBean) responseBean.getData();
+                                one_order_id = payWeChatBean.getOne_order_id();
+                                if (pay_way.equals("wxpay")) {
+                                    Log.e(TAG, payWeChatBean.toString());
+                                    PayUtils.getWeChatPayHtml(mContext, payWeChatBean);
+                                } else if (pay_way.equals("alipay")) {
+                                    String payInfo = payWeChatBean.getPayInfo();
+                                    PayUtils.Alipay(mActivity, payInfo, new PayCallBack() {
+                                        @Override
+                                        public void onSuccess() {
+                                            ActionPaySuccess();
+                                        }
+
+                                        @Override
+                                        public void onFailure(String error) {
+
+                                        }
+                                    });
+                                } else {
+                                    ActionPaySuccess();
+                                }
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+//                        mView.ListError();
+                        ToastUtils.showToast(R.string.net_tishi);
+                        Log.e("Observable", "" + throwable.toString());
+                        dismissDialog();
+                    }
+                });
+    }
+
+    private void ActionPaySuccess() {
+        Log.e("helpSkipSuccess", "one_order_id=" + one_order_id);
+        mBridgeWebView.callHandler("Genius_GetOneOrderId", one_order_id, new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+
+            }
+        });
+    }
 
     /**
      * 康农详情--互祝支付
@@ -1393,6 +1507,49 @@ public class BaoZhangActitvty extends WebAct {
 //--------------------------------------------------------------------------------------------------------
 
     /**
+     * 获取天才活动详情数据
+     *
+     * @param commonweal_activity_id
+     */
+    public void getActionMsgDetail(String commonweal_activity_id) {
+        Observable<EnergyDetailDataBean> observable = Api.getInstance().service.getCommonwealMsgDetail(UserUtils.getUserId(mContext), commonweal_activity_id,
+                ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<EnergyDetailDataBean>() {
+                    @Override
+                    public void accept(EnergyDetailDataBean responseBean) throws Exception {
+                        String status = responseBean.getStatus();
+                        if (status.equals("400")) {
+                        } else if (status.equals("200")) {
+                            DetailAfterBean mDetailAfterBean = (DetailAfterBean) responseBean.getData();
+                            if (mDetailAfterBean != null) {
+                                knp_sharetitle = mDetailAfterBean.getKnp_sharetitle();
+                                knp_shareurl = mDetailAfterBean.getKnp_shareurl();
+                                knp_sharePic = mDetailAfterBean.getKnp_sharePic();
+                                knp_sharedesc = mDetailAfterBean.getKnp_sharedesc();
+                                blessings_list = mDetailAfterBean.getKnp_blessings_list();
+                                DetailItemBean knp_helpmoneydefault = mDetailAfterBean.getKnp_helpmoneydefault();
+                                mutual_help_money = knp_helpmoneydefault.getMoney();
+                                userInfo = mDetailAfterBean.getUser_info();
+                                mutual_help_money_all = mDetailAfterBean.getMutual_help_money_all();
+                                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
+                                } else {
+                                    mutual_help_money_all = new ArrayList<>();
+                                }
+                            }
+                        }
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+//                        qiMingSkipHelp("0");
+                    }
+                });
+
+    }
+
+    /**
      * 获取康农详情数据
      *
      * @param knp_msg_id
@@ -1688,8 +1845,9 @@ public class BaoZhangActitvty extends WebAct {
                     allNewPaySuccess();
                 } else if (weixinPayBackType.equals("allNewPayLive")) {
                     allNewPayLiveSuccess();
+                } else if (weixinPayBackType.equals("GeniusPay")) {
+                    ActionPaySuccess();
                 }
-
             } else if (Code == WXPayEntryActivity.PAY_FAILE) {
                 ToastUtils.showToast("支付失败");
             } else if (Code == WXPayEntryActivity.PAY_CANCLE) {

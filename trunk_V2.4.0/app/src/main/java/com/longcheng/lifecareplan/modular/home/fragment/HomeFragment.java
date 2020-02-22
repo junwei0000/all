@@ -54,7 +54,6 @@ import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFrie
 import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
-import com.longcheng.lifecareplan.modular.mine.fragment.genius.ActionH5Activity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
 import com.longcheng.lifecareplan.utils.CleanMessageUtil;
@@ -598,9 +597,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             } else if (!TextUtils.isEmpty(url) && url.contains("commonweal/index")) {
-                                Intent intent = new Intent(mActivity, ActionH5Activity.class);
+                                Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                intent.putExtra("kn_url", "" + url);
+                                intent.putExtra("html_url", "" + url);
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                             } else {

@@ -87,7 +87,7 @@ public class FloatView extends FrameLayout implements IFloatView {
             String content = jsonmessage.optString("content");
             bless_grateful_push_queue_id = jsonmessage.optString("bless_grateful_push_queue_id");
             Log.d("OnMessageListener", "bless_grateful_push_queue_id=" + bless_grateful_push_queue_id + ",content=" + content);
-            tv_cont.setText(bless_grateful_push_queue_id + "  " + content);
+            tv_cont.setText("" + content);
             GlideDownLoadImage.getInstance().loadCircleImage(sponsor_avatar, iv_thumb);
             Animation mHiddenAction = AnimationUtils.loadAnimation(getContext(), R.anim.push_bottom_in);
             tv_cont.startAnimation(mHiddenAction);
