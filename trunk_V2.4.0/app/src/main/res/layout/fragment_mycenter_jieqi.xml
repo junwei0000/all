@@ -108,11 +108,13 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/iv_myorder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/homepage_icon_dingdan" />
 
         <TextView
+            android:id="@+id/tv_myorder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padd_imgtextleftright"

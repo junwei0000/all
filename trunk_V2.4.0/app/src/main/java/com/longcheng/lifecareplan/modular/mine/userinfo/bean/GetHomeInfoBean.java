@@ -174,6 +174,28 @@ public class GetHomeInfoBean implements Serializable {
     private String zhufu_url;
     private int isBlessedTeacher;//0:不是  1：是
 
+
+    @SerializedName("isEnergyCenter")
+    private int isEnergyCenter=1;
+    @SerializedName("isEnergyCenter_url")
+    private String isEnergyCenter_url;//能量中心
+
+    public int getIsEnergyCenter() {
+        return isEnergyCenter;
+    }
+
+    public void setIsEnergyCenter(int isEnergyCenter) {
+        this.isEnergyCenter = isEnergyCenter;
+    }
+
+    public String getIsEnergyCenter_url() {
+        return isEnergyCenter_url;
+    }
+
+    public void setIsEnergyCenter_url(String isEnergyCenter_url) {
+        this.isEnergyCenter_url = isEnergyCenter_url;
+    }
+
     public int getIsBlessedTeacher() {
         return isBlessedTeacher;
     }

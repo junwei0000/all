@@ -278,6 +278,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     RelativeLayout usercenter_relay_applybless;
     @BindView(R.id.usercenter_tv_applybless)
     TextView usercenter_tv_applybless;
+    @BindView(R.id.layout_orderlist)
+    LinearLayout layout_orderlist;
+    @BindView(R.id.iv_myorder)
+    ImageView iv_myorder;
+    @BindView(R.id.tv_myorder)
+    TextView tv_myorder;
 
     private String is_cho;
     private String user_id;
@@ -317,6 +323,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         pagetopIvLeft.setBackgroundResource(R.mipmap.usercenter_info_icon);
         pagetopIvRigth.setBackgroundResource(R.mipmap.usercenter_set_icon);
         layout_jintie.setOnClickListener(this);
+        layout_orderlist.setOnClickListener(this);
         usercenterRelayVolunteer.setOnClickListener(this);
         usercenterRelayDoctor.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
@@ -424,6 +431,12 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
     private void showFunctionGVData() {
         FunctionGVlist1 = new ArrayList();
         FunctionGVlist2 = new ArrayList();
+
+        int isEnergyCenter = data.getIsEnergyCenter();
+        if (isEnergyCenter != 0) {
+            FunctionGVlist1.add(new FunctionGVItemBean("我的订单", R.id.layout_orderlist, R.mipmap.my_order_icon));
+        }
+
         int is_alipay_pool_user = data.getIs_alipay_pool_user();
         if (is_alipay_pool_user != 0) {
             FunctionGVlist1.add(new FunctionGVItemBean("水库", R.id.layout_pool, R.mipmap.my_pool_icon));
@@ -774,12 +787,27 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;
-
-            case R.id.usercenter_relay_myorder://订单
+            case R.id.layout_orderlist://订单
                 intent = new Intent(mActivity, OrderListActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                break;
+            case R.id.usercenter_relay_myorder://订单
+                int isEnergyCenter = data.getIsEnergyCenter();
+                if (isEnergyCenter != 0) {
+                    intent = new Intent(mActivity, BaoZhangActitvty.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("html_url", "" + data.getIsEnergyCenter_url());
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                } else {
+                    intent = new Intent(mActivity, OrderListActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                }
+
                 break;
             case R.id.usercenter_relay_appexplanation://一目了然
                 intent = new Intent(mActivity, AbsolutelyclearAct.class);
@@ -1647,7 +1675,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                     actionDialog.dismiss();
                     Intent intent = new Intent(mActivity, BaoZhangActitvty.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("kn_url", "" + data.getCommonweal_activity_url());
+                    intent.putExtra("html_url", "" + data.getCommonweal_activity_url());
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 }
@@ -1798,6 +1826,17 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         Certification_url = data.getCertification_url();
         if (usercenterTvDoctor == null) {
             return;
+        }
+
+        int isEnergyCenter = mGetHomeInfoBean.getIsEnergyCenter();
+        if (isEnergyCenter != 0) {
+            layout_orderlist.setVisibility(View.VISIBLE);
+            tv_myorder.setText("能量中心");
+            iv_myorder.setBackgroundResource(R.mipmap.my_energycenter_icon);
+        } else {
+            layout_orderlist.setVisibility(View.GONE);
+            tv_myorder.setText("我的订单");
+            iv_myorder.setBackgroundResource(R.mipmap.homepage_icon_dingdan);
         }
         int isDoctorIdentity = mGetHomeInfoBean.getIsDoctorIdentity();//是否是坐堂医 0不是；1 是
         int isVolunteerIdentity = mGetHomeInfoBean.getIsVolunteerIdentity();//是否是志愿者 0不是；1 是

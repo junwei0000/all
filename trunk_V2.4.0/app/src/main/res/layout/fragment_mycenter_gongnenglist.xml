@@ -7,6 +7,64 @@
     android:orientation="vertical">
     <!--   -->
     <LinearLayout
+
+        android:id="@+id/layout_orderlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <RelativeLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/usercenter_iv_orderlist"
+                android:layout_width="@dimen/dp20"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/my_order_icon"
+                    android:scaleType="matrix" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/view_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/usercenter_iv_orderlist"
+                android:text="我的订单"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="40dp">
+
+            <include layout="@layout/line" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--   -->
+    <LinearLayout
+
         android:id="@+id/layout_pool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +125,7 @@
         style="@style/view_paddlefgtright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white" >
+        android:background="@color/white">
 
         <LinearLayout
             android:id="@+id/usercenter_iv_applybless"
