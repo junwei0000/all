@@ -25,6 +25,8 @@ import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
 import com.xiaomi.mipush.sdk.MiPushMessage;
+import com.youzan.androidsdk.YouzanSDK;
+import com.youzan.androidsdkx5.YouZanSDKX5Adapter;
 
 import cn.finalteam.okhttpfinal.OkHttpFinal;
 import cn.finalteam.okhttpfinal.OkHttpFinalConfiguration;
@@ -69,6 +71,14 @@ public class ExampleApplication extends MultiDexApplication {
         initTencentLive();
         initMeiQia();
         initOKHttp();
+        initYouZan();
+    }
+    /**
+     * 有赞sdk
+     */
+    private void initYouZan(){
+        // 腾讯X5版本使用
+         YouzanSDK.init(this, ConstantManager.YouZanClientId, new YouZanSDKX5Adapter());
     }
 
     private void initOKHttp() {

@@ -25,6 +25,10 @@ public class ConstantManager {
     /////////////////////上下拉的字段
 
     /**
+     * 有赞client_id
+     */
+    public static final String YouZanClientId = "962eafa6c69f0d0e1d";
+    /**
      * 默认微信appid
      */
     public static final String WECHATAPPID = "wxaa9690f972196106";

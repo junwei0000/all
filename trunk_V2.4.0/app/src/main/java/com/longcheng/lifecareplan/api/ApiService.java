@@ -387,7 +387,10 @@ public interface ApiService {
     @POST(Config.VERSION + "ability/getRechargeInfo")
     Observable<GetEnergyListDataBean> getRechargeInfo(@Field("user_id") String user_id,
                                                       @Field("token") String token);
-
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Youzan/yuouzanCookie")
+    Observable<GetEnergyListDataBean> getYouZanCookie(@Field("user_id") String user_id,
+                                                      @Field("token") String token);
     @FormUrlEncoded
     @POST(Config.VERSION + "Ability/assetRecharge")
     Observable<PayWXDataBean> assetRecharge(@Field("user_id") String user_id,

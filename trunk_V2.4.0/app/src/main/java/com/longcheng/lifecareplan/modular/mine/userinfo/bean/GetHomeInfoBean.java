@@ -175,9 +175,9 @@ public class GetHomeInfoBean implements Serializable {
     private int isBlessedTeacher;//0:不是  1：是
 
 
-    @SerializedName("isEnergyCenter")
-    private int isEnergyCenter=1;
-    @SerializedName("isEnergyCenter_url")
+    @SerializedName("isAllowZhuFuBao")
+    private int isEnergyCenter;
+    @SerializedName("zhuFuBaoUrl")
     private String isEnergyCenter_url;//能量中心
 
     public int getIsEnergyCenter() {

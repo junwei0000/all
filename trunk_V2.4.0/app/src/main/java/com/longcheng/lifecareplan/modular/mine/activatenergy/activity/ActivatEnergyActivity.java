@@ -15,14 +15,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
-import com.longcheng.lifecareplan.base.BaseActivityMVP;
+import com.longcheng.lifecareplan.api.Api;
+import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.adapter.MoneyAdapter;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.EnergyAfterBean;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.EnergyItemBean;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.GetEnergyListDataBean;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.EngryRecordActivity;
+import com.longcheng.lifecareplan.modular.webView.WebAct;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -39,11 +43,15 @@ import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 激活能量
  */
-public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract.View, ActivatEnergyPresenterImp<ActivatEnergyContract.View>> implements ActivatEnergyContract.View {
+public class ActivatEnergyActivity extends WebAct {
 
 
     @BindView(R.id.toolbar)
@@ -83,15 +91,43 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
      */
     int payType = 2;
     MoneyAdapter mMoneyAdapter;
+    @BindView(R.id.tv_menu_energy)
+    TextView tvMenuEnergy;
+    @BindView(R.id.tv_menu_energy_line)
+    TextView tvMenuEnergyLine;
+    @BindView(R.id.layout_menu_energy)
+    LinearLayout layoutMenuEnergy;
+    @BindView(R.id.tv_menu_web)
+    TextView tvMenuWeb;
+    @BindView(R.id.tv_menu_web_line)
+    TextView tvMenuWebLine;
+    @BindView(R.id.layout_menu_web)
+    LinearLayout layoutMenuWeb;
+    @BindView(R.id.relat_energy)
+    RelativeLayout relatEnergy;
+    @BindView(R.id.layout_web)
+    LinearLayout layoutWeb;
 
     private String asset = "0";
     private String user_id;
+
+
+    boolean energyStatsu = true;
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
                 doFinish();
+                break;
+            case R.id.layout_menu_energy:
+                energyStatsu = true;
+                changeMenu();
+                break;
+            case R.id.layout_menu_web:
+                energyStatsu = false;
+                changeMenu();
                 break;
             case R.id.activat_relat_wx:
                 payType = 2;
@@ -106,7 +142,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
                 selectPayTypeView();
                 break;
             case R.id.btn_jihuo:
-                mPresent.assetRecharge(user_id, money_select, asset, "" + payType);
+                assetRecharge(user_id, money_select, asset, "" + payType);
                 break;
         }
     }
@@ -123,12 +159,14 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
 
     @Override
     public void initView(View view) {
-        pageTopTvName.setText("激活生命能量");
+        pageTopTvName.setText("激活能量");
         setOrChangeTranslucentColor(toolbar, null);
     }
 
     @Override
     public void setListener() {
+        layoutMenuEnergy.setOnClickListener(this);
+        layoutMenuWeb.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         activatRelatWx.setOnClickListener(this);
         detailhelpRelatZfb.setOnClickListener(this);
@@ -157,7 +195,30 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
     @Override
     public void initDataAfter() {
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
-        mPresent.getRechargeInfo(user_id);
+        getRechargeInfo(user_id);
+
+        loadUrl(Config.BASE_HEAD_URL + "/home/zhufubao/userRechargePage");
+        changeMenu();
+
+        getYouZanCookie();
+    }
+
+    private void changeMenu() {
+        if (energyStatsu) {
+            tvMenuEnergy.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvMenuEnergyLine, R.color.red);
+            tvMenuWeb.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvMenuWebLine, R.color.white);
+            layoutWeb.setVisibility(View.GONE);
+            relatEnergy.setVisibility(View.VISIBLE);
+        } else {
+            tvMenuEnergy.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvMenuEnergyLine, R.color.white);
+            tvMenuWeb.setTextColor(getResources().getColor(R.color.red));
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvMenuWebLine, R.color.red);
+            layoutWeb.setVisibility(View.VISIBLE);
+            relatEnergy.setVisibility(View.GONE);
+        }
     }
 
     private void selectPayTypeView() {
@@ -214,9 +275,84 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
         selectPayTypeView();
     }
 
-    @Override
-    protected ActivatEnergyPresenterImp<ActivatEnergyContract.View> createPresent() {
-        return new ActivatEnergyPresenterImp<>(mContext, this);
+    /**
+     * @param
+     * @name 激活生命能量数据
+     * @time 2017/12/8 17:56
+     * @author MarkShuai
+     */
+    public void getRechargeInfo(String user_id) {
+        showDialog();
+        Observable<GetEnergyListDataBean> observable = Api.getInstance().service.getRechargeInfo(user_id, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<GetEnergyListDataBean>() {
+                    @Override
+                    public void accept(GetEnergyListDataBean responseBean) throws Exception {
+                        dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            ListSuccess(responseBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        dismissDialog();
+                        ListError();
+                    }
+                });
+
+    }
+
+    /**
+     * 激活生命能量
+     *
+     * @param user_id
+     */
+    public void assetRecharge(String user_id, String money, String asset, String pay_type) {
+        Log.e("Observable", "money=" + money + "  asset=" + asset + "  pay_type=" + pay_type);
+        showDialog();
+        Observable<PayWXDataBean> observable = Api.getInstance().service.assetRecharge(user_id, money, asset, pay_type, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<PayWXDataBean>() {
+                    @Override
+                    public void accept(PayWXDataBean responseBean) throws Exception {
+                        dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
+                            GetPayWXSuccess(responseBean);
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        dismissDialog();
+                        ListError();
+                    }
+                });
+
+    }
+
+    /**
+     * 获取有赞cookie
+     */
+    public void getYouZanCookie() {
+        showDialog();
+        Observable<GetEnergyListDataBean> observable = Api.getInstance().service.getYouZanCookie(user_id, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<GetEnergyListDataBean>() {
+                    @Override
+                    public void accept(GetEnergyListDataBean responseBean) throws Exception {
+                        dismissDialog();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        dismissDialog();
+                        ListError();
+                    }
+                });
+
     }
 
     @Override
@@ -231,7 +367,6 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
 
     List<EnergyItemBean> mList;
 
-    @Override
     public void ListSuccess(GetEnergyListDataBean responseBean) {
         String status = responseBean.getStatus();
         if (status.equals("400")) {
@@ -256,12 +391,10 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
         }
     }
 
-    @Override
     public void ListError() {
 
     }
 
-    @Override
     public void GetPayWXSuccess(PayWXDataBean responseBean) {
         String status = responseBean.getStatus();
         if (status.equals("400")) {
@@ -328,7 +461,7 @@ public class ActivatEnergyActivity extends BaseActivityMVP<ActivatEnergyContract
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         unregisterReceiver(mReceiver);
         super.onDestroy();
     }

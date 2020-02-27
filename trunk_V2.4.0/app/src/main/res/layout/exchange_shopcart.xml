@@ -42,7 +42,12 @@
                         android:fadingEdge="none"
                         android:scrollbars="none" />
 
-                    <include layout="@layout/not_date" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <include layout="@layout/not_date" />
+                    </LinearLayout>
                 </RelativeLayout>
                 <!--推荐-->
                 <TextView
@@ -62,6 +67,7 @@
                     android:id="@+id/tuijian_gv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="@color/white"
                     android:cacheColorHint="@color/page_bg"
                     android:divider="@null"
@@ -133,8 +139,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="right|center_vertical"
-                        android:textColor="@color/text_engry_bg"
                         android:singleLine="true"
+                        android:textColor="@color/text_engry_bg"
                         android:textSize="@dimen/text_zhu_size" />
 
                 </LinearLayout>
