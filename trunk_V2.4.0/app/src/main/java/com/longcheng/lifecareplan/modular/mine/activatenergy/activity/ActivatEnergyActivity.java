@@ -190,7 +190,7 @@ public class ActivatEnergyActivity extends BaseActivity {
                             }
                         }
                         setAssetView(mList);
-                        mMoneyAdapter.setList(YouzanList);
+                        mMoneyAdapter.setList(mList);
                         mMoneyAdapter.notifyDataSetChanged();
                     } else {
                         for (int i = 0; i < YouzanList.size(); i++) {
@@ -201,9 +201,9 @@ public class ActivatEnergyActivity extends BaseActivity {
                             }
                         }
                         setAssetView(YouzanList);
+                        mMoneyAdapter.setList(YouzanList);
+                        mMoneyAdapter.notifyDataSetChanged();
                     }
-                    mMoneyAdapter.setList(YouzanList);
-                    mMoneyAdapter.notifyDataSetChanged();
                 }
             }
         });

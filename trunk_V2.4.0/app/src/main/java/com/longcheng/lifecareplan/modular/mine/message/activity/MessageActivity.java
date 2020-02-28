@@ -156,6 +156,18 @@ public class MessageActivity extends BaseListActivity<MessageContract.View, Mess
                         intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    } else if (help_type == 5) {//代充
+                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    } else {
+                        Intent intent = new Intent(mContext, BaoZhangActitvty.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", "" + helpAllList.get(position - 1).getInfo_url());
+                        startActivity(intent);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     }
                     isreadIndex = position - 1;
                     mPresent.setReadPush(user_id, helpAllList.get(position - 1).getApp_push_id());
