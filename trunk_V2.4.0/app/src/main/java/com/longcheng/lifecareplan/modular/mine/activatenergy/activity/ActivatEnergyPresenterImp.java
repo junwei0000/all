@@ -1,14 +1,11 @@
 package com.longcheng.lifecareplan.modular.mine.activatenergy.activity;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
-import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.GetEnergyListDataBean;
-import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -64,32 +61,4 @@ public class ActivatEnergyPresenterImp<T> extends ActivatEnergyContract.Presente
 
     }
 
-    /**
-     * 激活生命能量
-     *
-     * @param user_id
-     */
-    public void assetRecharge(String user_id, String money, String asset, String pay_type) {
-        Log.e("Observable", "money=" + money + "  asset=" + asset + "  pay_type=" + pay_type);
-        mView.showDialog();
-        Observable<PayWXDataBean> observable = Api.getInstance().service.assetRecharge(user_id, money, asset, pay_type, ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<PayWXDataBean>() {
-                    @Override
-                    public void accept(PayWXDataBean responseBean) throws Exception {
-                        mView.dismissDialog();
-                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus())) {
-                            mView.GetPayWXSuccess(responseBean);
-                        }
-                    }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        mView.dismissDialog();
-                        mView.ListError();
-                    }
-                });
-
-    }
 }

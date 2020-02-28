@@ -387,17 +387,33 @@ public interface ApiService {
     @POST(Config.VERSION + "ability/getRechargeInfo")
     Observable<GetEnergyListDataBean> getRechargeInfo(@Field("user_id") String user_id,
                                                       @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "Youzan/yuouzanCookie")
     Observable<GetEnergyListDataBean> getYouZanCookie(@Field("user_id") String user_id,
                                                       @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Ability/userBlessRecharge")
+    Observable<GetEnergyListDataBean> userBlessRecharge(@Field("user_id") String user_id,
+                                                        @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "Ability/assetRecharge")
-    Observable<PayWXDataBean> assetRecharge(@Field("user_id") String user_id,
-                                            @Field("money") String money,
-                                            @Field("asset") String asset,
-                                            @Field("pay_type") String pay_type,
-                                            @Field("token") String token);
+    Observable<EditDataBean> assetRecharge(@Field("user_id") String user_id,
+                                           @Field("money") String money,
+                                           @Field("activate_ability_config_id") String activate_ability_config_id,
+                                           @Field("type") int type,
+                                           @Field("pay_source") String pay_source,
+                                           @Field("payment_channel") String payment_channel,
+                                           @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Ability/SubmitActivation")
+    Observable<EditDataBean> SubmitActivation(@Field("user_id") String user_id,
+                                              @Field("recharge_money") String recharge_money,
+                                              @Field("pay_source") String pay_source,
+                                              @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Paydeposit/paydo")

@@ -16,9 +16,10 @@ import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity
 import com.longcheng.lifecareplan.modular.mine.set.activity.NotServiceActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
-import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.youzan.androidsdk.YouzanSDK;
 
 
 /**
@@ -67,6 +68,7 @@ public class UserLoginBack403Utils {
     }
 
     public void zhuXiao() {
+        YouzanSDK.userLogout(ExampleApplication.getContext());
         BottomMenuActivity.updatedialogstatus = false;
         MySharedPreferences.getInstance().saveIsLogout(true);
         SharedPreferencesHelper.clear(ExampleApplication.getContext());

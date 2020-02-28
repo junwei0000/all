@@ -69,7 +69,7 @@ public class MoneyAdapter extends BaseAdapter {
             mHolder = (ViewHolder) convertView.getTag();
         }
 
-        int width = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 60);
+        int width = DensityUtil.screenWith(context) - DensityUtil.dip2px(context, 54);
         mHolder.item_layout_money.setLayoutParams(new LinearLayout.LayoutParams(width / 3, DensityUtil.dip2px(context, 40)));
         EnergyItemBean mEnergyItemBean = list.get(position);
         mHolder.item_tv_money.setText(mEnergyItemBean.getMoney());
