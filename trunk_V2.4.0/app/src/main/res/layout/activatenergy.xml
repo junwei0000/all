@@ -88,7 +88,8 @@
                         android:layout_toRightOf="@+id/activat_tv_num"
                         android:text="激活18000+赠送900"
                         android:textColor="@color/text_noclick_color"
-                        android:textSize="@dimen/text_zhu_size" />
+                        android:textSize="@dimen/text_zhu_size"
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/iv_youicon"

@@ -175,6 +175,7 @@ public class ActivatEnergyActivity extends BaseActivity {
         pagetopLayoutLeft.setOnClickListener(this);
         activatRelatYouzan.setOnClickListener(this);
         detailhelpRelatZfs.setOnClickListener(this);
+        detailhelpRelatZfs.setVisibility(View.GONE);
         activatRelatAccount.setOnClickListener(this);
         btnJihuo.setOnClickListener(this);
         activatGvMoney.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -493,6 +494,8 @@ public class ActivatEnergyActivity extends BaseActivity {
         } else if (status.equals("200")) {
             EnergyAfterBean mEnergyAfterBean = responseBean.getData();
             if (mEnergyAfterBean != null) {
+                String serviceCharge = mEnergyAfterBean.getServiceCharge();
+                tv_sxf.setText("*使用有赞充值需要扣除" + serviceCharge + "手续费");
                 userRechargeListUrl = mEnergyAfterBean.getUserRechargeListUrl();
                 identityType = mEnergyAfterBean.getIdentityType();
                 String asset = mEnergyAfterBean.getChatuser().getAsset();

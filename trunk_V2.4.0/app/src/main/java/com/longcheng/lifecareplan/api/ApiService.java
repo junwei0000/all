@@ -384,7 +384,7 @@ public interface ApiService {
 
     //********************激活能量*************************
     @FormUrlEncoded
-    @POST(Config.VERSION + "ability/getRechargeInfo")
+    @POST(Config.VERSION + "ability/getRechargeInfoNew")
     Observable<GetEnergyListDataBean> getRechargeInfo(@Field("user_id") String user_id,
                                                       @Field("token") String token);
 
@@ -399,7 +399,7 @@ public interface ApiService {
                                                         @Field("token") String token);
 
     @FormUrlEncoded
-    @POST(Config.VERSION + "Ability/assetRecharge")
+    @POST(Config.VERSION + "Ability/assetRechargeNew")
     Observable<EditDataBean> assetRecharge(@Field("user_id") String user_id,
                                            @Field("money") String money,
                                            @Field("activate_ability_config_id") String activate_ability_config_id,

@@ -24,6 +24,15 @@ public class EnergyAfterBean {
 
     private int status;//无异常订单status为2
     private String callbackUrl;
+    private String serviceCharge;
+
+    public String getServiceCharge() {
+        return serviceCharge;
+    }
+
+    public void setServiceCharge(String serviceCharge) {
+        this.serviceCharge = serviceCharge;
+    }
 
     public String getCallbackUrl() {
         return callbackUrl;
