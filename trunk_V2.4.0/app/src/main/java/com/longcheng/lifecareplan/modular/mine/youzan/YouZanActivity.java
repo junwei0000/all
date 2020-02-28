@@ -3,6 +3,7 @@ package com.longcheng.lifecareplan.modular.mine.youzan;
 import android.content.Context;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -81,6 +82,7 @@ public class YouZanActivity extends BaseActivity {
         youzanBrowser.subscribe(new AbsAuthEvent() {
             @Override
             public void call(Context context, boolean needLogin) {
+                Log.e("youzanBrowser","needLogin="+needLogin);
                 if (needLogin) {
                     getYouZanCookie();
                 } else {

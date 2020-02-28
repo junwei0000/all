@@ -495,9 +495,13 @@ public class ActivatEnergyActivity extends BaseActivity {
             EnergyAfterBean mEnergyAfterBean = responseBean.getData();
             if (mEnergyAfterBean != null) {
                 String serviceCharge = mEnergyAfterBean.getServiceCharge();
-                tv_sxf.setText("*使用有赞充值需要扣除" + serviceCharge + "手续费");
                 userRechargeListUrl = mEnergyAfterBean.getUserRechargeListUrl();
                 identityType = mEnergyAfterBean.getIdentityType();
+                if (identityType == 2) {
+                    tv_sxf.setText("*使用有赞充值需要扣除" + serviceCharge + "手续费");
+                } else {
+                    tv_sxf.setText("*使用有赞充值祝福宝暂免手续费");
+                }
                 String asset = mEnergyAfterBean.getChatuser().getAsset();
                 activatTvAccount.setText("现金余额:" + asset);
                 mList = mEnergyAfterBean.getEnergys();
