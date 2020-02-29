@@ -109,7 +109,7 @@ public class ActivatEnergyActivity extends BaseActivity {
     private int type;
 
     private int identityType;//3 祝福师   2普通用户
-    private String moneyCont;
+    private String moneyCont="0";
     private String userRechargeListUrl;
     String cookie_key;
     String cookie_value;

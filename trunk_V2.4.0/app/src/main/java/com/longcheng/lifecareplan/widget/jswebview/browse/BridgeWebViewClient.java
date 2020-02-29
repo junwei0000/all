@@ -1,7 +1,9 @@
 package com.longcheng.lifecareplan.widget.jswebview.browse;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Handler;
 import android.util.Log;
@@ -50,6 +52,22 @@ public class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if (url.contains("alipay.com")) {//从支付宝返回
+            webView.addUrlPageBackListItem(url);
+        }
+        if (parseScheme(url)) {//打开支付宝 第三方打款
+            try {
+                Intent intent;
+                intent = Intent.parseUri(url,
+                        Intent.URI_INTENT_SCHEME);
+                intent.addCategory("android.intent.category.BROWSABLE");
+                intent.setComponent(null);
+                view.getContext().startActivity(intent);
+                return true;
+            } catch (Exception e) {
+
+            }
+        }
         try {
             /**
              * % 在URL中是特殊字符，需要特殊转义一下，
@@ -81,6 +99,16 @@ public class BridgeWebViewClient extends WebViewClient {
             }
             //-----------------------------------------------------------------------
             return super.shouldOverrideUrlLoading(view, url);
+        }
+    }
+
+    public boolean parseScheme(String url) {
+        if (url.contains("platformapi/startapp")) {
+            return true;
+        } else if (url.contains("web-other")) {
+            return false;
+        } else {
+            return false;
         }
     }
 
