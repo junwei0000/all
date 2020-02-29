@@ -1,8 +1,11 @@
 package com.longcheng.lifecareplan.modular.mine.activatenergy.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.base.ExampleApplication;
+import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
@@ -97,7 +101,7 @@ public class ActivatEnergyActivity extends BaseActivity {
     /**
      * 支付方式激活类型 1现金; 2 有赞
      */
-    private int payType = 2;
+    private int payType = 4;
     private MoneyAdapter mMoneyAdapter;
 
     private String activate_ability_config_id;
@@ -130,7 +134,12 @@ public class ActivatEnergyActivity extends BaseActivity {
             case R.id.detailhelp_relat_zfs:
                 payType = 4;
                 selectPayTypeView();
-                userBlessRecharge();
+//                userBlessRecharge();
+//                Intent intents = new Intent(mContext, BaoZhangActitvty.class);
+//                intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                intents.putExtra("html_url", Config.BASE_HEAD_URL + "/home/zhufubao/userRechargePage");
+//                startActivity(intents);
+//                ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
                 break;
             case R.id.btn_jihuo:
                 if (payType == 4) {
@@ -169,13 +178,13 @@ public class ActivatEnergyActivity extends BaseActivity {
         setOrChangeTranslucentColor(toolbar, null);
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void setListener() {
         btn_zfsrecord.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         activatRelatYouzan.setOnClickListener(this);
         detailhelpRelatZfs.setOnClickListener(this);
-        detailhelpRelatZfs.setVisibility(View.GONE);
         activatRelatAccount.setOnClickListener(this);
         btnJihuo.setOnClickListener(this);
         activatGvMoney.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -228,6 +237,31 @@ public class ActivatEnergyActivity extends BaseActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_money, 11);
+        et_money.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //还原数据
+                if (et_money != null) {
+                    moneyCont = et_money.getText().toString();
+                    if (TextUtils.isEmpty(moneyCont)) {
+                        moneyCont = "0";
+                        activatTvNum.setText(moneyCont);
+                    } else {
+                        String showEngry = PriceUtils.getInstance().gteMultiplySumPrice(moneyCont, "9");
+                        activatTvNum.setText(showEngry);
+                    }
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
     }
@@ -427,7 +461,6 @@ public class ActivatEnergyActivity extends BaseActivity {
                                 intent.putExtra("html_url", responseBean.getData().getCallbackUrl());
                                 startActivity(intent);
                                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                                doFinish();
                             }
                         }
                     }

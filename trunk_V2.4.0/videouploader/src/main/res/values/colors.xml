@@ -7,4 +7,6 @@
     <color name="colorAccent">#0accac</color>
     <!--文字白色-->
     <color name="colorTextWhite">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
 </resources>
