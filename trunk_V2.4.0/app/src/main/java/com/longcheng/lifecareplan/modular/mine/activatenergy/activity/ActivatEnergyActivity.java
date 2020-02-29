@@ -134,17 +134,15 @@ public class ActivatEnergyActivity extends BaseActivity {
             case R.id.detailhelp_relat_zfs:
                 payType = 4;
                 selectPayTypeView();
-//                userBlessRecharge();
-//                Intent intents = new Intent(mContext, BaoZhangActitvty.class);
-//                intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intents.putExtra("html_url", Config.BASE_HEAD_URL + "/home/zhufubao/userRechargePage");
-//                startActivity(intents);
-//                ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
                 break;
             case R.id.btn_jihuo:
                 if (payType == 4) {
                     if (Integer.parseInt(moneyCont) > 0) {
-                        SubmitActivation(moneyCont);
+                        Intent intents = new Intent(mContext, BaoZhangActitvty.class);
+                        intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intents.putExtra("html_url", Config.BASE_HEAD_URL + "home/Zhufubao/userRechargeMatchBless?money=" + moneyCont);
+                        startActivity(intents);
+                        ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
                     } else {
                         ToastUtils.showToast("请输入充值金额");
                     }
@@ -244,7 +242,7 @@ public class ActivatEnergyActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //还原数据
-                if (et_money != null) {
+                if (et_money != null && payType == 4) {
                     moneyCont = et_money.getText().toString();
                     if (TextUtils.isEmpty(moneyCont)) {
                         moneyCont = "0";
@@ -322,7 +320,6 @@ public class ActivatEnergyActivity extends BaseActivity {
         btn_zfsrecord.setVisibility(View.GONE);
         et_money.setVisibility(View.GONE);
         activatGvMoney.setVisibility(View.VISIBLE);
-        et_money.setText("");
         if (payType == 2) {
             activatIvYzselect.setVisibility(View.VISIBLE);
             activatRelatYouzan.setBackgroundResource(R.drawable.corners_bg_redbian);
@@ -358,8 +355,8 @@ public class ActivatEnergyActivity extends BaseActivity {
             btn_zfsrecord.setVisibility(View.VISIBLE);
             et_money.setVisibility(View.VISIBLE);
             activatGvMoney.setVisibility(View.GONE);
-            moneyCont = "0";
-            activatTvNum.setText(moneyCont);
+            String showEngry = PriceUtils.getInstance().gteMultiplySumPrice(moneyCont, "9");
+            activatTvNum.setText(showEngry);
         }
     }
 
