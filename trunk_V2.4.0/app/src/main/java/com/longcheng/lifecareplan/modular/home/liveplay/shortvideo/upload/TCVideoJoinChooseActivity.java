@@ -87,7 +87,7 @@ public class TCVideoJoinChooseActivity extends BaseActivity implements View.OnCl
         int id = v.getId();
         if (id == R.id.btn_ok) {
             long uploadVideoTime = MySharedPreferences.getInstance().getUploadVideoTime();
-            if (System.currentTimeMillis() - uploadVideoTime > 10 * 1000) {
+            if (System.currentTimeMillis() - uploadVideoTime > 10 * 60 * 1000) {
                 doSelect();
             } else {
                 ToastUtils.showToast("上传视频过于频繁，请十分钟后上传");
