@@ -32,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -730,10 +729,9 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                 mTXVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
             }
         } else if (event < 0) {
+            String desc = "";
             if (mTXVodPlayer == player) {
                 TXLog.i(TAG, "onPlayEvent, event prepared, player = " + player);
-
-                String desc = null;
                 switch (event) {
                     case TXLiveConstants.PLAY_ERR_GET_RTMP_ACC_URL_FAIL:
                         desc = "获取加速拉流地址失败";
@@ -752,7 +750,7 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
                         break;
                 }
             }
-            Toast.makeText(this, "event:" + event, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, desc, Toast.LENGTH_SHORT).show();
         }
     }
 
