@@ -33,6 +33,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.network.LocationUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.longcheng.lifecareplan.widget.Immersive;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -193,6 +194,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
     @Override
     public void upLoadVideoSuccess(BasicResponse responseBean) {
         ToastUtils.showToast("发布成功");
+        MySharedPreferences.getInstance().setUploadVideoTime(System.currentTimeMillis());
         Intent intent = new Intent(mActivity, VideoMenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.putExtra("skipType", "click");
@@ -272,7 +274,7 @@ public class UpLoadVideoActivity extends BaseActivityMVP<LivePushContract.View, 
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int backindex) {
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean, int backindex) {
 
     }
 

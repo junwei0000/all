@@ -29,6 +29,8 @@ import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.TCConstants;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.UpLoadVideoActivity;
 import com.longcheng.lifecareplan.utils.FileCache;
+import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.MySharedPreferences;
 import com.tencent.liteav.basic.log.TXCLog;
 import com.tencent.rtmp.TXLog;
 import com.tencent.ugc.TXRecordCommon;
@@ -84,7 +86,12 @@ public class TCVideoJoinChooseActivity extends BaseActivity implements View.OnCl
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btn_ok) {
-            doSelect();
+            long uploadVideoTime = MySharedPreferences.getInstance().getUploadVideoTime();
+            if (System.currentTimeMillis() - uploadVideoTime > 10 * 1000) {
+                doSelect();
+            } else {
+                ToastUtils.showToast("上传视频过于频繁，请十分钟后上传");
+            }
         } else if (id == R.id.pagetop_layout_left) {
             doFinish();
         }

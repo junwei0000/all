@@ -40,6 +40,13 @@ public class MySharedPreferences {
      */
     private static final String showDialogStatus = "showDialogStatus";
 
+    /**
+     * 视频上传时间间隔
+     */
+    private static final String uploadVideoTime = "uploadVideoTime";
+    ;
+
+
     public static MySharedPreferences getInstance() {
         if (instance == null) {
             synchronized (MySharedPreferences.class) {
@@ -54,6 +61,15 @@ public class MySharedPreferences {
     private MySharedPreferences() {
         sharedPreferences = ExampleApplication.getContext().getSharedPreferences(NAME, Context.MODE_PRIVATE);
     }
+
+    public void setUploadVideoTime(long isShowRQZ) {
+        sharedPreferences.edit().putLong(uploadVideoTime, isShowRQZ).commit();
+    }
+
+    public long getUploadVideoTime() {
+        return sharedPreferences.getLong(uploadVideoTime, 0);
+    }
+
 
     public void showDialogStatus(boolean isShowRQZ) {
         sharedPreferences.edit().putBoolean(showDialogStatus, isShowRQZ).commit();
