@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_padd"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@mipmap/my_pairing_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/corners_oval_write">
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="1.5dp"
+            android:background="@mipmap/user_default_icon" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:singleLine="true"
+        android:text="请求与您结对子"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp20"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv_jieeqi"
+        style="@style/view_margintopbottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_write"
+        android:paddingLeft="@dimen/dp3"
+        android:paddingTop="@dimen/dp1"
+        android:paddingRight="@dimen/dp3"
+        android:paddingBottom="@dimen/dp1"
+        android:singleLine="true"
+        android:text="庚子.雨水"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <LinearLayout
+        android:id="@+id/layout_shenfen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/layout_phone"
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp8"
+            android:singleLine="true"
+            android:text="18310029028"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_dp25_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/my_dianhua2" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="@dimen/dp20"
+            android:background="@drawable/corners_oval_write"
+            android:gravity="center"
+            android:text="拒绝"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_max_size" />
+
+        <TextView
+            android:id="@+id/tv_sure"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="@dimen/dp20"
+            android:background="@drawable/corners_oval_qing"
+            android:gravity="center"
+            android:text="同意"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_max_size" />
+    </LinearLayout>
+</LinearLayout>

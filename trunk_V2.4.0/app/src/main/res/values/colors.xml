@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="yellow">#ffff00</color>
-    <color name="mediumseagreen">#3cb371</color>
-    <color name="lv">#09a308</color>
     <color name="transparent">#00000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="QRcode_color">#65A8DF</color>
@@ -96,6 +94,10 @@
     <color name="main_xiaohan">#302825</color>
     <color name="main_dongzhi">#0258c2</color>
     <color name="main_qiufen">#a23c21</color>
+
+    <color name="mediumseagreen">#3cb371</color>
+    <color name="lv">#09a308</color>
+    <color name="pair">#1abc8d</color>
 
     <color name="colorAccentTransparent30">#4d0accac</color>
     <color name="lichuncolors">#00bf70</color><!-- 03:00 -->

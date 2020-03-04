@@ -22,6 +22,7 @@ import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.CommentData
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.EnergyDetailDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.OpenRedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.bean.PayDataBean;
+import com.longcheng.lifecareplan.modular.helpwith.energydetail.rank.bean.RankListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean.LifeStyleListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleCommentDataBean;
@@ -34,7 +35,6 @@ import com.longcheng.lifecareplan.modular.helpwith.myGratitude.bean.MyListDataBe
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.MyFamilyDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.MyFamilyListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.RelationListDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.rank.bean.RankListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
@@ -69,6 +69,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditThumbDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetHomeInfoDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.GetUserSETDataBean;
+import com.longcheng.lifecareplan.push.jpush.message.PairDataBean;
 import com.longcheng.lifecareplan.utils.pay.PayWXDataBean;
 
 import io.reactivex.Observable;
@@ -408,6 +409,22 @@ public interface ApiService {
                                            @Field("payment_channel") String payment_channel,
                                            @Field("token") String token);
 
+    @FormUrlEncoded
+    @POST(Config.VERSION + "zhufubao/getPairsInfo")
+    Observable<PairDataBean> getPairsInfo(@Field("user_id") String user_id,
+                                          @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
+                                          @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "zhufubao/refusePairs")
+    Observable<EditDataBean> refusePairs(@Field("user_id") String user_id,
+                                         @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
+                                         @Field("token") String token);
+    @FormUrlEncoded
+    @POST(Config.VERSION + "zhufubao/agreeePairs")
+    Observable<EditDataBean> agreeePairs(@Field("user_id") String user_id,
+                                         @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
+                                         @Field("token") String token);
     @FormUrlEncoded
     @POST(Config.VERSION + "Ability/SubmitActivation")
     Observable<EditDataBean> SubmitActivation(@Field("user_id") String user_id,

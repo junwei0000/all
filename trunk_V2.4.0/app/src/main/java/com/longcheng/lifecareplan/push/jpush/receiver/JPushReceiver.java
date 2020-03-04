@@ -20,6 +20,7 @@ import com.longcheng.lifecareplan.push.AppShortCutUtil;
 import com.longcheng.lifecareplan.push.PushClient;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.push.jpush.message.EasyMessage;
+import com.longcheng.lifecareplan.push.jpush.message.PairingUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.LogUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
@@ -67,9 +68,20 @@ public class JPushReceiver extends BroadcastReceiver {
                     JSONObject jsonmessage = new JSONObject(bundle.getString(JPushInterface.EXTRA_MESSAGE));
                     String receive_user_id = jsonmessage.optString("receive_user_id");
                     if (receive_user_id.equals(UserUtils.getUserId(context))) {
-                        //发送
-                        EasyMessage.sendMessage("flag", bundle.getString(JPushInterface.EXTRA_MESSAGE));
-                        BottomMenuActivity.newMessageTime = System.currentTimeMillis();
+                        int type = jsonmessage.optInt("type", 0);
+                        if (type == 9) {
+                            /**
+                             * 结对子弹层
+                             */
+                            String blessed_teacher_pairs_id = jsonmessage.optString("blessed_teacher_pairs_id");
+                            PairingUtils.getINSTANCE().getPairsInfo(blessed_teacher_pairs_id);
+                        } else {
+                            /**
+                             *  回馈感恩 发送
+                             */
+                            EasyMessage.sendMessage("flag", bundle.getString(JPushInterface.EXTRA_MESSAGE));
+                            BottomMenuActivity.newMessageTime = System.currentTimeMillis();
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
