@@ -137,7 +137,7 @@ public class ActivatEnergyActivity extends BaseActivity {
                 break;
             case R.id.btn_jihuo:
                 if (payType == 4) {
-                    if (Integer.parseInt(moneyCont) > 0) {
+                    if (Double.parseDouble(moneyCont) > 0) {
                         Intent intents = new Intent(mContext, BaoZhangActitvty.class);
                         intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intents.putExtra("html_url", Config.BASE_HEAD_URL + "home/Zhufubao/userRechargeMatchBless?money=" + moneyCont);

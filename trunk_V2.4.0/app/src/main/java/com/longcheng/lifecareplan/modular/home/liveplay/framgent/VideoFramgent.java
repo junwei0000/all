@@ -367,6 +367,9 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     private void refreshInfo() {
+        if(iv_dianzan==null){
+            return;
+        }
         //切换当前页面后，刷新状态数据
         VideoItemInfo mMVideoItemInfo = mAllList.get(mCurrentPosition);
         int is_follow = mMVideoItemInfo.getIs_follow();
@@ -451,10 +454,13 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
         }
 
         public void onDestroy() {
-            for (PlayerInfo playerInfo : playerInfoList) {
-                playerInfo.txVodPlayer.stopPlay(true);
+            if (playerInfoList != null && playerInfoList.size() > 0) {
+                for (PlayerInfo playerInfo : playerInfoList) {
+                    if (playerInfo.txVodPlayer != null)
+                        playerInfo.txVodPlayer.stopPlay(true);
+                }
+                playerInfoList.clear();
             }
-            playerInfoList.clear();
         }
 
         @Override

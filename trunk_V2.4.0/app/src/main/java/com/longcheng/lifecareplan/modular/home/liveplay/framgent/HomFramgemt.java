@@ -174,9 +174,9 @@ public class HomFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     }
 
     public VideoItemInfo getCurrentInfo() {
-        if(fragmentList!=null&&fragmentList.size()>0){
+        if (fragmentList != null && fragmentList.size() > 0) {
             return ((VideoFramgent) fragmentList.get(0)).getCurrentInfo();
-        }else{
+        } else {
             return null;
         }
     }
@@ -186,7 +186,8 @@ public class HomFramgemt extends BaseFragmentMVP<MyContract.View, MyPresenterImp
     }
 
     public void onPauseVideo() {
-        ((VideoFramgent) fragmentList.get(0)).onPauseVideo();
+        if (fragmentList != null && fragmentList.size() > 0)
+            ((VideoFramgent) fragmentList.get(0)).onPauseVideo();
     }
 
     @Override

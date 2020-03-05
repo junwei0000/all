@@ -470,10 +470,13 @@ public class MyVideoDetailNewActivity extends BaseActivityMVP<LivePushContract.V
         }
 
         public void onDestroy() {
-            for (PlayerInfo playerInfo : playerInfoList) {
-                playerInfo.txVodPlayer.stopPlay(true);
+            if (playerInfoList != null && playerInfoList.size() > 0) {
+                for (PlayerInfo playerInfo : playerInfoList) {
+                    if (playerInfo.txVodPlayer != null)
+                        playerInfo.txVodPlayer.stopPlay(true);
+                }
+                playerInfoList.clear();
             }
-            playerInfoList.clear();
         }
 
         @Override

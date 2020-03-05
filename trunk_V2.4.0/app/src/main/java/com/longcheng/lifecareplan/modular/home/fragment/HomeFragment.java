@@ -836,6 +836,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * @param BannersList
      */
     private void shoeZZJieQi(List<HomeItemBean> BannersList) {
+        if(homedediVpTop==null){
+            return;
+        }
         TopAdapter adapter = new TopAdapter(mActivity, BannersList);
         homedediVpTop.setAdapter(adapter);
         if (BannersList != null && BannersList.size() > 1) {

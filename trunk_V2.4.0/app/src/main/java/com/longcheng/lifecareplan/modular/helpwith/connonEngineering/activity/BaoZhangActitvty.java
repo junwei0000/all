@@ -1406,12 +1406,14 @@ public class BaoZhangActitvty extends WebAct {
      * 志愿者互祝--生活保障详情支付成功跳转红包页
      */
     private void LifeBasicDetailPaySuccess() {
-        mBridgeWebView.callHandler("LifeBasic_paySuccessBack", "" + one_order_id, new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
+        if(mBridgeWebView!=null){
+            mBridgeWebView.callHandler("LifeBasic_paySuccessBack", "" + one_order_id, new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
 
-            }
-        });
+                }
+            });
+        }
     }
 //--------------------------------------------------------------------------------------------------------
 
