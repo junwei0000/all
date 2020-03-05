@@ -330,7 +330,7 @@ public class ActivatEnergyActivity extends BaseActivity {
                 btnJihuo.setText("立即激活 (祝福宝)");
                 tv_title.setText("激活后获取祝福宝");
             } else {
-                iv_youicon.setBackgroundResource(R.mipmap.activat_you_icon);
+                iv_youicon.setBackgroundResource(R.mipmap.superactivat_you_icon);
                 btnJihuo.setText("立即激活 (超级生命能量)");
                 tv_title.setText("激活后获取超级生命能量");
             }
