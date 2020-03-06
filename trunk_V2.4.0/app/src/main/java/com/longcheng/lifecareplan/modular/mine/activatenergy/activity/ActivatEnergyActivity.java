@@ -22,6 +22,7 @@ import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.config.Config;
+import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
@@ -81,6 +82,8 @@ public class ActivatEnergyActivity extends BaseActivity {
     RelativeLayout activatRelatYouzan;
     @BindView(R.id.tv_zfstitle)
     TextView tv_zfstitle;
+    @BindView(R.id.tv_youzan)
+    TextView tv_youzan;
     @BindView(R.id.detailhelp_iv_zfsselect)
     ImageView detailhelpIvZfsselect;
     @BindView(R.id.detailhelp_relat_zfs)
@@ -97,11 +100,28 @@ public class ActivatEnergyActivity extends BaseActivity {
     TextView btn_zfsrecord;
     @BindView(R.id.et_money)
     EditText et_money;
+    @BindView(R.id.tv_money_toengry)
+    TextView tv_money_toengry;
+    @BindView(R.id.layout_money)
+    LinearLayout layout_money;
+    @BindView(R.id.layout_showengry)
+    LinearLayout layout_showengry;
+
+    @BindView(R.id.activat_tv_wx)
+    TextView activat_tv_wx;
+    @BindView(R.id.activat_tv_zhifubao)
+    TextView activat_tv_zhifubao;
+    @BindView(R.id.activat_tv_mted)
+    TextView activat_tv_mted;
 
     /**
-     * 支付方式激活类型 1现金; 2 有赞
+     * 充值渠道激活类型 1现金; 2 有赞
      */
     private int payType = 4;
+    /**
+     * 祝福师-支付方式激活类型 1微信; 2 支付宝 ；3 秒提额度
+     */
+    private int zfs_payType = 1;
     private MoneyAdapter mMoneyAdapter;
 
     private String activate_ability_config_id;
@@ -109,13 +129,13 @@ public class ActivatEnergyActivity extends BaseActivity {
     private int type;
 
     private int identityType;//3 祝福师   2普通用户
-    private String moneyCont="0";
+    private String moneyCont = "0";
     private String userRechargeListUrl;
-    String cookie_key;
-    String cookie_value;
-    String money_select = "0";
-    String First_energy = "0";
-    String Presenter_energy = "0";
+    private String cookie_key;
+    private String cookie_value;
+    private String money_select = "0";
+    private String First_energy = "0";
+    private String Presenter_energy = "0";
 
     @Override
     public void onClick(View v) {
@@ -157,6 +177,18 @@ public class ActivatEnergyActivity extends BaseActivity {
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 break;
+            case R.id.activat_tv_wx:
+                zfs_payType = 1;
+                zfbSelectPayType();
+                break;
+            case R.id.activat_tv_zhifubao:
+                zfs_payType = 2;
+                zfbSelectPayType();
+                break;
+            case R.id.activat_tv_mted:
+                zfs_payType = 3;
+                zfbSelectPayType();
+                break;
         }
     }
 
@@ -179,6 +211,9 @@ public class ActivatEnergyActivity extends BaseActivity {
     @SuppressLint("NewApi")
     @Override
     public void setListener() {
+        activat_tv_wx.setOnClickListener(this);
+        activat_tv_zhifubao.setOnClickListener(this);
+        activat_tv_mted.setOnClickListener(this);
         btn_zfsrecord.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         activatRelatYouzan.setOnClickListener(this);
@@ -222,22 +257,22 @@ public class ActivatEnergyActivity extends BaseActivity {
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     moneyCont = v.getText().toString();
                     if (TextUtils.isEmpty(moneyCont)) {
-                        if (activatTvNum != null) {
+                        if (tv_money_toengry != null) {
                             moneyCont = "0";
-                            activatTvNum.setText(moneyCont);
+                            tv_money_toengry.setText("获得" + moneyCont);
                         }
                         return true;
                     }
-                    if (activatTvNum != null) {
+                    if (tv_money_toengry != null) {
                         String showEngry = PriceUtils.getInstance().gteMultiplySumPrice(moneyCont, "9");
-                        activatTvNum.setText(showEngry);
+                        tv_money_toengry.setText("获得" + showEngry);
                     }
                     return true;
                 }
                 return false;
             }
         });
-        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_money, 11);
+        ConfigUtils.getINSTANCE().setEditTextInhibitInputSpace(et_money, 9);
         et_money.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -246,10 +281,10 @@ public class ActivatEnergyActivity extends BaseActivity {
                     moneyCont = et_money.getText().toString();
                     if (TextUtils.isEmpty(moneyCont)) {
                         moneyCont = "0";
-                        activatTvNum.setText(moneyCont);
+                        tv_money_toengry.setText("获得" + moneyCont);
                     } else {
                         String showEngry = PriceUtils.getInstance().gteMultiplySumPrice(moneyCont, "9");
-                        activatTvNum.setText(showEngry);
+                        tv_money_toengry.setText("获得" + showEngry);
                     }
                 }
             }
@@ -270,6 +305,7 @@ public class ActivatEnergyActivity extends BaseActivity {
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
         getRechargeInfo(user_id);
         getYouZanCookie();
+        zfbSelectPayType();
     }
 
 
@@ -294,6 +330,34 @@ public class ActivatEnergyActivity extends BaseActivity {
 
     }
 
+    /**
+     * 祝福宝-切换支付方式
+     */
+    private void zfbSelectPayType() {
+        activat_tv_wx.setTextColor(getResources().getColor(R.color.text_contents_color));
+        activat_tv_zhifubao.setTextColor(getResources().getColor(R.color.text_contents_color));
+        activat_tv_mted.setTextColor(getResources().getColor(R.color.text_contents_color));
+        activat_tv_wx.setBackgroundResource(R.drawable.corners_bg_goodgray);
+        activat_tv_zhifubao.setBackgroundResource(R.drawable.corners_bg_goodgray);
+        activat_tv_mted.setBackgroundResource(R.drawable.corners_bg_goodgray);
+        if (zfs_payType == 1) {
+            activat_tv_wx.setTextColor(getResources().getColor(R.color.white));
+            activat_tv_wx.setBackgroundResource(R.drawable.corners_bg_login);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, activat_tv_wx, R.color.red);
+        } else if (zfs_payType == 2) {
+            activat_tv_zhifubao.setTextColor(getResources().getColor(R.color.white));
+            activat_tv_zhifubao.setBackgroundResource(R.drawable.corners_bg_login);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, activat_tv_zhifubao, R.color.red);
+        } else if (zfs_payType == 3) {
+            activat_tv_mted.setTextColor(getResources().getColor(R.color.white));
+            activat_tv_mted.setBackgroundResource(R.drawable.corners_bg_login);
+            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, activat_tv_mted, R.color.red);
+        }
+    }
+
+    /**
+     * 切换充值渠道
+     */
     private void selectPayTypeView() {
         if (mList != null && mList.size() > 0) {
             if (payType == 1) {
@@ -306,6 +370,10 @@ public class ActivatEnergyActivity extends BaseActivity {
                 setAssetView(YouzanList);
             }
         }
+        layout_showengry.setVisibility(View.VISIBLE);
+        tv_zfstitle.setTextColor(getResources().getColor(R.color.text_contents_color));
+        tv_youzan.setTextColor(getResources().getColor(R.color.text_contents_color));
+        activatTvAccount.setTextColor(getResources().getColor(R.color.text_contents_color));
         activatTvCont.setVisibility(View.GONE);
         activatIvYzselect.setVisibility(View.GONE);
         activatRelatYouzan.setBackgroundResource(R.drawable.corners_bg_graybian);
@@ -318,9 +386,10 @@ public class ActivatEnergyActivity extends BaseActivity {
         tv_sxf.setVisibility(View.VISIBLE);
         tv_moneytitle.setText("请选择金额");
         btn_zfsrecord.setVisibility(View.GONE);
-        et_money.setVisibility(View.GONE);
+        layout_money.setVisibility(View.GONE);
         activatGvMoney.setVisibility(View.VISIBLE);
         if (payType == 2) {
+            tv_youzan.setTextColor(getResources().getColor(R.color.red));
             activatIvYzselect.setVisibility(View.VISIBLE);
             activatRelatYouzan.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatYouzan.setPadding(0, 0, 0, 0);
@@ -335,6 +404,7 @@ public class ActivatEnergyActivity extends BaseActivity {
                 tv_title.setText("激活后获取超级生命能量");
             }
         } else if (payType == 1) {
+            activatTvAccount.setTextColor(getResources().getColor(R.color.red));
             activatIvAccountselect.setVisibility(View.VISIBLE);
             activatRelatAccount.setBackgroundResource(R.drawable.corners_bg_redbian);
             activatRelatAccount.setPadding(0, 0, 0, 0);
@@ -345,18 +415,20 @@ public class ActivatEnergyActivity extends BaseActivity {
             tv_sxf.setVisibility(View.GONE);
             activatTvCont.setVisibility(View.VISIBLE);
         } else if (payType == 4) {
+            layout_showengry.setVisibility(View.GONE);
+            tv_zfstitle.setTextColor(getResources().getColor(R.color.red));
             detailhelpIvZfsselect.setVisibility(View.VISIBLE);
             detailhelpRelatZfs.setBackgroundResource(R.drawable.corners_bg_redbian);
             detailhelpRelatZfs.setPadding(0, 0, 0, 0);
             btnJihuo.setText("立即激活 (超级生命能量)");
             btnJihuo.setBackgroundColor(getResources().getColor(R.color.cyanbluebg));
             tv_sxf.setVisibility(View.GONE);
-            tv_moneytitle.setText("请填写激活金额");
+            tv_moneytitle.setText("请填写代充祝福宝数量");
             btn_zfsrecord.setVisibility(View.VISIBLE);
-            et_money.setVisibility(View.VISIBLE);
+            layout_money.setVisibility(View.VISIBLE);
             activatGvMoney.setVisibility(View.GONE);
             String showEngry = PriceUtils.getInstance().gteMultiplySumPrice(moneyCont, "9");
-            activatTvNum.setText(showEngry);
+            tv_money_toengry.setText("获得" + showEngry);
         }
     }
 

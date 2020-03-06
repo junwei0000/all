@@ -82,6 +82,7 @@
 
     <color name="search_bg">#f4f4f4</color>
     <color name="good_bg">#f8f8f8</color>
+    <color name="gray_btn_bg">#ecebeb</color>
     <color name="linebg">#e4e4e4</color>
     <color name="linesubg">#cbcbcb</color>
     <color name="cartnumbg">#818181</color>
