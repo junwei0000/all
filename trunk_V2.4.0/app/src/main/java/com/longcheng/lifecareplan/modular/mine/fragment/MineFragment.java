@@ -37,7 +37,6 @@ import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.activity.BottomMenuActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
-import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.PerfectInfoDialog;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
@@ -821,7 +820,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             case R.id.usercenter_relay_myenren://恩人
                 intent = new Intent(mActivity, MyGraH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", "" + HelpWithFragmentNew.myGratitudeUrl);
+                intent.putExtra("html_url", "" + HomeFragment.my_gratitude_url);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                 break;

@@ -11,16 +11,13 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.helpwith.myDedication.activity.MyDeH5Activity;
-import com.longcheng.lifecareplan.modular.helpwith.myDedication.activity.MyDedicationActivity;
 import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5Activity;
-import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGratitudeActivity;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.mine.relationship.bean.RelationshipBean;
 import com.longcheng.lifecareplan.modular.mine.relationship.bean.RelationshipBook;
 import com.longcheng.lifecareplan.modular.mine.relationship.bean.RelationshipUser;
 import com.longcheng.lifecareplan.utils.CommonUtil;
-import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.DateUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -157,13 +154,13 @@ public class RelationshipAccountAct extends BaseActivityMVP<RelationshipContract
             case R.id.tvmycontribution://我的奉献
                 intent = new Intent(mContext, MyDeH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", "" + HelpWithFragmentNew.myDedicationUrl);
+                intent.putExtra("html_url", "" + HomeFragment.my_dedication_url);
                 startActivity(intent);
                 break;
             case R.id.tvmybenefactor://我的恩人
                 intent = new Intent(mContext, MyGraH5Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("html_url", "" + HelpWithFragmentNew.myGratitudeUrl);
+                intent.putExtra("html_url", "" + HomeFragment.my_gratitude_url);
                 startActivity(intent);
                 break;
         }

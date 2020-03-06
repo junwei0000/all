@@ -53,6 +53,8 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
     TextView tvSkbLine;
     @BindView(R.id.layout_skb)
     LinearLayout layoutSkb;
+    @BindView(R.id.layout_menu)
+    LinearLayout layout_menu;
 
     private int page = 0;
     private int pageSize = 20;
@@ -128,6 +130,7 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
 
     @Override
     public void setListener() {
+        layout_menu.setVisibility(View.VISIBLE);
         layoutCn.setOnClickListener(this);
         layoutSkb.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
@@ -142,6 +145,7 @@ public class LifeRankActivity extends BaseListActivity<LifeRankContract.View, Li
                 getList(page + 1);
             }
         });
+        changeData();
     }
 
     @Override

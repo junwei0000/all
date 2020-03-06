@@ -144,7 +144,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     ViewPager homedediVpTop;
 
     public static String jieqi_name = "";
-    public static String kn_url = "", activity_url = "";
+    public static String kn_url = "", activity_url = "",my_gratitude_url="",my_dedication_url="";
     @BindView(R.id.tv_newtitle)
     TextView tvNewtitle;
     @BindView(R.id.tv_drawable1)
@@ -705,6 +705,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (mHomeAfterBean != null) {
             layer = mHomeAfterBean.getLayer();
             display_note = mHomeAfterBean.getDisplay_note();
+            my_gratitude_url= mHomeAfterBean.getMy_gratitude_url();
+            my_dedication_url= mHomeAfterBean.getMy_dedication_url();
             kn_url = mHomeAfterBean.getKn_url();
             activity_url = mHomeAfterBean.getActivity_url();
             String sign_url = mHomeAfterBean.getSign_url();

@@ -37,6 +37,25 @@ public class HomeAfterBean implements Serializable {
 
     private String activity_url;//活动url
 
+    private String my_gratitude_url;
+    private String my_dedication_url;
+
+    public String getMy_gratitude_url() {
+        return my_gratitude_url;
+    }
+
+    public void setMy_gratitude_url(String my_gratitude_url) {
+        this.my_gratitude_url = my_gratitude_url;
+    }
+
+    public String getMy_dedication_url() {
+        return my_dedication_url;
+    }
+
+    public void setMy_dedication_url(String my_dedication_url) {
+        this.my_dedication_url = my_dedication_url;
+    }
+
     public String getActivity_url() {
         return activity_url;
     }
