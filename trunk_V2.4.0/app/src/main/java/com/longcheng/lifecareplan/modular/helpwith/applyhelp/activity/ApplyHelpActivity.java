@@ -15,7 +15,6 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -28,7 +27,6 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.exchange.malldetail.adapter.GuiGeDetailAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.adapter.GuiGeAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
@@ -43,7 +41,6 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleItemBean
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.PeopleSearchDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginAfterBean;
 import com.longcheng.lifecareplan.modular.index.login.bean.LoginDataBean;
@@ -62,10 +59,8 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
-import com.longcheng.lifecareplan.utils.myview.MyGridView;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.List;
@@ -73,7 +68,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 申请互祝
@@ -872,6 +866,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         } else {
             ivActionimg.setVisibility(View.VISIBLE);
         }
+        Log.e("ResponseBody","img==========="+img);
         GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, img, ivActionimg, ConstantManager.image_angle);
 
         tvAction1.setVisibility(View.VISIBLE);

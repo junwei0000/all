@@ -17,16 +17,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
-import com.longcheng.lifecareplan.modular.helpwith.applyhelp.adapter.ActionListAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataListBean;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
@@ -52,11 +49,7 @@ import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 行动详情
