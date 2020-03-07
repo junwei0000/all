@@ -2,6 +2,7 @@ package com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,33 +12,28 @@ import java.util.List;
  */
 
 public class LifeStyleDetailAfterBean {
-    @SerializedName("help_goods_id")
-    private String help_goods_id;
+    @SerializedName("help_wares")
+    private LifeStyleDetailAfterBean help_wares;
+    private String receive_user_name;
+    private String date;
+    private String solar_term_cn;
+    private String start_time;
+    private int progress;
+    private String cumulative_number;
+    private String des_content;
 
-    @SerializedName("user")
-    private LifeStyleDetailItemBean user;
-    @SerializedName("help_goods")
-    private LifeStyleDetailItemBean help_goods;
-    @SerializedName("goods")
-    private LifeStyleDetailItemBean goods;
-    @SerializedName("rankings")
-    private List<LifeStyleDetailItemBean> rankings;
-    @SerializedName("temps")
-    private List<LifeStyleDetailItemBean> temps;
+    private int shop_goods_id;
+    private String shop_goods_name;
+    private String shop_goods_img;
+    private String shop_goods_price_name;
 
-    //金额
-    @SerializedName("skb_moneys")
-    private List<LifeStyleDetailItemBean> skb_moneys;
+    ArrayList<LifeStyleDetailAfterBean> orders;
+    private String total_num;
+    private String solar_terms_name;
+    ArrayList<LifeStyleDetailAfterBean> list;
+    private String avatar;
 
-    @SerializedName("group")
-    private LifeStyleDetailItemBean group;
 
-    @SerializedName("is_apply")
-    private int is_apply;//是否有互助正在进行
-    @SerializedName("apply_money")
-    private int apply_money;//互祝寿康宝数量 (申请任务时需互祝)
-    @SerializedName("count")
-    private String count;
     @SerializedName("title")
     private String title;
     @SerializedName("desc")
@@ -45,105 +41,140 @@ public class LifeStyleDetailAfterBean {
     @SerializedName("wx_share_url")
     private String wx_share_url;
 
-    //评论列表
-    @SerializedName("list")
-    private List<LifeStyleDetailItemBean> list;
-
-
-    public String getWx_share_url() {
-        return wx_share_url;
+    public int getShop_goods_id() {
+        return shop_goods_id;
     }
 
-    public void setWx_share_url(String wx_share_url) {
-        this.wx_share_url = wx_share_url;
+    public void setShop_goods_id(int shop_goods_id) {
+        this.shop_goods_id = shop_goods_id;
     }
 
-    public String getHelp_goods_id() {
-        return help_goods_id;
+    public String getShop_goods_name() {
+        return shop_goods_name;
     }
 
-    public void setHelp_goods_id(String help_goods_id) {
-        this.help_goods_id = help_goods_id;
+    public void setShop_goods_name(String shop_goods_name) {
+        this.shop_goods_name = shop_goods_name;
     }
 
-    public LifeStyleDetailItemBean getUser() {
-        return user;
+    public String getShop_goods_img() {
+        return shop_goods_img;
     }
 
-    public void setUser(LifeStyleDetailItemBean user) {
-        this.user = user;
+    public void setShop_goods_img(String shop_goods_img) {
+        this.shop_goods_img = shop_goods_img;
     }
 
-    public LifeStyleDetailItemBean getHelp_goods() {
-        return help_goods;
+    public String getShop_goods_price_name() {
+        return shop_goods_price_name;
     }
 
-    public void setHelp_goods(LifeStyleDetailItemBean help_goods) {
-        this.help_goods = help_goods;
+    public void setShop_goods_price_name(String shop_goods_price_name) {
+        this.shop_goods_price_name = shop_goods_price_name;
     }
 
-    public LifeStyleDetailItemBean getGoods() {
-        return goods;
+    public LifeStyleDetailAfterBean getHelp_wares() {
+        return help_wares;
     }
 
-    public void setGoods(LifeStyleDetailItemBean goods) {
-        this.goods = goods;
+    public void setHelp_wares(LifeStyleDetailAfterBean help_wares) {
+        this.help_wares = help_wares;
     }
 
-    public List<LifeStyleDetailItemBean> getRankings() {
-        return rankings;
+    public String getReceive_user_name() {
+        return receive_user_name;
     }
 
-    public void setRankings(List<LifeStyleDetailItemBean> rankings) {
-        this.rankings = rankings;
+    public void setReceive_user_name(String receive_user_name) {
+        this.receive_user_name = receive_user_name;
     }
 
-    public List<LifeStyleDetailItemBean> getTemps() {
-        return temps;
+    public String getDate() {
+        return date;
     }
 
-    public void setTemps(List<LifeStyleDetailItemBean> temps) {
-        this.temps = temps;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public List<LifeStyleDetailItemBean> getSkb_moneys() {
-        return skb_moneys;
+    public String getSolar_term_cn() {
+        return solar_term_cn;
     }
 
-    public void setSkb_moneys(List<LifeStyleDetailItemBean> skb_moneys) {
-        this.skb_moneys = skb_moneys;
+    public void setSolar_term_cn(String solar_term_cn) {
+        this.solar_term_cn = solar_term_cn;
     }
 
-    public LifeStyleDetailItemBean getGroup() {
-        return group;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setGroup(LifeStyleDetailItemBean group) {
-        this.group = group;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
 
-    public int getIs_apply() {
-        return is_apply;
+    public int getProgress() {
+        return progress;
     }
 
-    public void setIs_apply(int is_apply) {
-        this.is_apply = is_apply;
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 
-    public int getApply_money() {
-        return apply_money;
+    public String getCumulative_number() {
+        return cumulative_number;
     }
 
-    public void setApply_money(int apply_money) {
-        this.apply_money = apply_money;
+    public void setCumulative_number(String cumulative_number) {
+        this.cumulative_number = cumulative_number;
     }
 
-    public String getCount() {
-        return count;
+    public String getDes_content() {
+        return des_content;
     }
 
-    public void setCount(String count) {
-        this.count = count;
+    public void setDes_content(String des_content) {
+        this.des_content = des_content;
+    }
+
+    public ArrayList<LifeStyleDetailAfterBean> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(ArrayList<LifeStyleDetailAfterBean> orders) {
+        this.orders = orders;
+    }
+
+    public String getTotal_num() {
+        return total_num;
+    }
+
+    public void setTotal_num(String total_num) {
+        this.total_num = total_num;
+    }
+
+    public String getSolar_terms_name() {
+        return solar_terms_name;
+    }
+
+    public void setSolar_terms_name(String solar_terms_name) {
+        this.solar_terms_name = solar_terms_name;
+    }
+
+    public ArrayList<LifeStyleDetailAfterBean> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<LifeStyleDetailAfterBean> list) {
+        this.list = list;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getTitle() {
@@ -162,11 +193,11 @@ public class LifeStyleDetailAfterBean {
         this.desc = desc;
     }
 
-    public List<LifeStyleDetailItemBean> getList() {
-        return list;
+    public String getWx_share_url() {
+        return wx_share_url;
     }
 
-    public void setList(List<LifeStyleDetailItemBean> list) {
-        this.list = list;
+    public void setWx_share_url(String wx_share_url) {
+        this.wx_share_url = wx_share_url;
     }
 }

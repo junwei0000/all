@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -46,6 +47,7 @@ import com.longcheng.lifecareplan.modular.mine.myorder.detail.activity.XiaJiaAct
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
+import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
@@ -107,15 +109,11 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
 
 
     LifeStyleListProgressUtils mProgressUtils;
-    private String user_id, help_goods_id;
+    private String user_id, help_wares_id;
     ShareUtils mShareUtils;
     private String wx_share_url;
     private int shop_goods_id;
     private String receive_user_name;
-    /**
-     * 商品是否下架
-     */
-    int action_status = 1;
 
     @Override
     public void onClick(View v) {
@@ -141,9 +139,6 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     }
 
     private void RedeemAgain() {
-        if (xiajia()) {
-            return;
-        }
         Log.e("btnClick", "再次兑换");
         if (shop_goods_id >= 10000) {
             Intent intent = new Intent(mContext, MallDetailActivity.class);
@@ -162,23 +157,6 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
             ActivityManager.getScreenManager().popAllActivityOnlyMain();
             doFinish();
         }
-    }
-
-    /**
-     * 是否下架
-     *
-     * @return
-     */
-    private boolean xiajia() {
-        boolean xiajiaStatus = false;
-        if (action_status == 0) {
-            xiajiaStatus = true;
-            Intent intent = new Intent(mContext, XiaJiaActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.putExtra("type", "3");
-            mContext.startActivity(intent);
-        }
-        return xiajiaStatus;
     }
 
     @Override
@@ -210,15 +188,17 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     protected void onResume() {
         super.onResume();
         if (!firstComIn)
-            mPresent.getDetailData(user_id, help_goods_id);
+            mPresent.getDetailData(user_id, help_wares_id);
     }
 
     @Override
     public void setListener() {
         layout_actiondetail.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
-        pagetopLayoutRigth.setOnClickListener(this);
+        pagetopIvRigth.setVisibility(View.GONE);
         detail_tv_jieqi.getBackground().setAlpha(92);
+        int hei = (int) (DensityUtil.screenWith(mContext) / 2.344);
+        layout_jieqi.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hei));
     }
 
     @Override
@@ -235,9 +215,9 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     }
 
     private void initLoad(Intent intent) {
-        help_goods_id = intent.getStringExtra("help_goods_id");
+        help_wares_id = intent.getStringExtra("help_wares_id");
         user_id = (String) SharedPreferencesHelper.get(mContext, "user_id", "");
-        mPresent.getDetailData(user_id, help_goods_id);
+        mPresent.getDetailData(user_id, help_wares_id);
     }
 
 
@@ -267,17 +247,9 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
             LifeStyleDetailAfterBean mDetailAfterBean = (LifeStyleDetailAfterBean) responseBean.getData();
             if (mDetailAfterBean != null) {
                 wx_share_url = mDetailAfterBean.getWx_share_url();
-                LifeStyleDetailItemBean help_goodsInfo = mDetailAfterBean.getHelp_goods();
+                LifeStyleDetailAfterBean help_goodsInfo = mDetailAfterBean.getHelp_wares();
                 if (help_goodsInfo != null) {
                     showTopView(help_goodsInfo);
-                    String remark = help_goodsInfo.getRemark();
-                    detail_tv_daiyandescribe.setText(remark);
-                    detail_tv_daiyantilte.setText("互祝说明");
-                }
-                LifeStyleDetailItemBean goodsInfo = mDetailAfterBean.getGoods();
-                action_status = goodsInfo.getStatus();
-                if (help_goodsInfo != null) {
-                    showGoodView(help_goodsInfo);
                 }
             }
         }
@@ -308,15 +280,18 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     }
 
 
-    private void showTopView(LifeStyleDetailItemBean help_goodsInfo) {
-        shop_goods_id = help_goodsInfo.getGoods_id();
+    private void showTopView(LifeStyleDetailAfterBean help_goodsInfo) {
+        shop_goods_id = help_goodsInfo.getShop_goods_id();
         receive_user_name = help_goodsInfo.getReceive_user_name();
         detailTvHelpname.setText("接福人：" + receive_user_name);
         String time = help_goodsInfo.getDate();
         detailTvTime.setText(time);
+        detail_tv_jieqi.setText(help_goodsInfo.getSolar_term_cn() + "  " + help_goodsInfo.getStart_time());
+        String remark = help_goodsInfo.getDes_content();
+        detail_tv_daiyandescribe.setText(remark);
+        detail_tv_daiyantilte.setText("互祝说明");
 
-
-        int super_ability_progress = help_goodsInfo.getSuper_ability_progress();
+        int super_ability_progress = help_goodsInfo.getProgress();
         item_pb_lifeenergynum.setProgress(super_ability_progress);
         if (mProgressUtils == null) {
             mProgressUtils = new LifeStyleListProgressUtils(mActivity);
@@ -325,15 +300,10 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         item_pb_lifeenergynum.setReachedBarColor(getResources().getColor(R.color.engry_btn_bg));
         ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, item_pb_numne, R.color.engry_btn_bg);
 
-    }
 
-
-    /**
-     * 产品
-     */
-    private void showGoodView(LifeStyleDetailItemBean help_goodsInfo) {
-        GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, help_goodsInfo.getGoods_img(), item_iv_thumb, 0);
-        item_tv_content.setText(help_goodsInfo.getGoods_name());
+        GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, help_goodsInfo.getShop_goods_img(), item_iv_thumb, 0);
+        item_tv_content.setText(help_goodsInfo.getShop_goods_name());
+        item_tv_helpnum.setText("" + help_goodsInfo.getCumulative_number());
     }
 
 

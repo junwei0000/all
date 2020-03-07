@@ -220,10 +220,10 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                     showLevelDialog(applyHelpMinStarlevel);
                     break;
                 }
-                if (isExistsHelpGoods == 1) {
-                    showNotOverDialog();
-                    break;
-                }
+//                if (isExistsHelpGoods == 1) {
+//                    showNotOverDialog();
+//                    break;
+//                }
                 skipApplyHelp = true;
                 if (goodsGuiGeList != null && goodsGuiGeList.size() > 1) {
                     showGuiGeDialog();

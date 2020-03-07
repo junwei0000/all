@@ -1,5 +1,7 @@
 package com.longcheng.lifecareplan.modular.helpwith.lifestyle.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,72 +10,32 @@ import java.io.Serializable;
 
 public class LifeStyleItemBean implements Serializable {
 
-    private String help_goods_id;//互助ID
+    private String help_wares_id;//互助ID
 
-    private String group_img;//公社头像
+    private String group_avatar;//公社头像
     private String receive_group_name;//公社名称
+    @SerializedName("img")
     private String goods_img;
     private String goods_name;
-    private String goods_id;
     private String receive_user_name;//接福人
 
     private int progress;//进度
-    private String skb_cumulative_price;//累计完成寿康宝数量
-    private int my_bless;//我祝福
-    private int bless_me;//祝福我
     private String date;//创建时间
-    private String super_ability_total_price;
-    private String super_ability_cumulative_price;
-    private int super_ability_progress;
-    private int buy_type;
 
-
-    public String getSuper_ability_total_price() {
-        return super_ability_total_price;
+    public String getHelp_wares_id() {
+        return help_wares_id;
     }
 
-    public void setSuper_ability_total_price(String super_ability_total_price) {
-        this.super_ability_total_price = super_ability_total_price;
+    public void setHelp_wares_id(String help_wares_id) {
+        this.help_wares_id = help_wares_id;
     }
 
-    public String getSuper_ability_cumulative_price() {
-        return super_ability_cumulative_price;
+    public String getGroup_avatar() {
+        return group_avatar;
     }
 
-    public void setSuper_ability_cumulative_price(String super_ability_cumulative_price) {
-        this.super_ability_cumulative_price = super_ability_cumulative_price;
-    }
-
-    public int getSuper_ability_progress() {
-        return super_ability_progress;
-    }
-
-    public void setSuper_ability_progress(int super_ability_progress) {
-        this.super_ability_progress = super_ability_progress;
-    }
-
-    public int getBuy_type() {
-        return buy_type;
-    }
-
-    public void setBuy_type(int buy_type) {
-        this.buy_type = buy_type;
-    }
-
-    public String getHelp_goods_id() {
-        return help_goods_id;
-    }
-
-    public void setHelp_goods_id(String help_goods_id) {
-        this.help_goods_id = help_goods_id;
-    }
-
-    public String getGroup_img() {
-        return group_img;
-    }
-
-    public void setGroup_img(String group_img) {
-        this.group_img = group_img;
+    public void setGroup_avatar(String group_avatar) {
+        this.group_avatar = group_avatar;
     }
 
     public String getReceive_group_name() {
@@ -100,14 +62,6 @@ public class LifeStyleItemBean implements Serializable {
         this.goods_name = goods_name;
     }
 
-    public String getGoods_id() {
-        return goods_id;
-    }
-
-    public void setGoods_id(String goods_id) {
-        this.goods_id = goods_id;
-    }
-
     public String getReceive_user_name() {
         return receive_user_name;
     }
@@ -122,30 +76,6 @@ public class LifeStyleItemBean implements Serializable {
 
     public void setProgress(int progress) {
         this.progress = progress;
-    }
-
-    public String getSkb_cumulative_price() {
-        return skb_cumulative_price;
-    }
-
-    public void setSkb_cumulative_price(String skb_cumulative_price) {
-        this.skb_cumulative_price = skb_cumulative_price;
-    }
-
-    public int getMy_bless() {
-        return my_bless;
-    }
-
-    public void setMy_bless(int my_bless) {
-        this.my_bless = my_bless;
-    }
-
-    public int getBless_me() {
-        return bless_me;
-    }
-
-    public void setBless_me(int bless_me) {
-        this.bless_me = bless_me;
     }
 
     public String getDate() {

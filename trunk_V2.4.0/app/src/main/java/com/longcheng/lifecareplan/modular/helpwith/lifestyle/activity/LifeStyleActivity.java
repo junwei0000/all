@@ -205,7 +205,7 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
                     ConfigUtils.getINSTANCE().closeSoftInput(mActivity);
                     Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("help_goods_id", helpAllList.get(position - 1).getHelp_goods_id());
+                    intent.putExtra("help_wares_id", helpAllList.get(position - 1).getHelp_wares_id());
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 }

@@ -46,7 +46,7 @@ public class LifeStyleListAdapter extends BaseAdapterHelper<LifeStyleItemBean> {
             mHolder = (ViewHolder) convertView.getTag();
         }
         LifeStyleItemBean mHelpItemBean = list.get(position);
-        String groupimg = mHelpItemBean.getGroup_img();
+        String groupimg = mHelpItemBean.getGroup_avatar();
         String gs_name = mHelpItemBean.getReceive_group_name();
         String action_image = mHelpItemBean.getGoods_img();
         String action_name = mHelpItemBean.getGoods_name();
@@ -59,7 +59,7 @@ public class LifeStyleListAdapter extends BaseAdapterHelper<LifeStyleItemBean> {
         mHolder.item_tv_content.setText(action_name);
         mHolder.item_tv_name.setText("接福人：" + h_user);
 
-        int super_ability_progress = mHelpItemBean.getSuper_ability_progress();
+        int super_ability_progress = mHelpItemBean.getProgress();
         mHolder.pb_lifeenergynum.setProgress(super_ability_progress);
         mProgressUtils.showNum(super_ability_progress, mHolder.pb_lifeenergynum, mHolder.item_pb_numne);
         mHolder.pb_lifeenergynum.setReachedBarColor(context.getResources().getColor(R.color.engry_btn_bg));
