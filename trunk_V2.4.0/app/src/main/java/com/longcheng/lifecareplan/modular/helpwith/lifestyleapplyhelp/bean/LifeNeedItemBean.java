@@ -17,6 +17,15 @@ public class LifeNeedItemBean {
     private String name;
     @SerializedName("apply_help_max_limit")
     private int apply_help_max_limit;
+    private int apply_type;//1 skb ;2 超能
+    private String apply_help_price;//弹层显示价格
+    private String skb_price;
+
+    @SerializedName("chatuser")
+    private LifeNeedItemBean chatuser;
+    private String super_ability;
+    private String shoukangyuan;
+
 
     //申请互祝 返回
     @SerializedName("needHelpGoodsNumber")
@@ -43,8 +52,37 @@ public class LifeNeedItemBean {
     private String content;
 
 
-    private int apply_type;//1 skb ;2 超能
-    private String apply_help_price;//弹层显示价格
+    public String getSkb_price() {
+        return skb_price;
+    }
+
+    public void setSkb_price(String skb_price) {
+        this.skb_price = skb_price;
+    }
+
+    public LifeNeedItemBean getChatuser() {
+        return chatuser;
+    }
+
+    public void setChatuser(LifeNeedItemBean chatuser) {
+        this.chatuser = chatuser;
+    }
+
+    public String getSuper_ability() {
+        return super_ability;
+    }
+
+    public void setSuper_ability(String super_ability) {
+        this.super_ability = super_ability;
+    }
+
+    public String getShoukangyuan() {
+        return shoukangyuan;
+    }
+
+    public void setShoukangyuan(String shoukangyuan) {
+        this.shoukangyuan = shoukangyuan;
+    }
 
     public int getApply_type() {
         return apply_type;

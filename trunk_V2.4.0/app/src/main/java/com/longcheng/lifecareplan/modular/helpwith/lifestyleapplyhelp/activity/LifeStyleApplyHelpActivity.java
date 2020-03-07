@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 
@@ -52,30 +54,29 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     LinearLayout pagetopLayoutLeft;
     @BindView(R.id.pageTop_tv_name)
     TextView pageTopTvName;
-    @BindView(R.id.tv_goodsname)
-    TextView tvGoodsname;
-    @BindView(R.id.item_layout_sub)
-    LinearLayout itemLayoutSub;
-    @BindView(R.id.item_tv_goodsnum)
-    TextView itemTvGoodsnum;
-    @BindView(R.id.item_tv_add)
-    TextView itemTvAdd;
+
+    @BindView(R.id.tv_action)
+    TextView tvAction;
     @BindView(R.id.tv_people)
     TextView tvPeople;
     @BindView(R.id.relat_people)
-    RelativeLayout relatPeople;
-    @BindView(R.id.tv_addressname)
-    TextView tvAddressname;
-    @BindView(R.id.tv_addressmobile)
-    TextView tvAddressmobile;
+    LinearLayout relatPeople;
     @BindView(R.id.tv_address)
     TextView tvAddress;
+    @BindView(R.id.tv_addressname)
+    TextView tv_addressname;
     @BindView(R.id.relat_address)
-    RelativeLayout relatAddress;
+    LinearLayout relatAddress;
+    @BindView(R.id.tv_explaintitle)
+    TextView tv_explaintitle;
     @BindView(R.id.tv_explain)
     TextView tvExplain;
     @BindView(R.id.relat_explain)
-    RelativeLayout relatExplain;
+    LinearLayout relatExplain;
+    @BindView(R.id.layout_address)
+    LinearLayout layout_address;
+    @BindView(R.id.iv_thumb)
+    ImageView ivThumb;
     @BindView(R.id.btn_save)
     TextView btnSave;
 
@@ -89,29 +90,12 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     private String describe;
     private String goods_id;
 
-    private int apply_help_max_limit;//申请数量限制
-    private int is_read = 1;//是否已读： 1 已读
-
     @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
                 back();
-                break;
-            case R.id.item_layout_sub:
-                if (apply_goods_number > 1) {
-                    apply_goods_number--;
-                }
-                itemTvGoodsnum.setText("" + apply_goods_number);
-                break;
-            case R.id.item_tv_add:
-                if (apply_goods_number < apply_help_max_limit) {
-                    apply_goods_number++;
-                } else {
-                    ToastUtils.showToast("申请数量超额");
-                }
-                itemTvGoodsnum.setText("" + apply_goods_number);
                 break;
             case R.id.relat_people:
                 intent = new Intent(mContext, PeopleActivity.class);
@@ -143,17 +127,12 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                 Log.e("Observable", "address_id = " + address_id);
                 if (!TextUtils.isEmpty(goods_id) && !TextUtils.isEmpty(peopleid) &&
                         !TextUtils.isEmpty(address_id) && !TextUtils.isEmpty(describe)) {
-                    showCNSKBStatus = true;
-                    showPopupWindow();
+                    showApplyDialog();
                 }
                 break;
         }
     }
 
-    /**
-     * 是否显示提示扣除超能或寿康宝
-     */
-    boolean showCNSKBStatus = false;
 
     private void setBtnBg() {
         if (!TextUtils.isEmpty(goods_id) && !TextUtils.isEmpty(peopleid) &&
@@ -171,7 +150,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
 
     @Override
     public int bindLayout() {
-        return R.layout.helpwith_lifestyle_apply;
+        return R.layout.helpwith_lifestyle_applynew;
     }
 
     @Override
@@ -182,8 +161,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     @Override
     public void setListener() {
         pagetopLayoutLeft.setOnClickListener(this);
-        itemLayoutSub.setOnClickListener(this);
-        itemTvAdd.setOnClickListener(this);
         relatPeople.setOnClickListener(this);
         relatAddress.setOnClickListener(this);
         relatExplain.setOnClickListener(this);
@@ -230,10 +207,11 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             if (mPeopleAfterBean != null) {
                 LifeNeedItemBean info = mPeopleAfterBean.getSkbGoodsInfo();
                 if (info != null) {
-                    apply_type = info.getApply_type();
+                    skb_price = info.getSkb_price();
                     apply_help_price = info.getApply_help_price();
-                    tvGoodsname.setText(info.getName());
-                    apply_help_max_limit = info.getApply_help_max_limit();
+                    tvAction.setText(info.getName());
+                    super_ability = mPeopleAfterBean.getChatuser().getSuper_ability();
+                    shoukangyuan = mPeopleAfterBean.getChatuser().getShoukangyuan();
                 }
                 List<LifeNeedItemBean> mList = mPeopleAfterBean.getHelpGoodsTemp();
                 if (mList != null && mList.size() > 0 && TextUtils.isEmpty(describe)) {
@@ -265,6 +243,8 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                             peopleid = mPeopleItemBean.getUser_id();
                             peoplename = mPeopleItemBean.getUser_name();
                             tvPeople.setText(peoplename);
+                            String avatar = mPeopleItemBean.getAvatar();
+                            GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
                             mPresent.setAddressList(user_id, peopleid);
                             break;
                         }
@@ -295,16 +275,23 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                     String area = AddressSelectUtils.initData(mContext, mAddressBean.getProvince(), mAddressBean.getCity(), mAddressBean.getDistrict());
                     address_id = mAddressBean.getAddress_id();
                     String address_name = mAddressBean.getConsignee();
-                    String address_mobile = mAddressBean.getMobile();
+                    String phone = mAddressBean.getMobile();
                     String address_address = mAddressBean.getAddress();
-                    tvAddressname.setText(address_name);
-                    tvAddressmobile.setText(address_mobile);
                     tvAddress.setText(area + " " + address_address);
+                    if (!TextUtils.isEmpty(address_name) && address_name.length() >= 11) {
+                        address_name = address_name.substring(0, 10) + "...";
+                    }
+                    if (!TextUtils.isEmpty(phone) && phone.length() >= 11) {
+                        phone = phone.substring(0, 3) + "****" + phone.substring(7);
+                    }
+                    tv_addressname.setText(address_name + "     " + phone);
+                    tvAddress.setText(area + " " + address_address);
+                    layout_address.setVisibility(View.VISIBLE);
                 } else {
                     address_id = "";
-                    tvAddressname.setText("");
-                    tvAddressmobile.setText("");
+                    tv_addressname.setText("");
                     tvAddress.setText("");
+                    layout_address.setVisibility(View.GONE);
                 }
                 setBtnBg();
             }
@@ -316,7 +303,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
         String status = responseBean.getStatus();
         if (status.equals("200")) {
             redirectMsgId = responseBean.getData();
-            showCNSKBStatus = false;
             showPopupWindow();
         } else {
             String mag = responseBean.getMsg();
@@ -329,17 +315,66 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
         ToastUtils.showToast(R.string.net_tishi);
     }
 
-    int apply_type;
-    String apply_help_price;
-    MyDialog selectDialog;
+    MyDialog applyDialog;
+    TextView tv_showcn, tv_showskb, tv_mycn, tv_myskb;
+
+    /**
+     * 申请弹层
+     */
+    private void showApplyDialog() {
+        if (applyDialog == null) {
+            applyDialog = new MyDialog(this, R.style.dialog, R.layout.dialog_lifestyleapplyhelp);// 创建Dialog并设置样式主题
+            applyDialog.setCanceledOnTouchOutside(true);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = applyDialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.showBottomDialog);
+            applyDialog.show();
+            WindowManager m = getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = applyDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth(); //宽度设置为屏幕
+            applyDialog.getWindow().setAttributes(p); //设置生效
+
+            LinearLayout layout_cancel = (LinearLayout) applyDialog.findViewById(R.id.layout_cancel);
+            tv_showcn = (TextView) applyDialog.findViewById(R.id.tv_showcn);
+            tv_showskb = (TextView) applyDialog.findViewById(R.id.tv_showskb);
+            tv_mycn = (TextView) applyDialog.findViewById(R.id.tv_mycn);
+            tv_myskb = (TextView) applyDialog.findViewById(R.id.tv_myskb);
+            TextView btn_helpsure = (TextView) applyDialog.findViewById(R.id.btn_helpsure);
+            layout_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    applyDialog.dismiss();
+                }
+            });
+            btn_helpsure.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPresent.applyAction(user_id, shop_goods_price_id,
+                            remark, purpose, address_id, apply_goods_number, peopleid, goods_id, describe);
+                    applyDialog.dismiss();
+                }
+            });
+        } else {
+            applyDialog.show();
+        }
+        tv_showcn.setText(apply_help_price);
+        tv_showskb.setText(skb_price);
+        tv_mycn.setText(super_ability);
+        tv_myskb.setText(shoukangyuan);
+
+    }
+
     /**
      * 任务ID
      */
     String redirectMsgId;
+    String apply_help_price = "", skb_price = "", super_ability = "", shoukangyuan = "";
+    MyDialog selectDialog;
     TextView tv_cont1, tv_cont2, tv_cont3, btn_ok;
 
     /**
-     * 申请弹层
+     * 成功弹出
      */
     private void showPopupWindow() {
         if (selectDialog == null) {
@@ -359,27 +394,15 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             tv_cont3 = (TextView) selectDialog.findViewById(R.id.tv_cont3);
             btn_ok = (TextView) selectDialog.findViewById(R.id.btn_ok);
             initView();
-//            selectDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-//                @Override
-//                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-//                    back();
-//                    return true;
-//                }
-//            });
             btn_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (showCNSKBStatus) {
-                        mPresent.applyAction(user_id, shop_goods_price_id,
-                                remark, purpose, address_id, apply_goods_number, peopleid, goods_id, describe);
-                    } else {
-                        Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("help_goods_id", "" + redirectMsgId);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                        doFinish();
-                    }
+                    Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra("help_goods_id", "" + redirectMsgId);
+                    startActivity(intent);
+                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+                    doFinish();
                     selectDialog.dismiss();
                 }
             });
@@ -390,29 +413,14 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     }
 
     private void initView() {
-        if (showCNSKBStatus) {
-            tv_cont1.setVisibility(View.VISIBLE);
-            tv_cont2.setVisibility(View.VISIBLE);
-            tv_cont3.setVisibility(View.GONE);
-            tv_cont1.setText("" + PriceUtils.getInstance().gteMultiplySumPrice("" + apply_goods_number, apply_help_price));
-            if (apply_type == 1) {
-                tv_cont2.setText("寿康宝");
-            } else if (apply_type == 2) {
-                tv_cont2.setText("超级生命能量");
-            }
-            tv_cont1.setTextColor(getResources().getColor(R.color.color_db4065));
-            tv_cont2.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
-            btn_ok.setText("送出祝福");
-        } else {
-            tv_cont1.setVisibility(View.VISIBLE);
-            tv_cont2.setVisibility(View.GONE);
-            tv_cont3.setVisibility(View.VISIBLE);
-            tv_cont1.setText("感恩您的奉献！");
-            tv_cont3.setText("恭喜您申请成功！");
-            tv_cont1.setTextColor(getResources().getColor(R.color.color_db4065));
-            tv_cont3.setTextColor(getResources().getColor(R.color.color_db4065));
-            btn_ok.setText("知道了，点击查看");
-        }
+        tv_cont1.setVisibility(View.VISIBLE);
+        tv_cont2.setVisibility(View.GONE);
+        tv_cont3.setVisibility(View.VISIBLE);
+        tv_cont1.setText("感恩您的奉献！");
+        tv_cont3.setText("恭喜您申请成功！");
+        tv_cont1.setTextColor(getResources().getColor(R.color.color_db4065));
+        tv_cont3.setTextColor(getResources().getColor(R.color.color_db4065));
+        btn_ok.setText("知道了，点击查看");
     }
 
     @Override
@@ -422,15 +430,24 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                 peopleid = data.getStringExtra("peopleid");
                 peoplename = data.getStringExtra("peoplename");
                 tvPeople.setText(peoplename);
+                String avatar = data.getStringExtra("avatar");
+                GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
                 mPresent.setAddressList(user_id, peopleid);
             } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_ADDRESS) {
                 address_id = data.getStringExtra("address_id");
                 String address_name = data.getStringExtra("address_name");
-                String address_mobile = data.getStringExtra("address_mobile");
+                String phone = data.getStringExtra("address_mobile");
                 String address_address = data.getStringExtra("address_address");
-                tvAddressname.setText(address_name);
-                tvAddressmobile.setText(address_mobile);
+                if (!TextUtils.isEmpty(address_name) && address_name.length() >= 11) {
+                    address_name = address_name.substring(0, 10) + "...";
+                }
+                if (!TextUtils.isEmpty(phone) && phone.length() >= 11) {
+                    phone = phone.substring(0, 3) + "****" + phone.substring(7);
+                }
+                tv_addressname.setText(address_name + "     " + phone);
                 tvAddress.setText(address_address);
+                tvAddress.setText(address_address);
+                layout_address.setVisibility(View.VISIBLE);
             } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_EXPLAIN) {
                 describe = data.getStringExtra("describe");
                 tvExplain.setText(describe);
