@@ -103,19 +103,14 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
     private int pageSize = 20;
 
     /**
-     * 时间    2:降序 ；1：升序
+     * 时间    1：升序  2:降序 ；
      */
     private int time_sort = 2;
     /**
      * h_user_id 只我的恩人我的奉献页面跳转使用，输入框搜索时h_user_id至为0
      */
     private String Search = "", h_user_id = "0";
-    /**
-     * 进度 1-降序 2-升序
-     */
-    private int progress;
 
-    private boolean timeSelctStatus = true;
     /**
      * 状态 1未完成 2-已完成
      */
@@ -137,7 +132,6 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
                 back();
                 break;
             case R.id.help_layout_time:
-                if (timeSelctStatus) {//选中时间时的降序升序切换
                     if (time_sort == 2) {//降序-->升序
                         time_sort = 1;
                         helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_down_red);
@@ -145,36 +139,6 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
                         time_sort = 2;
                         helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_up_red);
                     }
-                } else {
-                    //未选中时选中
-                    time_sort = 1;
-                    helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_down_red);
-                    helpTvTime.setTextColor(getResources().getColor(R.color.blue));
-
-                    helpTvProgress.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
-                    helpIvProgressarrow.setBackgroundResource(R.mipmap.ic_arrow_gray);
-                }
-                timeSelctStatus = true;
-                getList(1);
-                break;
-            case R.id.help_layout_progress:
-                if (!timeSelctStatus) {
-                    if (progress == 2) {//升序-->降序
-                        progress = 1;
-                        helpIvProgressarrow.setBackgroundResource(R.mipmap.ic_arrow_down_red);
-                    } else if (progress == 1) {//降序-->升序
-                        progress = 2;
-                        helpIvProgressarrow.setBackgroundResource(R.mipmap.ic_arrow_up_red);
-                    }
-                } else {
-                    progress = 1;//1-降序 2-升序
-                    helpTvProgress.setTextColor(getResources().getColor(R.color.blue));
-                    helpIvProgressarrow.setBackgroundResource(R.mipmap.ic_arrow_down_red);
-
-                    helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_gray);
-                    helpTvTime.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
-                }
-                timeSelctStatus = false;
                 getList(1);
                 break;
             case R.id.help_layout_status:
@@ -315,16 +279,9 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
     }
 
     private void getList(int page) {
-        int timexu = 0;
-        int progressxu = 0;
-        if (timeSelctStatus) {
-            timexu = time_sort;
-        } else {
-            progressxu = progress;
-        }
         user_id = UserUtils.getUserId(mContext);
         mPresent.setListViewData(user_id,
-                timexu, Search, h_user_id, progressxu, status, help_status, page, pageSize);
+                time_sort, Search, h_user_id, status, help_status, page, pageSize);
     }
 
 

@@ -14,6 +14,7 @@ import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.http.Field;
 
 /**
  * 作者：MarkShuai
@@ -37,6 +38,27 @@ public class LifeStyleApplyHelpPresenterImp<T> extends LifeStyleApplyHelpContrac
     public void fetch() {
     }
 
+    public void getLifeApplyInfo(String user_id, String good_id, String shop_goods_price_id) {
+        mView.showDialog();
+        Observable<LifeNeedDataBean> observable = Api.getInstance().service.getLifeApplyInfo(user_id, good_id, shop_goods_price_id, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<LifeNeedDataBean>() {
+                    @Override
+                    public void accept(LifeNeedDataBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        mView.getNeedHelpNumberTaskSuccess(responseBean);
+                        Log.e("Observable", "" + responseBean.toString());
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.ListError();
+                    }
+                });
+
+    }
 
     public void getLifeNeedHelpNumberTaskSuccess(String user_id, String good_id) {
         mView.showDialog();
@@ -94,23 +116,20 @@ public class LifeStyleApplyHelpPresenterImp<T> extends LifeStyleApplyHelpContrac
      * @param user_id
      */
     public void applyAction(String user_id,
+                            String shop_goods_id,
                             String shop_goods_price_id,
-                            String remark,
-                            int purpose,
-                            String address_id,
-                            int apply_goods_number,
                             String receive_user_id,
-                            String goods_id,
-                            String purpose_remark) {
+                            String addressId,
+                            String remark) {
         Log.e("applyAction", "shop_goods_price_id=" + shop_goods_price_id);
-        Log.e("applyAction", "address_id=" + address_id);
-        Log.e("applyAction", "goods_id=" + goods_id);
+        Log.e("applyAction", "address_id=" + addressId);
+        Log.e("applyAction", "shop_goods_id=" + shop_goods_id);
         Log.e("applyAction", "receive_user_id=" + receive_user_id);
 
         mView.showDialog();
         Observable<EditDataBean> observable = Api.getInstance().service.lifeStyleApplyAction(user_id,
-                shop_goods_price_id,
-                remark, purpose, address_id, apply_goods_number, receive_user_id, goods_id, purpose_remark, ExampleApplication.token);
+                shop_goods_id, shop_goods_price_id, receive_user_id, addressId,
+                remark,"2", ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {

@@ -82,8 +82,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
 
     private String user_id;
     private String shop_goods_price_id;
-    private String remark = "";
-    private int purpose = 2;//是否送礼 1 送礼
     private String address_id;
     private int apply_goods_number = 1;//数量
     private String peopleid, peoplename;
@@ -177,7 +175,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
         shop_goods_price_id = intent.getStringExtra("shop_goods_price_id");
         setBtnBg();
 
-        mPresent.getLifeNeedHelpNumberTaskSuccess(user_id, goods_id);
+        mPresent.getLifeApplyInfo(user_id, goods_id, shop_goods_price_id);
         mPresent.getPeopleList(user_id);
     }
 
@@ -207,9 +205,9 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             if (mPeopleAfterBean != null) {
                 LifeNeedItemBean info = mPeopleAfterBean.getSkbGoodsInfo();
                 if (info != null) {
-                    skb_price = info.getSkb_price();
-                    apply_help_price = info.getApply_help_price();
-                    tvAction.setText(info.getName());
+                    skb_price = mPeopleAfterBean.getSkb_price();
+                    apply_help_price = mPeopleAfterBean.getApply_help_price();
+                    tvAction.setText(mPeopleAfterBean.getName()+"   "+mPeopleAfterBean.getPrice_name());
                     super_ability = mPeopleAfterBean.getChatuser().getSuper_ability();
                     shoukangyuan = mPeopleAfterBean.getChatuser().getShoukangyuan();
                 }
@@ -302,8 +300,8 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     public void applyActionSuccess(EditDataBean responseBean) {
         String status = responseBean.getStatus();
         if (status.equals("200")) {
-            redirectMsgId = responseBean.getData();
-            showPopupWindow();
+            String redirectMsgId = responseBean.getData();
+            showPopupWindow(redirectMsgId);
         } else {
             String mag = responseBean.getMsg();
             ToastUtils.showToast(mag);
@@ -350,8 +348,8 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
             btn_helpsure.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mPresent.applyAction(user_id, shop_goods_price_id,
-                            remark, purpose, address_id, apply_goods_number, peopleid, goods_id, describe);
+                    mPresent.applyAction(user_id, goods_id, shop_goods_price_id, peopleid,
+                            address_id, describe);
                     applyDialog.dismiss();
                 }
             });
@@ -365,10 +363,6 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
 
     }
 
-    /**
-     * 任务ID
-     */
-    String redirectMsgId;
     String apply_help_price = "", skb_price = "", super_ability = "", shoukangyuan = "";
     MyDialog selectDialog;
     TextView tv_cont1, tv_cont2, tv_cont3, btn_ok;
@@ -376,7 +370,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     /**
      * 成功弹出
      */
-    private void showPopupWindow() {
+    private void showPopupWindow(String redirectMsgId) {
         if (selectDialog == null) {
             selectDialog = new MyDialog(this, R.style.dialog, R.layout.dialog_applyhelp);// 创建Dialog并设置样式主题
             selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
@@ -464,7 +458,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
     protected void onResume() {
         super.onResume();
         if (!firstComIn)
-            mPresent.getLifeNeedHelpNumberTaskSuccess(user_id, goods_id);
+            mPresent.getLifeApplyInfo(user_id, goods_id, shop_goods_price_id);
     }
 
 

@@ -11,10 +11,11 @@ import java.util.List;
  */
 
 public class LifeNeedItemBean {
-    @SerializedName("skbGoodsInfo")
+    @SerializedName(value = "skbGoodsInfo", alternate = {"shopGoods"})
     private LifeNeedItemBean skbGoodsInfo;
-    @SerializedName("name")
+    @SerializedName(value = "name", alternate = {"goodsName"})
     private String name;
+    private String price_name;
     @SerializedName("apply_help_max_limit")
     private int apply_help_max_limit;
     private int apply_type;//1 skb ;2 超能
@@ -51,6 +52,14 @@ public class LifeNeedItemBean {
     @SerializedName("content")
     private String content;
 
+
+    public String getPrice_name() {
+        return price_name;
+    }
+
+    public void setPrice_name(String price_name) {
+        this.price_name = price_name;
+    }
 
     public String getSkb_price() {
         return skb_price;

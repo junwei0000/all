@@ -655,12 +655,11 @@ public interface ApiService {
 
 
     //********************生活方式互祝*************************
-    @GET(Config.VERSION + "Helpgoods/lists")
+    @GET(Config.VERSION + "Wares/index")
     Observable<LifeStyleListDataBean> getLifeStyleList(@Query("user_id") String user_id,
                                                        @Query("time_sort") int time_sort,
                                                        @Query("Search") String Search,
                                                        @Query("receive_user_id") String h_user_id,
-                                                       @Query("progress") int progress,
                                                        @Query("status") int status,
                                                        @Query("help_status") int help_status,
                                                        @Query("page") int page,
@@ -710,6 +709,13 @@ public interface ApiService {
                                         @Field("mutual_help_comment_id") int mutual_help_comment_id,
                                         @Field("token") String token);
 
+    @GET(Config.VERSION + "Wares/apply")
+    Observable<LifeNeedDataBean> getLifeApplyInfo(@Query("user_id") String user_id,
+                                                  @Query("shop_goods_id") String shop_goods_id,
+                                                  @Query("shop_goods_price_id") String shop_goods_price_id,
+                                                  @Query("token") String token);
+
+
     @GET(Config.VERSION + "helpgoods/help_goods_ranking")
     Observable<LifeRankListDataBean> getLifeRankList(@Query("user_id") String user_id,
                                                      @Query("help_goods_id") String help_goods_id,
@@ -724,16 +730,14 @@ public interface ApiService {
                                                            @Query("token") String token);
 
     @FormUrlEncoded
-    @POST(Config.VERSION + "Helpgoods/saveHelpGoodsApply")
+    @POST(Config.VERSION + "Wares/doApply")
     Observable<EditDataBean> lifeStyleApplyAction(@Field("user_id") String user_id,
+                                                  @Field("shop_goods_id") String shop_goods_id,
                                                   @Field("shop_goods_price_id") String shop_goods_price_id,
-                                                  @Field("purpose_remark") String remark,
-                                                  @Field("purpose") int purpose,
-                                                  @Field("address_id") String address_id,
-                                                  @Field("apply_goods_number") int apply_goods_number,
                                                   @Field("receive_user_id") String receive_user_id,
-                                                  @Field("goods_id") String goods_id,
-                                                  @Field("remark") String purpose_remark,
+                                                  @Field("addressId") String addressId,
+                                                  @Field("remark") String remark,
+                                                  @Field("pay_source") String pay_source,
                                                   @Field("token") String token);
 
     @FormUrlEncoded

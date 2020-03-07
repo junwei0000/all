@@ -44,17 +44,16 @@ public class LifeStylePresenterImp<T> extends LifeStyleContract.Presenter<LifeSt
                                 int time_sort,
                                 String Search,
                                 String h_user_id,
-                                int progress,
                                 int status,
                                 int help_status,
                                 int page,
                                 int page_size) {
         Log.e("Observable", "user_id=" + user_id + " ;time_sort= " +
-                time_sort + ";Search= " + Search + ";progress= " + progress + " ;status=" + status + "  ;help_status=" + help_status
+                time_sort + ";Search= " + Search + " ;status=" + status + "  ;help_status=" + help_status
                 + " ;page=" + page + " ;page_size=" + page_size);
         mView.showDialog();
         Observable<LifeStyleListDataBean> observable = Api.getInstance().service.getLifeStyleList(user_id,
-                time_sort, Search, h_user_id, progress, status, help_status, page, page_size, ExampleApplication.token);
+                time_sort, Search, h_user_id, status, help_status, page, page_size, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<LifeStyleListDataBean>() {
