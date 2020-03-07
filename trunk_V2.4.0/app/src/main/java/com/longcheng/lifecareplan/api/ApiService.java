@@ -420,11 +420,13 @@ public interface ApiService {
     Observable<EditDataBean> refusePairs(@Field("user_id") String user_id,
                                          @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
                                          @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "zhufubao/agreeePairs")
     Observable<EditDataBean> agreeePairs(@Field("user_id") String user_id,
                                          @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
                                          @Field("token") String token);
+
     @FormUrlEncoded
     @POST(Config.VERSION + "Ability/SubmitActivation")
     Observable<EditDataBean> SubmitActivation(@Field("user_id") String user_id,
@@ -669,6 +671,11 @@ public interface ApiService {
     Observable<LifeStyleDetailDataBean> getLifeStyleDetail(@Query("user_id") String user_id,
                                                            @Query("help_goods_id") String help_goods_id,
                                                            @Query("token") String token);
+
+    @GET(Config.VERSION + "wares/info")
+    Observable<LifeStyleDetailDataBean> getLifeStyleDetailWares(@Query("user_id") String user_id,
+                                                                @Query("help_wares_id") String help_wares_id,
+                                                                @Query("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "helpgoods/comment_list")

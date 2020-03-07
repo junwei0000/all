@@ -46,7 +46,7 @@ public class LifeStyleDetailPresenterImp<T> extends LifeStyleDetailContract.Pres
     public void getDetailData(String user_id, String help_goods_id) {
         mView.showDialog();
         Log.e("Observable", "" + ExampleApplication.token + "    " + help_goods_id);
-        Observable<LifeStyleDetailDataBean> observable = Api.getInstance().service.getLifeStyleDetail(user_id,
+        Observable<LifeStyleDetailDataBean> observable = Api.getInstance().service.getLifeStyleDetailWares(user_id,
                 help_goods_id, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -84,82 +84,30 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     TextView detailTvHelpname;
     @BindView(R.id.detail_tv_time)
     TextView detailTvTime;
-    @BindView(R.id.detail_tv_havelifeenergy)
-    TextView detailTvHavelifeenergy;
-    @BindView(R.id.detail_tv_helpnum)
-    TextView detailTvHelpnum;
-    @BindView(R.id.detail_tv_lifeenergy)
-    TextView detailTvLifeenergy;
-    @BindView(R.id.pb_lifeprogressnum)
-    NumberProgressBar pbLifeprogressnum;
-    @BindView(R.id.pb_num)
-    TextView pbNum;
-    @BindView(R.id.gv_aixin)
-    LinearLayout gvAixin;
-    @BindView(R.id.detail_layout_rank)
-    LinearLayout detailLayoutRank;
-    @BindView(R.id.detail_iv_communethumb)
-    ImageView detailIvCommunethumb;
-    @BindView(R.id.detail_tv_communename)
-    TextView detailTvCommunename;
-    @BindView(R.id.detail_tv_communenum)
-    TextView detailTvCommunenum;
-    @BindView(R.id.layout_commune)
-    LinearLayout layoutCommune;
+    @BindView(R.id.layout_jieqi)
+    LinearLayout layout_jieqi;
+    @BindView(R.id.detail_tv_jieqi)
+    TextView detail_tv_jieqi;
+    @BindView(R.id.layout_actiondetail)
+    LinearLayout layout_actiondetail;
+    @BindView(R.id.item_iv_thumb)
+    ImageView item_iv_thumb;
+    @BindView(R.id.item_tv_content)
+    TextView item_tv_content;
+    @BindView(R.id.item_tv_helpnum)
+    TextView item_tv_helpnum;
+    @BindView(R.id.item_pb_lifeenergynum)
+    NumberProgressBar item_pb_lifeenergynum;
+    @BindView(R.id.item_pb_numne)
+    TextView item_pb_numne;
     @BindView(R.id.detail_tv_daiyantilte)
-    TextView detailTvDaiyantilte;
+    TextView detail_tv_daiyantilte;
     @BindView(R.id.detail_tv_daiyandescribe)
-    TextView detailTvDaiyandescribe;
-    @BindView(R.id.detail_iv_goodthumb)
-    ImageView detailIvGoodthumb;
-    @BindView(R.id.detail_tv_goodname)
-    TextView detailTvGoodname;
-    @BindView(R.id.detail_tv_goodgeshu)
-    TextView detail_tv_goodgeshu;
-    @BindView(R.id.detail_tv_goodnum)
-    TextView detailTvGoodnum;
-    @BindView(R.id.layout_gooddetail)
-    LinearLayout layoutGooddetail;
-    @BindView(R.id.layout_comment)
-    LinearLayout layout_comment;
-    @BindView(R.id.detail_lv_comment)
-    MyListView detailLvComment;
-    @BindView(R.id.main_sv)
-    PullToRefreshScrollView mainSv;
-    @BindView(R.id.btn_helpcn)
-    TextView btn_helpcn;
-    @BindView(R.id.btn_helpskb)
-    TextView btn_helpskb;
-    @BindView(R.id.detail_tv_havelifeskb)
-    TextView detailTvHavelifeskb;
-    @BindView(R.id.detail_tv_helpskbnum)
-    TextView detailTvHelpskbnum;
-    @BindView(R.id.detail_tv_lifeskb)
-    TextView detailTvLifeskb;
-    @BindView(R.id.pb_lifeprogressskb)
-    NumberProgressBar pbLifeprogressskb;
-    @BindView(R.id.pb_skbnum)
-    TextView pbSkbnum;
-    @BindView(R.id.layout_skb)
-    LinearLayout layout_skb;
-    @BindView(R.id.layout_cn)
-    LinearLayout layout_cn;
+    TextView detail_tv_daiyandescribe;
 
 
     LifeStyleListProgressUtils mProgressUtils;
-
-    private int page = 0;
-    private int pageSize = 20;
     private String user_id, help_goods_id;
-
-
-    List<LifeStyleDetailItemBean> commentList = new ArrayList<>();
-    List<LifeStyleDetailItemBean> mutual_help_money_all = new ArrayList<>();
-    int is_applying_help;
-    int mutual_help_money;
-    int selectCommentPosition;
-    CommentAdapter mCommentAdapter;
-    LifeStyleDetailHelpDialogUtils mDetailHelpDialogUtils;
     ShareUtils mShareUtils;
     private String wx_share_url;
     private int shop_goods_id;
@@ -168,13 +116,6 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
      * 商品是否下架
      */
     int action_status = 1;
-    private String skb = "0", super_ability = "0";
-    List<LifeStyleDetailItemBean> blessings_list;
-
-    /**
-     * 是否使用寿康宝祝福
-     */
-    boolean SkbPayStatus = false;
 
     @Override
     public void onClick(View v) {
@@ -190,42 +131,11 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                 if (!TextUtils.isEmpty(wx_share_url)) {
                     String text = receive_user_name + "申请了互祝，让我们行动起来，一起给TA送上祝福。";
                     String title = "生活方式互祝";
-                    mShareUtils.setShare(text, "",R.mipmap.share_icon, wx_share_url, title);
+                    mShareUtils.setShare(text, "", R.mipmap.share_icon, wx_share_url, title);
                 }
                 break;
-            case R.id.detail_layout_rank:
-                if (!TextUtils.isEmpty(help_goods_id)) {
-                    Intent intent = new Intent(mContext, LifeRankActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("help_goods_id", help_goods_id);
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, this);
-                }
-                break;
-            case R.id.layout_gooddetail:
-                if (!TextUtils.isEmpty(wx_share_url)) {
-                    RedeemAgain();
-                }
-                break;
-            case R.id.btn_helpskb://送上祝福
-                SkbPayStatus = true;
-                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
-                    if (mDetailHelpDialogUtils == null) {
-                        mDetailHelpDialogUtils = new LifeStyleDetailHelpDialogUtils(mActivity, mHandler, BLESSING);
-                    }
-                    mDetailHelpDialogUtils.initData(super_ability, skb, blessings_list, is_applying_help, mutual_help_money, mutual_help_money_all, SkbPayStatus);
-                    mDetailHelpDialogUtils.showPopupWindow();
-                }
-                break;
-            case R.id.btn_helpcn://送上祝福
-                SkbPayStatus = false;
-                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
-                    if (mDetailHelpDialogUtils == null) {
-                        mDetailHelpDialogUtils = new LifeStyleDetailHelpDialogUtils(mActivity, mHandler, BLESSING);
-                    }
-                    mDetailHelpDialogUtils.initData(super_ability, skb, blessings_list, is_applying_help, mutual_help_money, mutual_help_money_all, SkbPayStatus);
-                    mDetailHelpDialogUtils.showPopupWindow();
-                }
+            case R.id.layout_actiondetail:
+                RedeemAgain();
                 break;
         }
     }
@@ -283,7 +193,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
 
     @Override
     public int bindLayout() {
-        return R.layout.helpwith_lifestyle_detail;
+        return R.layout.helpwith_lifestyle_detailnew;
     }
 
     @Override
@@ -305,24 +215,10 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
 
     @Override
     public void setListener() {
-        layoutGooddetail.setOnClickListener(this);
+        layout_actiondetail.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
         pagetopLayoutRigth.setOnClickListener(this);
-        detailLayoutRank.setOnClickListener(this);
-        btn_helpskb.setOnClickListener(this);
-        btn_helpcn.setOnClickListener(this);
-        ScrowUtil.ScrollViewUpConfig(mainSv);
-        mainSv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-            }
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                mPresent.getCommentList(user_id, help_goods_id, page + 1, pageSize, 2);
-            }
-        });
-
+        detail_tv_jieqi.getBackground().setAlpha(92);
     }
 
     @Override
@@ -371,43 +267,19 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
             LifeStyleDetailAfterBean mDetailAfterBean = (LifeStyleDetailAfterBean) responseBean.getData();
             if (mDetailAfterBean != null) {
                 wx_share_url = mDetailAfterBean.getWx_share_url();
-                LifeStyleDetailItemBean userInfo = mDetailAfterBean.getUser();
-                if (userInfo != null) {
-                    skb = userInfo.getShoukangyuan();
-                    super_ability = userInfo.getSuper_ability();
-                }
                 LifeStyleDetailItemBean help_goodsInfo = mDetailAfterBean.getHelp_goods();
                 if (help_goodsInfo != null) {
                     showTopView(help_goodsInfo);
                     String remark = help_goodsInfo.getRemark();
-                    detailTvDaiyandescribe.setText(remark);
-                    detailTvDaiyantilte.setText("互祝说明");
+                    detail_tv_daiyandescribe.setText(remark);
+                    detail_tv_daiyantilte.setText("互祝说明");
                 }
                 LifeStyleDetailItemBean goodsInfo = mDetailAfterBean.getGoods();
                 action_status = goodsInfo.getStatus();
-
-                List<LifeStyleDetailItemBean> rankings = mDetailAfterBean.getRankings();
-                if (rankings != null && rankings.size() > 0) {
-                    showRankView(rankings);
-                }
-
-                LifeStyleDetailItemBean group = mDetailAfterBean.getGroup();
-                showcommueView(group);
                 if (help_goodsInfo != null) {
                     showGoodView(help_goodsInfo);
                 }
-                blessings_list = mDetailAfterBean.getTemps();
-
-                is_applying_help = mDetailAfterBean.getIs_apply();
-                mutual_help_money = mDetailAfterBean.getApply_money();
-
-                mutual_help_money_all = mDetailAfterBean.getSkb_moneys();
-                if (mutual_help_money_all != null && mutual_help_money_all.size() > 0) {
-                } else {
-                    mutual_help_money_all = new ArrayList<>();
-                }
             }
-            mPresent.getCommentList(user_id, help_goods_id, 1, pageSize, 2);
         }
         firstComIn = false;
     }
@@ -415,110 +287,24 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
 
     @Override
     public void CommentListSuccess(LifeStyleDetailDataBean responseBean, int page_) {
-        String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
-            //这里可能存在bug,如果服务器返回的是200，但是没有数据的时候，页码不应该加1
-            //最好是每次去判断code=200并且服务器返回的数据个数大于0时候才加1
-            LifeStyleDetailAfterBean mDetailAfterBean = (LifeStyleDetailAfterBean) responseBean.getData();
-            if (mDetailAfterBean != null) {
-                List<LifeStyleDetailItemBean> commentList_ = mDetailAfterBean.getList();
-                int size = commentList_ == null ? 0 : commentList_.size();
-                if (page_ == 1) {
-                    commentList.clear();
-                    if (mCommentAdapter != null) {
-                        mCommentAdapter.reloadListView(commentList, true);
-                    }
-                }
-                if (size > 0) {
-                    commentList.addAll(commentList_);
-                    commentView(commentList_);
-                }
-                if (commentList != null && commentList.size() > 0) {
-                    layout_comment.setVisibility(View.VISIBLE);
-                } else {
-                    layout_comment.setVisibility(View.GONE);
-                }
-                if (size < pageSize) {
-                    ScrowUtil.ScrollViewConfigDismiss(mainSv, false);
-                    showNoMoreData(true, detailLvComment);
-                } else {
-                    ScrowUtil.ScrollViewUpConfig(mainSv, false);
-                }
-                page = page_;
-                setFocuse();
-            }
-        }
-        RefreshComplete();
     }
 
-    private void setFocuse() {
-        if (page == 1) {
-            mainSv.post(
-                    new Runnable() {
-                        public void run() {
-                            /**
-                             * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
-                             */
-                            ScrollView scrollview = mainSv.getRefreshableView();
-                            scrollview.smoothScrollTo(0, 0);
-                        }
-                    });
-        }
-    }
 
     /**
      * @param responseBean
      */
     @Override
     public void SendCommentSuccess(LifeStyleCommentDataBean responseBean) {
-        String status = responseBean.getStatus();
-        if (status.equals("400") || status.equals("403")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
-            LifeStyleDetailItemBean mDetailItemBean = (LifeStyleDetailItemBean) responseBean.getData();
-            if (mDetailItemBean != null) {
-                List<LifeStyleDetailItemBean> replay_comments = commentList.get(selectCommentPosition).getReplay_comments();
-                if (replay_comments == null) {
-                    replay_comments = new ArrayList<>();
-                }
-                replay_comments.add(mDetailItemBean);
-                mCommentAdapter.refreshListView(commentList);
-            }
-        }
     }
 
     @Override
     public void delCommentSuccess(ResponseBean responseBean) {
-        String status = responseBean.getStatus();
-        if (status.equals("400") || status.equals("403")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
-            if (commentList != null && commentList.size() > 0) {
-                List<LifeStyleDetailItemBean> replay_comments = commentList.get(del_index).getReplay_comments();
-                if (replay_comments != null && replay_comments.size() > 0) {
-                    for (int i = 0; i < replay_comments.size(); i++) {
-                        if (del_mutual_help_comment_id == replay_comments.get(i).getMutual_help_comment_id()) {
-                            replay_comments.remove(i);
-                            break;
-                        }
-                    }
-                }
-                mCommentAdapter.refreshListView(commentList);
-            }
-        }
     }
 
 
     @Override
     public void ListError() {
-        RefreshComplete();
         ToastUtils.showToast(R.string.net_tishi);
-    }
-
-    private void RefreshComplete() {
-        ListUtils.getInstance().RefreshCompleteS(mainSv);
     }
 
 
@@ -529,273 +315,27 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         String time = help_goodsInfo.getDate();
         detailTvTime.setText(time);
 
-        int buy_type = help_goodsInfo.getBuy_type();
-        if (buy_type == 2) {
-            layout_cn.setVisibility(View.VISIBLE);
-            layout_skb.setVisibility(View.GONE);
-            btn_helpcn.setVisibility(View.VISIBLE);
-            btn_helpskb.setVisibility(View.GONE);
 
-        } else if (buy_type == 3) {
-            layout_cn.setVisibility(View.VISIBLE);
-            layout_skb.setVisibility(View.VISIBLE);
-            btn_helpcn.setVisibility(View.VISIBLE);
-            btn_helpskb.setVisibility(View.VISIBLE);
-        } else {
-            layout_cn.setVisibility(View.GONE);
-            layout_skb.setVisibility(View.VISIBLE);
-            btn_helpcn.setVisibility(View.GONE);
-            btn_helpskb.setVisibility(View.VISIBLE);
-        }
-
-        String super_ability_cumulative_number = help_goodsInfo.getSuper_ability_cumulative_number();
-        detailTvHavelifeenergy.setText(super_ability_cumulative_number);
-        String super_ability_cumulative_price = help_goodsInfo.getSuper_ability_cumulative_price();
-        detailTvHelpnum.setText(super_ability_cumulative_price);
-        String super_ability_total_price = help_goodsInfo.getSuper_ability_total_price();
-        detailTvLifeenergy.setText("" + super_ability_total_price);
         int super_ability_progress = help_goodsInfo.getSuper_ability_progress();
-        if (super_ability_progress >= 100) {
-            btn_helpcn.setVisibility(View.GONE);
-            sendBroadcastsRefreshOrderList();
-        }
-        pbLifeprogressnum.setProgress(super_ability_progress);
+        item_pb_lifeenergynum.setProgress(super_ability_progress);
         if (mProgressUtils == null) {
             mProgressUtils = new LifeStyleListProgressUtils(mActivity);
         }
-        mProgressUtils.showNum(super_ability_progress, pbLifeprogressnum, pbNum);
-        pbLifeprogressnum.setReachedBarColor(getResources().getColor(R.color.engry_btn_bg));
-        ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, pbNum, R.color.engry_btn_bg);
-
-
-        String cumulative_number = help_goodsInfo.getCumulative_number();
-        detailTvHavelifeskb.setText(cumulative_number);
-        String skb_cumulative_price = help_goodsInfo.getSkb_cumulative_price();
-        detailTvHelpskbnum.setText(skb_cumulative_price);
-        String skb_total_price = help_goodsInfo.getSkb_total_price();
-        detailTvLifeskb.setText("" + skb_total_price);
-        progress = help_goodsInfo.getProgress();
-        if (progress >= 100) {
-            btn_helpskb.setVisibility(View.GONE);
-            sendBroadcastsRefreshOrderList();
-        }
-        pbLifeprogressskb.setProgress(progress);
-        mProgressUtils.showNum(progress, pbLifeprogressskb, pbSkbnum);
-        pbLifeprogressskb.setReachedBarColor(getResources().getColor(R.color.red));
-        ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, pbSkbnum, R.color.red);
-    }
-
-    int progress;
-
-    /**
-     * 排行
-     *
-     * @param rankings
-     */
-    private void showRankView(List<LifeStyleDetailItemBean> rankings) {
-        gvAixin.removeAllViews();
-        for (int i = 0; i < rankings.size(); i++) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.helpwith_engry_detail_rank_item, null, false);
-            ImageView iv_top = (ImageView) view.findViewById(R.id.iv_top);
-            ImageView iv_thumb = (ImageView) view.findViewById(R.id.iv_thumb);
-            LinearLayout layout_thumb = (LinearLayout) view.findViewById(R.id.layout_thumb);
-            LifeStyleDetailItemBean mHelpWithInfo = rankings.get(i);
-            if (i == 0) {
-                iv_top.setBackgroundResource(R.mipmap.wisheachdetails_champion);
-                layout_thumb.setBackgroundResource(R.drawable.corners_bg_rank1);
-            } else if (i == 1) {
-                iv_top.setBackgroundResource(R.mipmap.wisheachdetails_firstrunner);
-                layout_thumb.setBackgroundResource(R.drawable.corners_bg_rank2);
-            } else if (i == 2) {
-                iv_top.setBackgroundResource(R.mipmap.wisheachdetails_thebronze);
-                layout_thumb.setBackgroundResource(R.drawable.corners_bg_rank3);
-            }
-            String avatar = mHelpWithInfo.getAvatar();
-            if (!TextUtils.isEmpty(avatar)) {
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, avatar, iv_thumb);
-            } else {
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, R.mipmap.user_default_icon, iv_thumb);
-            }
-            gvAixin.addView(view);
-        }
-    }
-
-
-    /**
-     * 社区
-     */
-    private void showcommueView(LifeStyleDetailItemBean group) {
-        if (group != null
-                && !TextUtils.isEmpty(group.getName())
-                && !TextUtils.isEmpty(group.getCount())) {
-            layoutCommune.setVisibility(View.VISIBLE);
-            String Group_name = group.getGroup_name();
-            String name = group.getName();
-            String Count = group.getCount();
-            GlideDownLoadImage.getInstance().loadCircleImageCommune(mContext, group.getAvatar(), detailIvCommunethumb, ConstantManager.image_angle);
-            detailTvCommunename.setText(Group_name);
-            if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(Count)) {
-                detailTvCommunenum.setText("主任：" + group.getName() + "     社员：" + group.getCount());
-            }
-        } else {
-            layoutCommune.setVisibility(View.GONE);
-        }
+        mProgressUtils.showNum(super_ability_progress, item_pb_lifeenergynum, item_pb_numne);
+        item_pb_lifeenergynum.setReachedBarColor(getResources().getColor(R.color.engry_btn_bg));
+        ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, item_pb_numne, R.color.engry_btn_bg);
 
     }
+
 
     /**
      * 产品
      */
     private void showGoodView(LifeStyleDetailItemBean help_goodsInfo) {
-        GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, help_goodsInfo.getGoods_img(), detailIvGoodthumb, 0);
-        detailTvGoodname.setText(help_goodsInfo.getGoods_name());
-        detail_tv_goodgeshu.setText("  x  " + help_goodsInfo.getApply_goods_number());
-        int buy_type = help_goodsInfo.getBuy_type();
-        if (buy_type == 2) {
-            detailTvGoodnum.setText(help_goodsInfo.getSuper_ability_unit_price() + "超能");
-        } else if (buy_type == 3) {
-            detailTvGoodnum.setText(help_goodsInfo.getSuper_ability_unit_price() + "超能+" + help_goodsInfo.getSkb_unit_price() + "寿康宝");
-        } else {
-            detailTvGoodnum.setText(help_goodsInfo.getSkb_unit_price() + "寿康宝");
-        }
+        GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, help_goodsInfo.getGoods_img(), item_iv_thumb, 0);
+        item_tv_content.setText(help_goodsInfo.getGoods_name());
     }
 
-
-    /**
-     * 评论列表
-     *
-     * @param commentList
-     */
-    private void commentView(List<LifeStyleDetailItemBean> commentList) {
-        if (detailLvComment != null) {
-            detailLvComment.setFocusable(false);
-        }
-        if (mCommentAdapter == null) {
-            mCommentAdapter = new CommentAdapter(mContext, commentList, mHandler);
-            detailLvComment.setAdapter(mCommentAdapter);
-        } else {
-            mCommentAdapter.reloadListView(commentList, false);
-        }
-    }
-
-    ReplyEditPopupUtils mReplyEditUtils;
-    int be_comment_id;
-    public static final int REPLY = 11;
-    public static final int BLESSING = 22;
-    @SuppressLint("HandlerLeak")
-    Handler mHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case ConstantManager.ADDRESS_HANDLE_SETMOREN:
-                    be_comment_id = msg.arg1;
-                    selectCommentPosition = msg.arg2;
-                    if (mReplyEditUtils == null) {
-                        mReplyEditUtils = new ReplyEditPopupUtils(mHandler, REPLY);
-                    }
-                    mReplyEditUtils.popWiw(mActivity, btn_helpskb);
-                    break;
-                case REPLY:
-                    String content = (String) msg.obj;
-                    content = content.replace(" ", "");
-                    mPresent.sendComment(user_id, content, be_comment_id, 2);
-                    break;
-                case BLESSING:
-                    Bundle bundle = msg.getData();
-                    String help_comment_content = bundle.getString("help_comment_content");
-                    String help_goods_skb_money_id = bundle.getString("help_goods_skb_money_id");
-                    int skb_price = bundle.getInt("skb_price");
-                    int help_type;
-                    if (SkbPayStatus) {
-                        if (Double.valueOf(skb) >= skb_price) {
-                            help_type = 1;
-                            mPresent.lifeStylePayHelp(user_id, help_comment_content, help_goods_skb_money_id, help_goods_id, skb_price, help_type);
-                        } else {
-                            showSKBDialog();
-                        }
-                    } else {
-                        if (Double.valueOf(super_ability) >= skb_price) {
-                            help_type = 2;
-                            mPresent.lifeStylePayHelp(user_id, help_comment_content, help_goods_skb_money_id, help_goods_id, skb_price, help_type);
-                        } else {
-                            showSKBDialog();
-                        }
-                    }
-
-                    break;
-                case ConstantManager.ADDRESS_HANDLE_DEL:
-                    del_mutual_help_comment_id = msg.arg1;
-                    del_index = msg.arg2;
-                    mPresent.delComment(user_id, del_mutual_help_comment_id);
-                    break;
-            }
-        }
-    };
-    MyDialog redBaoDialog;
-    int del_mutual_help_comment_id;
-    int del_index;
-    TextView tv_cont1, tv_cont2, btn_gohelp, btn_jihuo;
-
-    /**
-     * 寿康宝不足提示
-     */
-    public void showSKBDialog() {
-        if (redBaoDialog == null) {
-            redBaoDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_lifestyledetail_notskb);// 创建Dialog并设置样式主题
-            redBaoDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = redBaoDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            redBaoDialog.show();
-            WindowManager m = getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = redBaoDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 5 / 6; //宽度设置为屏幕
-            redBaoDialog.getWindow().setAttributes(p); //设置生效
-            LinearLayout layout_cancel = (LinearLayout) redBaoDialog.findViewById(R.id.layout_cancel);
-            btn_gohelp = (TextView) redBaoDialog.findViewById(R.id.btn_gohelp);
-            tv_cont1 = (TextView) redBaoDialog.findViewById(R.id.tv_cont1);
-            tv_cont2 = (TextView) redBaoDialog.findViewById(R.id.tv_cont2);
-            btn_jihuo = (TextView) redBaoDialog.findViewById(R.id.btn_jihuo);
-            layout_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    redBaoDialog.dismiss();
-                }
-            });
-
-            btn_gohelp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    redBaoDialog.dismiss();
-                    Intent intent = new Intent(mContext, HelpWithEnergyActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("skiptype", "lifedetalitohelp");
-                    startActivity(intent);
-                }
-            });
-            btn_jihuo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    redBaoDialog.dismiss();
-                    Intent intent = new Intent(mContext, ActivatEnergyActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                }
-            });
-        } else {
-            redBaoDialog.show();
-        }
-        if (SkbPayStatus) {
-            tv_cont1.setText("您的寿康宝余额不足");
-            tv_cont2.setText("请多用生命能量互祝噢～");
-            btn_gohelp.setVisibility(View.VISIBLE);
-            btn_jihuo.setText("激活生命能量");
-        } else {
-            tv_cont1.setText("您的超级生命能量余额不足");
-            tv_cont2.setText("快去激活吧～");
-            btn_gohelp.setVisibility(View.GONE);
-            btn_jihuo.setText("立即激活");
-        }
-    }
 
     /**
      * 送上祝福，生成订单的回调
@@ -804,77 +344,11 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
      */
     @Override
     public void PayHelpSuccess(SKBPayDataBean responseBean) {
-        String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            mPresent.getDetailData(user_id, help_goods_id);
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
-            ToastUtils.showToast(responseBean.getMsg());
-            SKBPayAfterBean mSKBPayAfterBean = responseBean.getData();
-            helpSkipSuccess(mSKBPayAfterBean);
-        }
-    }
-
-    /**
-     * 祝福成功，显示红包弹层
-     */
-    private void helpSkipSuccess(SKBPayAfterBean mSKBPayAfterBean) {
-        sendBroadcastRefreshList();
-        sendBroadcastsRefreshOrderList();
-
-        Intent intent = new Intent(mActivity, LifeStylePaySuccessActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        if (mSKBPayAfterBean != null) {
-            intent.putExtra("sponsor_user_name", mSKBPayAfterBean.getSponsor_user_name());
-            intent.putExtra("receive_user_name", mSKBPayAfterBean.getReceive_user_name());
-            intent.putExtra("skb_price", mSKBPayAfterBean.getSkb_price());
-            intent.putExtra("help_goods_id", help_goods_id);
-            intent.putExtra("SkbPayStatus", SkbPayStatus);
-        } else {
-            intent.putExtra("sponsor_user_name", "");
-            intent.putExtra("receive_user_name", "");
-            intent.putExtra("skb_price", "");
-            intent.putExtra("help_goods_id", help_goods_id);
-        }
-        startActivity(intent);
-        doFinish();
-    }
-
-    /**
-     * 祝福完成后刷新互祝列表
-     */
-    private void sendBroadcastRefreshList() {
-        Intent intent = new Intent();
-        intent.setAction(ConstantManager.BroadcastReceiver_ENGRYLIST_ACTION);
-        intent.putExtra("errCode", WXPayEntryActivity.PAYDETAIL_SHUAXIN);
-        sendBroadcast(intent);//发送普通广播
-    }
-
-    /**
-     * 祝福完成后刷新订单列表
-     */
-    private void sendBroadcastsRefreshOrderList() {
-        if (is_applying_help > 0 || progress > 90) {
-            OrderListActivity.editOrderStatus = true;
-        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        /**
-         * android.view.WindowLeaked的解决办法
-         * 解决方法：
-         关闭(finish)某个Activity前，要确保附属在上面的Dialog或PopupWindow已经关闭(dismiss)了。
-         */
-        if (mDetailHelpDialogUtils != null && mDetailHelpDialogUtils.selectDialog != null) {
-            mDetailHelpDialogUtils.selectDialog.dismiss();
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
 
