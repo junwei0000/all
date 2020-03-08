@@ -265,7 +265,7 @@
                 android:layout_height="match_parent"
                 android:cacheColorHint="@color/page_bg"
                 android:divider="@null"
-                android:dividerHeight="@dimen/padd_leftright"
+                android:dividerHeight="@dimen/dp15"
                 android:fadeScrollbars="false"
                 android:fadingEdge="none"
                 android:visibility="gone"

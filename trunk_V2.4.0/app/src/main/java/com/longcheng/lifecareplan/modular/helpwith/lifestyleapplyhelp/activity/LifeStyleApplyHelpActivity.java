@@ -393,7 +393,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("help_goods_id", "" + redirectMsgId);
+                    intent.putExtra("help_wares_id", "" + redirectMsgId);
                     startActivity(intent);
                     ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                     doFinish();

@@ -6,17 +6,17 @@
     <!---->
 
     <ImageView
-        android:layout_marginTop="@dimen/dp10"
         android:id="@+id/item_iv_name"
         android:layout_width="@dimen/dp30"
         android:layout_height="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp15"
         android:background="@mipmap/user_default_icon" />
 
     <TextView
-        android:layout_marginBottom="@dimen/dp10"
         android:id="@+id/item_tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp15"
         android:layout_marginTop="@dimen/dp2"
         android:gravity="center"
         android:singleLine="true"
