@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -34,6 +35,7 @@ import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnerg
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.ReplyEditPopupUtils;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleListProgressUtils;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.adapter.CommentAdapter;
+import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.adapter.DetailJieQiAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleCommentDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailDataBean;
@@ -54,6 +56,7 @@ import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
+import com.longcheng.lifecareplan.utils.myview.MyScrollView;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
@@ -86,8 +89,8 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     TextView detailTvHelpname;
     @BindView(R.id.detail_tv_time)
     TextView detailTvTime;
-    @BindView(R.id.layout_jieqi)
-    LinearLayout layout_jieqi;
+    @BindView(R.id.iv_jieqi)
+    ImageView iv_jieqi;
     @BindView(R.id.detail_tv_jieqi)
     TextView detail_tv_jieqi;
     @BindView(R.id.layout_actiondetail)
@@ -106,6 +109,10 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
     TextView detail_tv_daiyantilte;
     @BindView(R.id.detail_tv_daiyandescribe)
     TextView detail_tv_daiyandescribe;
+    @BindView(R.id.lv_jieqi)
+    MyListView lv_jieqi;
+    @BindView(R.id.main_sv)
+    MyScrollView main_sv;
 
 
     LifeStyleListProgressUtils mProgressUtils;
@@ -198,7 +205,7 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         pagetopIvRigth.setVisibility(View.GONE);
         detail_tv_jieqi.getBackground().setAlpha(92);
         int hei = (int) (DensityUtil.screenWith(mContext) / 2.344);
-        layout_jieqi.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hei));
+        iv_jieqi.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, hei));
     }
 
     @Override
@@ -251,11 +258,30 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                 if (help_goodsInfo != null) {
                     showTopView(help_goodsInfo);
                 }
+                ArrayList<LifeStyleDetailAfterBean> orders = mDetailAfterBean.getOrders();
+                DetailJieQiAdapter mJieQiAdapter = new DetailJieQiAdapter(mContext, orders);
+                lv_jieqi.setAdapter(mJieQiAdapter);
             }
         }
         firstComIn = false;
+        setFocuse();
+        lv_jieqi.setVisibility(View.VISIBLE);
     }
 
+    private void setFocuse() {
+        main_sv.post(
+                new Runnable() {
+                    public void run() {
+                        /**
+                         * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
+                         */
+                        if (main_sv != null) {
+                            main_sv.smoothScrollTo(0, 0);
+                        }
+
+                    }
+                });
+    }
 
     @Override
     public void CommentListSuccess(LifeStyleDetailDataBean responseBean, int page_) {
@@ -300,9 +326,10 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         item_pb_lifeenergynum.setReachedBarColor(getResources().getColor(R.color.engry_btn_bg));
         ColorChangeByTime.getInstance().changeDrawableToClolor(mContext, item_pb_numne, R.color.engry_btn_bg);
 
-
+        GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, help_goodsInfo.getSolar_term_img(), iv_jieqi, 0);
         GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, help_goodsInfo.getShop_goods_img(), item_iv_thumb, 0);
-        item_tv_content.setText(help_goodsInfo.getShop_goods_name());
+        item_tv_content.setText(help_goodsInfo.getShop_goods_name() + "  " + help_goodsInfo.getShop_goods_price_name());
+        Log.e("ResponseBody", "help_goodsInfo.getCumulative_number()==" + help_goodsInfo.getCumulative_number());
         item_tv_helpnum.setText("" + help_goodsInfo.getCumulative_number());
     }
 

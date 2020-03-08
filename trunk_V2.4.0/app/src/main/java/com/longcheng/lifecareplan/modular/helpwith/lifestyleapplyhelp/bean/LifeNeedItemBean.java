@@ -13,7 +13,7 @@ import java.util.List;
 public class LifeNeedItemBean {
     @SerializedName(value = "skbGoodsInfo", alternate = {"shopGoods"})
     private LifeNeedItemBean skbGoodsInfo;
-    @SerializedName(value = "name", alternate = {"goodsName"})
+    @SerializedName(value = "name", alternate = {"goods_name"})
     private String name;
     private String price_name;
     @SerializedName("apply_help_max_limit")

@@ -21,6 +21,7 @@ public class LifeStyleDetailAfterBean {
     private int progress;
     private String cumulative_number;
     private String des_content;
+    private String solar_term_img;
 
     private int shop_goods_id;
     private String shop_goods_name;
@@ -32,6 +33,7 @@ public class LifeStyleDetailAfterBean {
     private String solar_terms_name;
     ArrayList<LifeStyleDetailAfterBean> list;
     private String avatar;
+    private String sponsor_user_name;
 
 
     @SerializedName("title")
@@ -40,6 +42,22 @@ public class LifeStyleDetailAfterBean {
     private String desc;
     @SerializedName("wx_share_url")
     private String wx_share_url;
+
+    public String getSponsor_user_name() {
+        return sponsor_user_name;
+    }
+
+    public void setSponsor_user_name(String sponsor_user_name) {
+        this.sponsor_user_name = sponsor_user_name;
+    }
+
+    public String getSolar_term_img() {
+        return solar_term_img;
+    }
+
+    public void setSolar_term_img(String solar_term_img) {
+        this.solar_term_img = solar_term_img;
+    }
 
     public int getShop_goods_id() {
         return shop_goods_id;

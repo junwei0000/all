@@ -207,7 +207,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                 if (info != null) {
                     skb_price = mPeopleAfterBean.getSkb_price();
                     apply_help_price = mPeopleAfterBean.getApply_help_price();
-                    tvAction.setText(mPeopleAfterBean.getName()+"   "+mPeopleAfterBean.getPrice_name());
+                    tvAction.setText(info.getName()+"   "+mPeopleAfterBean.getPrice_name());
                     super_ability = mPeopleAfterBean.getChatuser().getSuper_ability();
                     shoukangyuan = mPeopleAfterBean.getChatuser().getShoukangyuan();
                 }

@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!---->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_graybian_yin"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.longcheng.lifecareplan.utils.myview.MyGridView
+            android:id="@+id/gv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="@dimen/dp15"
+            android:numColumns="6"
+            android:scrollbars="none"
+            android:verticalSpacing="@dimen/dp15" />
+
+        <TextView
+            android:id="@+id/item_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="已收到1份祝福"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_tv_jieqiname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/detail_jieqitop_bg"
+        android:gravity="center"
+        android:text="节气祝福"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_zhu_size" />
+</RelativeLayout>
