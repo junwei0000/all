@@ -125,10 +125,8 @@
             <!-- h5打开app配置。。。在MAIN的同级处加入过滤器，不然会导致应用图标在桌面消失等问题 -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="jp.app"
                     android:pathPrefix="/openwith"

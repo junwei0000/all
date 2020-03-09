@@ -477,13 +477,11 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
                 detailTvRight.setVisibility(View.VISIBLE);
                 detailTvCenter.setText("查看物流");
                 detailTvRight.setText("确认收货");
-                detailTvRight.setBackgroundResource(R.drawable.corners_bg_redbian);
-                detailTvRight.setTextColor(getResources().getColor(R.color.blue));
+                detailTvRight.setBackgroundColor(getResources().getColor(R.color.blue));
             } else if (bottom_status == 20) {// 新版 生活方式已完成 （显示再次申请）
                 detailTvCenter.setVisibility(View.VISIBLE);
                 detailTvCenter.setText("再次申请");
-                detailTvCenter.setBackgroundResource(R.drawable.corners_bg_redbian);
-                detailTvCenter.setTextColor(getResources().getColor(R.color.blue));
+                detailTvCenter.setBackgroundColor(getResources().getColor(R.color.blue));
             }
             /**
              * ***********************end*********************
