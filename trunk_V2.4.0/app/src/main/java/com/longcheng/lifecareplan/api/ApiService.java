@@ -598,13 +598,12 @@ public interface ApiService {
                                            @Query("token") String token);
     //********************订单*************************
 
-    @FormUrlEncoded
-    @POST(Config.VERSION + "order/lists")
-    Observable<OrderListDataBean> getOrderList(@Field("user_id") String user_id,
-                                               @Field("type") int type,
-                                               @Field("page") int page,
-                                               @Field("page_size") int page_size,
-                                               @Field("token") String token);
+    @GET(Config.VERSION + "order/lists")
+    Observable<OrderListDataBean> getOrderList(@Query("user_id") String user_id,
+                                               @Query("type") int type,
+                                               @Query("page") int page,
+                                               @Query("page_size") int page_size,
+                                               @Query("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "order/abilityGrateful")

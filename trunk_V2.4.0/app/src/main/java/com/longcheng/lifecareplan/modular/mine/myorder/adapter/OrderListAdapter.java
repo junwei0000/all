@@ -276,6 +276,21 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
                 mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
                 mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
             }
+
+
+            else if (bottom_status == 18) {// 新版 生活方式已完成 （//查看物流  //确认收货）
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_right.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setText("查看物流");
+                mHolder.item_tv_right.setText("确认收货");
+                mHolder.item_tv_right.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_right.setTextColor(context.getResources().getColor(R.color.blue));
+            }else if (bottom_status == 20) {// 新版 生活方式已完成 （显示再次申请）
+                mHolder.item_tv_center.setVisibility(View.VISIBLE);
+                mHolder.item_tv_center.setText("再次申请");
+                mHolder.item_tv_center.setBackgroundResource(R.drawable.corners_bg_redbian);
+                mHolder.item_tv_center.setTextColor(context.getResources().getColor(R.color.blue));
+            }
             /**
              * ***********************end*********************
              */
@@ -416,6 +431,12 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         } else if (bottom_status == 17) {
             lookLogistics(mOrderItemBean.getOrder_id());
         }
+
+        else if (bottom_status == 18) {
+            lookLogistics(mOrderItemBean.getOrder_id());
+        } else if (bottom_status == 20) {
+            ApplyAgain(mOrderItemBean.getAction_status(), mOrderItemBean.getType(), mOrderItemBean.getAction_id(), mOrderItemBean.getGoods_id(), mOrderItemBean.getShop_goods_price_id());
+        }
     }
 
     private void setRightClickSkip(OrderItemBean mOrderItemBean) {
@@ -453,6 +474,8 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         } else if (bottom_status == 14) {
             ApplyAgain(mOrderItemBean.getAction_status(), mOrderItemBean.getType(), mOrderItemBean.getAction_id(), mOrderItemBean.getGoods_id(), mOrderItemBean.getShop_goods_price_id());
         } else if (bottom_status == 17) {
+            ConfirmReceipt(order_id);
+        }else if (bottom_status == 18) {
             ConfirmReceipt(order_id);
         }
     }
@@ -503,7 +526,7 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
                 LocalBroadcastManager.getInstance(ExampleApplication.getContext()).sendBroadcast(intents);
                 ActivityManager.getScreenManager().popAllActivityOnlyMain();
             }
-        } else if (type == 3) {
+        } else if (type == 3||type == 6) {
             Intent intent = new Intent(context, LifeStyleApplyHelpActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("goods_id", "" + goodsid);
@@ -534,11 +557,6 @@ public class OrderListAdapter extends BaseAdapterHelper<OrderItemBean> {
         if (type == 2 || type == 4) {
             mHandler.sendEmptyMessage(ConstantManager.ORDER_HANDLE_SendBlessing);
         } else {
-            Message message = new Message();
-            message.what = ConstantManager.ORDER_HANDLE_SendBlessingLifeStyle;
-            message.obj = goods_id + "";
-            mHandler.sendMessage(message);
-            message = null;
         }
     }
 

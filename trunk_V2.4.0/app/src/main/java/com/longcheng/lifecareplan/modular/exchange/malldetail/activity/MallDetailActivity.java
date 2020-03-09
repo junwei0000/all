@@ -41,21 +41,20 @@ import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.GoodsDetailDa
 import com.longcheng.lifecareplan.modular.exchange.shopcart.activity.ShopCartActivity;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity.LifeStyleApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
+import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.utils.myview.MyGridView;
+import com.longcheng.lifecareplan.utils.myview.MyScrollView;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
-import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesUtil;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
-import com.longcheng.lifecareplan.utils.myview.MyGridView;
-import com.longcheng.lifecareplan.utils.myview.MyScrollView;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView;
 
@@ -220,10 +219,6 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                     showLevelDialog(applyHelpMinStarlevel);
                     break;
                 }
-//                if (isExistsHelpGoods == 1) {
-//                    showNotOverDialog();
-//                    break;
-//                }
                 skipApplyHelp = true;
                 if (goodsGuiGeList != null && goodsGuiGeList.size() > 1) {
                     showGuiGeDialog();
@@ -712,39 +707,6 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
         tv_xingji.setText("CHO" + sd + "星等级");
     }
 
-    MyDialog notoverDialog;
-
-    /**
-     * 还有未完成任务
-     */
-    public void showNotOverDialog() {
-        if (notoverDialog == null) {
-            notoverDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_goodsdetail_notover);// 创建Dialog并设置样式主题
-            notoverDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
-            Window window = notoverDialog.getWindow();
-            window.setGravity(Gravity.CENTER);
-            notoverDialog.show();
-            WindowManager m = getWindowManager();
-            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
-            WindowManager.LayoutParams p = notoverDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-            p.width = d.getWidth() * 4 / 5; //宽度设置为屏幕
-            notoverDialog.getWindow().setAttributes(p); //设置生效
-            TextView btn_know = (TextView) notoverDialog.findViewById(R.id.btn_know);
-            btn_know.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    notoverDialog.dismiss();
-                    Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("help_goods_id", help_goods_id);
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                }
-            });
-        } else {
-            notoverDialog.show();
-        }
-    }
 
     MyDialog CertificatDialog;
 

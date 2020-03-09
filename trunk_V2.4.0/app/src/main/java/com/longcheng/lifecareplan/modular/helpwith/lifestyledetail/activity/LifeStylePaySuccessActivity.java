@@ -39,7 +39,7 @@ public class LifeStylePaySuccessActivity extends BaseActivity {
     TextView btn_look;
     @BindView(R.id.btn_backmall)
     TextView btn_backmall;
-    private String help_goods_id;
+    private String help_wares_id;
 
     @Override
     public void onClick(View v) {
@@ -47,7 +47,7 @@ public class LifeStylePaySuccessActivity extends BaseActivity {
             case R.id.btn_look:
                 Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("help_goods_id", help_goods_id);
+                intent.putExtra("help_wares_id", help_wares_id);
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 doFinish();
@@ -91,7 +91,7 @@ public class LifeStylePaySuccessActivity extends BaseActivity {
     @Override
     public void initDataAfter() {
         Intent intent = getIntent();
-        help_goods_id = intent.getStringExtra("help_goods_id");
+        help_wares_id = intent.getStringExtra("help_wares_id");
         String sponsor_user_name = intent.getStringExtra("sponsor_user_name");
         String receive_user_name = intent.getStringExtra("receive_user_name");
         String skb_price = intent.getStringExtra("skb_price");

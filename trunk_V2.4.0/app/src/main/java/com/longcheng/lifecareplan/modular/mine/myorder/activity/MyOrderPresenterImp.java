@@ -5,11 +5,9 @@ import android.util.Log;
 import com.longcheng.lifecareplan.api.Api;
 import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderListDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -138,34 +136,6 @@ public class MyOrderPresenterImp<T> extends MyOrderContract.Presenter<MyOrderCon
                     public void accept(ActionDataBean responseBean) throws Exception {
                         mView.dismissDialog();
                         mView.getNeedHelpNumberTaskSuccess(responseBean);
-                        Log.e("Observable", "" + responseBean.toString());
-                    }
-                }, new io.reactivex.functions.Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        mView.dismissDialog();
-                        mView.ListError();
-                    }
-                });
-
-    }
-
-    /**
-     * 生活方式获取申请跳转-送祝福
-     *
-     * @param user_id
-     * @param good_id
-     */
-    public void getLifeNeedHelpNumberTaskSuccess(String user_id, String good_id) {
-        mView.showDialog();
-        Observable<LifeNeedDataBean> observable = Api.getInstance().service.getLifeNeedHelpNumberTask(user_id, good_id, ExampleApplication.token);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new io.reactivex.functions.Consumer<LifeNeedDataBean>() {
-                    @Override
-                    public void accept(LifeNeedDataBean responseBean) throws Exception {
-                        mView.dismissDialog();
-                        mView.getLifeStyleNeedHelpNumberTaskSuccess(responseBean);
                         Log.e("Observable", "" + responseBean.toString());
                     }
                 }, new io.reactivex.functions.Consumer<Throwable>() {

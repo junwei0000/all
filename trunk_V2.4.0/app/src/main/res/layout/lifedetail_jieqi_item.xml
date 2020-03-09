@@ -13,21 +13,23 @@
 
         <com.longcheng.lifecareplan.utils.myview.MyGridView
             android:id="@+id/gv_list"
+            style="@style/view_margintopbottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:horizontalSpacing="@dimen/dp15"
             android:numColumns="6"
             android:scrollbars="none"
-            android:verticalSpacing="@dimen/dp15" />
+            android:verticalSpacing="@dimen/jianJu" />
 
         <TextView
             android:id="@+id/item_tv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@mipmap/detail_jieqi_munbg"
             android:gravity="center"
             android:text="已收到1份祝福"
             android:textColor="@color/red"
-            android:textSize="@dimen/text_zhu_size" />
+            android:textSize="@dimen/text_contents_size" />
     </LinearLayout>
 
     <TextView
@@ -39,5 +41,5 @@
         android:gravity="center"
         android:text="节气祝福"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_zhu_size" />
+        android:textSize="@dimen/text_contents_size" />
 </RelativeLayout>

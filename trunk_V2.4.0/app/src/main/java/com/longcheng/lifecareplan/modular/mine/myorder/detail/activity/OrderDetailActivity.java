@@ -26,10 +26,7 @@ import com.longcheng.lifecareplan.modular.helpwith.autohelp.activity.AutoHelpH5A
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.activity.LifeStyleApplyHelpActivity;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
 import com.longcheng.lifecareplan.modular.mine.myaddress.activity.AddressAddActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
@@ -44,9 +41,9 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import butterknife.BindView;
@@ -147,11 +144,11 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
                     intent.putExtra("html_url", "" + mOrderItemBean.getKnp_info_url());
                     startActivity(intent);
                 } else {//商品详情
-                    if (type == 3) {
-                        if (Bottom_status != 0 && Bottom_status != 8 && Bottom_status != -1) {
+                    if (type == 3 || type == 6) {
+                        if (type == 6 && Bottom_status != 0 && Bottom_status != 8 && Bottom_status != -1) {
                             Intent intent = new Intent(mContext, LifeStyleDetailActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            intent.putExtra("help_goods_id", mOrderItemBean.getHelp_goods_id());
+                            intent.putExtra("help_wares_id", mOrderItemBean.getHelp_wares_id());
                             startActivity(intent);
                             ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                         }
@@ -277,64 +274,6 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         }
     }
 
-    private int is_read = 1;//是否已读： 1 已读
-    private int need_help_number = 1;//数量
-    /**
-     * 任务ID
-     */
-    String redirectMsgId;
-
-    @Override
-    public void getLifeStyleNeedHelpNumberTaskSuccess(LifeNeedDataBean responseBean) {
-        String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
-            LifeNeedItemBean mPeopleAfterBean = responseBean.getData();
-            if (mPeopleAfterBean != null) {
-                need_help_number = mPeopleAfterBean.getNeedhelpGoodsnumber();
-                is_read = mPeopleAfterBean.getIs_read();
-                if (need_help_number > 0) {
-                    LifeNeedItemBean appointHelpGoods = mPeopleAfterBean.getAppointHelpGoods();
-                    if (appointHelpGoods != null) {
-                        redirectMsgId = appointHelpGoods.getRedirectMsgId();//互祝help_goods_id
-                    }
-                } else if (is_read == 0 && need_help_number == 0) {
-                    LifeNeedItemBean appointHelpGoods = mPeopleAfterBean.getApplySuccess();
-                    if (appointHelpGoods != null) {
-                        redirectMsgId = appointHelpGoods.getRedirectMsgId();//自己help_goods_id
-                    }
-                }
-                Intent intent;
-                if (need_help_number > 0) {
-                    //申请成功后做任务跳转msgid   0：跳转到列表页   非0：跳转到行动详情页
-                    if (redirectMsgId.equals("0")) {
-                        intent = new Intent(mContext, LifeStyleActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("skiptype", "LifeApplyHelp");
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                    } else {
-                        intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("help_goods_id", "" + redirectMsgId);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                    }
-                } else {
-                    intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("help_goods_id", "" + redirectMsgId);
-                    startActivity(intent);
-                    ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                    doFinish();
-                }
-
-            }
-
-        }
-    }
-
     @Override
     public void editSuccess(EditDataBean responseBean) {
         String status = responseBean.getStatus();
@@ -368,7 +307,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
     CertDialogUtils mCertDialogUtils;
 
     private void sendBroadcastsRefreshList() {
-        OrderListActivity.editOrderStatus=true;
+        OrderListActivity.editOrderStatus = true;
     }
 
     /**
@@ -533,6 +472,18 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
                 tv_rightimg.setVisibility(View.VISIBLE);
                 detailTvCenter.setText("查看物流");
                 detailTvRight.setText("确认收货");
+            } else if (bottom_status == 18) {// 新版 生活方式已完成 （//查看物流  //确认收货）
+                detailTvCenter.setVisibility(View.VISIBLE);
+                detailTvRight.setVisibility(View.VISIBLE);
+                detailTvCenter.setText("查看物流");
+                detailTvRight.setText("确认收货");
+                detailTvRight.setBackgroundResource(R.drawable.corners_bg_redbian);
+                detailTvRight.setTextColor(getResources().getColor(R.color.blue));
+            } else if (bottom_status == 20) {// 新版 生活方式已完成 （显示再次申请）
+                detailTvCenter.setVisibility(View.VISIBLE);
+                detailTvCenter.setText("再次申请");
+                detailTvCenter.setBackgroundResource(R.drawable.corners_bg_redbian);
+                detailTvCenter.setTextColor(getResources().getColor(R.color.blue));
             }
             /**
              * ***********************end*********************
@@ -567,7 +518,7 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             int height = DensityUtil.dip2px(mContext, 50);
             itemIvGoodthumb.setLayoutParams(new LinearLayout.LayoutParams(width, height));
             itemIvGoodtypeimg.setBackgroundResource(R.mipmap.activat_icon);
-            itemTvGoodnum.setText(price+"生命能量");
+            itemTvGoodnum.setText(price + "生命能量");
             itemTvGoodnum.setTextColor(mContext.getResources().getColor(R.color.mediumseagreen));
         } else {
             GlideDownLoadImage.getInstance().loadCircleImageRoleGoods(mContext, mOrderItemBean.getImage(), itemIvGoodthumb, ConstantManager.image_angle);
@@ -700,6 +651,10 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
             Thanksgiving(mOrderItemBean.getOrder_id(), mOrderItemBean.getType());
         } else if (bottom_status == 17) {
             lookLogistics(mOrderItemBean.getOrder_id());
+        } else if (bottom_status == 18) {
+            lookLogistics(mOrderItemBean.getOrder_id());
+        } else if (bottom_status == 20) {
+            ApplyAgain();
         }
     }
 
@@ -739,6 +694,8 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         } else if (bottom_status == 14) {
             ApplyAgain();
         } else if (bottom_status == 17) {
+            ConfirmReceipt(order_id);
+        } else if (bottom_status == 18) {
             ConfirmReceipt(order_id);
         }
     }
@@ -841,7 +798,6 @@ public class OrderDetailActivity extends BaseActivityMVP<DetailContract.View, De
         if (type == 2 || type == 4) {
             mPresent.getNeedHelpNumberTask(user_id);
         } else {
-            mPresent.getLifeNeedHelpNumberTaskSuccess(user_id, mOrderItemBean.getGoods_id() + "");
         }
     }
 

@@ -26,6 +26,7 @@ public class DetailAfterBean implements Serializable {
     private String h_user_id;
     private String msg_id;
     private String help_goods_id;
+    private String help_wares_id;
     private String order_status;
     private String shipping_status;
     private int type;//订单类型	1商城订单 2 生命能量订单 3 生活方式互祝订单,4 康农工程
@@ -58,6 +59,14 @@ public class DetailAfterBean implements Serializable {
     private String deposit_str;
 
     private int is_show_care;//1 显示提现
+
+    public String getHelp_wares_id() {
+        return help_wares_id;
+    }
+
+    public void setHelp_wares_id(String help_wares_id) {
+        this.help_wares_id = help_wares_id;
+    }
 
     public String getSuper_ability() {
         return super_ability;

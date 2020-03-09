@@ -21,11 +21,6 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleActivity;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity.LifeStyleDetailActivity;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.myorder.adapter.OrderListAdapter;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderAfterBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.bean.OrderItemBean;
@@ -37,8 +32,8 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.view.FooterNoMoreData;
 
@@ -280,9 +275,6 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
                 case ConstantManager.ORDER_HANDLE_SendBlessing:
                     mPresent.getNeedHelpNumberTask(user_id);
                     break;
-                case ConstantManager.ORDER_HANDLE_SendBlessingLifeStyle:
-                    mPresent.getLifeNeedHelpNumberTaskSuccess(user_id, order_id + "");
-                    break;
                 case ConstantManager.ORDER_HANDLE_TiXian:
                     mPresent.careReceiveOrder(user_id, order_id);
                     break;
@@ -308,59 +300,6 @@ public abstract class BaseOrderFrag extends BaseListFrag<MyOrderContract.View, M
     }
 
     CertDialogUtils mCertDialogUtils;
-    private int is_read = 1;//是否已读： 1 已读
-    private int need_help_number = 1;//数量
-    /**
-     * 任务ID
-     */
-    String redirectMsgId;
-
-    @Override
-    public void getLifeStyleNeedHelpNumberTaskSuccess(LifeNeedDataBean responseBean) {
-        String status = responseBean.getStatus();
-        if (status.equals("400")) {
-            ToastUtils.showToast(responseBean.getMsg());
-        } else if (status.equals("200")) {
-            LifeNeedItemBean mPeopleAfterBean = responseBean.getData();
-            if (mPeopleAfterBean != null) {
-                need_help_number = mPeopleAfterBean.getNeedhelpGoodsnumber();
-                is_read = mPeopleAfterBean.getIs_read();
-                if (need_help_number > 0) {
-                    LifeNeedItemBean appointHelpGoods = mPeopleAfterBean.getAppointHelpGoods();
-                    if (appointHelpGoods != null) {
-                        redirectMsgId = appointHelpGoods.getRedirectMsgId();//互祝help_goods_id
-                    }
-                } else if (is_read == 0 && need_help_number == 0) {
-                    LifeNeedItemBean appointHelpGoods = mPeopleAfterBean.getApplySuccess();
-                    if (appointHelpGoods != null) {
-                        redirectMsgId = appointHelpGoods.getRedirectMsgId();//自己help_goods_id
-                    }
-                }
-                Intent intent;
-                if (need_help_number > 0) {
-                    //申请成功后做任务跳转msgid   0：跳转到列表页   非0：跳转到行动详情页
-                    if (redirectMsgId.equals("0")) {
-                        intent = new Intent(mContext, LifeStyleActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("skiptype", "LifeApplyHelp");
-                        startActivity(intent);
-                    } else {
-                        intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("help_goods_id", "" + redirectMsgId);
-                        startActivity(intent);
-                    }
-                } else {
-                    intent = new Intent(mContext, LifeStyleDetailActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.putExtra("help_goods_id", "" + redirectMsgId);
-                    startActivity(intent);
-                }
-
-            }
-
-        }
-    }
 
     @Override
     public void ListError() {

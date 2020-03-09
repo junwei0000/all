@@ -4,7 +4,6 @@ import com.longcheng.lifecareplan.base.BaseModel;
 import com.longcheng.lifecareplan.base.BasePresent;
 import com.longcheng.lifecareplan.base.BaseView;
 import com.longcheng.lifecareplan.modular.helpwith.applyhelp.bean.ActionDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyleapplyhelp.bean.LifeNeedDataBean;
 import com.longcheng.lifecareplan.modular.mine.myorder.detail.bean.DetailDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 
@@ -20,8 +19,6 @@ public interface DetailContract {
         void ListSuccess(DetailDataBean responseBean);
 
         void getNeedHelpNumberTaskSuccess(ActionDataBean responseBean);
-
-        void getLifeStyleNeedHelpNumberTaskSuccess(LifeNeedDataBean responseBean);
 
         void editSuccess(EditDataBean responseBean);
 

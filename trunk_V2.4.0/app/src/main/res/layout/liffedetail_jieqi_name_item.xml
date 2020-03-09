@@ -16,7 +16,6 @@
         android:id="@+id/item_tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp15"
         android:layout_marginTop="@dimen/dp2"
         android:gravity="center"
         android:singleLine="true"
