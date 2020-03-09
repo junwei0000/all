@@ -113,7 +113,7 @@
                             android:paddingBottom="@dimen/img_setTextcenter"
                             android:text="产品详情"
                             android:textColor="@color/text_noclick_color"
-                            android:textSize="@dimen/text_dp12_size" />
+                            android:textSize="@dimen/text_zhu_size" />
 
                         <ImageView
                             android:layout_width="wrap_content"
