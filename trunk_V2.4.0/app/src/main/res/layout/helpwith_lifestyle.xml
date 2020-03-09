@@ -68,7 +68,6 @@
     <!---->
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/layout_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
