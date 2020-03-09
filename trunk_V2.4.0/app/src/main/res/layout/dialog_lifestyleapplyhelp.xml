@@ -26,14 +26,6 @@
                 android:textSize="@dimen/text_biaoTi_size"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/detailhelp_tv_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp3"
-                android:text="(超级生命能量80% + 寿康宝20%)"
-                android:textColor="@color/text_healthcontents_color"
-                android:textSize="@dimen/text_zhu_size" />
         </LinearLayout>
 
         <LinearLayout
