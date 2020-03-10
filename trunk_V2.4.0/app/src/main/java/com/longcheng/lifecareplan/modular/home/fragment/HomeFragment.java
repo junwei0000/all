@@ -670,14 +670,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         //开启通知弹层
         NotificationManagerCompat manager = NotificationManagerCompat.from(mActivity);
         boolean isOpened = manager.areNotificationsEnabled();
-        Log.e("getIsOpenNotification", "isOpened=" + isOpened);
+        Log.e("getIsOpenNotification", "isOpened=" + isOpened+"  showDialogStatus=="+showDialogStatus);
         if (!isOpened) {
-            if (showDialogStatus) {
-                MySharedPreferences.getInstance().showDialogStatus(false);
                 dismissAllDialog();
                 showOpenNotificationWindow();
                 return;
-            }
         }
         //只显示一次更新通知弹层
         if (showDialogStatus && !TextUtils.isEmpty(display_note)) {
