@@ -160,11 +160,12 @@ public class ActivatEnergyActivity extends BaseActivity {
                     if (Double.parseDouble(moneyCont) > 0) {
                         Intent intents = new Intent(mContext, BaoZhangActitvty.class);
                         intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intents.putExtra("html_url", Config.BASE_HEAD_URL + "home/Zhufubao/userRechargeMatchBless?money=" + moneyCont);
+                        intents.putExtra("html_url", Config.BASE_HEAD_URL +
+                                "home/Zhufubao/userRechargeMatchBless?money=" + moneyCont+"&pay_method="+zfs_payType);
                         startActivity(intents);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
                     } else {
-                        ToastUtils.showToast("请输入充值金额");
+                        ToastUtils.showToast("请输入祝福宝数量");
                     }
                 } else {
                     assetRecharge(user_id, money_select, activate_ability_config_id, type, "" + payType);
