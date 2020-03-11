@@ -68,6 +68,8 @@ public class HomeItemBean implements Serializable {
     private String end_time;
     private String url;
     private int type;
+    private String skip_source;
+
 
     private List<HomeItemBean> extend_info;
     private String user_invitation_ability_ranking_id;
@@ -81,6 +83,14 @@ public class HomeItemBean implements Serializable {
 
     private String href;
     private int isLiveBroadcast;//是否有直播权限
+
+    public String getSkip_source() {
+        return skip_source;
+    }
+
+    public void setSkip_source(String skip_source) {
+        this.skip_source = skip_source;
+    }
 
     public String getNew_num() {
         return new_num;

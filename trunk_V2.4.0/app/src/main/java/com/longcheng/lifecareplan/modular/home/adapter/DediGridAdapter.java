@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.home.bangdan.BlessBangDanActivity;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -122,23 +123,33 @@ public class DediGridAdapter extends BaseAdapter {
                 HomeItemBean mHomeItemBean = (HomeItemBean) v.getTag();
                 String url = mHomeItemBean.getUrl();
                 int type = mHomeItemBean.getType();
+                String skip_source = mHomeItemBean.getSkip_source();
+                String title = "";
+                if (type == 1) {
+                    title = mHomeItemBean.getSubtitle();
+                } else {
+                    title = mHomeItemBean.getTitle();
+                }
+                Log.e("onItemClick", "url=" + url + "    skip_source=" + skip_source);
                 if (!TextUtils.isEmpty(url)) {
                     url = url + "/is_app_Android/1";
-                    Log.e("onItemClick", "url=" + url);
                     SharedPreferencesHelper.put(mContext, "starturl", url);
                     SharedPreferencesHelper.put(mContext, "title", mHomeItemBean.getTitle());
-                    if (type == 1 || UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToBangDan)) {
-                        String title = "";
-                        if (type == 1) {
-                            title = mHomeItemBean.getSubtitle();
-                        } else {
-                            title = mHomeItemBean.getTitle();
-                        }
+                    if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToBangDan)) {
                         Intent intent = new Intent(mContext, BaoZhangActitvty.class);
                         intent.putExtra("html_url", url);
                         intent.putExtra("title", title);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         mContext.startActivity(intent);
+                    }
+                } else {
+                    if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToBangDan)) {
+                        if (!TextUtils.isEmpty(skip_source) && skip_source.equals("bless_exponent")) {
+                            Intent intent = new Intent(mContext, BlessBangDanActivity.class);
+                            intent.putExtra("title", title);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            mContext.startActivity(intent);
+                        }
                     }
                 }
             }

@@ -35,6 +35,7 @@ import com.longcheng.lifecareplan.modular.helpwith.myGratitude.bean.MyListDataBe
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.MyFamilyDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.MyFamilyListDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.bean.RelationListDataBean;
+import com.longcheng.lifecareplan.modular.home.bangdan.BangDanDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.HomeDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.PoActionListDataBean;
 import com.longcheng.lifecareplan.modular.home.bean.QuickTeamDataBean;
@@ -759,6 +760,11 @@ public interface ApiService {
                                                    @Query("page") int page,
                                                    @Query("page_size") int page_size,
                                                    @Query("token") String token);
+    @GET(Config.VERSION + "blesscard/userBlessRank")
+    Observable<BangDanDataBean> getBlessList(@Query("user_id") String user_id,
+                                             @Query("page") int page,
+                                             @Query("page_size") int page_size,
+                                             @Query("token") String token);
 
     @GET(Config.VERSION + "help/action_list")
     Observable<ActionListDataBean> getHelpActionList(@Query("user_id") String user_id,
