@@ -157,6 +157,7 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
 
     @Override
     public void ListSuccess(BangDanDataBean responseBean, int backPage) {
+        ListUtils.getInstance().RefreshCompleteS(exchangeSv);
         String status_ = responseBean.getStatus();
         if (status_.equals("400")) {
             ToastUtils.showToast(responseBean.getMsg());
@@ -187,7 +188,6 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
                 checkLoadOver(size);
             }
         }
-        ListUtils.getInstance().RefreshCompleteS(exchangeSv);
     }
 
     private void showInfo(BangDanAfterBean mBangDanAfterBean) {
