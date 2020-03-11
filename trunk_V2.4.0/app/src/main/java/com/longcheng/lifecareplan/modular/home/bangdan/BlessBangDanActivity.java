@@ -59,6 +59,11 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
     LinearLayout itemLayoutShenfen;
     @BindView(R.id.item_tv_rank)
     TextView itemTvRank;
+    @BindView(R.id.item_notbang)
+    TextView item_notbang;
+    @BindView(R.id.layout_item)
+    LinearLayout layout_item;
+
     private String user_id;
     private int page;
     private int pageSize = 20;
@@ -166,9 +171,7 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
             if (mEnergyAfterBean != null) {
 
                 BangDanAfterBean mBangDanAfterBean = mEnergyAfterBean.getUserSelf();
-                if (mBangDanAfterBean != null) {
-                    showInfo(mBangDanAfterBean);
-                }
+                showInfo(mBangDanAfterBean);
 
                 List<BangDanAfterBean> helpList = mEnergyAfterBean.getBlessExponent();
                 int size = helpList == null ? 0 : helpList.size();
@@ -191,29 +194,36 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
     }
 
     private void showInfo(BangDanAfterBean mBangDanAfterBean) {
-        itemTvNum.setText(mBangDanAfterBean.getRanking());
-        GlideDownLoadImage.getInstance().loadCircleImage(mBangDanAfterBean.getAvatar(), itemIvThumb);
-        String name = mBangDanAfterBean.getUser_name();
-        if (!TextUtils.isEmpty(name) && name.length() > 9) {
-            name = name.substring(0, 7) + "…";
-        }
-        itemTvName.setText(name);
-        itemTvJieeqi.setText(mBangDanAfterBean.getJieqi_name());
-        itemTvRank.setText(mBangDanAfterBean.getExponent());
-        List<String> identity_img = mBangDanAfterBean.getIdentity_img();
-        itemLayoutShenfen.removeAllViews();
-        if (identity_img != null && identity_img.size() > 0) {
-            for (String url : identity_img) {
-                LinearLayout linearLayout = new LinearLayout(mActivity);
-                ImageView imageView = new ImageView(mActivity);
-                int dit = DensityUtil.dip2px(mActivity, 18);
-                int jian = DensityUtil.dip2px(mActivity, 3);
-                linearLayout.setPadding(0, 2, jian, 2);
-                imageView.setLayoutParams(new LinearLayout.LayoutParams(dit, dit));
-                GlideDownLoadImage.getInstance().loadCircleImageCommune(mActivity, url, imageView);
-                linearLayout.addView(imageView);
-                itemLayoutShenfen.addView(linearLayout);
+        if (mBangDanAfterBean != null) {
+            item_notbang.setVisibility(View.GONE);
+            layout_item.setVisibility(View.VISIBLE);
+            itemTvNum.setText(mBangDanAfterBean.getRanking());
+            GlideDownLoadImage.getInstance().loadCircleImage(mBangDanAfterBean.getAvatar(), itemIvThumb);
+            String name = mBangDanAfterBean.getUser_name();
+            if (!TextUtils.isEmpty(name) && name.length() > 9) {
+                name = name.substring(0, 7) + "…";
             }
+            itemTvName.setText(name);
+            itemTvJieeqi.setText(mBangDanAfterBean.getJieqi_name());
+            itemTvRank.setText(mBangDanAfterBean.getExponent());
+            List<String> identity_img = mBangDanAfterBean.getIdentity_img();
+            itemLayoutShenfen.removeAllViews();
+            if (identity_img != null && identity_img.size() > 0) {
+                for (String url : identity_img) {
+                    LinearLayout linearLayout = new LinearLayout(mActivity);
+                    ImageView imageView = new ImageView(mActivity);
+                    int dit = DensityUtil.dip2px(mActivity, 18);
+                    int jian = DensityUtil.dip2px(mActivity, 3);
+                    linearLayout.setPadding(0, 2, jian, 2);
+                    imageView.setLayoutParams(new LinearLayout.LayoutParams(dit, dit));
+                    GlideDownLoadImage.getInstance().loadCircleImageCommune(mActivity, url, imageView);
+                    linearLayout.addView(imageView);
+                    itemLayoutShenfen.addView(linearLayout);
+                }
+            }
+        } else {
+            item_notbang.setVisibility(View.VISIBLE);
+            layout_item.setVisibility(View.GONE);
         }
     }
 

@@ -61,6 +61,17 @@
 
             <include layout="@layout/line" />
 
+            <TextView
+                android:id="@+id/item_notbang"
+                style="@style/view_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="您未上榜"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_pageTop_size"
+                android:visibility="gone" />
+
             <include layout="@layout/home_bangdan_bless_item" />
         </LinearLayout>
     </RelativeLayout>
