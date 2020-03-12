@@ -389,7 +389,7 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
     }
 
     @Override
-    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int backindex) {
+    public void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean, int backindex) {
 
     }
 
@@ -828,9 +828,9 @@ public class ShortVideoActivity extends BaseActivityMVP<LivePushContract.View, L
                     mAblumUtils.setResult(requestCode, resultCode, data);
                     break;
                 case getCity:
-                    city = mLocationUtils.getAddressCity(mContext,phone_user_latitude,phone_user_longitude);
-                    if(TextUtils.isEmpty(city)){
-                        city= BottomMenuActivity.city;
+                    city = mLocationUtils.getAddressCity(mContext, phone_user_latitude, phone_user_longitude);
+                    if (TextUtils.isEmpty(city)) {
+                        city = BottomMenuActivity.city;
                     }
                     tvLivecity.setText("" + city);
                     break;

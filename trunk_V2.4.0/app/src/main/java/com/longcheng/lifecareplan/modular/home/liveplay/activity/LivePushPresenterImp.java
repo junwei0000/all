@@ -501,7 +501,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
     /**
      * 短视频详情
      */
-    public void videoDetail(String short_video_id,int mCurrentPosition) {
+    public void videoDetail(String short_video_id, int mCurrentPosition) {
         ApiLive.getInstance().service.videoDetail(UserUtils.getUserId(mContext), short_video_id)
                 .compose(mContext.<BasicResponse<MVideoItemInfo>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
@@ -509,7 +509,7 @@ public class LivePushPresenterImp<T> extends LivePushContract.Presenter<LivePush
                 .subscribe(new DefaultObserver<BasicResponse<MVideoItemInfo>>(mContext) {
                     @Override
                     public void onSuccess(BasicResponse<MVideoItemInfo> response) {
-                        mView.videoDetailSuccess(response,mCurrentPosition);
+                        mView.videoDetailSuccess(response, mCurrentPosition);
                     }
 
                     @Override

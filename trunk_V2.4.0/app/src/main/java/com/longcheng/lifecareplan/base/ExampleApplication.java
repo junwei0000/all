@@ -73,12 +73,13 @@ public class ExampleApplication extends MultiDexApplication {
         initOKHttp();
         initYouZan();
     }
+
     /**
      * 有赞sdk
      */
-    private void initYouZan(){
+    private void initYouZan() {
         // 腾讯X5版本使用
-         YouzanSDK.init(this, ConstantManager.YouZanClientId, new YouZanSDKX5Adapter());
+        YouzanSDK.init(this, ConstantManager.YouZanClientId, new YouZanSDKX5Adapter());
     }
 
     private void initOKHttp() {

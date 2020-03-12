@@ -43,7 +43,7 @@ public class MyLiveListAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         mHolder.item_tv_num.setText("" + mHelpItemBean.getTotal_person_number() + "人观看");
         mHolder.item_tv_follow.setVisibility(View.GONE);
         String url = mHelpItemBean.getCover_url();
-        GlideDownLoadImage.getInstance().loadCircleImage(context, url, mHolder.item_iv_thumb);
+        GlideDownLoadImage.getInstance().loadCircleImage(url, mHolder.item_iv_thumb);
         return convertView;
     }
 

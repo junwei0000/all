@@ -407,7 +407,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                             peoplename = mPeopleItemBean.getUser_name();
                             tvPeople.setText(peoplename);
                             String avatar = mPeopleItemBean.getAvatar();
-                            GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
+                            GlideDownLoadImage.getInstance().loadCircleImage(avatar, ivThumb);
                             mPresent.setAddressList(user_id, peopleid);
                             break;
                         }
@@ -428,7 +428,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
             peoplename = mPeopleItemBean.getUser_name();
             tvPeople.setText(peoplename);
             String avatar = mPeopleItemBean.getAvatar();
-            GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
+            GlideDownLoadImage.getInstance().loadCircleImage(avatar, ivThumb);
             mPresent.setAddressList(user_id, peopleid);
         }
     }
@@ -767,7 +767,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
                     peopleid = data.getStringExtra("peopleid");
                     peoplename = data.getStringExtra("peoplename");
                     String avatar = data.getStringExtra("avatar");
-                    GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
+                    GlideDownLoadImage.getInstance().loadCircleImage(avatar, ivThumb);
                     tvPeople.setText(peoplename);
                     mPresent.setAddressList(user_id, peopleid);
                 } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_ADDRESS) {
@@ -866,7 +866,7 @@ public class ApplyHelpActivity extends BaseActivityMVP<ApplyHelpContract.View, A
         } else {
             ivActionimg.setVisibility(View.VISIBLE);
         }
-        Log.e("ResponseBody","img==========="+img);
+        Log.e("ResponseBody", "img===========" + img);
         GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, img, ivActionimg, ConstantManager.image_angle);
 
         tvAction1.setVisibility(View.VISIBLE);

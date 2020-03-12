@@ -84,7 +84,7 @@ public class ShareHelper {
      * @DATE :2017/9/29 9:51
      * @Params 分享带链接 （缩略图 标题 简述）
      */
-    public void shareActionAll(Activity activity, SHARE_MEDIA platform, String text, String targetUrl, String title,int iconid) {
+    public void shareActionAll(Activity activity, SHARE_MEDIA platform, String text, String targetUrl, String title, int iconid) {
         this.activity = activity;
         Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(), iconid);
         UMImage image = new UMImage(activity, bitmap);

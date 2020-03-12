@@ -65,7 +65,7 @@ public class InviteFriendsActivity extends BaseActivity {
                 if (!TextUtils.isEmpty(invite_user_url)) {
                     String text = "人生最大的意义，莫过于让生命能量流动起来，祝福更多的人。";
                     String title = username + "邀请您加入健康互祝公社";
-                    mShareUtils.setShare(text, "",R.mipmap.share_icon, invite_user_url, title);
+                    mShareUtils.setShare(text, "", R.mipmap.share_icon, invite_user_url, title);
                 }
                 break;
             case R.id.btn_ok:

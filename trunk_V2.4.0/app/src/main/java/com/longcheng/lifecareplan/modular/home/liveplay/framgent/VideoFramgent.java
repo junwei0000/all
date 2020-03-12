@@ -367,7 +367,7 @@ public class VideoFramgent extends BaseFragmentMVP<LivePushContract.View, LivePu
     }
 
     private void refreshInfo() {
-        if(iv_dianzan==null){
+        if (iv_dianzan == null) {
             return;
         }
         //切换当前页面后，刷新状态数据

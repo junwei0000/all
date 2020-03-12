@@ -44,6 +44,7 @@ public class FloatWindowManager {
         //接收
         EasyMessage.registerMessageListener("flag", mListener);
     }
+
     //处理消息
     public OnMessageListener mListener = new OnMessageListener() {
         public void onMessage(Object msg) {
@@ -54,6 +55,7 @@ public class FloatWindowManager {
             mOnShowMessageListener.onShowMessage();
         }
     };
+
     /**
      * 显示悬浮窗口
      */

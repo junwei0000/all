@@ -1,19 +1,15 @@
 package com.longcheng.lifecareplan.modular.helpwith.myDedication.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.helpwith.energy.bean.ActionItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.myDedication.bean.ItemBean;
-import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;
@@ -51,7 +47,7 @@ public class MyAdapter extends BaseAdapterHelper<ItemBean> {
         mHolder.item_tv_name.setText(mActionItemBean.getUser_name());
         mHolder.item_tv_shequ.setText(mActionItemBean.getGroup_name());
         mHolder.item_tv_engerynum.setText(mActionItemBean.getHelp_ability());
-        GlideDownLoadImage.getInstance().loadCircleHeadImage(context, mActionItemBean.getAvatar(), mHolder.item_iv_thumb);
+        GlideDownLoadImage.getInstance().loadCircleImage(mActionItemBean.getAvatar(), mHolder.item_iv_thumb);
         return convertView;
     }
 

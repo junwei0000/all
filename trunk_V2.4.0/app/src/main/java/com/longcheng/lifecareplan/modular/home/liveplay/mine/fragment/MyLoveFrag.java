@@ -73,7 +73,7 @@ public class MyLoveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mAllList != null && mAllList.size() > 0) {
-                    MyVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page,"mylove");
+                    MyVideoDetailNewActivity.skipVideoDetail(mActivity, mAllList, position, page, "mylove");
 
                 }
             }

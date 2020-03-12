@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
 import com.longcheng.lifecareplan.modular.exchange.bean.JieQiItemBean;
-import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
 import java.util.List;
@@ -55,7 +53,7 @@ public class JieQiAdapter extends BaseAdapterHelper<JieQiItemBean> {
         if (position == 0) {
             mHolder.item_iv_img.setBackgroundResource(R.mipmap.mall_icon_24);
         } else {
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(context, mJieQiItemBean.getLogo(), mHolder.item_iv_img);
+            GlideDownLoadImage.getInstance().loadCircleImage(mJieQiItemBean.getLogo(), mHolder.item_iv_img);
         }
         return convertView;
     }

@@ -52,7 +52,7 @@ public interface LivePushContract {
 
         void giveGiftSuccess(BasicResponse responseBean);
 
-        void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean,int back_mCurrentPosition);
+        void videoDetailSuccess(BasicResponse<MVideoItemInfo> responseBean, int back_mCurrentPosition);
 
         void showGiftDialog();
 

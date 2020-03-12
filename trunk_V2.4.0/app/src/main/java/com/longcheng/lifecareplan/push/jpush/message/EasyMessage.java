@@ -18,6 +18,7 @@ public class EasyMessage {
     private static MHandler mHandler = new MHandler();
 
     public static Object lastMessage;
+
     private EasyMessage() {
     }
 
@@ -79,7 +80,7 @@ public class EasyMessage {
             for (ListenerBean lb : list) {
                 if (lb.key.equals(lbean.key)) {
                     ((OnMessageListener) lb.obj).onMessage(lbean.obj);
-                    lastMessage=lbean.obj;
+                    lastMessage = lbean.obj;
                 }
             }
         }

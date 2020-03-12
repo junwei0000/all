@@ -36,9 +36,9 @@ public class TCVideoEditerListAdapter extends RecyclerView.Adapter<TCVideoEditer
     public void onBindViewHolder(ViewHolder holder, final int position) {
         TCVideoFileInfo fileInfo = data.get(position);
         holder.ivSelected.setVisibility(fileInfo.isSelected() ? View.VISIBLE : View.GONE);
-        if(fileInfo.getFileType() == TCVideoFileInfo.FILE_TYPE_PICTURE){
+        if (fileInfo.getFileType() == TCVideoFileInfo.FILE_TYPE_PICTURE) {
             holder.duration.setText("");
-        }else{
+        } else {
             holder.duration.setText(TCUtils.formattedTime(fileInfo.getDuration() / 1000));
         }
         Glide.with(mContext).load(Uri.fromFile(new File(fileInfo.getFilePath()))).dontAnimate().into(holder.thumb);
@@ -87,7 +87,7 @@ public class TCVideoEditerListAdapter extends RecyclerView.Adapter<TCVideoEditer
         return infos;
     }
 
-    public ArrayList<TCVideoFileInfo> getInOrderMultiSelected(){
+    public ArrayList<TCVideoFileInfo> getInOrderMultiSelected() {
         return inOrderFileInfoList;
     }
 
@@ -124,7 +124,7 @@ public class TCVideoEditerListAdapter extends RecyclerView.Adapter<TCVideoEditer
     }
 
     public void changeMultiSelection(int position) {
-        if(inOrderFileInfoList == null){
+        if (inOrderFileInfoList == null) {
             inOrderFileInfoList = new ArrayList<>();
         }
 
@@ -132,9 +132,9 @@ public class TCVideoEditerListAdapter extends RecyclerView.Adapter<TCVideoEditer
 
         if (fileInfo.isSelected()) {
             fileInfo.setSelected(false);
-            for (int i = 0; i < inOrderFileInfoList.size(); i++){
+            for (int i = 0; i < inOrderFileInfoList.size(); i++) {
                 TCVideoFileInfo tcVideoFileInfo = inOrderFileInfoList.get(i);
-                if(tcVideoFileInfo.getFilePath().equals(fileInfo.getFilePath())){
+                if (tcVideoFileInfo.getFilePath().equals(fileInfo.getFilePath())) {
                     inOrderFileInfoList.remove(i);
                     break;
                 }

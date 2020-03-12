@@ -29,21 +29,6 @@ public class GlideDownLoadImage {
         return instance;
     }
 
-    /**
-     * @param
-     * @name 加载本地图片的重载方法
-     * @auhtor MarkMingShuai
-     * @Data 2017-9-5 11:10
-     */
-    public void loadImage(Context mContext, int resId, ImageView view) {
-        Glide.with(ExampleApplication.getContext())
-                .load(resId)
-                .placeholder(R.mipmap.moren_new)
-                .error(R.mipmap.moren_new)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(view);
-    }
-
 
     /**
      * @param
@@ -79,43 +64,6 @@ public class GlideDownLoadImage {
                 .into(view);
     }
 
-
-    /**
-     * 加载 本地头像
-     *
-     * @param resId
-     * @param view
-     * @auhtor MarkMingShuai
-     * @Data 2017-9-5 11:18
-     */
-    public void loadCircleHeadImage(Context mContext, int resId, ImageView view) {
-        Glide.with(ExampleApplication.getContext())
-                .load(resId)
-                .placeholder(R.mipmap.user_default_icon)
-                .error(R.mipmap.user_default_icon)
-                .bitmapTransform(new GlideCircleTransform(ExampleApplication.getContext()))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(view);
-    }
-
-    /**
-     * 加载 网络头像,SimpleTarget防止无法显示需要刷新问题
-     *
-     * @param url
-     * @param view
-     * @auhtor MarkMingShuai
-     * @Data 2017-9-5 11:18
-     */
-    public void loadCircleHeadImage(Context mContext, String url, ImageView view) {
-        Glide.with(ExampleApplication.getContext())
-                .load(url)
-                .placeholder(R.mipmap.user_default_icon)
-                .error(R.mipmap.user_default_icon)
-                .priority(Priority.HIGH)
-                .bitmapTransform(new GlideCircleTransform(ExampleApplication.getContext()))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(view);
-    }
 
     /**
      * 加载 网络头像,SimpleTarget防止无法显示需要刷新问题
@@ -160,23 +108,6 @@ public class GlideDownLoadImage {
                 .into(view);
     }
 
-    /**
-     * @param mContext
-     * @param url
-     * @param view
-     * @name 加载网络圆图
-     * @auhtor MarkMingShuai
-     * @Data 2017-9-5 11:18
-     */
-    public void loadCircleImage(Context mContext, String url, ImageView view) {
-        Glide.with(ExampleApplication.getContext())
-                .load(url)
-                .placeholder(R.mipmap.user_default_icon)
-                .error(R.mipmap.user_default_icon)
-                .bitmapTransform(new GlideCircleTransform(ExampleApplication.getContext()))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(view);
-    }
 
     /**
      * @param mContext
@@ -217,6 +148,7 @@ public class GlideDownLoadImage {
 
     /**
      * 防止加载图片背景闪动
+     *
      * @param url
      * @param view
      * @param dp
@@ -253,24 +185,6 @@ public class GlideDownLoadImage {
                 .into(view);
     }
 
-    /**
-     * @param mContext
-     * @param resId
-     * @param view
-     * @param dp
-     * @name 加载本地带角度的图片
-     * @auhtor MarkMingShuai
-     * @Data 2017-9-5 11:18
-     */
-    public void loadCircleImageRole(Context mContext, int resId, ImageView view, int dp) {
-        Glide.with(ExampleApplication.getContext())
-                .load(resId)
-                .placeholder(R.mipmap.moren_new)
-                .error(R.mipmap.moren_new)
-                .bitmapTransform(new GlideRoundTransform(ExampleApplication.getContext(), dp))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(view);
-    }
 
     /**
      * @param resId

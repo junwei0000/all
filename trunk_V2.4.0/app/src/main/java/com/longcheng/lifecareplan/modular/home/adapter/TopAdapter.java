@@ -102,6 +102,7 @@ public class TopAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
+
     /*
      * 解决viewpager在刷新调用notifyDataSetChanged不起作用 使用懒加载后没有效果?
      */

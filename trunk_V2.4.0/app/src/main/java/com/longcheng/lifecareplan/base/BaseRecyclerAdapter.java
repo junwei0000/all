@@ -8,9 +8,9 @@ import java.lang.ref.WeakReference;
 
 /**
  * Created by hans on 2017/11/6.
- *
+ * <p>
  * 重写的父类Adapter
- *
+ * <p>
  * 1. 添加item的点击事件
  * 2. 添加item的长安点击事件
  */

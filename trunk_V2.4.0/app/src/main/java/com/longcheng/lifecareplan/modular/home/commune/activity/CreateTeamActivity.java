@@ -81,7 +81,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
     private int team_id;
     String type = "";
     private List<CommuneItemBean> teamNameList;
-    private String team_user_id, solar_terms_name, solar_terms_en,custom_name="";
+    private String team_user_id, solar_terms_name, solar_terms_en, custom_name = "";
     private ValueSelectUtils mValueSelectUtils;
     private String[] values;
     /**
@@ -105,7 +105,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
                 }
                 break;
             case R.id.tv_search:
-                custom_name=tv_custom.getText().toString();
+                custom_name = tv_custom.getText().toString();
                 String phone = etPhone.getText().toString();
                 if (TextUtils.isEmpty(phone)) {
                     ToastUtils.showToast("手机号不能为空");
@@ -115,7 +115,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
                     ToastUtils.showToast("请输入正确的手机号");
                     break;
                 }
-                mPresent.CreateTeamSearch(user_id, phone,custom_name);
+                mPresent.CreateTeamSearch(user_id, phone, custom_name);
                 break;
             case R.id.tv_create:
                 if (selectNameStatus && !TextUtils.isEmpty(solar_terms_name)) {
@@ -283,7 +283,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
                     if (teamInfo != null) {
                         solar_terms_name = teamInfo.getTeam_name();
                         solar_terms_en = teamInfo.getSolar_terms_en();
-                        custom_name= teamInfo.getCustom_name();
+                        custom_name = teamInfo.getCustom_name();
                         tvTeamname.setText(solar_terms_name);
                         tv_custom.setText(custom_name);
                     }
@@ -335,7 +335,7 @@ public class CreateTeamActivity extends BaseListActivity<CommuneContract.View, C
         } else if (status_.equals("200")) {
             CommuneItemBean mCommuneItemBean = responseBean.getData();
             if (mCommuneItemBean != null && !TextUtils.isEmpty(mCommuneItemBean.getUser_id())) {
-                GlideDownLoadImage.getInstance().loadCircleImage(mContext, mCommuneItemBean.getAvatar(), itemIvThumb);
+                GlideDownLoadImage.getInstance().loadCircleImage(mCommuneItemBean.getAvatar(), itemIvThumb);
                 itemTvName.setText(mCommuneItemBean.getUser_name());
                 itemTvPhone.setText(mCommuneItemBean.getPhone());
                 int is_head = mCommuneItemBean.getIs_head();//是否大队长 0：否 1：是

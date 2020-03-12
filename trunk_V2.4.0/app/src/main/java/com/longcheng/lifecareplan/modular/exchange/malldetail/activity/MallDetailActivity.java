@@ -174,7 +174,7 @@ public class MallDetailActivity extends BaseActivityMVP<MallDetailContract.View,
                 if (!TextUtils.isEmpty(shareUrl) && GoodsInfo != null) {
                     String text = "我发现了一个好物，已经有" + GoodsInfo.getSale_number() + "人兑换，你也来啊！";
                     String title = GoodsInfo.getName();
-                    mShareUtils.setShare(text, thumb,R.mipmap.share_icon, shareUrl, title);
+                    mShareUtils.setShare(text, thumb, R.mipmap.share_icon, shareUrl, title);
                 }
                 break;
             case R.id.tv_backtop:

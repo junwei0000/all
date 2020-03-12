@@ -560,9 +560,9 @@ public class DetailActivity extends BaseListActivity<DetailContract.View, Detail
             }
             String avatar = mHelpWithInfo.getAvatar();
             if (!TextUtils.isEmpty(avatar)) {
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, avatar, iv_thumb);
+                GlideDownLoadImage.getInstance().loadCircleImage(avatar, iv_thumb);
             } else {
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, R.mipmap.user_default_icon, iv_thumb);
+                GlideDownLoadImage.getInstance().loadCircleImage(mContext, R.mipmap.user_default_icon, iv_thumb);
             }
             gv_aixin.addView(view);
         }

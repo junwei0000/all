@@ -97,19 +97,19 @@ public class DediGridAdapter extends BaseAdapter {
             Log.i("BannerListSuccess", "position: " + position);
             if (extend_info.size() >= 1) {
                 Log.i("BannerListSuccess", "BannerListSuccess: " + extend_info.get(0).getAvatar());
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, extend_info.get(0).getAvatar(), mHolder.item_iv_head1);
+                GlideDownLoadImage.getInstance().loadCircleImage(extend_info.get(0).getAvatar(), mHolder.item_iv_head1);
             } else {
                 mHolder.item_iv_head1.setBackgroundResource(R.mipmap.user_default_icon);
             }
             if (extend_info.size() >= 2) {
                 Log.i("BannerListSuccess", "BannerListSuccess: " + extend_info.get(1).getAvatar());
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, extend_info.get(1).getAvatar(), mHolder.item_iv_head2);
+                GlideDownLoadImage.getInstance().loadCircleImage(extend_info.get(1).getAvatar(), mHolder.item_iv_head2);
             } else {
                 mHolder.item_iv_head2.setBackgroundResource(R.mipmap.user_default_icon);
             }
             if (extend_info.size() >= 3) {
                 Log.i("BannerListSuccess", "BannerListSuccess: " + extend_info.get(2).getAvatar());
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, extend_info.get(2).getAvatar(), mHolder.item_iv_head3);
+                GlideDownLoadImage.getInstance().loadCircleImage(extend_info.get(2).getAvatar(), mHolder.item_iv_head3);
             } else {
                 mHolder.item_iv_head3.setBackgroundResource(R.mipmap.user_default_icon);
             }

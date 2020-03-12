@@ -4,7 +4,7 @@ package com.longcheng.lifecareplan.modular.bottommenu.float_view;
  * Description:记录悬浮窗的宽高，坐标等信息
  *
  * @author 杜乾-Dusan,Created on 2018/1/24 - 10:28.
- *         E-mail:duqian2010@gmail.com
+ * E-mail:duqian2010@gmail.com
  */
 public class FloatViewParams {
     public int width;//窗口的宽

@@ -125,7 +125,7 @@ public class UpdateService extends Service {
                         File rootFile = new File(FileCache.path);
                         if (!rootFile.exists() && !rootFile.isDirectory())
                             rootFile.mkdir();
-                        tempFile = new File(FileCache.path+ url.substring(url.lastIndexOf("/") + 1));
+                        tempFile = new File(FileCache.path + url.substring(url.lastIndexOf("/") + 1));
                         if (tempFile.exists())
                             tempFile.delete();
                         tempFile.createNewFile();

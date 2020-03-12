@@ -50,6 +50,7 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
     public void setVideo_user_id(String video_user_id) {
         this.video_user_id = video_user_id;
     }
+
     @Override
     public int bindLayout() {
         return R.layout.live_mylive_fragment;
@@ -102,7 +103,7 @@ public class MyLiveFrag extends BaseFragmentMVP<MyContract.View, MyPresenterImp<
 
 
     private void getList(int page) {
-        mPresent.getMineLiveList(video_user_id,page, pageSize);
+        mPresent.getMineLiveList(video_user_id, page, pageSize);
     }
 
 

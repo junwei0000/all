@@ -426,15 +426,15 @@ public class CommuneMineActivity extends BaseListActivity<CommuneContract.View, 
         if (rankings != null && rankings.size() > 0) {
             if (rankings.size() >= 1) {
                 itemLayoutHead1.setVisibility(View.VISIBLE);
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, rankings.get(0).getAvatar(), itemIvHead1);
+                GlideDownLoadImage.getInstance().loadCircleImage(rankings.get(0).getAvatar(), itemIvHead1);
             }
             if (rankings.size() >= 2) {
                 itemLayoutHead2.setVisibility(View.VISIBLE);
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, rankings.get(1).getAvatar(), itemIvHead2);
+                GlideDownLoadImage.getInstance().loadCircleImage(rankings.get(1).getAvatar(), itemIvHead2);
             }
             if (rankings.size() >= 3) {
                 itemLayoutHead3.setVisibility(View.VISIBLE);
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, rankings.get(2).getAvatar(), itemIvHead3);
+                GlideDownLoadImage.getInstance().loadCircleImage(rankings.get(2).getAvatar(), itemIvHead3);
             }
         }
     }

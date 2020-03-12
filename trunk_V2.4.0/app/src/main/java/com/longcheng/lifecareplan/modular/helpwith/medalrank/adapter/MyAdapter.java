@@ -1,8 +1,6 @@
 package com.longcheng.lifecareplan.modular.helpwith.medalrank.adapter;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +54,7 @@ public class MyAdapter extends BaseAdapterHelper<ItemBean> {
         }
         ItemBean mActionItemBean = list.get(position);
         mHolder.item_tv_sortnum.setText(mActionItemBean.getSort_rank());
-        GlideDownLoadImage.getInstance().loadCircleHeadImage(context, mActionItemBean.getAvatar(), mHolder.item_iv_thumb);
+        GlideDownLoadImage.getInstance().loadCircleImage(mActionItemBean.getAvatar(), mHolder.item_iv_thumb);
         if (type == 1) {
             mHolder.item_tv_name.setVisibility(View.VISIBLE);
             mHolder.item_tv_shequ.setTextColor(context.getResources().getColor(R.color.text_noclick_color));

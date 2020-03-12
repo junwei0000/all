@@ -184,7 +184,7 @@ public class UserLoginSkipUtils {
             intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mActivity.startActivity(intents);
             mActivity.finish();
-        }else if (loginskiptostatus.equals("ActionH5Activity")) {
+        } else if (loginskiptostatus.equals("ActionH5Activity")) {
             intents = new Intent(mActivity, BaoZhangActitvty.class);
             intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intents.putExtra("html_url", "" + HomeFragment.activity_url);

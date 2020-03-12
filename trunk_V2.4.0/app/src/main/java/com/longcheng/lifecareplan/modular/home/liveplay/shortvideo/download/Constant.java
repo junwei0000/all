@@ -17,7 +17,7 @@ public class Constant {
     /**
      * 下载路径
      */
-    public final static String FILE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()+"/longcheng_video/";
+    public final static String FILE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/longcheng_video/";
 
     /**
      * 若文件下载不下来，更换网址
@@ -42,7 +42,7 @@ public class Constant {
         boolean status;
         SecurityManager checker = new SecurityManager();
         File file = new File(FILE_PATH + fileName);
-        if (file.exists()){
+        if (file.exists()) {
             checker.checkDelete(file.toString());
             if (file.isFile()) {
                 try {
@@ -54,7 +54,7 @@ public class Constant {
                 }
             } else
                 status = false;
-        }else
+        } else
             status = false;
         return status;
     }

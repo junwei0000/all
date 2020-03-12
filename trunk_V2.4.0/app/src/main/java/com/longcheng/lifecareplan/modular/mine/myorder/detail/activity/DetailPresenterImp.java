@@ -86,6 +86,7 @@ public class DetailPresenterImp<T> extends DetailContract.Presenter<DetailContra
                 });
 
     }
+
     /**
      * 提现
      *

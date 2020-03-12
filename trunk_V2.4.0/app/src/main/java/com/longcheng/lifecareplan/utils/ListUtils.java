@@ -67,6 +67,7 @@ public class ListUtils {
             }
         }
     }
+
     public void setNotDateViewR(RecyclerView.Adapter mAdapter, LinearLayout layoutNotdate) {
         if (layoutNotdate != null) {
             if (mAdapter == null || (mAdapter != null && mAdapter.getItemCount() == 0)) {

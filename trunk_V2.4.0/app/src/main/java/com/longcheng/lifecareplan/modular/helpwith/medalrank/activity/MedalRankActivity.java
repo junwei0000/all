@@ -21,13 +21,12 @@ import com.longcheng.lifecareplan.modular.helpwith.medalrank.adapter.MyAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.medalrank.bean.ItemBean;
 import com.longcheng.lifecareplan.modular.helpwith.medalrank.bean.MyAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.medalrank.bean.MyRankListDataBean;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.utils.DensityUtil;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
+import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -265,7 +264,7 @@ public class MedalRankActivity extends BaseListActivity<MyContract.View, MyPrese
                 itemTvShequ.setText(mItemBean.getGroup_name());
                 itemTvRenci.setText("互祝人次：" + mItemBean.getCount());
                 itemTvEngerynum.setText("互祝能量：" + mItemBean.getAbility());
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, mItemBean.getAvatar(), itemIvThumb);
+                GlideDownLoadImage.getInstance().loadCircleImage(mItemBean.getAvatar(), itemIvThumb);
                 itemTvName.setVisibility(View.VISIBLE);
                 itemTvShequ.setTextColor(getResources().getColor(R.color.text_noclick_color));
             } else {
@@ -282,7 +281,7 @@ public class MedalRankActivity extends BaseListActivity<MyContract.View, MyPrese
                     itemTvShequ.setText(mItemBean.getGroup_name());
                     itemTvRenci.setText("互祝人次：" + mItemBean.getCount());
                     itemTvEngerynum.setText("互祝能量：" + mItemBean.getAbility());
-                    GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, mItemBean.getAvatar(), itemIvThumb);
+                    GlideDownLoadImage.getInstance().loadCircleImage(mItemBean.getAvatar(), itemIvThumb);
                 } else {
                     layoutBottom.setVisibility(View.GONE);
                 }

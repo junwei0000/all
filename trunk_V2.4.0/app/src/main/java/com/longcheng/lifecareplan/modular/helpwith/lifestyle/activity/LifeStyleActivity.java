@@ -132,13 +132,13 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
                 back();
                 break;
             case R.id.help_layout_time:
-                    if (time_sort == 2) {//降序-->升序
-                        time_sort = 1;
-                        helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_down_red);
-                    } else if (time_sort == 1) {//升序-->降序
-                        time_sort = 2;
-                        helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_up_red);
-                    }
+                if (time_sort == 2) {//降序-->升序
+                    time_sort = 1;
+                    helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_down_red);
+                } else if (time_sort == 1) {//升序-->降序
+                    time_sort = 2;
+                    helpIvTimearrow.setBackgroundResource(R.mipmap.ic_arrow_up_red);
+                }
                 getList(1);
                 break;
             case R.id.help_layout_status:
@@ -581,7 +581,7 @@ public class LifeStyleActivity extends BaseListActivity<LifeStyleContract.View, 
 
     private void back() {
         if (!TextUtils.isEmpty(skiptype) && (skiptype.equals("myDeGra") ||
-                skiptype.equals("Order") || skiptype.equals("LifeApplyHelp")|| skiptype.equals("HomeFragment")
+                skiptype.equals("Order") || skiptype.equals("LifeApplyHelp") || skiptype.equals("HomeFragment")
                 || skiptype.equals("Thanks"))) {
 
         } else {

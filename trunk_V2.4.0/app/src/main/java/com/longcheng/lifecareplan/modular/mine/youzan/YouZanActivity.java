@@ -82,7 +82,7 @@ public class YouZanActivity extends BaseActivity {
         youzanBrowser.subscribe(new AbsAuthEvent() {
             @Override
             public void call(Context context, boolean needLogin) {
-                Log.e("youzanBrowser","needLogin="+needLogin);
+                Log.e("youzanBrowser", "needLogin=" + needLogin);
                 if (needLogin) {
                     getYouZanCookie();
                 } else {

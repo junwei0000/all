@@ -342,7 +342,7 @@ public class RedEnvelopeActivity extends BaseActivityMVP<RedEvelopeContract.View
                 lp.bottomMargin = DensityUtil.dip2px(mContext, 20);
                 iv_represent.setLayoutParams(lp);
                 GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, endorsement_star.getAdvertisement_photo_url(), iv_represent, ConstantManager.image_angle);
-                GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, endorsement_star.getPhoto(), ivSpokesMan);
+                GlideDownLoadImage.getInstance().loadCircleImage(endorsement_star.getPhoto(), ivSpokesMan);
                 tvName.setText(endorsement_star.getStart_name());
                 tvCont.setText(endorsement_star.getSlogan());
             }

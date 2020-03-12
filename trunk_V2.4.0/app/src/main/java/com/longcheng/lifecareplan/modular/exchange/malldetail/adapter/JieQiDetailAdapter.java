@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseAdapterHelper;
-import com.longcheng.lifecareplan.modular.exchange.bean.JieQiItemBean;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.bean.DetailItemBean;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 
@@ -45,7 +44,7 @@ public class JieQiDetailAdapter extends BaseAdapterHelper<DetailItemBean> {
         DetailItemBean mJieQiItemBean = list.get(position);
         mHolder.item_tv_cn.setText(mJieQiItemBean.getSolar_terms_name());
         mHolder.item_tv_currentjieqi.setVisibility(View.GONE);
-        GlideDownLoadImage.getInstance().loadCircleHeadImage(context, mJieQiItemBean.getPic(), mHolder.item_iv_img);
+        GlideDownLoadImage.getInstance().loadCircleImage(mJieQiItemBean.getPic(), mHolder.item_iv_img);
         return convertView;
     }
 

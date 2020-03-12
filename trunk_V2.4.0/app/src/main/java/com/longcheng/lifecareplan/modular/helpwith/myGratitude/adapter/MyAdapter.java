@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.helpwith.myGratitude.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +51,7 @@ public class MyAdapter extends BaseAdapterHelper<ItemBean> {
         mHolder.item_tv_name.setText(mActionItemBean.getUser_name());
         mHolder.item_tv_shequ.setText(mActionItemBean.getGroup_name());
         mHolder.item_tv_engerynum.setText(mActionItemBean.getHelp_ability());
-        GlideDownLoadImage.getInstance().loadCircleHeadImage(context, mActionItemBean.getAvatar(), mHolder.item_iv_thumb);
+        GlideDownLoadImage.getInstance().loadCircleImage(mActionItemBean.getAvatar(), mHolder.item_iv_thumb);
 
         mHolder.layout_name.setTag(mActionItemBean);
         mHolder.item_layout_thumb.setTag(mActionItemBean);

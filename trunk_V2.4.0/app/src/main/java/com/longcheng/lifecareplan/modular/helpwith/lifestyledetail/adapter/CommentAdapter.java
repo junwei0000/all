@@ -56,11 +56,11 @@ public class CommentAdapter extends BaseAdapterHelper<LifeStyleDetailItemBean> {
         mItemBean.setPosition(position);
         String name = mItemBean.getUser_name();
         mHolder.item_tv_name.setText(name);
-        int help_type=mItemBean.getHelp_type();
+        int help_type = mItemBean.getHelp_type();
         String showT;
-        if(help_type==2){
+        if (help_type == 2) {
             showT = "奉献了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 超级生命能量";
-        }else{
+        } else {
             showT = "奉献了 <font color=\"#ff443b\">" + mItemBean.getPrice() + "</font> 寿康宝";
         }
         mHolder.item_tv_num.setText(Html.fromHtml(showT));
@@ -68,9 +68,9 @@ public class CommentAdapter extends BaseAdapterHelper<LifeStyleDetailItemBean> {
         mHolder.item_tv_time.setText(mItemBean.getComment_date());
         String avatar = mItemBean.getAvatar();
         if (!TextUtils.isEmpty(avatar)) {
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(context, avatar, mHolder.item_iv_thumb);
+            GlideDownLoadImage.getInstance().loadCircleImage(avatar, mHolder.item_iv_thumb);
         } else {
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(context, R.mipmap.user_default_icon, mHolder.item_iv_thumb);
+            GlideDownLoadImage.getInstance().loadCircleImage(context, R.mipmap.user_default_icon, mHolder.item_iv_thumb);
         }
         mHolder.item_iv_pinglun.setTag(mItemBean);
         mHolder.item_iv_pinglun.setOnClickListener(new View.OnClickListener() {

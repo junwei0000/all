@@ -1,7 +1,6 @@
 package com.longcheng.lifecareplan.modular.mine.changeinviter.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Display;
@@ -19,23 +18,18 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivityMVP;
 import com.longcheng.lifecareplan.bean.ResponseBean;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.changeinviter.bean.InviteAfterBean;
 import com.longcheng.lifecareplan.modular.mine.changeinviter.bean.InviteDataBean;
 import com.longcheng.lifecareplan.modular.mine.changeinviter.bean.InviteItemBean;
-import com.longcheng.lifecareplan.modular.mine.rebirth.activity.GetRECodeActivity;
-import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditListDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
-import com.longcheng.lifecareplan.utils.Utils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.SupplierEditText;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 变更邀请人
@@ -190,7 +184,7 @@ public class ChangeInviterActivity extends BaseActivityMVP<ChangeInviterContract
             if (CommendInvitationInfo != null && !TextUtils.isEmpty(CommendInvitationInfo.getUser_id())) {
                 layoutHaveinviter.setVisibility(View.VISIBLE);
                 tvNotinviter.setVisibility(View.INVISIBLE);
-                GlideDownLoadImage.getInstance().loadCircleImage(mContext, CommendInvitationInfo.getAvatar(), ivThumb);
+                GlideDownLoadImage.getInstance().loadCircleImage(CommendInvitationInfo.getAvatar(), ivThumb);
                 String name = CommendInvitationInfo.getUser_name();
                 if (TextUtils.isEmpty(name)) {
                     name = "暂无";
@@ -236,7 +230,7 @@ public class ChangeInviterActivity extends BaseActivityMVP<ChangeInviterContract
             InviteItemBean searchInfo = mEnergyAfterBean.getUser();
             if (searchInfo != null && !TextUtils.isEmpty(searchInfo.getUser_id())) {
                 layoutSearchuser.setVisibility(View.VISIBLE);
-                GlideDownLoadImage.getInstance().loadCircleImage(mContext, searchInfo.getAvatar(), ivSearchuserthumb);
+                GlideDownLoadImage.getInstance().loadCircleImage(searchInfo.getAvatar(), ivSearchuserthumb);
                 String name = searchInfo.getUser_name();
                 if (TextUtils.isEmpty(name)) {
                     name = "暂无";

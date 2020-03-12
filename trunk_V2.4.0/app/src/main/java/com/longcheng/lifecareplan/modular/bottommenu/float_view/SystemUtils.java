@@ -18,7 +18,7 @@ import java.lang.reflect.Field;
  * Description:工具类
  *
  * @author 杜乾-Dusan,Created on 2018/2/9 - 16:11.
- *         E-mail:duqian2010@gmail.com
+ * E-mail:duqian2010@gmail.com
  */
 public class SystemUtils {
 

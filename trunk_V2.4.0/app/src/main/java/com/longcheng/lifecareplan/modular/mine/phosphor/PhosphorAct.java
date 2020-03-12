@@ -56,7 +56,7 @@ public class PhosphorAct extends WebAct {
                     if (url.contains("is_app/1")) {
                         showurl = url.substring(0, url.length() - 1) + "0";
                     }
-                    mShareUtils.setShare(text, "",R.mipmap.share_icon, showurl, title);
+                    mShareUtils.setShare(text, "", R.mipmap.share_icon, showurl, title);
                 }
                 break;
         }

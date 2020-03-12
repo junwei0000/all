@@ -65,8 +65,8 @@ public class DetailJieQiAdapter extends BaseAdapter {
         mHolder.item_tv_jieqiname.setText(mEnergyItemBean.getSolar_terms_name() + "节气祝福");
         mHolder.item_tv_num.setText("已收到" + mEnergyItemBean.getTotal_num() + "份祝福");
         ArrayList<LifeStyleDetailAfterBean> itemlist = mEnergyItemBean.getList();
-        if(itemlist!=null&&itemlist.size()>0){
-            DetailJieQiItemAdapter mDetailJieQiItemAdapter=new DetailJieQiItemAdapter(context,itemlist);
+        if (itemlist != null && itemlist.size() > 0) {
+            DetailJieQiItemAdapter mDetailJieQiItemAdapter = new DetailJieQiItemAdapter(context, itemlist);
             mHolder.gv_list.setAdapter(mDetailJieQiItemAdapter);
         }
         return convertView;

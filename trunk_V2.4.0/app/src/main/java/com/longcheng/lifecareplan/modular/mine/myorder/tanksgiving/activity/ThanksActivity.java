@@ -90,8 +90,10 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
                 break;
         }
     }
+
     boolean skbStatus = false;
-    int help_type=2;
+    int help_type = 2;
+
     private void changeData() {
         tvCnLine.setVisibility(View.INVISIBLE);
         tvSkbLine.setVisibility(View.INVISIBLE);
@@ -100,13 +102,13 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
         tvSkbLine.setBackgroundResource(R.drawable.corners_bg_blackxingji);
         tvSkb.setTextColor(getResources().getColor(R.color.text_biaoTi_color));
         if (skbStatus) {
-            help_type=1;
+            help_type = 1;
             tvSkbLine.setVisibility(View.VISIBLE);
             tvSkbLine.setBackgroundResource(R.drawable.corners_bg_red);
             tvSkb.setTextColor(getResources().getColor(R.color.red));
             ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, tvSkbLine, R.color.red);
         } else {
-            help_type=2;
+            help_type = 2;
             tvCnLine.setVisibility(View.VISIBLE);
             tvCnLine.setBackgroundResource(R.drawable.corners_bg_red);
             tvCn.setTextColor(getResources().getColor(R.color.red));
@@ -116,8 +118,9 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
     }
 
     private void getList(int page_) {
-        mPresent.getListViewData(user_id, order_id, type, page_, pageSize,help_type);
+        mPresent.getListViewData(user_id, order_id, type, page_, pageSize, help_type);
     }
+
     @Override
     public View bindView() {
         return null;
@@ -152,7 +155,7 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
         mainSv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                getList(page+1);
+                getList(page + 1);
             }
         });
         dataLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -184,7 +187,7 @@ public class ThanksActivity extends BaseListActivity<ThanksContract.View, Thanks
         Intent intent = getIntent();
         order_id = intent.getStringExtra("order_id");
         type = intent.getIntExtra("type", 0);
-        if (type == 2||type ==4) {
+        if (type == 2 || type == 4) {
             layoutTop.setVisibility(View.GONE);
         } else {
             layoutTop.setVisibility(View.VISIBLE);

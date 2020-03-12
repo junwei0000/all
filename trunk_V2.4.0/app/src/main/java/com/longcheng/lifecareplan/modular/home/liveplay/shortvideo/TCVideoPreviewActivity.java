@@ -87,6 +87,7 @@ public class TCVideoPreviewActivity extends BaseActivity {
 
 
     public static Activity mPrActivity;
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -141,7 +142,7 @@ public class TCVideoPreviewActivity extends BaseActivity {
 
     @Override
     public void setListener() {
-        mPrActivity=this;
+        mPrActivity = this;
         layoutLeft.setOnClickListener(this);
         mIvToEdit.setOnClickListener(this);
         mButtonThumbnail.setOnClickListener(this);

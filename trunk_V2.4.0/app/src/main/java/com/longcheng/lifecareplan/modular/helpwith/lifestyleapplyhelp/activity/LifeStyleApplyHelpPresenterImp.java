@@ -129,7 +129,7 @@ public class LifeStyleApplyHelpPresenterImp<T> extends LifeStyleApplyHelpContrac
         mView.showDialog();
         Observable<EditDataBean> observable = Api.getInstance().service.lifeStyleApplyAction(user_id,
                 shop_goods_id, shop_goods_price_id, receive_user_id, addressId,
-                remark,"2", ExampleApplication.token);
+                remark, "2", ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {

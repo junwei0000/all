@@ -224,8 +224,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
 
             @Override
             public void onClick(String app_push_id) {
-                if(!dataLoadStatus){
-                    dataLoadStatus=true;
+                if (!dataLoadStatus) {
+                    dataLoadStatus = true;
                     gratefulRepay(app_push_id);
                 }
             }
@@ -233,7 +233,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         });
     }
 
-    boolean dataLoadStatus=false;
+    boolean dataLoadStatus = false;
+
     /**
      * 感恩回馈
      */
@@ -245,7 +246,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
                 .subscribe(new io.reactivex.functions.Consumer<EditDataBean>() {
                     @Override
                     public void accept(EditDataBean responseBean) throws Exception {
-                        dataLoadStatus=false;
+                        dataLoadStatus = false;
                         String status_ = responseBean.getStatus();
                         if (status_.equals("200")) {
                             ToastUtils.showToast(responseBean.getData());
@@ -256,7 +257,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.e("Observable", "" + throwable.toString());
-                        dataLoadStatus=false;
+                        dataLoadStatus = false;
                     }
                 });
     }

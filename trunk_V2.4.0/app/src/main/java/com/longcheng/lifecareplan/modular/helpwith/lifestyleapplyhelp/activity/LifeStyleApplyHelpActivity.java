@@ -12,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
@@ -32,7 +31,6 @@ import com.longcheng.lifecareplan.modular.mine.myaddress.bean.AddressListDataBea
 import com.longcheng.lifecareplan.modular.mine.userinfo.bean.EditDataBean;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
-import com.longcheng.lifecareplan.utils.PriceUtils;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
@@ -207,7 +205,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                 if (info != null) {
                     skb_price = mPeopleAfterBean.getSkb_price();
                     apply_help_price = mPeopleAfterBean.getApply_help_price();
-                    tvAction.setText(info.getName()+"   "+mPeopleAfterBean.getPrice_name());
+                    tvAction.setText(info.getName() + "   " + mPeopleAfterBean.getPrice_name());
                     super_ability = mPeopleAfterBean.getChatuser().getSuper_ability();
                     shoukangyuan = mPeopleAfterBean.getChatuser().getShoukangyuan();
                 }
@@ -242,7 +240,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                             peoplename = mPeopleItemBean.getUser_name();
                             tvPeople.setText(peoplename);
                             String avatar = mPeopleItemBean.getAvatar();
-                            GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
+                            GlideDownLoadImage.getInstance().loadCircleImage(avatar, ivThumb);
                             mPresent.setAddressList(user_id, peopleid);
                             break;
                         }
@@ -425,7 +423,7 @@ public class LifeStyleApplyHelpActivity extends BaseActivityMVP<LifeStyleApplyHe
                 peoplename = data.getStringExtra("peoplename");
                 tvPeople.setText(peoplename);
                 String avatar = data.getStringExtra("avatar");
-                GlideDownLoadImage.getInstance().loadCircleImage(mContext, avatar, ivThumb);
+                GlideDownLoadImage.getInstance().loadCircleImage(avatar, ivThumb);
                 mPresent.setAddressList(user_id, peopleid);
             } else if (resultCode == ConstantManager.APPLYHELP_FORRESULT_ADDRESS) {
                 address_id = data.getStringExtra("address_id");

@@ -169,7 +169,7 @@ public class OpenRedEnvelopeActivity extends BaseActivityMVP<GoodLuckContract.Vi
             lp.height = DensityUtil.dip2px(mContext, 65);
             lp.bottomMargin = DensityUtil.dip2px(mContext, 20);
             iv_represent.setLayoutParams(lp);
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(mContext, photo, ivSpokesMan);
+            GlideDownLoadImage.getInstance().loadCircleImage(photo, ivSpokesMan);
             GlideDownLoadImage.getInstance().loadCircleImageRole(mContext, advertisement_photo_url, iv_represent, ConstantManager.image_angle);
             tvName.setText(start_name);
             tvCont.setText(slogan);

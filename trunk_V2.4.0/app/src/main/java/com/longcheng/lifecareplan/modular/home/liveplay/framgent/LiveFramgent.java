@@ -174,7 +174,7 @@ public class LiveFramgent extends BaseFragmentMVP<LivePushContract.View, LivePus
 
     @Override
     public void BackLiveListSuccess(BasicResponse<VideoDataInfo> responseBean, int backPage) {
-        if(playView==null){
+        if (playView == null) {
             return;
         }
         int errcode = responseBean.getStatus();

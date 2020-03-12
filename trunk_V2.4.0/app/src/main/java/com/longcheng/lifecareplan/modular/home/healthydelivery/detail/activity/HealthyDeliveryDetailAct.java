@@ -54,7 +54,7 @@ public class HealthyDeliveryDetailAct extends WebAct {
                 if (mShareUtils == null) {
                     mShareUtils = new ShareUtils(mActivity);
                 }
-                mShareUtils.setShare(cont, img,R.mipmap.share_icon, url, title);
+                mShareUtils.setShare(cont, img, R.mipmap.share_icon, url, title);
                 break;
         }
     }

@@ -211,7 +211,7 @@ public class BottomMenuActivity extends BaseActivity {
                 try {
                     String loginStatus = (String) SharedPreferencesHelper.get(getApplicationContext(), "loginStatus", "");
                     if (loginStatus.equals(ConstantManager.loginStatus)) {
-                        Intent   intents = new Intent(mActivity, BaoZhangActitvty.class);
+                        Intent intents = new Intent(mActivity, BaoZhangActitvty.class);
                         intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intents.putExtra("html_url", "" + HomeFragment.activity_url);
                         startActivity(intents);
@@ -251,7 +251,7 @@ public class BottomMenuActivity extends BaseActivity {
         if (position == tab_position_home) {
             bottomIvHome.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
             bottomTvHome.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
-        }  else if (position == tab_position_exchange) {
+        } else if (position == tab_position_exchange) {
             bottomIvExchange.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
             bottomTvExchange.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
         } else if (position == tab_position_mine) {

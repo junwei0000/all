@@ -70,9 +70,9 @@ public class VideoCommentAdapter extends BaseAdapterHelper<MVideoItemInfo> {
         }
         String avatar = mItemBean.getAvatar();
         if (!TextUtils.isEmpty(avatar)) {
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(context, avatar, mHolder.item_iv_thumb);
+            GlideDownLoadImage.getInstance().loadCircleImage(avatar, mHolder.item_iv_thumb);
         } else {
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(context, R.mipmap.user_default_icon, mHolder.item_iv_thumb);
+            GlideDownLoadImage.getInstance().loadCircleImage(context, R.mipmap.user_default_icon, mHolder.item_iv_thumb);
         }
         mHolder.item_iv_follow.setTag(mItemBean);
         mHolder.item_iv_follow.setOnClickListener(new View.OnClickListener() {

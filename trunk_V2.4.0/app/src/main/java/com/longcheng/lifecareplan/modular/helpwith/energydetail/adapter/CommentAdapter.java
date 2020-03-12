@@ -68,9 +68,9 @@ public class CommentAdapter extends BaseAdapterHelper<DetailItemBean> {
         mHolder.item_tv_time.setText(mItemBean.getComment_date());
         String avatar = mItemBean.getAvatar();
         if (!TextUtils.isEmpty(avatar)) {
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(context, avatar, mHolder.item_iv_thumb);
+            GlideDownLoadImage.getInstance().loadCircleImage(avatar, mHolder.item_iv_thumb);
         } else {
-            GlideDownLoadImage.getInstance().loadCircleHeadImage(context, R.mipmap.user_default_icon, mHolder.item_iv_thumb);
+            GlideDownLoadImage.getInstance().loadCircleImage(context, R.mipmap.user_default_icon, mHolder.item_iv_thumb);
         }
         mHolder.item_iv_pinglun.setTag(mItemBean);
         mHolder.item_iv_pinglun.setOnClickListener(new View.OnClickListener() {

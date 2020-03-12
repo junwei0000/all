@@ -63,10 +63,11 @@ public class DownloadManager {
 
     /**
      * 查看是否在下载任务中
+     *
      * @param url
      * @return
      */
-    public boolean getDownloadUrl(String url){
+    public boolean getDownloadUrl(String url) {
         return downCalls.containsKey(url);
     }
 
@@ -94,7 +95,7 @@ public class DownloadManager {
                 .map(new Function<Object, DownloadInfo>() {
                     @Override
                     public DownloadInfo apply(Object o) {
-                        return getRealFileName((DownloadInfo)o);
+                        return getRealFileName((DownloadInfo) o);
                     }
                 }) // 如果已经下载，重新命名
                 .flatMap(new Function<DownloadInfo, ObservableSource<DownloadInfo>>() {
@@ -110,6 +111,7 @@ public class DownloadManager {
 
     /**
      * 下载取消或者暂停
+     *
      * @param url
      */
     public void pauseDownload(String url) {
@@ -122,9 +124,10 @@ public class DownloadManager {
 
     /**
      * 取消下载 删除本地文件
+     *
      * @param info
      */
-    public void cancelDownload(DownloadInfo info){
+    public void cancelDownload(DownloadInfo info) {
         pauseDownload(info.getUrl());
         info.setProgress(0);
         info.setDownloadStatus(DownloadInfo.DOWNLOAD_CANCEL);
@@ -149,6 +152,7 @@ public class DownloadManager {
 
     /**
      * 如果文件已下载重新命名新文件名
+     *
      * @param downloadInfo
      * @return
      */
