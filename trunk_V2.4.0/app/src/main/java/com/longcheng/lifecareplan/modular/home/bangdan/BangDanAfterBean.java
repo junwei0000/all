@@ -11,6 +11,7 @@ import java.util.List;
 
 public class BangDanAfterBean implements Serializable {
 
+    private String date;
     private BangDanAfterBean userSelf;
     private List<BangDanAfterBean> blessExponent;
 
@@ -20,6 +21,14 @@ public class BangDanAfterBean implements Serializable {
     private String jieqi_name;
     private String exponent;
     private List<String> identity_img;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public List<String> getIdentity_img() {
         return identity_img;

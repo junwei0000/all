@@ -216,6 +216,7 @@ public class GlideDownLoadImage {
     }
 
     /**
+     * 防止加载图片背景闪动
      * @param url
      * @param view
      * @param dp

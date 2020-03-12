@@ -41,7 +41,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp40"
                         android:paddingLeft="@dimen/dp15"
-                        android:text="2020-03-12 21:11:11 ~ 2020-04-12 21:11:11"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_dp12_size"
                         android:visibility="gone" />

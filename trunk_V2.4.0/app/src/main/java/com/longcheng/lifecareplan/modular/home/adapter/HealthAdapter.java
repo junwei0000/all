@@ -76,8 +76,7 @@ public class HealthAdapter extends PagerAdapter {
             tvTypeDes.setText(item.getType_name());
             tvTime.setText("阅读 " + item.getNew_num());
             tv_zan.setText(item.getNew_zan());
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, item.getPic(), avatar, ConstantManager.image_angle);
-
+            GlideDownLoadImage.getInstance().loadCircleImageLive(item.getPic(), R.mipmap.moren_new, avatar, ConstantManager.image_angle);
 
             view.setTag(item);
             view.setOnClickListener(new View.OnClickListener() {

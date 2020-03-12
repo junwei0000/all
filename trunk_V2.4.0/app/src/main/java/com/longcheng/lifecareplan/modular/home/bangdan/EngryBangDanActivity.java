@@ -160,11 +160,11 @@ public class EngryBangDanActivity extends BaseListActivity<BangDanContract.View,
         String title = intent.getStringExtra("title");
         user_id = UserUtils.getUserId(mContext);
         pageTopTvName.setText(title);
-        getList(1);
+        setTopView();
     }
 
     private void getList(int page) {
-        mPresent.getBlessList(user_id, page, pageSize);
+        mPresent.getEngryCenterList(user_id, page, pageSize, pay_type);
     }
 
     /**
@@ -182,6 +182,7 @@ public class EngryBangDanActivity extends BaseListActivity<BangDanContract.View,
             tv_daichong.setTextColor(getResources().getColor(R.color.blue_bang));
             tv_daichong.setBackgroundResource(R.drawable.corners_bg_write_bangyou);
         }
+        getList(1);
     }
 
     @Override
@@ -214,7 +215,7 @@ public class EngryBangDanActivity extends BaseListActivity<BangDanContract.View,
         } else if (status_.equals("200")) {
             BangDanAfterBean mEnergyAfterBean = responseBean.getData();
             if (mEnergyAfterBean != null) {
-//                item_time.setText();
+                item_time.setText(mEnergyAfterBean.getDate());
                 item_time.setVisibility(View.VISIBLE);
                 BangDanAfterBean mBangDanAfterBean = mEnergyAfterBean.getUserSelf();
                 showInfo(mBangDanAfterBean);

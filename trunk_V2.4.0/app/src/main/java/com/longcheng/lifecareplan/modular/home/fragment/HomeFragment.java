@@ -144,7 +144,7 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     ViewPager homedediVpTop;
 
     public static String jieqi_name = "";
-    public static String kn_url = "", activity_url = "",my_gratitude_url="",my_dedication_url="";
+    public static String kn_url = "", activity_url = "", my_gratitude_url = "", my_dedication_url = "";
     @BindView(R.id.tv_newtitle)
     TextView tvNewtitle;
     @BindView(R.id.tv_drawable1)
@@ -669,11 +669,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         //开启通知弹层
         NotificationManagerCompat manager = NotificationManagerCompat.from(mActivity);
         boolean isOpened = manager.areNotificationsEnabled();
-        Log.e("getIsOpenNotification", "isOpened=" + isOpened+"  showDialogStatus=="+showDialogStatus);
+        Log.e("getIsOpenNotification", "isOpened=" + isOpened + "  showDialogStatus==" + showDialogStatus);
         if (!isOpened) {
-                dismissAllDialog();
-                showOpenNotificationWindow();
-                return;
+            dismissAllDialog();
+            showOpenNotificationWindow();
+            return;
         }
         //只显示一次更新通知弹层
         if (showDialogStatus && !TextUtils.isEmpty(display_note)) {
@@ -701,8 +701,8 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (mHomeAfterBean != null) {
             layer = mHomeAfterBean.getLayer();
             display_note = mHomeAfterBean.getDisplay_note();
-            my_gratitude_url= mHomeAfterBean.getMy_gratitude_url();
-            my_dedication_url= mHomeAfterBean.getMy_dedication_url();
+            my_gratitude_url = mHomeAfterBean.getMy_gratitude_url();
+            my_dedication_url = mHomeAfterBean.getMy_dedication_url();
             kn_url = mHomeAfterBean.getKn_url();
             activity_url = mHomeAfterBean.getActivity_url();
             String sign_url = mHomeAfterBean.getSign_url();
@@ -834,13 +834,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      * @param BannersList
      */
     private void shoeZZJieQi(List<HomeItemBean> BannersList) {
-        if(homedediVpTop==null){
+        if (homedediVpTop == null) {
             return;
         }
         TopAdapter adapter = new TopAdapter(mActivity, BannersList);
         homedediVpTop.setAdapter(adapter);
         if (BannersList != null && BannersList.size() > 1) {
-            homedediVpTop.setCurrentItem(1);
+            homedediVpTop.setCurrentItem(1, false);
         }
     }
 
@@ -866,10 +866,16 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         vp.setInAnimation(mActivity, R.anim.push_bottom_in);
     }
 
+    IconAdapter mIconAdapter;
+
     private void showIcon(List<HomeItemBean> iconList) {
         if (iconList != null && iconList.size() > 0) {
-            IconAdapter mIconAdapter = new IconAdapter(mActivity, iconList);
-            gv_icon.setAdapter(mIconAdapter);
+            if (mIconAdapter == null) {
+                mIconAdapter = new IconAdapter(mActivity, iconList);
+                gv_icon.setAdapter(mIconAdapter);
+            } else {
+                mIconAdapter.reloadListView(iconList, true);
+            }
         }
     }
 

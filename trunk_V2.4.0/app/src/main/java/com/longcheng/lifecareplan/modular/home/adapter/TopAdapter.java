@@ -2,7 +2,6 @@ package com.longcheng.lifecareplan.modular.home.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
@@ -16,11 +15,7 @@ import android.widget.TextView;
 
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
-import com.longcheng.lifecareplan.modular.home.healthydelivery.detail.activity.HealthyDeliveryDetailAct;
-import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
-import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
-import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 
 import java.util.List;
 
@@ -76,7 +71,6 @@ public class TopAdapter extends PagerAdapter {
             TextView item_tv_helpme = view.findViewById(R.id.item_tv_helpme);
 
             HomeItemBean item = list.get(position);
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, item.getPic(), item_iv_pic);
             item_tv_jieqititle.setText("越互祝越健康，" + item.getPre_jieqi_name() + "感恩您的祝福");
             String showT = "<font color=\"#ff4d5b\">" + item.getSponsor_help_number() +
                     "</font>次，生命能量<font color=\"#ff4d5b\">" + item.getSponsor_ability() + "</font>";
@@ -97,7 +91,7 @@ public class TopAdapter extends PagerAdapter {
                 item_tv_jieqiday.setVisibility(View.VISIBLE);
             }
             item_tv_jieqiday.setText(item.getDesc());
-
+            GlideDownLoadImage.getInstance().loadCircleImageLive(item.getPic(), R.mipmap.moren_new, item_iv_pic, 0);
             container.addView(view);
             return view;
         }
@@ -108,5 +102,10 @@ public class TopAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
-
+    /*
+     * 解决viewpager在刷新调用notifyDataSetChanged不起作用 使用懒加载后没有效果?
+     */
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }

@@ -77,6 +77,7 @@ public class DediGridAdapter extends BaseAdapter {
             mHolder = new ViewHolder();
             mHolder.item_tv_title = view.findViewById(R.id.item_tv_title);
             mHolder.item_tv_time = view.findViewById(R.id.item_tv_time);
+            mHolder.frame_pic = view.findViewById(R.id.frame_pic);
             mHolder.item_iv_pic = view.findViewById(R.id.item_iv_pic);
             mHolder.layout_right = view.findViewById(R.id.layout_right);
             mHolder.item_iv_head1 = view.findViewById(R.id.item_iv_head1);
@@ -117,8 +118,8 @@ public class DediGridAdapter extends BaseAdapter {
             mHolder.item_iv_head2.setBackgroundResource(R.mipmap.user_default_icon);
             mHolder.item_iv_head3.setBackgroundResource(R.mipmap.user_default_icon);
         }
-        mHolder.item_iv_pic.setTag(mHomeItemBean);
-        mHolder.item_iv_pic.setOnClickListener(new View.OnClickListener() {
+        mHolder.frame_pic.setTag(mHomeItemBean);
+        mHolder.frame_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 HomeItemBean mHomeItemBean = (HomeItemBean) v.getTag();
@@ -188,7 +189,7 @@ public class DediGridAdapter extends BaseAdapter {
             mHolder.item_tv_time.setTextColor(Color.parseColor(mHomeItemBean.getColor()));
         }
         Log.i("BannerListSuccess", "BannerListSuccess: " + mHomeItemBean.getPic());
-        GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mContext, mHomeItemBean.getPic(), mHolder.item_iv_pic, ConstantManager.image_angle);
+        GlideDownLoadImage.getInstance().loadCircleImageLive(mHomeItemBean.getPic(), R.mipmap.moren_new, mHolder.item_iv_pic, ConstantManager.image_angle);
 
         return view;
     }
@@ -196,6 +197,7 @@ public class DediGridAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView item_tv_title;
         TextView item_tv_time;
+        FrameLayout frame_pic;
         ImageView item_iv_pic;
         RelativeLayout layout_right;
         ImageView item_iv_head1;

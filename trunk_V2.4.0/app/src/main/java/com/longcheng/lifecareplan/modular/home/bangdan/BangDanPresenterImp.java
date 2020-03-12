@@ -59,4 +59,29 @@ public class BangDanPresenterImp<T> extends BangDanContract.Presenter<BangDanCon
 
     }
 
+    public void getEngryCenterList(String user_id,
+                                   int page,
+                                   int page_size, int type) {
+        mView.showDialog();
+        Observable<BangDanDataBean> observable = Api.getInstance().service.getEngryCenterList(user_id,
+                page, page_size, type, ExampleApplication.token);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new io.reactivex.functions.Consumer<BangDanDataBean>() {
+                    @Override
+                    public void accept(BangDanDataBean responseBean) throws Exception {
+                        mView.dismissDialog();
+                        if (!UserLoginBack403Utils.getInstance().login499Or500(responseBean.getStatus()))
+                            mView.ListSuccess(responseBean, page);
+                    }
+                }, new io.reactivex.functions.Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mView.dismissDialog();
+                        mView.ListError();
+                        Log.e("Observable", throwable.toString());
+                    }
+                });
+
+    }
 }
