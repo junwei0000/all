@@ -290,6 +290,7 @@ public class EngryBangDanActivity extends BaseListActivity<BangDanContract.View,
 
     @Override
     public void ListError() {
+        ToastUtils.showToast(R.string.net_tishi);
         lvData.setVisibility(View.VISIBLE);
         ListUtils.getInstance().RefreshCompleteS(exchangeSv);
     }
