@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.home.bangdan.BlessBangDanActivity;
+import com.longcheng.lifecareplan.modular.home.bangdan.EngryBangDanActivity;
 import com.longcheng.lifecareplan.modular.home.bean.HomeItemBean;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
@@ -146,6 +147,11 @@ public class DediGridAdapter extends BaseAdapter {
                     if (UserLoginSkipUtils.checkLoginStatus(mContext, ConstantManager.loginSkipToBangDan)) {
                         if (!TextUtils.isEmpty(skip_source) && skip_source.equals("bless_exponent")) {
                             Intent intent = new Intent(mContext, BlessBangDanActivity.class);
+                            intent.putExtra("title", title);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            mContext.startActivity(intent);
+                        } else if (!TextUtils.isEmpty(skip_source) && skip_source.equals("energy_center")) {
+                            Intent intent = new Intent(mContext, EngryBangDanActivity.class);
                             intent.putExtra("title", title);
                             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             mContext.startActivity(intent);

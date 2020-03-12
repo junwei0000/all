@@ -100,6 +100,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/item_tv_typetitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"

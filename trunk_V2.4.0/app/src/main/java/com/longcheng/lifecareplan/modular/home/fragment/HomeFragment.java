@@ -477,7 +477,6 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         layout_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reLoadData();
                 OpenNotificationDialog.dismiss();
             }
         });

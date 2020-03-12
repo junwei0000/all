@@ -30,9 +30,9 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * 福气榜
+ * 能量中心榜
  */
-public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View, BangDanPresenterImp<BangDanContract.View>> implements BangDanContract.View {
+public class EngryBangDanActivity extends BaseListActivity<BangDanContract.View, BangDanPresenterImp<BangDanContract.View>> implements BangDanContract.View {
 
 
     @BindView(R.id.toolbar)
@@ -65,9 +65,24 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
     LinearLayout layout_item;
     @BindView(R.id.item_tv_typetitle)
     TextView item_tv_typetitle;
+    @BindView(R.id.item_time)
+    TextView item_time;
+
+    @BindView(R.id.layout_engrytype)
+    LinearLayout layout_engrytype;
+    @BindView(R.id.tv_daifu)
+    TextView tv_daifu;
+    @BindView(R.id.tv_daichong)
+    TextView tv_daichong;
+
     private String user_id;
     private int page;
     private int pageSize = 20;
+
+    /**
+     * 1 代付； 2 代充
+     */
+    int pay_type = 1;
 
     @Override
     public void onClick(View v) {
@@ -75,6 +90,14 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
         switch (v.getId()) {
             case R.id.pagetop_layout_left:
                 back();
+                break;
+            case R.id.tv_daifu:
+                pay_type = 1;
+                setTopView();
+                break;
+            case R.id.tv_daichong:
+                pay_type = 2;
+                setTopView();
                 break;
         }
     }
@@ -104,8 +127,12 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
     @Override
     public void setListener() {
         layout_item.setVisibility(View.INVISIBLE);
+        layout_engrytype.setVisibility(View.VISIBLE);
+        tv_daifu.setOnClickListener(this);
+        tv_daichong.setOnClickListener(this);
         pagetopLayoutLeft.setOnClickListener(this);
-        int hei = (int) (DensityUtil.screenWith(mContext) / 2.18);
+        int hei = (int) (DensityUtil.screenWith(mContext) / 1.769);
+        layoutTop.setBackgroundResource(R.mipmap.bangdan_engry_bg);
         layoutTop.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hei));
         ScrowUtil.ScrollViewConfigAll(exchangeSv);
         exchangeSv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
@@ -140,6 +167,22 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
         mPresent.getBlessList(user_id, page, pageSize);
     }
 
+    /**
+     * 代充 代付
+     */
+    private void setTopView() {
+        tv_daifu.setTextColor(getResources().getColor(R.color.white));
+        tv_daichong.setTextColor(getResources().getColor(R.color.white));
+        tv_daifu.setBackgroundColor(getResources().getColor(R.color.transparent));
+        tv_daichong.setBackgroundColor(getResources().getColor(R.color.transparent));
+        if (pay_type == 1) {
+            tv_daifu.setTextColor(getResources().getColor(R.color.blue_bang));
+            tv_daifu.setBackgroundResource(R.drawable.corners_bg_write_bangzuo);
+        } else {
+            tv_daichong.setTextColor(getResources().getColor(R.color.blue_bang));
+            tv_daichong.setBackgroundResource(R.drawable.corners_bg_write_bangyou);
+        }
+    }
 
     @Override
     protected BangDanPresenterImp<BangDanContract.View> createPresent() {
@@ -171,7 +214,8 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
         } else if (status_.equals("200")) {
             BangDanAfterBean mEnergyAfterBean = responseBean.getData();
             if (mEnergyAfterBean != null) {
-
+//                item_time.setText();
+                item_time.setVisibility(View.VISIBLE);
                 BangDanAfterBean mBangDanAfterBean = mEnergyAfterBean.getUserSelf();
                 showInfo(mBangDanAfterBean);
 
@@ -184,7 +228,7 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
                 if (size > 0) {
                 }
                 if (mAdapter == null) {
-                    mAdapter = new BlessAdapter(mActivity, helpList, "bless");
+                    mAdapter = new BlessAdapter(mActivity, helpList, "engryCenter");
                     lvData.setAdapter(mAdapter);
                 } else {
                     mAdapter.reloadListView(helpList, false);
@@ -207,7 +251,7 @@ public class BlessBangDanActivity extends BaseListActivity<BangDanContract.View,
                 name = name.substring(0, 7) + "…";
             }
             itemTvName.setText(name);
-            item_tv_typetitle.setText("福气值");
+            item_tv_typetitle.setText("服务人数");
             itemTvJieeqi.setText(mBangDanAfterBean.getJieqi_name());
             itemTvRank.setText(mBangDanAfterBean.getExponent());
             List<String> identity_img = mBangDanAfterBean.getIdentity_img();

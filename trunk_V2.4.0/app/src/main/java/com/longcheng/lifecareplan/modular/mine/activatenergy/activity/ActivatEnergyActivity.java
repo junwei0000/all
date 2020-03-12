@@ -107,8 +107,6 @@ public class ActivatEnergyActivity extends BaseActivity {
     @BindView(R.id.layout_showengry)
     LinearLayout layout_showengry;
 
-    @BindView(R.id.activat_tv_wx)
-    TextView activat_tv_wx;
     @BindView(R.id.activat_tv_zhifubao)
     TextView activat_tv_zhifubao;
     @BindView(R.id.activat_tv_mted)
@@ -121,7 +119,7 @@ public class ActivatEnergyActivity extends BaseActivity {
     /**
      * 祝福师-支付方式激活类型 1微信; 2 支付宝 ；3 秒提额度
      */
-    private int zfs_payType = 1;
+    private int zfs_payType = 2;
     private MoneyAdapter mMoneyAdapter;
 
     private String activate_ability_config_id;
@@ -179,10 +177,6 @@ public class ActivatEnergyActivity extends BaseActivity {
                 startActivity(intent);
                 ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
                 break;
-            case R.id.activat_tv_wx:
-                zfs_payType = 1;
-                zfbSelectPayType();
-                break;
             case R.id.activat_tv_zhifubao:
                 zfs_payType = 2;
                 zfbSelectPayType();
@@ -213,7 +207,6 @@ public class ActivatEnergyActivity extends BaseActivity {
     @SuppressLint("NewApi")
     @Override
     public void setListener() {
-        activat_tv_wx.setOnClickListener(this);
         activat_tv_zhifubao.setOnClickListener(this);
         activat_tv_mted.setOnClickListener(this);
         btn_zfsrecord.setOnClickListener(this);
@@ -336,17 +329,11 @@ public class ActivatEnergyActivity extends BaseActivity {
      * 祝福宝-切换支付方式
      */
     private void zfbSelectPayType() {
-        activat_tv_wx.setTextColor(getResources().getColor(R.color.text_contents_color));
         activat_tv_zhifubao.setTextColor(getResources().getColor(R.color.text_contents_color));
         activat_tv_mted.setTextColor(getResources().getColor(R.color.text_contents_color));
-        activat_tv_wx.setBackgroundResource(R.drawable.corners_bg_goodgray);
         activat_tv_zhifubao.setBackgroundResource(R.drawable.corners_bg_goodgray);
         activat_tv_mted.setBackgroundResource(R.drawable.corners_bg_goodgray);
-        if (zfs_payType == 1) {
-            activat_tv_wx.setTextColor(getResources().getColor(R.color.white));
-            activat_tv_wx.setBackgroundResource(R.drawable.corners_bg_login);
-            ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, activat_tv_wx, R.color.red);
-        } else if (zfs_payType == 2) {
+        if (zfs_payType == 2) {
             activat_tv_zhifubao.setTextColor(getResources().getColor(R.color.white));
             activat_tv_zhifubao.setBackgroundResource(R.drawable.corners_bg_login);
             ColorChangeByTime.getInstance().changeDrawableToClolor(mActivity, activat_tv_zhifubao, R.color.red);

@@ -37,6 +37,10 @@ public class DedicationAdapter extends PagerAdapter {
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public void setList(ArrayList<HomeItemBean> list) {
+        this.list = list;
+    }
+
     @Override
     public int getCount() {
         return page;
@@ -68,5 +72,10 @@ public class DedicationAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
-
+    /*
+     * 解决viewpager在刷新调用notifyDataSetChanged不起作用 使用懒加载后没有效果?
+     */
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }

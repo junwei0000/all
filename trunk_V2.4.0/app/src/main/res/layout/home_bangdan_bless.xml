@@ -32,22 +32,73 @@
                     android:layout_height="200dp"
                     android:layout_alignParentTop="true"
                     android:background="@mipmap/bangdan_bless_bg"
-                    android:orientation="horizontal" />
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <com.longcheng.lifecareplan.utils.myview.MyListView
-                    android:id="@+id/lv_data"
+                    <TextView
+                        android:id="@+id/item_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp40"
+                        android:paddingLeft="@dimen/dp15"
+                        android:text="2020-03-12 21:11:11 ~ 2020-04-12 21:11:11"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_dp12_size"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_engrytype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:background="@drawable/corners_bg_writebian"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_daifu"
+                        style="@style/btn_padd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_bg_write_bangzuo"
+                        android:text="代付榜"
+                        android:textColor="@color/blue_bang"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/tv_daichong"
+                        style="@style/btn_padd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="代充榜"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/layout_top"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="-18dp"
-                    android:background="@drawable/corners_bg_writetop"
-                    android:cacheColorHint="@color/page_bg"
-                    android:divider="@null"
-                    android:fadeScrollbars="false"
-                    android:fadingEdge="none"
-                    android:scrollbars="none" />
+                    android:background="@drawable/corners_bg_writetop">
 
+                    <com.longcheng.lifecareplan.utils.myview.MyListView
+                        android:id="@+id/lv_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:cacheColorHint="@color/page_bg"
+                        android:divider="@null"
+                        android:fadeScrollbars="false"
+                        android:fadingEdge="none"
+                        android:focusable="false"
+                        android:scrollbars="none"
+                        android:visibility="gone" />
+                </LinearLayout>
 
             </RelativeLayout>
         </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
@@ -63,10 +114,10 @@
 
             <TextView
                 android:id="@+id/item_notbang"
-                style="@style/view_paddtopbottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:padding="@dimen/dp15"
                 android:text="您未上榜"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_pageTop_size"

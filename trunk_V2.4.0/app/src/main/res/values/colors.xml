@@ -51,10 +51,10 @@
     <color name="detail_progress_bg">#e60c0c</color>
     <color name="detail_progressnot_bg">#dedede</color>
     <color name="commbluebg">#636efd</color>
-
+    <color name="blue">#e60c0c</color>
     <!-- 蓝色 -->
     <color name="bluebg">#4478ff</color>
-    <color name="blue">#e60c0c</color>
+    <color name="blue_bang">#2ea4fa</color>
     <!-- 首页菜单字体颜色 -->
     <color name="main_tab_text_color">#555555</color>
     <color name="black">#000000</color>

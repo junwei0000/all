@@ -25,10 +25,12 @@ public class BlessAdapter extends BaseAdapterHelper<BangDanAfterBean> {
     private final ImageLoader asyncImageLoader;
     ViewHolder mHolder = null;
     Activity context;
+    String skip_source;
 
-    public BlessAdapter(Activity context, List<BangDanAfterBean> list) {
+    public BlessAdapter(Activity context, List<BangDanAfterBean> list, String skip_source) {
         super(context, list);
         this.context = context;
+        this.skip_source = skip_source;
         asyncImageLoader = new ImageLoader(context, "headImg");
     }
 
@@ -67,6 +69,11 @@ public class BlessAdapter extends BaseAdapterHelper<BangDanAfterBean> {
                 mHolder.item_layout_shenfen.addView(linearLayout);
             }
         }
+        if (skip_source.equals("engryCenter")) {
+            mHolder.item_tv_typetitle.setText("服务人数");
+        } else {
+            mHolder.item_tv_typetitle.setText("福气值");
+        }
         return convertView;
     }
 
@@ -79,6 +86,7 @@ public class BlessAdapter extends BaseAdapterHelper<BangDanAfterBean> {
 
         private LinearLayout item_layout_shenfen;
         private TextView item_tv_rank;
+        private TextView item_tv_typetitle;
 
         public ViewHolder(View convertView) {
             item_tv_num = (TextView) convertView.findViewById(R.id.item_tv_num);
@@ -87,6 +95,7 @@ public class BlessAdapter extends BaseAdapterHelper<BangDanAfterBean> {
             item_tv_jieeqi = (TextView) convertView.findViewById(R.id.item_tv_jieeqi);
             item_layout_shenfen = (LinearLayout) convertView.findViewById(R.id.item_layout_shenfen);
             item_tv_rank = (TextView) convertView.findViewById(R.id.item_tv_rank);
+            item_tv_typetitle = (TextView) convertView.findViewById(R.id.item_tv_typetitle);
         }
     }
 }
