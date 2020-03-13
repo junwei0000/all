@@ -211,23 +211,6 @@ public class BottomMenuActivity extends BaseActivity {
             case R.id.bottom_layout_helpWith:
                 after_tab_position = tab_position_help;
                 chackSkipByLoginStatus();
-//                try {
-//                    String loginStatus = (String) SharedPreferencesHelper.get(getApplicationContext(), "loginStatus", "");
-//                    if (loginStatus.equals(ConstantManager.loginStatus)) {
-//                        Intent intents = new Intent(mActivity, BaoZhangActitvty.class);
-//                        intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                        intents.putExtra("html_url", "" + HomeFragment.activity_url);
-//                        startActivity(intents);
-//                        ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
-//                    } else {
-//                        SharedPreferencesHelper.put(mActivity, "loginSkipToStatus", "ActionH5Activity");
-//                        Intent intent = new Intent(mContext, LoginActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                        startActivity(intent);
-//                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-//                    }
-//                } catch (Exception e) {
-//                }
                 break;
             //兑换
             case R.id.bottom_layout_exchange:
