@@ -20,12 +20,14 @@ import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.config.Config;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
-import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithActivity;
+import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.home.liveplay.bean.VideoItemInfo;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.HomFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.MineFramgemt;
 import com.longcheng.lifecareplan.modular.home.liveplay.framgent.VideoFramgent;
 import com.longcheng.lifecareplan.modular.home.liveplay.shortvideo.ShortVideoActivity;
+import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyViewPager;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.UserUtils;
@@ -267,9 +269,11 @@ public class VideoMenuActivity extends BaseActivity {
      */
     public void back() {
         if (!TextUtils.isEmpty(skipType) && skipType.equals("auto")) {
-            Intent intent = new Intent(mActivity, HelpWithActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
+            Intent intents = new Intent(mActivity, BaoZhangActitvty.class);
+            intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intents.putExtra("html_url", "" + HomeFragment.activity_url);
+            startActivity(intents);
+            ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
         }
         doFinish();
     }

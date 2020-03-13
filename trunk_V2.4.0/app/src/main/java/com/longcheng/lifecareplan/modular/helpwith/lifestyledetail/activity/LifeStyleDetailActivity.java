@@ -1,29 +1,16 @@
 package com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.longcheng.lifecareplan.R;
 import com.longcheng.lifecareplan.base.ActivityManager;
 import com.longcheng.lifecareplan.base.BaseListActivity;
@@ -31,40 +18,26 @@ import com.longcheng.lifecareplan.base.ExampleApplication;
 import com.longcheng.lifecareplan.bean.ResponseBean;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.exchange.malldetail.activity.MallDetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
-import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.ReplyEditPopupUtils;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyle.activity.LifeStyleListProgressUtils;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.adapter.CommentAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.adapter.DetailJieQiAdapter;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleCommentDataBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.LifeStyleDetailItemBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.SKBPayAfterBean;
 import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.bean.SKBPayDataBean;
-import com.longcheng.lifecareplan.modular.helpwith.lifestyledetail.lifestylerank.activity.LifeRankActivity;
-import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
-import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
-import com.longcheng.lifecareplan.modular.mine.myorder.detail.activity.XiaJiaActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ConstantManager;
 import com.longcheng.lifecareplan.utils.DensityUtil;
-import com.longcheng.lifecareplan.utils.ListUtils;
-import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
 import com.longcheng.lifecareplan.utils.glide.GlideDownLoadImage;
-import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.utils.myview.MyListView;
 import com.longcheng.lifecareplan.utils.myview.MyScrollView;
 import com.longcheng.lifecareplan.utils.share.ShareUtils;
 import com.longcheng.lifecareplan.utils.sharedpreferenceutils.SharedPreferencesHelper;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 import com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar;
-import com.longcheng.lifecareplan.wxapi.WXPayEntryActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -206,6 +179,9 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
         detail_tv_jieqi.getBackground().setAlpha(92);
         int hei = (int) (DensityUtil.screenWith(mContext) / 2.344);
         iv_jieqi.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, hei));
+        pagetopLayoutRigth.setFocusable(true);
+        pagetopLayoutRigth.setFocusableInTouchMode(true);
+        pagetopLayoutRigth.requestFocus();
     }
 
     @Override
@@ -263,24 +239,27 @@ public class LifeStyleDetailActivity extends BaseListActivity<LifeStyleDetailCon
                 lv_jieqi.setAdapter(mJieQiAdapter);
             }
         }
-        firstComIn = false;
-        setFocuse();
         lv_jieqi.setVisibility(View.VISIBLE);
+        setFocuse();
     }
 
-    private void setFocuse() {
-        main_sv.post(
-                new Runnable() {
-                    public void run() {
-                        /**
-                         * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
-                         */
-                        if (main_sv != null) {
-                            main_sv.smoothScrollTo(0, 0);
-                        }
 
-                    }
-                });
+    private void setFocuse() {
+        if (firstComIn) {
+            firstComIn = false;
+            main_sv.post(
+                    new Runnable() {
+                        public void run() {
+                            /**
+                             * 从本质上来讲，pulltorefreshscrollview 是 LinearLayout，那么要想让它能滚动到顶部，我们就需要将它转为 ScrollView
+                             */
+                            if (main_sv != null) {
+                                main_sv.smoothScrollTo(0, 0);
+                            }
+
+                        }
+                    });
+        }
     }
 
     @Override

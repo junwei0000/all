@@ -35,7 +35,6 @@ import com.longcheng.lifecareplan.modular.helpwith.applyhelp.activity.ActionDeta
 import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
 import com.longcheng.lifecareplan.modular.helpwith.energy.activity.HelpWithEnergyActivity;
 import com.longcheng.lifecareplan.modular.helpwith.energydetail.activity.DetailActivity;
-import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithActivity;
 import com.longcheng.lifecareplan.modular.home.adapter.ActionAdapter;
 import com.longcheng.lifecareplan.modular.home.adapter.DedicationAdapter;
 import com.longcheng.lifecareplan.modular.home.adapter.HealthAdapter;
@@ -333,10 +332,11 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
                         }
                     } else if (sort == 4) {
                         if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHelpWithEnergy)) {
-                            intent = new Intent(mActivity, HelpWithActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            startActivity(intent);
-                            ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
+                            Intent intents = new Intent(mActivity, BaoZhangActitvty.class);
+                            intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intents.putExtra("html_url", "" + HomeFragment.activity_url);
+                            startActivity(intents);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
                         }
                     } else if (sort == 5) {
                         if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {

@@ -21,7 +21,7 @@ import com.longcheng.lifecareplan.base.BaseActivity;
 import com.longcheng.lifecareplan.modular.bottommenu.ColorChangeByTime;
 import com.longcheng.lifecareplan.modular.bottommenu.adapter.TabPageAdapter;
 import com.longcheng.lifecareplan.modular.exchange.fragment.ExChangeFragment;
-import com.longcheng.lifecareplan.modular.helpwith.connonEngineering.activity.BaoZhangActitvty;
+import com.longcheng.lifecareplan.modular.helpwith.fragment.HelpWithFragmentNew;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginActivity;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
@@ -89,8 +89,9 @@ public class BottomMenuActivity extends BaseActivity {
     private int after_tab_position;
 
     public static final int tab_position_home = 0;
-    public static final int tab_position_exchange = 1;
-    public static final int tab_position_mine = 2;
+    public static final int tab_position_help = 1;
+    public static final int tab_position_exchange = 2;
+    public static final int tab_position_mine = 3;
 
     public static Activity mMenuContext;
 
@@ -208,23 +209,25 @@ public class BottomMenuActivity extends BaseActivity {
                 break;
             //互助
             case R.id.bottom_layout_helpWith:
-                try {
-                    String loginStatus = (String) SharedPreferencesHelper.get(getApplicationContext(), "loginStatus", "");
-                    if (loginStatus.equals(ConstantManager.loginStatus)) {
-                        Intent intents = new Intent(mActivity, BaoZhangActitvty.class);
-                        intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intents.putExtra("html_url", "" + HomeFragment.activity_url);
-                        startActivity(intents);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
-                    } else {
-                        SharedPreferencesHelper.put(mActivity, "loginSkipToStatus", "ActionH5Activity");
-                        Intent intent = new Intent(mContext, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
-                    }
-                } catch (Exception e) {
-                }
+                after_tab_position = tab_position_help;
+                chackSkipByLoginStatus();
+//                try {
+//                    String loginStatus = (String) SharedPreferencesHelper.get(getApplicationContext(), "loginStatus", "");
+//                    if (loginStatus.equals(ConstantManager.loginStatus)) {
+//                        Intent intents = new Intent(mActivity, BaoZhangActitvty.class);
+//                        intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                        intents.putExtra("html_url", "" + HomeFragment.activity_url);
+//                        startActivity(intents);
+//                        ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
+//                    } else {
+//                        SharedPreferencesHelper.put(mActivity, "loginSkipToStatus", "ActionH5Activity");
+//                        Intent intent = new Intent(mContext, LoginActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                        startActivity(intent);
+//                        ConfigUtils.getINSTANCE().setPageIntentAnim(intent, mActivity);
+//                    }
+//                } catch (Exception e) {
+//                }
                 break;
             //兑换
             case R.id.bottom_layout_exchange:
@@ -251,6 +254,9 @@ public class BottomMenuActivity extends BaseActivity {
         if (position == tab_position_home) {
             bottomIvHome.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
             bottomTvHome.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
+        } else if (position == tab_position_help) {
+            bottomIvHelpWith.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
+            bottomTvHelpWith.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
         } else if (position == tab_position_exchange) {
             bottomIvExchange.setColorFilter(ColorChangeByTime.getInstance().backColor(mActivity));
             bottomTvExchange.setTextColor(ColorChangeByTime.getInstance().backColor(mActivity));
@@ -269,7 +275,8 @@ public class BottomMenuActivity extends BaseActivity {
     private void initFragment() {
         HomeFragment homeFragment = new HomeFragment();
         fragmentList.add(homeFragment);
-
+        HelpWithFragmentNew mHelpWithFragmentNew = new HelpWithFragmentNew();
+        fragmentList.add(mHelpWithFragmentNew);
         ExChangeFragment exChangeFragment = new ExChangeFragment();
         fragmentList.add(exChangeFragment);
 
@@ -287,7 +294,7 @@ public class BottomMenuActivity extends BaseActivity {
     private void setPageAdapter() {
         TabPageAdapter tabPageAdapter = new TabPageAdapter(getSupportFragmentManager(), fragmentList);
         mViewPager.setAdapter(tabPageAdapter);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(4);
 //        mViewPager.addOnPageChangeListener(mOnPageChange);
         /**
          * 设置是否可以滑动
@@ -329,6 +336,9 @@ public class BottomMenuActivity extends BaseActivity {
             ((HomeFragment) fragmentList.get(position)).setAllContDialog();
         } else {
             ((HomeFragment) fragmentList.get(tab_position_home)).dismissAllDialog();
+        }
+        if (position == tab_position_help) {
+            ((HelpWithFragmentNew) fragmentList.get(position)).initInfo();
         }
         if (position == tab_position_exchange) {
             ((ExChangeFragment) fragmentList.get(position)).initLoad(solar_terms_id, solar_terms_name);
