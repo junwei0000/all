@@ -270,26 +270,18 @@ public class GlideDownLoadImage {
     }
 
     /**
-     * @param mContext
      * @param url
      * @param view
      * @name 加载网络带角度的图片
      * @auhtor MarkMingShuai
      * @Data 2017-9-5 11:18
      */
-    public void loadCircleImageRoleREf(Context mContext, String url, ImageView view) {
+    public void loadCircleImageRoleREf2(String url, ImageView view, int dp) {
         Glide.with(ExampleApplication.getContext())
-                .load(url)
+                .load(url).asBitmap()
                 .placeholder(R.mipmap.moren_new)
                 .error(R.mipmap.moren_new)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(new SimpleTarget<GlideDrawable>() {
-                    @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                        //图片加载完成
-                        if (view != null)
-                            view.setImageDrawable(resource);
-                    }
-                });
+                .into(view);
     }
 }

@@ -91,7 +91,7 @@ public class TopAdapter extends PagerAdapter {
                 item_tv_jieqiday.setVisibility(View.VISIBLE);
             }
             item_tv_jieqiday.setText(item.getDesc());
-            GlideDownLoadImage.getInstance().loadCircleImageLive(item.getPic(), R.mipmap.moren_new, item_iv_pic, 0);
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf2(item.getPic(), item_iv_pic, 0);
             container.addView(view);
             return view;
         }

@@ -1123,7 +1123,7 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         iv_banner.setLayoutParams(new LinearLayout.LayoutParams(dit, jian));
         if (data.getIsShowNewyearMybook() == 1) {
             iv_banner.setVisibility(View.VISIBLE);
-            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, data.getNewyear_mybook_pic(), iv_banner);
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf2(data.getNewyear_mybook_pic(), iv_banner, 0);
         } else {
             iv_banner.setVisibility(View.GONE);
         }
