@@ -53,6 +53,7 @@ import com.longcheng.lifecareplan.modular.home.invitefriends.activity.InviteFrie
 import com.longcheng.lifecareplan.modular.home.liveplay.VideoMenuActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwActivity;
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
+import com.longcheng.lifecareplan.modular.mine.energycenter.activity.TiXianRecordActivity;
 import com.longcheng.lifecareplan.modular.mine.message.activity.MessageActivity;
 import com.longcheng.lifecareplan.modular.mine.set.version.AppUpdate;
 import com.longcheng.lifecareplan.utils.CleanMessageUtil;
@@ -447,6 +448,9 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
         if (OpenNotificationDialog != null && OpenNotificationDialog.isShowing()) {
             OpenNotificationDialog.dismiss();
         }
+        if (mZFSDialog != null && mZFSDialog.isShowing()) {
+            mZFSDialog.dismiss();
+        }
     }
 
     /**
@@ -627,6 +631,61 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
     }
 
 
+    MyDialog mZFSDialog;
+    ImageView iv_img;
+
+    /**
+     * 显示祝福师付款弹层
+     */
+    private void showZFSDialog() {
+        try {
+            if (mZFSDialog == null) {
+                mZFSDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_zfscash);// 创建Dialog并设置样式主题
+                mZFSDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = mZFSDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                mZFSDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = mZFSDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                mZFSDialog.getWindow().setAttributes(p); //设置生效
+                iv_img = (ImageView) mZFSDialog.findViewById(R.id.iv_img);
+                LinearLayout layout_img = (LinearLayout) mZFSDialog.findViewById(R.id.layout_img);
+                layout_img.getBackground().setAlpha(92);
+                TextView tv_sure = (TextView) mZFSDialog.findViewById(R.id.tv_sure);
+                LinearLayout layout_cancel = (LinearLayout) mZFSDialog.findViewById(R.id.layout_cancel);
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mZFSDialog.dismiss();
+                    }
+                });
+                tv_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mZFSDialog.dismiss();/**/
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                            Intent intent = new Intent(mContext, TiXianRecordActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+                        }
+
+                    }
+                });
+            } else {
+                if (getActivity() != null && !getActivity().isFinishing()) {
+                    mZFSDialog.show();
+                }
+            }
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, current_jieqi_picture, iv_img, 0);
+
+        } catch (Exception e) {
+
+        }
+    }
+
+
     private void setDaTing() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -681,6 +740,10 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
             showUpdaDialog();
             return;
         }
+        if (isShowZhufubaoPayLayer == 1) {
+            showZFSDialog();
+            return;
+        }
         //只显示一次康农弹层
         if (showDialogStatus && layer != null && layer.size() > 0) {
             MySharedPreferences.getInstance().showDialogStatus(false);
@@ -696,9 +759,13 @@ public class HomeFragment extends BaseFragmentMVP<HomeContract.View, HomePresent
      */
     List<HomeItemBean> layer;
     int showLayerIndex = -1;
+    public static int isShowZhufubaoPayLayer;
+    public static  String current_jieqi_picture;
 
     private void setLoadData(HomeAfterBean mHomeAfterBean) {
         if (mHomeAfterBean != null) {
+            isShowZhufubaoPayLayer = mHomeAfterBean.getIsShowZhufubaoPayLayer();
+            current_jieqi_picture = mHomeAfterBean.getCurrent_jieqi_picture();
             layer = mHomeAfterBean.getLayer();
             display_note = mHomeAfterBean.getDisplay_note();
             my_gratitude_url = mHomeAfterBean.getMy_gratitude_url();

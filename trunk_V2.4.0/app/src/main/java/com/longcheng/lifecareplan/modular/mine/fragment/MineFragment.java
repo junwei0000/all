@@ -41,6 +41,7 @@ import com.longcheng.lifecareplan.modular.helpwith.myGratitude.activity.MyGraH5A
 import com.longcheng.lifecareplan.modular.helpwith.myfamily.activity.PerfectInfoDialog;
 import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.index.login.activity.UpdatePwActivity;
+import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginSkipUtils;
 import com.longcheng.lifecareplan.modular.mine.absolutelyclear.activity.AbsolutelyclearAct;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.activity.AWordOfGoldAct;
@@ -50,6 +51,7 @@ import com.longcheng.lifecareplan.modular.mine.bill.activity.SleepEngryActivity;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.SleepSkbActivity;
 import com.longcheng.lifecareplan.modular.mine.bill.activity.WakeSkbActivity;
 import com.longcheng.lifecareplan.modular.mine.changeinviter.activity.ChangeInviterActivity;
+import com.longcheng.lifecareplan.modular.mine.energycenter.activity.TiXianRecordActivity;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.FunctionAdapter;
 import com.longcheng.lifecareplan.modular.mine.fragment.genius.FunctionGVItemBean;
 import com.longcheng.lifecareplan.modular.mine.goodluck.activity.GoodLuckActivity;
@@ -1222,6 +1224,9 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
         if (mRQZDialog != null && mRQZDialog.isShowing()) {
             mRQZDialog.dismiss();
         }
+        if (mZFSDialog != null && mZFSDialog.isShowing()) {
+            mZFSDialog.dismiss();
+        }
     }
 
     /**
@@ -1236,6 +1241,14 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
                 || BottomMenuActivity.updatedialogstatus) {
             dismissAllDialog();
             return;
+        }
+        if (HomeFragment.isShowZhufubaoPayLayer == 1) {
+            showZFSDialog();
+            return;
+        } else {
+            if (mZFSDialog != null && mZFSDialog.isShowing()) {
+                mZFSDialog.dismiss();
+            }
         }
         boolean isShowRQZ = MySharedPreferences.getInstance().getIsShowRQZ();
         if (isShowRQZ && data.getIsShowNewyearMybook() == 1) {
@@ -1332,6 +1345,60 @@ public class MineFragment extends BaseFragmentMVP<MineContract.View, MinePresent
             if (redBaoDialog != null && redBaoDialog.isShowing()) {
                 redBaoDialog.dismiss();
             }
+        }
+    }
+
+    ImageView iv_img;
+    MyDialog mZFSDialog;
+
+    /**
+     * 显示祝福师付款弹层
+     */
+    private void showZFSDialog() {
+        try {
+            if (mZFSDialog == null) {
+                mZFSDialog = new MyDialog(getActivity(), R.style.dialog, R.layout.dialog_hone_zfscash);// 创建Dialog并设置样式主题
+                mZFSDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+                Window window = mZFSDialog.getWindow();
+                window.setGravity(Gravity.CENTER);
+                mZFSDialog.show();
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+                WindowManager.LayoutParams p = mZFSDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                p.width = d.getWidth() * 3 / 4;
+                mZFSDialog.getWindow().setAttributes(p); //设置生效
+                iv_img = (ImageView) mZFSDialog.findViewById(R.id.iv_img);
+                LinearLayout layout_img = (LinearLayout) mZFSDialog.findViewById(R.id.layout_img);
+                layout_img.getBackground().setAlpha(92);
+                TextView tv_sure = (TextView) mZFSDialog.findViewById(R.id.tv_sure);
+                LinearLayout layout_cancel = (LinearLayout) mZFSDialog.findViewById(R.id.layout_cancel);
+                layout_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mZFSDialog.dismiss();
+                    }
+                });
+                tv_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mZFSDialog.dismiss();/**/
+                        if (UserLoginSkipUtils.checkLoginStatus(mActivity, ConstantManager.loginSkipToHome)) {
+                            Intent intent = new Intent(mContext, TiXianRecordActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+                        }
+
+                    }
+                });
+            } else {
+                if (getActivity() != null && !getActivity().isFinishing()) {
+                    mZFSDialog.show();
+                }
+            }
+            GlideDownLoadImage.getInstance().loadCircleImageRoleREf(mActivity, HomeFragment.current_jieqi_picture, iv_img, 0);
+
+        } catch (Exception e) {
+
         }
     }
 

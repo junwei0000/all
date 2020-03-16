@@ -46,6 +46,8 @@ import com.longcheng.lifecareplan.modular.index.login.activity.LoginThirdSetPwAc
 import com.longcheng.lifecareplan.modular.index.login.activity.UserLoginBack403Utils;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.activity.AWordOfGoldAct;
+import com.longcheng.lifecareplan.modular.mine.energycenter.activity.DaiFuActivity;
+import com.longcheng.lifecareplan.modular.mine.energycenter.activity.TiXianRecordActivity;
 import com.longcheng.lifecareplan.modular.mine.myorder.activity.OrderListActivity;
 import com.longcheng.lifecareplan.modular.mine.phosphor.RedirectDataBean;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
@@ -210,6 +212,26 @@ public abstract class WebAct extends BaseActivity {
                 Intent intent = new Intent(mActivity, MineActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("video_user_id", data);
+                startActivity(intent);
+            }
+        });
+        // 能量中心代付列表
+        mBridgeWebView.registerHandler("energyCenter_userCash", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
+                Intent intent = new Intent(mActivity, DaiFuActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+        });
+        //  提现记录
+        mBridgeWebView.registerHandler("tiXian_record", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.e("registerHandler", "data=" + data);
+                Intent intent = new Intent(mActivity, TiXianRecordActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
         });

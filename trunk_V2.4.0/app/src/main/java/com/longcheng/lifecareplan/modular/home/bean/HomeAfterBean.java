@@ -40,6 +40,27 @@ public class HomeAfterBean implements Serializable {
     private String my_gratitude_url;
     private String my_dedication_url;
 
+
+    //显示祝福师付款弹层
+    private int isShowZhufubaoPayLayer;
+    private String current_jieqi_picture;
+
+    public int getIsShowZhufubaoPayLayer() {
+        return isShowZhufubaoPayLayer;
+    }
+
+    public void setIsShowZhufubaoPayLayer(int isShowZhufubaoPayLayer) {
+        this.isShowZhufubaoPayLayer = isShowZhufubaoPayLayer;
+    }
+
+    public String getCurrent_jieqi_picture() {
+        return current_jieqi_picture;
+    }
+
+    public void setCurrent_jieqi_picture(String current_jieqi_picture) {
+        this.current_jieqi_picture = current_jieqi_picture;
+    }
+
     public String getMy_gratitude_url() {
         return my_gratitude_url;
     }

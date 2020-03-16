@@ -133,7 +133,7 @@ public class ActivatEnergyActivity extends BaseActivity {
     private String cookie_value;
     private String money_select = "0";
     private String First_energy = "0";
-    private String Presenter_energy = "0";
+    private String Presenter_energy = "0", todayCashMoney = "0";
 
     @Override
     public void onClick(View v) {
@@ -156,13 +156,17 @@ public class ActivatEnergyActivity extends BaseActivity {
             case R.id.btn_jihuo:
                 if (payType == 4) {
                     if (Double.parseDouble(moneyCont) > 0) {
-                        String html = Config.BASE_HEAD_URL +
-                                "home/Zhufubao/userRechargeMatchBless?money=" + moneyCont + "&pay_method=" + zfs_payType;
-                        Intent intents = new Intent(mContext, BaoZhangActitvty.class);
-                        intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intents.putExtra("html_url", html);
-                        startActivity(intents);
-                        ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
+                        if (zfs_payType != 3 || (zfs_payType == 3 && Double.parseDouble(todayCashMoney) > Double.parseDouble(moneyCont))) {
+                            String html = Config.BASE_HEAD_URL +
+                                    "home/Zhufubao/userRechargeMatchBless?money=" + moneyCont + "&pay_method=" + zfs_payType;
+                            Intent intents = new Intent(mContext, BaoZhangActitvty.class);
+                            intents.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intents.putExtra("html_url", html);
+                            startActivity(intents);
+                            ConfigUtils.getINSTANCE().setPageIntentAnim(intents, mActivity);
+                        } else if (Double.parseDouble(todayCashMoney) < Double.parseDouble(moneyCont)) {
+                            ToastUtils.showToast("输入祝福宝数量大于可秒提额度");
+                        }
                     } else {
                         ToastUtils.showToast("请输入祝福宝数量");
                     }
@@ -585,6 +589,7 @@ public class ActivatEnergyActivity extends BaseActivity {
         } else if (status.equals("200")) {
             EnergyAfterBean mEnergyAfterBean = responseBean.getData();
             if (mEnergyAfterBean != null) {
+                todayCashMoney = mEnergyAfterBean.getTodayCashMoney();
                 String serviceCharge = mEnergyAfterBean.getServiceCharge();
                 userRechargeListUrl = mEnergyAfterBean.getUserRechargeListUrl();
                 identityType = mEnergyAfterBean.getIdentityType();

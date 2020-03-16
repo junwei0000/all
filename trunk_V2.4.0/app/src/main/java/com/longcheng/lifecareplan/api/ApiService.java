@@ -48,6 +48,7 @@ import com.longcheng.lifecareplan.modular.mine.activatenergy.bean.GetEnergyListD
 import com.longcheng.lifecareplan.modular.mine.awordofgold.bean.AWordOfGoldResponseBean;
 import com.longcheng.lifecareplan.modular.mine.bill.bean.BillResultBean;
 import com.longcheng.lifecareplan.modular.mine.changeinviter.bean.InviteDataBean;
+import com.longcheng.lifecareplan.modular.mine.energycenter.bean.DaiFuDataBean;
 import com.longcheng.lifecareplan.modular.mine.goodluck.bean.GoodLuckListDataBean;
 import com.longcheng.lifecareplan.modular.mine.invitation.bean.InvitationResultBean;
 import com.longcheng.lifecareplan.modular.mine.message.bean.MessageDataBean;
@@ -203,6 +204,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "user/uploadImg")
     Observable<EditDataBean> uploadImg(@Field("user_id") String user_id, @Field("file") String file, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "Files/ajaxUploadPhoto")
+    Observable<EditDataBean> uploadCertificateImg(@Field("user_id") String user_id,
+                                                  @Field("file") String file,
+                                                  @Field("type") int type,
+                                                  @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "user/editPolitical")
@@ -384,6 +392,54 @@ public interface ApiService {
                                         @Field("token") String token);
 
 
+    @GET(Config.VERSION + "zhufubao/blessPayment")
+    Observable<DaiFuDataBean> getDaiFuList(@Query("user_id") String user_id,
+                                           @Query("page") int page,
+                                           @Query("page_size") int page_size,
+                                           @Query("token") String token);
+
+    @GET(Config.VERSION + "zhufubao/blessPaymentRefuse")
+    Observable<EditListDataBean> blessPaymentRefuse(@Query("user_id") String user_id,
+                                                    @Query("user_zhufubao_order_id") String user_zhufubao_order_id,
+                                                    @Query("token") String token);
+
+    @GET(Config.VERSION + "zhufubao/userWithdrawCash")
+    Observable<EditListDataBean> userPaymentRefuse(@Query("user_id") String user_id,
+                                                   @Query("user_zhufubao_order_id") String user_zhufubao_order_id,
+                                                   @Query("token") String token);
+
+    @GET(Config.VERSION + "zhufubao/blessPaymentConfirm")
+    Observable<EditListDataBean> blessPaymentConfirm(@Query("user_id") String user_id,
+                                                     @Query("user_zhufubao_order_id") String user_zhufubao_order_id,
+                                                     @Query("bless_payment_channel") int bless_payment_channel,
+                                                     @Query("bless_payment_photo") String bless_payment_photo,
+                                                     @Query("token") String token);
+
+    @GET(Config.VERSION + "zhufubao/userConfirmCash")
+    Observable<EditListDataBean> userConfirmCash(@Query("user_id") String user_id,
+                                                 @Query("user_zhufubao_order_id") String user_zhufubao_order_id,
+                                                 @Query("bless_payment_channel") int bless_payment_channel,
+                                                 @Query("bless_payment_photo") String bless_payment_photo,
+                                                 @Query("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "zhufubao/getPairsInfo")
+    Observable<PairDataBean> getPairsInfo(@Field("user_id") String user_id,
+                                          @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
+                                          @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "zhufubao/refusePairs")
+    Observable<EditDataBean> refusePairs(@Field("user_id") String user_id,
+                                         @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
+                                         @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(Config.VERSION + "zhufubao/agreeePairs")
+    Observable<EditDataBean> agreeePairs(@Field("user_id") String user_id,
+                                         @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
+                                         @Field("token") String token);
+
     //********************激活能量*************************
     @FormUrlEncoded
     @POST(Config.VERSION + "ability/getRechargeInfoNew")
@@ -409,24 +465,6 @@ public interface ApiService {
                                            @Field("pay_source") String pay_source,
                                            @Field("payment_channel") String payment_channel,
                                            @Field("token") String token);
-
-    @FormUrlEncoded
-    @POST(Config.VERSION + "zhufubao/getPairsInfo")
-    Observable<PairDataBean> getPairsInfo(@Field("user_id") String user_id,
-                                          @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
-                                          @Field("token") String token);
-
-    @FormUrlEncoded
-    @POST(Config.VERSION + "zhufubao/refusePairs")
-    Observable<EditDataBean> refusePairs(@Field("user_id") String user_id,
-                                         @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
-                                         @Field("token") String token);
-
-    @FormUrlEncoded
-    @POST(Config.VERSION + "zhufubao/agreeePairs")
-    Observable<EditDataBean> agreeePairs(@Field("user_id") String user_id,
-                                         @Field("blessed_teacher_pairs_id") String blessed_teacher_pairs_id,
-                                         @Field("token") String token);
 
     @FormUrlEncoded
     @POST(Config.VERSION + "Ability/SubmitActivation")

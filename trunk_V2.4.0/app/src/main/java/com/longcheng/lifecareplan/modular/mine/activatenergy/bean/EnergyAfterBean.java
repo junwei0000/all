@@ -26,6 +26,16 @@ public class EnergyAfterBean {
     private String callbackUrl;
     private String serviceCharge;
 
+    private String todayCashMoney;
+
+    public String getTodayCashMoney() {
+        return todayCashMoney;
+    }
+
+    public void setTodayCashMoney(String todayCashMoney) {
+        this.todayCashMoney = todayCashMoney;
+    }
+
     public String getServiceCharge() {
         return serviceCharge;
     }
