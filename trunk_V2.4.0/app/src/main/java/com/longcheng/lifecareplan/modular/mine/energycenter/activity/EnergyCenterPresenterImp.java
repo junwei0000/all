@@ -138,7 +138,7 @@ public class EnergyCenterPresenterImp<T> extends EnergyCenterContract.Presenter<
 
     public void getTiXianList(int page, int page_size) {
         mView.showDialog();
-        Observable<DaiFuDataBean> observable = Api.getInstance().service.getDaiFuList(UserUtils.getUserId(mContext), page, page_size, ExampleApplication.token);
+        Observable<DaiFuDataBean> observable = Api.getInstance().service.getTiXianList(UserUtils.getUserId(mContext), page, page_size, ExampleApplication.token);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new io.reactivex.functions.Consumer<DaiFuDataBean>() {

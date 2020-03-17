@@ -23,6 +23,9 @@ public class HelpIndexAfterBean {
     @SerializedName("user")
     private HelpIndexItemBean user;
 
+
+    @SerializedName("intelligentizeUrl")
+    private String intelligentizeUrl;
     @SerializedName("automationHelpUrl")
     private String automationHelpUrl;
     @SerializedName("myDedicationUrl")
@@ -39,6 +42,14 @@ public class HelpIndexAfterBean {
     private int isVolunteer;
     @SerializedName("become_volunteer_url")
     private String become_volunteer_url;
+
+    public String getIntelligentizeUrl() {
+        return intelligentizeUrl;
+    }
+
+    public void setIntelligentizeUrl(String intelligentizeUrl) {
+        this.intelligentizeUrl = intelligentizeUrl;
+    }
 
     public String getBecome_volunteer_url() {
         return become_volunteer_url;

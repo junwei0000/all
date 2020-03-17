@@ -143,6 +143,7 @@ public class TiXianConfirmActivity extends BaseListActivity<EnergyCenterContract
         layoutCode.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hei));
         user_zhufubao_order_id = getIntent().getStringExtra("user_zhufubao_order_id");
         mAblumUtils = new AblumUtils(this, mHandler, UPDATEABLUM);
+        mAblumUtils.setCropStaus(false);
         zfbSelectPayType();
     }
 
@@ -178,7 +179,6 @@ public class TiXianConfirmActivity extends BaseListActivity<EnergyCenterContract
             tvTishi.setText("银行卡账单：银行电子回执单");
         }
     }
-
     /*
      * 调用相册
      */

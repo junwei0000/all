@@ -173,7 +173,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/padd_imgtextleftright"
-                                android:background="@mipmap/payaccout_icon" />
+                                android:background="@mipmap/my_ty_icon" />
 
                             <TextView
                                 android:id="@+id/tv_card"

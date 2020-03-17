@@ -397,7 +397,11 @@ public interface ApiService {
                                            @Query("page") int page,
                                            @Query("page_size") int page_size,
                                            @Query("token") String token);
-
+    @GET(Config.VERSION + "zhufubao/userCashList")
+    Observable<DaiFuDataBean> getTiXianList(@Query("user_id") String user_id,
+                                           @Query("page") int page,
+                                           @Query("page_size") int page_size,
+                                           @Query("token") String token);
     @GET(Config.VERSION + "zhufubao/blessPaymentRefuse")
     Observable<EditListDataBean> blessPaymentRefuse(@Query("user_id") String user_id,
                                                     @Query("user_zhufubao_order_id") String user_zhufubao_order_id,

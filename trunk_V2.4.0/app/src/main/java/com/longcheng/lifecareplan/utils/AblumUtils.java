@@ -256,7 +256,12 @@ public class AblumUtils {
                 System.out.println("uri = " + uri);
                 String picturePath = FilePathResolver.getPath(mContext, uri);
                 tempFile = new File(picturePath);
-                crop(uri);
+                if (cropStaus) {
+                    crop(uri);
+                } else {
+                    mUriPath = uri;
+                    sendHandler();
+                }
             }
         } else if (requestCode == RESULTCAMERA && resultCode == Activity.RESULT_OK) {
             if (hasSdcard()) {
@@ -266,37 +271,45 @@ public class AblumUtils {
                     cacheDir.mkdirs();
                 }
                 tempFile = new File(cacheDir, file_name);
-                crop(Uri.fromFile(tempFile));
+                mUriPath = Uri.fromFile(tempFile);
+                if (cropStaus) {
+                    crop(mUriPath);
+                } else {
+                    sendHandler();
+                }
             } else {
                 ToastUtils.showToast("未找到存储卡，无法存储照片！");
             }
 
         } else if (requestCode == RESULTCROP) {
-            try {
-                /**
-                 * **************************修改1***关于小米手机问题***************************************
-                 */
-                Bitmap bitmap = BitmapFactory.decodeStream(mContext.getContentResolver().openInputStream(mUriPath));
-                if (bitmap == null) {
-//                    bitmap = data.getParcelableExtra("data");
-                    String picturePath = FilePathResolver.getPath(mContext, mUriPath);
-                    if (TextUtils.isEmpty(picturePath)) {
-                        picturePath = tempFile.getPath();
-                    }
-                    bitmap = BitmapFactory.decodeFile(picturePath);
-                }
-                Message msgMessage = new Message();
-                msgMessage.obj = bitmap;
-                msgMessage.what = mHandlerId;
-                mHandler.sendMessage(msgMessage);
-                msgMessage = null;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            sendHandler();
         }
     }
 
+
+    private void sendHandler() {
+        try {
+            /**
+             * **************************修改1***关于小米手机问题***************************************
+             */
+            Bitmap bitmap = BitmapFactory.decodeStream(mContext.getContentResolver().openInputStream(mUriPath));
+            if (bitmap == null) {
+//                    bitmap = data.getParcelableExtra("data");
+                String picturePath = FilePathResolver.getPath(mContext, mUriPath);
+                if (TextUtils.isEmpty(picturePath)) {
+                    picturePath = tempFile.getPath();
+                }
+                bitmap = BitmapFactory.decodeFile(picturePath);
+            }
+            Message msgMessage = new Message();
+            msgMessage.obj = bitmap;
+            msgMessage.what = mHandlerId;
+            mHandler.sendMessage(msgMessage);
+            msgMessage = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 通过Base32将Bitmap转换成Base64字符串

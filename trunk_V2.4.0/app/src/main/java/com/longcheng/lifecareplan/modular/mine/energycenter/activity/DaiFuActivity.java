@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -26,6 +30,7 @@ import com.longcheng.lifecareplan.utils.ConfigUtils;
 import com.longcheng.lifecareplan.utils.ListUtils;
 import com.longcheng.lifecareplan.utils.ScrowUtil;
 import com.longcheng.lifecareplan.utils.ToastUtils;
+import com.longcheng.lifecareplan.utils.myview.MyDialog;
 import com.longcheng.lifecareplan.widget.dialog.LoadingDialogAnim;
 
 import java.util.ArrayList;
@@ -121,18 +126,59 @@ public class DaiFuActivity extends BaseListActivity<EnergyCenterContract.View, E
         mPresent.getDaiFuList(page, pageSize);
     }
 
+    MyDialog selectDialog;
+
+    public void setDialog() {
+        if (selectDialog == null) {
+            selectDialog = new MyDialog(mContext, R.style.dialog, R.layout.dialog_tixiandel);// 创建Dialog并设置样式主题
+            selectDialog.setCanceledOnTouchOutside(false);// 设置点击Dialog外部任意区域关闭Dialog
+            Window window = selectDialog.getWindow();
+            window.setGravity(Gravity.CENTER);
+            selectDialog.show();
+            WindowManager m = mActivity.getWindowManager();
+            Display d = m.getDefaultDisplay(); //为获取屏幕宽、高
+            WindowManager.LayoutParams p = selectDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+            p.width = d.getWidth() * 3 / 4; //宽度设置为屏幕
+            selectDialog.getWindow().setAttributes(p); //设置生效
+            TextView tv_off = (TextView) selectDialog.findViewById(R.id.tv_off);
+            TextView tv_sure = (TextView) selectDialog.findViewById(R.id.tv_sure);
+            tv_off.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
+                }
+            });
+            tv_sure.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectDialog.dismiss();
+                    if (type == Refuse) {
+                        mPresent.refuse(user_zhufubao_order_id);
+                    }
+                }
+            });
+        } else {
+            selectDialog.show();
+        }
+    }
+
+    /**
+     * 点击操作功能类型
+     */
+    private int type;
     int clickIndex;
+    String user_zhufubao_order_id;
     public static final int Refuse = 1;
     public static final int blessPaymentConfirm = 2;
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
-            String user_zhufubao_order_id;
             switch (msg.what) {
                 case Refuse:
+                    type = Refuse;
                     user_zhufubao_order_id = (String) msg.obj;
                     clickIndex = msg.arg1;
-                    mPresent.refuse(user_zhufubao_order_id);
+                    setDialog();
                     break;
                 case blessPaymentConfirm:
                     user_zhufubao_order_id = (String) msg.obj;

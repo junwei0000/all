@@ -37,7 +37,6 @@ import com.longcheng.lifecareplan.modular.home.fragment.HomeFragment;
 import com.longcheng.lifecareplan.modular.mine.activatenergy.activity.ActivatEnergyActivity;
 import com.longcheng.lifecareplan.modular.mine.awordofgold.activity.AWordOfGoldAct;
 import com.longcheng.lifecareplan.modular.mine.fragment.MineFragment;
-import com.longcheng.lifecareplan.modular.mine.relationship.activity.RelationshipAccountAct;
 import com.longcheng.lifecareplan.modular.mine.userinfo.activity.UserInfoActivity;
 import com.longcheng.lifecareplan.push.jpush.broadcast.LocalBroadcastManager;
 import com.longcheng.lifecareplan.utils.ConfigUtils;
@@ -91,7 +90,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
     private String myBlessHelpCount = "0", blessMeHelpCount = "0";
     public static String automationHelpUrl, myDedicationUrl, myGratitudeUrl;
     private List<String> zangfus;
-    private String lifeUrl, lifeBasicApplyUrl, lifeUrlWorld, become_volunteer_url;
+    private String lifeUrl, lifeBasicApplyUrl, lifeUrlWorld, become_volunteer_url,intelligentizeUrl;
 
     private int isVolunteer;
 
@@ -141,9 +140,10 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
                     //1:是  ；0：不是
                     String is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
                     if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
-                        //人情账
-                        intent = new Intent(mActivity, RelationshipAccountAct.class);
+                        //智能互祝
+                        intent = new Intent(mActivity, BaoZhangActitvty.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.putExtra("html_url", intelligentizeUrl);
                         startActivity(intent);
                         ConfigUtils.getINSTANCE().setPageIntentAnim(intent, getActivity());
                     } else {
@@ -203,7 +203,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         String is_cho = (String) SharedPreferencesHelper.get(mActivity, "is_cho", "");
         if (!TextUtils.isEmpty(is_cho) && is_cho.equals("1")) {
             layoutGolf.setVisibility(View.VISIBLE);
-            mBottomList.add(new HelpWithInfo("人情账", R.mipmap.wisheach_icon_love));
+            mBottomList.add(new HelpWithInfo("智能互祝", R.mipmap.help_autobg));
         } else {
             layoutGolf.setVisibility(View.INVISIBLE);
             mBottomList.add(new HelpWithInfo("成为CHO", R.mipmap.wisheach_icon_cho));
@@ -328,7 +328,7 @@ public class HelpWithFragmentNew extends BaseFragmentMVP<HelpWithContract.View, 
         String status = mHomeDataBean.getStatus();
         if (status.equals("200")) {
             HelpIndexAfterBean mHelpIndexAfterBean = mHomeDataBean.getData();
-
+            intelligentizeUrl= mHelpIndexAfterBean.getIntelligentizeUrl();
             automationHelpUrl = mHelpIndexAfterBean.getAutomationHelpUrl();
             myDedicationUrl = mHelpIndexAfterBean.getMyDedicationUrl();
             myGratitudeUrl = mHelpIndexAfterBean.getMyGratitudeUrl();

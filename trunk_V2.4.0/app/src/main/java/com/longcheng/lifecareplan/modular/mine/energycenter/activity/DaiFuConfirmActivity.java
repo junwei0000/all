@@ -142,6 +142,7 @@ public class DaiFuConfirmActivity extends BaseListActivity<EnergyCenterContract.
         layoutCode.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hei));
         user_zhufubao_order_id = getIntent().getStringExtra("user_zhufubao_order_id");
         mAblumUtils = new AblumUtils(this, mHandler, UPDATEABLUM);
+        mAblumUtils.setCropStaus(false);
         zfbSelectPayType();
     }
 
