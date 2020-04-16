@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.ricky.nfc"
+        //最低版本
+        minSdkVersion rootProject.ext.minSdkVersion
+        //标记版本
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        //版本号
+        versionCode rootProject.ext.versionCode
+        //版本名称
+        versionName rootProject.ext.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.appcompatVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.appcompatVersion"
+    implementation "com.android.support:design:$rootProject.ext.appcompatVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxlifecycle"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxlifecycle"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterKfVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKfVersion"
+    implementation "com.android.support:multidex:$rootProject.ext.multidexVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
+    testCompile 'junit:junit:4.12'
+}

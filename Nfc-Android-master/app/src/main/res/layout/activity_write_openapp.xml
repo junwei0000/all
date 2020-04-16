@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padd_topbottom"
+        android:background="@color/activa_titlebg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp8"
+        android:paddingBottom="@dimen/dp8">
+
+        <TextView
+            android:layout_width="3dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请输入要写入NFC的订单ID"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_contents_size" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_cont"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_graybian"
+            android:hint="请输入要写入NFC的订单ID"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="30"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text_noclick_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/button"
+            style="@style/btn"
+            android:text="确定" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/realt_info"
+        style="@style/view_marginpadd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:background="@drawable/corners_bg_graybian_yin">
+
+        <ImageView
+            android:id="@+id/item_iv_thumb"
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:background="@mipmap/user_default_icon"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_iv_thumb"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="姓名"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/item_tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/item_tv_orderid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/view_paddlefgtright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padd_topbottom"
+            android:text="*请将NFC标签贴近手机背面进行绑定"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <TextView
+            style="@style/view_paddlefgtright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padd_topbottom"
+            android:text="*每个NFC标签只可绑定一次"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <TextView
+            android:id="@+id/btn_bangding"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="绑定当前用户"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+</LinearLayout>
