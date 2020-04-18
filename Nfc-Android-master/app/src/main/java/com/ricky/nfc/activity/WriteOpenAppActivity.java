@@ -80,10 +80,6 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
 
         setOrChangeTranslucentColor(toolbar, null);
 
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        if (!ifNFCUse()) {
-            return;
-        }
         setBtn();
         layoutLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +106,10 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
                 Toast.makeText(WriteOpenAppActivity.this, "请将NFC标签贴近手机背面进行绑定", Toast.LENGTH_LONG).show();
             }
         });
+        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        if (!ifNFCUse()) {
+            return;
+        }
     }
 
     @SuppressLint("CheckResult")

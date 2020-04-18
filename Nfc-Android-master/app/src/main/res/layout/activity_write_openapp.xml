@@ -149,7 +149,7 @@
             style="@style/view_padd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/red"
+            android:background="@color/gray_bian"
             android:gravity="center"
             android:text="绑定当前用户"
             android:textColor="@color/white"

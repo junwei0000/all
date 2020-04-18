@@ -106,25 +106,25 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/SplashAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--        <activity-->
-        <!--            android:name=".activity.ReadOpenActivity"-->
-        <!--            android:launchMode="singleTop">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
-        <!--                <category android:name="android.intent.category.DEFAULT" />-->
-        <!--                &lt;!&ndash; 这里要匹配之前写入卡里的数据 &ndash;&gt;-->
-        <!--                <data-->
-        <!--                    android:host="ext"-->
-        <!--                    android:pathPrefix="/com.longcheng.lifecareplan:longchengnfc"-->
-        <!--                    android:scheme="vnd.android.nfc" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
+<!--                <activity-->
+<!--                    android:name=".activity.ReadOpenActivity"-->
+<!--                    android:launchMode="singleTop">-->
+<!--                    <intent-filter>-->
+<!--                        <action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+<!--                        <category android:name="android.intent.category.DEFAULT" />-->
+<!--                        &lt;!&ndash; 这里要匹配之前写入卡里的数据 &ndash;&gt;-->
+<!--                        <data-->
+<!--                            android:host="ext"-->
+<!--                            android:pathPrefix="/com.longcheng.lifecareplan:longchengnfc"-->
+<!--                            android:scheme="vnd.android.nfc" />-->
+<!--                    </intent-filter>-->
+<!--                </activity>-->
     </application>
 
 </manifest>
