@@ -13,9 +13,9 @@ public class Config {
     /**
      * **********正式地址***************
      */
-//    public static final String BASE_URL = "https://t.asdyf.com/api/";
+    public static final String BASE_URL = "https://t.asdyf.com/api/";
     /**
      * **********测试地址***************
      */
-    public static final String BASE_URL = "http://test.t.asdyf.com/api/";
+//    public static final String BASE_URL = "http://test.t.asdyf.com/api/";
 }

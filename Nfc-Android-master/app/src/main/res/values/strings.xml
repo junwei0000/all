@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">互祝NFC</string>
+    <string name="app_name">互祝NFC写入</string>
     <string name="str_run_app">自动打开短信界面</string>
     <string name="str_run_url">自动打开百度页面</string>
     <string name="str_read_text">读NFC标签中的文本数据</string>
