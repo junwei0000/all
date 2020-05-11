@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.ricky.nfc.R;
 import com.ricky.nfc.api.Api;
+import com.ricky.nfc.api.ResponseBean;
 import com.ricky.nfc.base.BaseNfcActivity;
 import com.ricky.nfc.bean.OrderAfterBean;
 import com.ricky.nfc.bean.OrderDataBean;
@@ -149,6 +150,34 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
 
     }
 
+    /**
+     * 绑定卡号 订单号
+     */
+    @SuppressLint("CheckResult")
+    public void setOrderSN(final Tag tag, final String nfc_sn) {
+        Observable<ResponseBean> observable = Api.getInstance().service.setOrderSN(order_id, nfc_sn);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBean>() {
+                    @Override
+                    public void accept(ResponseBean responseBean) throws Exception {
+                        String status = responseBean.getStatus();
+                        if (status.equals("200")) {
+                            writeNFCTag(tag, nfc_sn);
+                        } else {
+                            Toast.makeText(WriteOpenAppActivity.this, "请重新绑定", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Toast.makeText(WriteOpenAppActivity.this, "网络错误", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+    }
+
     private void setBtn() {
         if (isClick) {
             realt_info.setVisibility(View.VISIBLE);
@@ -192,9 +221,35 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
             Toast.makeText(this, "请确定绑定当前用户", Toast.LENGTH_LONG).show();
             return;
         }
+        String cardId = getCardId(intent);
         //1.获取Tag对象
         Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-        writeNFCTag(detectedTag);
+        if (detectedTag == null || TextUtils.isEmpty(cardId)) {
+            Toast.makeText(this, "卡片信息错误，请重试", Toast.LENGTH_LONG).show();
+            return;
+        }
+        setOrderSN(detectedTag, cardId);
+    }
+
+    private String getCardId(Intent intent) {
+        Tag tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        byte[] bytesId = tagFromIntent.getId();// 获取id数组
+        return byteArrayToHexString(bytesId);
+    }
+
+    private static String byteArrayToHexString(byte[] bytesId) {   //Byte数组转换为16进制字符串
+        int i, j, in;
+        String[] hex = {
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+        String output = "";
+        for (j = 0; j < bytesId.length; ++j) {
+            in = bytesId[j] & 0xff;
+            i = (in >> 4) & 0x0f;
+            output += hex[i];
+            i = in & 0x0f;
+            output += hex[i];
+        }
+        return output;
     }
 
     /**
@@ -202,11 +257,8 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
      *
      * @param tag
      */
-    public void writeNFCTag(Tag tag) {
-        if (tag == null) {
-            return;
-        }
-        String json = "{\"order_id\":" + order_id + "}";
+    public void writeNFCTag(Tag tag, String nfc_sn) {
+        String json = "{\"order_id\":" + order_id + ",\"nfc_sn\":" + nfc_sn + "}";
         NdefMessage ndefMessage = new NdefMessage(
                 new NdefRecord[]{NdefRecord.createExternal("com.longcheng.lifecareplan", "longchengnfc", json.getBytes())});
         //转换成字节获得大小
@@ -244,8 +296,10 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
                     Toast.makeText(this, "写入失败", Toast.LENGTH_SHORT).show();
                 }
             }
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
         }
+
     }
 
     /**

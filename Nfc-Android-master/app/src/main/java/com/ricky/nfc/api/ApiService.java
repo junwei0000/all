@@ -20,7 +20,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Config.VERSION + "Nfcwrite/HelpInfo")
     Observable<OrderDataBean> getOrderInfo(@Field("order_id") String order_id);
-
+    @FormUrlEncoded
+    @POST(Config.VERSION + "nfcwrite/bindNfcSn")
+    Observable<ResponseBean> setOrderSN(@Field("order_id") String order_id,
+                                         @Field("nfc_sn") String nfc_sn);
 }
 
 
