@@ -71,14 +71,15 @@
         style="@style/view_marginpadd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:background="@drawable/corners_bg_graybian_yin">
+        android:background="@drawable/corners_bg_graybian_yin"
+        android:visibility="invisible">
 
         <ImageView
             android:id="@+id/item_iv_thumb"
-            android:layout_width="@dimen/dp45"
-            android:layout_height="@dimen/dp45"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padd_leftright"
             android:layout_marginRight="@dimen/padd_leftright"
             android:background="@mipmap/user_default_icon"
             android:scaleType="centerCrop" />
@@ -109,6 +110,14 @@
 
             <TextView
                 android:id="@+id/item_tv_orderid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/item_tv_ordername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"

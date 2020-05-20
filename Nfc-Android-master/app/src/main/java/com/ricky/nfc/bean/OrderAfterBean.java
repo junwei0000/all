@@ -9,6 +9,15 @@ package com.ricky.nfc.bean;
 public class OrderAfterBean {
 
     private OrderItemBean user;
+    private OrderItemBean msg;
+
+    public OrderItemBean getMsg() {
+        return msg;
+    }
+
+    public void setMsg(OrderItemBean msg) {
+        this.msg = msg;
+    }
 
     public OrderItemBean getUser() {
         return user;

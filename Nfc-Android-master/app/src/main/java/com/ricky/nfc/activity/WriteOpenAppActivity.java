@@ -45,13 +45,11 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
     TextView pageTop_tv_name;
     EditText et_cont;
     TextView button;
-
     RelativeLayout realt_info;
     ImageView item_iv_thumb;
     TextView item_tv_name;
     TextView item_tv_phone;
-    TextView item_tv_orderid;
-
+    TextView item_tv_orderid, item_tv_ordername;
     TextView btn_bangding;
 
     String order_id;
@@ -77,6 +75,7 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
         item_tv_name = findViewById(R.id.item_tv_name);
         item_tv_phone = findViewById(R.id.item_tv_phone);
         item_tv_orderid = findViewById(R.id.item_tv_orderid);
+        item_tv_ordername = findViewById(R.id.item_tv_ordername);
         btn_bangding = findViewById(R.id.btn_bangding);
 
         setOrChangeTranslucentColor(toolbar, null);
@@ -130,6 +129,7 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
                                 item_tv_name.setText(mItemBean.getUser_name());
                                 item_tv_phone.setText("手机号：" + mItemBean.getPhone());
                                 item_tv_orderid.setText("订单ID：" + order_id);
+                                item_tv_ordername.setText("产品名称：" + mAfterBean.getMsg().getGoods_name());
                                 isClick = true;
                                 setBtn();
                             }
