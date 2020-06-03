@@ -63,7 +63,7 @@
         <TextView
             android:id="@+id/button"
             style="@style/btn"
-            android:text="确定" />
+            android:text="搜索" />
     </LinearLayout>
 
     <RelativeLayout
@@ -160,7 +160,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gray_bian"
             android:gravity="center"
-            android:text="绑定当前用户"
+            android:text="确认绑定"
             android:textColor="@color/white"
             android:textSize="@dimen/text_biaoTi_size" />
     </LinearLayout>
