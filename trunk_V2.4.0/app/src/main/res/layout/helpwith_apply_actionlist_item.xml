@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/corners_bg_write"
+    android:orientation="vertical"
+    android:padding="@dimen/padd_leftright">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_tv_actionname1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/item_layout_todetail"
+            android:singleLine="true"
+            android:text="生命呵护计划"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <LinearLayout
+            android:id="@+id/item_layout_todetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_todetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看详情"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_dp12_size"
+                android:typeface="monospace" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1.4dp"
+                android:layout_marginTop="-2dp"
+                android:background="@color/red" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_tv_actionname2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="天使行动"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_min_size" />
+
+
+    <RelativeLayout
+        android:id="@+id/relat_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp72">
+
+        <ImageView
+            android:id="@+id/item_iv_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/padd_imgtextleftright"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/item_iv_daiyan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/padd_imgtextleftright"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:background="@mipmap/applytowisheach_choose"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生命能量值"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_min_size" />
+
+        <TextView
+            android:id="@+id/item_tv_abilityprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="2000"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_min_size" />
+    </LinearLayout>
+</LinearLayout>
+

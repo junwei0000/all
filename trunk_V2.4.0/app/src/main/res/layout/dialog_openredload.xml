@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/my_luck_justamoment"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在开启"
+            android:textColor="#de4252"
+            android:textSize="@dimen/text_dp25_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="好运来红包"
+            android:textColor="#de4252"
+            android:textSize="@dimen/text_dp25_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp30"
+            android:paddingTop="@dimen/dp20"
+            android:text="请稍候..."
+            android:textColor="@color/e9"
+            android:textSize="@dimen/text_max_size" />
+    </LinearLayout>
+
+
+</LinearLayout>

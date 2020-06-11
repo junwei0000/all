@@ -1,0 +1,134 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <TextView
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp20"
+        android:text="本次可申请金额（元）"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp30"
+        android:text="0.00"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_mark_size" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现银行卡  "
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="*提交申请后，客服将在1个工作日内完成转账"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_dp12_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_card"
+        style="@style/view_marginpadd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp80"
+        android:background="@drawable/corners_bg_goodgray"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
+            android:layout_marginLeft="@dimen/dp10"
+            android:background="@mipmap/my_zhufushi_add1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp6"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_bankname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="绑定银行卡"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <TextView
+                    android:id="@+id/tv_change"
+                    style="@style/text_padd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg_writetran"
+                    android:text="换卡申请"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_zhu_size"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_bankno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_tishi_size"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/btn_open"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="提交申请"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

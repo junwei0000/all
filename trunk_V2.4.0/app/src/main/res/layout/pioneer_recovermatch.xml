@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <ViewFlipper
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="left|center_vertical"
+        android:background="@drawable/corners_bg_redjian" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:paddingTop="@dimen/padd_topbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="订单状态"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/item_tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="取消匹配"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="150dp">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/iv_gif"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/match" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp30">
+
+            <TextView
+                android:id="@+id/tv_ranktitlte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前排名"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/tv_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="您敬售福祺宝订单正在为您努力匹配中请保持通讯畅通"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp6"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="敬售记录"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/tv_poeplenum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="敬售成功4573人"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+
+    <HorizontalScrollView
+        android:id="@+id/horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/horizontal_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/padd_leftright"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp20" />
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/jianJu"
+        android:background="@color/page_bg" />
+
+    <TextView
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padd_topbottom"
+        android:text="订单信息"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+    <RelativeLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_iv_thumb"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:background="@mipmap/user_default_icon"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/item_layout_rank"
+            android:layout_toRightOf="@+id/item_iv_thumb"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="姓名"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/item_tv_jieeqi"
+                    style="@style/jieqi_padd"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:text="庚子.立春" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_content_size" />
+
+            <LinearLayout
+                android:id="@+id/item_layout_shenfen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_layout_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/item_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="2020-05-24 12:11:45"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

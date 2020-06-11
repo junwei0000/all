@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="bottom|center_horizontal"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择规格"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            style="@style/view_paddlefgtright"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/padd_topbottom">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/dialog_city_cancel" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <GridView
+        android:id="@+id/guige_gv"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:cacheColorHint="@color/page_bg"
+        android:divider="@null"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/dp15"
+        android:listSelector="@drawable/list_notselector"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/padd_leftright" />
+
+
+    <TextView
+        android:id="@+id/btn_helpsure"
+        style="@style/btn"
+        android:background="@color/red"
+        android:text="确认申请" />
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+
+    <LinearLayout
+        style="@style/login_padd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp30"
+            android:gravity="center"
+            android:text="@string/code_title"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_max_size" />
+
+
+        <!---->
+
+        <RelativeLayout
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+                android:id="@+id/phonetype_et_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:layout_toLeftOf="@+id/phonetype_tv_getcode"
+                android:hint="@string/code_hint"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/text_biaoTi_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/phonetype_tv_getcode"
+                android:layout_width="@dimen/getcode_width"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|right"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="@dimen/img_setTextcenter"
+                android:layout_centerVertical="true"
+                android:text="@string/code_get"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_contents_size" />
+        </RelativeLayout>
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/btn_next"
+            style="@style/btn"
+            android:text="@string/next"
+             />
+    </LinearLayout>
+</LinearLayout>

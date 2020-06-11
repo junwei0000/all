@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.longcheng.lifecareplan.utils.myview.MyViewPager
+        android:id="@+id/vp_bt_menu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_bottom_height"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/bottom_layout_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/bottom_iv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hone_icon_main_noselect" />
+
+            <TextView
+                android:id="@+id/bottom_tv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp2"
+                android:text="@string/bottom_home"
+                android:textColor="@color/main_tab_text_color_select"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_layout_helpWith"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/bottom_iv_helpWith"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hone_icon_helpwith_noselect" />
+
+            <TextView
+                android:id="@+id/bottom_tv_helpWith"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp2"
+                android:text="互祝"
+                android:textColor="@color/main_tab_text_color_select"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_layout_exchange"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/bottom_iv_exchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hone_icon_transcation_noselect" />
+
+            <TextView
+                android:id="@+id/bottom_tv_exchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp2"
+                android:text="@string/bottom_transaction"
+                android:textColor="@color/main_tab_text_color_select"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_layout_me"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/bottom_iv_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hone_icon_center_noselect" />
+
+            <TextView
+                android:id="@+id/bottom_tv_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp2"
+                android:text="@string/bottom_center"
+                android:textColor="@color/main_tab_text_color_select"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--    <RadioGroup-->
+    <!--        android:id="@+id/rg_bottom_main"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="@dimen/menu_bottom_height"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:gravity="center_vertical"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/rb_bottom_home"-->
+    <!--            style="@style/home_tab_bottom"-->
+    <!--            android:background="@color/transparent"-->
+    <!--            android:checked="true"-->
+    <!--            android:drawableTop="@drawable/home_tab_main_selector"-->
+    <!--            android:text="@string/bottom_home" />-->
+
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/rb_bottom_helpWith"-->
+    <!--            style="@style/home_tab_bottom"-->
+    <!--            android:background="@color/transparent"-->
+    <!--            android:drawableTop="@drawable/home_tab_helpwith_selector"-->
+    <!--            android:text="@string/bottom_helpwith" />-->
+
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/rb_bottom_exchange"-->
+    <!--            style="@style/home_tab_bottom"-->
+    <!--            android:background="@color/transparent"-->
+    <!--            android:drawableTop="@drawable/home_tab_transaction_selector"-->
+    <!--            android:text="@string/bottom_transaction"-->
+    <!--            />-->
+
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/rb_bottom_me"-->
+    <!--            style="@style/home_tab_bottom"-->
+    <!--            android:background="@color/transparent"-->
+    <!--            android:drawableTop="@drawable/home_tab_center_selector"-->
+    <!--            android:text="@string/bottom_center" />-->
+
+    <!--    </RadioGroup>-->
+
+</LinearLayout>

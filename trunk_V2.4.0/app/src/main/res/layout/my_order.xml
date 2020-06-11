@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userorder_tv_all"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:paddingTop="@dimen/jianJu"
+                android:text="@string/order_all_tilte"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/userorder_tv_coming"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:paddingTop="@dimen/jianJu"
+                android:text="@string/order_coming_tilte"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/userorder_tv_pendingreceipt"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:paddingTop="@dimen/jianJu"
+                android:text="@string/order_pendingreceipt_tilte"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/userorder_tv_overed"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:paddingTop="@dimen/jianJu"
+                android:text="@string/order_completed_tilte"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/userorder_tv_yajin"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:paddingTop="@dimen/jianJu"
+                android:text="押金订单"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="@dimen/dp2"
+            android:paddingBottom="@dimen/dp10">
+
+            <ImageView
+                android:id="@+id/userorder_iv_cursor"
+                android:layout_width="30dp"
+                android:layout_height="2dp"
+                android:background="@color/blue" />
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/userorder_vPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/page_bg"
+            android:fadingEdge="none"
+            android:flipInterval="30"
+            android:persistentDrawingCache="animation" />
+    </LinearLayout>
+
+</LinearLayout>

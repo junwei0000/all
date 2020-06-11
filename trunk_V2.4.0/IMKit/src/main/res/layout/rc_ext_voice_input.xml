@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rc_audio_input_toggle"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/rc_voice_input_selector"
+    android:text="@string/rc_audio_input"
+    android:textAllCaps="false"
+    android:textColor="#737373"
+    android:textSize="16dp" />

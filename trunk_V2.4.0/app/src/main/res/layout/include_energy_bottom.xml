@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_item_energy"
+    xmlns:circleimageview="http://schemas.android.com/apk/res-auto"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+
+        android:background="@color/linebg"
+        android:layout_height="1dp">
+
+    </View>
+    <RelativeLayout
+
+
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_bootom"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/item_tv_num"
+                android:layout_width="@dimen/dp45"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size"
+                android:textStyle="bold" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/item_iv_thumb"
+                android:layout_width="@dimen/dp65"
+                android:layout_height="@dimen/dp65"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padd_leftright"
+                circleimageview:civ_border_color="#dcdcdc"
+                circleimageview:civ_border_overlay="false"
+                circleimageview:civ_border_width="0.5dp"
+                android:layout_toRightOf="@+id/item_tv_num"
+                android:background="@mipmap/user_default_icon"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/item_layout_rank"
+                android:layout_toRightOf="@+id/item_iv_thumb"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/item_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="姓名"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/item_tv_jieeqi"
+                        style="@style/jieqi_padd"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:text="庚子.立春" />
+                    <TextView
+                        android:id="@+id/item_tv_typetitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp10"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:singleLine="true"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:id="@+id/item_layout_shenfen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" />
+
+                <RelativeLayout
+
+                    android:id="@+id/relat_cn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/padd_imgtextleftright"
+                    android:layout_weight="1">
+
+                    <com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar
+                        android:id="@+id/item_pb_lifeenergynum"
+                        style="@style/NumberProgressBar_Default"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:id="@+id/item_pb_numne"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/corners_bg_redprogress"
+                        android:gravity="center"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp"
+                        android:text="0%"
+                        android:textColor="@color/white"
+                        android:textSize="9dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll"
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/rl_power"
+                    android:layout_toRightOf="@+id/item_iv_thumb">
+
+                    <TextView
+                        android:id="@+id/tv_absorbed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/color_9a9a9a"
+                        android:textSize="14sp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_target"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/color_858585"
+                        android:textSize="14sp">
+
+                    </TextView>
+
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_layout_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/item_tv_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_corner2"
+                    android:padding="6dp"
+                    android:singleLine="true"
+                    android:text="提现到银行卡"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_contents_size"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>

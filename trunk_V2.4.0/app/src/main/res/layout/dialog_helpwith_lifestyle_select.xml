@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/item_iv_helpme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/mutuallist_love" />
+
+        <TextView
+            android:id="@+id/tv_blessme"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/dp35"
+            android:text="祝福我"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <ImageView
+            android:id="@+id/iv_blessme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp40"
+            android:background="@mipmap/select_img_red" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/mutuallist_shakehands" />
+
+        <TextView
+            android:id="@+id/tv_mybless"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/dp35"
+            android:text="我祝福"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <ImageView
+            android:id="@+id/iv_mybless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp40"
+            android:background="@mipmap/select_img_red" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/wisheachlife_screening_not" />
+
+        <TextView
+            android:id="@+id/tv_notbless"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/dp35"
+            android:text="未祝福"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <ImageView
+            android:id="@+id/iv_notbless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp40"
+            android:background="@mipmap/select_img_red" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_reset"
+            android:paddingTop="@dimen/padd_leftright"
+            android:paddingBottom="@dimen/padd_leftright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp15"
+            android:background="@drawable/corners_bg_redbian"
+            android:gravity="center"
+            android:text="重置"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:orientation="horizontal" />
+</LinearLayout>

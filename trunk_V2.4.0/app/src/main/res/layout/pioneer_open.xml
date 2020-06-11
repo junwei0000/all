@@ -1,0 +1,159 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="3dp"
+                android:layout_height="15dp"
+                android:background="@drawable/corners_bg_communered" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp8"
+                android:text="24节气创业中心概念"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginBottom="@dimen/padd_topbottom"
+            android:text="人和人之间生命能量和财富能量的交换中心。"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="3dp"
+                android:layout_height="15dp"
+                android:background="@drawable/corners_bg_communered" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp8"
+                android:text="24节气创业中心职责"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginBottom="@dimen/padd_topbottom"
+            android:text="节气能量祝福师为用户请购祝佑宝和敬售福祺宝提供服务。"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="3dp"
+                android:layout_height="15dp"
+                android:background="@drawable/corners_bg_communered" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp8"
+                android:text="谁可以开通24节气创业中心"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginBottom="@dimen/padd_topbottom"
+            android:text="申请成为节气能量祝福师的创业者，达到24节气生命能量齐全、五运六气通顺、福气指数最大，可以开通24节气创业中心。"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="3dp"
+                android:layout_height="15dp"
+                android:background="@drawable/corners_bg_communered" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp8"
+                android:text="24节气创业中心如何续费"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginBottom="@dimen/padd_topbottom"
+            android:text="一次性续费1个节气150元、6个节气720元、24个节气2400元。"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <TextView
+            android:id="@+id/btn_open"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="申请开通24节气创业中心"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

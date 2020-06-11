@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/corners_bg_write"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp10"
+                android:text="温馨提示"
+                android:textStyle="bold"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_pageTop_size" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.5"
+                android:text="请再次确认您的操作，是否继续？"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.5"
+                android:text="双方同时撤销提现后"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_contents_size"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.5"
+                android:text="本次代付订单关闭"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_contents_size"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_off"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="再想想"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <include layout="@layout/line_su" />
+
+            <TextView
+                android:id="@+id/tv_sure"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

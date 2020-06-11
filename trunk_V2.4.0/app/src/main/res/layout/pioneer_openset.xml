@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padd_topbottom"
+        android:background="@color/activa_titlebg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp8"
+        android:paddingBottom="@dimen/dp8">
+
+        <TextView
+            android:layout_width="3dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/corners_bg_communered" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创业名额"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_contents_size" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_cont"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_graybian"
+            android:hint="请输入开通人的手机号"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="30"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text_noclick_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/tv_sure"
+            style="@style/btn_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:background="@drawable/pioneer_red_gradient_shape"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_content_size" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/realt_info"
+        style="@style/view_marginpadd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_graybian_yin"
+        android:visibility="invisible">
+
+        <ImageView
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:id="@+id/item_iv_thumb"
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:background="@mipmap/user_default_icon"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_iv_thumb"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/item_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/tv_jieeqi"
+                    style="@style/jieqi_padd"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/btn_record"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/cyanbluebg"
+            android:gravity="center"
+            android:text="开通记录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/btn_commit"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+</LinearLayout>

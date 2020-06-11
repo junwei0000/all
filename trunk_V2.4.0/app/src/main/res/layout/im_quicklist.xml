@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_data"
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tv_bottom"
+            android:background="@color/page_bg"
+            android:cacheColorHint="@color/page_bg"
+            android:divider="@null"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp10"
+            android:scrollbars="none" />
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="创建快捷回复"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </RelativeLayout>
+</LinearLayout>

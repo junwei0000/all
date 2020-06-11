@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:id="@+id/userinfo_relay_ablum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/userinfo_iv_ablum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/account_icon_head"
+            android:scaleType="matrix" />
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/userinfo_iv_ablum"
+            android:text="我的头像"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <com.longcheng.lifecareplan.utils.myview.CircleImageView
+            android:id="@+id/userinfo_iv_head"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:layout_toLeftOf="@+id/userinfo_iv_ablumarrow" />
+
+        <ImageView
+            android:id="@+id/userinfo_iv_ablumarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="50dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+
+    <RelativeLayout
+        android:id="@+id/userinfo_relay_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/userinfo_iv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/account_icon_thename"
+            android:scaleType="matrix" />
+
+        <TextView
+            android:id="@+id/tv_titlename"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/userinfo_iv_name"
+            android:text="姓名"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/userinfo_tv_name"
+            style="@style/view_paddtopbottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_titlename"
+            android:gravity="right"
+            android:hint="@string/hint_write"
+            android:singleLine="true"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="50dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+
+    <RelativeLayout
+        android:id="@+id/userinfo_relay_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/userinfo_iv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/account_icon_number"
+            android:scaleType="matrix" />
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/userinfo_iv_phone"
+            android:text="绑定手机号"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/userinfo_tv_phone"
+            style="@style/view_paddtopbottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:hint="@string/hint_write"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="50dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+
+    <RelativeLayout
+        android:id="@+id/userinfo_relay_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/userinfo_iv_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/account_icon_thedateof"
+            android:scaleType="matrix" />
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/userinfo_iv_birthday"
+            android:text="出生日期"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/userinfo_tv_birthday"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/userinfo_iv_birthdayarrow"
+            android:hint="@string/hint_select"
+            android:textColor="@color/text_noclick_color"
+            android:textColorHint="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:id="@+id/userinfo_iv_birthdayarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <!--   -->
+
+
+    <RelativeLayout
+        android:id="@+id/userinfo_relay_politicalstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/userinfo_iv_politicalstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/account_icon_theparty"
+            android:scaleType="matrix" />
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/userinfo_iv_politicalstatus"
+            android:text="政治面貌"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/userinfo_tv_politicalstatus"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/userinfo_iv_politicalstatusarrow"
+            android:gravity="right"
+            android:hint="@string/hint_select"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:id="@+id/userinfo_iv_politicalstatusarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="50dp">
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+    <!--   -->
+
+
+    <RelativeLayout
+        android:id="@+id/userinfo_relay_bingyi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/userinfo_iv_bingyi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/account_icon_asoldiery"
+            android:scaleType="matrix" />
+
+        <TextView
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/userinfo_iv_bingyi"
+            android:text="是否服兵役"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/userinfo_tv_bingyi"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/userinfo_iv_bingyiarrow"
+            android:gravity="right|center_vertical"
+            android:hint="@string/hint_select"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:id="@+id/userinfo_iv_bingyiarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <!-- -->
+    <RelativeLayout
+        android:id="@+id/userinfo_relay_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/jianJu"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/padd_leftright">
+
+        <ImageView
+            android:id="@+id/userinfo_iv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_address_icon"
+            android:scaleType="matrix" />
+
+        <TextView
+            android:id="@+id/tv_addresstitle"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/userinfo_iv_address"
+            android:text="出生地"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/userinfo_iv_addressarrow"
+            android:layout_toRightOf="@+id/tv_addresstitle"
+            android:gravity="right|center_vertical"
+            android:paddingRight="@dimen/padd_leftright">
+
+            <TextView
+                android:id="@+id/userinfo_tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_select"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/userinfo_iv_addressarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/btn_save"
+        style="@style/btn"
+        android:layout_marginLeft="@dimen/padd_leftright"
+        android:layout_marginRight="@dimen/padd_leftright"
+        android:text="@string/save" />
+</LinearLayout>

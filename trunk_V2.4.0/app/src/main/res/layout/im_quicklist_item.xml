@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:paddingLeft="@dimen/dp6"
+        android:paddingRight="@dimen/dp6">
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="模板一"
+            android:textColor="@color/new_title_bg"
+            android:textSize="@dimen/text_content_size" />
+
+        <TextView
+            android:id="@+id/tv_del"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="删除"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_cont"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_write"
+        android:lineSpacingMultiplier="1.2"
+        android:text="我已添加您为好友"
+        android:textColor="@color/text_healthcontents_color"
+        android:textSize="@dimen/text_content_size" />
+
+</LinearLayout>

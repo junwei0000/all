@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_live"
+    android:orientation="vertical">
+
+    <include layout="@layout/live_top" />
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_transparent"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp8">
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="123dp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_thumb"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/live_listnotdatebg2"
+                    app:riv_border_color="@color/transparent"
+                    app:riv_border_width="0dp"
+                    app:riv_corner_radius="3dp"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="false" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|bottom"
+                    android:paddingBottom="@dimen/dp2"
+                    android:text="编辑封面"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_dp12_size" />
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/tv_title"
+                    style="@style/view_margintopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="top"
+                    android:hint="输入主题"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_noclick_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/tvlines"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/black_live" />
+
+                <EditText
+                    android:id="@+id/tv_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/padd_topbottom"
+                    android:background="@color/transparent"
+                    android:gravity="top"
+                    android:hint="说点什么…"
+                    android:maxLength="40"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_noclick_color"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/jianJu"
+            android:background="@drawable/corners_bg_transparent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/live_dingwei_icon"
+                android:drawablePadding="@dimen/dp10"
+                android:text="当前定位"
+                android:textColor="@color/e9"
+                android:textSize="@dimen/text_dp12_size" />
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingTop="@dimen/dp6"
+                android:paddingBottom="@dimen/dp6"
+                android:text="北京"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_dp12_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingBottom="@dimen/dp20">
+
+            <TextView
+                android:id="@+id/tv_upload"
+                style="@style/btn"
+                android:text="发布视频" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

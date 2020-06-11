@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:background="@mipmap/my_fuqibao_bj"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingBottom="@dimen/dp25">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="福祺宝余额"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/tv_allmoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/view_marginlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg_graybian2"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_moneysell"
+                        style="@style/view_padd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:hint="请输入福祺宝数量"
+                        android:singleLine="true"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textColorHint="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+
+                    <TextView
+                        android:id="@+id/tv_allsell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/padd_leftright"
+                        android:singleLine="true"
+                        android:text="全部敬售"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingBottom="@dimen/dp8">
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/corners_bg_communered" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:text="敬售福祺宝规则"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/tv_proportion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp6"
+                        android:singleLine="true"
+                        android:text="手续费为每笔2.4%"
+                        android:textColor="@color/text_healthcontents_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/view_padd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padd_leftright"
+                    android:layout_marginRight="@dimen/padd_leftright"
+                    android:background="@drawable/corners_bg_graybian2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_servicemoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="当前手续费：¥0.00"
+                        android:textColor="@color/text_healthcontents_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/tv_thirdmoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="人脸识别服务费：¥1"
+                        android:textColor="@color/text_healthcontents_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/tv_allfqbnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="可敬售福祺宝：0"
+                        android:textColor="@color/text_healthcontents_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/tv_todayfqbnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="今日可敬售：0"
+                        android:textColor="@color/text_healthcontents_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="敬售时间每天上午06:00到晚上21:00"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="每日敬售金额最低24福祺宝，最高3650福祺宝"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+
+
+                <include layout="@layout/activatenergy_push" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/tv_zfsrecord"
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/cyanbluebg"
+                android:gravity="center"
+                android:text="我的订单"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/tv_jihuo"
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

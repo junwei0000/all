@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dp8"
+    android:paddingRight="@dimen/dp8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/padd_leftright"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/tvNewContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvtypedes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingLeft="@dimen/dp8"
+                    android:paddingTop="1dp"
+                    android:paddingRight="@dimen/dp8"
+                    android:paddingBottom="1dp"
+                    android:text="健康知识"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <TextView
+                    android:id="@+id/tvtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/layout_zan"
+                    android:layout_toRightOf="@+id/tvtypedes"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="阅读 0"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+                <LinearLayout
+                    android:id="@+id/layout_zan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/home_dianzan_icpn" />
+
+                    <TextView
+                        android:id="@+id/tv_zan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="0"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivavatar"
+        android:layout_width="@dimen/listItem_iconWidth"
+        android:layout_height="@dimen/listItem_iconHeight"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/moren_new"
+        app:riv_border_color="@color/transparent"
+        app:riv_border_width="1dp"
+        app:riv_corner_radius="3dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="false" />
+</LinearLayout>
+
+
+

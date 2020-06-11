@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+        android:id="@+id/date_listview"
+        style="@style/view_marginlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:fastScrollEnabled="false"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/dp3"
+        android:listSelector="@drawable/list_notselector"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/dp2" />
+
+    <include layout="@layout/live_play_notdata" />
+</RelativeLayout>

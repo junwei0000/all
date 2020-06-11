@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/date_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_bottom"
+        android:cacheColorHint="@color/page_bg"
+        android:divider="@null"
+        android:listSelector="@drawable/list_notselector"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+
+    <include layout="@layout/not_date" />
+</RelativeLayout>

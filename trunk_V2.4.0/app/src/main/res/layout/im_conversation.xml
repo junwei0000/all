@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/conversation"
+            android:name="com.longcheng.lifecareplan.modular.im.adapter.MyConversationFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/layout_moban"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/view_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="快捷回复"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <include layout="@layout/line" />
+
+            <ListView
+                android:id="@+id/lv_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:dividerHeight="@dimen/dp20"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:gravity="center"
+                android:padding="@dimen/dp20"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/tv_mobn"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@color/transparent" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="本次订单已结束"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

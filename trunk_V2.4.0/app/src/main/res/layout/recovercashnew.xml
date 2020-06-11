@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padd_topbottom">
+
+            <TextView
+                android:id="@+id/tv_mywallet"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="@dimen/padd_topbottom"
+                android:text="我的钱包"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_mywalletline"
+                android:layout_width="15dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/dp2"
+                android:background="@color/red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padd_topbottom">
+
+            <TextView
+                android:id="@+id/tv_chobalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="@dimen/padd_topbottom"
+                android:text="CHO余额"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_chobalanceline"
+                android:layout_width="15dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/dp2"
+                android:background="@color/red"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/recovercash_cho" />
+
+    <RelativeLayout
+        android:id="@+id/relat_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/line" />
+
+                <LinearLayout
+                    style="@style/view_marginlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_topbottom"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp20"
+                    android:paddingBottom="@dimen/dp20">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="钱包余额 (元)"
+                        android:textColor="@color/text_noclick_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/tv_allmoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/jianJu"
+                    android:background="@color/page_bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+                    <ListView
+                        android:id="@+id/lv_applycash"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:cacheColorHint="@color/page_bg"
+                        android:divider="@null"
+                        android:dividerHeight="@dimen/dp8"
+                        android:fadeScrollbars="false"
+                        android:fadingEdge="none"
+                        android:focusable="false"
+                        android:scrollbars="none"
+                        android:transcriptMode="alwaysScroll" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/jianJu"
+                    android:background="@color/page_bg" />
+
+                <com.longcheng.lifecareplan.utils.myview.MyScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fadeScrollbars="false"
+                    android:fadingEdge="none"
+                    android:scrollbars="none">
+
+                    <include layout="@layout/activatenergy_push" />
+                </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/view_paddlefgtright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padd_topbottom"
+                android:text="*提现时间：早6:00至晚21:00"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                style="@style/view_paddlefgtright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padd_topbottom"
+                android:text="*每日提现金额最低24元，最高3650元"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/btn_payforrecord"
+                    style="@style/view_paddtopbottom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/cyanbluebg"
+                    android:gravity="center"
+                    android:text="代付确认"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <TextView
+                    android:id="@+id/btn_withdraw"
+                    style="@style/view_paddtopbottom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="提现"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

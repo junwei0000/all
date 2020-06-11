@@ -1,0 +1,296 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.longcheng.lifecareplan.utils.myview.MyScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_givemoney"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padd_topbottom"
+                    android:background="@color/activa_titlebg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingBottom="@dimen/dp8">
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="15dp"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
+                        android:background="@drawable/corners_bg_communered" />
+
+                    <TextView
+                        android:id="@+id/tv_montitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:paddingBottom="@dimen/img_setTextcenter"
+                        android:text="请选择您向用户代付的付款方式"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                </LinearLayout>
+                <!---->
+                <LinearLayout
+                    style="@style/view_padd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/relat_wx"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp43"
+                        android:layout_marginRight="@dimen/dp3"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_bg_redbian"
+                        android:padding="0dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                                android:background="@mipmap/paywx_icon" />
+
+                            <TextView
+                                android:id="@+id/tv_wxtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="微信"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_zhu_size" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/iv_wxselect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@mipmap/pay_selcet_icon_red" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relat_zfb"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp43"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_bg_graybian"
+                        android:padding="0dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                                android:background="@mipmap/wisheachdetails_pay_paytreasure" />
+
+                            <TextView
+                                android:id="@+id/tv_zfbtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="支付宝"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_dp12_size" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/iv_zfbselect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@mipmap/pay_selcet_icon_red"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/padd_topbottom"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/relat_card"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp43"
+                        android:layout_marginRight="@dimen/dp3"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_bg_graybian"
+                        android:padding="0dp">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                                android:background="@mipmap/my_ty_icon" />
+
+                            <TextView
+                                android:id="@+id/tv_card"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="银行卡"
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_dp12_size" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/iv_cardselect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@mipmap/pay_selcet_icon_red"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp43"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_weight="1"
+                        android:background="@drawable/corners_bg_graybian"
+                        android:padding="0dp"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/activa_titlebg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingBottom="@dimen/dp8">
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="15dp"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
+                        android:background="@drawable/corners_bg_communered" />
+
+                    <TextView
+                        android:id="@+id/tv_tishi_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                        android:paddingBottom="@dimen/img_setTextcenter"
+                        android:text="上传微信付款凭证"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_tishi"
+                    style="@style/view_padd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp2"
+                    android:text="微信支付账单：我~支付~钱包~账单~点击详情~截图上传"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_dp12_size" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dp20">
+
+                    <LinearLayout
+                        android:id="@+id/layout_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/corners_bg_graybian"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:textColor="@color/linebg"
+                            android:textSize="70dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="点击上传"
+                            android:textColor="@color/linebg"
+                            android:textSize="@dimen/text_pageTop_size" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter" />
+                </RelativeLayout>
+            </LinearLayout>
+        </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+
+        <TextView
+            android:id="@+id/btn_givemoney"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="确定已打款"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </RelativeLayout>
+</LinearLayout>

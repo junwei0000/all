@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_write"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现到银行卡"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_pageTop_size"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/layout_card"
+            style="@style/view_padd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp80"
+            android:layout_marginTop="@dimen/dp30"
+            android:layout_marginBottom="@dimen/dp30"
+            android:gravity="center"
+            android:background="@drawable/corners_bg_goodgray"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_img"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@mipmap/my_zhufushi_add1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_bankname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未绑定银行卡"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <TextView
+                    android:id="@+id/tv_bankno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp6"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_change"
+                style="@style/view_paddtopbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp6"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_redbian"
+                android:gravity="center"
+                android:text="换卡提现"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/tv_sure"
+                style="@style/view_paddtopbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp6"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_red"
+                android:gravity="center"
+                android:text="确认提现"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
