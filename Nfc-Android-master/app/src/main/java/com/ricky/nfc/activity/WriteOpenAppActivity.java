@@ -47,7 +47,7 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
     TextView button;
     RelativeLayout realt_info;
     ImageView item_iv_thumb;
-    TextView item_tv_name;
+    TextView item_tv_name,item_tv_aiyouname;
     TextView item_tv_phone;
     TextView item_tv_orderid, item_tv_ordername;
     TextView btn_bangding;
@@ -72,6 +72,7 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
 
         realt_info = findViewById(R.id.realt_info);
         item_iv_thumb = findViewById(R.id.item_iv_thumb);
+        item_tv_aiyouname= findViewById(R.id.item_tv_aiyouname);
         item_tv_name = findViewById(R.id.item_tv_name);
         item_tv_phone = findViewById(R.id.item_tv_phone);
         item_tv_orderid = findViewById(R.id.item_tv_orderid);
