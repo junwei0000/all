@@ -14,6 +14,7 @@ public class OrderItemBean {
     private String user_name;
     private String goods_name;
 
+
     public String getGoods_name() {
         return goods_name;
     }

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Nfc-Android-master.iml" filepath="$PROJECT_DIR$/Nfc-Android-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/Nfc-Android-master-app.iml" filepath="$PROJECT_DIR$/app/Nfc-Android-master-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

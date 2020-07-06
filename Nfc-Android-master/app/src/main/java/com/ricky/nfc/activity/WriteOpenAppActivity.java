@@ -130,6 +130,7 @@ public class WriteOpenAppActivity extends BaseNfcActivity {
                                 item_tv_name.setText(mItemBean.getUser_name());
                                 item_tv_phone.setText("手机号：" + mItemBean.getPhone());
                                 item_tv_orderid.setText("订单ID：" + order_id);
+                                item_tv_aiyouname.setText("爱友："+mAfterBean.getPatient_name());
                                 item_tv_ordername.setText("产品名称：" + mAfterBean.getMsg().getGoods_name());
                                 isClick = true;
                                 setBtn();

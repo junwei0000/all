@@ -10,7 +10,15 @@ public class OrderAfterBean {
 
     private OrderItemBean user;
     private OrderItemBean msg;
+    private String patient_name="";
 
+    public String getPatient_name() {
+        return patient_name;
+    }
+
+    public void setPatient_name(String patient_name) {
+        this.patient_name = patient_name;
+    }
     public OrderItemBean getMsg() {
         return msg;
     }

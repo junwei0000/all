@@ -99,14 +99,7 @@
                 android:text="姓名"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_contents_size" />
-            <TextView
-                android:id="@+id/item_tv_aiyouname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="姓名"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_contents_size" />
+
             <TextView
                 android:id="@+id/item_tv_phone"
                 android:layout_width="wrap_content"
@@ -122,6 +115,15 @@
                 android:singleLine="true"
                 android:textColor="@color/text_noclick_color"
                 android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/item_tv_aiyouname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="姓名"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_contents_size" />
 
             <TextView
                 android:id="@+id/item_tv_ordername"
