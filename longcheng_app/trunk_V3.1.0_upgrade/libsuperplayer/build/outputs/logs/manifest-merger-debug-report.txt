@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+ADDED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
 	package
-		ADDED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:2:5-43
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
+		ADDED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:2:5-43
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-		ADDED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+		ADDED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-		ADDED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+		ADDED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:1-2:46
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml:1:11-69
+		ADDED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml:1:11-69
 uses-sdk
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-		ADDED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+		ADDED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-		ADDED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
-		INJECTED from E:\longcheng_git\dev\trunk_V3.1.0\libsuperplayer\src\main\AndroidManifest.xml
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+		ADDED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
+		INJECTED from E:\all_git\longcheng_app\trunk_V3.1.0_upgrade\libsuperplayer\src\main\AndroidManifest.xml
