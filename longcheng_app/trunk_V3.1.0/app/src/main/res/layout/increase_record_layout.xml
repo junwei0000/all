@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <com.longcheng.lifecareplan.widget.TabLayoutView
+        android:id="@+id/enhance_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/page_top_height"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/yellow_ff7119"
+        app:tabIndicatorHeight="1dp"
+        app:tabIndicatorWidth="30dp"
+        app:tabSelectTextColor="@color/yellow_ff7119"
+        app:tabTextColor="#999999"
+        app:tabTextSize="6sp"
+        app:tab_Mode="mode_scrollable">
+
+    </com.longcheng.lifecareplan.widget.TabLayoutView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.longcheng.lifecareplan.widget.CanScrollViewPager
+            android:id="@+id/recordvpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tab"></com.longcheng.lifecareplan.widget.CanScrollViewPager>
+
+        <include layout="@layout/not_date" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/not_date" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/ptf_bill"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_help"
+        android:divider="@null"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+
+    <com.longcheng.lifecareplan.modular.mine.bill.widget.BillHeaderView
+        android:id="@+id/headerview"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+</FrameLayout>

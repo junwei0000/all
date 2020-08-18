@@ -1,0 +1,130 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relat_group"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:orientation="horizontal">
+
+    <AbsoluteLayout
+        android:id="@+id/absolut_chair"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/layout_group_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/connon_group_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/aiyou_tv_zhufu"
+                style="@style/text_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corners_bg_lv15"
+                android:gravity="center"
+                android:text="祝福爱友"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_zhu_size"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/layout_inner"
+                style="@style/view_margintopbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/aiyou_iv_thumb"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/connon_zudui_jiahao" />
+
+                <TextView
+                    android:id="@+id/aiyou_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp8"
+                    android:text="选择爱友"
+                    android:textColor="@color/yellow_c87727"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corners_bg_lv15"
+                android:gravity="center"
+                android:text="祝福爱友"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_zhu_size"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingBottom="4dp">
+
+        <ImageView
+            android:id="@+id/iv_tablestatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/layout_tutor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_tutorimg"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp50"
+                android:background="@mipmap/user_default_icon" />
+
+            <TextView
+                style="@style/jieqi_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-12dp"
+                android:background="@drawable/corners_bg_yellow25"
+                android:text="创业导师"
+                android:textColor="@color/white_tran"
+                android:textSize="@dimen/text_min_size" />
+
+            <TextView
+                android:id="@+id/tv_tutorname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp4"
+                android:text="姓名"
+                android:textColor="@color/color_232323"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

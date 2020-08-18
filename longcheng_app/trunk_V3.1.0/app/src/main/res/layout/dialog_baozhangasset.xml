@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp3">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp30"
+        android:gravity="center"
+        android:text="支付金额（元）"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+    <TextView
+        android:id="@+id/tv_asset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/jianJu"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_dp25_size"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        style="@style/view_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_off"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_lvbian"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+
+        <TextView
+            android:id="@+id/text_sure"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_lv"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+</LinearLayout>

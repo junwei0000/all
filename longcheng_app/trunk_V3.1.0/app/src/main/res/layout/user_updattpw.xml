@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <TextView
+        android:id="@+id/tv_tishi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/page_bg"
+        android:padding="@dimen/padd_leftright"
+        android:text="*系统检测您的密码过于简单，为了您的账户安全，请您修改密码。"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_zhu_size"
+        android:visibility="gone" />
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!---->
+
+
+        <RelativeLayout
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_phimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:background="@mipmap/my_password_icon2" />
+
+            <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+                android:id="@+id/phonetype_et_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/phonetype_tv_getcode"
+                android:layout_toRightOf="@+id/iv_phimg"
+                android:background="@color/transparent"
+                android:hint="@string/code_hint"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/phonetype_tv_getcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padd_leftright"
+                android:paddingBottom="2dp"
+                android:text="@string/code_get"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_contents_size" />
+        </RelativeLayout>
+
+        <include layout="@layout/line" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:background="@mipmap/my_password_icon3" />
+
+            <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+                android:id="@+id/phonetype_et_pw"
+                style="@style/view_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/forget_repeatpw_hint"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                android:background="@mipmap/my_password_icon3" />
+
+            <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+                android:id="@+id/phonetype_et_name"
+                style="@style/view_paddtopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/forget_repeatpwtwo_hint"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/btn_commit"
+            style="@style/btn"
+            android:text="确认修改" />
+
+
+    </LinearLayout>
+</LinearLayout>

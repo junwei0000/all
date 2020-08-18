@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top_new" />
+
+    <include layout="@layout/line" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/corners_bg_zyb"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp15"
+            android:background="@mipmap/zyb_zudui_top" />
+
+
+        <include layout="@layout/connon_create_group" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_edit"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_fcb02b"
+            android:gravity="center"
+            android:text="退出当前组队"
+            android:textColor="@color/white_tran"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/tv_create"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:text="生成组队订单"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+
+</LinearLayout>

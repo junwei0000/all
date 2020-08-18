@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp20">
+
+
+    <LinearLayout
+        android:id="@+id/tv_leftwidth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_jianbian2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/padd_imgtextleftright">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp4"
+                android:gravity="center"
+                android:text="扫码打赏一下"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_code"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/live_saomaxia" />
+    </LinearLayout>
+</LinearLayout>

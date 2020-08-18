@@ -1,0 +1,244 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <com.longcheng.lifecareplan.utils.myview.MyScrollView
+        android:id="@+id/helpWith_sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/padd_topbottom">
+
+            <com.longcheng.lifecareplan.utils.myview.MyGridView
+                android:id="@+id/helpWith_gvtop"
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/padd_leftright"
+                android:numColumns="2"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/padd_leftright" />
+
+            <RelativeLayout
+                android:id="@+id/layout_autohelp"
+                style="@style/view_marginlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padd_leftright"
+                android:background="@mipmap/wisheach_icon_autohelp"
+                android:paddingLeft="@dimen/dp8"
+                android:paddingRight="@dimen/padd_leftright"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="智能互祝"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="bottom"
+                    android:paddingRight="@dimen/dp72">
+
+                    <ImageView
+                        android:id="@+id/iv_autohelpimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_autohelpNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="今日您送出0次祝福"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_zhu_size" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp10"
+                android:layout_marginTop="@dimen/padd_topbottom"
+                android:background="@color/page_bg" />
+
+            <com.longcheng.lifecareplan.utils.myview.MyGridView
+                android:id="@+id/helpWith_gvbottom"
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/dp8"
+                android:numColumns="5"
+                android:paddingTop="@dimen/dp20"
+                android:paddingBottom="@dimen/dp20"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/padd_leftright" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp10"
+                android:background="@color/page_bg" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp20">
+
+                <LinearLayout
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="让24节气养生文化造福全人类"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_golf"
+                        style="@style/view_paddtopbottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/padd_imgtextleftright"
+                            android:paddingBottom="@dimen/img_setTextcenter"
+                            android:text="一字千金"
+                            android:textColor="@color/text_noclick_color"
+                            android:textSize="@dimen/text_dp12_size" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/usercenter_arrow_img" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/wisheach_icon_huang">
+
+                        <LinearLayout
+                            style="@style/view_padd"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/dp8"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_showname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:text="“24节气养生指导”温馨提示："
+                                android:textColor="@color/text_contents_color"
+                                android:textSize="@dimen/text_contents_size" />
+
+                            <TextView
+                                android:id="@+id/tv_showcont"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/dp8"
+                                android:gravity="center_vertical"
+                                android:lineSpacingMultiplier="1.2"
+                                android:paddingBottom="@dimen/jianJu"
+                                android:text="请完善个人资料，体验24节气定制养生指导"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_dp12_size"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/dp30"
+                            android:layout_marginBottom="@dimen/dp30"
+                            android:background="@color/red" />
+
+
+                        <TextView
+                            android:id="@+id/tv_tohelp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="立即申请"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_tishi_size" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/dp8"
+                        android:paddingBottom="@dimen/dp8">
+
+                        <ImageView
+                            android:id="@+id/iv_tohelpimg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+</LinearLayout>

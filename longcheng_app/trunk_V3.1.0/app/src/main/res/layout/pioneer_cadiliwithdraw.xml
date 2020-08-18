@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_jihuo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    style="@style/view_marginlefgtright"
+                    android:background="@mipmap/my_zhongxin_bj"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingBottom="@dimen/dp25">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="财礼余额"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/tv_allmoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:background="@color/activa_titlebg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingBottom="@dimen/dp8">
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/corners_bg_communered" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:text="请输入提现金额"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:text="*每节气可提交一次提现"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/view_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corners_bg_graybian2"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_money"
+                        style="@style/view_padd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:hint="提现金额1000起"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textColorHint="@color/text_noclick_color"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/activa_titlebg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingBottom="@dimen/dp8">
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/corners_bg_communered" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:text="请选择银行卡"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_card"
+                    style="@style/view_marginpadd"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp80"
+                    android:background="@drawable/corners_bg_goodgray"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_img"
+                        android:layout_width="@dimen/dp25"
+                        android:layout_height="@dimen/dp25"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:background="@mipmap/my_zhufushi_add1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp6"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/tv_bankname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="未绑定银行卡"
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_biaoTi_size" />
+
+                            <TextView
+                                android:id="@+id/tv_change"
+                                style="@style/text_padd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/corners_bg_writetran"
+                                android:text="换卡申请"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_zhu_size"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_bankno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp6"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_biaoTi_size"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/tv_zfsrecord"
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/cyanbluebg"
+                android:gravity="center"
+                android:text="提现记录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/tv_jihuo"
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="提交申请"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

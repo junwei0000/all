@@ -1,0 +1,114 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+
+    <LinearLayout
+        style="@style/view_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/write_bg"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp2"
+        android:paddingRight="@dimen/dp15"
+        android:paddingBottom="@dimen/dp6">
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/view_paddtopbottom20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="请输入姓名"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/text_biaoTi_color"
+            android:textColorHint="@color/text_noclick_color"
+            android:textSize="@dimen/text_content_size" />
+
+        <include layout="@layout/line" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            style="@style/view_paddtopbottom20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="请输入手机号"
+            android:inputType="number"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/text_biaoTi_color"
+            android:textColorHint="@color/text_noclick_color"
+            android:textSize="@dimen/text_content_size" />
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:id="@+id/layout_address"
+            style="@style/view_paddtopbottom20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请选择出生地址"
+                android:textColor="@color/text_biaoTi_color"
+                android:textColorHint="@color/text_noclick_color"
+                android:textSize="@dimen/text_content_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:id="@+id/layout_date"
+            style="@style/view_paddtopbottom20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请选择出生日期"
+                android:textColor="@color/text_biaoTi_color"
+                android:textColorHint="@color/text_noclick_color"
+                android:textSize="@dimen/text_content_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/usercenter_arrow_img" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_calcutar"
+        style="@style/btn"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:background="@drawable/corners_bg_logingray"
+        android:text="计算" />
+
+</LinearLayout>

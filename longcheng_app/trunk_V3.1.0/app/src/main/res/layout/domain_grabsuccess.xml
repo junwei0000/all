@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+
+    <ImageView
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp60"
+        android:layout_marginTop="@dimen/dp100"
+        android:background="@mipmap/gongshe_chenggong_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp30"
+        android:text="恭喜您"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_tishi_size" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:text="获得北京市朝阳公社"
+        android:textColor="@color/c9"
+        android:textSize="@dimen/text_contents_size" />
+
+    <TextView
+        android:id="@+id/tv_skip"
+        style="@style/btn"
+        android:layout_width="220dp"
+        android:layout_marginTop="@dimen/dp35"
+        android:background="@drawable/corners_bg_yellowbian"
+        android:text="查看我的公社"
+        android:textColor="@color/yellow_E95D1B" />
+</LinearLayout>

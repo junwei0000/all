@@ -1,0 +1,190 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <ImageView
+        android:id="@+id/iv_openimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/blessing_icon_guan" />
+
+    <TextView
+        android:id="@+id/tv_openstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padd_topbottom"
+        android:text="智能互祝已关闭"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_dp12_size" />
+
+    <TextView
+        android:id="@+id/tv_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_redbian"
+        android:paddingBottom="@dimen/padd_imgtextleftright"
+        android:paddingLeft="@dimen/dp30"
+        android:paddingRight="@dimen/dp30"
+        android:paddingTop="@dimen/padd_imgtextleftright"
+        android:text="开启"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_contents_size" />
+
+    <TextView
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@color/page_bg"
+        android:paddingBottom="@dimen/padd_leftright"
+        android:paddingTop="@dimen/padd_leftright"
+        android:text="包含以下互祝（系统将为您智能互祝以下社员新申请的行动）"
+        android:textColor="@color/text_noclick_color"
+        android:textSize="@dimen/text_dp12_size" />
+
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="互祝社员"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="所有人"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+
+    <RelativeLayout
+        android:id="@+id/relat_engry"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="互祝能量"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/tv_engry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_engryarrow"
+            android:gravity="right"
+            android:paddingRight="@dimen/padd_imgtextleftright"
+            android:text="45"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:id="@+id/iv_engryarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+
+    <RelativeLayout
+        android:id="@+id/relat_num"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每日次数"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_numarrow"
+            android:paddingRight="@dimen/padd_imgtextleftright"
+            android:text="不限"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:id="@+id/iv_numarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/usercenter_arrow_img" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg"
+        android:orientation="vertical"
+        android:padding="@dimen/padd_leftright">
+
+        <TextView
+            android:id="@+id/tv_everydayengry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="根据您的设置每日需 -- 生命能量；"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_dp12_size"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_todaynum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padd_imgtextleftright"
+            android:layout_marginTop="@dimen/padd_imgtextleftright"
+            android:text="今日已帮您送出 0 次祝福；"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_dp12_size"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_allnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自您开启智能互祝起，系统共帮您送出：0 次祝福，0 生命能量。"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_dp12_size"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>

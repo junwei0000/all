@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/gongshe_bianqian_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_weight="1"
+            android:text="热门行动"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/mainaction_tv_more"
+            style="@style/text_padd_oval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/gongshe_xuanze_icon"
+            android:drawablePadding="@dimen/dp10"
+            android:text="更多"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+    <!---->
+    <com.longcheng.lifecareplan.utils.myview.MyGridView
+        android:id="@+id/gv_Action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:cacheColorHint="@color/page_bg"
+        android:divider="@null"
+        android:listSelector="@drawable/list_notselector"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:focusable="false"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:scrollbars="none" />
+</LinearLayout>

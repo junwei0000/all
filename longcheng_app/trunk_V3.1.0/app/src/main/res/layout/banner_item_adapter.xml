@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frame_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item_iv_pic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:riv_border_color="@color/transparent"
+            app:riv_border_width="0dp"
+            app:riv_corner_radius="5dp"
+            app:riv_oval="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp10">
+
+                <TextView
+                    android:id="@+id/item_tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="春分能量奉献榜"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/item_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="2018-03-12至2019-11-22"
+                    android:textColor="@color/white"
+                    android:textSize="9dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp2"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <!---->
+                <LinearLayout
+                    android:id="@+id/item_layout_head3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_toRightOf="@+id/item_layout_head2"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="-2dp"
+                        android:background="@mipmap/rankitemtop_iv_headimg3" />
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/corners_bg_rank3">
+
+                        <ImageView
+                            android:id="@+id/item_iv_head3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@mipmap/user_default_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!---->
+                <LinearLayout
+                    android:id="@+id/item_layout_head2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="-4dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="-2dp"
+                        android:background="@mipmap/rankitemtop_iv_headimg2" />
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/corners_bg_rank2">
+
+                        <ImageView
+                            android:id="@+id/item_iv_head2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@mipmap/user_default_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!---->
+                <LinearLayout
+                    android:id="@+id/item_layout_head1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/item_layout_head2"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="-2dp"
+                        android:background="@mipmap/rankitemtop_iv_headimg1" />
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/corners_bg_rank1">
+
+                        <ImageView
+                            android:id="@+id/item_iv_head1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:background="@mipmap/user_default_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!---->
+
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

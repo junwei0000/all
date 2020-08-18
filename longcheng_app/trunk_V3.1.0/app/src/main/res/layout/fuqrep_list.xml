@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <!---->
+    <ViewFlipper
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:background="@drawable/pioneer_zong_gradient_shape20" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/help_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            android:background="@color/white"
+            android:cacheColorHint="@color/page_bg"
+            android:divider="@null"
+            android:dividerHeight="@dimen/dp6"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:listSelector="@drawable/list_notselector"
+            android:scrollbars="none" />
+
+        <include layout="@layout/not_date" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_myquan"
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_E95D1B"
+        android:gravity="center"
+        android:text="我的福圈"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_biaoTi_size"
+        android:textStyle="bold" />
+</LinearLayout>

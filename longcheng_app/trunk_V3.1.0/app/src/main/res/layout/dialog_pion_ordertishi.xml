@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/view_padd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="温馨提示"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_tishi_size" />
+
+    <TextView
+        android:id="@+id/tv_tishi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp35"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.2"
+        android:text="接单后主动联系创业者\n可以更快到账"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_sure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/view_padd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <include layout="@layout/line_su" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_ok"
+            style="@style/view_padd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="知道了"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+</LinearLayout>

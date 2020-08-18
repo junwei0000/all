@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/activity_tool" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.longcheng.lifecareplan.utils.myview.MyScrollView
+            android:id="@+id/home_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/fragment_mycenter_top" />
+                <!--现金余额 -->
+                <include layout="@layout/fragment_mycenter_pioneer" />
+
+                <FrameLayout
+                    android:id="@+id/layout_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:paddingBottom="@dimen/dp10">
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/iv_gif"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp100"
+                        android:src="@mipmap/roc_input_icon" />
+
+                    <TextView
+                        android:id="@+id/tv_treasurenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginLeft="@dimen/dp25"
+                        android:layout_marginBottom="25dp"
+                        android:singleLine="true"
+                        android:text="已有 0 枚宝贝"
+                        android:textColor="@color/white_tran"
+                        android:textSize="11dp" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/color_FAFAFA" />
+
+                <include layout="@layout/fragment_mycenter_money" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/color_FAFAFA" />
+                <!--节气-->
+                <include layout="@layout/fragment_mycenter_jieqi" />
+                <!--功能-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/color_FAFAFA" />
+
+                <LinearLayout
+                    style="@style/view_paddtopbottom20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp15">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/gongshe_bianqian_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_weight="1"
+                        android:text="常用功能"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <com.longcheng.lifecareplan.utils.myview.MyGridView
+                    android:id="@+id/gongnengn_gv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/dp20"
+                    android:background="@color/white"
+                    android:cacheColorHint="@color/page_bg"
+                    android:divider="@null"
+                    android:fadeScrollbars="false"
+                    android:fadingEdge="none"
+                    android:focusable="false"
+                    android:numColumns="4"
+                    android:scrollbars="none"
+                    android:verticalSpacing="@dimen/dp15" />
+
+            </LinearLayout>
+        </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_meiqia"
+        style="@style/view_margin"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/meiqia" />
+</RelativeLayout>

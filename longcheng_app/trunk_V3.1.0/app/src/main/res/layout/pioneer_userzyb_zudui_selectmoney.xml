@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/gongshe_bianqian_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:text="请选择请购金额"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:text="(每位成员请购300)"
+            android:textColor="@color/c9"
+            android:textSize="@dimen/text_dp12_size" />
+    </LinearLayout>
+    <!---->
+
+    <com.longcheng.lifecareplan.utils.myview.MyGridView
+        android:id="@+id/gv_money"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/transparent"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@null"
+        android:fadeScrollbars="true"
+        android:fadingEdge="none"
+        android:focusable="false"
+        android:gravity="left"
+        android:listSelector="@drawable/list_notselector"
+        android:numColumns="3"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/dp6"
+        android:paddingRight="@dimen/dp6"
+        android:scrollbars="none" />
+
+
+    <TextView
+        android:id="@+id/tv_next"
+        style="@style/btn"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:text="创建新组队" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp6"
+        android:layout_marginTop="@dimen/dp25"
+        android:background="@color/activa_titlebg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padd_leftright"
+        android:paddingTop="@dimen/dp8"
+        android:paddingBottom="@dimen/dp8">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/gongshe_bianqian_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:text="组队请购记录"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/date_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/page_bg"
+        android:divider="@null"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:listSelector="@drawable/list_notselector"
+        android:scrollbars="none" />
+
+</LinearLayout>

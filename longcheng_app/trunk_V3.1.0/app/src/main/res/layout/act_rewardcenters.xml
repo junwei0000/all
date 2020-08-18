@@ -1,0 +1,156 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/my_reward_aa">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/page_top_height"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <include layout="@layout/activity_tool" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/pagetop_layout_left"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="@dimen/padd_leftright">
+
+                    <ImageView
+                        android:id="@+id/pagetop_iv_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/my_reward_thearrow" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/pageTop_tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="@string/reward_centers"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <LinearLayout
+                    android:id="@+id/pagetop_layout_rigth"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="@dimen/padd_leftright">
+
+                    <ImageView
+                        android:id="@+id/pagetop_iv_rigth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/pageTop_tv_rigth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/text_contents_color"
+                        android:textSize="@dimen/text_contents_size"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/page_top_height"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="成功邀请(人)"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <TextView
+                    android:id="@+id/tv_invitation_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="累计奖励(寿康宝)"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <TextView
+                    android:id="@+id/tv_total_skb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/not_date" />
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/ptf_reward"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_help"
+            android:cacheColorHint="@color/page_bg"
+            android:divider="@null"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:scrollbars="none" />
+
+    </FrameLayout>
+</LinearLayout>

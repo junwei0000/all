@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/tv_aera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请选择"
+        android:singleLine="true"
+        android:textColor="@color/text_contents_color"
+        android:textSize="@dimen/text_contents_size" />
+
+</LinearLayout>

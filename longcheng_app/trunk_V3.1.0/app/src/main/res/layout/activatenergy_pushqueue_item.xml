@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddlefgtright"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/dp8">
+    <!---->
+
+    <ImageView
+        android:id="@+id/iv_thumb"
+        android:layout_width="@dimen/dp17"
+        android:layout_height="@dimen/dp17"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/dp15"
+        android:background="@mipmap/user_default_icon" />
+
+    <TextView
+        android:id="@+id/item_tv_time"
+        style="@style/view_paddlefgtright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/item_tv_status"
+        android:layout_toRightOf="@+id/iv_thumb"
+        android:singleLine="true"
+        android:textColor="@color/text_healthcontents_color"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/item_tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/dp10"
+        android:singleLine="true"
+        android:text="等待接单"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_zhu_size" />
+</RelativeLayout>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <com.longcheng.lifecareplan.utils.myview.MyScrollView
+        style="@style/view_marginlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_jieqi"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/moren_new"
+                app:riv_border_color="@color/transparent"
+                app:riv_border_width="1dp"
+                app:riv_corner_radius="6dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false" />
+
+            <ViewFlipper
+                android:id="@+id/viewflipper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp10"
+                android:paddingLeft="@dimen/dp10"
+                android:layout_marginRight="-5dp"
+                android:layout_marginLeft="-5dp"
+                android:background="@mipmap/write_bg2"
+                android:minHeight="45dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/gongshe_bianqian_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_weight="1"
+                    android:text="快速申请"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.longcheng.lifecareplan.utils.myview.MyGridView
+                android:id="@+id/gv_apply"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/padd_topbottom"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:focusable="false"
+                android:layout_marginRight="-5dp"
+                android:layout_marginLeft="-5dp"
+                android:listSelector="@drawable/list_notselector"
+                android:numColumns="2"
+                android:scrollbars="none" />
+
+            <LinearLayout
+                style="@style/view_margintopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/gongshe_bianqian_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_weight="1"
+                    android:text="我的健康公社"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/write_bg"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/dp20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/gongshe_myicon" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="我的健康公社"
+                            android:textColor="@color/text_biaoTi_color"
+                            android:textSize="@dimen/text_biaoTi_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:text="快速查看我的公社或大队"
+                            android:textColor="@color/text_noclick_color"
+                            android:textSize="@dimen/text_dp12_size" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_look"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/fuquan_zai_help"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dp2"
+                        android:text="去看看"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_zhu_size" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_eara"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    style="@style/view_margintopbottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/gongshe_bianqian_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_weight="1"
+                        android:text="我的出生地所属公社"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/write_bg"
+                    android:layout_marginBottom="@dimen/dp15"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp20">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_belongdadui"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="***公社-**大队"
+                            android:textColor="@color/text_biaoTi_color"
+                            android:textSize="@dimen/text_biaoTi_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_belongaddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp8"
+                            android:text="省市区"
+                            android:textColor="@color/text_noclick_color"
+                            android:textSize="@dimen/text_dp12_size" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+</LinearLayout>

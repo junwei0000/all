@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/activity_tool" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/page_top_height"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp15">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/tv_datejieqi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c9"
+                    android:textSize="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="互祝"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_pageTop_size" />
+
+            <LinearLayout
+                android:id="@+id/layout_message"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:paddingRight="@dimen/dp15">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:layout_marginRight="@dimen/dp2"
+                        android:background="@mipmap/message_icon" />
+
+                    <TextView
+                        android:id="@+id/top_tv_num"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="right"
+                        android:background="@drawable/corners_oval_sing_yellow"
+                        android:visibility="invisible" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+            android:id="@+id/main_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp6">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/homededi_vp_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:id="@+id/frame_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp6"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+                    <!--四个按钮-->
+                    <include layout="@layout/fragment_home_menu" />
+                    <!--热推互助-->
+                    <include layout="@layout/fragment_home_hotpush" />
+                    <!--榜单-->
+                    <include layout="@layout/fragment_home_dedicationlist" />
+                    <!--热门行动-->
+                    <include layout="@layout/fragment_home_hotaction" />
+                    <!--健康速递-->
+                    <include layout="@layout/fragment_home_health" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+        <include layout="@layout/not_date" />
+    </FrameLayout>
+</LinearLayout>

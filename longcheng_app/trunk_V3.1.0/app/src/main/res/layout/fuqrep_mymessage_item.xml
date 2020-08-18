@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddlefgtright"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!---->
+
+    <RelativeLayout
+        android:id="@+id/item_relat_message"
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/fram_img"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright">
+
+            <ImageView
+                android:id="@+id/item_iv_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/user_default_icon"
+                android:scaleType="centerCrop" />
+
+            <include layout="@layout/tv_num" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/item_layout_right"
+            android:layout_toRightOf="@+id/fram_img"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/item_tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="姓名"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/item_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="dd"
+                    android:textColor="@color/c9"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/item_tv_cont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:singleLine="true"
+                android:text="感谢您"
+                android:textColor="@color/c9"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/line_xu" />
+</LinearLayout>

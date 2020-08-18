@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/page_bg">
+
+        <LinearLayout
+            android:id="@+id/llserach"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/padd_leftright"
+            android:orientation="horizontal">
+
+            <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+                android:id="@+id/help_et_search"
+                style="@style/view_paddlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/padd_leftright"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_write"
+                android:drawableLeft="@mipmap/mutuallist_search"
+                android:drawablePadding="@dimen/padd_imgtextleftright"
+                android:imeOptions="actionSearch"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/corners_bg_write"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:text="搜索"
+                android:textColor="@color/text_contents_color"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <ViewFlipper
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/llserach"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_corner" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/lv_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/vp"
+            android:background="@color/white"
+            android:divider="@null"
+            android:scrollbars="none" />
+
+        <include layout="@layout/not_date" />
+
+        <include layout="@layout/include_energy_bottom"></include>
+    </RelativeLayout>
+
+
+</LinearLayout>

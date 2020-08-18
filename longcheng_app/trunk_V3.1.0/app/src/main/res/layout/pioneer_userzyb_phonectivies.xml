@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/pion_phone_top"
+                android:orientation="vertical">
+
+                <include layout="@layout/activity_tool" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/page_top_height"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/pagetop_layout_left"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="@dimen/padd_leftright">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/back"
+                            android:tint="@color/white" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_bottom1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/pion_phone_bottom1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/pion_phone_time"
+                    android:gravity="center"
+                    android:textColor="@color/color_eb3f00"
+                    android:textSize="@dimen/text_dp12_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/pion_phone_bottom"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_cont"
+                    style="@style/view_marginlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/pion_phone_cont"
+                    android:orientation="vertical"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="40dp"
+                    android:paddingRight="28dp">
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp30"
+                    android:text="越奉献 . 越健康 . 越富足"
+                    android:textColor="@color/white_tran"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_gave"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_fcb02b"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="推荐资格"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_create"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@color/color_ffd434"
+            android:gravity="center"
+            android:text="点击马上获取"
+            android:textColor="@color/color_eb3f00"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

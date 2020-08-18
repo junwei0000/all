@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddlefgtright"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp20">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            style="@style/view_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:id="@+id/iv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/dialog_city_cancel" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@mipmap/wisheachlife_lackofbalancel_icon" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_cont1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padd_leftright"
+        android:gravity="center"
+        android:text="您的寿康宝余额不足"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_tishi_size" />
+
+    <TextView
+        android:id="@+id/tv_cont2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padd_leftright"
+        android:gravity="center"
+        android:text="请多用生命能量互祝噢～"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_tishi_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp27">
+
+        <TextView
+            android:id="@+id/btn_gohelp"
+            style="@style/dialog_btn"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_redbian"
+            android:text="去互祝"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/btn_jihuo"
+            style="@style/dialog_btn"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:text="激活生命能量" />
+    </LinearLayout>
+</LinearLayout>

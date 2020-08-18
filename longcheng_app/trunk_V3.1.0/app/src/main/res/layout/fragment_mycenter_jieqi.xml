@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddtopbottom20"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_activatenergy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_energy" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:text="激活能量"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_pioneercenter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_chuangye" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:gravity="center_horizontal"
+            android:text="24节气创业中心"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_myka"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_myenergycenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/my_kabao_icon" />
+
+        <TextView
+            android:id="@+id/tv_myenergycenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:singleLine="true"
+            android:text="我的卡包"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_loveVideo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_shipin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:text="康农工程"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/usercenter_relay_zodiacdescripte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/homepage_icon_thecommune" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            android:singleLine="true"
+            android:text="一字千金"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+</LinearLayout>

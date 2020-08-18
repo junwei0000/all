@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><!-- shape如果不声明形状则默认为正方形 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <gradient
+        android:angle="90"
+        android:endColor="#00000000"
+        android:startColor="#12000000" />
+
+</shape>
