@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/calendarview/calendarview.iml" filepath="$PROJECT_DIR$/calendarview/calendarview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libsuperplayer/libsuperplayer.iml" filepath="$PROJECT_DIR$/libsuperplayer/libsuperplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pulltorefreshlibrary/pulltorefreshlibrary.iml" filepath="$PROJECT_DIR$/pulltorefreshlibrary/pulltorefreshlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/trunk_V3.1.0.iml" filepath="$PROJECT_DIR$/.idea/trunk_V3.1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/videouploader/videouploader.iml" filepath="$PROJECT_DIR$/videouploader/videouploader.iml" />
+    </modules>
+  </component>
+</project>
