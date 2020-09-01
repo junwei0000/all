@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="400dp"
+    android:background="@drawable/corners_bg_write10"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp15"
+        android:text="选择爱友"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_biaoTi_size"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/gv_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:listSelector="@drawable/list_notselector"
+        android:scrollbars="none" />
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_yellowbottom"
+        android:gravity="center"
+        android:padding="@dimen/dp15"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_biaoTi_size"
+        android:textStyle="bold" />
+</LinearLayout>

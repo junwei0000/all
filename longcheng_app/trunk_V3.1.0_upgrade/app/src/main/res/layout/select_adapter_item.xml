@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_layout"
+    style="@style/view_paddlefgtright"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/contact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/safety_full_name"
+            android:gravity="center"
+            android:text="张三"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/contact_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contact_name"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_toRightOf="@+id/safety_full_name"
+            android:text="1111"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_zhu_size" />
+        <TextView
+            style="@style/btn_padd1"
+            android:id="@+id/item_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/corners_bg_login_new"
+            android:gravity="center"
+            android:maxEms="5"
+            android:minEms="5"
+            android:text="送福包"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+
+
+    <include layout="@layout/line" />
+</LinearLayout>

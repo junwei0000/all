@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <com.longcheng.lifecareplan.widget.jswebview.browse.BridgeWebView
+        android:id="@+id/webView"
+        style="@style/NumberProgressBar_Default"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp6"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_redbian"
+            android:gravity="center"
+            android:text="取消申请"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+
+        <TextView
+            android:id="@+id/tv_sure"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp6"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_login"
+            android:gravity="center"
+            android:text="同意"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+</LinearLayout>

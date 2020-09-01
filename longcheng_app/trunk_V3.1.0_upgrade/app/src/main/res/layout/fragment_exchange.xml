@@ -1,0 +1,413 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_tool" />
+    <!---->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/page_top_height"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/exchange_layout_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/jianJu"
+            android:paddingRight="@dimen/jianJu">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/mall_icon_screening" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_search"
+            android:gravity="left|center_vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="@dimen/jianJu"
+                android:paddingRight="@dimen/jianJu">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/mutuallist_search" />
+            </LinearLayout>
+
+            <com.longcheng.lifecareplan.utils.myview.SupplierEditText
+                android:id="@+id/exchange_et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="搜索商品名称"
+                android:imeOptions="actionSearch"
+                android:maxLength="40"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/dp30"
+                android:paddingRight="@dimen/padd_leftright"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/exchange_layout_shopping"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/jianJu"
+            android:paddingRight="@dimen/jianJu">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/mall_icon_shopping" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padd_imgtextleftright"
+        android:background="@color/white" />
+    <!---->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/jianJu"
+                android:paddingRight="@dimen/jianJu">
+
+                <LinearLayout
+                    android:id="@+id/exchange_layout_time"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:paddingBottom="@dimen/padd_leftright">
+
+                    <TextView
+                        android:id="@+id/exchange_tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
+                        android:text="时间"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/exchange_iv_timearrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/ic_arrow_up_red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/exchange_layout_price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/padd_imgtextleftright"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:paddingBottom="@dimen/padd_leftright">
+
+                    <TextView
+                        android:id="@+id/exchange_tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
+                        android:text="价格"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+
+                    <ImageView
+                        android:id="@+id/exchange_iv_pricearrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/ic_arrow_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/exchange_layout_popularity"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:paddingBottom="@dimen/padd_leftright">
+
+                    <TextView
+                        android:id="@+id/exchange_tv_popularity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
+                        android:text="人气"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <ImageView
+                        android:id="@+id/exchange_iv_popularityarrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/ic_arrow_gray" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/exchange_layout_selectjieqi"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/padd_imgtextleftright"
+                    android:paddingBottom="@dimen/padd_leftright">
+
+                    <TextView
+                        android:id="@+id/exchange_tv_selectjieqi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padd_imgtextleftright"
+                        android:text="24节气"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_contents_size" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/mutuallist_arrow_redbottom" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <include layout="@layout/line" />
+            <!---->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+                    android:id="@+id/exchange_sv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fadeScrollbars="false"
+                    android:fadingEdge="none"
+                    android:fillViewport="true"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/padd_imgtextleftright"
+                            android:background="@color/page_bg" />
+
+                        <com.longcheng.lifecareplan.utils.myview.MyGridView
+                            android:id="@+id/exchange_listview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:cacheColorHint="@color/page_bg"
+                            android:divider="@null"
+                            android:fadeScrollbars="false"
+                            android:fadingEdge="none"
+                            android:gravity="center"
+                            android:horizontalSpacing="@dimen/jianJu"
+                            android:numColumns="2"
+                            android:paddingLeft="@dimen/jianJu"
+                            android:paddingTop="@dimen/padd_imgtextleftright"
+                            android:paddingRight="@dimen/jianJu"
+                            android:paddingBottom="@dimen/padd_imgtextleftright"
+                            android:scrollbars="none"
+                            android:verticalSpacing="0dp" />
+
+                        <!---->
+                        <LinearLayout
+                            android:id="@+id/layout_footercontent"
+                            style="@style/view_padd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="@dimen/dp20"
+                                android:layout_height="@dimen/dp1"
+                                android:background="@color/linesubg" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/padd_imgtextleftright"
+                                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                                android:background="@mipmap/mall_icon_what" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/padd_imgtextleftright"
+                                android:gravity="center"
+                                android:text="到底啦"
+                                android:textColor="@color/text_noclick_color"
+                                android:textSize="@dimen/text_zhu_size" />
+
+                            <TextView
+                                android:layout_width="@dimen/dp20"
+                                android:layout_height="@dimen/dp1"
+                                android:background="@color/linesubg" />
+                        </LinearLayout>
+                        <!---->
+                    </LinearLayout>
+                </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+                <include layout="@layout/not_date" />
+
+
+                <!--page-->
+                <LinearLayout
+                    android:id="@+id/layout_page"
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="@dimen/jianJu"
+                    android:layout_marginBottom="@dimen/dp45"
+                    android:background="@drawable/corners_bg_rank2"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_showScrollPage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_dp12_size" />
+
+                    <TextView
+                        android:id="@+id/tv_topline"
+                        android:layout_width="@dimen/dp23"
+                        android:layout_height="@dimen/dp2"
+                        android:layout_marginTop="@dimen/dp1"
+                        android:layout_marginBottom="@dimen/dp1"
+                        android:background="@color/linesubg" />
+
+                    <TextView
+                        android:id="@+id/tv_allPage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_min_size" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <!--分类-->
+        <LinearLayout
+            android:id="@+id/layout_categorys"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <include layout="@layout/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/categorys_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:cacheColorHint="@color/page_bg"
+                    android:divider="@null"
+                    android:dividerHeight="@dimen/dp15"
+                    android:fadeScrollbars="false"
+                    android:fadingEdge="none"
+                    android:gravity="center"
+                    android:listSelector="@drawable/list_notselector"
+                    android:paddingLeft="@dimen/padd_imgtextleftright"
+                    android:paddingTop="@dimen/jianJu"
+                    android:paddingRight="@dimen/padd_imgtextleftright"
+                    android:paddingBottom="@dimen/jianJu"
+                    android:scrollbars="none" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/linebg" />
+
+                <GridView
+                    android:id="@+id/categorys_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:cacheColorHint="@color/page_bg"
+                    android:divider="@null"
+                    android:fadeScrollbars="false"
+                    android:fadingEdge="none"
+                    android:gravity="center"
+                    android:horizontalSpacing="@dimen/padd_leftright"
+                    android:listSelector="@drawable/list_notselector"
+                    android:numColumns="3"
+                    android:paddingLeft="@dimen/jianJu"
+                    android:paddingTop="@dimen/padd_topbottom"
+                    android:paddingRight="@dimen/jianJu"
+                    android:paddingBottom="@dimen/padd_topbottom"
+                    android:scrollbars="none"
+                    android:verticalSpacing="@dimen/padd_leftright" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="none">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@mipmap/my_fuquan_bg"
+        android:orientation="vertical">
+
+        <include layout="@layout/activity_tool" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/page_top_height"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/pagetop_layout_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/padd_leftright">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/back"
+                    android:tint="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="每日一穴位"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pageTop_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <com.longcheng.lifecareplan.utils.myview.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-90dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/view_marginlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp20"
+                android:background="@drawable/corners_bg_graybian_yin"
+                android:orientation="vertical"
+                android:padding="@dimen/dp20">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_contents_size" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+</LinearLayout>

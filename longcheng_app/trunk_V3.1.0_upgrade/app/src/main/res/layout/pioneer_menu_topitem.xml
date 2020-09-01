@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_gl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/pion_center_gl"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layout_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/my_center_bj1"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp30">
+
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp60"
+            android:layout_alignParentLeft="true"
+            android:background="@mipmap/user_default_icon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_head"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padd_leftright">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxEms="4"
+                    android:maxLines="1"
+                    android:text="姓名"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_jieeqi"
+                    style="@style/jieqi_padd"
+                    android:background="@drawable/corners_bg_write"
+                    android:text="庚子.雨水"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_shenfen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp4"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/text_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp4"
+                android:background="@drawable/pioneer_gray_gradient_shape"
+                android:text="有效期：0天0时0分"
+                android:textColor="@color/color_ffe578"
+                android:textSize="@dimen/dp10" />
+
+            <TextView
+                android:id="@+id/tv_exitjieqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp4"
+                android:singleLine="true"
+                android:visibility="gone"
+                android:text="清算完成时间：节气"
+                android:textColor="@color/color_c78826"
+                android:textSize="@dimen/text_min_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_xufei"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp80"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp60"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/iv_business"
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp60"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/dp35"
+        android:layout_marginBottom="@dimen/dp30"
+        android:background="@mipmap/my_center_yingye" />
+</RelativeLayout>

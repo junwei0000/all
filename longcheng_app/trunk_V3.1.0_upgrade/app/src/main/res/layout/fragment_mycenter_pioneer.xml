@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:paddingBottom="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <!---->
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_moneyjieqibao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@mipmap/my_jieqibao_huang"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="节气宝"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/mycenter_tv_moneyjieqibao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4"
+            android:text="0"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_tishi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_moneyfqb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@mipmap/my_fuqibao_hong"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="福祺宝"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/mycenter_tv_moneyfqb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4"
+            android:text="0"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_tishi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/mycenter_layout_moneyzfb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@mipmap/my_fuqibao_lan"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="祝佑宝"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_dp12_size" />
+
+        <TextView
+            android:id="@+id/mycenter_tv_moneyzfb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4"
+            android:text="0"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_tishi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <!---->
+</LinearLayout>

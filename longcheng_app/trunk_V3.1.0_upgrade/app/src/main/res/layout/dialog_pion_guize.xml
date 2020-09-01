@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="账户平衡规则"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_pageTop_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/my_rebirth_shutdown" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="什么是账户平衡"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginBottom="@dimen/dp15"
+            android:lineSpacingMultiplier="1.2"
+            android:text="创业者在创业过程中，账户间为达到阴阳平衡，需要与平台进行祝佑宝和福祺宝账户结算。"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="平衡规则"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:lineSpacingMultiplier="1.2"
+            android:text="1.创业金由祝佑宝、福祺宝两部分组成，初始值各占50%；"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:lineSpacingMultiplier="1.2"
+            android:text="2.每天17点，系统对祝佑宝、福祺宝账户进行平衡到初始值提示；"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginBottom="@dimen/dp30"
+            android:lineSpacingMultiplier="1.2"
+            android:text="3.祝佑宝、福祺宝余额与初始值的偏差超过10%时强制平衡，10%以内无需平衡操作。"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+</LinearLayout>

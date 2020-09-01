@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_notselector"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp43"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/padd_imgtextleftright">
+
+        <ImageView
+            android:id="@+id/item_iv_img"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40" />
+
+        <TextView
+            android:id="@+id/item_tv_currentjieqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/corners_bg_redprogress"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:singleLine="true"
+            android:paddingBottom="@dimen/dp1"
+            android:paddingTop="@dimen/dp1"
+            android:text="当前节气"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp7"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_tv_cn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_dp12_size" />
+
+</LinearLayout>

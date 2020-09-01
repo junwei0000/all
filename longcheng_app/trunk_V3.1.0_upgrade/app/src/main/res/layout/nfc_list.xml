@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_engry">
+
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
+                android:id="@+id/date_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:scrollbars="none" />
+
+            <include layout="@layout/not_date" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/btn_engry"
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="感恩祝福我的人"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_item"
+    style="@style/view_paddlefgtright"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:circleimageview="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/item_tv_num"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_contents_size"
+            android:textStyle="bold" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            circleimageview:civ_border_color="#dcdcdc"
+            circleimageview:civ_border_overlay="false"
+            circleimageview:civ_border_width="2dp"
+            android:id="@+id/item_iv_thumb"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:layout_toRightOf="@+id/item_tv_num"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/item_layout_rank"
+            android:layout_toRightOf="@+id/item_iv_thumb"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="姓名"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_contents_size" />
+
+                <TextView
+                    android:id="@+id/item_tv_jieeqi"
+                    style="@style/jieqi_padd"
+                    android:text="庚子.立春" />
+
+                <TextView
+                    android:id="@+id/item_tv_typetitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textColor="@color/text_noclick_color"
+                    android:textSize="@dimen/text_zhu_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_layout_shenfen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" />
+
+            <RelativeLayout
+                android:id="@+id/relat_cn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginBottom="@dimen/padd_imgtextleftright"
+                android:layout_weight="1">
+
+                <com.longcheng.lifecareplan.widget.jswebview.view.NumberProgressBar
+                    android:id="@+id/item_pb_lifeenergynum"
+                    style="@style/NumberProgressBar_Default"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/item_pb_numne"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/corners_bg_redprogress"
+                    android:gravity="center"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:text="0%"
+                    android:textColor="@color/white"
+                    android:textSize="9dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/item_iv_thumb">
+
+            <TextView
+                android:id="@+id/tv_absorbed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="已收能量:3500"
+                android:textColor="@color/color_9a9a9a"
+                android:textSize="14sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_target"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="目标能量:3200"
+                android:textColor="@color/color_9a9a9a"
+                android:textSize="14sp">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/wisheach_complete_icon" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>

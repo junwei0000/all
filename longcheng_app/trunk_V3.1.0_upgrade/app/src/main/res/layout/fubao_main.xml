@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_CA3035"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <LinearLayout
+        android:id="@+id/fubao_topbg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/fubao_bg_redfu"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp50"
+        android:layout_marginRight="@dimen/dp50"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_superablity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_ceng15"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp30"
+            android:paddingTop="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:text="超级生命能量   270"
+            android:textColor="@color/color_CA3035"
+            android:textSize="@dimen/text_tishi_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp25"
+            android:background="@drawable/corners_bg_ceng15"
+            android:paddingLeft="@dimen/dp30"
+            android:paddingRight="@dimen/dp10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10"
+                android:text="福包个数："
+                android:textColor="@color/color_CA3035"
+                android:textSize="@dimen/text_tishi_size" />
+
+            <EditText
+                android:id="@+id/phonetype_et_num"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:hint="输入个数"
+                android:inputType="number"
+                android:maxLength="6"
+                android:textColor="@color/color_CA3035"
+                android:textColorHint="@color/color_4DCA3035"
+                android:textSize="@dimen/text_tishi_size" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp45"
+            android:background="@drawable/corners_bg_ceng25"
+            android:gravity="center"
+            android:padding="@dimen/dp10"
+            android:text="立即送福"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_tishi_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_myfubao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp6"
+            android:text="我的福包"
+            android:textColor="@color/color_FD8E58"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:background="@mipmap/icon_right_hinit" />
+    </LinearLayout>
+
+</LinearLayout>

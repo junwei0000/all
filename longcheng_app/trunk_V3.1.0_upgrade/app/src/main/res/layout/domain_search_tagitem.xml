@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:layout_marginTop="@dimen/dp10"
+    android:layout_marginRight="@dimen/dp10"
+    android:gravity="center_vertical|right">
+
+    <TextView
+        android:id="@+id/tv_cont"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/corners_bg_gray15"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/color_222222"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <ImageView
+        android:id="@+id/et_del"
+        android:layout_width="@dimen/dp10"
+        android:layout_height="@dimen/dp10"
+        android:layout_gravity="right"
+        android:background="@mipmap/live_guanbi_icon"
+        android:visibility="gone" />
+</FrameLayout>

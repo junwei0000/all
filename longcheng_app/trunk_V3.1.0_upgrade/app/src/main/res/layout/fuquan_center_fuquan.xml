@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout_myfuquan"
+    android:layout_marginTop="@dimen/dp4"
+    android:background="@drawable/corners_bg_graybian_yin"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/dp20">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="健康关系报表"
+        android:textStyle="bold"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="16dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginBottom="@dimen/dp10"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/fuquan_my" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="贵人圈/福神圈"
+                android:textStyle="bold"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:text="福神和贵人是您生命中最大的财富"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_dp12_size" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp4"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/layout_fubao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/corners_bg_graybian_yin"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp20"
+        android:paddingRight="@dimen/dp15"
+        android:paddingBottom="@dimen/dp20">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="福包"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:singleLine="true"
+                android:text="送给最想祝福的人"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_dp12_size" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_center_fubao" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_acupoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/corners_bg_graybian_yin"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp20"
+        android:paddingRight="@dimen/dp15"
+        android:paddingBottom="@dimen/dp20">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="每日一穴位"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:text="关爱每一天"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_dp12_size" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_day_hold" />
+    </LinearLayout>
+</LinearLayout>

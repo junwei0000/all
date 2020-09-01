@@ -1,0 +1,261 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/chelp_bg"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <include layout="@layout/connon_create_top" />
+
+            <include layout="@layout/connon_create_group" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="请选择互祝组数量"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:text="（每日最多获得12张券）"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_min_size" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp6">
+
+                    <com.longcheng.lifecareplan.utils.myview.LongClickButton
+                        android:id="@+id/item_layout_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/connon_zudui_anniu"
+                        android:gravity="center"
+                        android:stateListAnimator="@null"
+                        android:text="—"
+                        android:textColor="@color/yellow_c87727"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                    <com.longcheng.lifecareplan.utils.myview.LongClickButton
+                        android:id="@+id/tv_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@mipmap/connon_zudui_anniu"
+                        android:gravity="center"
+                        android:stateListAnimator="@null"
+                        android:text="1"
+                        android:textColor="@color/yellow_c87727"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.longcheng.lifecareplan.utils.myview.LongClickButton
+                            android:id="@+id/item_tv_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/connon_zudui_anniu"
+                            android:stateListAnimator="@null" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/connon_zudui_jiahao" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:gravity="center"
+                    android:text="请选择组队可获得的积分"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp6">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@mipmap/connon_zudui_anniu"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dp25"
+                        android:paddingRight="@dimen/dp25">
+
+                        <TextView
+                            android:id="@+id/tv_showablity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="50"
+                            android:textColor="@color/yellow_c87727"
+                            android:textSize="@dimen/text_biaoTi_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_ablity_shownum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/dp6"
+                            android:text="积分"
+                            android:textColor="@color/yellow_c87727"
+                            android:textSize="@dimen/text_dp12_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_ablity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/connon_zudui_anniu"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dp25"
+                        android:paddingTop="@dimen/dp10"
+                        android:paddingRight="@dimen/dp15"
+                        android:paddingBottom="@dimen/dp10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingRight="@dimen/dp6"
+                            android:text="普能"
+                            android:textColor="@color/yellow_c87727"
+                            android:textSize="@dimen/text_contents_size"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_ablity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/connon_zudui_xuanzhong" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp15">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@mipmap/connon_zudui_anniu"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dp25"
+                        android:paddingTop="@dimen/dp10"
+                        android:paddingRight="@dimen/dp25"
+                        android:paddingBottom="@dimen/dp10">
+
+                        <TextView
+                            android:id="@+id/tv_showsuperablity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="50"
+                            android:textColor="@color/yellow_c87727"
+                            android:textSize="@dimen/text_biaoTi_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_showsuperablity_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/dp6"
+                            android:text="积分"
+                            android:textColor="@color/yellow_c87727"
+                            android:textSize="@dimen/text_dp12_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_superablity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:background="@mipmap/connon_zudui_anniu"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dp25"
+                        android:paddingTop="@dimen/dp10"
+                        android:paddingRight="@dimen/dp15"
+                        android:paddingBottom="@dimen/dp10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingRight="@dimen/dp6"
+                            android:text="超能"
+                            android:textColor="@color/yellow_c87727"
+                            android:textSize="@dimen/text_contents_size"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/iv_superablity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/connon_zudui_xuanzhong"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/help_tv_create"
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_E95D1B"
+        android:gravity="center"
+        android:text="创建组队"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+</LinearLayout>

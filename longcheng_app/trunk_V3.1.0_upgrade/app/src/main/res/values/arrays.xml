@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="log_labels">
+        <item>CPU usage:</item>
+        <item>Memory usage:</item>
+        <item>Video capture fps:</item>
+        <!--<item>音频采集帧率：</item>-->
+        <item>Audio encoder bitrate:</item>
+        <item>Audio encoder fps:</item>
+        <item>Video render fps:</item>
+        <item>Video encoder model:</item>
+        <item>Video encoder bitrate:</item>
+        <item>Video encoder fps:</item>
+        <item>Total fps of video encoder:</item>
+        <item>Total time costs of video encoder:</item>
+        <item>Video encoder settings:</item>
+        <item>Audio output bitrate:</item>
+        <item>Video output bitrate:</item>
+        <item>Total Number of audio cache frames:</item>
+        <item>Total Number of video cache frames:</item>
+        <item>Video upload fps:</item>
+        <item>Audio upload fps:</item>
+        <item>PTS of current uploaded video frame:</item>
+        <item>PTS of current uploaded audio frame PTS:</item>
+        <item>PTS of the last video keyframe:</item>
+        <item>Final video frame in cache:</item>
+        <item>Final audio frame in cache：</item>
+        <item>Total size of data uploaded:</item>
+        <item>Total time costs of pushing</item>
+        <item>Total number of video frames sent:</item>
+        <item>Total number of viedo frames dropped:</item>
+        <item>The times of video frames dropped:</item>
+        <item>Total times of network disconnected:</item>
+        <item>Total times of network reconnected:</item>
+        <item>Video delay duration:</item>
+        <item>Audio delay duration:</item>
+        <item>Size of current frame uploaded</item>
+        <!--<item>音视频pts差异：</item>-->
+        <!--<item>两秒内上传数据总大小：</item>-->
+        <item>The max size of video frame in cache:</item>
+        <item>The max size of audio frame in cache:</item>
+        <item>The pts of last video frame which is waiting for sending:</item>
+        <item>The pts of last audio frame which is waiting for sending:</item>
+        <item>The pts difference of current frame:</item>
+        <item>The cache size of audio encoder:</item>
+        <item>The cache size of video encoder:</item>
+        <item>The cache size of render queue:</item>
+        <item>The average duration of per frame rendered:</item>
+    </string-array>
+
+
+    <string-array name="beauty_level_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="guize_list">
+        　　
+        <item>1、 活动时间:8月26日早9:19分开始,8月29日早9:18分结束.</item>
+        　　
+        <item>2、向亲友送出5个福包,5个亲友收到福包接福成功后,参与排名.</item>
+        　　
+        <item>3、如果亲友24小时未收到福包,系统将福包自动退回,可以重新发放.</item>
+        　　
+        <item>4、福包有效期以排名结束时间为准.</item>
+        　　
+        <item>5、活动结束3天后统一发放活动物品.</item>
+        　　
+    </string-array>
+</resources>

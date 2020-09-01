@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners_bg_write"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dp15">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="CHO专属定制手机"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_pageTop_size"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp15">
+
+        <TextView
+            android:layout_width="4dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="@dimen/padd_imgtextleftright"
+            android:background="@drawable/corners_bg_communered" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:text="手机雕刻姓名，一旦提交不可修改"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_name"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/corners_bg_goodgray"
+        android:hint="谨慎填写"
+        android:paddingTop="@dimen/padd_imgtextleftright"
+        android:paddingBottom="@dimen/padd_imgtextleftright"
+        android:singleLine="true"
+        android:textColor="@color/text_contents_color"
+        android:textColorHint="@color/login_hint_color"
+        android:textSize="@dimen/text_contents_size" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp15">
+
+        <TextView
+            android:layout_width="4dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="@dimen/padd_imgtextleftright"
+            android:background="@drawable/corners_bg_communered" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:text="请选择出生日期"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_date"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/corners_bg_goodgray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:lineSpacingMultiplier="1.1"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/usercenter_arrow_img" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp15">
+
+        <TextView
+            android:layout_width="4dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="@dimen/padd_imgtextleftright"
+            android:background="@drawable/corners_bg_communered" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:text="平台身份"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/corners_bg_goodgray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_identity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:singleLine="true"
+            android:textColor="@color/text_contents_color"
+            android:textSize="@dimen/text_contents_size" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp10"
+        android:gravity="left"
+        android:text="*以上信息将打印在您的专属定制手机上，请您如实填写。"
+        android:textColor="@color/new_title_bg"
+        android:textSize="10dp" />
+
+    <!---->
+    <TextView
+        android:id="@+id/btn_ok"
+        style="@style/btn"
+        android:layout_margin="@dimen/dp1"
+        android:text="提交" />
+</LinearLayout>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+    <!---->
+    <com.longcheng.lifecareplan.utils.myview.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/jianJu"
+            android:background="@mipmap/write_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp6">
+
+                <TextView
+                    android:id="@+id/fuqaun_hinit_dingyi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_hinit_dingyi"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fuquan_dingyi_congent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_dingyi_content"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp20">
+
+                <TextView
+                    android:id="@+id/fuqaun_hinit_used"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_hinit_used"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fuquan_used_congent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_used_content"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp20">
+
+                <TextView
+                    android:id="@+id/fuqaun_hinit_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_hinit_get"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fuquan_get_congent_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:singleLine="true"
+                        android:text="@string/fuquan_title_get_content_1"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/fuquan_get_congent_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp6"
+                        android:singleLine="true"
+                        android:text="@string/fuquan_title_get_content_2"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_contents_size" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp20">
+
+                <TextView
+                    android:id="@+id/fuqaun_hinit_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_hinit_out"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fuquan_out_congent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_out_content"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp20"
+                android:paddingBottom="@dimen/dp6">
+
+                <TextView
+                    android:id="@+id/fuqaun_hinit_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_hinit_in"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_biaoTi_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fuquan_in_congent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:singleLine="true"
+                    android:text="@string/fuquan_title_in_content"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+</LinearLayout>

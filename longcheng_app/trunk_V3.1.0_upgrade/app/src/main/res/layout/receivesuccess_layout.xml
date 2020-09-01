@@ -1,0 +1,135 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/red_f24340"
+        android:orientation="vertical">
+        <!---->
+        <LinearLayout
+            android:id="@+id/layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/top_bg_fu_shared"
+            android:orientation="vertical">
+
+            <include layout="@layout/activity_tool" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/page_top_height"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/pagetop_layout_left"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="@dimen/padd_leftright">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/back"
+                        android:tint="@color/white" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/top_title_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="@dimen/padd_leftright"></LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/view_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/dp30"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/corners_bg_write10">
+
+                <LinearLayout
+                    android:id="@+id/layout_yaoqing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp20"
+                    android:visibility="visible">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/dp200"
+                        android:layout_height="@dimen/dp200">
+
+                        <ImageView
+                            android:id="@+id/iv_qr"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY" />
+
+                        <LinearLayout
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/corners_bg_write">
+
+                            <ImageView
+                                android:id="@+id/iv_userimg"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/dp2"
+                                android:background="@mipmap/app_icon"
+                                android:scaleType="fitXY" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tv_fu_hinit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="-2dp"
+                        android:layout_marginBottom="@dimen/dp10"
+                        android:text="扫描二维码加入健康互祝公社"
+                        android:textColor="@color/text_healthcontents_color"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/tv_yqrecord"
+                        style="@style/dialog_btn"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/dp60"
+                        android:layout_marginRight="@dimen/dp60"
+                        android:background="@drawable/corners_bg_redbtn_sub"
+                        android:text="保存二维码到本地相册"
+                        android:textSize="@dimen/text_tishi_size"
+                        android:layout_marginBottom="@dimen/dp25"
+                        />
+
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

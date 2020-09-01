@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/iv_chair"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/connon_group_chair"
+        android:rotation="0" />
+
+
+    <LinearLayout
+        android:id="@+id/layout_group_useinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:id="@+id/iv_ablum"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/user_default_icon" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp2"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="8dp" />
+    </LinearLayout>
+</RelativeLayout>

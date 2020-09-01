@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="bottom|center_horizontal"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp55"
+        android:layout_marginTop="@dimen/dp20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padd_leftright"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付成功即可接收祝福"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_cancel"
+            style="@style/view_paddlefgtright"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/dialog_city_cancel"
+                android:tint="@color/text_healthcontents_color" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_showcn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="5760"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="超级生命能量"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="40dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_showskb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="530"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="寿康宝"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/view_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="账户余额"
+        android:textColor="@color/text_biaoTi_color"
+        android:textSize="@dimen/text_biaoTi_size"
+        android:textStyle="bold" />
+    <!---->
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginRight="@dimen/padd_imgtextleftright"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_redbian"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="超级生命能量"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/tv_mycn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginLeft="@dimen/padd_imgtextleftright"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_redbian"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="寿康宝"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:id="@+id/tv_myskb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/btn_helpsure"
+        style="@style/btn"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red"
+        android:text="立即支付" />
+
+</LinearLayout>

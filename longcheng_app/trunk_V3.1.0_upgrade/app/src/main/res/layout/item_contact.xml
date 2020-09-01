@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_layout"
+    style="@style/view_paddlefgtright"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/safety_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/dp15">
+
+            <ImageView
+                android:id="@+id/select_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/un_select" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/contact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/safety_full_name"
+            android:gravity="center"
+            android:text="张三"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <TextView
+            android:id="@+id/contact_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contact_name"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_toRightOf="@+id/safety_full_name"
+            android:text="1111"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_zhu_size" />
+
+        <TextView
+            android:id="@+id/item_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_bg_ffc83e_r5"
+            android:paddingLeft="25dp"
+            android:paddingTop="5dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="5dp"
+            android:text="@string/add_btn"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>

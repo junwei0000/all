@@ -1,0 +1,131 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@color/yellow_E95D1B"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/corners_bg_yellowbina25"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="0.1dp">
+
+            <TextView
+                android:id="@+id/tv_today"
+                style="@style/btn_padd2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corners_bg_redshen"
+                android:gravity="center"
+                android:maxEms="6"
+                android:minEms="6"
+                android:text="收到的福包"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_tomorrow"
+                style="@style/btn_padd2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxEms="6"
+                android:minEms="6"
+                android:text="发出的福包"
+                android:textColor="@color/color_C63F00"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <com.longcheng.lifecareplan.utils.myview.CircleImageView
+            android:id="@+id/iv_head"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp25"
+            android:src="@mipmap/user_default_icon" />
+
+        <LinearLayout
+            android:id="@+id/tab_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp15"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="共发出"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_out_num"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp4"
+                android:layout_marginRight="@dimen/dp4"
+                android:text="2000000"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_pageTop_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个福包"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+            android:id="@+id/sv_myredbag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <com.longcheng.lifecareplan.utils.myview.MyListView
+                android:id="@+id/lv_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:focusable="false"
+                android:scrollbars="none"
+                android:visibility="visible" />
+        </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

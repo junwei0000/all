@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <!---->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/relat_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/item_iv_look"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@mipmap/my_icon_shangchuan" />
+
+            <TextView
+                android:id="@+id/item_tv_look"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/black_tran"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp4"
+                android:paddingBottom="@dimen/dp4"
+                android:text="点击查看"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_dp12_size"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/item_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp4"
+            android:paddingBottom="@dimen/dp4"
+            android:text="喝太赫兹水"
+            android:textColor="@color/text_healthcontents_color"
+            android:textSize="@dimen/text_min_size" />
+
+        <TextView
+            android:id="@+id/item_tv_send"
+            style="@style/text_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_logingray"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="@color/white_tran"
+            android:textSize="@dimen/text_min_size" />
+
+        <TextView
+            android:id="@+id/item_tv_notijiao"
+            style="@style/text_padd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="未提交"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_min_size" />
+
+        <LinearLayout
+            android:id="@+id/item_layout_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/dp4"
+            android:paddingBottom="@dimen/dp4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp10"
+                android:gravity="center"
+                android:text="是"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_min_size" />
+
+            <ImageView
+                android:id="@+id/item_iv_yes"
+                android:layout_width="@dimen/dp10"
+                android:layout_height="@dimen/dp10"
+                android:background="@mipmap/check_false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_layout_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/dp4"
+            android:paddingBottom="@dimen/dp4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp10"
+                android:gravity="center"
+                android:text="否"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_min_size" />
+
+            <ImageView
+                android:id="@+id/item_iv_no"
+                android:layout_width="@dimen/dp10"
+                android:layout_height="@dimen/dp10"
+                android:background="@mipmap/check_false" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

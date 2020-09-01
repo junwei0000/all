@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_tool" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp7"
+        android:paddingBottom="@dimen/dp7">
+
+        <LinearLayout
+            android:id="@+id/layout_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="@dimen/padd_leftright">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back"
+                android:tint="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/layout_playlist_video"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp10"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/tv_playlist_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="视频"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <TextView
+                    android:id="@+id/tv_playlist_video_line"
+                    android:layout_width="15dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:background="@drawable/corners_bg_write" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_playlist_live"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp10"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/tv_playlist_live"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="直播"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_pageTop_size" />
+
+                <TextView
+                    android:id="@+id/tv_playlist_live_line"
+                    android:layout_width="15dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:background="@drawable/corners_bg_write"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_rigth"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:paddingRight="@dimen/padd_leftright">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/live_sousuo" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

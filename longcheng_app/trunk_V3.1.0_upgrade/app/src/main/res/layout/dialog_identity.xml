@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/layout_bg"
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/identity_img"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="您还没有实名认证"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_tishi_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginBottom="@dimen/dp35"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.3"
+            android:text="未进行实名认证，不能获得节日津贴"
+            android:textColor="@color/text_noclick_color"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                style="@style/dialog_btn"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/corners_bg_graybian"
+                android:text="再想想"
+                android:textColor="@color/text_noclick_color" />
+
+            <TextView
+                android:id="@+id/tv_jihuo"
+                style="@style/dialog_btn"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:text="立即认证" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <RelativeLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/jianJu"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_thumb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_leftright"
+            android:background="@mipmap/wisheach_family_cho"
+            android:layout_toRightOf="@+id/item_tv_num"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_add"
+            android:layout_toRightOf="@+id/iv_thumb"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_cho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHO家庭首席健康官"
+                android:textColor="@color/text_noclick_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_add"
+            style="@style/view_paddlefgtright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/corners_bg_login"
+            android:paddingBottom="@dimen/padd_imgtextleftright"
+            android:paddingTop="@dimen/padd_imgtextleftright"
+            android:text="添加家人"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_contents_size" />
+
+    </RelativeLayout>
+
+
+    <!---->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:cacheColorHint="@color/page_bg"
+            android:divider="@null"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:paddingLeft="10dp"
+            android:scrollbars="none" />
+
+        <include layout="@layout/not_date" />
+        <!---->
+    </RelativeLayout>
+</LinearLayout>

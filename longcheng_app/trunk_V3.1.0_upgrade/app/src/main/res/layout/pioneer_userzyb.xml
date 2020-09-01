@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_bottom"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_jihuo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:background="@mipmap/my_zhufubao_bj"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingBottom="@dimen/dp25">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="祝佑宝余额"
+                        android:textColor="@color/white_tran"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/tv_allmoney"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padd_leftright"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingBottom="@dimen/dp8">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/gongshe_bianqian_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:text="请购祝佑宝"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/view_marginlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@mipmap/write_bg2"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp1">
+
+                    <EditText
+                        android:id="@+id/et_moneysell"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:hint="请输入请购数量 50元起"
+                        android:inputType="number"
+                        android:padding="17dp"
+                        android:singleLine="true"
+                        android:textColor="@color/color_333333"
+                        android:textColorHint="@color/color_cccccc"
+                        android:textSize="@dimen/text_contents_size" />
+
+                    <TextView
+                        android:id="@+id/tv_jihuo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/my_fuqibao_notcommit"
+                        android:gravity="center"
+                        android:text="提交"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_contents_size" />
+                </LinearLayout>
+
+                <include layout="@layout/activatenergy_push" />
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/tv_zfsrecord"
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/cyanbluebg"
+                android:gravity="center"
+                android:text="我的订单"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+            <TextView
+                android:id="@+id/tv_zudui"
+                style="@style/view_paddtopbottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="组队请购祝佑宝"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_biaoTi_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

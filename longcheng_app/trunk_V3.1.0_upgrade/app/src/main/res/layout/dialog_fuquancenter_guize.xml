@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_bg_write"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10"
+        >
+        <TextView
+            style="@style/view_paddtopbottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="签到规则"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_pageTop_size"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="连续签到"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:lineSpacingMultiplier="1.2"
+                android:text="所有用户进行每日签到送福券，根据签到的连续天数，逐日增加福券数量，例如：第一天送1张福券，第二天送2张福券，整个周期为一个完整的节气。"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp25"
+                android:text="断签规则"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:lineSpacingMultiplier="1.2"
+                android:text="在整个周期内，出现某一天的断签，签到送福券则从第一天重新开始计算，送福券也从第一张依次增长。"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_zhu_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp25"
+                android:text="其他规则"
+                android:textColor="@color/text_biaoTi_color"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp20"
+                android:lineSpacingMultiplier="1.2"
+                android:text="最终所有解释权归平台，请仔细遵守规则。"
+                android:textColor="@color/text_healthcontents_color"
+                android:textSize="@dimen/text_zhu_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/close" />
+</LinearLayout>

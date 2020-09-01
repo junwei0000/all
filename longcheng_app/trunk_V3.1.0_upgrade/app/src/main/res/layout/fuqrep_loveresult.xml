@@ -1,0 +1,207 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fuquan_yellow_gradient_shape"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <!---->
+    <com.longcheng.lifecareplan.utils.myview.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/fuquan_kangnong" />
+
+            <LinearLayout
+                android:id="@+id/layout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp4"
+                android:background="@mipmap/fuquan_fang_icon"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/fuquan_huangse"
+                    android:gravity="center"
+                    android:text="福气指数"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_tishi_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:gravity="center"
+                    android:text="越奉献 越健康 越富足"
+                    android:textColor="@color/color_858585"
+                    android:textSize="@dimen/text_dp12_size" />
+
+                <LinearLayout
+                    android:id="@+id/layout_engry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/fuqrep_loveresult_topnum" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/telat_cont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_top"
+                android:layout_marginTop="-12dp"
+                android:background="@mipmap/fuquan_fang_icon"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@mipmap/fuquan_fuzi" />
+
+                <TextView
+                    android:id="@+id/tv_cont1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:gravity="center"
+                    android:text="节气全   运气好   福气大"
+                    android:textColor="@color/yellow_E95D1B"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_cont2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_cont1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:gravity="center"
+                    android:text="获取24节气生命能量最容易的方法是什么呢？"
+                    android:textColor="@color/text_biaoTi_color"
+                    android:textSize="@dimen/text_biaoTi_size" />
+
+                <TextView
+                    style="@style/view_paddlefgtright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_cont2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.3"
+                    android:text="用你最强的18个节气去祝福别人，就会收获24个最强的生命能量，记得感恩哦！"
+                    android:textColor="@color/color_858585"
+                    android:textSize="@dimen/text_contents_size" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_top"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="-35dp"
+                android:background="@mipmap/fuquan_icon" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_top"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="-35dp"
+                android:layout_marginRight="25dp"
+                android:background="@mipmap/fuquan_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/telat_cont"
+                android:layout_marginTop="-12dp"
+                android:background="@mipmap/fuquan_fang_icon"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:background="@drawable/corners_bg_yellowbian2">
+
+                    <TextView
+                        android:id="@+id/tv_noble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corners_bg_yellow25"
+                        android:paddingLeft="@dimen/dp30"
+                        android:paddingTop="@dimen/dp8"
+                        android:paddingRight="@dimen/dp30"
+                        android:paddingBottom="@dimen/dp8"
+                        android:singleLine="true"
+                        android:text="24贵人"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/tv_fushen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dp30"
+                        android:paddingTop="@dimen/dp8"
+                        android:paddingRight="@dimen/dp30"
+                        android:paddingBottom="@dimen/dp8"
+                        android:singleLine="true"
+                        android:text="18福神"
+                        android:textColor="@color/yellow_E95D1B"
+                        android:textSize="@dimen/text_biaoTi_size" />
+                </LinearLayout>
+
+                <FrameLayout
+                    style="@style/view_marginlefgtright"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/dp15">
+
+                    <com.longcheng.lifecareplan.utils.myview.MyListView
+                        android:id="@+id/detail_lv_rank"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:cacheColorHint="@color/page_bg"
+                        android:divider="@null"
+                        android:fadeScrollbars="false"
+                        android:fadingEdge="none"
+                        android:focusable="false"
+                        android:visibility="gone"
+                        android:listSelector="@drawable/list_notselector"
+                        android:scrollbars="none" />
+
+                    <include layout="@layout/not_date" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+</LinearLayout>

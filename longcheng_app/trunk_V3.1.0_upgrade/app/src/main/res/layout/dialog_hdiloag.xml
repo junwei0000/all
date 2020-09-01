@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+       <!-- <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="250dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/iv_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/select" />
+
+            <ImageView
+                android:id="@+id/iv_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/un_select" />
+
+            <ImageView
+                android:id="@+id/iv_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/un_select" />
+        </LinearLayout>-->
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_cancel"
+        style="@style/view_paddlefgtright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/close" />
+    </LinearLayout>
+</LinearLayout>

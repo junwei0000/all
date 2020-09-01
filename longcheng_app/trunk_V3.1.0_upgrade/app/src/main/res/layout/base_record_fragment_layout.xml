@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/date_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:listSelector="@drawable/list_notselector"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/write_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_tv_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="+12000"
+                android:textColor="@color/yellow_ff7119"
+                android:textSize="@dimen/text_biaoTi_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                style="@style/view_marginlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp10">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="福祺宝"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/item_tv_fuqibao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:text="+12000"
+                        android:textColor="@color/yellow_ff7119"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="节气包"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/item_tv_jieqibao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:text="+12000"
+                        android:textColor="@color/yellow_ff7119"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/view_marginlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="祝佑宝"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/item_tv_zhuyoubao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:text="+12000"
+                        android:textColor="@color/yellow_ff7119"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="寿康宝"
+                        android:textColor="@color/text_biaoTi_color"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/item_tv_shoukang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:text="+12000"
+                        android:textColor="@color/yellow_ff7119"
+                        android:textSize="@dimen/text_biaoTi_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/linebg"
+                style="@style/view_marginlefgtright"
+                />
+            <TextView
+                android:id="@+id/item_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="2020-08-06"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_zhu_size"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:paddingTop="@dimen/dp2"
+                android:paddingBottom="@dimen/dp2"
+                android:background="@drawable/corners_bg_yellow25"
+                android:layout_marginBottom="@dimen/dp10"
+                />
+
+            <com.openxu.cview.chart.barchart.BarVerticalChart
+                android:id="@+id/chart_view"
+                android:layout_width="match_parent"
+                android:layout_height="250dip"
+                android:layout_marginTop="7dp"
+                android:background="#ffffff"
+                android:padding="10dp"
+                style="@style/view_marginlefgtright"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp20"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/not_date" />
+</RelativeLayout>

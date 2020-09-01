@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shap_corner4"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="收货地址"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_pageTop_size"
+            android:textStyle="bold">
+
+        </TextView>
+        <LinearLayout
+            android:id="@+id/add_adress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp15"
+            android:gravity="center|left"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/icon_add_adress"
+                android:layout_marginLeft="@dimen/dp15"
+                />
+
+            <TextView
+                android:id="@+id/tv_hinit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:text="添加收货地址"
+                android:textColor="@color/text_main_two_bg"
+                android:textSize="@dimen/text_biaoTi_size_16" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp30"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_sure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/icon_btn_adress"
+                android:gravity="center">
+
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

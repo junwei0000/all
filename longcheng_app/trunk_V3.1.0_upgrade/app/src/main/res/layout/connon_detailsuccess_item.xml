@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/item_iv_head"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/user_default_icon" />
+
+    <TextView
+        android:id="@+id/item_tv_type"
+        style="@style/text_padd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:background="@drawable/corners_bg_lv"
+        android:singleLine="true"
+        android:text="组员"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/item_tv_name"
+        style="@style/view_paddlefgtright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="姓名"
+        android:textColor="@color/yellow_b25714"
+        android:textSize="@dimen/text_biaoTi_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获得了"
+        android:textColor="@color/yellow_b25714"
+        android:textSize="@dimen/text_zhu_size" />
+
+    <TextView
+        android:id="@+id/item_tv_fen"
+        style="@style/view_paddlefgtright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9"
+        android:textColor="@color/color_c92419"
+        android:textSize="@dimen/text_max_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="积分"
+        android:textColor="@color/yellow_b25714"
+        android:textSize="@dimen/text_zhu_size" />
+</LinearLayout>

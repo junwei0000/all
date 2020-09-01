@@ -1,0 +1,121 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        style="@style/view_marginlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@mipmap/write_bg2"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingTop="@dimen/dp17"
+            android:paddingRight="@dimen/dp10"
+            android:paddingBottom="@dimen/dp17"
+            android:text="姓名："
+            android:textColor="@color/text_main_one_bg"
+            android:textSize="@dimen/text_contents_size" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:hint="请添加接福人"
+            android:paddingLeft="@dimen/dp4"
+            android:paddingTop="@dimen/dp17"
+            android:paddingBottom="@dimen/dp17"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_cccccc"
+            android:textSize="@dimen/text_contents_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/view_marginlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@mipmap/write_bg2"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingTop="@dimen/dp17"
+            android:paddingRight="@dimen/dp10"
+            android:paddingBottom="@dimen/dp17"
+            android:text="手机号码："
+            android:textColor="@color/text_main_one_bg"
+            android:textSize="@dimen/text_contents_size" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:hint="请添加接福人的手机号码"
+            android:inputType="number"
+            android:paddingLeft="@dimen/dp4"
+            android:paddingTop="@dimen/dp17"
+            android:paddingBottom="@dimen/dp17"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_cccccc"
+            android:textSize="@dimen/text_contents_size" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp80"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/btn_goaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp8"
+            android:background="@mipmap/signed"
+            android:gravity="center"
+            android:maxEms="12"
+            android:minEms="12"
+            android:paddingLeft="@dimen/dp12"
+            android:paddingTop="@dimen/dp8"
+            android:paddingRight="@dimen/dp12"
+            android:paddingBottom="@dimen/dp8"
+            android:text="@string/song_fubao"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>

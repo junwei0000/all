@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <LinearLayout
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_E95D1B"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg_yellowbina25">
+
+            <TextView
+                android:id="@+id/tv_receive"
+                style="@style/btn_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corners_bg_redshen"
+                android:singleLine="true"
+                android:text="收到的福包"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_contents_size" />
+
+            <TextView
+                android:id="@+id/tv_sended"
+                style="@style/btn_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:singleLine="true"
+                android:text="发出的福包"
+                android:textColor="@color/color_C63F00"
+                android:textSize="@dimen/text_contents_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="@dimen/dp25"
+            android:background="@drawable/corners_oval_write"
+            android:padding="2dp">
+
+            <ImageView
+                android:id="@+id/iv_thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/user_default_icon" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp15"
+            android:text="共收到0个福包"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_zhu_size" />
+    </LinearLayout>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/help_listview"
+        style="@style/view_marginlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/page_bg"
+        android:divider="@null"
+        android:fadeScrollbars="false"
+        android:fadingEdge="none"
+        android:listSelector="@drawable/list_notselector"
+        android:scrollbars="none" />
+
+</LinearLayout>

@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <LinearLayout
+        style="@style/view_marginlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp4"
+        android:background="@mipmap/write_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10"
+            android:text="姓名："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <EditText
+            android:id="@+id/et_cont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:hint="请添加接福人的姓名"
+            android:maxLength="16"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_cccccc"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/view_marginlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@mipmap/write_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp10"
+            android:text="手机号码："
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_biaoTi_size" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:hint="请添加接福人的手机号码"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/color_cccccc"
+            android:textSize="@dimen/text_biaoTi_size" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp60"
+        android:background="@mipmap/signed"
+        android:gravity="center"
+        android:text="送上福包"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_tishi_size" />
+</LinearLayout>

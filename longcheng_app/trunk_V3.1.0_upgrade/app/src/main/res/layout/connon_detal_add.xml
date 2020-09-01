@@ -1,0 +1,297 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/chelp_bg"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.longcheng.lifecareplan.utils.myview.MyGridView
+                android:id="@+id/gv_user"
+                style="@style/view_marginlefgtright"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/dp6"
+                android:listSelector="@drawable/list_notselector"
+                android:numColumns="5"
+                android:scrollbars="none" />
+
+            <LinearLayout
+                style="@style/view_margintopbottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp6"
+                android:layout_marginRight="@dimen/dp6"
+                android:background="@mipmap/connon_coming_top"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="@dimen/dp25">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/item_iv_thumb"
+                        android:layout_width="@dimen/dp45"
+                        android:layout_height="@dimen/dp45"
+                        android:background="@mipmap/user_default_icon"
+                        android:scaleType="fitXY" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/padd_leftright">
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_aiyouinfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="true"
+                                    android:text="爱友"
+                                    android:textColor="@color/yellow_8d4c0c"
+                                    android:textSize="@dimen/text_contents_size" />
+
+                                <TextView
+                                    android:id="@+id/item_tv_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="@dimen/dp6"
+                                    android:paddingRight="@dimen/dp6"
+                                    android:singleLine="true"
+                                    android:text="姓名"
+                                    android:textColor="@color/yellow_8d4c0c"
+                                    android:textSize="@dimen/text_contents_size"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/item_tv_jieqi"
+                                    style="@style/jieqi_padd"
+                                    android:layout_marginLeft="@dimen/dp6"
+                                    android:layout_marginRight="@dimen/dp6"
+                                    android:background="@drawable/corners_bg_yellow25"
+                                    android:text="庚子·霜降"
+                                    android:textColor="@color/white_tran" />
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/dp4"
+                                android:singleLine="true"
+                                android:text="互祝凝聚爱  用爱疗愈癌"
+                                android:textColor="@color/yellow_8d4c0c"
+                                android:textSize="@dimen/text_dp12_size" />
+
+                            <TextView
+                                android:id="@+id/item_tv_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/dp4"
+                                android:paddingBottom="@dimen/dp4"
+                                android:singleLine="true"
+                                android:text="缺失节气：立冬 小雪 大雪 冬至 小寒 大寒"
+                                android:textColor="@color/yellow_8d4c0c"
+                                android:textSize="@dimen/text_dp12_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="当前节气"
+                                android:textColor="@color/yellow_8d4c0c"
+                                android:textSize="@dimen/text_dp12_size" />
+
+                            <TextView
+                                android:id="@+id/tv_jieqi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp6"
+                                android:text="夏至"
+                                android:textColor="@color/yellow_8d4c0c"
+                                android:textSize="@dimen/text_pageTop_size"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:paddingLeft="@dimen/dp25"
+                                android:text="距下一个节气"
+                                android:textColor="@color/yellow_8d4c0c"
+                                android:textSize="@dimen/text_dp12_size" />
+
+                            <TextView
+                                android:id="@+id/tv_nextday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="@dimen/dp6"
+                                android:text="8"
+                                android:textColor="@color/yellow_8d4c0c"
+                                android:textSize="@dimen/text_pageTop_size"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp6"
+                                android:text="天"
+                                android:textColor="@color/yellow_8d4c0c"
+                                android:textSize="@dimen/text_dp12_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp6"
+                    android:layout_marginBottom="@dimen/dp6"
+                    android:background="@mipmap/zudui_xian" />
+
+
+                <TextView
+                    android:id="@+id/item_tv_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="当前组队数量：0组"
+                    android:textColor="@color/yellow_8d4c0c"
+                    android:textSize="@dimen/text_zhu_size" />
+
+
+                <TextView
+                    android:id="@+id/item_tv_ablity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:singleLine="true"
+                    android:text="需要支付 0 超级生命能量"
+                    android:textColor="@color/yellow_8d4c0c"
+                    android:textSize="@dimen/text_zhu_size" />
+            </LinearLayout>
+
+            <com.longcheng.lifecareplan.utils.myview.MyGridView
+                android:id="@+id/gv_zu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp10"
+                android:cacheColorHint="@color/page_bg"
+                android:divider="@null"
+                android:fadeScrollbars="false"
+                android:fadingEdge="none"
+                android:gravity="center"
+                android:listSelector="@drawable/list_notselector"
+                android:numColumns="2"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/dp20" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            style="@style/view_paddlefgtright"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_select"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_check"
+                    android:layout_width="@dimen/checkbox_dp"
+                    android:layout_height="@dimen/checkbox_dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/connon_zudui_aiyou_weixuan" />
+
+                <TextView
+                    android:id="@+id/tv_selectnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padd_imgtextleftright"
+                    android:paddingRight="@dimen/dp10"
+                    android:text="全选"
+                    android:textColor="@color/c9"
+                    android:textSize="@dimen/text_contents_size" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_jifen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textColor="@color/c9"
+                android:textSize="@dimen/text_dp12_size" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/help_tv_create"
+            style="@style/view_paddtopbottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:text="批量互祝"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

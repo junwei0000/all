@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/dp20">
+
+    <RelativeLayout
+        android:id="@+id/relat_bg"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:background="@drawable/corners_oval_sing_gray">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layout_num"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="13张"
+                android:textColor="@color/white_tran"
+                android:textSize="@dimen/text_min_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp2"
+                android:background="@mipmap/sign_dui" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp6"
+        android:singleLine="true"
+        android:text="已签到"
+        android:textColor="@color/text_healthcontents_color"
+        android:textSize="@dimen/text_dp12_size" />
+
+</LinearLayout>

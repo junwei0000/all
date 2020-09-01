@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/ly_contact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/contact_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_layout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <com.longcheng.lifecareplan.utils.sidebarutils.SideBar
+                android:id="@+id/contact_side"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_layout"
+                android:layout_alignParentRight="true"
+                app:letterColor="@color/color_333333"
+                app:letterSize="@dimen/text_zhu_size"
+                app:selectColor="@color/yellow_E95D1B" />
+
+            <TextView
+                android:id="@+id/contact_letter"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/yellow_E95D1B"
+                android:textSize="24dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_lines"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/bottom_layout"
+                android:background="@color/linebg" />
+
+            <RelativeLayout
+                android:id="@+id/bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp10">
+
+                    <TextView
+                        android:id="@+id/contact_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已选"
+                        android:textColor="@color/c9"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/contact_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/select_btn"
+                        android:paddingLeft="@dimen/dp4"
+                        android:paddingRight="@dimen/dp4"
+                        android:text="0"
+                        android:textColor="@color/color_E95D1B"
+                        android:textSize="@dimen/text_biaoTi_size" />
+
+                    <TextView
+                        android:id="@+id/contact_hinit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="接福人"
+                        android:textColor="@color/c9"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                    <TextView
+                        android:id="@+id/contact_numshow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:text="720X0"
+                        android:textColor="@color/yellow_E95D1B"
+                        android:textSize="@dimen/text_zhu_size" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btn_saveuser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:background="@mipmap/bg_go_fu" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

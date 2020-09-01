@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/view_paddlefgtright"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!---->
+
+    <RelativeLayout
+        android:id="@+id/layout_item"
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/item_layout_right"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/item_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="收到**的福包"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_biaoTi_size" />
+
+
+            <TextView
+                android:id="@+id/item_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp8"
+                android:singleLine="true"
+                android:text="2020-08-22  12:12:12"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_dp12_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_layout_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right|center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_status"
+                style="@style/btn_padd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pioneer_zong_gradient_shape20"
+                android:singleLine="true"
+                android:text="已领取"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_dp12_size" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/line" />
+</LinearLayout>

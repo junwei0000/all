@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yellow">#ffff00</color>
+    <color name="yellow2">#fcaa31</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="QRcode_color">#65A8DF</color>
+    <!--个人中心-->
+    <!-- 青色 -->
+    <color name="cyanblue">#A5793A</color>
+    <!-- 青色背景 -->
+    <color name="text_engry_bg">#b58c1a</color>
+    <color name="cyanbluebg">#ccaa62</color>
+    <color name="cyanbluebg2">#d4a82f</color>
+    <color name="cyan_d6b46d">#d6b46d</color>
+    <color name="likebluebg">#e2bb68</color>
+    <color name="buybless_bg">#efa02f</color>
+    <color name="engry_btn_bg">#edbc25</color>
+    <color name="btn_fbd127">#fbd127</color>
+    <color name="color_ffd434">#ffd434</color>
+    <color name="rank_num1_bg">#ffd236</color>
+    <color name="color_ffe578">#ffe578</color>
+    <color name="fukuan_bg">#feeb6d</color>
+    <color name="live_comment_bg">#f4ff74</color>
+    <color name="home_updat_bg">#ecd890</color>
+    <color name="thanks_kuangbg">#fdedad</color>
+    <color name="hongbaoget_bg">#fcf0a0</color>
+    <color name="commcyanbluebg">#fff7e6</color>
+    <color name="green">#6e9cb6</color>
+    <color name="thanks_bg">#d0121b</color>
+    <color name="signin_bg">#F65341</color>
+    <color name="signin_E95D1B">#E95D1B</color>
+    <color name="signin_timebg">#ffc8bf</color>
+    <color name="commune_daduibg">#e79c88</color>
+    <color name="jiang_bg">#4c1c02</color>
+    <color name="signin_textbg">#8b3129</color>
+    <color name="signin_textshadowColor">#690d00</color>
+    <color name="new_title_bg">#ff4d5b</color>
+    <color name="btn_red">#D63F41</color>
+    <color name="btn_red_hover">#E8484B</color>
+    <color name="red">#e60c0c</color>
+    <color name="red_fen">#fde5e5</color>
+    <color name="red_openredfen2">#ec5353</color>
+    <color name="red_openredfen">#fc6421</color>
+    <color name="ranking_tab_selected">#e66109</color>
+    <color name="red_course">#F76185</color>
+    <color name="red_FF7474">#FF7474</color>
+    <color name="red_f24340">#f24340</color>
+
+    <!--淡粉色-->
+    <color name="red_dandan">#FF8D9B</color>
+    <color name="detail_progress_bg">#e60c0c</color>
+    <color name="detail_progressnot_bg">#dedede</color>
+    <color name="blue">#e60c0c</color>
+    <color name="dc">#dcdcdc</color>
+    <!-- 蓝色 -->
+    <color name="color_5a73f4">#5a73f4</color>
+    <color name="commbluebg">#636efd</color>
+    <color name="bluebg">#4478ff</color>
+    <color name="blue_bang">#2ea4fa</color>
+    <!-- 首页菜单字体颜色 -->
+    <color name="main_tab_text_color">#555555</color>
+    <color name="black">#000000</color>
+    <color name="black_tran">#33000000</color>
+    <color name="black_tran4">#cc000000</color>
+    <color name="black_live">#191919</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_tran">#b3FFFFFF</color>
+    <color name="gray">#d0d0d0</color>
+    <color name="gray_bian">#bfbfbf</color>
+    <color name="gray_btn_bg">#ecebeb</color>
+    <color name="linebg">#f2f2f2</color>
+    <color name="linebg2">#f2f2f2</color>
+    <color name="linesubg">#d1d1d1</color>
+    <color name="color_c8c8c8">#c8c8c8</color>
+
+    <color name="cartnumbg">#818181</color>
+    <color name="page_bg">#F0F0F0</color>
+    <color name="activa_titlebg">#F5F6F8</color>
+    <color name="f3">#f3f3f3</color>
+    <color name="f5">#F5F5F5</color>
+    <color name="e9">#9e9e9e</color>
+    <color name="c9">#999999</color>
+    <color name="liwu_bg">#6f6f6f</color>
+    <color name="black_tranb3">#8C000000</color>
+    <color name="text_contents_color">#464646</color>
+    <color name="text_biaoTi_color">#232323</color>
+    <color name="text_healthcontents_color">#858585</color>
+    <color name="text_noclick_color">#939393</color>
+    <color name="follow_color">#5a5a5a</color>
+    <color name="text_joinlistnum_color">#394659</color>
+    <color name="text_joinlist_color">#a7aeb9</color>
+    <color name="text_bottom_color">#f9f9f9</color>
+    <color name="text_gonggao_color">#545454</color>
+    <color name="login_hint_color">#b4b4b4</color>
+
+    <color name="search_bg">#f4f4f4</color>
+    <color name="good_bg">#f8f8f8</color>
+    <color name="ebe60c0c">#1Ae60c0c</color>
+    <color name="e60c0c">#e60c0c</color>
+
+    <color name="color_f9f9f9">#f9f9f9</color>
+    <color name="color_CA3035">#CA3035</color>
+    <color name="color_4DCA3035">#4DCA3035</color>
+    <color name="color_c78826">#c78826</color>
+    <color name="color_e1a503">#e1a503</color>
+    <color name="color_ffd536">#ffd536</color>
+    <color name="color_fcb02b">#fcb02b</color>
+    <color name="color_d93e3f">#d93e3f</color>
+    <color name="color_f6f3f7">#f6f3f7</color>
+    <color name="color_2A2A2A">#2A2A2A</color>
+    <color name="color_FB4545">#FB4545</color>
+    <color name="color_A6FB4545">#A6FB4545</color>
+    <color name="color_c92419">#c92419</color>
+    <color name="yellow_8d4c0c">#8d4c0c</color>
+    <color name="yellow_c87727">#c87727</color>
+    <color name="yellow_b25714">#b25714</color>
+    <color name="yellow_E95D1B">#E95D1B</color>
+    <color name="yellow_73E95D1B">#73E95D1B</color>
+    <color name="yellow_ff7119">#ff7119</color>
+    <color name="yellow_fd9002">#fd9002</color>
+    <color name="yellow_fab124">#fab124</color>
+    <color name="yellow_70fab124">#70fab124</color>
+    <color name="yellow_fab90b">#fab90b</color>
+    <color name="blue_71A0FF">#71A0FF</color>
+
+    <color name="color_d32a2f">#d32a2f</color>
+    <color name="color_40d32a2f">#40d32a2f</color>
+    <color name="yellow_FBC7AE">#FBC7AE</color>
+    <color name="yellow_c18f46">#c18f46</color>
+    <color name="yellow_c18f46tran">#33c18f46</color>
+
+
+
+
+    <color name="color_ed4401">#ed4401</color>
+    <color name="color_996a36">#996a36</color>
+    <color name="color_fddf96">#fddf96</color>
+    <color name="color_FD8E58">#FD8E58</color>
+    <color name="color_8E0206">#8E0206</color>
+    <color name="color_f1dcbf">#f1dcbf</color>
+    <color name="color_FE9602">#FE9602</color>
+    <color name="color_C63F00">#C63F00</color>
+    <color name="color_674d16">#674d16</color>
+    <color name="color_eb3f00">#eb3f00</color>
+    <color name="gray_C7C7C7">#C7C7C7</color>
+    <color name="color_232323">#232323</color>
+    <color name="color_464646">#464646</color>
+    <color name="color_9a9a9a">#9a9a9a</color>
+    <color name="color_858585">#858585</color>
+    <color name="color_ff2c2c">#ff2c2c</color>
+    <color name="color_fb4c76">#fb4c76</color>
+    <color name="color_db4065">#db4065</color>
+    <color name="color_FFE8DD">#d9FFE8DD</color>
+    <color name="color_E7323D">#E7323D</color>
+    <color name="color_D1D1D1">#D1D1D1</color>
+    <color name="color_FAFAFA">#FAFAFA</color>
+    <color name="color_e6263d">#e6263d</color>
+    <color name="color_d93724">#d93724</color>
+    <color name="color_969696">#969696</color>
+    <color name="color_cccccc">#cccccc</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_E6E6E6">#E6E6E6</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_393c47">#393c47</color>
+    <color name="color_636774">#636774</color>
+    <color name="color_FF4141">#F9114A</color>
+    <color name="color_FF0000">#FD3D78</color>
+    <color name="color_29CDFF">#53C7FE</color>
+    <color name="color_23DFFF">#149CE2</color>
+    <color name="color_4390ed">#4390ed</color>
+
+    <color name="xing_left">#6b2fdd</color>
+    <color name="xing_rigth">#9159f8</color>
+    <color name="main_mangzhong">#6d4223</color>
+    <color name="main_lixia">#bf0f1b</color>
+    <color name="main_xiaohan">#302825</color>
+    <color name="main_dongzhi">#0258c2</color>
+    <color name="main_qiufen">#a23c21</color>
+    <color name="mediumseagreen">#3cb371</color>
+
+    <color name="lv_29e425">#29e425</color>
+    <color name="lv">#09a308</color>
+    <color name="lv_07b906">#07b906</color>
+    <color name="lv_54a73f">#54a73f</color>
+    <color name="pair">#1abc8d</color>
+    <color name="colorAccentTransparent30">#4d0accac</color>
+
+    <color name="lichuncolors">#A3CF56</color><!-- 03:00 -->
+    <color name="yushuicolors">#61E351</color><!-- 04:00 -->
+    <color name="jingzecolors">#20DB74</color><!-- 05:00 -->
+    <color name="chunfencolors">#2FDFBE</color><!-- 06:00 -->
+    <color name="qingmingcolors">#1FD9D9</color><!-- 07:00 -->
+    <color name="guyucolors">#C89171</color><!-- 08:00 -->
+
+    <color name="lixiacolors">#FF7070</color><!-- 09:00 -->
+    <color name="xiaomancolors">#FB5D8F</color><!-- 10:00 -->
+    <color name="mangzhongcolors">#FF3F3F</color><!-- 11:00 -->
+    <color name="xiazhicolors">#FF0000</color><!-- 12:00 -->
+    <color name="xiaoshucolors">#E90000</color><!-- 13:00 -->
+    <color name="dashucolors">#BB7A54</color><!-- 14:00 -->
+
+    <color name="liqiucolors">#FBB53A</color><!-- 15:00 -->
+    <color name="chushucolors">#FBA82F</color><!-- 16:00 -->
+    <color name="bailucolors">#FD8827</color><!-- 17:00 -->
+    <color name="qiufencolors">#F37016</color><!-- 18:00 -->
+    <color name="hanlucolors">#E86412</color><!-- 19:00 -->
+    <color name="shuangjiangcolors">#A95938</color><!-- 20:00 -->
+
+    <color name="lidongcolors">#4BD1FF</color><!-- 21:00 -->
+    <color name="xiaoxuecolors">#42C1FD</color><!-- 22:00 -->
+    <color name="daxuecolors">#35A9FA</color><!-- 23:00 -->
+    <color name="dongzhicolors">#3E85FF</color><!-- 24:00 -->
+    <color name="xioahancolors">#6479FF</color><!-- 01:00 -->
+    <color name="dahancolors">#8E3E1D</color><!-- 02:00 -->
+
+    <!-- 救济推荐弹框   -->
+    <color name="color_B22C3038">#B22C3038</color>
+    <color name="color_f6fe7c">#f6fe7c</color>
+    <color name="color_222222">#222222</color>
+
+
+    <color name="colorPrimary">#FF6602</color>
+    <color name="color_E95D1B">#E95D1B</color>
+    <!--  Text 提示颜色色 深 -->
+    <color name="text_main_one_bg">#333333</color>
+    <color name="text_main_two_bg">#666666</color>
+    <color name="text_main_thr_bg">#0c0c0c</color>
+    <color name="text_main_for_bg">#949298</color>
+    <color name="text_main_five_bg">#151515</color>
+    <!-- hint 提示颜色 -->
+    <color name="text_hint_bg_two">#999999</color>
+    <!-- 不允许按下颜色 -->
+    <color name="btn_can_not_pass">#cccccc</color>
+
+
+</resources>

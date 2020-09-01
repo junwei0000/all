@@ -1,0 +1,230 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow_fab90b"
+    android:orientation="vertical">
+    <!---->
+
+    <com.longcheng.lifecareplan.utils.myview.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/rice_top"
+                android:orientation="vertical">
+
+                <include layout="@layout/activity_tool" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/page_top_height"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/pagetop_layout_left"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="@dimen/padd_leftright">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/back"
+                            android:tint="@color/white" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/view_padd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:id="@+id/layout_bottom1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/rice_cont"
+                    android:gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp25"
+                        android:gravity="bottom">
+
+                        <TextView
+                            style="@style/text_padd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp3_5"
+                            android:background="@drawable/corners_bg_cengright"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/dp15"
+                            android:paddingRight="@dimen/dp15"
+                            android:text="节气聚宝盆"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_zhu_size" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/dp10"
+                            android:text="为您的资产进行24节气赋能"
+                            android:textColor="@color/c9"
+                            android:textSize="@dimen/text_dp12_size" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_cont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="25dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:id="@+id/tv_open"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/dp15"
+                            android:background="@mipmap/rice_top_btn"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/dp2"
+                            android:text="开启聚宝盆"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_zhu_size" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/rice_date_top" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/dp25"
+                    android:layout_weight="1"
+                    android:background="@drawable/corners_bg_writebottom"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/view_paddtopbottom"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="姓名"
+                            android:textColor="@color/text_biaoTi_color"
+                            android:textSize="@dimen/text_tishi_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/view_paddtopbottom"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="商品"
+                            android:textColor="@color/text_biaoTi_color"
+                            android:textSize="@dimen/text_tishi_size"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/view_paddtopbottom"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="时间"
+                            android:textColor="@color/text_biaoTi_color"
+                            android:textSize="@dimen/text_tishi_size"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="370dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.longcheng.lifecareplan.utils.myview.MyListView
+                            android:id="@+id/date_listview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:cacheColorHint="@color/page_bg"
+                            android:divider="@null"
+                            android:dividerHeight="@dimen/dp15"
+                            android:fadeScrollbars="false"
+                            android:fadingEdge="none"
+                            android:listSelector="@drawable/list_notselector"
+                            android:scrollbars="none" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.longcheng.lifecareplan.utils.myview.MyScrollView>
+
+
+    <TextView
+        android:id="@+id/tv_create"
+        style="@style/view_paddtopbottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_ff7119"
+        android:gravity="center"
+        android:text="立即换购"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_biaoTi_size"
+        android:textStyle="bold" />
+</LinearLayout>

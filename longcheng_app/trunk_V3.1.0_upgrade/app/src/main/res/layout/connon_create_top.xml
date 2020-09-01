@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp15">
+
+    <TextView
+        android:id="@+id/tv_group2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/corners_bg_zong_bian"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp4"
+        android:paddingBottom="@dimen/dp4"
+        android:text="2人组"
+        android:textColor="@color/yellow_b25714"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+    <TextView
+        android:id="@+id/tv_group3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_weight="1"
+        android:background="@drawable/corners_bg_zong_bian"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp4"
+        android:paddingBottom="@dimen/dp4"
+        android:text="3人组"
+        android:textColor="@color/yellow_b25714"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+    <TextView
+        android:id="@+id/tv_group4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_weight="1"
+        android:background="@drawable/corners_bg_zong_bian"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp4"
+        android:paddingBottom="@dimen/dp4"
+        android:text="4人组"
+        android:textColor="@color/yellow_b25714"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+    <TextView
+        android:id="@+id/tv_group5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_weight="1"
+        android:background="@drawable/corners_bg_zong_shi"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp4"
+        android:paddingBottom="@dimen/dp4"
+        android:text="5人组"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_biaoTi_size" />
+</LinearLayout>

@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!---->
+    <include layout="@layout/page_top" />
+
+    <include layout="@layout/line" />
+    <!---->
+
+    <LinearLayout
+        style="@style/view_paddlefgtright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padd_topbottom">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_weight="1"
+            android:background="@drawable/corners_bg_graybian"
+            android:gravity="left|center_vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="@dimen/jianJu"
+                android:paddingRight="@dimen/jianJu">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/mutuallist_search" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="请输入手机号或姓名"
+                android:imeOptions="actionSearch"
+                android:maxLength="11"
+                android:paddingLeft="@dimen/dp30"
+                android:paddingRight="@dimen/padd_leftright"
+                android:singleLine="true"
+                android:textColor="@color/text_contents_color"
+                android:textColorHint="@color/login_hint_color"
+                android:textSize="@dimen/text_content_size" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp10"
+            android:background="@drawable/corners_bg_red"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp15"
+            android:paddingRight="@dimen/dp15"
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_content_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_zudui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padd_leftright"
+        android:paddingTop="@dimen/dp20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/gongshe_bianqian_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp8"
+            android:text="组队记录"
+            android:textColor="@color/text_biaoTi_color"
+            android:textSize="@dimen/text_biaoTi_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/date_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp6"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp6"
+            android:cacheColorHint="@color/page_bg"
+            android:divider="@null"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:listSelector="@drawable/list_notselector"
+            android:scrollbars="none" />
+
+        <include layout="@layout/not_date" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        style="@style/view_padd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_biaoTi_size" />
+
+
+</LinearLayout>

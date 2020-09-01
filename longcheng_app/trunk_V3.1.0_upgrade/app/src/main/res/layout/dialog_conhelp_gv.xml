@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_bottom"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <include layout="@layout/line_new" />
+
+    <GridView
+        android:id="@+id/gv_date"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:horizontalSpacing="@dimen/dp10"
+        android:verticalSpacing="@dimen/dp20"
+        android:listSelector="@drawable/list_notselector"
+        android:scrollbars="none"/>
+</LinearLayout>
