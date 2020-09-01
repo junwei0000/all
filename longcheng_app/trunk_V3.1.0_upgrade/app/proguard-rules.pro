@@ -125,12 +125,14 @@ public void *(***);
 -keep class com.google.zxing.**{*;}
 
 #GLide混淆
+-keep class com.bumptech.glide.Glide { *; }
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$**{
   **[] $VALUES;
   public *;
 }
+-dontwarn com.bumptech.glide.**
 # for DexGuard only
 #-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
@@ -316,7 +318,10 @@ public static ** valueOf(java.lang.String);
 -keep class com.alipay.sdk.app.PayTask{ public *;}
 -keep class com.alipay.sdk.app.AuthTask{ public *;}
 
-
+#美洽
+-keep class **.R$* {
+    <fields>;
+}
 
 -keepnames class * implements android.os.Parcelable {
 public static final ** CREATOR;
