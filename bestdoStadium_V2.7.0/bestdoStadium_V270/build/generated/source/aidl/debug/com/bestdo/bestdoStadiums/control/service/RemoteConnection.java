@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: E:\\ws_studio\\bestdoStadium_V2.7.0\\bestdoStadium_V270\\src\\main\\aidl\\com\\bestdo\\bestdoStadiums\\control\\service\\RemoteConnection.aidl
+ * Original file: E:\\all_git\\bestdoStadium_V2.7.0\\bestdoStadium_V270\\src\\main\\aidl\\com\\bestdo\\bestdoStadiums\\control\\service\\RemoteConnection.aidl
  */
 package com.bestdo.bestdoStadiums.control.service;
 public interface RemoteConnection extends android.os.IInterface
